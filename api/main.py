@@ -184,6 +184,7 @@ class QueryResponse(BaseModel):
     sources: list[dict]
     model: str
     tokens_used: int
+    debug: Optional[dict] = None
 
 
 @app.post("/upload")
@@ -416,7 +417,26 @@ async def query_knowledge_base(request: QueryRequest):
             logger.warning(f"Langfuse update failed: {e}")
 
     return QueryResponse(answer=result["answer"], sources=sources,
-                        model=result["model"], tokens_used=result["total_tokens"])
+                        model=result["model"], tokens_used=result["total_tokens"],
+                        debug={
+                            "expanded_queries": expanded_queries,
+                            "retrieval_ms": retrieval_ms,
+                            "generation_ms": generation_ms,
+                            "total_ms": total_ms,
+                            "chunks_retrieved": len(chunks),
+                            "chunks_after_rerank": len(top_chunks),
+                            "top_chunks": [
+                                {
+                                    "chunk_id": c.get("chunk_id", ""),
+                                    "document_id": c.get("document_id", ""),
+                                    "page_num": c.get("page_num", 0),
+                                    "score": round(c.get("rerank_score", c.get("score", 0)), 4),
+                                    "source": c.get("source", ""),
+                                    "text_preview": c.get("text", "")[:100],
+                                }
+                                for c in top_chunks
+                            ]
+                        })
 
 
 @app.get("/documents")

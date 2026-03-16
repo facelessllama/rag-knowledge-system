@@ -459,6 +459,174 @@ body {
   max-width: 75%;
 }
 
+/* Debug Panel */
+.debug-toggle {
+  position: fixed;
+  bottom: 80px;
+  right: 16px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #1a1d2e;
+  border: 1px solid #2a2d3a;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 50;
+  transition: all 0.15s;
+}
+.debug-toggle:hover { border-color: #1D9E75; color: #1D9E75; }
+.debug-toggle.active { background: #0f2318; border-color: #1D9E75; color: #1D9E75; }
+
+.debug-panel {
+  position: fixed;
+  bottom: 0; left: 260px; right: 0;
+  height: 0;
+  background: #0d0f18;
+  border-top: 1px solid #2a2d3a;
+  overflow: hidden;
+  transition: height 0.3s ease;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+}
+.debug-panel.open { height: 240px; }
+
+.debug-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid #2a2d3a;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.debug-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: #1D9E75;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.debug-metric {
+  font-size: 11px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.debug-metric span {
+  color: #e8e8e8;
+  font-weight: 500;
+}
+
+.debug-body {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: auto;
+  padding: 8px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.debug-section {
+  flex-shrink: 0;
+}
+
+.debug-section-title {
+  font-size: 10px;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+
+.debug-queries {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 220px;
+  max-width: 280px;
+}
+
+.debug-query-item {
+  font-size: 11px;
+  color: #9ca3af;
+  background: #1a1d2e;
+  border: 1px solid #2a2d3a;
+  border-radius: 4px;
+  padding: 4px 8px;
+  line-height: 1.4;
+}
+.debug-query-item:first-child { color: #1D9E75; border-color: #1a4a33; }
+
+.debug-chunks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 360px;
+}
+
+.debug-chunk-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  background: #1a1d2e;
+  border: 1px solid #2a2d3a;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.debug-chunk-score {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1D9E75;
+  min-width: 45px;
+}
+
+.debug-chunk-source {
+  font-size: 10px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: #2a2d3a;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+.debug-chunk-source.hybrid { background: #0f2318; color: #1D9E75; }
+.debug-chunk-source.vector { background: #0c1a35; color: #3b82f6; }
+.debug-chunk-source.bm25 { background: #2a1f0c; color: #f59e0b; }
+
+.debug-chunk-text {
+  color: #6b7280;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.debug-chunk-page {
+  font-size: 10px;
+  color: #4b5563;
+  flex-shrink: 0;
+}
+
+.score-bar-wrap {
+  width: 60px;
+  height: 4px;
+  background: #2a2d3a;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.score-bar {
+  height: 100%;
+  background: #1D9E75;
+  border-radius: 2px;
+}
+
 /* PDF Viewer Panel */
 .pdf-panel {
   position: fixed;
@@ -948,6 +1116,7 @@ async function sendMessage() {
     if (r.ok) {
       const data = await r.json();
       addBotMessage(data.answer, data.sources);
+      updateDebugPanel(data);
     } else {
       addErrorMessage('Server error. Please try again.');
     }
@@ -963,6 +1132,60 @@ function escapeHtml(text) {
   const div = document.createElement('div');
   div.appendChild(document.createTextNode(text));
   return div.innerHTML;
+}
+
+let debugVisible = false;
+
+function toggleDebug() {
+  debugVisible = !debugVisible;
+  document.getElementById('debugPanel').classList.toggle('open', debugVisible);
+  document.getElementById('debugToggle').classList.toggle('active', debugVisible);
+}
+
+function updateDebugPanel(data) {
+  if (!data.debug) return;
+  const d = data.debug;
+
+  document.getElementById('dbgRetrieval').textContent = d.retrieval_ms || '—';
+  document.getElementById('dbgGeneration').textContent = d.generation_ms || '—';
+  document.getElementById('dbgTotal').textContent = d.total_ms || '—';
+  document.getElementById('dbgChunks').textContent = `${d.chunks_after_rerank}/${d.chunks_retrieved}`;
+  document.getElementById('dbgTokens').textContent = data.tokens_used || '—';
+  document.getElementById('dbgModel').textContent = data.model || '';
+
+  // Expanded queries
+  const qContainer = document.getElementById('dbgQueries');
+  qContainer.innerHTML = '';
+  (d.expanded_queries || []).forEach((q, i) => {
+    const el = document.createElement('div');
+    el.className = 'debug-query-item';
+    el.textContent = (i === 0 ? '→ ' : '↳ ') + q;
+    qContainer.appendChild(el);
+  });
+
+  // Chunks
+  const cContainer = document.getElementById('dbgChunksList');
+  cContainer.innerHTML = '';
+  (d.top_chunks || []).forEach(c => {
+    const scorePercent = Math.min(100, c.score * 100).toFixed(0);
+    const el = document.createElement('div');
+    el.className = 'debug-chunk-item';
+    el.innerHTML = `
+      <span class="debug-chunk-score">${c.score.toFixed(3)}</span>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:${scorePercent}%"></div></div>
+      <span class="debug-chunk-source ${c.source}">${c.source || 'vec'}</span>
+      <span class="debug-chunk-page">p.${c.page_num}</span>
+      <span class="debug-chunk-text">${escapeHtml(c.text_preview)}</span>
+    `;
+    cContainer.appendChild(el);
+  });
+
+  // Автооткрываем панель при первом запросе
+  if (!debugVisible) {
+    debugVisible = true;
+    document.getElementById('debugPanel').classList.add('open');
+    document.getElementById('debugToggle').classList.add('active');
+  }
 }
 
 async function loadDocuments() {
@@ -1012,6 +1235,34 @@ checkHealth();
 loadDocuments();
 setInterval(checkHealth, 10000);
 </script>
+
+<!-- Debug Toggle Button -->
+<button class="debug-toggle" id="debugToggle" onclick="toggleDebug()" title="Retrieval Debug Panel">⚡</button>
+
+<!-- Debug Panel -->
+<div class="debug-panel" id="debugPanel">
+  <div class="debug-header">
+    <span class="debug-title">Retrieval Debug</span>
+    <div class="debug-metric">retrieval <span id="dbgRetrieval">—</span> ms</div>
+    <div class="debug-metric">generation <span id="dbgGeneration">—</span> ms</div>
+    <div class="debug-metric">total <span id="dbgTotal">—</span> ms</div>
+    <div class="debug-metric">chunks <span id="dbgChunks">—</span></div>
+    <div class="debug-metric">tokens <span id="dbgTokens">—</span></div>
+    <div style="margin-left:auto;font-size:11px;color:#4b5563" id="dbgModel"></div>
+  </div>
+  <div class="debug-body">
+    <div class="debug-section">
+      <div class="debug-section-title">Expanded queries</div>
+      <div class="debug-queries" id="dbgQueries">
+        <div class="debug-query-item" style="color:#4b5563">Ask a question to see debug info</div>
+      </div>
+    </div>
+    <div class="debug-section">
+      <div class="debug-section-title">Top chunks after rerank</div>
+      <div class="debug-chunks" id="dbgChunksList"></div>
+    </div>
+  </div>
+</div>
 
 <!-- PDF overlay backdrop -->
 <div class="pdf-overlay" id="pdfOverlay" onclick="closePdfPanel()"></div>
