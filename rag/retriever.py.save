@@ -1,0 +1,158 @@
+"""
+Hybrid Retriever
+Combines vector search (semantic) + BM25 (keyword) for best results.
+
+Why hybrid?
+- Vector search: finds conceptually similar text even with different words
+- BM25: finds exact keyword matches, great for names/terms/codes
+- Combined: best of both worlds, significantly higher recall
+"""
+import logging
+from rank_bm25 import BM25Okapi
+from embeddings.embedding_service import EmbeddingService
+from vector_db.qdrant_client import VectorStore
+
+logger = logging.getLogger(__name__)
+
+
+class HybridRetriever:
+    """
+    Two-stage retrieval:
+    1. Vector search + BM25 search independently
+    2. Merge and deduplicate results
+    3. Return top-k most relevant chunks
+    """
+
+    def __init__(
+        self,
+        embedding_service: EmbeddingService,
+        vector_store: VectorStore,
+        top_k: int = 5
+    ):
+        self.embedder = embedding_service
+        self.vector_store = vector_store
+        self.top_k = top_k
+        self._bm25_index = None
+        self._bm25_chunks = []
+        logger.info(f"HybridRetriever ready | top_k={top_k}")
+
+    def index_chunks_for_bm25(self, chunks: list):
+        """
+        Build BM25 index from chunks.
+        Called after new documents are uploaded.
+        """
+        self._bm25_chunks = chunks
+        tokenized = [chunk["text"].lower().split() for chunk in chunks]
+        self._bm25_index = BM25Okapi(tokenized)
+        logger.info(f"BM25 index built: {len(chunks)} chunks")
+
+    def retrieve(self, query: str, top_k: int = None) -> list[dict]:
+        """
+        Main retrieval method.
+        Returns ranked list of relevant chunks.
+        """
+        k = top_k or self.top_k
+
+        # Stage 1: Vector search
+        query_vector = self.embedder.embed_text(query)
+        vector_results = self.vector_store.search(query_vector, top_k=k * 2)
+
+        # Stage 2: BM25 keyword search
+        bm25_results = self._bm25_search(query, top_k=k * 2)
+
+        # Stage 3: Merge and deduplicate
+        merged = self._merge_results(vector_results, bm25_results, top_k=k)
+
+        logger.info(
+            f"Query: '{query[:50]}...' | "
+            f"vector={len(vector_results)} bm25={len(bm25_results)} "
+            f"merged={len(merged)}"
+        )
+        return merged
+
+    def _bm25_search(self, query: str, top_k: int) -> list[dict]:
+        """Keyword search using BM25"""
+        if not self._bm25_index:
+            return []
+
+        tokenized_query = query.lower().split()
+        scores = self._bm25_index.get_scores(tokenized_query)
+
+        # Get top-k indices
+        top_indices = sorted(
+            range(len(scores)),
+            key=lambda i: scores[i],
+            reverse=True
+        )[:top_k]
+
+        results = []
+        for idx in top_indices:
+            if scores[idx] > 0:
+                chunk = self._bm25_chunks[idx].copy()
+                chunk["score"] = float(scores[idx])
+                chunk["source"] = "bm25"
+                results.append(chunk)
+
+        return results
+
+    def _merge_results(
+        self,
+        vector_results: list,
+        bm25_results: list,
+        top_k: int
+    ) -> list[dict]:
+        """
+        Merge results from both retrievers.
+        Chunks appearing in both get a score boost.
+        """
+        seen_chunks = {}
+
+        # Add vector results
+        for r in vector_results:
+            key = r.get("chunk_id", r["text"][:50])
+            r["source"] = "vector"
+            seen_chunks[key] = r
+
+        # Merge BM25 — boost score if already in vector results
+        for r in bm25_results:
+            key = r.get("chunk_id", r["text"][:50])
+            if key in seen_chunks:
+                # Appeared in both — boost the score
+                seen_chunks[key]["score"] += r["score"] * 0.3
+                seen_chunks[key]["source"] = "hybrid"
+            else:
+                seen_chunks[key] = r
+
+        # Sort by final score
+        merged = sorted(seen_chunks.values(), key=lambda x: x["score"], reverse=True)
+        expanded = self._expand_with_neighbors(merged)
+        expanded.sort(key=lambda x: x["score"], reverse=True)
+        return expanded[:k]
+    def _expand_with_neighbors(self, chunks: list[dict]) -> list[dict]:
+        """Add neighboring chunks (±1) to capture split tables/specs."""
+        expanded = {c.get("chunk_id", c["text"][:50]): c for c in chunks}
+
+        for chunk in chunks:
+            doc_id = chunk.get("doc_id")
+            chunk_index = chunk.get("chunk_index")
+            if doc_id is None or chunk_index is None:
+                continue
+
+            for offset in [-1, 1]:
+                neighbor_index = chunk_index + offset
+                if neighbor_index < 0:
+                    continue
+
+                # Search BM25 chunks list for neighbor
+                for c in self._bm25_chunks:
+                    if (c.get("doc_id") == doc_id and
+                            c.get("chunk_index") == neighbor_index):
+                        key = c.get("chunk_id", c["text"][:50])
+                        if key not in expanded:
+                            neighbor = c.copy()
+                            neighbor["score"] = chunk["score"] * 0.85
+                            neighbor["source"] = "neighbor"
+                            expanded[key] = neighbor
+                        break
+
+        return list(expanded.values())

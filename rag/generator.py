@@ -1,0 +1,108 @@
+"""
+Handles communication with LLM backend.
+
+Uses Ollama's OpenAI-compatible API endpoint
+so switching to real OpenAI requires only URL change.
+"""
+import logging
+import httpx
+import asyncio
+
+logger = logging.getLogger(__name__)
+
+
+class LLMGenerator:
+    def __init__(
+        self,
+        ollama_url: str = "http://localhost:11434",
+        model: str = "qwen2.5:7b",
+        temperature: float = 0.1
+    ):
+        self.ollama_url = ollama_url
+        self.model = model
+        self.temperature = temperature
+        # Low temperature = more deterministic = fewer hallucinations
+        logger.info(f"LLMGenerator ready | model={model} temp={temperature}")
+
+    async def generate(self, messages: list[dict], retries: int = 3) -> dict:
+        """
+        Send messages to LLM and get response.
+        Retries up to 3 times on timeout or connection error.
+        """
+        last_error = None
+        for attempt in range(1, retries + 1):
+            try:
+                async with httpx.AsyncClient(
+                    timeout=httpx.Timeout(
+                        connect=10.0,
+                        read=120.0,
+                        write=10.0,
+                        pool=5.0
+                    )
+                ) as client:
+                    response = await client.post(
+                        f"{self.ollama_url}/api/chat",
+                        json={
+                            "model": self.model,
+                            "messages": messages,
+                            "stream": False,
+                            "options": {
+                                "temperature": self.temperature,
+                                "num_predict": 1024
+                            }
+                        }
+                    )
+                    response.raise_for_status()
+                    data = response.json()
+                    if attempt > 1:
+                        logger.info(f"LLM succeeded on attempt {attempt}")
+                    return {
+                        "answer": data["message"]["content"],
+                        "model": self.model,
+                        "prompt_tokens": data.get("prompt_eval_count", 0),
+                        "completion_tokens": data.get("eval_count", 0),
+                        "total_tokens": (
+                            data.get("prompt_eval_count", 0) +
+                            data.get("eval_count", 0)
+                        )
+                    }
+            except httpx.TimeoutException as e:
+                last_error = e
+                logger.warning(f"LLM timeout attempt {attempt}/{retries}")
+                if attempt < retries:
+                    await asyncio.sleep(2 * attempt)
+            except httpx.ConnectError as e:
+                last_error = e
+                logger.warning(f"LLM connect error attempt {attempt}/{retries}")
+                if attempt < retries:
+                    await asyncio.sleep(2 * attempt)
+            except Exception as e:
+                logger.error(f"LLM unexpected error: {e}")
+                raise
+        logger.error(f"LLM failed after {retries} attempts")
+        raise httpx.TimeoutException(
+            f"LLM did not respond after {retries} attempts. Is Ollama running?"
+        )
+
+    async def generate_stream(self, messages: list[dict]):
+        """
+        Stream response token by token.
+        Used for real-time UI updates.
+        """
+        async with httpx.AsyncClient(timeout=120.0) as client:
+            async with client.stream(
+                "POST",
+                f"{self.ollama_url}/api/chat",
+                json={
+                    "model": self.model,
+                    "messages": messages,
+                    "stream": True,
+                    "options": {"temperature": self.temperature}
+                }
+            ) as response:
+                async for line in response.aiter_lines():
+                    if line:
+                        import json
+                        data = json.loads(line)
+                        if not data.get("done"):
+                            yield data["message"]["content"]

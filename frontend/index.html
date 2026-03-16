@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knowledge Base</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #0f1117;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #e8e8e8;
+}
+
+.header {
+  height: 56px;
+  background: #161821;
+  border-bottom: 1px solid #2a2d3a;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logo-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #1D9E75;
+}
+
+.logo-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+
+.header-status {
+  margin-left: auto;
+  font-size: 12px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #1D9E75;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  overflow: hidden;
+}
+
+.sidebar {
+  background: #161821;
+  border-right: 1px solid #2a2d3a;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.sidebar-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.upload-zone {
+  border: 1.5px dashed #2a2d3a;
+  border-radius: 10px;
+  padding: 18px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #1a1d2e;
+  position: relative;
+}
+
+.upload-zone:hover {
+  border-color: #1D9E75;
+  background: #0f2318;
+}
+
+.upload-zone input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.upload-icon { font-size: 24px; margin-bottom: 8px; }
+
+.upload-text {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.upload-text strong {
+  color: #1D9E75;
+  font-weight: 500;
+}
+
+.upload-progress { display: none; margin-top: 8px; }
+
+.progress-bar {
+  height: 3px;
+  background: #2a2d3a;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #1D9E75;
+  border-radius: 2px;
+  transition: width 0.3s;
+  width: 0%;
+}
+
+.progress-text {
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 4px;
+  text-align: center;
+}
+
+.docs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.doc-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #1a1d2e;
+  border: 1px solid #2a2d3a;
+}
+
+.doc-icon { font-size: 14px; flex-shrink: 0; }
+
+.doc-info { flex: 1; min-width: 0; }
+
+.doc-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: #e8e8e8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doc-meta { font-size: 11px; color: #4b5563; }
+
+.doc-badge {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 20px;
+  background: #0f2318;
+  color: #1D9E75;
+  font-weight: 500;
+  border: 1px solid #1D9E75;
+  flex-shrink: 0;
+}
+
+.doc-delete {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid #2a2d3a;
+  color: #4b5563;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+  line-height: 1;
+}
+
+.doc-delete:hover {
+  background: #2a0f0f;
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.chat-area {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: #2a2d3a transparent;
+}
+
+.empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: #0f2318;
+  border: 1px solid #1D9E75;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.empty-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.empty-sub {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+  max-width: 320px;
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.suggestion {
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #2a2d3a;
+  background: #161821;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.suggestion:hover {
+  border-color: #1D9E75;
+  color: #1D9E75;
+  background: #0f2318;
+}
+
+.message { display: flex; flex-direction: column; gap: 8px; }
+.message.user { align-items: flex-end; }
+.message.bot { align-items: flex-start; }
+
+.bubble {
+  max-width: 75%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.message.user .bubble {
+  background: #1D9E75;
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.message.bot .bubble {
+  background: #161821;
+  color: #e8e8e8;
+  border: 1px solid #2a2d3a;
+  border-bottom-left-radius: 4px;
+}
+
+.sources {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 75%;
+}
+
+.sources-label {
+  font-size: 11px;
+  color: #4b5563;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.source-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #1a1d2e;
+  border: 1px solid #2a2d3a;
+  border-radius: 8px;
+  border-left: 2px solid #1D9E75;
+}
+
+.source-page {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1D9E75;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 1px;
+  background: #0f2318;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid #1a4a33;
+}
+
+.source-text {
+  font-size: 12px;
+  color: #9ca3af;
+  line-height: 1.5;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.source-score {
+  font-size: 10px;
+  color: #4b5563;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 3px;
+  margin-left: auto;
+}
+
+.typing-bubble {
+  background: #161821;
+  border: 1px solid #2a2d3a;
+  border-radius: 16px;
+  border-bottom-left-radius: 4px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.typing-bubble span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #4b5563;
+  animation: bounce 1.2s infinite;
+}
+
+.typing-bubble span:nth-child(2) { animation-delay: 0.2s; }
+.typing-bubble span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-6px); background: #1D9E75; }
+}
+
+.input-bar {
+  padding: 16px 24px;
+  background: #161821;
+  border-top: 1px solid #2a2d3a;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.chat-input {
+  flex: 1;
+  border: 1px solid #2a2d3a;
+  border-radius: 24px;
+  padding: 11px 20px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  background: #1a1d2e;
+  color: #e8e8e8;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.chat-input::placeholder { color: #4b5563; }
+
+.chat-input:focus {
+  border-color: #1D9E75;
+  box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.1);
+}
+
+.send-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: #1D9E75;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.send-btn:hover { background: #0F6E56; }
+.send-btn:active { transform: scale(0.95); }
+.send-btn svg { width: 16px; height: 16px; fill: white; margin-left: 2px; }
+
+.error-msg {
+  font-size: 13px;
+  color: #ef4444;
+  padding: 8px 16px;
+  background: #1f0f0f;
+  border: 1px solid #7f1d1d;
+  border-radius: 8px;
+  max-width: 75%;
+}
+
+/* PDF Viewer Panel */
+.pdf-panel {
+  position: fixed;
+  top: 0; right: -45%;
+  width: 45%;
+  height: 100vh;
+  background: #161821;
+  border-left: 1px solid #2a2d3a;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  transition: right 0.3s ease;
+}
+
+.pdf-panel.open { right: 0; }
+
+.pdf-panel-header {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid #2a2d3a;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.pdf-panel-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #e8e8e8;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pdf-panel-close {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid #2a2d3a;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+
+.pdf-panel-close:hover {
+  background: #2a0f0f;
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.pdf-page-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-bottom: 1px solid #2a2d3a;
+  flex-shrink: 0;
+}
+
+.pdf-page-btn {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  background: #1a1d2e;
+  border: 1px solid #2a2d3a;
+  color: #9ca3af;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+
+.pdf-page-btn:hover { border-color: #1D9E75; color: #1D9E75; }
+.pdf-page-info { font-size: 12px; color: #6b7280; flex: 1; text-align: center; }
+
+.pdf-canvas-container {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  gap: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #2a2d3a transparent;
+  position: relative;
+}
+
+#pdfCanvas {
+  max-width: 100%;
+  border-radius: 4px;
+  display: block;
+}
+
+.highlight-overlay {
+  position: absolute;
+  background: rgba(253, 224, 71, 0.35);
+  border: 1.5px solid rgba(253, 224, 71, 0.8);
+  border-radius: 2px;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.pdf-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #6b7280;
+  font-size: 13px;
+  padding: 40px;
+}
+
+.source-item { cursor: pointer; transition: all 0.15s; }
+.source-item:hover { border-color: #1D9E75; background: #0f2318; }
+.source-item.active { border-color: #1D9E75; background: #0f2318; }
+
+.pdf-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 99;
+  display: none;
+}
+.pdf-overlay.show { display: block; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo-dot"></div>
+  <span class="logo-text">Knowledge Base</span>
+  <div class="header-status">
+    <div class="status-dot" id="statusDot"></div>
+    <span id="statusText">qwen2.5:7b · connecting...</span>
+  </div>
+</div>
+
+<div class="main">
+  <div class="sidebar">
+    <span class="sidebar-label">Upload Document</span>
+    <div class="upload-zone" id="uploadZone">
+      <input type="file" accept=".pdf" id="fileInput" multiple onchange="uploadFiles(this)">
+      <div class="upload-icon">📄</div>
+      <div class="upload-text">
+        <strong>Choose PDF(s)</strong><br>
+        or drag & drop here<br>
+        <span style="font-size:11px;color:#374151">multiple files supported</span>
+      </div>
+      <div class="upload-progress" id="uploadProgress">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">Uploading...</div>
+      </div>
+    </div>
+
+    <span class="sidebar-label" style="margin-top:4px">Indexed Documents</span>
+    <div class="docs-list" id="docsList">
+      <div style="font-size:12px; color:#4b5563; text-align:center; padding:12px 0;">
+        No documents yet
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-area">
+    <div class="messages" id="messages">
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">🔍</div>
+        <div class="empty-title">Ask your documents</div>
+        <div class="empty-sub">
+          Upload a PDF and start asking questions.<br>
+          Answers include source references.
+        </div>
+        <div class="suggestions" id="suggestions">
+          <div class="suggestion" onclick="useSuggestion(this)">How does this work?</div>
+          <div class="suggestion" onclick="useSuggestion(this)">What are the main topics?</div>
+          <div class="suggestion" onclick="useSuggestion(this)">Summarize key points</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-bar">
+      <input
+        class="chat-input"
+        id="chatInput"
+        type="text"
+        placeholder="Ask a question about your documents..."
+        onkeydown="if(event.key==='Enter' && !event.shiftKey) sendMessage()"
+      >
+      <button class="send-btn" onclick="sendMessage()">
+        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = 'http://localhost:8000';
+let isTyping = false;
+let docsCount = 0;
+
+async function checkHealth() {
+  try {
+    const r = await fetch(API + '/health');
+    if (r.ok) {
+      document.getElementById('statusDot').style.background = '#1D9E75';
+      document.getElementById('statusText').textContent = 'qwen2.5:7b · online';
+    }
+  } catch {
+    document.getElementById('statusDot').style.background = '#ef4444';
+    document.getElementById('statusText').textContent = 'server offline';
+  }
+}
+
+async function uploadFiles(input) {
+  const files = Array.from(input.files);
+  if (!files.length) return;
+
+  const progress = document.getElementById('uploadProgress');
+  const fill = document.getElementById('progressFill');
+  const text = document.getElementById('progressText');
+
+  progress.style.display = 'block';
+
+  // Один файл — старый путь через /upload
+  if (files.length === 1) {
+    const file = files[0];
+    fill.style.width = '30%';
+    text.textContent = 'Uploading...';
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      fill.style.width = '60%';
+      text.textContent = 'Processing...';
+      const r = await fetch(API + '/upload', { method: 'POST', body: formData });
+      fill.style.width = '100%';
+      if (r.ok) {
+        const data = await r.json();
+        text.textContent = 'Done!';
+        setTimeout(() => {
+          progress.style.display = 'none';
+          fill.style.width = '0%';
+          fill.style.background = '#1D9E75';
+          addDocToList(data);
+          updateSuggestions(file.name);
+        }, 800);
+      } else {
+        const msg = r.status === 409 ? '⚠️ Already uploaded' : 'Upload failed';
+        text.textContent = msg;
+        fill.style.background = r.status === 409 ? '#ca8a04' : '#ef4444';
+        setTimeout(() => {
+          progress.style.display = 'none';
+          fill.style.width = '0%';
+          fill.style.background = '#1D9E75';
+        }, 2000);
+      }
+    } catch (e) {
+      text.textContent = 'Connection error';
+      fill.style.background = '#ef4444';
+    }
+    input.value = '';
+    return;
+  }
+
+  // Несколько файлов — batch upload
+  text.textContent = `Uploading ${files.length} files...`;
+  fill.style.width = '20%';
+
+  const formData = new FormData();
+  files.forEach(f => formData.append('files', f));
+
+  try {
+    fill.style.width = '60%';
+    text.textContent = 'Processing...';
+
+    const r = await fetch(API + '/upload-batch', { method: 'POST', body: formData });
+    fill.style.width = '100%';
+
+    if (r.ok) {
+      const data = await r.json();
+      const indexed = data.indexed;
+      const skipped = data.skipped;
+      const errors = data.errors;
+
+      let msg = `Done: ${indexed} indexed`;
+      if (skipped > 0) msg += `, ${skipped} skipped`;
+      if (errors > 0) msg += `, ${errors} errors`;
+      text.textContent = msg;
+
+      // Добавляем успешно загруженные в список
+      data.results.forEach(res => {
+        if (res.status === 'indexed') {
+          addDocToList(res);
+        }
+      });
+
+      // Показываем детали в чате если были ошибки/пропуски
+      if (skipped > 0 || errors > 0) {
+        let details = '';
+        data.results.forEach(res => {
+          if (res.status === 'skipped') details += `⚠️ ${res.filename}: already uploaded
+`;
+          if (res.status === 'error') details += `❌ ${res.filename}: ${res.error}
+`;
+        });
+        if (details) addErrorMessage(details.trim());
+      }
+
+      setTimeout(() => {
+        progress.style.display = 'none';
+        fill.style.width = '0%';
+        fill.style.background = '#1D9E75';
+      }, 2000);
+    } else {
+      text.textContent = 'Batch upload failed';
+      fill.style.background = '#ef4444';
+      setTimeout(() => {
+        progress.style.display = 'none';
+        fill.style.width = '0%';
+        fill.style.background = '#1D9E75';
+      }, 2000);
+    }
+  } catch (e) {
+    text.textContent = 'Connection error';
+    fill.style.background = '#ef4444';
+  }
+
+  input.value = '';
+}
+
+function addDocToList(data, increment = true) {
+  if (increment) {
+    docsCount++;
+    const list = document.getElementById('docsList');
+    if (docsCount === 1) list.innerHTML = '';
+  }
+
+  const list = document.getElementById('docsList');
+  const chunks = data.chunks_created || data.chunks || 0;
+  const pages = data.pages || 0;
+
+  const item = document.createElement('div');
+  item.className = 'doc-item';
+  item.dataset.docId = data.doc_id;
+  item.innerHTML = `
+    <span class="doc-icon">📋</span>
+    <div class="doc-info">
+      <div class="doc-name" title="${data.filename}">${data.filename}</div>
+      <div class="doc-meta">${pages} pages · ${chunks} chunks</div>
+    </div>
+    <span class="doc-badge">ready</span>
+    <button class="doc-delete" title="Delete document">✕</button>
+  `;
+  item.querySelector('.doc-delete').addEventListener('click', () => {
+    deleteDocument(data.doc_id, data.filename, item);
+  });
+  list.appendChild(item);
+  // Сохраняем в глобальный registry для PDF viewer
+  if (window._docsRegistry) window._docsRegistry[data.doc_id] = data;
+}
+
+function updateSuggestions(filename) {
+  const s = document.getElementById('suggestions');
+  if (s) {
+    s.innerHTML = `
+      <div class="suggestion" onclick="useSuggestion(this)">What is this document about?</div>
+      <div class="suggestion" onclick="useSuggestion(this)">List the main topics</div>
+      <div class="suggestion" onclick="useSuggestion(this)">Key instructions?</div>
+    `;
+  }
+}
+
+function useSuggestion(el) {
+  document.getElementById('chatInput').value = el.textContent;
+  sendMessage();
+}
+
+function hideEmpty() {
+  const e = document.getElementById('emptyState');
+  if (e) e.remove();
+}
+
+function scrollBottom() {
+  const m = document.getElementById('messages');
+  m.scrollTop = m.scrollHeight;
+}
+
+function addUserMessage(text) {
+  hideEmpty();
+  const container = document.getElementById('messages');
+  const div = document.createElement('div');
+  div.className = 'message user';
+  div.innerHTML = `<div class="bubble">${escapeHtml(text)}</div>`;
+  container.appendChild(div);
+  scrollBottom();
+}
+
+function showTyping() {
+  hideEmpty();
+  const container = document.getElementById('messages');
+  const div = document.createElement('div');
+  div.className = 'message bot';
+  div.id = 'typingIndicator';
+  div.innerHTML = `<div class="typing-bubble"><span></span><span></span><span></span></div>`;
+  container.appendChild(div);
+  scrollBottom();
+}
+
+function hideTyping() {
+  const t = document.getElementById('typingIndicator');
+  if (t) t.remove();
+}
+
+function addBotMessage(text, sources) {
+  const container = document.getElementById('messages');
+  const div = document.createElement('div');
+  div.className = 'message bot';
+
+  let html = `<div class="bubble">${escapeHtml(text)}</div>`;
+
+  if (sources && sources.length > 0) {
+    html += `<div class="sources">`;
+    html += `<div class="sources-label">Sources</div>`;
+
+    sources.forEach(s => {
+      const score = s.relevance_score ? Math.min(100, (s.relevance_score * 100)).toFixed(0) + '%' : '';
+      html += `
+        <div class="source-item" onclick="openPdfViewer('${s.document}', ${s.page || 1}, '${(s.excerpt||'').replace(/'/g, '')}')">
+          <span class="source-page">стр. ${s.page ?? '?'}</span>
+          <span class="source-text">${escapeHtml(s.excerpt || '')}</span>
+          ${score ? `<span class="source-score">${score}</span>` : ''}
+          <span style="font-size:10px;color:#1D9E75;margin-left:4px;flex-shrink:0">↗</span>
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+  }
+
+  div.innerHTML = html;
+  container.appendChild(div);
+  scrollBottom();
+}
+
+function addErrorMessage(text) {
+  const container = document.getElementById('messages');
+  const div = document.createElement('div');
+  div.className = 'message bot';
+  div.innerHTML = `<div class="error-msg">${escapeHtml(text)}</div>`;
+  container.appendChild(div);
+  scrollBottom();
+}
+
+async function sendMessage() {
+  if (isTyping) return;
+
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text) return;
+
+  input.value = '';
+  isTyping = true;
+
+  addUserMessage(text);
+  showTyping();
+
+  try {
+    const r = await fetch(API + '/query', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        question: text,
+        top_k: 3,
+        rerank: true
+      })
+    });
+
+    hideTyping();
+
+    if (r.ok) {
+      const data = await r.json();
+      addBotMessage(data.answer, data.sources);
+    } else {
+      addErrorMessage('Server error. Please try again.');
+    }
+  } catch (e) {
+    hideTyping();
+    addErrorMessage('Cannot connect to server. Make sure the API is running on port 8000.');
+  }
+
+  isTyping = false;
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.appendChild(document.createTextNode(text));
+  return div.innerHTML;
+}
+
+async function loadDocuments() {
+  try {
+    const r = await fetch(API + '/documents');
+    if (!r.ok) return;
+    const data = await r.json();
+    if (data.documents && data.documents.length > 0) {
+      const list = document.getElementById('docsList');
+      list.innerHTML = '';
+      docsCount = data.documents.length;
+      data.documents.forEach(doc => addDocToList(doc, false));
+    }
+  } catch (e) {
+    console.log('Could not load documents:', e);
+  }
+}
+
+async function deleteDocument(doc_id, filename, itemEl) {
+  if (!confirm('Удалить "' + filename + '"?')) return;
+
+  itemEl.style.opacity = '0.4';
+  itemEl.style.pointerEvents = 'none';
+
+  try {
+    const r = await fetch(API + '/documents/' + doc_id, { method: 'DELETE' });
+    if (r.ok) {
+      itemEl.remove();
+      docsCount--;
+      if (docsCount <= 0) {
+        docsCount = 0;
+        document.getElementById('docsList').innerHTML = '<div style="font-size:12px; color:#4b5563; text-align:center; padding:12px 0;">No documents yet</div>';
+      }
+    } else {
+      itemEl.style.opacity = '1';
+      itemEl.style.pointerEvents = 'auto';
+      alert('Delete failed');
+    }
+  } catch (e) {
+    itemEl.style.opacity = '1';
+    itemEl.style.pointerEvents = 'auto';
+    alert('Connection error');
+  }
+}
+
+checkHealth();
+loadDocuments();
+setInterval(checkHealth, 10000);
+</script>
+
+<!-- PDF overlay backdrop -->
+<div class="pdf-overlay" id="pdfOverlay" onclick="closePdfPanel()"></div>
+
+<!-- PDF Viewer Panel -->
+<div class="pdf-panel" id="pdfPanel">
+  <div class="pdf-panel-header">
+    <span style="font-size:16px">📄</span>
+    <span class="pdf-panel-title" id="pdfPanelTitle">Document</span>
+    <button class="pdf-panel-close" onclick="closePdfPanel()">✕</button>
+  </div>
+  <div class="pdf-page-controls">
+    <button class="pdf-page-btn" onclick="changePage(-1)">‹</button>
+    <span class="pdf-page-info" id="pdfPageInfo">Page 1 of 1</span>
+    <button class="pdf-page-btn" onclick="changePage(1)">›</button>
+  </div>
+  <div class="pdf-canvas-container" id="pdfCanvasContainer">
+    <div class="pdf-loading" id="pdfLoading">
+      <div style="font-size:24px">📄</div>
+      <div>Click a source to view</div>
+    </div>
+    <canvas id="pdfCanvas" style="display:none"></canvas>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+// PDF.js setup
+if (typeof pdfjsLib !== 'undefined') {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+}
+
+let pdfDoc = null;
+let currentPage = 1;
+let currentDocId = null;
+let currentHighlightText = null;
+let isRendering = false;
+
+async function openPdfViewer(docId, page, highlightText) {
+  const panel = document.getElementById('pdfPanel');
+  const overlay = document.getElementById('pdfOverlay');
+  const title = document.getElementById('pdfPanelTitle');
+  const doc = Object.values(window._docsRegistry || {}).find(d => d.doc_id === docId);
+  title.textContent = doc ? doc.filename : docId;
+
+  panel.classList.add('open');
+  overlay.classList.add('show');
+
+  currentHighlightText = highlightText;
+
+  if (currentDocId !== docId) {
+    currentDocId = docId;
+    pdfDoc = null;
+    document.getElementById('pdfCanvas').style.display = 'none';
+    document.getElementById('pdfLoading').style.display = 'flex';
+    document.getElementById('pdfLoading').innerHTML = '<div style="font-size:24px">⏳</div><div>Loading PDF...</div>';
+
+    try {
+      const url = API + '/pdf/' + docId;
+      pdfDoc = await pdfjsLib.getDocument(url).promise;
+      document.getElementById('pdfLoading').style.display = 'none';
+      document.getElementById('pdfCanvas').style.display = 'block';
+    } catch(e) {
+      document.getElementById('pdfLoading').innerHTML = '<div style="font-size:24px">❌</div><div>Failed to load PDF</div>';
+      return;
+    }
+  }
+
+  currentPage = page || 1;
+  await renderPage(currentPage);
+}
+
+async function renderPage(pageNum) {
+  if (!pdfDoc || isRendering) return;
+  isRendering = true;
+
+  const page = await pdfDoc.getPage(pageNum);
+  const canvas = document.getElementById('pdfCanvas');
+  const container = document.getElementById('pdfCanvasContainer');
+
+  const containerWidth = container.clientWidth - 32;
+  const viewport = page.getViewport({ scale: 1 });
+  const scale = containerWidth / viewport.width;
+  const scaledViewport = page.getViewport({ scale });
+
+  canvas.width = scaledViewport.width;
+  canvas.height = scaledViewport.height;
+
+  const ctx = canvas.getContext('2d');
+  await page.render({ canvasContext: ctx, viewport: scaledViewport }).promise;
+
+  // Обновляем счётчик страниц
+  document.getElementById('pdfPageInfo').textContent = `Page ${pageNum} of ${pdfDoc.numPages}`;
+
+  // Убираем старые highlights
+  container.querySelectorAll('.highlight-overlay').forEach(el => el.remove());
+
+  // Highlight текста
+  if (currentHighlightText) {
+    await highlightText(page, scaledViewport, canvas, currentHighlightText);
+  }
+
+  isRendering = false;
+
+  // Скроллим к canvas
+  canvas.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+async function highlightText(page, viewport, canvas, searchText) {
+  try {
+    const textContent = await page.getTextContent();
+    const container = document.getElementById('pdfCanvasContainer');
+    const canvasRect = canvas.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    // Берём первые 60 символов для поиска
+    const searchSnippet = searchText.trim().slice(0, 60).toLowerCase();
+    const words = searchSnippet.split(/\s+/).filter(w => w.length > 3).slice(0, 5);
+
+    let matchedItems = [];
+    const fullText = textContent.items.map(i => i.str).join(' ').toLowerCase();
+
+    // Ищем позиции совпадающих слов
+    for (const item of textContent.items) {
+      const itemText = item.str.toLowerCase();
+      const matches = words.filter(w => itemText.includes(w));
+      if (matches.length >= Math.min(2, words.length)) {
+        matchedItems.push(item);
+      }
+    }
+
+    // Рисуем highlight поверх canvas
+    for (const item of matchedItems.slice(0, 8)) {
+      const tx = pdfjsLib.Util.transform(viewport.transform, item.transform);
+      const x = tx[4];
+      const y = tx[5];
+      const width = item.width * viewport.scale;
+      const height = item.height * viewport.scale || 14;
+
+      const highlight = document.createElement('div');
+      highlight.className = 'highlight-overlay';
+
+      const canvasOffsetTop = canvas.offsetTop;
+      const canvasOffsetLeft = canvas.offsetLeft;
+
+      highlight.style.left = (canvasOffsetLeft + x) + 'px';
+      highlight.style.top = (canvasOffsetTop + y - height) + 'px';
+      highlight.style.width = width + 'px';
+      highlight.style.height = (height + 2) + 'px';
+      container.appendChild(highlight);
+    }
+  } catch(e) {
+    console.log('Highlight error:', e);
+  }
+}
+
+async function changePage(delta) {
+  if (!pdfDoc) return;
+  const newPage = currentPage + delta;
+  if (newPage < 1 || newPage > pdfDoc.numPages) return;
+  currentPage = newPage;
+  await renderPage(currentPage);
+}
+
+function closePdfPanel() {
+  document.getElementById('pdfPanel').classList.remove('open');
+  document.getElementById('pdfOverlay').classList.remove('show');
+}
+
+// Глобальный registry для viewer
+window._docsRegistry = {};
+</script>
+</body>
+</html>
