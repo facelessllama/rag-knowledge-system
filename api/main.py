@@ -10,6 +10,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+from api.bitrix import router as bitrix_router
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -35,6 +36,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = FastAPI(title="RAG Knowledge Base API", version="1.0.0")
+app.include_router(bitrix_router)
 
 app.add_middleware(
     CORSMiddleware,

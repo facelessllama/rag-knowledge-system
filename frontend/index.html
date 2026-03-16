@@ -789,6 +789,7 @@ body {
     </div>
 
     <span class="sidebar-label" style="margin-top:4px">Indexed Documents</span>
+    <button id="compareBtn" onclick="compareDocuments()" style="display:none;width:100%;padding:7px 12px;border-radius:8px;background:#0f2318;border:1px solid #1D9E75;color:#1D9E75;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s;" onmouseover="this.style.background='#1a4a33'" onmouseout="this.style.background='#0f2318'">⚡ Compare all documents</button>
     <div class="docs-list" id="docsList">
       <div style="font-size:12px; color:#4b5563; text-align:center; padding:12px 0;">
         No documents yet
@@ -1180,12 +1181,7 @@ function updateDebugPanel(data) {
     cContainer.appendChild(el);
   });
 
-  // Автооткрываем панель при первом запросе
-  if (!debugVisible) {
-    debugVisible = true;
-    document.getElementById('debugPanel').classList.add('open');
-    document.getElementById('debugToggle').classList.add('active');
-  }
+  // Панель не открывается автоматически — только по кнопке
 }
 
 async function loadDocuments() {
@@ -1231,6 +1227,35 @@ async function deleteDocument(doc_id, filename, itemEl) {
   }
 }
 
+function compareDocuments() {
+  const docs = document.querySelectorAll('.doc-item');
+  if (docs.length < 2) return;
+  const names = Array.from(docs).map(d => d.querySelector('.doc-name').textContent).join(', ');
+  const question = `Какова основная тема каждого из этих документов и чем они отличаются друг от друга? Документы: ${names}`;
+  document.getElementById('chatInput').value = question;
+  sendMessage();
+}
+
+function updateCompareBtn() {
+  const btn = document.getElementById('compareBtn');
+  const count = document.querySelectorAll('.doc-item').length;
+  btn.style.display = count >= 2 ? 'block' : 'none';
+}
+
+// Патчим addDocToList чтобы показывать кнопку
+const _origAddDoc = addDocToList;
+addDocToList = function(data, increment) {
+  _origAddDoc(data, increment);
+  updateCompareBtn();
+};
+
+// Патчим deleteDocument чтобы скрывать кнопку
+const _origDelete = deleteDocument;
+deleteDocument = async function(doc_id, filename, itemEl) {
+  await _origDelete(doc_id, filename, itemEl);
+  updateCompareBtn();
+};
+
 checkHealth();
 loadDocuments();
 setInterval(checkHealth, 10000);
@@ -1249,6 +1274,7 @@ setInterval(checkHealth, 10000);
     <div class="debug-metric">chunks <span id="dbgChunks">—</span></div>
     <div class="debug-metric">tokens <span id="dbgTokens">—</span></div>
     <div style="margin-left:auto;font-size:11px;color:#4b5563" id="dbgModel"></div>
+    <button onclick="toggleDebug()" style="width:24px;height:24px;border-radius:4px;background:transparent;border:1px solid #2a2d3a;color:#6b7280;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;margin-left:8px;flex-shrink:0;" onmouseover="this.style.borderColor='#ef4444';this.style.color='#ef4444'" onmouseout="this.style.borderColor='#2a2d3a';this.style.color='#6b7280'">✕</button>
   </div>
   <div class="debug-body">
     <div class="debug-section">

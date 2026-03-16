@@ -1,6 +1,6 @@
 """
 Query Expander
-Uses LLM to generate alternative phrasings of the user query.
+Uses LLM to generate alternative phrasings and decompose complex queries.
 """
 import logging
 import httpx
@@ -15,48 +15,70 @@ class QueryExpander:
         logger.info("QueryExpander ready")
 
     async def expand(self, query: str) -> list[str]:
-        """
-        Generate 2 alternative phrasings + original.
-        Returns list of up to 3 queries total.
-        On any error — returns just original query.
-        """
-        prompt = f"""Rephrase the following search query in 2 different ways.
-Keep the EXACT same meaning and topic. Only change the wording.
-Do NOT change the subject (if query is about kettle, keep it about kettle).
-Output ONLY the 2 rephrased queries, one per line, nothing else.
+        prompt = f"""Analyze this search query and do TWO things:
+1. If the query contains MULTIPLE questions or topics — split into separate simple queries
+2. For each query (original or split) — add 1 rephrased version
+
+Rules:
+- Output ONLY queries, one per line
+- Maximum 4 lines total
+- No numbering, no explanations
+- Keep original language (Russian or English)
+- Each query must be short and focused on ONE topic
+
+Examples:
+Input: "какой размер пени и сколько стоит аренда?"
+Output:
+размер пени при просрочке оплаты
+штраф за задержку платежа
+стоимость аренды помещения
+цена аренды
+
+Input: "how does the kettle work?"
+Output:
+how does the kettle work
+kettle operation instructions
 
 Query: {query}
-
-Rephrased:"""
+Output:"""
 
         try:
-            async with httpx.AsyncClient(timeout=10.0) as client:
+            async with httpx.AsyncClient(timeout=15.0) as client:
                 response = await client.post(
                     f"{self.ollama_url}/api/chat",
                     json={
                         "model": self.model,
                         "messages": [{"role": "user", "content": prompt}],
                         "stream": False,
-                        "options": {"temperature": 0.2, "num_predict": 60}
+                        "options": {"temperature": 0.1, "num_predict": 80}
                     }
                 )
                 response.raise_for_status()
                 data = response.json()
                 text = data["message"]["content"].strip()
 
-                alternatives = [
+                lines = [
                     line.strip().lstrip("0123456789.-) ")
                     for line in text.split("\n")
-                    if line.strip() and len(line.strip()) > 5
-                ][:2]
+                    if line.strip() and len(line.strip()) > 3
+                ][:4]
 
+                # Всегда включаем оригинал первым
                 all_queries = [query]
-                for alt in alternatives:
-                    if alt.lower() != query.lower() and len(alt) > 5:
-                        all_queries.append(alt)
+                for line in lines:
+                    if line.lower() != query.lower() and len(line) > 3:
+                        all_queries.append(line)
 
-                logger.info(f"Query expanded: {len(all_queries)} variants | {all_queries}")
-                return all_queries
+                # Дедупликация
+                seen = set()
+                unique = []
+                for q in all_queries:
+                    if q.lower() not in seen:
+                        seen.add(q.lower())
+                        unique.append(q)
+
+                logger.info(f"Query expanded: {len(unique)} variants | {unique}")
+                return unique[:5]
 
         except Exception as e:
             logger.warning(f"Query expansion failed: {e} — using original")
