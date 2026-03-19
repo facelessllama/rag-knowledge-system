@@ -180,6 +180,9 @@ class QueryRequest(BaseModel):
     top_k: Optional[int] = 5
     document_id: Optional[str] = None
     chat_history: Optional[list] = []
+    model: Optional[str] = None
+    rerank: Optional[bool] = True
+    folder: Optional[str] = None
 
 class QueryResponse(BaseModel):
     answer: str
@@ -190,7 +193,7 @@ class QueryResponse(BaseModel):
 
 
 @app.post("/upload")
-async def upload_document(file: UploadFile = File(...)):
+async def upload_document(file: UploadFile = File(...), folder: str = ""):
     if not file.filename.endswith(".pdf"):
         raise HTTPException(400, "Only PDF files are supported")
 
@@ -261,7 +264,7 @@ async def upload_document(file: UploadFile = File(...)):
 
 
 @app.post("/upload-batch")
-async def upload_batch(files: list[UploadFile] = File(...)):
+async def upload_batch(files: list[UploadFile] = File(...), folder: str = ""):
     results = []
     for file in files:
         try:
@@ -325,7 +328,8 @@ async def upload_batch(files: list[UploadFile] = File(...)):
                 "pages": parsed.total_pages,
                 "chunks": len(chunks),
                 "size_kb": parsed.file_size_kb,
-                "metadata": parsed.metadata
+                "metadata": parsed.metadata,
+                "folder": folder or ""
             }
             results.append({"doc_id": doc_id, "filename": file.filename, "status": "indexed",
                             "pages": parsed.total_pages, "chunks_created": len(chunks)})
@@ -376,7 +380,12 @@ async def query_knowledge_base(request: QueryRequest):
                                    chat_history=request.chat_history)
 
     t1 = time.time()
+    # Переключаем модель если передана
+    _prev_model = generator.model
+    if request.model and request.model != generator.model:
+        generator.model = request.model
     result = await generator.generate(messages)
+    generator.model = _prev_model
     generation_ms = int((time.time() - t1) * 1000)
 
     if trace:
@@ -503,6 +512,34 @@ async def get_pdf(doc_id: str):
         return FileResponse(path=str(f), media_type="application/pdf",
                           filename=documents_registry[doc_id]["filename"])
     raise HTTPException(404, "PDF file not found on disk")
+
+
+
+@app.get("/models")
+async def list_models():
+    """Список доступных моделей из Ollama"""
+    import httpx
+    ollama_url = os.getenv("OLLAMA_URL", "http://localhost:11434")
+    try:
+        async with httpx.AsyncClient(timeout=5.0) as client:
+            r = await client.get(f"{ollama_url}/api/tags")
+            if r.status_code == 200:
+                data = r.json()
+                models = []
+                for m in data.get("models", []):
+                    name = m.get("name", "")
+                    size_bytes = m.get("size", 0)
+                    size_gb = round(size_bytes / 1e9, 1) if size_bytes else 0
+                    models.append({
+                        "name": name,
+                        "size_gb": size_gb,
+                        "active": name == generator.model,
+                    })
+                return {"models": models, "current": generator.model}
+    except Exception as e:
+        logger.warning(f"Ollama models fetch failed: {e}")
+    return {"models": [{"name": generator.model, "size_gb": 0, "active": True}],
+            "current": generator.model}
 
 
 @app.get("/health")

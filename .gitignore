@@ -2,15 +2,10 @@ venv/
 uploads/
 __pycache__/
 *.pyc
-.env
-backup/
-__pycache__/
-*.pyc
 *.pyo
+.env
+.env.*
 backup/
-uploads/
 *.deb
 *.Zone.Identifier
 wget-log
-venv/
-.env
