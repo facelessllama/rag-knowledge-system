@@ -130,7 +130,7 @@ rag-knowledge-system/
 ├── vector_db/
 │   └── qdrant_client.py     # Qdrant CRUD, folder-filtered search
 ├── frontend/
-│   ├── index.html           # App shell
+│   ├── index.html           # HTML shell (layout structure only)
 │   ├── app.js               # UI logic, streaming, PDF viewer
 │   ├── api.js               # API client functions
 │   └── styles.css           # UI styles
