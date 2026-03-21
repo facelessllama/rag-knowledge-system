@@ -76,30 +76,29 @@ python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Start infrastructure
-
-```bash
-docker-compose -f docker/docker-compose.yml up -d
-```
-
-### 3. Start Ollama
-
-```bash
-OLLAMA_HOST=0.0.0.0:11435 ollama serve
-ollama pull qwen2.5:7b
-```
-
-### 4. Configure environment
+### 2. Configure environment
 
 ```bash
 cp .env.example .env
 # Edit .env with your settings
 ```
 
+### 3. Start infrastructure
+
+```bash
+docker compose -f docker/docker-compose.yml up -d
+```
+
+### 4. Start Ollama
+
+```bash
+OLLAMA_HOST=0.0.0.0:11435 ollama serve
+ollama pull qwen2.5:7b
+```
+
 ### 5. Start API
 
 ```bash
-source venv/bin/activate
 TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1 uvicorn api.main:app --host 0.0.0.0 --port 8000
 ```
 
