@@ -1,186 +1,187 @@
-# 🔍 RAG Knowledge Base System
+# RAG Knowledge Base System
 
-> Local AI-powered document search system for small business. No cloud, no data leaks — runs entirely on your hardware.
+> Local AI-powered document search. No cloud, no data leaks — runs entirely on your hardware.
 
-![Python](https://img.shields.io/badge/Python-3.12-blue) ![FastAPI](https://img.shields.io/badge/FastAPI-0.110-green) ![Ollama](https://img.shields.io/badge/Ollama-qwen2.5:7b-orange) ![Qdrant](https://img.shields.io/badge/Qdrant-vector--db-red)
+![Python](https://img.shields.io/badge/Python-3.12-blue) ![FastAPI](https://img.shields.io/badge/FastAPI-0.135-green) ![Ollama](https://img.shields.io/badge/Ollama-qwen2.5:7b-orange) ![Qdrant](https://img.shields.io/badge/Qdrant-vector--db-red)
 
-## 🎯 What is this?
+## What is this?
 
-A production-ready RAG (Retrieval-Augmented Generation) system that lets you upload PDF documents and ask questions about them in natural language. Built for lawyers, clinics, and construction companies who need to keep their data local.
+A production-ready RAG (Retrieval-Augmented Generation) system — upload PDF documents, ask questions in natural language, get answers with source citations and PDF highlighting. Built to keep data local.
 
-**Target market:** Small and medium businesses globally — law firms, clinics, construction companies.
-**Languages:** Full support for Russian 🇷🇺 and English 🇬🇧 (multilingual embeddings via BAAI/bge-m3).
+**Languages:** Russian and English (multilingual embeddings via BAAI/bge-m3).
 
-## ✨ Features
+## Features
 
-- 📄 **PDF Upload** — single or batch upload, automatic chunking
-- 🔍 **Hybrid Search** — BM25 + vector search combined for best recall
-- 🧠 **Query Expansion** — LLM decomposes complex multi-part questions automatically
-- 📊 **Reranking** — cross-encoder reranks chunks for precision
-- 📚 **Multi-document Reasoning** — compares and contrasts multiple documents
-- 👁️ **PDF Viewer** — click any source to open PDF with highlighted text
-- 🐛 **Retrieval Debug Panel** — see expanded queries, scores, latency, tokens
-- 🌍 **Multilingual** — Russian, English, and 100+ languages via multilingual embeddings
-- 🔒 **100% Local** — no OpenAI, no cloud, your data stays on your machine
+- **PDF Upload** — single, batch, or entire folder upload with drag-and-drop
+- **Folder Organisation** — group documents into folders, filter search by folder
+- **Hybrid Search** — BM25 + vector search combined, with relevance threshold (no hallucinated answers when nothing relevant is found)
+- **Query Expansion** — LLM decomposes complex multi-part questions automatically
+- **Cross-encoder Reranking** — `ms-marco-MiniLM-L-6-v2` reranks candidates for precision
+- **Streaming Responses** — token-by-token SSE streaming
+- **PDF Viewer** — click any source to open PDF with highlighted passage
+- **Chat History** — conversation context across follow-up questions
+- **Retrieval Debug Panel** — expanded queries, scores, latency, token count
+- **Multi-document Reasoning** — compares and contrasts multiple documents
+- **Model Switching** — switch LLM per-request from the UI
+- **Bitrix24 Integration** — webhook for chatbot in Bitrix24
 
-## 🏗️ Architecture
+## Architecture
+
 ```
 User Query
     ↓
 Query Expander (LLM) — splits complex questions, generates alternatives
     ↓
-Hybrid Retriever — BM25 + Qdrant vector search
+Hybrid Retriever — BM25 + Qdrant vector search, folder-filtered
     ↓
-Reranker (cross-encoder) — reranks top chunks
+Relevance Threshold — returns "not found" if best score < 0.30
     ↓
-Prompt Builder — multi-doc aware context assembly
+Cross-encoder Reranker (ms-marco-MiniLM-L-6-v2)
     ↓
-LLM Generator (Ollama/qwen2.5:7b)
+Prompt Builder — context budget guard, multi-doc aware
+    ↓
+LLM Generator (Ollama / qwen2.5:7b) — streaming
     ↓
 Answer + Sources + Debug Info
 ```
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Component | Technology |
 |-----------|-----------|
 | LLM | Ollama — qwen2.5:7b (local) |
-| Embeddings | BAAI/bge-m3 (local) |
+| Embeddings | BAAI/bge-m3 (local, 1024-dim) |
+| Reranker | cross-encoder/ms-marco-MiniLM-L-6-v2 |
 | Vector DB | Qdrant (Docker) |
 | Metadata DB | PostgreSQL (Docker) |
-| API | FastAPI |
-| Monitoring | Langfuse |
-| Frontend | Vanilla JS + PDF.js |
+| API | FastAPI + SSE streaming |
+| Monitoring | Langfuse (optional) |
+| Frontend | Vanilla JS, PDF.js |
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Ubuntu 22.04+ / WSL2
 - NVIDIA GPU (8GB+ VRAM recommended)
 - Docker + Docker Compose
 - Python 3.12
+- Ollama installed
 
-### 1. Clone & Setup
+### 1. Clone & install
+
 ```bash
-git clone https://github.com/YOUR_USERNAME/rag-knowledge-system
+git clone https://github.com/facelessllama/rag-knowledge-system
 cd rag-knowledge-system
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Start Infrastructure
+### 2. Start infrastructure
+
 ```bash
 docker-compose -f docker/docker-compose.yml up -d
 ```
 
 ### 3. Start Ollama
+
 ```bash
 OLLAMA_HOST=0.0.0.0:11435 ollama serve
 ollama pull qwen2.5:7b
 ```
 
-### 4. Configure Environment
+### 4. Configure environment
+
 ```bash
 cp .env.example .env
 # Edit .env with your settings
 ```
 
 ### 5. Start API
+
 ```bash
+source venv/bin/activate
 TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1 uvicorn api.main:app --host 0.0.0.0 --port 8000
 ```
 
 ### 6. Open UI
+
 ```
 http://localhost:8000/app
 ```
 
-## 📁 Project Structure
+## Project Structure
+
 ```
 rag-knowledge-system/
 ├── api/
-│   ├── main.py          # FastAPI app, endpoints
-│   ├── bitrix.py        # Bitrix24 webhook integration
-│   └── routes/          # Additional routes
+│   ├── main.py              # FastAPI app, all endpoints
+│   └── bitrix.py            # Bitrix24 chatbot webhook
 ├── rag/
-│   ├── retriever.py     # Hybrid BM25 + vector retriever
-│   ├── reranker.py      # Cross-encoder reranker
-│   ├── generator.py     # LLM response generator
-│   ├── query_expander.py # Query decomposition & expansion
-│   └── prompt_builder.py # Multi-doc aware prompt builder
+│   ├── retriever.py         # Hybrid BM25 + vector retriever
+│   ├── reranker.py          # Cross-encoder + SimpleReranker fallback
+│   ├── generator.py         # LLM streaming generator
+│   ├── query_expander.py    # Query decomposition & expansion
+│   └── prompt_builder.py    # Context budget guard, multi-doc prompts
 ├── ingestion/
-│   ├── pdf_parser.py    # PDF text extraction + OCR
-│   └── chunker.py       # Smart text chunking
+│   ├── pdf_parser.py        # PDF text extraction + OCR fallback
+│   └── chunker.py           # Sentence-boundary text chunking
 ├── embeddings/
-│   └── embedding_service.py  # BAAI/bge-m3 embeddings
+│   └── embedding_service.py # BAAI/bge-m3 embeddings
+├── vector_db/
+│   └── qdrant_client.py     # Qdrant CRUD, folder-filtered search
 ├── frontend/
-│   └── index.html       # Single-file UI with PDF viewer
+│   ├── index.html           # App shell
+│   ├── app.js               # UI logic, streaming, PDF viewer
+│   ├── api.js               # API client functions
+│   └── styles.css           # UI styles
 ├── docker/
-│   └── docker-compose.yml
-└── .env.example
+│   └── docker-compose.yml   # Qdrant + PostgreSQL + Langfuse
+├── .env.example
+└── requirements.txt
 ```
 
-## 🔌 API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | POST | `/upload` | Upload single PDF |
 | POST | `/upload-batch` | Upload multiple PDFs |
 | POST | `/query` | Ask a question |
-| GET | `/documents` | List all documents |
+| POST | `/query/stream` | Ask a question (SSE streaming) |
+| GET | `/documents` | List documents and folders |
 | DELETE | `/documents/{id}` | Delete document |
+| PATCH | `/documents/{id}/folder` | Move document to folder |
+| GET | `/folders` | List all folders |
+| POST | `/folders` | Create folder |
+| DELETE | `/folders/{name}` | Delete folder |
+| PATCH | `/folders/{name}` | Rename folder |
 | GET | `/pdf/{doc_id}` | Serve PDF file |
+| GET | `/pdf/{doc_id}/highlights` | Get highlight coordinates |
+| GET | `/models` | List available Ollama models |
 | GET | `/health` | Health check |
-| POST | `/bitrix/webhook` | Bitrix24 integration |
+| POST | `/bitrix/webhook` | Bitrix24 chatbot webhook |
 
-## 💡 Usage Examples
+## Configuration
 
-**Ask about a single document:**
-```
-What are the penalty terms in this contract?
-```
+`.env` key settings:
 
-**Multi-document comparison:**
-```
-Compare these documents and highlight the main differences
-```
-
-**Complex multi-part question (auto-decomposed):**
-```
-What is the penalty size and how much does the rent cost?
-```
-→ Automatically split into 2 separate searches for best results
-
-## 📊 Performance
-
-- Retrieval: ~500ms (hybrid search + rerank)
-- Generation: ~3-8s (qwen2.5:7b local)
-- Embedding: BAAI/bge-m3, 1024 dims
-- Chunk size: 512 tokens, 50 overlap
-
-## 🔧 Configuration
-
-Key settings in `.env`:
 ```env
-OLLAMA_URL=http://localhost:11435
+OLLAMA_URL=http://localhost:11435   # non-default port to avoid conflicts
 QDRANT_URL=http://localhost:6333
-POSTGRES_URL=postgresql://...
-LANGFUSE_PUBLIC_KEY=...
-LANGFUSE_SECRET_KEY=...
+POSTGRES_URL=postgresql://raguser:ragpass@localhost:5432/ragdb
+LANGFUSE_PUBLIC_KEY=...             # optional
+LANGFUSE_SECRET_KEY=...             # optional
+BITRIX_WEBHOOK_URL=...              # optional, Bitrix24 integration
+BITRIX_BOT_ID=0                     # optional
 ```
 
-## 📈 Roadmap
+## Performance
 
-- [ ] Bitrix24 Open Line integration (webhook ready)
-- [ ] Telegram bot integration
-- [ ] Multi-user support
-- [ ] Document versioning
-- [ ] Table extraction from PDFs
+- Retrieval: ~200–500ms (hybrid search + cross-encoder rerank)
+- Generation: ~3–8s first token (qwen2.5:7b local)
+- Streaming: token-by-token via SSE
+- Embeddings: BAAI/bge-m3, 1024 dims, CUDA accelerated
 
-## 👨‍💻 Author
+## Author
 
 Built as a portfolio project demonstrating production-ready RAG architecture.
-
-**Target industries:** Law firms, clinics, construction companies
-
-**Languages supported:** Russian, English, and 100+ languages via BAAI/bge-m3 multilingual embeddings.

@@ -1,0 +1,27 @@
+fastapi==0.135.1
+uvicorn==0.41.0
+python-multipart==0.0.22
+aiofiles==25.1.0
+httpx==0.28.1
+pydantic==2.12.5
+python-dotenv==1.2.2
+
+# Vector DB & retrieval
+qdrant-client==1.17.0
+rank-bm25==0.2.2
+
+# Embeddings & reranking
+sentence-transformers==5.3.0
+transformers==5.3.0
+torch==2.10.0
+numpy==2.4.3
+
+# PDF processing
+PyMuPDF==1.27.2
+pytesseract==0.3.13
+
+# Database
+psycopg2-binary==2.9.11
+
+# Observability
+langfuse==2.60.0
