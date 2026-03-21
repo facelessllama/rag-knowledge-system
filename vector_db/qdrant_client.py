@@ -44,20 +44,19 @@ class VectorStore:
                     "filename": getattr(chunk, "filename", "unknown"),
                     "chunk_index": getattr(chunk, "chunk_index", 0),
                     "pages": getattr(chunk, "pages", 0),
+                    "folder": getattr(chunk, "folder", ""),
                 }
             ))
         self.client.upsert(collection_name=self.collection, points=points)
         logger.info(f"Stored {len(points)} chunks in Qdrant")
 
-    def search(self, query_vector: list[float], top_k: int = 5, doc_filter: str = None):
-        search_filter = None
+    def search(self, query_vector: list[float], top_k: int = 5, doc_filter: str = None, folder_filter: str = None):
+        must_conditions = []
         if doc_filter:
-            search_filter = Filter(
-                must=[FieldCondition(
-                    key="document_id",
-                    match=MatchValue(value=doc_filter)
-                )]
-            )
+            must_conditions.append(FieldCondition(key="document_id", match=MatchValue(value=doc_filter)))
+        if folder_filter:
+            must_conditions.append(FieldCondition(key="folder", match=MatchValue(value=folder_filter)))
+        search_filter = Filter(must=must_conditions) if must_conditions else None
         results = self.client.query_points(
             collection_name=self.collection,
             query=query_vector,

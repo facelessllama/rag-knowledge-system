@@ -23,7 +23,7 @@ class LLMGenerator:
         self.temperature = temperature
         logger.info(f"LLMGenerator ready | model={model} temp={temperature}")
 
-    async def generate(self, messages: list[dict], retries: int = 3) -> dict:
+    async def generate(self, messages: list[dict], retries: int = 3, model: str = None) -> dict:
         """
         Send messages to LLM and get response.
         Retries up to 3 times on timeout or connection error.
@@ -39,10 +39,11 @@ class LLMGenerator:
                         pool=5.0
                     )
                 ) as client:
+                    active_model = model or self.model
                     response = await client.post(
                         f"{self.ollama_url}/api/chat",
                         json={
-                            "model": self.model,
+                            "model": active_model,
                             "messages": messages,
                             "stream": False,
                             "options": {
@@ -57,7 +58,7 @@ class LLMGenerator:
                         logger.info(f"LLM succeeded on attempt {attempt}")
                     return {
                         "answer": data["message"]["content"],
-                        "model": self.model,
+                        "model": active_model,
                         "prompt_tokens": data.get("prompt_eval_count", 0),
                         "completion_tokens": data.get("eval_count", 0),
                         "total_tokens": (
@@ -83,7 +84,7 @@ class LLMGenerator:
             f"LLM did not respond after {retries} attempts. Is Ollama running?"
         )
 
-    async def generate_stream(self, messages: list[dict]):
+    async def generate_stream(self, messages: list[dict], model: str = None):
         """
         Stream response token by token.
         Used for real-time UI updates.
@@ -93,7 +94,7 @@ class LLMGenerator:
                 "POST",
                 f"{self.ollama_url}/api/chat",
                 json={
-                    "model": self.model,
+                    "model": model or self.model,
                     "messages": messages,
                     "stream": True,
                     "options": {"temperature": self.temperature}

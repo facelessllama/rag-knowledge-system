@@ -22,6 +22,7 @@ class TextChunk:
     document_id: Optional[str] = None
     filename: Optional[str] = None
     pages: int = 0
+    folder: str = ""
 
 
 class SmartChunker:

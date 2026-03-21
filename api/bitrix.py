@@ -1,12 +1,13 @@
 import httpx
 import logging
+import os
 from fastapi import APIRouter, Request
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
 
-BITRIX_WEBHOOK_URL = "https://b24-typ264.bitrix24.ru/rest/1/1zjpjhcsq6ddbodn/"
-BOT_ID = 16
+BITRIX_WEBHOOK_URL = os.getenv("BITRIX_WEBHOOK_URL", "")
+BOT_ID = int(os.getenv("BITRIX_BOT_ID", "0"))
 
 
 @router.post("/bitrix/webhook")

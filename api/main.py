@@ -4,6 +4,7 @@ RAG Knowledge Base API
 import logging
 import uuid
 import time
+import asyncio
 from pathlib import Path
 from typing import Optional
 import os
@@ -11,10 +12,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from api.bitrix import router as bitrix_router
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
+import json
 import aiofiles
 import hashlib
 import psycopg2
@@ -26,8 +29,9 @@ from ingestion.pdf_parser import PDFParser
 from ingestion.chunker import SmartChunker
 from embeddings.embedding_service import EmbeddingService
 from vector_db.qdrant_client import VectorStore
+from qdrant_client.models import Filter, FieldCondition, MatchValue
 from rag.retriever import HybridRetriever
-from rag.reranker import SimpleReranker
+from rag.reranker import CrossEncoderReranker, SimpleReranker
 from rag.prompt_builder import PromptBuilder
 from rag.generator import LLMGenerator
 from rag.query_expander import QueryExpander
@@ -50,12 +54,25 @@ app.mount("/app", StaticFiles(directory="frontend", html=True), name="frontend")
 UPLOAD_DIR = Path("uploads")
 UPLOAD_DIR.mkdir(exist_ok=True)
 
+# Minimum retrieval score to attempt an answer (0–1 cosine similarity scale).
+# Below this threshold the knowledge base is considered to have no relevant content.
+RELEVANCE_THRESHOLD = 0.30
+
+# Max concurrent LLM requests — Ollama processes one at a time anyway,
+# queuing more than this returns 429 immediately instead of timing out.
+MAX_CONCURRENT_QUERIES = 3
+_query_semaphore = asyncio.Semaphore(MAX_CONCURRENT_QUERIES)
+
 parser = PDFParser()
 chunker = SmartChunker(chunk_size=512, chunk_overlap=50)
 embedder = EmbeddingService()
 vector_store = VectorStore()
 retriever = HybridRetriever(embedder, vector_store)
-reranker = SimpleReranker()
+try:
+    reranker = CrossEncoderReranker()
+except Exception as e:
+    logger.warning(f"CrossEncoderReranker failed to load ({e}), falling back to SimpleReranker")
+    reranker = SimpleReranker()
 prompt_builder = PromptBuilder()
 generator = LLMGenerator(ollama_url=os.getenv("OLLAMA_URL", "http://localhost:11435"))
 query_expander = QueryExpander(ollama_url=os.getenv("OLLAMA_URL", "http://localhost:11435"))
@@ -79,6 +96,8 @@ file_hashes: dict = {}
 def get_db():
     return psycopg2.connect(os.getenv("POSTGRES_URL", "postgresql://raguser:ragpass@localhost:5432/ragdb"))
 
+folders_registry: set = set()  # persisted folder names
+
 def init_db():
     try:
         conn = get_db()
@@ -91,15 +110,58 @@ def init_db():
                 created_at TIMESTAMP DEFAULT NOW()
             )
         """)
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS folders (
+                name VARCHAR(255) PRIMARY KEY,
+                created_at TIMESTAMP DEFAULT NOW()
+            )
+        """)
         conn.commit()
         cur.execute("SELECT hash, doc_id FROM file_hashes")
         for row in cur.fetchall():
             file_hashes[row[0]] = row[1]
+        cur.execute("SELECT name FROM folders")
+        for row in cur.fetchall():
+            folders_registry.add(row[0])
         cur.close()
         conn.close()
-        logger.info(f"DB ready | loaded {len(file_hashes)} file hashes")
+        logger.info(f"DB ready | loaded {len(file_hashes)} hashes, {len(folders_registry)} folders")
     except Exception as e:
         logger.warning(f"DB init failed: {e}")
+
+def db_save_folder(name: str):
+    try:
+        conn = get_db()
+        cur = conn.cursor()
+        cur.execute("INSERT INTO folders (name) VALUES (%s) ON CONFLICT DO NOTHING", (name,))
+        conn.commit()
+        cur.close()
+        conn.close()
+    except Exception as e:
+        logger.warning(f"DB save folder failed: {e}")
+
+def db_delete_folder(name: str):
+    try:
+        conn = get_db()
+        cur = conn.cursor()
+        cur.execute("DELETE FROM folders WHERE name = %s", (name,))
+        conn.commit()
+        cur.close()
+        conn.close()
+    except Exception as e:
+        logger.warning(f"DB delete folder failed: {e}")
+
+def db_rename_folder(old_name: str, new_name: str):
+    try:
+        conn = get_db()
+        cur = conn.cursor()
+        cur.execute("INSERT INTO folders (name) VALUES (%s) ON CONFLICT DO NOTHING", (new_name,))
+        cur.execute("DELETE FROM folders WHERE name = %s", (old_name,))
+        conn.commit()
+        cur.close()
+        conn.close()
+    except Exception as e:
+        logger.warning(f"DB rename folder failed: {e}")
 
 async def restore_from_qdrant():
     try:
@@ -142,6 +204,7 @@ async def restore_from_qdrant():
                     "page_num": page_num,
                     "document_id": doc_id,
                     "chunk_index": chunk_index,
+                    "folder": p.get("folder", ""),
                 })
 
             if doc_id:
@@ -153,6 +216,7 @@ async def restore_from_qdrant():
                         "chunks": 0,
                         "size_kb": p.get("size_kb", 0),
                         "metadata": p.get("metadata", {}),
+                        "folder": p.get("folder", ""),
                     }
                 doc_meta[doc_id]["chunks"] += 1
 
@@ -193,7 +257,7 @@ class QueryResponse(BaseModel):
 
 
 @app.post("/upload")
-async def upload_document(file: UploadFile = File(...), folder: str = ""):
+async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
     if not file.filename.endswith(".pdf"):
         raise HTTPException(400, "Only PDF files are supported")
 
@@ -220,6 +284,7 @@ async def upload_document(file: UploadFile = File(...), folder: str = ""):
     for c in chunks:
         c.filename = file.filename
         c.pages = parsed.total_pages
+        c.folder = folder or ""
 
     texts = [c.text for c in chunks]
     vectors = embedder.embed_batch(texts)
@@ -227,7 +292,8 @@ async def upload_document(file: UploadFile = File(...), folder: str = ""):
 
     bm25_chunks = [{"text": c.text, "chunk_id": c.chunk_id,
                     "page_num": c.page_num, "document_id": c.document_id,
-                    "chunk_index": c.chunk_index, "filename": c.filename}
+                    "chunk_index": c.chunk_index, "filename": c.filename,
+                    "folder": folder or ""}
                    for c in chunks]
     retriever.index_chunks_for_bm25(bm25_chunks)
 
@@ -245,13 +311,17 @@ async def upload_document(file: UploadFile = File(...), folder: str = ""):
     except Exception as e:
         logger.warning(f"DB save hash failed: {e}")
 
+    if folder:
+        folders_registry.add(folder)
+        db_save_folder(folder)
     documents_registry[doc_id] = {
         "doc_id": doc_id,
         "filename": file.filename,
         "pages": parsed.total_pages,
         "chunks": len(chunks),
         "size_kb": parsed.file_size_kb,
-        "metadata": parsed.metadata
+        "metadata": parsed.metadata,
+        "folder": folder or ""
     }
 
     return {
@@ -264,7 +334,7 @@ async def upload_document(file: UploadFile = File(...), folder: str = ""):
 
 
 @app.post("/upload-batch")
-async def upload_batch(files: list[UploadFile] = File(...), folder: str = ""):
+async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("")):
     results = []
     for file in files:
         try:
@@ -297,6 +367,7 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = ""):
             for c in chunks:
                 c.filename = file.filename
                 c.pages = parsed.total_pages
+                c.folder = folder or ""
 
             texts = [c.text for c in chunks]
             vectors = embedder.embed_batch(texts)
@@ -304,7 +375,8 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = ""):
 
             new_bm25 = [{"text": c.text, "chunk_id": c.chunk_id,
                          "page_num": c.page_num, "document_id": c.document_id,
-                         "chunk_index": c.chunk_index, "filename": c.filename}
+                         "chunk_index": c.chunk_index, "filename": c.filename,
+                         "folder": folder or ""}
                         for c in chunks]
             retriever.index_chunks_for_bm25(retriever._bm25_chunks + new_bm25)
 
@@ -349,6 +421,14 @@ async def query_knowledge_base(request: QueryRequest):
     if not request.question.strip():
         raise HTTPException(400, "Question cannot be empty")
 
+    if _query_semaphore.locked():
+        raise HTTPException(429, "Too many concurrent requests, please try again shortly")
+
+    async with _query_semaphore:
+        return await _do_query(request)
+
+
+async def _do_query(request: QueryRequest):
     start_time = time.time()
 
     trace = None
@@ -360,7 +440,7 @@ async def query_knowledge_base(request: QueryRequest):
 
     t0 = time.time()
     expanded_queries = await query_expander.expand(request.question)
-    chunks = await retriever.retrieve_expanded(expanded_queries, top_k=request.top_k * 2)
+    chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None)
     retrieval_ms = int((time.time() - t0) * 1000)
 
     if trace:
@@ -374,18 +454,19 @@ async def query_knowledge_base(request: QueryRequest):
         return QueryResponse(answer="No relevant information found in the knowledge base.",
                            sources=[], model=generator.model, tokens_used=0)
 
+    best_score = max(c.get("score", 0) for c in chunks)
+    if best_score < RELEVANCE_THRESHOLD:
+        logger.info(f"Best score {best_score:.3f} below threshold {RELEVANCE_THRESHOLD} — not answering")
+        return QueryResponse(answer="I couldn't find relevant information in the knowledge base to answer this question.",
+                           sources=[], model=generator.model, tokens_used=0)
+
     top_chunks = reranker.rerank(request.question, chunks, top_k=min(request.top_k, 3))
 
     messages = prompt_builder.build(query=request.question, chunks=top_chunks,
                                    chat_history=request.chat_history)
 
     t1 = time.time()
-    # Переключаем модель если передана
-    _prev_model = generator.model
-    if request.model and request.model != generator.model:
-        generator.model = request.model
-    result = await generator.generate(messages)
-    generator.model = _prev_model
+    result = await generator.generate(messages, model=request.model or None)
     generation_ms = int((time.time() - t1) * 1000)
 
     if trace:
@@ -412,6 +493,7 @@ async def query_knowledge_base(request: QueryRequest):
             "page": c.get("page_num"),
             "document": c.get("document_id"),
             "excerpt": excerpt,
+            "chunk_text": raw,
             "relevance_score": round(c.get("rerank_score", c.get("score", 0)), 3)
         })
 
@@ -450,9 +532,134 @@ async def query_knowledge_base(request: QueryRequest):
                         })
 
 
+@app.post("/query/stream")
+async def query_stream(request: QueryRequest):
+    if not request.question.strip():
+        raise HTTPException(400, "Question cannot be empty")
+
+    if _query_semaphore.locked():
+        raise HTTPException(429, "Too many concurrent requests, please try again shortly")
+    await _query_semaphore.acquire()
+
+    async def event_stream():
+        try:
+            start_time = time.time()
+
+            expanded_queries = await query_expander.expand(request.question)
+            chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None)
+
+            if not chunks:
+                yield f"data: {json.dumps({'type': 'token', 'content': 'No relevant information found in the knowledge base.'})}\n\n"
+                yield f"data: {json.dumps({'type': 'done'})}\n\n"
+                return
+
+            best_score = max(c.get("score", 0) for c in chunks)
+            if best_score < RELEVANCE_THRESHOLD:
+                logger.info(f"Best score {best_score:.3f} below threshold {RELEVANCE_THRESHOLD} — not answering")
+                msg = "I couldn't find relevant information in the knowledge base to answer this question."
+                yield f"data: {json.dumps({'type': 'token', 'content': msg})}\n\n"
+                yield f"data: {json.dumps({'type': 'done'})}\n\n"
+                return
+
+            top_chunks = reranker.rerank(request.question, chunks, top_k=min(request.top_k, 3))
+            messages = prompt_builder.build(query=request.question, chunks=top_chunks,
+                                            chat_history=request.chat_history)
+
+            async for token in generator.generate_stream(messages, model=request.model or None):
+                yield f"data: {json.dumps({'type': 'token', 'content': token})}\n\n"
+
+            seen_sources = set()
+            sources = []
+            for c in top_chunks:
+                raw = c["text"].strip().replace("\n", " ")
+                text_key = raw[:80].lower()
+                if text_key in seen_sources:
+                    continue
+                seen_sources.add(text_key)
+                excerpt = raw[:150].rsplit(" ", 1)[0] + "…" if len(raw) > 150 else raw
+                sources.append({
+                    "page": c.get("page_num"),
+                    "document": c.get("document_id"),
+                    "excerpt": excerpt,
+                    "relevance_score": round(c.get("rerank_score", c.get("score", 0)), 3)
+                })
+
+            total_ms = int((time.time() - start_time) * 1000)
+            yield f"data: {json.dumps({'type': 'sources', 'sources': sources, 'debug': {'expanded_queries': expanded_queries, 'total_ms': total_ms, 'chunks_retrieved': len(chunks), 'chunks_after_rerank': len(top_chunks)}})}\n\n"
+            yield f"data: {json.dumps({'type': 'done'})}\n\n"
+        finally:
+            _query_semaphore.release()
+
+    return StreamingResponse(event_stream(), media_type="text/event-stream",
+                             headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
+
+
 @app.get("/documents")
 async def list_documents():
-    return {"total": len(documents_registry), "documents": list(documents_registry.values())}
+    return {"total": len(documents_registry), "documents": list(documents_registry.values()),
+            "folders": sorted(folders_registry)}
+
+
+@app.patch("/documents/{doc_id}/folder")
+async def update_document_folder(doc_id: str, body: dict):
+    if doc_id not in documents_registry:
+        raise HTTPException(404, f"Document {doc_id} not found")
+    folder = body.get("folder", "")
+    documents_registry[doc_id]["folder"] = folder
+    if folder:
+        folders_registry.add(folder)
+        db_save_folder(folder)
+    vector_store.client.set_payload(
+        collection_name=vector_store.collection,
+        payload={"folder": folder},
+        points=Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=doc_id))])
+    )
+    return {"doc_id": doc_id, "folder": folder}
+
+
+@app.get("/folders")
+async def list_folders():
+    # Merge folders from registry and from documents
+    doc_folders = {d["folder"] for d in documents_registry.values() if d.get("folder")}
+    all_folders = sorted(folders_registry | doc_folders)
+    return {"folders": all_folders}
+
+
+@app.post("/folders")
+async def create_folder(body: dict):
+    name = (body.get("name") or "").strip()
+    if not name:
+        raise HTTPException(400, "Folder name required")
+    folders_registry.add(name)
+    db_save_folder(name)
+    return {"name": name}
+
+
+@app.delete("/folders/{name}")
+async def delete_folder(name: str):
+    folders_registry.discard(name)
+    db_delete_folder(name)
+    return {"deleted": name}
+
+
+@app.patch("/folders/{name}")
+async def rename_folder(name: str, body: dict):
+    new_name = (body.get("name") or "").strip()
+    if not new_name:
+        raise HTTPException(400, "New name required")
+    # Update all documents in this folder
+    for doc_id, doc in documents_registry.items():
+        if doc.get("folder") == name:
+            doc["folder"] = new_name
+            vector_store.client.set_payload(
+                collection_name=vector_store.collection,
+                payload={"folder": new_name},
+                points=Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=doc_id))])
+            )
+    folders_registry.discard(name)
+    folders_registry.add(new_name)
+    db_rename_folder(name, new_name)
+    return {"old": name, "new": new_name}
 
 
 @app.delete("/documents/{doc_id}")
@@ -463,7 +670,6 @@ async def delete_document(doc_id: str):
     filename = documents_registry[doc_id].get("filename", doc_id)
 
     try:
-        from qdrant_client.models import Filter, FieldCondition, MatchValue
         vector_store.client.delete(
             collection_name=vector_store.collection,
             points_selector=Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=doc_id))])
@@ -501,6 +707,41 @@ async def delete_document(doc_id: str):
 
     del documents_registry[doc_id]
     return {"status": "deleted", "doc_id": doc_id, "filename": filename}
+
+
+@app.get("/pdf/{doc_id}/highlights")
+async def get_pdf_highlights(doc_id: str, text: str = "", page: int = 1):
+    """Return PyMuPDF bounding boxes for text on a given page."""
+    if doc_id not in documents_registry:
+        raise HTTPException(404, "Document not found")
+    pdf_file = next(UPLOAD_DIR.glob(f"{doc_id}_*"), None)
+    if not pdf_file:
+        raise HTTPException(404, "PDF file not found on disk")
+
+    import fitz
+    doc = fitz.open(str(pdf_file))
+    if page < 1 or page > len(doc):
+        doc.close()
+        return {"rects": [], "page_width": 0, "page_height": 0}
+
+    pg = doc[page - 1]
+    page_rect = pg.rect
+
+    # Clean the search text
+    clean = text.replace("…", "").replace("...", "").strip()
+    # Try progressively shorter prefixes until hits found
+    rects = []
+    for length in [400, 200, 100, 60]:
+        phrase = clean[:length].rsplit(" ", 1)[0] if len(clean) > length else clean
+        if len(phrase) < 15:
+            continue
+        hits = pg.search_for(phrase, quads=False)
+        if hits:
+            rects = [{"x0": r.x0, "y0": r.y0, "x1": r.x1, "y1": r.y1} for r in hits]
+            break
+
+    doc.close()
+    return {"rects": rects, "page_width": page_rect.width, "page_height": page_rect.height}
 
 
 @app.get("/pdf/{doc_id}")

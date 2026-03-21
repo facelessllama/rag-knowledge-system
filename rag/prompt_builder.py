@@ -5,6 +5,12 @@ Constructs LLM prompts with retrieved context and citation instructions.
 import logging
 logger = logging.getLogger(__name__)
 
+# Character budgets (1 token ≈ 4 chars; qwen2.5:7b has 32k token context)
+# Reserve ~1500 tokens for system prompt + question + answer overhead.
+MAX_CONTEXT_CHARS = 12_000   # ~3000 tokens for retrieved chunks
+MAX_HISTORY_CHARS = 8_000    # ~2000 tokens for chat history turns
+
+
 SYSTEM_PROMPT = """You are an intelligent knowledge base assistant.
 Answer questions STRICTLY based on the provided document excerpts.
 
@@ -12,7 +18,7 @@ Rules:
 1. Answer ONLY using information from the provided context
 2. Do NOT insert source references like [Page X] or [Doc: Y] into your answer text
 3. Be concise and precise — 2-5 sentences max
-4. If the answer is not in the context, say: "I could not find this information in the provided documents"
+4. Interpret context broadly: if the answer is implied or uses different wording (e.g. "interest charge" answers a question about "penalty"), use it. Only say "I could not find this information in the provided documents" if the context is truly unrelated to the question.
 5. Use the same language as the question (Russian or English)
 6. Never repeat the question back"""
 
@@ -28,7 +34,6 @@ class PromptBuilder:
         chunks: list[dict],
         chat_history: list[dict] = None
     ) -> list[dict]:
-        # Определяем количество уникальных документов
         unique_docs = set(c.get('filename', '') for c in chunks if c.get('filename'))
         is_multi_doc = len(unique_docs) > 1
 
@@ -39,8 +44,10 @@ class PromptBuilder:
 
         messages = [{"role": "system", "content": system}]
 
+        # Trim chat history to budget (drop oldest turns first)
         if chat_history:
-            for turn in chat_history[-4:]:
+            trimmed_history = self._trim_history(chat_history)
+            for turn in trimmed_history:
                 messages.append(turn)
 
         context = self._format_context(chunks, is_multi_doc)
@@ -55,21 +62,41 @@ Answer based on the context above.{' Compare documents if they contain different
         logger.info(f"Prompt built | chunks={len(chunks)} history={len(chat_history) if chat_history else 0} multi_doc={is_multi_doc}")
         return messages
 
+    def _trim_history(self, history: list[dict]) -> list[dict]:
+        """Keep the last N turns that fit within MAX_HISTORY_CHARS, always keeping pairs."""
+        # Work with last 4 turns max, then apply char budget
+        recent = history[-4:]
+        total = sum(len(t.get("content", "")) for t in recent)
+        while total > MAX_HISTORY_CHARS and len(recent) >= 2:
+            # Drop oldest pair (user + assistant)
+            dropped = recent[:2]
+            total -= sum(len(t.get("content", "")) for t in dropped)
+            recent = recent[2:]
+            logger.info(f"History trimmed: dropped 2 turns ({sum(len(t.get('content','')) for t in dropped)} chars), {total} chars remaining")
+        return recent
+
     def _format_context(self, chunks: list[dict], is_multi_doc: bool = False) -> str:
         if not chunks:
             return "No relevant context found."
 
         formatted = []
+        total_chars = 0
         for i, chunk in enumerate(chunks, 1):
             page_info = f"Page {chunk.get('page_num', '?')}"
             filename = chunk.get('filename', '')
 
             if is_multi_doc and filename:
-                # Показываем имя документа в контексте
                 label = f"[{filename} | {page_info}]"
             else:
                 label = f"[Excerpt {i} | {page_info}]"
 
-            formatted.append(f"{label}\n{chunk['text']}")
+            entry = f"{label}\n{chunk['text']}"
+
+            if total_chars + len(entry) > MAX_CONTEXT_CHARS:
+                logger.warning(f"Context budget reached at chunk {i}/{len(chunks)} — truncating")
+                break
+
+            formatted.append(entry)
+            total_chars += len(entry)
 
         return "\n\n".join(formatted)
