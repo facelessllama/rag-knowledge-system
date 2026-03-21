@@ -19,6 +19,7 @@ numpy==2.4.3
 # PDF processing
 PyMuPDF==1.27.2
 pytesseract==0.3.13
+Pillow==11.2.1
 
 # Database
 psycopg2-binary==2.9.11
