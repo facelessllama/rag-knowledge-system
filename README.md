@@ -129,11 +129,11 @@ rag-knowledge-system/
 │   └── embedding_service.py # BAAI/bge-m3 embeddings
 ├── vector_db/
 │   └── qdrant_client.py     # Qdrant CRUD, folder-filtered search
-├── frontend/
-│   ├── index.html           # HTML shell (layout structure only)
+├── frontend/                # No build step — plain HTML/JS/CSS
+│   ├── index.html           # HTML structure and layout only
 │   ├── app.js               # UI logic, streaming, PDF viewer
 │   ├── api.js               # API client functions
-│   └── styles.css           # UI styles
+│   └── styles.css           # Styles
 ├── docker/
 │   └── docker-compose.yml   # Qdrant + PostgreSQL + Langfuse
 ├── .env.example
