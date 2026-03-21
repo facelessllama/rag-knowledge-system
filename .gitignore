@@ -11,3 +11,5 @@ backup/
 *.deb
 *.Zone.Identifier
 wget-log
+CLAUDE.md
+patch_*.py

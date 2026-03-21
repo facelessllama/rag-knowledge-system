@@ -581,6 +581,7 @@ async def query_stream(request: QueryRequest):
                     "page": c.get("page_num"),
                     "document": c.get("document_id"),
                     "excerpt": excerpt,
+                    "chunk_text": raw,
                     "relevance_score": round(c.get("rerank_score", c.get("score", 0)), 3)
                 })
 
