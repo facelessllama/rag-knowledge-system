@@ -780,19 +780,7 @@ async function renderPage(pageNum) {
 
   await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
 
-  // Render text layer — transparent spans positioned over canvas
-  textLayerDiv.innerHTML = '';
-  textLayerDiv.style.width = vp.width + 'px';
-  textLayerDiv.style.height = vp.height + 'px';
-  const textContent = await page.getTextContent();
-  await pdfjsLib.renderTextLayer({
-    textContentSource: textContent,
-    container: textLayerDiv,
-    viewport: vp,
-    textDivs: []
-  }).promise;
-
-  document.getElementById('pdfPageInfo').textContent = 'Page ' + pageNum + ' of ' + pdfDoc.numPages;
+document.getElementById('pdfPageInfo').textContent = 'Page ' + pageNum + ' of ' + pdfDoc.numPages;
   currentPdfPage = page;
   currentVp = vp;
   if (currentHighlightText) doHighlight(currentHighlightText);
