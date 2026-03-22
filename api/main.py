@@ -40,6 +40,16 @@ from rag.query_expander import QueryExpander
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Auth
+API_KEY = os.getenv("API_KEY", "")
+api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
+
+async def require_api_key(key: str = Security(api_key_header)):
+    if not API_KEY:
+        return  # ключ не задан — auth отключена
+    if key != API_KEY:
+        raise HTTPException(status_code=401, detail="Invalid or missing API key")
+
 app = FastAPI(title="RAG Knowledge Base API", version="1.0.0")
 app.include_router(telegram_router)
 
