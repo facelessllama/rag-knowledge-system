@@ -602,6 +602,9 @@ async def query_stream(request: QueryRequest):
             total_ms = int((time.time() - start_time) * 1000)
             yield f"data: {json.dumps({'type': 'sources', 'sources': sources, 'debug': {'expanded_queries': expanded_queries, 'total_ms': total_ms, 'chunks_retrieved': len(chunks), 'chunks_after_rerank': len(top_chunks)}})}\n\n"
             yield f"data: {json.dumps({'type': 'done'})}\n\n"
+        except Exception as e:
+            logger.error(f"Stream error: {e}", exc_info=True)
+            yield f"data: {json.dumps({'type': 'error', 'message': 'An error occurred while processing your request.'})}\n\n"
         finally:
             _query_semaphore.release()
 
