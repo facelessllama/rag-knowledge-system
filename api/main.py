@@ -319,7 +319,7 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
         with db_conn() as conn:
             conn.cursor().execute(
                 "INSERT INTO file_hashes (hash, doc_id, filename) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING",
-                (file_hash, doc_id, file.filename)
+                (file_hash, doc_id, safe_filename)
             )
     except Exception as e:
         logger.warning(f"DB save hash failed: {e}")
@@ -329,7 +329,7 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
         db_save_folder(folder)
     documents_registry[doc_id] = {
         "doc_id": doc_id,
-        "filename": file.filename,
+        "filename": safe_filename,
         "pages": parsed.total_pages,
         "chunks": len(chunks),
         "size_kb": parsed.file_size_kb,
@@ -339,7 +339,7 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
 
     return {
         "doc_id": doc_id,
-        "filename": file.filename,
+        "filename": safe_filename,
         "pages": parsed.total_pages,
         "chunks_created": len(chunks),
         "status": "indexed"
