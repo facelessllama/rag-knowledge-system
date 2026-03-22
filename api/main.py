@@ -655,7 +655,7 @@ async def delete_folder(name: str):
     return {"deleted": name}
 
 
-@app.patch("/folders/{name}")
+@protected.patch("/folders/{name}")
 async def rename_folder(name: str, body: dict):
     new_name = (body.get("name") or "").strip()
     if not new_name:
