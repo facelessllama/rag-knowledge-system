@@ -565,9 +565,9 @@ function addBotMessage(text, sources) {
       const fname = doc.filename ? doc.filename.replace(/\.pdf$/i, '') : (s.document || '?');
       const short = fname.length > 22 ? fname.slice(0, 20) + '...' : fname;
       const docIdSafe = JSON.stringify(s.document || '').replace(/"/g, "'");
-      const excerptSafe = JSON.stringify(s.excerpt || '').replace(/"/g, "'");
+      const chunkSafe = JSON.stringify(s.chunk_text || s.excerpt || '').replace(/"/g, "'");
       const page = s.page || 1;
-      html += '<div class="source-item" onclick="openPdfViewer(' + docIdSafe + ',' + page + ',' + excerptSafe + ')">';
+      html += '<div class="source-item" onclick="openPdfViewer(' + docIdSafe + ',' + page + ',' + chunkSafe + ')">';
       html += '<div class="source-meta">';
       html += '<span class="source-filename" title="' + esc(doc.filename || '') + '">' + esc(short) + '</span>';
       html += '<span class="source-page">p. ' + (s.page || '?') + '</span>';
