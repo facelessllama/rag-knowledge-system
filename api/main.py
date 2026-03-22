@@ -792,7 +792,10 @@ async def list_models():
             "current": generator.model}
 
 
-@app.get("/health", dependencies=[])
+app.include_router(protected)
+
+
+@app.get("/health")
 async def health_check():
     qdrant_ok = False
     try:
