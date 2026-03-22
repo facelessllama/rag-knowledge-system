@@ -299,7 +299,7 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
         raise HTTPException(422, "Could not extract text from document")
 
     for c in chunks:
-        c.filename = file.filename
+        c.filename = safe_filename
         c.pages = parsed.total_pages
         c.folder = folder or ""
 
