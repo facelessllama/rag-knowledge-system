@@ -129,31 +129,28 @@ folders_registry: set = set()  # persisted folder names
 
 def init_db():
     try:
-        conn = get_db()
-        cur = conn.cursor()
-        cur.execute("""
-            CREATE TABLE IF NOT EXISTS file_hashes (
-                hash VARCHAR(32) PRIMARY KEY,
-                doc_id VARCHAR(8) NOT NULL,
-                filename VARCHAR(255) NOT NULL,
-                created_at TIMESTAMP DEFAULT NOW()
-            )
-        """)
-        cur.execute("""
-            CREATE TABLE IF NOT EXISTS folders (
-                name VARCHAR(255) PRIMARY KEY,
-                created_at TIMESTAMP DEFAULT NOW()
-            )
-        """)
-        conn.commit()
-        cur.execute("SELECT hash, doc_id FROM file_hashes")
-        for row in cur.fetchall():
-            file_hashes[row[0]] = row[1]
-        cur.execute("SELECT name FROM folders")
-        for row in cur.fetchall():
-            folders_registry.add(row[0])
-        cur.close()
-        conn.close()
+        with db_conn() as conn:
+            cur = conn.cursor()
+            cur.execute("""
+                CREATE TABLE IF NOT EXISTS file_hashes (
+                    hash VARCHAR(32) PRIMARY KEY,
+                    doc_id VARCHAR(8) NOT NULL,
+                    filename VARCHAR(255) NOT NULL,
+                    created_at TIMESTAMP DEFAULT NOW()
+                )
+            """)
+            cur.execute("""
+                CREATE TABLE IF NOT EXISTS folders (
+                    name VARCHAR(255) PRIMARY KEY,
+                    created_at TIMESTAMP DEFAULT NOW()
+                )
+            """)
+            cur.execute("SELECT hash, doc_id FROM file_hashes")
+            for row in cur.fetchall():
+                file_hashes[row[0]] = row[1]
+            cur.execute("SELECT name FROM folders")
+            for row in cur.fetchall():
+                folders_registry.add(row[0])
         logger.info(f"DB ready | loaded {len(file_hashes)} hashes, {len(folders_registry)} folders")
     except Exception as e:
         logger.warning(f"DB init failed: {e}")
