@@ -395,15 +395,11 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
 
             file_hashes[file_hash] = doc_id
             try:
-                conn = get_db()
-                cur = conn.cursor()
-                cur.execute(
-                    "INSERT INTO file_hashes (hash, doc_id, filename) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING",
-                    (file_hash, doc_id, file.filename)
-                )
-                conn.commit()
-                cur.close()
-                conn.close()
+                with db_conn() as conn:
+                    conn.cursor().execute(
+                        "INSERT INTO file_hashes (hash, doc_id, filename) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING",
+                        (file_hash, doc_id, file.filename)
+                    )
             except Exception as e:
                 logger.warning(f"DB save hash failed: {e}")
 
