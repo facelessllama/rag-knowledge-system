@@ -5,6 +5,14 @@ let availableModels = [];
 let activeFolderName = '';
 const openFolders = new Set();
 let chatHistory = [];
+let currentLang = 'ru';
+
+function toggleLang() {
+  currentLang = currentLang === 'ru' ? 'en' : 'ru';
+  var btn = document.getElementById('langBtn');
+  btn.textContent = currentLang === 'ru' ? '🇷🇺 RU' : '🇬🇧 EN';
+  btn.title = currentLang === 'ru' ? 'Ответы на русском' : 'Answers in English';
+}
 
 function esc(text) {
   const d = document.createElement('div');
