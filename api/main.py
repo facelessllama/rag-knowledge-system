@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from api.telegram import router as telegram_router
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Security, Depends
+from fastapi import FastAPI, APIRouter, UploadFile, File, Form, HTTPException, Security, Depends
 from fastapi.security import APIKeyHeader
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
