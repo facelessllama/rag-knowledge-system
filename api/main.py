@@ -157,35 +157,24 @@ def init_db():
 
 def db_save_folder(name: str):
     try:
-        conn = get_db()
-        cur = conn.cursor()
-        cur.execute("INSERT INTO folders (name) VALUES (%s) ON CONFLICT DO NOTHING", (name,))
-        conn.commit()
-        cur.close()
-        conn.close()
+        with db_conn() as conn:
+            conn.cursor().execute("INSERT INTO folders (name) VALUES (%s) ON CONFLICT DO NOTHING", (name,))
     except Exception as e:
         logger.warning(f"DB save folder failed: {e}")
 
 def db_delete_folder(name: str):
     try:
-        conn = get_db()
-        cur = conn.cursor()
-        cur.execute("DELETE FROM folders WHERE name = %s", (name,))
-        conn.commit()
-        cur.close()
-        conn.close()
+        with db_conn() as conn:
+            conn.cursor().execute("DELETE FROM folders WHERE name = %s", (name,))
     except Exception as e:
         logger.warning(f"DB delete folder failed: {e}")
 
 def db_rename_folder(old_name: str, new_name: str):
     try:
-        conn = get_db()
-        cur = conn.cursor()
-        cur.execute("INSERT INTO folders (name) VALUES (%s) ON CONFLICT DO NOTHING", (new_name,))
-        cur.execute("DELETE FROM folders WHERE name = %s", (old_name,))
-        conn.commit()
-        cur.close()
-        conn.close()
+        with db_conn() as conn:
+            cur = conn.cursor()
+            cur.execute("INSERT INTO folders (name) VALUES (%s) ON CONFLICT DO NOTHING", (new_name,))
+            cur.execute("DELETE FROM folders WHERE name = %s", (old_name,))
     except Exception as e:
         logger.warning(f"DB rename folder failed: {e}")
 
