@@ -38,12 +38,14 @@ class PromptBuilder:
         self,
         query: str,
         chunks: list[dict],
-        chat_history: list[dict] = None
+        chat_history: list[dict] = None,
+        language: str = None,
     ) -> list[dict]:
         unique_docs = set(c.get('filename', '') for c in chunks if c.get('filename'))
         is_multi_doc = len(unique_docs) > 1
 
-        system = SYSTEM_PROMPT
+        lang_rule = LANG_RULES.get(language, LANG_RULES[None])
+        system = SYSTEM_PROMPT.format(lang_rule=lang_rule)
         if is_multi_doc:
             system += MULTI_DOC_ADDITION
             logger.info(f"Multi-doc mode: {unique_docs}")
