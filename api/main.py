@@ -638,7 +638,7 @@ async def list_folders():
     return {"folders": all_folders}
 
 
-@app.post("/folders")
+@protected.post("/folders")
 async def create_folder(body: dict):
     name = (body.get("name") or "").strip()
     if not name:
