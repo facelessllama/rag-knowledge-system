@@ -800,31 +800,93 @@ async function renderPage(pageNum) {
 }
 
 function doHighlight(searchText) {
-  const textLayerDiv = document.getElementById('pdfTextLayer');
+  var textLayerDiv = document.getElementById('pdfTextLayer');
   textLayerDiv.querySelectorAll('.rag-highlight').forEach(function(el) { el.classList.remove('rag-highlight'); });
   if (!searchText) return;
 
   function norm(s) {
-    return s.replace(/\u00AD/g, '').replace(/\u00A0/g, ' ')
-            .replace(/\s+/g, ' ').toLowerCase().trim();
+    return s.replace(/\u00AD/g, '').replace(/\u00A0/g, ' ').replace(/\s+/g, ' ').toLowerCase().trim();
   }
 
-  var STOP = new Set(['the','a','an','of','in','on','at','to','for','and','or','is','are',
-                      'was','were','be','with','by','this','that','it','its','не','на','в',
-                      'и','с','по','для','от','из','как','но','что','это','он','она','они']);
-  var keywords = norm(searchText).split(/\s+/).filter(function(w) {
-    return w.length >= 4 && !STOP.has(w);
-  });
-  if (!keywords.length) return;
+  var spans = Array.from(textLayerDiv.querySelectorAll('span[role="presentation"], span:not([class])'));
+  if (!spans.length) spans = Array.from(textLayerDiv.querySelectorAll('span'));
 
-  var spans = Array.from(textLayerDiv.querySelectorAll('span'));
-  var highlighted = 0;
-  spans.forEach(function(span) {
-    var t = norm(span.textContent);
-    if (keywords.some(function(kw) { return t.includes(kw); })) {
-      span.classList.add('rag-highlight');
-      highlighted++;
-    }
+  // Build full page text tracking which span each char belongs to
+  var charSpan = [], fullText = '';
+  spans.forEach(function(span, si) {
+    var t = span.textContent;
+    for (var i = 0; i < t.length; i++) charSpan.push(si);
+    fullText += t;
+    if (!t.endsWith(' ')) { fullText += ' '; charSpan.push(si); }
+  });
+
+  var normFull = norm(fullText);
+  var normSearch = norm(searchText);
+
+  // Try progressively shorter prefixes until we find a match
+  var matchStart = -1, matchLen = 0;
+  var attempts = [normSearch];
+  // Also try first 2/3 and first 1/2 of the text
+  if (normSearch.length > 60) attempts.push(normSearch.slice(0, Math.floor(normSearch.length * 0.66)).replace(/\s\S*$/, ''));
+  if (normSearch.length > 40) attempts.push(normSearch.slice(0, Math.floor(normSearch.length * 0.5)).replace(/\s\S*$/, ''));
+
+  for (var ai = 0; ai < attempts.length; ai++) {
+    var candidate = attempts[ai];
+    if (candidate.length < 15) continue;
+    var idx = normFull.indexOf(candidate);
+    if (idx !== -1) { matchStart = idx; matchLen = candidate.length; break; }
+  }
+
+  // Fallback: find best word-cluster window
+  if (matchStart === -1) {
+    var STOP = new Set(['the','a','an','of','in','on','at','to','for','and','or','is','are',
+                        'was','were','be','with','by','this','that','не','на','в','и','с','по',
+                        'для','от','из','как','но','что','это','он','она','они','как','при']);
+    var words = normSearch.split(/\s+/).filter(function(w) { return w.length >= 5 && !STOP.has(w); });
+    if (!words.length) return;
+
+    // Find all positions of each word
+    var hits = [];
+    words.forEach(function(w, rank) {
+      var from = 0;
+      while (true) {
+        var p = normFull.indexOf(w, from);
+        if (p === -1) break;
+        hits.push({ pos: p, rank: rank, len: w.length });
+        from = p + 1;
+      }
+    });
+    if (!hits.length) return;
+    hits.sort(function(a, b) { return a.pos - b.pos; });
+
+    // Find window with most distinct words
+    var winSize = Math.min(normSearch.length + 100, 400);
+    var best = null, bestCount = 0;
+    hits.forEach(function(seed) {
+      var seen = new Set();
+      hits.forEach(function(h) {
+        if (h.pos >= seed.pos && h.pos < seed.pos + winSize) seen.add(h.rank);
+      });
+      if (seen.size > bestCount) { bestCount = seen.size; best = seed; }
+    });
+
+    // Require at least 50% of words found
+    if (!best || bestCount < Math.ceil(words.length * 0.5)) return;
+
+    var winHits = hits.filter(function(h) { return h.pos >= best.pos && h.pos < best.pos + winSize; });
+    matchStart = winHits[0].pos;
+    matchLen = winHits[winHits.length - 1].pos + winHits[winHits.length - 1].len - matchStart;
+  }
+
+  // Map char positions back to spans
+  var matchEnd = matchStart + matchLen;
+  var hitSpans = new Set();
+  for (var ci = matchStart; ci < Math.min(matchEnd, charSpan.length); ci++) {
+    hitSpans.add(charSpan[ci]);
+  }
+
+  hitSpans.forEach(function(si) {
+    spans[si].classList.add('rag-highlight');
   });
 
   var first = textLayerDiv.querySelector('.rag-highlight');
