@@ -110,6 +110,12 @@ document.addEventListener('click', function(e) {
   // Model dropdown close
   if (!document.getElementById('modelSelector').contains(e.target)) closeModelDropdown();
 
+  // Lang dropdown close
+  if (!document.getElementById('langSelector').contains(e.target)) {
+    document.getElementById('langDropdown').classList.remove('show');
+    document.getElementById('langBtn').classList.remove('open');
+  }
+
   // Source card click
   var srcEl = e.target.closest('[data-src]');
   if (srcEl) {
