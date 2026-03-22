@@ -12,6 +12,10 @@ class CrossEncoderReranker:
         self.model = CrossEncoder(model_name)
         logger.info(f"CrossEncoderReranker loaded: {model_name}")
 
+    # If ALL cross-encoder scores are below this, the model can't handle the language
+    # (ms-marco is English-only; Russian text scores cluster around -10 to -12)
+    LANGUAGE_FALLBACK_THRESHOLD = -5.0
+
     def rerank(self, query: str, chunks: list[dict], top_k: int = 3) -> list[dict]:
         if not chunks:
             return []
@@ -19,8 +23,17 @@ class CrossEncoderReranker:
         pairs = [(query, c["text"]) for c in chunks]
         scores = self.model.predict(pairs)
 
-        for chunk, score in zip(chunks, scores):
-            chunk["rerank_score"] = float(score)
+        if max(scores) < self.LANGUAGE_FALLBACK_THRESHOLD:
+            # Cross-encoder is blind to this language — keep vector score order
+            logger.info(
+                f"Reranker language fallback (max score={max(scores):.2f}) — "
+                f"using vector scores for top {top_k}"
+            )
+            for chunk in chunks:
+                chunk["rerank_score"] = chunk.get("score", 0)
+        else:
+            for chunk, score in zip(chunks, scores):
+                chunk["rerank_score"] = float(score)
 
         reranked = sorted(chunks, key=lambda x: x["rerank_score"], reverse=True)
         logger.info(
