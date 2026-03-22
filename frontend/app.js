@@ -687,7 +687,11 @@ function sendMessage() {
     function onDone(err) {
       if (err) {
         hideTyping();
-        if (!msgEl) addErrorMessage('Cannot connect to server.');
+        if (msgEl && bubbleEl) {
+          bubbleEl.textContent += '\n\n⚠ ' + (err.message || 'Connection error');
+        } else {
+          addErrorMessage('Cannot connect to server.');
+        }
         isTyping = false;
         return;
       }
