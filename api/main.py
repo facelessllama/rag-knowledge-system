@@ -351,8 +351,9 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
     results = []
     for file in files:
         try:
-            if not file.filename.endswith(".pdf"):
-                results.append({"filename": file.filename, "status": "error", "error": "Only PDF files supported"})
+            safe_name = Path(file.filename).name
+            if not safe_name.lower().endswith(".pdf"):
+                results.append({"filename": safe_name, "status": "error", "error": "Only PDF files supported"})
                 continue
 
             content = await file.read()
@@ -361,11 +362,11 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
             if file_hash in file_hashes:
                 existing_id = file_hashes[file_hash]
                 existing = documents_registry.get(existing_id, {})
-                results.append({"filename": file.filename, "status": "skipped", "error": f"Already uploaded as '{existing.get('filename', existing_id)}'"})
+                results.append({"filename": safe_name, "status": "skipped", "error": f"Already uploaded as '{existing.get('filename', existing_id)}'"})
                 continue
 
             doc_id = str(uuid.uuid4())[:8]
-            file_path = UPLOAD_DIR / f"{doc_id}_{file.filename}"
+            file_path = UPLOAD_DIR / f"{doc_id}_{safe_name}"
 
             async with aiofiles.open(file_path, "wb") as f_out:
                 await f_out.write(content)
@@ -374,11 +375,11 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
             chunks = chunker.chunk_document(parsed.pages, doc_id)
 
             if not chunks:
-                results.append({"filename": file.filename, "status": "error", "error": "Could not extract text"})
+                results.append({"filename": safe_name, "status": "error", "error": "Could not extract text"})
                 continue
 
             for c in chunks:
-                c.filename = file.filename
+                c.filename = safe_name
                 c.pages = parsed.total_pages
                 c.folder = folder or ""
 
