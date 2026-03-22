@@ -630,7 +630,7 @@ async def update_document_folder(doc_id: str, body: dict):
     return {"doc_id": doc_id, "folder": folder}
 
 
-@app.get("/folders")
+@protected.get("/folders")
 async def list_folders():
     # Merge folders from registry and from documents
     doc_folders = {d["folder"] for d in documents_registry.values() if d.get("folder")}
