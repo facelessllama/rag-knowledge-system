@@ -1,5 +1,12 @@
 const API = 'http://localhost:8000';
 
+function authHeaders(extra) {
+  const key = localStorage.getItem('api_key') || '';
+  const h = Object.assign({ }, extra || {});
+  if (key) h['X-API-Key'] = key;
+  return h;
+}
+
 async function apiHealth() {
   const r = await fetch(API + '/health');
   return r.ok;
