@@ -248,6 +248,7 @@ class QueryRequest(BaseModel):
     rerank: Optional[bool] = True
     folder: Optional[str] = None
     language: Optional[str] = None  # "en" | "ru" | None (auto)
+    channel: Optional[str] = None   # "telegram" | None (web)
 
 class QueryResponse(BaseModel):
     answer: str
