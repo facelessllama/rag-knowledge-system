@@ -40,7 +40,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = FastAPI(title="RAG Knowledge Base API", version="1.0.0")
-app.include_router(bitrix_router)
+app.include_router(telegram_router)
 
 app.add_middleware(
     CORSMiddleware,
