@@ -345,7 +345,7 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
     }
 
 
-@app.post("/upload-batch")
+@protected.post("/upload-batch")
 async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("")):
     results = []
     for file in files:
