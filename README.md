@@ -170,8 +170,7 @@ QDRANT_URL=http://localhost:6333
 POSTGRES_URL=postgresql://raguser:ragpass@localhost:5432/ragdb
 LANGFUSE_PUBLIC_KEY=...             # optional
 LANGFUSE_SECRET_KEY=...             # optional
-BITRIX_WEBHOOK_URL=...              # optional, Bitrix24 integration
-BITRIX_BOT_ID=0                     # optional
+TELEGRAM_BOT_TOKEN=...              # optional, Telegram bot integration
 ```
 
 ## Performance
