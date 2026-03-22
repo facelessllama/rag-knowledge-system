@@ -102,5 +102,6 @@ async function apiGetHighlights(docId, text, page) {
 }
 
 function getPdfUrl(docId) {
-  return API + '/pdf/' + docId;
+  const key = localStorage.getItem('api_key') || '';
+  return API + '/pdf/' + docId + (key ? '?key=' + encodeURIComponent(key) : '');
 }
