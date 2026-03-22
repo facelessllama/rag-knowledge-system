@@ -13,13 +13,13 @@ async function apiHealth() {
 }
 
 async function apiGetModels() {
-  const r = await fetch(API + '/models');
+  const r = await fetch(API + '/models', { headers: authHeaders() });
   if (!r.ok) throw new Error('models fetch failed');
   return r.json(); // { models: [...], current: string }
 }
 
 async function apiGetDocuments() {
-  const r = await fetch(API + '/documents');
+  const r = await fetch(API + '/documents', { headers: authHeaders() });
   if (!r.ok) throw new Error('documents fetch failed');
   return r.json(); // { documents: [...] }
 }
@@ -28,7 +28,7 @@ async function apiUploadFile(file, folder) {
   const fd = new FormData();
   fd.append('file', file);
   if (folder) fd.append('folder', folder);
-  const r = await fetch(API + '/upload', { method: 'POST', body: fd });
+  const r = await fetch(API + '/upload', { method: 'POST', headers: authHeaders(), body: fd });
   return { ok: r.ok, status: r.status, data: r.ok ? await r.json() : null };
 }
 
@@ -36,19 +36,19 @@ async function apiUploadBatch(files, folder) {
   const fd = new FormData();
   files.forEach(function(f) { fd.append('files', f); });
   if (folder) fd.append('folder', folder);
-  const r = await fetch(API + '/upload-batch', { method: 'POST', body: fd });
+  const r = await fetch(API + '/upload-batch', { method: 'POST', headers: authHeaders(), body: fd });
   return { ok: r.ok, data: r.ok ? await r.json() : null };
 }
 
 async function apiDeleteDocument(docId) {
-  const r = await fetch(API + '/documents/' + docId, { method: 'DELETE' });
+  const r = await fetch(API + '/documents/' + docId, { method: 'DELETE', headers: authHeaders() });
   return r.ok;
 }
 
 async function apiQuery(question, topK, rerank, model) {
   const r = await fetch(API + '/query', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: authHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify({ question: question, top_k: topK, rerank: rerank, model: model || undefined })
   });
   return { ok: r.ok, data: r.ok ? await r.json() : null };
@@ -57,7 +57,7 @@ async function apiQuery(question, topK, rerank, model) {
 function apiQueryStream(question, topK, model, chatHistory, folder, language, onToken, onSources, onDone) {
   fetch(API + '/query/stream', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: authHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify({ question: question, top_k: topK, model: model || undefined, chat_history: chatHistory || [], folder: folder || undefined, language: language || undefined })
   }).then(function(r) {
     if (!r.ok) { onDone(new Error('stream failed')); return; }
