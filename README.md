@@ -158,7 +158,7 @@ rag-knowledge-system/
 | GET | `/pdf/{doc_id}/highlights` | Get highlight coordinates |
 | GET | `/models` | List available Ollama models |
 | GET | `/health` | Health check |
-| POST | `/bitrix/webhook` | Bitrix24 chatbot webhook |
+| POST | `/telegram/webhook` | Telegram bot webhook |
 
 ## Configuration
 
