@@ -274,7 +274,8 @@ class QueryResponse(BaseModel):
 
 @protected.post("/upload")
 async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
-    if not file.filename.endswith(".pdf"):
+    safe_filename = Path(file.filename).name  # strip any path components
+    if not safe_filename.lower().endswith(".pdf"):
         raise HTTPException(400, "Only PDF files are supported")
 
     content = await file.read()
@@ -286,7 +287,7 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
         raise HTTPException(409, f"File already uploaded as '{existing.get('filename', existing_id)}' (id: {existing_id})")
 
     doc_id = str(uuid.uuid4())[:8]
-    file_path = UPLOAD_DIR / f"{doc_id}_{file.filename}"
+    file_path = UPLOAD_DIR / f"{doc_id}_{safe_filename}"
 
     async with aiofiles.open(file_path, "wb") as f:
         await f.write(content)
