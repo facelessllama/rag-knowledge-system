@@ -745,13 +745,13 @@ async function openPdfViewer(docId, page, highlightText) {
   currentHighlightText = highlightText;
   if (currentDocId !== docId) {
     currentDocId = docId; pdfDoc = null;
-    document.getElementById('pdfCanvas').style.display = 'none';
+    document.getElementById('pdfPageWrapper').style.display = 'none';
     document.getElementById('pdfLoading').style.display = 'flex';
     document.getElementById('pdfLoading').innerHTML = '<div style="font-size:22px">&#9203;</div><div>Loading...</div>';
     try {
       pdfDoc = await pdfjsLib.getDocument(getPdfUrl(docId)).promise;
       document.getElementById('pdfLoading').style.display = 'none';
-      document.getElementById('pdfCanvas').style.display = 'block';
+      document.getElementById('pdfPageWrapper').style.display = 'inline-block';
     } catch(e) {
       document.getElementById('pdfLoading').innerHTML = '<div style="font-size:22px">&#10060;</div><div>Failed to load PDF</div>';
       return;
