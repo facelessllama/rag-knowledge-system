@@ -766,193 +766,69 @@ async function renderPage(pageNum) {
   isRendering = true;
   const page = await pdfDoc.getPage(pageNum);
   const canvas = document.getElementById('pdfCanvas');
+  const textLayerDiv = document.getElementById('pdfTextLayer');
+  const wrapper = document.getElementById('pdfPageWrapper');
   const container = document.getElementById('pdfCanvasContainer');
   const scale = (container.clientWidth - 28) / page.getViewport({ scale: 1 }).width;
   const vp = page.getViewport({ scale });
-  canvas.width = vp.width; canvas.height = vp.height;
+
+  canvas.width = vp.width;
+  canvas.height = vp.height;
+  wrapper.style.width = vp.width + 'px';
+  wrapper.style.height = vp.height + 'px';
+
   await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+
+  // Render text layer — transparent spans positioned over canvas
+  textLayerDiv.innerHTML = '';
+  textLayerDiv.style.width = vp.width + 'px';
+  textLayerDiv.style.height = vp.height + 'px';
+  const textContent = await page.getTextContent();
+  await pdfjsLib.renderTextLayer({
+    textContentSource: textContent,
+    container: textLayerDiv,
+    viewport: vp,
+    textDivs: []
+  }).promise;
+
   document.getElementById('pdfPageInfo').textContent = 'Page ' + pageNum + ' of ' + pdfDoc.numPages;
-  container.querySelectorAll('.highlight-overlay').forEach(function(el){ el.remove(); });
   currentPdfPage = page;
   currentVp = vp;
-  if (currentHighlightText) await doHighlight(currentHighlightText);
+  if (currentHighlightText) doHighlight(currentHighlightText);
   isRendering = false;
-  canvas.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-async function doHighlight(searchText) {
-  if (!currentPdfPage || !currentVp || !searchText) return;
-  const container = document.getElementById('pdfCanvasContainer');
-  const canvas = document.getElementById('pdfCanvas');
-  container.querySelectorAll('.highlight-overlay').forEach(function(el){ el.remove(); });
-  try {
-    const textContent = await currentPdfPage.getTextContent();
-    const items = textContent.items.filter(function(it) { return it.str && it.str.trim(); });
+function doHighlight(searchText) {
+  const textLayerDiv = document.getElementById('pdfTextLayer');
+  textLayerDiv.querySelectorAll('.rag-highlight').forEach(function(el) { el.classList.remove('rag-highlight'); });
+  if (!searchText) return;
 
-    // Build concatenated text with per-item start positions
-    var spans = [], fullText = '';
-    for (var i = 0; i < items.length; i++) {
-      var it = items[i];
-      var start = fullText.length;
-      fullText += it.str;
-      if (!it.str.endsWith(' ') && i + 1 < items.length) fullText += ' ';
-      spans.push({ start: start, end: fullText.length, item: it });
+  function norm(s) {
+    return s.replace(/\u00AD/g, '').replace(/\u00A0/g, ' ')
+            .replace(/\s+/g, ' ').toLowerCase().trim();
+  }
+
+  var STOP = new Set(['the','a','an','of','in','on','at','to','for','and','or','is','are',
+                      'was','were','be','with','by','this','that','it','its','не','на','в',
+                      'и','с','по','для','от','из','как','но','что','это','он','она','они']);
+  var keywords = norm(searchText).split(/\s+/).filter(function(w) {
+    return w.length >= 4 && !STOP.has(w);
+  });
+  if (!keywords.length) return;
+
+  var spans = Array.from(textLayerDiv.querySelectorAll('span'));
+  var highlighted = 0;
+  spans.forEach(function(span) {
+    var t = norm(span.textContent);
+    if (keywords.some(function(kw) { return t.includes(kw); })) {
+      span.classList.add('rag-highlight');
+      highlighted++;
     }
+  });
 
-    // Normalize: handle all common PDF text encoding issues
-    function norm(s) {
-      return s
-        .replace(/\u00AD/g, '')
-        .replace(/-[ \t]*\n[ \t]*/g, '')
-        .replace(/\u00A0/g, ' ')
-        .replace(/[\u2018\u2019\u0060\u00B4]/g, "'")
-        .replace(/[\u201C\u201D\u00AB\u00BB]/g, '"')
-        .replace(/[\u2013\u2014\u2012]/g, '-')
-        .replace(/\uFB00/g, 'ff').replace(/\uFB01/g, 'fi').replace(/\uFB02/g, 'fl')
-        .replace(/\uFB03/g, 'ffi').replace(/\uFB04/g, 'ffl')
-        .replace(/\uFB05/g, 'st').replace(/\uFB06/g, 'st')
-        .replace(/…/g, '').replace(/\s+/g, ' ').toLowerCase().trim();
-    }
-
-    // Extract best anchor: one sentence 60-160 chars from the chunk
-    function extractAnchor(text) {
-      var clean = text.replace(/\s+/g, ' ').trim();
-      var best = null, bestDist = Infinity;
-      clean.split(/(?<=[.!?])\s+/).forEach(function(s) {
-        if (s.length < 50 || s.length > 180) return;
-        var d = Math.abs(s.length - 110);
-        if (d < bestDist) { bestDist = d; best = s; }
-      });
-      if (best) return best;
-      // Fallback: middle ~120 chars trimmed to word boundary
-      var mid = Math.max(0, Math.floor(clean.length / 2) - 60);
-      var slice = clean.slice(mid, mid + 120);
-      return slice.replace(/^\S+\s/, '').replace(/\s\S+$/, '') || clean.slice(0, 120);
-    }
-
-    // Find best matching region: score positions by word cluster density + order bonus
-    function findBestWordMatch(pageText, anchorNorm) {
-      var STOP = new Set(['the','a','an','of','in','on','at','to','for','and','or',
-                          'is','are','was','were','be','been','with','by','this','that','it','its']);
-      var words = anchorNorm.split(/\s+/).filter(function(w) { return w.length >= 4 && !STOP.has(w); });
-      if (!words.length) return null;
-
-      // Collect positions of each word on the page
-      var hits = []; // { pos, rank, len }
-      words.forEach(function(w, rank) {
-        var from = 0;
-        while (true) {
-          var p = pageText.indexOf(w, from);
-          if (p === -1) break;
-          hits.push({ pos: p, rank: rank, len: w.length });
-          from = p + 1;
-        }
-      });
-      if (!hits.length) return null;
-      hits.sort(function(a, b) { return a.pos - b.pos; });
-
-      var winSize = anchorNorm.length + 120;
-      var bestScore = -1, bestWinStart = -1;
-
-      hits.forEach(function(seed) {
-        var winStart = seed.pos;
-        var winEnd = winStart + winSize;
-        var seenRanks = new Set();
-        var score = 0, prevRank = -1, prevEnd = winStart;
-
-        hits.forEach(function(h) {
-          if (h.pos < winStart || h.pos >= winEnd) return;
-          if (seenRanks.has(h.rank)) return;
-          seenRanks.add(h.rank);
-          score += h.len;                                       // word length weight
-          if (h.rank > prevRank) { score += 3; prevRank = h.rank; } // in-order bonus
-          var gap = h.pos - prevEnd;
-          if (gap > 20) score -= Math.min((gap - 20) * 0.15, 15); // gap penalty
-          prevEnd = h.pos + h.len;
-        });
-
-        if (score > bestScore) { bestScore = score; bestWinStart = winStart; }
-      });
-
-      if (bestWinStart === -1) return null;
-      // Require at least 40% of distinct word chars matched
-      var maxScore = words.reduce(function(s, w) { return s + w.length; }, 0);
-      if (bestScore < maxScore * 0.4) return null;
-
-      // Tighten range to actual first/last hit in the winning window
-      var winHits = hits.filter(function(h) {
-        return h.pos >= bestWinStart && h.pos < bestWinStart + winSize;
-      });
-      return { start: winHits[0].pos, end: winHits[winHits.length - 1].pos + winHits[winHits.length - 1].len };
-    }
-
-    // --- Main matching logic ---
-    var normFull = norm(fullText);
-    var anchor = extractAnchor(searchText);
-    var normAnchor = norm(anchor);
-
-    // Build char-level map: normFull[i] → fullText position
-    var origIdx = [];
-    var prevSpace = false;
-    for (var ci = 0; ci < fullText.length; ci++) {
-      var nc = norm(fullText[ci]);
-      if (nc === '') continue;
-      if (nc === ' ') { if (!prevSpace) { origIdx.push(ci); prevSpace = true; } }
-      else            { origIdx.push(ci); prevSpace = false; }
-    }
-    function n2o(np) { return origIdx[Math.min(np, origIdx.length - 1)] || 0; }
-
-    var matchRange = null;
-
-    // 1. Try exact normalized match
-    var exactIdx = normFull.indexOf(normAnchor);
-    if (exactIdx !== -1) {
-      matchRange = { start: n2o(exactIdx), end: n2o(exactIdx + normAnchor.length) + 1 };
-    }
-
-    // 2. Try progressively shorter prefixes (exact)
-    if (!matchRange) {
-      for (var li = 0, lens = [200, 120, 70]; li < lens.length; li++) {
-        var len = lens[li];
-        if (len >= normAnchor.length) continue;
-        var s = normAnchor.slice(0, len).replace(/\s\S*$/, '');
-        if (s.length < 20) continue;
-        var idx = normFull.indexOf(s);
-        if (idx !== -1) {
-          matchRange = { start: n2o(idx), end: n2o(idx + s.length) + 1 };
-          break;
-        }
-      }
-    }
-
-    // 3. Word-cluster best-match fallback
-    if (!matchRange) {
-      var wm = findBestWordMatch(normFull, normAnchor);
-      if (wm) matchRange = { start: n2o(wm.start), end: n2o(wm.end) + 1 };
-    }
-
-    if (!matchRange) { console.log('[highlight] no match for anchor:', anchor); return; }
-
-    // Render highlight boxes for spans overlapping the single best match range
-    for (var si = 0; si < spans.length; si++) {
-      var sp = spans[si];
-      if (sp.end <= matchRange.start || sp.start >= matchRange.end) continue;
-
-      var item = sp.item;
-      var tx = pdfjsLib.Util.transform(currentVp.transform, item.transform);
-      var fontH = Math.hypot(tx[2], tx[3]);
-      var w = item.width * currentVp.scale;
-      if (w <= 0 || fontH <= 0) continue;
-
-      var el = document.createElement('div');
-      el.className = 'highlight-overlay';
-      el.style.left   = Math.round(canvas.offsetLeft + tx[4]) + 'px';
-      el.style.top    = Math.round(canvas.offsetTop  + tx[5] - fontH) + 'px';
-      el.style.width  = Math.round(w) + 'px';
-      el.style.height = Math.round(fontH * 1.2) + 'px';
-      container.appendChild(el);
-    }
-  } catch(e) { console.log('[highlight] error:', e); }
+  var first = textLayerDiv.querySelector('.rag-highlight');
+  if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 async function changePage(delta) {
