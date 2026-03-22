@@ -799,34 +799,15 @@ async function renderPage(pageNum) {
   wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-async function doHighlight(searchText) {
-  var wrapper = document.getElementById('pdfPageWrapper');
-  wrapper.querySelectorAll('.rag-highlight-box').forEach(function(el) { el.remove(); });
-  if (!searchText || !currentDocId) return;
-
-  try {
-    var data = await apiGetHighlights(currentDocId, searchText, currentPage);
-    if (!data || !data.rects || !data.rects.length) return;
-
-    var canvas = document.getElementById('pdfCanvas');
-    var sx = canvas.width / data.page_width;
-    var sy = canvas.height / data.page_height;
-
-    data.rects.forEach(function(r) {
-      var el = document.createElement('div');
-      el.className = 'rag-highlight-box';
-      el.style.left   = (r.x0 * sx) + 'px';
-      el.style.top    = (r.y0 * sy) + 'px';
-      el.style.width  = ((r.x1 - r.x0) * sx) + 'px';
-      el.style.height = ((r.y1 - r.y0) * sy) + 'px';
-      wrapper.appendChild(el);
-    });
-
-    var first = wrapper.querySelector('.rag-highlight-box');
-    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  } catch(e) {
-    console.log('[highlight] error:', e);
-  }
+function doHighlight(searchText) {
+  var citation = document.getElementById('pdfCitation');
+  var citationText = document.getElementById('pdfCitationText');
+  if (!searchText) { citation.style.display = 'none'; return; }
+  // Show first 160 chars as citation
+  var short = searchText.replace(/\s+/g, ' ').trim().slice(0, 160);
+  if (searchText.length > 160) short += '…';
+  citationText.textContent = short;
+  citation.style.display = 'flex';
 }
 
 async function changePage(delta) {
