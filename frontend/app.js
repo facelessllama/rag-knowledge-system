@@ -794,7 +794,7 @@ async function renderPage(pageNum) {
   document.getElementById('pdfPageInfo').textContent = 'Page ' + pageNum + ' of ' + pdfDoc.numPages;
   currentPdfPage = page;
   currentVp = vp;
-  if (currentHighlightText) doHighlight(currentHighlightText);
+  if (currentHighlightText) await doHighlight(currentHighlightText);
   isRendering = false;
   wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
