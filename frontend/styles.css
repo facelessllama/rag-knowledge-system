@@ -14,8 +14,21 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); height: 100vh;
 .logo-mark { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg, #1D9E75, #0a5c44); display: flex; align-items: center; justify-content: center; font-size: 13px; }
 .logo-text { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
 .header-divider { width: 1px; height: 20px; background: var(--border); margin: 0 4px; }
-.lang-btn { display: flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 8px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-dim); cursor: pointer; font-size: 12px; font-family: 'DM Sans', sans-serif; transition: all 0.15s; white-space: nowrap; }
+/* LANGUAGE SELECTOR */
+.lang-selector { position: relative; display: flex; align-items: center; }
+.lang-btn { display: flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 8px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-dim); cursor: pointer; font-size: 12px; font-family: 'DM Sans', sans-serif; transition: all 0.15s; white-space: nowrap; }
 .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+.lang-btn .chevron { font-size: 10px; transition: transform 0.15s; }
+.lang-btn.open .chevron { transform: rotate(180deg); }
+.lang-dropdown { position: absolute; top: calc(100% + 6px); left: 0; min-width: 150px; background: var(--surface); border: 1px solid var(--border2); border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 200; overflow: hidden; display: none; }
+.lang-dropdown.show { display: block; }
+.lang-option { display: flex; align-items: center; gap: 10px; padding: 9px 12px; cursor: pointer; transition: background 0.12s; }
+.lang-option:hover { background: var(--surface2); }
+.lang-option.active { background: var(--accent-dim); }
+.lang-flag { font-size: 16px; line-height: 1; }
+.lang-name { font-size: 13px; color: var(--text); font-weight: 500; flex: 1; }
+.lang-check { font-size: 12px; color: var(--accent); opacity: 0; }
+.lang-option.active .lang-check { opacity: 1; }
 .header-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
 .header-stats { font-size: 12px; color: var(--text-muted); }
 .header-stats span { color: var(--text-dim); font-weight: 500; }
