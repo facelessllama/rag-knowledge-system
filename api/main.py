@@ -542,7 +542,7 @@ async def _do_query(request: QueryRequest):
                         })
 
 
-@app.post("/query/stream")
+@protected.post("/query/stream")
 async def query_stream(request: QueryRequest):
     if not request.question.strip():
         raise HTTPException(400, "Question cannot be empty")
