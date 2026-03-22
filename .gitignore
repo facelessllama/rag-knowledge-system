@@ -16,3 +16,4 @@ wget-log
 patch_*.py
 *.save
 .env.save
+backups/
