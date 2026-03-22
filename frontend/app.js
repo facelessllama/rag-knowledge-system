@@ -651,7 +651,7 @@ function sendMessage() {
   }
 
   var folderFilter = _folderFilterValue || null;
-  apiQueryStream(text, 3, currentModel, chatHistory, folderFilter,
+  apiQueryStream(text, 3, currentModel, chatHistory, folderFilter, currentLang,
     function onToken(token) {
       // Strip CJK characters that leak from qwen model
       var clean = token.replace(/[\u3000-\u9fff\uf900-\ufaff\ufe30-\ufe4f\uff00-\uffef]/g, '');
