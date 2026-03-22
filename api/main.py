@@ -466,7 +466,8 @@ async def _do_query(request: QueryRequest):
 
     messages = prompt_builder.build(query=request.question, chunks=top_chunks,
                                    chat_history=request.chat_history,
-                                   language=request.language or None)
+                                   language=request.language or None,
+                                   channel=request.channel)
 
     t1 = time.time()
     result = await generator.generate(messages, model=request.model or None)
