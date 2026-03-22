@@ -753,9 +753,12 @@ async def get_pdf_highlights(doc_id: str, text: str = "", page: int = 1):
     return {"rects": rects, "page_width": page_rect.width, "page_height": page_rect.height}
 
 
-@protected.get("/pdf/{doc_id}")
-async def get_pdf(doc_id: str):
+@app.get("/pdf/{doc_id}")
+async def get_pdf(doc_id: str, key: Optional[str] = None):
+    """PDF открывается напрямую браузером/PDF.js — принимает ключ через query ?key="""
     from fastapi.responses import FileResponse
+    if API_KEY and key != API_KEY:
+        raise HTTPException(status_code=401, detail="Invalid or missing API key")
     if doc_id not in documents_registry:
         raise HTTPException(404, "Document not found")
     for f in UPLOAD_DIR.glob(f"{doc_id}_*"):
