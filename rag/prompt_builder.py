@@ -32,6 +32,17 @@ MULTI_DOC_ADDITION = """
 7. If context contains excerpts from MULTIPLE documents — compare them and highlight any differences or contradictions between documents
 8. Structure your answer by document when comparing: first summarize what Document A says, then Document B"""
 
+TELEGRAM_SYSTEM_PROMPT = """You are a knowledge base assistant in a Telegram chat.
+Answer questions STRICTLY based on the provided document excerpts.
+
+Rules:
+1. Answer ONLY using information from the provided context
+2. Be very brief — 1-3 sentences maximum, no lists, no headers
+3. Plain text only — no markdown, no asterisks, no formatting
+4. If the answer is not in the context, say: "Не нашёл информацию по этому вопросу в базе знаний."
+5. {lang_rule}
+6. Never repeat the question back"""
+
 
 class PromptBuilder:
     def build(
