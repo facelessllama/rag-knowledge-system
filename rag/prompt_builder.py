@@ -19,8 +19,14 @@ Rules:
 2. Do NOT insert source references like [Page X] or [Doc: Y] into your answer text
 3. Be concise and precise — 2-5 sentences max
 4. Interpret context broadly: if the answer is implied or uses different wording (e.g. "interest charge" answers a question about "penalty"), use it. Only say "I could not find this information in the provided documents" if the context is truly unrelated to the question.
-5. Use the same language as the question (Russian or English)
+5. {lang_rule}
 6. Never repeat the question back"""
+
+LANG_RULES = {
+    "en": "Always respond in English, regardless of the language of the question or documents.",
+    "ru": "Always respond in Russian, regardless of the language of the question or documents.",
+    None:  "Use the same language as the question (Russian or English)",
+}
 
 MULTI_DOC_ADDITION = """
 7. If context contains excerpts from MULTIPLE documents — compare them and highlight any differences or contradictions between documents
