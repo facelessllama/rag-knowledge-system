@@ -702,12 +702,8 @@ async def delete_document(doc_id: str):
         logger.warning(f"BM25 rebuild failed: {e}")
 
     try:
-        conn = get_db()
-        cur = conn.cursor()
-        cur.execute("DELETE FROM file_hashes WHERE doc_id = %s", (doc_id,))
-        conn.commit()
-        cur.close()
-        conn.close()
+        with db_conn() as conn:
+            conn.cursor().execute("DELETE FROM file_hashes WHERE doc_id = %s", (doc_id,))
         for h in [h for h, d in file_hashes.items() if d == doc_id]:
             del file_hashes[h]
     except Exception as e:
