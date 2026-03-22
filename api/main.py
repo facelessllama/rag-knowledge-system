@@ -50,7 +50,11 @@ async def require_api_key(key: str = Security(api_key_header)):
     if key != API_KEY:
         raise HTTPException(status_code=401, detail="Invalid or missing API key")
 
-app = FastAPI(title="RAG Knowledge Base API", version="1.0.0")
+app = FastAPI(
+    title="RAG Knowledge Base API",
+    version="1.0.0",
+    dependencies=[Depends(require_api_key)]
+)
 app.include_router(telegram_router)
 
 app.add_middleware(
