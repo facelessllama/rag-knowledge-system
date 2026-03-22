@@ -55,7 +55,7 @@ app = FastAPI(
     version="1.0.0",
     dependencies=[Depends(require_api_key)]
 )
-app.include_router(telegram_router)
+app.include_router(telegram_router, dependencies=[])
 
 app.add_middleware(
     CORSMiddleware,
