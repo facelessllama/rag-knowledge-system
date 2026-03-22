@@ -464,7 +464,8 @@ async def _do_query(request: QueryRequest):
     top_chunks = reranker.rerank(request.question, chunks, top_k=min(request.top_k, 3))
 
     messages = prompt_builder.build(query=request.question, chunks=top_chunks,
-                                   chat_history=request.chat_history)
+                                   chat_history=request.chat_history,
+                                   language=request.language or None)
 
     t1 = time.time()
     result = await generator.generate(messages, model=request.model or None)
