@@ -565,7 +565,8 @@ async def query_stream(request: QueryRequest):
 
             top_chunks = reranker.rerank(request.question, chunks, top_k=min(request.top_k, 3))
             messages = prompt_builder.build(query=request.question, chunks=top_chunks,
-                                            chat_history=request.chat_history)
+                                            chat_history=request.chat_history,
+                                            language=request.language or None)
 
             async for token in generator.generate_stream(messages, model=request.model or None):
                 yield f"data: {json.dumps({'type': 'token', 'content': token})}\n\n"
