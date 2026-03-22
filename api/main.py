@@ -736,25 +736,63 @@ async def get_pdf_highlights(doc_id: str, text: str = "", page: int = 1):
     pg = doc[page - 1]
     page_rect = pg.rect
 
-    # Clean the search text
-    clean = text.replace("…", "").replace("...", "").strip()
-    # Try progressively shorter prefixes — stop as soon as we get exactly one hit
-    rects = []
-    for length in [500, 300, 150, 80]:
-        phrase = clean[:length].rsplit(" ", 1)[0] if len(clean) > length else clean
-        if len(phrase) < 25:
-            continue
-        hits = pg.search_for(phrase, quads=False)
-        if len(hits) == 1:
-            # Exactly one match — perfect
-            rects = [{"x0": r.x0, "y0": r.y0, "x1": r.x1, "y1": r.y1} for r in hits]
-            break
-        elif len(hits) > 1:
-            # Still multiple — keep trying shorter; at last attempt take first hit
-            if length == 80:
-                rects = [{"x0": hits[0].x0, "y0": hits[0].y0, "x1": hits[0].x1, "y1": hits[0].y1}]
-
+    # Get all words on page with their bounding boxes
+    page_words = pg.get_text("words")  # [(x0,y0,x1,y1,word,block,line,word_no), ...]
     doc.close()
+
+    if not page_words or not text.strip():
+        return {"rects": [], "page_width": page_rect.width, "page_height": page_rect.height}
+
+    def norm_word(w):
+        return w.lower().strip(".,;:!?\"'()[]{}—–-")
+
+    # Extract anchor: first 12 significant words from chunk (4+ chars)
+    raw_words = [w for w in text.replace("…","").split() if len(w) >= 4]
+    anchor = [norm_word(w) for w in raw_words[:12] if norm_word(w)]
+    if not anchor:
+        return {"rects": [], "page_width": page_rect.width, "page_height": page_rect.height}
+
+    pw_norm = [(w[0], w[1], w[2], w[3], norm_word(w[4])) for w in page_words]
+
+    # Slide over page words, find window where most anchor words appear in order
+    best_score = 0
+    best_start_idx = -1
+    window = 30  # search within 30 page words from anchor[0] hit
+
+    for i, pw in enumerate(pw_norm):
+        if pw[4] != anchor[0]:
+            continue
+        # Try to match anchor sequence from position i
+        matched = 0
+        last_idx = i
+        for aw in anchor:
+            for j in range(last_idx, min(i + window, len(pw_norm))):
+                if pw_norm[j][4] == aw:
+                    matched += 1
+                    last_idx = j + 1
+                    break
+        score = matched / len(anchor)
+        if score > best_score:
+            best_score = score
+            best_start_idx = i
+
+    rects = []
+    if best_score >= 0.5 and best_start_idx >= 0:
+        # Collect bboxes of all page words in the matched window
+        end_idx = min(best_start_idx + window, len(pw_norm))
+        matched_words = pw_norm[best_start_idx:end_idx]
+        # Group by line (similar y0) to produce line-level rects
+        lines = {}
+        for w in matched_words:
+            y_key = round(w[1] / 5) * 5  # bucket by 5pt
+            if y_key not in lines:
+                lines[y_key] = {"x0": w[0], "y0": w[1], "x1": w[2], "y1": w[3]}
+            else:
+                lines[y_key]["x0"] = min(lines[y_key]["x0"], w[0])
+                lines[y_key]["x1"] = max(lines[y_key]["x1"], w[2])
+                lines[y_key]["y1"] = max(lines[y_key]["y1"], w[3])
+        rects = list(lines.values())
+
     return {"rects": rects, "page_width": page_rect.width, "page_height": page_rect.height}
 
 
