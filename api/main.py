@@ -272,7 +272,7 @@ class QueryResponse(BaseModel):
     debug: Optional[dict] = None
 
 
-@app.post("/upload")
+@protected.post("/upload")
 async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
     if not file.filename.endswith(".pdf"):
         raise HTTPException(400, "Only PDF files are supported")
