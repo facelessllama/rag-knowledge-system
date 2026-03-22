@@ -718,7 +718,7 @@ async def delete_document(doc_id: str):
     return {"status": "deleted", "doc_id": doc_id, "filename": filename}
 
 
-@app.get("/pdf/{doc_id}/highlights")
+@protected.get("/pdf/{doc_id}/highlights")
 async def get_pdf_highlights(doc_id: str, text: str = "", page: int = 1):
     """Return PyMuPDF bounding boxes for text on a given page."""
     if doc_id not in documents_registry:
