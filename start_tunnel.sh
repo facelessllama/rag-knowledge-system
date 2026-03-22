@@ -1,20 +1,46 @@
 #!/bin/bash
-while true; do
-    echo "Запуск cloudflared..."
-    cloudflared tunnel --url http://localhost:8000 2>&1 | tee /tmp/cf.log &
-    CF_PID=$!
-    sleep 10
-    NEW_URL=$(grep -o 'https://[a-z0-9-]*\.trycloudflare\.com' /tmp/cf.log | head -1)
-    
-    if [ -n "$NEW_URL" ]; then
-        echo "URL: $NEW_URL"
-        curl -s -X POST "https://b24-typ264.bitrix24.ru/rest/1/1zjpjhcsq6ddbodn/imbot.update.json" \
-          -H "Content-Type: application/json" \
-          -d "{\"BOT_ID\": 16, \"CLIENT_ID\": \"local.69b7864a22f254.89803254\", \"FIELDS\": {\"EVENT_MESSAGE_ADD\": \"${NEW_URL}/bitrix/webhook\", \"EVENT_WELCOME_MESSAGE\": \"${NEW_URL}/bitrix/webhook\", \"EVENT_BOT_DELETE\": \"${NEW_URL}/bitrix/webhook\"}}"
-        echo "Бот обновлён!"
-    fi
-    
-    wait $CF_PID
-    echo "Туннель упал, перезапускаем через 5 сек..."
-    sleep 5
-done
+# Запускает ngrok-туннель и регистрирует webhook в Telegram.
+# Требует: ngrok authtoken (ngrok config add-authtoken <TOKEN>)
+# Использование: ./start_tunnel.sh
+
+BOT_TOKEN="${TELEGRAM_BOT_TOKEN:-$(grep TELEGRAM_BOT_TOKEN .env 2>/dev/null | cut -d= -f2)}"
+
+echo "Запуск ngrok..."
+ngrok http 8000 --log=stdout > /tmp/ngrok.log 2>&1 &
+NGROK_PID=$!
+
+# Ждём пока ngrok поднимется
+sleep 3
+
+# Получаем публичный URL через ngrok API
+NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | python3 -c "
+import sys, json
+tunnels = json.load(sys.stdin).get('tunnels', [])
+for t in tunnels:
+    if t.get('proto') == 'https':
+        print(t['public_url'])
+        break
+")
+
+if [ -z "$NGROK_URL" ]; then
+    echo "Не удалось получить URL от ngrok. Проверьте: http://localhost:4040"
+    kill $NGROK_PID
+    exit 1
+fi
+
+echo "Туннель: $NGROK_URL"
+
+# Регистрируем webhook в Telegram
+if [ -n "$BOT_TOKEN" ]; then
+    RESULT=$(curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/setWebhook" \
+        -d "url=${NGROK_URL}/telegram/webhook")
+    echo "Telegram webhook: $RESULT"
+else
+    echo "TELEGRAM_BOT_TOKEN не задан — webhook не зарегистрирован"
+    echo "Зарегистрируйте вручную:"
+    echo "  curl -X POST 'https://api.telegram.org/bot<TOKEN>/setWebhook' -d 'url=${NGROK_URL}/telegram/webhook'"
+fi
+
+echo ""
+echo "Готово! Туннель работает. Для остановки: kill $NGROK_PID"
+wait $NGROK_PID
