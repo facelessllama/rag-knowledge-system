@@ -648,7 +648,7 @@ async def create_folder(body: dict):
     return {"name": name}
 
 
-@app.delete("/folders/{name}")
+@protected.delete("/folders/{name}")
 async def delete_folder(name: str):
     folders_registry.discard(name)
     db_delete_folder(name)
