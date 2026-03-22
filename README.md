@@ -114,7 +114,7 @@ http://localhost:8000/app
 rag-knowledge-system/
 ├── api/
 │   ├── main.py              # FastAPI app, all endpoints
-│   └── bitrix.py            # Bitrix24 chatbot webhook
+│   └── telegram.py          # Telegram bot webhook
 ├── rag/
 │   ├── retriever.py         # Hybrid BM25 + vector retriever
 │   ├── reranker.py          # Cross-encoder + SimpleReranker fallback
