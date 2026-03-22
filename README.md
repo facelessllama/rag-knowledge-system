@@ -108,6 +108,25 @@ TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1 uvicorn api.main:app --host 0.0.0.0
 http://localhost:8000/app
 ```
 
+## Telegram Bot Integration
+
+Demonstrates how any external system can integrate with RAG via a simple webhook.
+
+```bash
+# 1. Create a bot via @BotFather, get token
+# 2. Add to .env
+echo "TELEGRAM_BOT_TOKEN=your-token" >> .env
+
+# 3. Expose local server (ngrok)
+ngrok http 8000
+
+# 4. Register webhook
+curl -X POST "https://api.telegram.org/bot<TOKEN>/setWebhook" \
+     -d "url=https://<NGROK_URL>/telegram/webhook"
+```
+
+Any message sent to the bot is answered by the RAG system with source citations. The same pattern applies to any other platform (Slack, WhatsApp, custom CRM).
+
 ## Project Structure
 
 ```
