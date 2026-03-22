@@ -849,47 +849,59 @@ function doHighlight(searchText) {
     if (idx !== -1) { matchStart = idx; matchLen = candidate.length; break; }
   }
 
-  // Fallback: find best word-cluster window
+  // Fallback: find location using rarest words on the page
   if (matchStart === -1) {
     var STOP = new Set(['the','a','an','of','in','on','at','to','for','and','or','is','are',
-                        'was','were','be','with','by','this','that','не','на','в','и','с','по',
-                        'для','от','из','как','но','что','это','он','она','они','как','при']);
-    var words = normSearch.split(/\s+/).filter(function(w) { return w.length >= 5 && !STOP.has(w); });
+                        'was','were','be','with','by','this','that','its','not','are',
+                        'не','на','в','и','с','по','для','от','из','как','но','что','это','он','она','они','при']);
+    var words = normSearch.split(/\s+/).filter(function(w) { return w.length >= 4 && !STOP.has(w); });
     if (!words.length) return;
 
-    // Find all positions of each word
-    var hits = [];
-    words.forEach(function(w, rank) {
-      var from = 0;
-      while (true) {
-        var p = normFull.indexOf(w, from);
-        if (p === -1) break;
-        hits.push({ pos: p, rank: rank, len: w.length });
-        from = p + 1;
-      }
+    // Count how many times each word appears on the page
+    var wordPositions = {};
+    words.forEach(function(w) {
+      var positions = [], from = 0, p;
+      while ((p = normFull.indexOf(w, from)) !== -1) { positions.push(p); from = p + 1; }
+      if (positions.length) wordPositions[w] = positions;
     });
-    if (!hits.length) return;
-    hits.sort(function(a, b) { return a.pos - b.pos; });
 
-    // Find window with most distinct words — tight window for precision
-    var winSize = 200;
-    var best = null, bestCount = 0;
-    hits.forEach(function(seed) {
-      var seen = new Set();
-      hits.forEach(function(h) {
-        if (h.pos >= seed.pos && h.pos < seed.pos + winSize) seen.add(h.rank);
+    // Find words that appear only once — most reliable anchors
+    var uniqueWords = words.filter(function(w) {
+      return wordPositions[w] && wordPositions[w].length === 1;
+    }).sort(function(a, b) { return b.length - a.length; }); // prefer longer unique words
+
+    if (uniqueWords.length >= 2) {
+      // Use 2+ unique words to define a tight window
+      var positions = uniqueWords.slice(0, 3).map(function(w) { return wordPositions[w][0]; });
+      positions.sort(function(a, b) { return a - b; });
+      matchStart = Math.max(0, positions[0] - 10);
+      matchLen = Math.min(positions[positions.length - 1] + uniqueWords[0].length - matchStart + 10, 200);
+    } else if (uniqueWords.length === 1) {
+      // Single unique word — highlight a tight window around it
+      var pos = wordPositions[uniqueWords[0]][0];
+      matchStart = Math.max(0, pos - 20);
+      matchLen = 160;
+    } else {
+      // All words appear multiple times — use the rarest word cluster
+      var rarest = words.slice().sort(function(a, b) {
+        return (wordPositions[a] ? wordPositions[a].length : 99) - (wordPositions[b] ? wordPositions[b].length : 99);
+      }).filter(function(w) { return wordPositions[w]; });
+      if (!rarest.length) return;
+
+      // Find position where most words cluster tightly
+      var bestStart = wordPositions[rarest[0]][0], bestCount = 0;
+      wordPositions[rarest[0]].forEach(function(seedPos) {
+        var count = 0;
+        words.forEach(function(w) {
+          if (!wordPositions[w]) return;
+          if (wordPositions[w].some(function(p) { return p >= seedPos - 20 && p < seedPos + 180; })) count++;
+        });
+        if (count > bestCount) { bestCount = count; bestStart = seedPos; }
       });
-      if (seen.size > bestCount) { bestCount = seen.size; best = seed; }
-    });
-
-    // Require at least 50% of words found
-    if (!best || bestCount < Math.ceil(words.length * 0.5)) return;
-
-    var winHits = hits.filter(function(h) { return h.pos >= best.pos && h.pos < best.pos + winSize; });
-    // Тightен до реальных первого и последнего совпадения
-    matchStart = winHits[0].pos;
-    var matchEndPos = winHits[winHits.length - 1].pos + winHits[winHits.length - 1].len;
-    matchLen = Math.min(matchEndPos - matchStart, 180); // не более 180 символов
+      if (bestCount < Math.ceil(words.length * 0.4)) return;
+      matchStart = Math.max(0, bestStart - 10);
+      matchLen = 160;
+    }
   }
 
   // Map char positions back to spans
