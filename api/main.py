@@ -613,7 +613,7 @@ async def list_documents():
             "folders": sorted(folders_registry)}
 
 
-@app.patch("/documents/{doc_id}/folder")
+@protected.patch("/documents/{doc_id}/folder")
 async def update_document_folder(doc_id: str, body: dict):
     if doc_id not in documents_registry:
         raise HTTPException(404, f"Document {doc_id} not found")
