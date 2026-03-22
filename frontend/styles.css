@@ -229,8 +229,10 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); height: 100vh;
 .pdf-page-btn:hover { border-color: var(--accent); color: var(--accent); }
 .pdf-page-info { font-size: 11px; color: var(--text-muted); flex: 1; text-align: center; }
 .pdf-canvas-container { flex: 1; overflow-y: auto; display: flex; flex-direction: column; align-items: center; padding: 14px; gap: 8px; scrollbar-width: thin; scrollbar-color: var(--border) transparent; position: relative; }
-#pdfCanvas { max-width: 100%; border-radius: 4px; display: block; }
-.highlight-overlay { position: absolute; background: rgba(253,224,71,0.3); border: 1.5px solid rgba(253,224,71,0.7); border-radius: 2px; pointer-events: none; }
+#pdfPageWrapper { display: inline-block; position: relative; }
+#pdfCanvas { display: block; border-radius: 4px; }
+#pdfTextLayer { position: absolute; top: 0; left: 0; pointer-events: none; }
+#pdfTextLayer .rag-highlight { background: rgba(253,224,71,0.5); border-radius: 2px; }
 .pdf-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--text-muted); font-size: 12px; padding: 40px; }
 .pdf-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 99; display: none; }
 .pdf-overlay.show { display: block; }
