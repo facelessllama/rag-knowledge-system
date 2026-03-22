@@ -23,7 +23,7 @@ A production-ready RAG (Retrieval-Augmented Generation) system — upload PDF do
 - **Retrieval Debug Panel** — expanded queries, scores, latency, token count
 - **Multi-document Reasoning** — compares and contrasts multiple documents
 - **Model Switching** — switch LLM per-request from the UI
-- **Bitrix24 Integration** — webhook for chatbot in Bitrix24
+- **Telegram Bot** — webhook integration: any message to the bot gets answered by RAG
 
 ## Architecture
 
