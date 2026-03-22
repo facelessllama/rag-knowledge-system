@@ -424,7 +424,7 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
     return {"total": len(results), "indexed": indexed, "skipped": skipped, "errors": errors, "results": results}
 
 
-@app.post("/query", response_model=QueryResponse)
+@protected.post("/query", response_model=QueryResponse)
 async def query_knowledge_base(request: QueryRequest):
     if not request.question.strip():
         raise HTTPException(400, "Question cannot be empty")
