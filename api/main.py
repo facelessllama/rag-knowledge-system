@@ -753,7 +753,7 @@ async def get_pdf_highlights(doc_id: str, text: str = "", page: int = 1):
     return {"rects": rects, "page_width": page_rect.width, "page_height": page_rect.height}
 
 
-@app.get("/pdf/{doc_id}")
+@protected.get("/pdf/{doc_id}")
 async def get_pdf(doc_id: str):
     from fastapi.responses import FileResponse
     if doc_id not in documents_registry:
