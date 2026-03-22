@@ -743,6 +743,7 @@ async function openPdfViewer(docId, page, highlightText) {
   document.getElementById('pdfPanel').classList.add('open');
   document.getElementById('pdfOverlay').classList.add('show');
   currentHighlightText = highlightText;
+  document.getElementById('pdfCitation').style.display = 'none';
   if (currentDocId !== docId) {
     currentDocId = docId; pdfDoc = null;
     document.getElementById('pdfPageWrapper').style.display = 'none';
