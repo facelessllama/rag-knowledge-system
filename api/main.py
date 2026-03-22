@@ -607,7 +607,7 @@ async def query_stream(request: QueryRequest):
                              headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
 
-@app.get("/documents")
+@protected.get("/documents")
 async def list_documents():
     return {"total": len(documents_registry), "documents": list(documents_registry.values()),
             "folders": sorted(folders_registry)}
