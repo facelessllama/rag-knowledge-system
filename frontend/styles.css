@@ -232,7 +232,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); height: 100vh;
 #pdfPageWrapper { display: inline-block; position: relative; }
 #pdfCanvas { display: block; border-radius: 4px; }
 #pdfTextLayer { position: absolute; top: 0; left: 0; pointer-events: none; }
-#pdfTextLayer .rag-highlight { background: #ffe033; border-radius: 2px; mix-blend-mode: multiply; }
+.rag-highlight-box { position: absolute; background: rgba(255,210,0,0.45); mix-blend-mode: multiply; border-radius: 2px; pointer-events: none; }
 .pdf-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--text-muted); font-size: 12px; padding: 40px; }
 .pdf-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 99; display: none; }
 .pdf-overlay.show { display: block; }
