@@ -7,11 +7,27 @@ const openFolders = new Set();
 let chatHistory = [];
 let currentLang = 'ru';
 
-function toggleLang() {
-  currentLang = currentLang === 'ru' ? 'en' : 'ru';
+const LANGS = {
+  ru: { flag: '🇷🇺', label: 'RU' },
+  en: { flag: '🇬🇧', label: 'EN' },
+};
+
+function toggleLangDropdown() {
+  var dd = document.getElementById('langDropdown');
   var btn = document.getElementById('langBtn');
-  btn.textContent = currentLang === 'ru' ? '🇷🇺 RU' : '🇬🇧 EN';
-  btn.title = currentLang === 'ru' ? 'Ответы на русском' : 'Answers in English';
+  var show = !dd.classList.contains('show');
+  dd.classList.toggle('show', show);
+  btn.classList.toggle('open', show);
+}
+
+function selectLang(lang) {
+  currentLang = lang;
+  document.getElementById('langBtnFlag').textContent = LANGS[lang].flag;
+  document.getElementById('langBtnLabel').textContent = LANGS[lang].label;
+  document.getElementById('langOptRu').classList.toggle('active', lang === 'ru');
+  document.getElementById('langOptEn').classList.toggle('active', lang === 'en');
+  document.getElementById('langDropdown').classList.remove('show');
+  document.getElementById('langBtn').classList.remove('open');
 }
 
 function esc(text) {
