@@ -89,14 +89,14 @@ function apiQueryStream(question, topK, model, chatHistory, folder, language, on
 async function apiUpdateFolder(docId, folder) {
   const r = await fetch(API + '/documents/' + docId + '/folder', {
     method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
+    headers: authHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify({ folder: folder })
   });
   return r.ok;
 }
 
 async function apiGetHighlights(docId, text, page) {
-  const r = await fetch(API + '/pdf/' + docId + '/highlights?page=' + page + '&text=' + encodeURIComponent(text));
+  const r = await fetch(API + '/pdf/' + docId + '/highlights?page=' + page + '&text=' + encodeURIComponent(text), { headers: authHeaders() });
   if (!r.ok) return null;
   return r.json(); // { rects, page_width, page_height }
 }
