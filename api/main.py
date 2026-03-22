@@ -108,8 +108,22 @@ except Exception as e:
 documents_registry: dict = {}
 file_hashes: dict = {}
 
+from contextlib import contextmanager
+
 def get_db():
     return psycopg2.connect(os.getenv("POSTGRES_URL", "postgresql://raguser:ragpass@localhost:5432/ragdb"))
+
+@contextmanager
+def db_conn():
+    conn = get_db()
+    try:
+        yield conn
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
 
 folders_registry: set = set()  # persisted folder names
 
