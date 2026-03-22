@@ -740,17 +740,19 @@ async def get_pdf_highlights(doc_id: str, text: str = "", page: int = 1):
     clean = text.replace("…", "").replace("...", "").strip()
     # Try progressively shorter prefixes — stop as soon as we get exactly one hit
     rects = []
-    for length in [300, 150, 80]:
+    for length in [500, 300, 150, 80]:
         phrase = clean[:length].rsplit(" ", 1)[0] if len(clean) > length else clean
         if len(phrase) < 25:
             continue
         hits = pg.search_for(phrase, quads=False)
         if len(hits) == 1:
-            rects = [{"x0": hits[0].x0, "y0": hits[0].y0, "x1": hits[0].x1, "y1": hits[0].y1}]
+            # Exactly one match — perfect
+            rects = [{"x0": r.x0, "y0": r.y0, "x1": r.x1, "y1": r.y1} for r in hits]
             break
         elif len(hits) > 1:
-            # Multiple hits — try shorter phrase to narrow down; if still multiple at end, take first
-            rects = [{"x0": hits[0].x0, "y0": hits[0].y0, "x1": hits[0].x1, "y1": hits[0].y1}]
+            # Still multiple — keep trying shorter; at last attempt take first hit
+            if length == 80:
+                rects = [{"x0": hits[0].x0, "y0": hits[0].y0, "x1": hits[0].x1, "y1": hits[0].y1}]
 
     doc.close()
     return {"rects": rects, "page_width": page_rect.width, "page_height": page_rect.height}
