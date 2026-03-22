@@ -805,7 +805,7 @@ async def list_models():
             "current": generator.model}
 
 
-@app.get("/health")
+@app.get("/health", dependencies=[])
 async def health_check():
     qdrant_ok = False
     try:
