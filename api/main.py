@@ -247,6 +247,7 @@ class QueryRequest(BaseModel):
     model: Optional[str] = None
     rerank: Optional[bool] = True
     folder: Optional[str] = None
+    language: Optional[str] = None  # "en" | "ru" | None (auto)
 
 class QueryResponse(BaseModel):
     answer: str
