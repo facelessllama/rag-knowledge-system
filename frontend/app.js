@@ -823,12 +823,24 @@ function doHighlight(searchText) {
   var normFull = norm(fullText);
   var normSearch = norm(searchText);
 
+  // Use a short anchor (80-120 chars) — more precise, more likely to match exactly
+  function extractAnchor(s) {
+    // Try to find a sentence in the first half
+    var half = s.slice(0, Math.floor(s.length * 0.6));
+    var sentences = half.split(/(?<=[.!?;])\s+/);
+    for (var i = 0; i < sentences.length; i++) {
+      if (sentences[i].length >= 40 && sentences[i].length <= 130) return sentences[i];
+    }
+    // Fallback: first 90 chars trimmed to word boundary
+    return s.slice(0, 90).replace(/\s\S*$/, '');
+  }
+  var anchor = extractAnchor(normSearch);
+
   // Try progressively shorter prefixes until we find a match
   var matchStart = -1, matchLen = 0;
-  var attempts = [normSearch];
-  // Also try first 2/3 and first 1/2 of the text
-  if (normSearch.length > 60) attempts.push(normSearch.slice(0, Math.floor(normSearch.length * 0.66)).replace(/\s\S*$/, ''));
-  if (normSearch.length > 40) attempts.push(normSearch.slice(0, Math.floor(normSearch.length * 0.5)).replace(/\s\S*$/, ''));
+  var attempts = [anchor];
+  if (anchor.length > 50) attempts.push(anchor.slice(0, 60).replace(/\s\S*$/, ''));
+  if (anchor.length > 30) attempts.push(anchor.slice(0, 40).replace(/\s\S*$/, ''));
 
   for (var ai = 0; ai < attempts.length; ai++) {
     var candidate = attempts[ai];
