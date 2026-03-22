@@ -886,8 +886,10 @@ function doHighlight(searchText) {
     if (!best || bestCount < Math.ceil(words.length * 0.5)) return;
 
     var winHits = hits.filter(function(h) { return h.pos >= best.pos && h.pos < best.pos + winSize; });
+    // Тightен до реальных первого и последнего совпадения
     matchStart = winHits[0].pos;
-    matchLen = winHits[winHits.length - 1].pos + winHits[winHits.length - 1].len - matchStart;
+    var matchEndPos = winHits[winHits.length - 1].pos + winHits[winHits.length - 1].len;
+    matchLen = Math.min(matchEndPos - matchStart, 180); // не более 180 символов
   }
 
   // Map char positions back to spans
