@@ -765,7 +765,7 @@ async def get_pdf(doc_id: str):
 
 
 
-@app.get("/models")
+@protected.get("/models")
 async def list_models():
     """Список доступных моделей из Ollama"""
     import httpx
