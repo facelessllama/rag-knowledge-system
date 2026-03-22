@@ -871,8 +871,8 @@ function doHighlight(searchText) {
     if (!hits.length) return;
     hits.sort(function(a, b) { return a.pos - b.pos; });
 
-    // Find window with most distinct words
-    var winSize = Math.min(normSearch.length + 100, 400);
+    // Find window with most distinct words — tight window for precision
+    var winSize = 200;
     var best = null, bestCount = 0;
     hits.forEach(function(seed) {
       var seen = new Set();
