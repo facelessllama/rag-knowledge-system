@@ -47,11 +47,11 @@ async function apiQuery(question, topK, rerank, model) {
   return { ok: r.ok, data: r.ok ? await r.json() : null };
 }
 
-function apiQueryStream(question, topK, model, chatHistory, folder, onToken, onSources, onDone) {
+function apiQueryStream(question, topK, model, chatHistory, folder, language, onToken, onSources, onDone) {
   fetch(API + '/query/stream', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ question: question, top_k: topK, model: model || undefined, chat_history: chatHistory || [], folder: folder || undefined })
+    body: JSON.stringify({ question: question, top_k: topK, model: model || undefined, chat_history: chatHistory || [], folder: folder || undefined, language: language || undefined })
   }).then(function(r) {
     if (!r.ok) { onDone(new Error('stream failed')); return; }
     var reader = r.body.getReader();
