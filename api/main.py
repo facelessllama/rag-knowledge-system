@@ -675,7 +675,7 @@ async def rename_folder(name: str, body: dict):
     return {"old": name, "new": new_name}
 
 
-@app.delete("/documents/{doc_id}")
+@protected.delete("/documents/{doc_id}")
 async def delete_document(doc_id: str):
     if doc_id not in documents_registry:
         raise HTTPException(404, f"Document {doc_id} not found")
