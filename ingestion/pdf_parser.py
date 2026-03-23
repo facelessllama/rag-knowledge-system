@@ -105,7 +105,7 @@ class PDFParser:
             text = pytesseract.image_to_string(img, lang=self.ocr_language)
             return text.strip()
         except Exception as e:
-            logger.warning(f"OCR failed: {e}")
+            logger.error(f"OCR failed: {e}")
             return ""
 
     def _extract_metadata(self, doc, path: Path) -> dict:
