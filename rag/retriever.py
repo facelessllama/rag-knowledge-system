@@ -210,7 +210,7 @@ class HybridRetriever:
                 neighbor_index = chunk_index + offset
                 if neighbor_index < 0:
                     continue
-                for c in self._bm25_chunks:
+                for c in self._bm25_state[1]:
                     if (c.get("document_id") == doc_id and c.get("chunk_index") == neighbor_index):
                         key = c.get("chunk_id", c["text"][:50])
                         if key not in expanded:
