@@ -77,7 +77,7 @@ function apiQueryStream(question, topK, model, chatHistory, folder, language, on
             if (ev.type === 'token') onToken(ev.content);
             else if (ev.type === 'sources') onSources(ev.sources, ev.debug);
             else if (ev.type === 'done') onDone(null);
-            else if (ev.type === 'error') onDone(new Error(ev.message || 'Server error'));
+            else if (ev.type === 'error') onDone(Object.assign(new Error(ev.message || 'Server error'), { partial: !!ev.partial }));
           } catch(e) {}
         });
         read();
