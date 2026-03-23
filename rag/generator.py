@@ -119,7 +119,7 @@ class LLMGenerator:
                                 break
                             content = data.get("message", {}).get("content")
                             if content:
-                                tokens_yielded += 1
+                                chunks_yielded += 1
                                 yield content
                 return  # success
             except (httpx.TimeoutException, httpx.ConnectError) as e:
