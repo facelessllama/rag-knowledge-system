@@ -502,7 +502,7 @@ async def _do_query(request: QueryRequest):
         return QueryResponse(answer="I couldn't find relevant information in the knowledge base to answer this question.",
                            sources=[], model=generator.model, tokens_used=0)
 
-    top_chunks = reranker.rerank(request.question, chunks, top_k=min(request.top_k, 3))
+    top_chunks = reranker.rerank(request.question, chunks, top_k=request.top_k)
 
     messages = prompt_builder.build(query=request.question, chunks=top_chunks,
                                    chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [],
