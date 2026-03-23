@@ -62,6 +62,10 @@ class PromptBuilder:
         else:
             system = SYSTEM_PROMPT.format(lang_rule=lang_rule)
             if is_multi_doc:
+                system = system.replace(
+                    "3. Be concise and precise — 2-5 sentences max",
+                    "3. Be thorough and structured — cover each document separately, then compare"
+                )
                 system += MULTI_DOC_ADDITION
                 logger.info(f"Multi-doc mode: {unique_docs}")
 
