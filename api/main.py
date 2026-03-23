@@ -303,7 +303,9 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
     async with aiofiles.open(file_path, "wb") as f:
         await f.write(content)
 
+    t_parse = time.time()
     parsed = parser.parse(str(file_path))
+    parse_ms = int((time.time() - t_parse) * 1000)
     chunks = chunker.chunk_document(parsed.pages, doc_id)
 
     if not chunks:
@@ -315,8 +317,26 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
         c.folder = folder or ""
 
     texts = [c.text for c in chunks]
+    t_embed = time.time()
     vectors = embedder.embed_batch(texts)
+    embed_ms = int((time.time() - t_embed) * 1000)
     vector_store.upsert_chunks(chunks, vectors)
+
+    ocr_pages = sum(1 for p in parsed.pages if p.get("has_ocr"))
+    logger.info(
+        f"Ingestion: {safe_filename} | pages={parsed.total_pages} ocr={ocr_pages} "
+        f"chunks={len(chunks)} parse_ms={parse_ms} embed_ms={embed_ms}"
+    )
+    if LANGFUSE_ENABLED:
+        try:
+            langfuse.trace(name="doc_ingestion", input=safe_filename, tags=["upload"],
+                           metadata={"doc_id": doc_id, "pages": parsed.total_pages,
+                                     "ocr_pages": ocr_pages, "chunks": len(chunks),
+                                     "size_kb": parsed.file_size_kb, "folder": folder or "",
+                                     "parse_ms": parse_ms, "embed_ms": embed_ms})
+            langfuse.flush()
+        except Exception:
+            pass
 
     bm25_chunks = [{"text": c.text, "chunk_id": c.chunk_id,
                     "page_num": c.page_num, "document_id": c.document_id,
