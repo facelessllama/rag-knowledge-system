@@ -586,22 +586,23 @@ async def query_stream(request: QueryRequest):
             async for token in generator.generate_stream(messages, model=request.model or None):
                 yield f"data: {json.dumps({'type': 'token', 'content': token})}\n\n"
 
-            seen_sources = set()
-            sources = []
+            # Best chunk per document, sorted by relevance — prevents low-relevance
+            # cross-document chunks from polluting sources when one doc has the answer
+            seen_docs = {}
             for c in top_chunks:
-                raw = c["text"].strip().replace("\n", " ")
-                text_key = raw[:80].lower()
-                if text_key in seen_sources:
-                    continue
-                seen_sources.add(text_key)
-                excerpt = raw[:150].rsplit(" ", 1)[0] + "…" if len(raw) > 150 else raw
-                sources.append({
-                    "page": c.get("page_num"),
-                    "document": c.get("document_id"),
-                    "excerpt": excerpt,
-                    "chunk_text": raw,
-                    "relevance_score": round(c.get("rerank_score", c.get("score", 0)), 3)
-                })
+                doc_id = c.get("document_id")
+                score = c.get("rerank_score", c.get("score", 0))
+                if doc_id not in seen_docs or score > seen_docs[doc_id]["relevance_score"]:
+                    raw = c["text"].strip().replace("\n", " ")
+                    excerpt = raw[:150].rsplit(" ", 1)[0] + "…" if len(raw) > 150 else raw
+                    seen_docs[doc_id] = {
+                        "page": c.get("page_num"),
+                        "document": doc_id,
+                        "excerpt": excerpt,
+                        "chunk_text": raw,
+                        "relevance_score": round(score, 3)
+                    }
+            sources = sorted(seen_docs.values(), key=lambda x: x["relevance_score"], reverse=True)
 
             total_ms = int((time.time() - start_time) * 1000)
             yield f"data: {json.dumps({'type': 'sources', 'sources': sources, 'debug': {'expanded_queries': expanded_queries, 'total_ms': total_ms, 'chunks_retrieved': len(chunks), 'chunks_after_rerank': len(top_chunks)}})}\n\n"
