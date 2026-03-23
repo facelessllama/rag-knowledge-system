@@ -79,13 +79,15 @@ class HybridRetriever:
         self.top_k = top_k
         self._bm25_index = None
         self._bm25_chunks = []
+        self._bm25_lock = asyncio.Lock()
         logger.info(f"HybridRetriever ready | top_k={top_k}")
 
-    def index_chunks_for_bm25(self, chunks: list):
-        self._bm25_chunks = chunks
-        tokenized = [_tokenize(chunk["text"]) for chunk in chunks]
-        self._bm25_index = BM25Okapi(tokenized)
-        logger.info(f"BM25 index built: {len(chunks)} chunks")
+    async def index_chunks_for_bm25(self, chunks: list):
+        async with self._bm25_lock:
+            self._bm25_chunks = chunks
+            tokenized = [_tokenize(chunk["text"]) for chunk in chunks]
+            self._bm25_index = BM25Okapi(tokenized)
+            logger.info(f"BM25 index built: {len(chunks)} chunks")
 
     def retrieve(self, query: str, top_k: int = None, folder: str = None) -> list[dict]:
         k = top_k or self.top_k
