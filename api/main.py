@@ -477,7 +477,7 @@ async def _do_query(request: QueryRequest):
     top_chunks = reranker.rerank(request.question, chunks, top_k=min(request.top_k, 3))
 
     messages = prompt_builder.build(query=request.question, chunks=top_chunks,
-                                   chat_history=request.chat_history,
+                                   chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [],
                                    language=request.language or None,
                                    channel=request.channel)
 
@@ -579,7 +579,7 @@ async def query_stream(request: QueryRequest):
 
             top_chunks = reranker.rerank(request.question, chunks, top_k=min(request.top_k, 3))
             messages = prompt_builder.build(query=request.question, chunks=top_chunks,
-                                            chat_history=request.chat_history,
+                                            chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [],
                                             language=request.language or None,
                                             channel=request.channel)
 
