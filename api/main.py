@@ -238,7 +238,7 @@ async def restore_from_qdrant():
             documents_registry[doc_id] = meta
 
         if bm25_chunks:
-            retriever.index_chunks_for_bm25(bm25_chunks)
+            await retriever.index_chunks_for_bm25(bm25_chunks)
 
         logger.info(f"Restored: {len(documents_registry)} docs, {len(bm25_chunks)} chunks in BM25")
 
@@ -316,7 +316,7 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
                     "chunk_index": c.chunk_index, "filename": c.filename,
                     "folder": folder or ""}
                    for c in chunks]
-    retriever.index_chunks_for_bm25(bm25_chunks)
+    await retriever.index_chunks_for_bm25(bm25_chunks)
 
     file_hashes[file_hash] = doc_id
     try:
@@ -396,7 +396,7 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
                          "chunk_index": c.chunk_index, "filename": c.filename,
                          "folder": folder or ""}
                         for c in chunks]
-            retriever.index_chunks_for_bm25(retriever._bm25_chunks + new_bm25)
+            await retriever.index_chunks_for_bm25(retriever._bm25_chunks + new_bm25)
 
             file_hashes[file_hash] = doc_id
             try:
@@ -557,11 +557,28 @@ async def query_stream(request: QueryRequest):
     await _query_semaphore.acquire()
 
     async def event_stream():
+        trace = None
         try:
             start_time = time.time()
 
+            if LANGFUSE_ENABLED:
+                try:
+                    trace = langfuse.trace(name="rag_stream", input=request.question, tags=["stream"])
+                except Exception:
+                    pass
+
+            t0 = time.time()
             expanded_queries = await query_expander.expand(request.question)
             chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None)
+            retrieval_ms = int((time.time() - t0) * 1000)
+
+            if trace:
+                try:
+                    trace.span(name="retrieval", input=request.question,
+                               output={"chunks_found": len(chunks), "expanded": len(expanded_queries)},
+                               metadata={"duration_ms": retrieval_ms})
+                except Exception:
+                    pass
 
             if not chunks:
                 yield f"data: {json.dumps({'type': 'token', 'content': 'No relevant information found in the knowledge base.'})}\n\n"
@@ -576,17 +593,34 @@ async def query_stream(request: QueryRequest):
                 yield f"data: {json.dumps({'type': 'done'})}\n\n"
                 return
 
+            t1 = time.time()
             top_chunks = reranker.rerank(request.question, chunks, top_k=min(request.top_k, 3))
+            rerank_ms = int((time.time() - t1) * 1000)
+
             messages = prompt_builder.build(query=request.question, chunks=top_chunks,
                                             chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [],
                                             language=request.language or None,
                                             channel=request.channel)
 
+            t2 = time.time()
+            answer_tokens = []
             async for token in generator.generate_stream(messages, model=request.model or None):
+                answer_tokens.append(token)
                 yield f"data: {json.dumps({'type': 'token', 'content': token})}\n\n"
+            generation_ms = int((time.time() - t2) * 1000)
 
-            # Best chunk per document, sorted by relevance — prevents low-relevance
-            # cross-document chunks from polluting sources when one doc has the answer
+            if trace:
+                try:
+                    trace.generation(name="llm_stream", model=request.model or generator.model,
+                                     input=messages, output="".join(answer_tokens),
+                                     metadata={"duration_ms": generation_ms, "rerank_ms": rerank_ms,
+                                               "chunks_retrieved": len(chunks), "chunks_reranked": len(top_chunks)})
+                    trace.update(metadata={"total_ms": int((time.time() - start_time) * 1000)})
+                    langfuse.flush()
+                except Exception:
+                    pass
+
+            # Best chunk per document, sorted by relevance
             seen_docs = {}
             for c in top_chunks:
                 doc_id = c.get("document_id")
@@ -604,13 +638,19 @@ async def query_stream(request: QueryRequest):
             sources = sorted(seen_docs.values(), key=lambda x: x["relevance_score"], reverse=True)
 
             total_ms = int((time.time() - start_time) * 1000)
-            yield f"data: {json.dumps({'type': 'sources', 'sources': sources, 'debug': {'expanded_queries': expanded_queries, 'total_ms': total_ms, 'chunks_retrieved': len(chunks), 'chunks_after_rerank': len(top_chunks)}})}\n\n"
+            yield f"data: {json.dumps({'type': 'sources', 'sources': sources, 'debug': {'expanded_queries': expanded_queries, 'total_ms': total_ms, 'retrieval_ms': retrieval_ms, 'rerank_ms': rerank_ms, 'generation_ms': generation_ms, 'chunks_retrieved': len(chunks), 'chunks_after_rerank': len(top_chunks)}})}\n\n"
             yield f"data: {json.dumps({'type': 'done'})}\n\n"
         except PartialStreamError as e:
             logger.error(str(e))
+            if trace:
+                try: trace.update(metadata={"error": "partial_stream", "chunks_sent": e.chunks_yielded})
+                except Exception: pass
             yield f"data: {json.dumps({'type': 'error', 'error_type': 'partial_stream', 'message': 'Ответ оборвался на середине. Попробуйте повторить запрос.', 'partial': True, 'chunks_sent': e.chunks_yielded})}\n\n"
         except Exception as e:
             logger.error(f"Stream error: {e}", exc_info=True)
+            if trace:
+                try: trace.update(metadata={"error": str(e)})
+                except Exception: pass
             yield f"data: {json.dumps({'type': 'error', 'message': 'Не удалось получить ответ от модели. Попробуйте повторить запрос.'})}\n\n"
         finally:
             _query_semaphore.release()
@@ -707,7 +747,7 @@ async def delete_document(doc_id: str):
     try:
         remaining = [c for c in retriever._bm25_chunks if c.get("document_id") != doc_id]
         if remaining:
-            retriever.index_chunks_for_bm25(remaining)
+            await retriever.index_chunks_for_bm25(remaining)
         else:
             retriever._bm25_index = None
             retriever._bm25_chunks = []
@@ -799,7 +839,7 @@ async def get_pdf(doc_id: str, key: Optional[str] = None):
 async def list_models():
     """Список доступных моделей из Ollama"""
     import httpx
-    ollama_url = os.getenv("OLLAMA_URL", "http://localhost:11434")
+    ollama_url = os.getenv("OLLAMA_URL", "http://localhost:11435")
     try:
         async with httpx.AsyncClient(timeout=5.0) as client:
             r = await client.get(f"{ollama_url}/api/tags")
