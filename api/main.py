@@ -681,8 +681,8 @@ async def query_stream(request: QueryRequest):
 
             # Best chunk per document from all retrieved chunks (not just top_chunks),
             # so compare queries always show sources for every document found.
+            # Best chunk per document from top_chunks (reranker already decided relevance)
             seen_docs = {}
-            # First pass: top_chunks get rerank scores (highest priority)
             for c in top_chunks:
                 doc_id = c.get("document_id")
                 score = c.get("rerank_score", c.get("score", 0))
@@ -696,24 +696,6 @@ async def query_stream(request: QueryRequest):
                         "chunk_text": raw,
                         "relevance_score": round(score, 3)
                     }
-            # Second pass: fill in docs that didn't make it into top_chunks,
-            # but only if their score is above the relevance threshold
-            for c in chunks:
-                doc_id = c.get("document_id")
-                if doc_id in seen_docs:
-                    continue
-                score = c.get("score", 0)
-                if score < RELEVANCE_THRESHOLD:
-                    continue
-                raw = c["text"].strip().replace("\n", " ")
-                excerpt = raw[:150].rsplit(" ", 1)[0] + "…" if len(raw) > 150 else raw
-                seen_docs[doc_id] = {
-                    "page": c.get("page_num"),
-                    "document": doc_id,
-                    "excerpt": excerpt,
-                    "chunk_text": raw,
-                    "relevance_score": round(score, 3)
-                }
             sources = sorted(seen_docs.values(), key=lambda x: x["relevance_score"], reverse=True)
 
             total_ms = int((time.time() - start_time) * 1000)
