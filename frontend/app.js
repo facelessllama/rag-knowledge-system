@@ -523,8 +523,25 @@ async function deleteDocument(doc_id, filename, silent) {
 }
 
 function compareDocuments() {
-  const names = Object.values(docsData).filter(function(d){ return !d._placeholder && d.filename; }).map(function(d){ return d.filename; }).join(', ');
-  document.getElementById('chatInput').value = 'What is the main topic of each document and how do they differ? Documents: ' + names;
+  // Scope to active folder if one is selected, otherwise all docs
+  var allDocs = Object.values(docsData).filter(function(d){ return !d._placeholder && d.filename; });
+  var scopedDocs = activeFolderName
+    ? allDocs.filter(function(d){ return d.folder === activeFolderName; })
+    : allDocs;
+
+  if (scopedDocs.length < 2) return;
+
+  var names = scopedDocs.map(function(d){ return d.filename; }).join(', ');
+  var folderCtx = activeFolderName ? ' (folder: ' + activeFolderName + ')' : '';
+
+  // Set folder filter to match comparison scope
+  _folderFilterValue = activeFolderName || '';
+  updateFolderFilterSelect();
+
+  document.getElementById('chatInput').value =
+    'Compare these documents in detail' + folderCtx + ': ' + names + '. ' +
+    'For each document provide: 1) main subject and key arguments, 2) parties or entities involved, 3) conclusions or outcomes. ' +
+    'Then compare them: what are the key differences and similarities? Be thorough and specific.';
   sendMessage();
 }
 
