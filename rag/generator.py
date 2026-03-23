@@ -137,7 +137,7 @@ class LLMGenerator:
                         f"LLM stream interrupted after partial output "
                         f"({chunks_yielded} chunks sent), not retrying"
                     )
-                    raise
+                    raise PartialStreamError(chunks_yielded, e)
                 logger.warning(f"LLM stream {type(e).__name__} attempt {attempt}/{retries} (no chunks sent)")
                 if attempt < retries:
                     await asyncio.sleep(2 * attempt)
