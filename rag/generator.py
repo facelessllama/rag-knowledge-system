@@ -93,6 +93,7 @@ class LLMGenerator:
         import json
         last_error = None
         for attempt in range(1, retries + 1):
+            tokens_yielded = 0
             try:
                 async with httpx.AsyncClient(timeout=httpx.Timeout(connect=10.0, read=120.0, write=10.0, pool=5.0)) as client:
                     async with client.stream(
@@ -118,16 +119,16 @@ class LLMGenerator:
                                 break
                             content = data.get("message", {}).get("content")
                             if content:
+                                tokens_yielded += 1
                                 yield content
                 return  # success
-            except httpx.TimeoutException as e:
+            except (httpx.TimeoutException, httpx.ConnectError) as e:
                 last_error = e
-                logger.warning(f"LLM stream timeout attempt {attempt}/{retries}")
-                if attempt < retries:
-                    await asyncio.sleep(2 * attempt)
-            except httpx.ConnectError as e:
-                last_error = e
-                logger.warning(f"LLM stream connect error attempt {attempt}/{retries}")
+                if tokens_yielded > 0:
+                    # Partial response already sent — retry would cause duplicates in UI
+                    logger.error(f"LLM stream error after {tokens_yielded} tokens, not retrying")
+                    raise
+                logger.warning(f"LLM stream {type(e).__name__} attempt {attempt}/{retries} (no tokens sent)")
                 if attempt < retries:
                     await asyncio.sleep(2 * attempt)
             except Exception as e:
