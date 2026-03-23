@@ -141,17 +141,18 @@ class HybridRetriever:
         return expanded[:k]
 
     def _bm25_search(self, query: str, top_k: int, folder: str = None) -> list[dict]:
-        if not self._bm25_index:
+        bm25_index, bm25_chunks = self._bm25_state  # atomic read
+        if not bm25_index:
             return []
         tokenized_query = _tokenize(query)
         if not tokenized_query:
             return []
-        scores = self._bm25_index.get_scores(tokenized_query)
+        scores = bm25_index.get_scores(tokenized_query)
 
         # Filter candidate indices by folder BEFORE sorting
         if folder:
             candidate_indices = [
-                i for i, c in enumerate(self._bm25_chunks)
+                i for i, c in enumerate(bm25_chunks)
                 if c.get("folder", "") == folder
             ]
         else:
