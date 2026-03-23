@@ -237,6 +237,46 @@ curl -X POST "https://api.telegram.org/bot<TOKEN>/setWebhook" \
 
 ---
 
+## Architecture Decisions & Learnings
+
+### Why hybrid retrieval (vector + BM25) instead of pure vector search?
+
+Pure vector search handles semantic similarity well but fails on exact terms — model names, article numbers, proper nouns, legal case references. BM25 handles exact keyword matches but misses paraphrased questions. In practice they fail on different queries.
+
+The hybrid approach catches both: a question like *"what did Jackson do in section 4.2"* finds "Jackson" via BM25 and understands the semantic intent via vector. Running both in parallel and merging with RRF-style scoring consistently outperformed either alone on the test documents.
+
+### Why BAAI/bge-m3 instead of nomic-embed or OpenAI embeddings?
+
+Three reasons:
+1. **Multilingual** — bge-m3 handles Russian and English in the same vector space without separate models or language detection. nomic-embed-text is English-only.
+2. **1024 dimensions** — higher than nomic's 768, better separation for domain-specific legal/technical text.
+3. **Fully offline** — runs on local GPU via sentence-transformers. No API calls, no rate limits, no cost per embedding.
+
+The tradeoff is cold start time (~15s to load). Solved by loading once at startup and keeping in memory.
+
+### How did you handle context window limits?
+
+The LLM context window (qwen2.5:7b ~ 8k tokens) fills up fast with chunks + history + system prompt. Three-layer budget:
+
+1. **Chunk budget** — top-k chunks are reranked and trimmed to ~3000 chars total in `prompt_builder.py`
+2. **History budget** — chat history trimmed to last N turns that fit within ~2000 chars; oldest turns dropped first
+3. **Chunk size** — 512 chars per chunk (not tokens) deliberately keeps individual chunks small enough that 5 chunks never blow the budget
+
+The reranker is critical here: sending only the 3-5 most relevant chunks instead of all 20 retrieved candidates saves ~70% of context space.
+
+### Why not LangChain or LlamaIndex?
+
+Both were evaluated and rejected:
+
+- **Too much abstraction** — debugging retrieval quality means understanding exactly what queries hit Qdrant, what BM25 scores look like, how scores are merged. LangChain wraps this behind 4 layers of classes. When retrieval breaks, you're reading source code anyway.
+- **Dependency weight** — LangChain pulls in 200+ transitive dependencies. This project's full `requirements.txt` is 20 packages.
+- **Inflexibility on hybrid** — LangChain's hybrid retriever implementations (at the time) didn't support per-folder BM25 filtering or the atomic rebuild pattern needed for concurrent uploads.
+- **Performance** — direct `httpx` calls to Ollama and direct `qdrant-client` calls are measurably faster than the same operations through LangChain's async wrappers.
+
+The custom retriever is ~200 lines and does exactly what's needed. The "framework tax" wasn't worth paying for a system where retrieval quality is the core product.
+
+---
+
 ## Stack
 
 - **FastAPI** — async API with SSE streaming
