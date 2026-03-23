@@ -1,4 +1,4 @@
-const API = 'http://localhost:8000';
+const API = window.location.origin;
 
 function authHeaders(extra) {
   const key = localStorage.getItem('api_key') || '';
