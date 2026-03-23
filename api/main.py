@@ -603,10 +603,11 @@ async def query_stream(request: QueryRequest):
             chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None)
             retrieval_ms = int((time.time() - t1) * 1000)
 
-            scores = [c.get("score", 0) for c in chunks] if chunks else []
+            retrieval_scores = [c.get("score", 0) for c in chunks] if chunks else []
+            retrieval_best = max(retrieval_scores) if retrieval_scores else 0
             score_meta = {
-                "best": round(max(scores), 3) if scores else 0,
-                "avg": round(sum(scores) / len(scores), 3) if scores else 0,
+                "best": round(retrieval_best, 3),
+                "avg": round(sum(retrieval_scores) / len(retrieval_scores), 3) if retrieval_scores else 0,
                 "chunks_found": len(chunks),
                 "queries_expanded": len(expanded_queries),
             }
