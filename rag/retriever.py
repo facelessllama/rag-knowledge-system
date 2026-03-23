@@ -4,6 +4,7 @@ Combines vector search (semantic) + BM25 (keyword) for best results.
 """
 import logging
 import re
+import asyncio
 from rank_bm25 import BM25Okapi
 from embeddings.embedding_service import EmbeddingService
 from vector_db.qdrant_client import VectorStore
