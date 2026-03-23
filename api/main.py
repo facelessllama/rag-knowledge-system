@@ -699,7 +699,30 @@ async def query_stream(request: QueryRequest):
             sources = sorted(seen_docs.values(), key=lambda x: x["relevance_score"], reverse=True)
 
             total_ms = int((time.time() - start_time) * 1000)
-            yield f"data: {json.dumps({'type': 'sources', 'sources': sources, 'debug': {'expanded_queries': expanded_queries, 'total_ms': total_ms, 'expansion_ms': expansion_ms, 'retrieval_ms': retrieval_ms, 'rerank_ms': rerank_ms, 'generation_ms': generation_ms, 'chunks_retrieved': len(chunks), 'chunks_after_rerank': len(top_chunks), 'best_score': score_meta['best'], 'avg_score': score_meta['avg'], 'reranker': reranker_type, 'top_chunks': [{'chunk_id': c.get('chunk_id', ''), 'document_id': c.get('document_id', ''), 'score': round(c.get('rerank_score', c.get('score', 0)), 3), 'source': c.get('source', ''), 'text_preview': c.get('text', '')[:100]} for c in top_chunks]}})}\n\n"
+            debug_payload = {
+                'expanded_queries': expanded_queries,
+                'total_ms': total_ms,
+                'expansion_ms': expansion_ms,
+                'retrieval_ms': retrieval_ms,
+                'rerank_ms': rerank_ms,
+                'generation_ms': generation_ms,
+                'chunks_retrieved': len(chunks),
+                'chunks_after_rerank': len(top_chunks),
+                'best_score': float(score_meta['best']),
+                'avg_score': float(score_meta['avg']),
+                'reranker': reranker_type,
+                'top_chunks': [
+                    {
+                        'chunk_id': str(c.get('chunk_id', '')),
+                        'document_id': str(c.get('document_id', '')),
+                        'score': float(c.get('rerank_score', c.get('score', 0))),
+                        'source': str(c.get('source', '')),
+                        'text_preview': str(c.get('text', ''))[:100],
+                    }
+                    for c in top_chunks
+                ],
+            }
+            yield f"data: {json.dumps({'type': 'sources', 'sources': sources, 'debug': debug_payload})}\n\n"
             yield f"data: {json.dumps({'type': 'done'})}\n\n"
         except PartialStreamError as e:
             logger.error(str(e))
