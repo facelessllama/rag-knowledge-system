@@ -667,7 +667,7 @@ async def query_stream(request: QueryRequest):
             sources = sorted(seen_docs.values(), key=lambda x: x["relevance_score"], reverse=True)
 
             total_ms = int((time.time() - start_time) * 1000)
-            yield f"data: {json.dumps({'type': 'sources', 'sources': sources, 'debug': {'expanded_queries': expanded_queries, 'total_ms': total_ms, 'retrieval_ms': retrieval_ms, 'rerank_ms': rerank_ms, 'generation_ms': generation_ms, 'chunks_retrieved': len(chunks), 'chunks_after_rerank': len(top_chunks)}})}\n\n"
+            yield f"data: {json.dumps({'type': 'sources', 'sources': sources, 'debug': {'expanded_queries': expanded_queries, 'total_ms': total_ms, 'expansion_ms': expansion_ms, 'retrieval_ms': retrieval_ms, 'rerank_ms': rerank_ms, 'generation_ms': generation_ms, 'chunks_retrieved': len(chunks), 'chunks_after_rerank': len(top_chunks), 'best_score': score_meta['best'], 'avg_score': score_meta['avg'], 'reranker': reranker_type}})}\n\n"
             yield f"data: {json.dumps({'type': 'done'})}\n\n"
         except PartialStreamError as e:
             logger.error(str(e))
