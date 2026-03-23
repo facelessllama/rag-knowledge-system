@@ -803,44 +803,25 @@ async function doHighlight(searchText) {
   citationText.textContent = short + (searchText.length > 160 ? '…' : '');
   citation.style.display = 'flex';
 
-  if (!currentPdfPage || !currentVp) return;
+  if (!currentDocId || !currentPage) return;
   try {
-    const textContent = await currentPdfPage.getTextContent();
-    const items = textContent.items.filter(item => item.str);
+    const data = await apiGetHighlights(currentDocId, searchText, currentPage);
+    if (!data || !data.rects || !data.rects.length || !data.page_width) return;
 
-    // Build full concatenated text + map each char → item index
-    let fullText = '';
-    const charMap = [];
-    for (let i = 0; i < items.length; i++) {
-      for (let j = 0; j < items[i].str.length; j++) charMap.push(i);
-      fullText += items[i].str;
-      if (items[i].hasEOL) { charMap.push(-1); fullText += ' '; }
-    }
-
-    const normalize = s => s.replace(/[\s\n]+/g, ' ').toLowerCase().trim();
-    const needle = normalize(searchText).slice(0, 300);
-    const haystack = normalize(fullText);
-    const idx = haystack.indexOf(needle);
-    if (idx === -1) return;
-
+    const canvas = document.getElementById('pdfCanvas');
     const wrapper = document.getElementById('pdfPageWrapper');
-    const coveredItems = new Set();
-    for (let c = idx; c < idx + needle.length && c < charMap.length; c++) {
-      if (charMap[c] >= 0) coveredItems.add(charMap[c]);
-    }
+    const scaleX = canvas.width / data.page_width;
+    const scaleY = canvas.height / data.page_height;
 
-    for (const i of coveredItems) {
-      const item = items[i];
-      const [a, b, c, d, x, y] = item.transform;
-      const h = Math.abs(d) || Math.abs(a);
-      const rect = currentVp.convertToViewportRectangle([x, y - h * 0.15, x + item.width, y + h * 0.85]);
-      const x0 = Math.min(rect[0], rect[2]), y0 = Math.min(rect[1], rect[3]);
-      const x1 = Math.max(rect[0], rect[2]), y1 = Math.max(rect[1], rect[3]);
+    data.rects.forEach(function(r) {
       const box = document.createElement('div');
       box.className = 'rag-highlight-box';
-      box.style.cssText = `left:${x0}px;top:${y0}px;width:${x1-x0}px;height:${y1-y0}px`;
+      box.style.left   = (r.x0 * scaleX) + 'px';
+      box.style.top    = (r.y0 * scaleY) + 'px';
+      box.style.width  = ((r.x1 - r.x0) * scaleX) + 'px';
+      box.style.height = ((r.y1 - r.y0) * scaleY) + 'px';
       wrapper.appendChild(box);
-    }
+    });
 
     const first = wrapper.querySelector('.rag-highlight-box');
     if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
