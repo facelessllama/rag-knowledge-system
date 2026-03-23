@@ -635,7 +635,7 @@ async def query_stream(request: QueryRequest):
                 return
 
             t2 = time.time()
-            top_chunks = reranker.rerank(request.question, chunks, top_k=min(request.top_k, 3))
+            top_chunks = reranker.rerank(request.question, chunks, top_k=request.top_k)
             rerank_ms = int((time.time() - t2) * 1000)
             reranker_type = type(reranker).__name__
 
