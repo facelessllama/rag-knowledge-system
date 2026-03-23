@@ -77,16 +77,15 @@ class HybridRetriever:
         self.embedder = embedding_service
         self.vector_store = vector_store
         self.top_k = top_k
-        self._bm25_index = None
-        self._bm25_chunks = []
+        self._bm25_state = (None, [])  # (index, chunks) — updated atomically
         self._bm25_lock = asyncio.Lock()
         logger.info(f"HybridRetriever ready | top_k={top_k}")
 
     async def index_chunks_for_bm25(self, chunks: list):
         async with self._bm25_lock:
-            self._bm25_chunks = chunks
             tokenized = [_tokenize(chunk["text"]) for chunk in chunks]
-            self._bm25_index = BM25Okapi(tokenized)
+            new_index = BM25Okapi(tokenized)
+            self._bm25_state = (new_index, chunks)  # single atomic assignment
             logger.info(f"BM25 index built: {len(chunks)} chunks")
 
     def retrieve(self, query: str, top_k: int = None, folder: str = None) -> list[dict]:
