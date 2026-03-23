@@ -93,7 +93,7 @@ class LLMGenerator:
         import json
         last_error = None
         for attempt in range(1, retries + 1):
-            tokens_yielded = 0
+            chunks_yielded = 0
             try:
                 async with httpx.AsyncClient(timeout=httpx.Timeout(connect=10.0, read=120.0, write=10.0, pool=5.0)) as client:
                     async with client.stream(
