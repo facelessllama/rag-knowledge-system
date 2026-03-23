@@ -34,7 +34,7 @@ from qdrant_client.models import Filter, FieldCondition, MatchValue
 from rag.retriever import HybridRetriever
 from rag.reranker import CrossEncoderReranker, SimpleReranker
 from rag.prompt_builder import PromptBuilder
-from rag.generator import LLMGenerator
+from rag.generator import LLMGenerator, PartialStreamError
 from rag.query_expander import QueryExpander
 
 logging.basicConfig(level=logging.INFO)
