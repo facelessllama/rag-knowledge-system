@@ -15,6 +15,12 @@ class QueryExpander:
         logger.info("QueryExpander ready")
 
     async def expand(self, query: str) -> list[str]:
+        # Fast path: short or single-word queries don't benefit from expansion
+        words = query.strip().split()
+        if len(words) <= 2:
+            logger.info(f"Query expansion skipped (short query): {query!r}")
+            return [query]
+
         prompt = f"""Analyze this search query and do TWO things:
 1. If the query contains MULTIPLE questions or topics — split into separate simple queries
 2. For each query (original or split) — add 1 rephrased version
