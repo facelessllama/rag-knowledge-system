@@ -64,16 +64,22 @@ class VectorStore:
             query_filter=search_filter,
             with_payload=True
         ).points
-        return [
-            {
-                "text": r.payload["text"],
-                "page_num": r.payload["page_num"],
-                "document_id": r.payload["document_id"],
+        out = []
+        for r in results:
+            p = r.payload or {}
+            if not p.get("text") or not p.get("document_id"):
+                logger.warning(f"Skipping malformed Qdrant result id={r.id}: missing required fields")
+                continue
+            out.append({
+                "text": p["text"],
+                "page_num": p.get("page_num"),
+                "document_id": p["document_id"],
                 "score": r.score,
-                "chunk_id": r.payload["chunk_id"]
-            }
-            for r in results
-        ]
+                "chunk_id": p.get("chunk_id"),
+                "filename": p.get("filename", ""),
+                "folder": p.get("folder", ""),
+            })
+        return out
 
     def get_collection_info(self) -> dict:
         try:
