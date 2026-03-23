@@ -730,12 +730,7 @@ async def delete_document(doc_id: str):
     if errors:
         # Keep in registry so the document remains visible and deletion can be retried
         logger.error(f"Document {doc_id} partially deleted, failed steps: {list(errors.keys())}")
-        raise HTTPException(500, {
-            "error": "Partial deletion failure",
-            "doc_id": doc_id,
-            "failed_steps": errors,
-            "message": "Some cleanup steps failed. The document may still appear in search results. Please retry deletion."
-        })
+        raise HTTPException(500, f"Partial deletion failure for {doc_id}. Failed steps: {list(errors.keys())}. Retry deletion.")
 
     del documents_registry[doc_id]
     return {"status": "deleted", "doc_id": doc_id, "filename": filename}
