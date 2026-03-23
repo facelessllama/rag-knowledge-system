@@ -628,7 +628,7 @@ async def query_stream(request: QueryRequest):
                 yield f"data: {json.dumps({'type': 'done'})}\n\n"
                 return
 
-            best_score = score_meta["best"]
+            best_score = retrieval_best
             if best_score < RELEVANCE_THRESHOLD:
                 logger.info(f"Best score {best_score:.3f} below threshold {RELEVANCE_THRESHOLD} — not answering")
                 msg = "I couldn't find relevant information in the knowledge base to answer this question."
