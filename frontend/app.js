@@ -234,7 +234,10 @@ function renderDocTree() {
     });
   });
 
-  document.getElementById('compareBtn').style.display = total >= 2 ? 'block' : 'none';
+  var comparableDocs = activeFolderName
+    ? realDocs.filter(function(d){ return d.folder === activeFolderName; })
+    : realDocs;
+  document.getElementById('compareBtn').style.display = comparableDocs.length >= 2 ? 'block' : 'none';
   const totalChunks = realDocs.reduce(function(s, d){ return s + (d.chunks || d.chunks_created || 0); }, 0);
   document.getElementById('headerStats').innerHTML = '<span>' + total + '</span> docs &middot; <span>' + totalChunks + '</span> chunks';
 }
