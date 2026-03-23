@@ -62,8 +62,13 @@ class PDFParser:
 
             # If page has no text — it's likely a scan, run OCR
             if len(text) < 50:
-                logger.info(f"Page {page_num + 1}: no text found, running OCR...")
-                text = self._ocr_page(page)
+                if self.ocr_available:
+                    logger.info(f"Page {page_num + 1}: no text found, running OCR...")
+                    text = self._ocr_page(page)
+                    if not text:
+                        logger.error(f"Page {page_num + 1}: OCR returned empty result — page will be skipped")
+                else:
+                    logger.error(f"Page {page_num + 1}: no text and Tesseract unavailable — page will be skipped")
                 has_ocr = True
 
             pages.append({
