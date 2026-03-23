@@ -821,12 +821,11 @@ async def delete_document(doc_id: str):
         errors["qdrant"] = str(e)
 
     try:
-        remaining = [c for c in retriever._bm25_chunks if c.get("document_id") != doc_id]
+        remaining = [c for c in retriever._bm25_state[1] if c.get("document_id") != doc_id]
         if remaining:
             await retriever.index_chunks_for_bm25(remaining)
         else:
-            retriever._bm25_index = None
-            retriever._bm25_chunks = []
+            retriever._bm25_state = (None, [])
     except Exception as e:
         logger.error(f"BM25 rebuild failed for {doc_id}: {e}")
         errors["bm25"] = str(e)
