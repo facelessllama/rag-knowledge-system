@@ -314,7 +314,7 @@ function renameFolder(oldName) {
   });
   if (openFolders.has(oldName)) { openFolders.delete(oldName); openFolders.add(n); }
   if (activeFolderName === oldName) setActiveFolder(n); else renderDocTree();
-  fetch('http://localhost:8000/folders/' + encodeURIComponent(oldName), { method: 'PATCH', headers: {'Content-Type':'application/json'}, body: JSON.stringify({name: n}) });
+  fetch(API + '/folders/' + encodeURIComponent(oldName), { method: 'PATCH', headers: authHeaders({'Content-Type':'application/json'}), body: JSON.stringify({name: n}) });
 }
 
 async function dropOnFolder(event, targetFolder) {
