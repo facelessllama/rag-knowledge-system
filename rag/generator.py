@@ -132,11 +132,8 @@ class LLMGenerator:
             except (httpx.TimeoutException, httpx.ConnectError) as e:
                 last_error = e
                 if chunks_yielded > 0:
-                    logger.error(
-                        f"LLM stream interrupted after partial output "
-                        f"({chunks_yielded} chunks sent), not retrying"
-                    )
-                    raise PartialStreamError(chunks_yielded, e)
+                    logger.error(f"LLM stream interrupted after {chunks_yielded} chunks, not retrying")
+                    raise PartialStreamError(chunks_yielded) from e
                 logger.warning(f"LLM stream {type(e).__name__} attempt {attempt}/{retries} (no chunks sent)")
                 if attempt < retries:
                     await asyncio.sleep(2 * attempt)
