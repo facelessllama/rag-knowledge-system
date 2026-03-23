@@ -640,6 +640,14 @@ async def query_stream(request: QueryRequest):
             rerank_ms = int((time.time() - t2) * 1000)
             reranker_type = type(reranker).__name__
 
+            rerank_scores = [c.get("rerank_score", c.get("score", 0)) for c in top_chunks]
+            score_meta = {
+                "best": round(max(rerank_scores), 3) if rerank_scores else 0,
+                "avg": round(sum(rerank_scores) / len(rerank_scores), 3) if rerank_scores else 0,
+                "chunks_found": len(chunks),
+                "queries_expanded": len(expanded_queries),
+            }
+
             messages = prompt_builder.build(query=request.question, chunks=top_chunks,
                                             chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [],
                                             language=request.language or None,
