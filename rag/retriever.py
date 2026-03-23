@@ -137,8 +137,17 @@ class HybridRetriever:
         expanded = self._expand_with_neighbors(sorted_chunks, max_base=pool)
         expanded.sort(key=lambda x: x["score"], reverse=True)
 
-        logger.info(f"Expanded retrieval: {len(queries)} queries → {len(expanded)} candidates → top {k}")
-        return expanded[:k]
+        # Ensure at least 1 chunk per unique document in the result
+        top_k_chunks = expanded[:k]
+        docs_in_top = {c.get("document_id") for c in top_k_chunks}
+        for c in expanded[k:]:
+            doc_id = c.get("document_id")
+            if doc_id and doc_id not in docs_in_top:
+                top_k_chunks.append(c)
+                docs_in_top.add(doc_id)
+
+        logger.info(f"Expanded retrieval: {len(queries)} queries → {len(expanded)} candidates → top {len(top_k_chunks)}")
+        return top_k_chunks
 
     def _bm25_search(self, query: str, top_k: int, folder: str = None) -> list[dict]:
         bm25_index, bm25_chunks = self._bm25_state  # atomic read
