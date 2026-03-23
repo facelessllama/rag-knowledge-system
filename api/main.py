@@ -689,6 +689,7 @@ async def delete_document(doc_id: str):
         raise HTTPException(404, f"Document {doc_id} not found")
 
     filename = documents_registry[doc_id].get("filename", doc_id)
+    errors = {}
 
     try:
         vector_store.client.delete(
@@ -696,7 +697,8 @@ async def delete_document(doc_id: str):
             points_selector=Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=doc_id))])
         )
     except Exception as e:
-        logger.warning(f"Qdrant delete failed: {e}")
+        logger.error(f"Qdrant delete failed for {doc_id}: {e}")
+        errors["qdrant"] = str(e)
 
     try:
         remaining = [c for c in retriever._bm25_chunks if c.get("document_id") != doc_id]
@@ -706,7 +708,8 @@ async def delete_document(doc_id: str):
             retriever._bm25_index = None
             retriever._bm25_chunks = []
     except Exception as e:
-        logger.warning(f"BM25 rebuild failed: {e}")
+        logger.error(f"BM25 rebuild failed for {doc_id}: {e}")
+        errors["bm25"] = str(e)
 
     try:
         with db_conn() as conn:
@@ -714,13 +717,25 @@ async def delete_document(doc_id: str):
         for h in [h for h, d in file_hashes.items() if d == doc_id]:
             del file_hashes[h]
     except Exception as e:
-        logger.warning(f"DB delete failed: {e}")
+        logger.error(f"DB delete failed for {doc_id}: {e}")
+        errors["db"] = str(e)
 
     try:
         for f in UPLOAD_DIR.glob(f"{doc_id}_*"):
             f.unlink()
     except Exception as e:
-        logger.warning(f"File delete failed: {e}")
+        logger.error(f"File delete failed for {doc_id}: {e}")
+        errors["file"] = str(e)
+
+    if errors:
+        # Keep in registry so the document remains visible and deletion can be retried
+        logger.error(f"Document {doc_id} partially deleted, failed steps: {list(errors.keys())}")
+        raise HTTPException(500, {
+            "error": "Partial deletion failure",
+            "doc_id": doc_id,
+            "failed_steps": errors,
+            "message": "Some cleanup steps failed. The document may still appear in search results. Please retry deletion."
+        })
 
     del documents_registry[doc_id]
     return {"status": "deleted", "doc_id": doc_id, "filename": filename}
