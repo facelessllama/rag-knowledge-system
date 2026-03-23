@@ -576,13 +576,27 @@ async def query_stream(request: QueryRequest):
 
             t0 = time.time()
             expanded_queries = await query_expander.expand(request.question)
+            expansion_ms = int((time.time() - t0) * 1000)
+
+            t1 = time.time()
             chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None)
-            retrieval_ms = int((time.time() - t0) * 1000)
+            retrieval_ms = int((time.time() - t1) * 1000)
+
+            scores = [c.get("score", 0) for c in chunks] if chunks else []
+            score_meta = {
+                "best": round(max(scores), 3) if scores else 0,
+                "avg": round(sum(scores) / len(scores), 3) if scores else 0,
+                "chunks_found": len(chunks),
+                "queries_expanded": len(expanded_queries),
+            }
 
             if trace:
                 try:
-                    trace.span(name="retrieval", input=request.question,
-                               output={"chunks_found": len(chunks), "expanded": len(expanded_queries)},
+                    trace.span(name="query_expansion", input=request.question,
+                               output={"queries": expanded_queries},
+                               metadata={"duration_ms": expansion_ms})
+                    trace.span(name="retrieval", input=expanded_queries,
+                               output=score_meta,
                                metadata={"duration_ms": retrieval_ms})
                 except Exception:
                     pass
@@ -592,7 +606,7 @@ async def query_stream(request: QueryRequest):
                 yield f"data: {json.dumps({'type': 'done'})}\n\n"
                 return
 
-            best_score = max(c.get("score", 0) for c in chunks)
+            best_score = score_meta["best"]
             if best_score < RELEVANCE_THRESHOLD:
                 logger.info(f"Best score {best_score:.3f} below threshold {RELEVANCE_THRESHOLD} — not answering")
                 msg = "I couldn't find relevant information in the knowledge base to answer this question."
@@ -600,9 +614,10 @@ async def query_stream(request: QueryRequest):
                 yield f"data: {json.dumps({'type': 'done'})}\n\n"
                 return
 
-            t1 = time.time()
+            t2 = time.time()
             top_chunks = reranker.rerank(request.question, chunks, top_k=min(request.top_k, 3))
-            rerank_ms = int((time.time() - t1) * 1000)
+            rerank_ms = int((time.time() - t2) * 1000)
+            reranker_type = type(reranker).__name__
 
             messages = prompt_builder.build(query=request.question, chunks=top_chunks,
                                             chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [],
