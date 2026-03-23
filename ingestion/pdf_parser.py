@@ -33,7 +33,16 @@ class PDFParser:
 
     def __init__(self, ocr_language: str = "rus+eng"):
         self.ocr_language = ocr_language
-        logger.info(f"PDFParser initialized | OCR language: {ocr_language}")
+        self.ocr_available = self._check_tesseract()
+        logger.info(f"PDFParser initialized | OCR language: {ocr_language} | OCR available: {self.ocr_available}")
+
+    def _check_tesseract(self) -> bool:
+        try:
+            pytesseract.get_tesseract_version()
+            return True
+        except Exception as e:
+            logger.error(f"Tesseract not available — scanned PDFs will produce empty pages: {e}")
+            return False
 
     def parse(self, file_path: str) -> ParsedDocument:
         """Main entry point — parse a PDF file"""
