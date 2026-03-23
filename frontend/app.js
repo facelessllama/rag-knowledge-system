@@ -299,7 +299,7 @@ function createNewFolder() {
   docsData['__ph__' + fname] = { doc_id: '__ph__' + fname, filename: '', folder: fname, _placeholder: true, pages: 0, chunks: 0 };
   openFolders.add(fname);
   setActiveFolder(fname);
-  fetch('http://localhost:8000/folders', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({name: fname}) });
+  fetch(API + '/folders', { method: 'POST', headers: authHeaders({'Content-Type':'application/json'}), body: JSON.stringify({name: fname}) });
 }
 
 function renameFolder(oldName) {
