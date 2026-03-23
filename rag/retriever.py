@@ -168,7 +168,7 @@ class HybridRetriever:
         results = []
         for idx in top_indices:
             if scores[idx] > 0:
-                chunk = self._bm25_chunks[idx].copy()
+                chunk = bm25_chunks[idx].copy()
                 chunk["score"] = float(scores[idx]) / max_score  # normalized [0, 1]
                 chunk["source"] = "bm25"
                 results.append(chunk)
