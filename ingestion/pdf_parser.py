@@ -81,10 +81,11 @@ class PDFParser:
         metadata = self._extract_metadata(doc, path)
         doc.close()
 
-        logger.info(
-            f"Parsed {path.name}: {len(pages)} pages, "
-            f"{sum(1 for p in pages if p['has_ocr'])} OCR pages"
-        )
+        ocr_pages = sum(1 for p in pages if p['has_ocr'])
+        empty_pages = sum(1 for p in pages if not p['text'])
+        logger.info(f"Parsed {path.name}: {len(pages)} pages, {ocr_pages} OCR pages")
+        if empty_pages:
+            logger.error(f"{path.name}: {empty_pages} page(s) produced no text — they will be absent from search results")
 
         return ParsedDocument(
             filename=path.name,
