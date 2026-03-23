@@ -733,11 +733,14 @@ function toggleDebug() {
 function updateDebugPanel(data) {
   if (!data.debug) return;
   const d = data.debug;
+  document.getElementById('dbgExpansion').textContent = d.expansion_ms || '—';
   document.getElementById('dbgRetrieval').textContent = d.retrieval_ms || '—';
+  document.getElementById('dbgRerank').textContent = d.rerank_ms || '—';
   document.getElementById('dbgGeneration').textContent = d.generation_ms || '—';
   document.getElementById('dbgTotal').textContent = d.total_ms || '—';
-  document.getElementById('dbgChunks').textContent = d.chunks_after_rerank + '/' + d.chunks_retrieved;
-  document.getElementById('dbgTokens').textContent = data.tokens_used || '—';
+  document.getElementById('dbgChunks').textContent = (d.chunks_after_rerank || '?') + '/' + (d.chunks_retrieved || '?');
+  document.getElementById('dbgScore').textContent = d.best_score != null ? d.best_score.toFixed(3) + ' / avg ' + (d.avg_score || 0).toFixed(3) : '—';
+  document.getElementById('dbgReranker').textContent = d.reranker || '—';
   document.getElementById('dbgModel').textContent = data.model || '';
   document.getElementById('dbgQueries').innerHTML = (d.expanded_queries || []).map(function(q, i) {
     return '<div class="debug-query-item">' + (i === 0 ? '&#8594; ' : '&#8627; ') + esc(q) + '</div>';
