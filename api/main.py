@@ -604,7 +604,7 @@ async def query_stream(request: QueryRequest):
             yield f"data: {json.dumps({'type': 'done'})}\n\n"
         except PartialStreamError as e:
             logger.error(str(e))
-            yield f"data: {json.dumps({'type': 'error', 'message': 'Ответ оборвался на середине. Попробуйте повторить запрос.', 'partial': True})}\n\n"
+            yield f"data: {json.dumps({'type': 'error', 'error_type': 'partial_stream', 'message': 'Ответ оборвался на середине. Попробуйте повторить запрос.', 'partial': True, 'chunks_sent': e.chunks_yielded})}\n\n"
         except Exception as e:
             logger.error(f"Stream error: {e}", exc_info=True)
             yield f"data: {json.dumps({'type': 'error', 'message': 'Не удалось получить ответ от модели. Попробуйте повторить запрос.'})}\n\n"
