@@ -253,11 +253,15 @@ async def startup():
     logger.info("RAG Knowledge Base API started")
 
 
+class ChatTurn(BaseModel):
+    role: str
+    content: str
+
 class QueryRequest(BaseModel):
     question: str
     top_k: Optional[int] = 5
     document_id: Optional[str] = None
-    chat_history: Optional[list] = []
+    chat_history: Optional[list[ChatTurn]] = []
     model: Optional[str] = None
     rerank: Optional[bool] = True
     folder: Optional[str] = None
