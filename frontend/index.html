@@ -122,11 +122,14 @@
 <div class="debug-panel" id="debugPanel">
   <div class="debug-header">
     <span class="debug-title">Retrieval Debug</span>
+    <div class="debug-metric">expand <span id="dbgExpansion">&#8212;</span>ms</div>
     <div class="debug-metric">retrieval <span id="dbgRetrieval">&#8212;</span>ms</div>
+    <div class="debug-metric">rerank <span id="dbgRerank">&#8212;</span>ms</div>
     <div class="debug-metric">generation <span id="dbgGeneration">&#8212;</span>ms</div>
     <div class="debug-metric">total <span id="dbgTotal">&#8212;</span>ms</div>
     <div class="debug-metric">chunks <span id="dbgChunks">&#8212;</span></div>
-    <div class="debug-metric">tokens <span id="dbgTokens">&#8212;</span></div>
+    <div class="debug-metric">score <span id="dbgScore">&#8212;</span></div>
+    <div class="debug-metric">reranker <span id="dbgReranker" style="font-size:9px">&#8212;</span></div>
     <div style="margin-left:auto;font-size:10px;color:var(--text-muted)" id="dbgModel"></div>
     <button onclick="toggleDebug()" style="width:22px;height:22px;border-radius:4px;background:transparent;border:1px solid var(--border);color:var(--text-muted);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;margin-left:8px">&#10005;</button>
   </div>
