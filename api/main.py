@@ -635,9 +635,16 @@ async def query_stream(request: QueryRequest):
                 try:
                     trace.generation(name="llm_stream", model=request.model or generator.model,
                                      input=messages, output="".join(answer_tokens),
-                                     metadata={"duration_ms": generation_ms, "rerank_ms": rerank_ms,
-                                               "chunks_retrieved": len(chunks), "chunks_reranked": len(top_chunks)})
-                    trace.update(metadata={"total_ms": int((time.time() - start_time) * 1000)})
+                                     metadata={"duration_ms": generation_ms})
+                    trace.update(metadata={
+                        "total_ms": int((time.time() - start_time) * 1000),
+                        "expansion_ms": expansion_ms,
+                        "retrieval_ms": retrieval_ms,
+                        "rerank_ms": rerank_ms,
+                        "generation_ms": generation_ms,
+                        "reranker": reranker_type,
+                        **score_meta,
+                    })
                     langfuse.flush()
                 except Exception:
                     pass
