@@ -696,12 +696,15 @@ async def query_stream(request: QueryRequest):
                         "chunk_text": raw,
                         "relevance_score": round(score, 3)
                     }
-            # Second pass: fill in docs that didn't make it into top_chunks
+            # Second pass: fill in docs that didn't make it into top_chunks,
+            # but only if their score is above the relevance threshold
             for c in chunks:
                 doc_id = c.get("document_id")
                 if doc_id in seen_docs:
                     continue
                 score = c.get("score", 0)
+                if score < RELEVANCE_THRESHOLD:
+                    continue
                 raw = c["text"].strip().replace("\n", " ")
                 excerpt = raw[:150].rsplit(" ", 1)[0] + "…" if len(raw) > 150 else raw
                 seen_docs[doc_id] = {
