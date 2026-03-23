@@ -424,7 +424,7 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
                          "chunk_index": c.chunk_index, "filename": c.filename,
                          "folder": folder or ""}
                         for c in chunks]
-            await retriever.index_chunks_for_bm25(retriever._bm25_chunks + new_bm25)
+            await retriever.index_chunks_for_bm25(retriever._bm25_state[1] + new_bm25)
 
             file_hashes[file_hash] = doc_id
             try:
