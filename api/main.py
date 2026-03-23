@@ -225,6 +225,7 @@ async def restore_from_qdrant():
                     "page_num": page_num,
                     "document_id": doc_id,
                     "chunk_index": chunk_index,
+                    "filename": filename,
                     "folder": p.get("folder", ""),
                 })
 
