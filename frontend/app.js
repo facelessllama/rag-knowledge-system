@@ -641,12 +641,13 @@ function buildSourcesHtml(sources) {
 
 // ── Send ──────────────────────────────────────────────────────────────────────
 
-function sendMessage() {
+function sendMessage(topK) {
   if (isTyping) return;
   const input = document.getElementById('chatInput');
   const text = input.value.trim();
   if (!text) return;
   input.value = ''; isTyping = true;
+  topK = topK || 3;
   addUserMessage(text); showTyping();
 
   var accum = '';
