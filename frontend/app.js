@@ -357,7 +357,7 @@ function deleteFolder(fname) {
   Object.keys(docsData).forEach(function(k) { if (docsData[k].folder === fname) delete docsData[k]; });
   openFolders.delete(fname);
   if (activeFolderName === fname) clearActiveFolder(); else renderDocTree();
-  fetch('http://localhost:8000/folders/' + encodeURIComponent(fname), { method: 'DELETE' });
+  fetch(API + '/folders/' + encodeURIComponent(fname), { method: 'DELETE', headers: authHeaders() });
 }
 
 // ── Documents ─────────────────────────────────────────────────────────────────
