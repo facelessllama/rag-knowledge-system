@@ -70,26 +70,33 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 
 # Minimum retrieval score to attempt an answer (0–1 cosine similarity scale).
 # Below this threshold the knowledge base is considered to have no relevant content.
-RELEVANCE_THRESHOLD = 0.30
-
-# Max concurrent LLM requests — Ollama processes one at a time anyway,
-# queuing more than this returns 429 immediately instead of timing out.
-MAX_CONCURRENT_QUERIES = 3
+RELEVANCE_THRESHOLD = float(os.getenv("RELEVANCE_THRESHOLD", "0.30"))
+MAX_CONCURRENT_QUERIES = int(os.getenv("MAX_CONCURRENT_QUERIES", "3"))
 _query_semaphore = asyncio.Semaphore(MAX_CONCURRENT_QUERIES)
 
-parser = PDFParser()
-chunker = SmartChunker(chunk_size=512, chunk_overlap=50)
-embedder = EmbeddingService()
+parser = PDFParser(ocr_language=os.getenv("PDF_OCR_LANGUAGE", "rus+eng"))
+chunker = SmartChunker(
+    chunk_size=int(os.getenv("MAX_CHUNK_SIZE", "512")),
+    chunk_overlap=int(os.getenv("CHUNK_OVERLAP", "50"))
+)
+embedder = EmbeddingService(model_name=os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3"))
 vector_store = VectorStore()
 retriever = HybridRetriever(embedder, vector_store)
 try:
-    reranker = CrossEncoderReranker()
+    reranker = CrossEncoderReranker(model_name=os.getenv("RERANKER_MODEL", "cross-encoder/ms-marco-MiniLM-L-6-v2"))
 except Exception as e:
     logger.warning(f"CrossEncoderReranker failed to load ({e}), falling back to SimpleReranker")
     reranker = SimpleReranker()
 prompt_builder = PromptBuilder()
-generator = LLMGenerator(ollama_url=os.getenv("OLLAMA_URL", "http://localhost:11435"))
-query_expander = QueryExpander(ollama_url=os.getenv("OLLAMA_URL", "http://localhost:11435"))
+generator = LLMGenerator(
+    ollama_url=os.getenv("OLLAMA_URL", "http://localhost:11435"),
+    model=os.getenv("LLM_MODEL", "qwen2.5:7b"),
+    temperature=float(os.getenv("TEMPERATURE", "0.1"))
+)
+query_expander = QueryExpander(
+    ollama_url=os.getenv("OLLAMA_URL", "http://localhost:11435"),
+    model=os.getenv("QUERY_EXPANDER_MODEL", "qwen2.5:7b")
+)
 
 try:
     langfuse = Langfuse(
