@@ -545,7 +545,7 @@ function compareDocuments() {
     'Compare these documents in detail' + folderCtx + ': ' + names + '. ' +
     'For each document provide: 1) main subject and key arguments, 2) parties or entities involved, 3) conclusions or outcomes. ' +
     'Then compare them: what are the key differences and similarities? Be thorough and specific.';
-  sendMessage();
+  sendMessage(scopedDocs.length * 4);
 }
 
 function useSuggestion(el) { document.getElementById('chatInput').value = el.textContent; sendMessage(); }
