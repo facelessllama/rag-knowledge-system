@@ -11,6 +11,14 @@ import asyncio
 logger = logging.getLogger(__name__)
 
 
+class PartialStreamError(RuntimeError):
+    """Raised when the LLM stream breaks after tokens have already been sent to the client."""
+    def __init__(self, chunks_yielded: int, cause: Exception):
+        super().__init__(f"Stream interrupted after partial output ({chunks_yielded} chunks)")
+        self.chunks_yielded = chunks_yielded
+        self.__cause__ = cause
+
+
 class LLMGenerator:
     def __init__(
         self,
