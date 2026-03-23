@@ -84,44 +84,54 @@ class LLMGenerator:
             f"LLM did not respond after {retries} attempts. Is Ollama running?"
         )
 
-    async def generate_stream(self, messages: list[dict], model: str = None):
+    async def generate_stream(self, messages: list[dict], model: str = None, retries: int = 3):
         """
         Stream response token by token.
-        Used for real-time UI updates.
+        Retries up to 3 times on timeout or connection error.
+        Raises on final failure so caller can send a proper error event.
         """
         import json
-        try:
-            async with httpx.AsyncClient(timeout=httpx.Timeout(connect=10.0, read=120.0, write=10.0, pool=5.0)) as client:
-                async with client.stream(
-                    "POST",
-                    f"{self.ollama_url}/api/chat",
-                    json={
-                        "model": model or self.model,
-                        "messages": messages,
-                        "stream": True,
-                        "options": {"temperature": self.temperature}
-                    }
-                ) as response:
-                    response.raise_for_status()
-                    async for line in response.aiter_lines():
-                        if not line:
-                            continue
-                        try:
-                            data = json.loads(line)
-                        except json.JSONDecodeError:
-                            logger.warning(f"Invalid JSON from Ollama: {line!r}")
-                            continue
-                        if data.get("done"):
-                            break
-                        content = data.get("message", {}).get("content")
-                        if content:
-                            yield content
-        except httpx.TimeoutException:
-            logger.error("LLM stream timeout")
-            yield "\n\n[Ошибка: превышено время ожидания ответа от модели]"
-        except httpx.ConnectError:
-            logger.error("LLM stream connect error")
-            yield "\n\n[Ошибка: не удалось подключиться к Ollama]"
-        except Exception as e:
-            logger.error(f"LLM stream error: {e}")
-            yield "\n\n[Ошибка при генерации ответа]"
+        last_error = None
+        for attempt in range(1, retries + 1):
+            try:
+                async with httpx.AsyncClient(timeout=httpx.Timeout(connect=10.0, read=120.0, write=10.0, pool=5.0)) as client:
+                    async with client.stream(
+                        "POST",
+                        f"{self.ollama_url}/api/chat",
+                        json={
+                            "model": model or self.model,
+                            "messages": messages,
+                            "stream": True,
+                            "options": {"temperature": self.temperature}
+                        }
+                    ) as response:
+                        response.raise_for_status()
+                        async for line in response.aiter_lines():
+                            if not line:
+                                continue
+                            try:
+                                data = json.loads(line)
+                            except json.JSONDecodeError:
+                                logger.warning(f"Invalid JSON from Ollama: {line!r}")
+                                continue
+                            if data.get("done"):
+                                break
+                            content = data.get("message", {}).get("content")
+                            if content:
+                                yield content
+                return  # success
+            except httpx.TimeoutException as e:
+                last_error = e
+                logger.warning(f"LLM stream timeout attempt {attempt}/{retries}")
+                if attempt < retries:
+                    await asyncio.sleep(2 * attempt)
+            except httpx.ConnectError as e:
+                last_error = e
+                logger.warning(f"LLM stream connect error attempt {attempt}/{retries}")
+                if attempt < retries:
+                    await asyncio.sleep(2 * attempt)
+            except Exception as e:
+                logger.error(f"LLM stream error: {e}")
+                raise
+        logger.error(f"LLM stream failed after {retries} attempts")
+        raise last_error
