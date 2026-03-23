@@ -688,9 +688,10 @@ function sendMessage() {
       if (err) {
         hideTyping();
         if (msgEl && bubbleEl) {
-          bubbleEl.textContent += '\n\n⚠ ' + (err.message || 'Connection error');
+          var hint = err.partial ? 'Ответ оборвался' : 'Ошибка соединения';
+          bubbleEl.textContent += '\n\n⚠ ' + hint;
         } else {
-          addErrorMessage('Cannot connect to server.');
+          addErrorMessage(err.partial ? 'Ответ оборвался. Попробуйте ещё раз.' : 'Нет соединения с сервером.');
         }
         isTyping = false;
         return;
