@@ -23,7 +23,7 @@ Upload PDF documents, organize them into folders, and ask questions in natural l
 - Delete documents with automatic index cleanup
 
 ### Retrieval Pipeline
-- **Hybrid search** — vector (semantic) + BM25 (keyword) combined
+- **Hybrid search** — vector (semantic) + BM25-style sparse (keyword) combined, fused **server-side in Qdrant** via RRF — no client-side keyword index to rebuild or desync across replicas
 - **Query expansion** — LLM decomposes complex questions into sub-queries automatically; short queries skip expansion for speed
 - **Cross-encoder reranking** — `ms-marco-MiniLM-L-6-v2` re-scores candidates for precision
 - **Neighbor expansion** — adjacent chunks added for context around top hits
@@ -57,7 +57,7 @@ Upload PDF documents, organize them into folders, and ask questions in natural l
 - Max 3 concurrent queries via asyncio semaphore
 - LLM stream retry (up to 3 attempts if no chunks sent)
 - Partial stream detection — mid-stream failures reported without duplicating output
-- BM25 index rebuilt atomically — no read/write race during uploads
+- Hybrid search runs entirely server-side in Qdrant (dense + sparse, RRF fusion) — no in-memory index to rebuild on upload or scroll-restore on restart, and no per-process state to desync if run as multiple replicas
 - Path traversal protection on file uploads
 - API key authentication (`X-API-Key` header or `?key=` query param)
 - Prompt injection protection — user input wrapped in `<question>` tags
@@ -68,9 +68,9 @@ Upload PDF documents, organize them into folders, and ask questions in natural l
 
 ```
 PDF Upload → Parse (PyMuPDF + OCR) → Chunk (512 chars, 50 overlap)
-         → Embed (BAAI/bge-m3 1024-dim) → Store (Qdrant + BM25)
+         → Embed (BAAI/bge-m3 1024-dim) → Store (Qdrant: dense + sparse vectors)
 
-Query → Expand (Ollama LLM) → Retrieve (vector + BM25 hybrid)
+Query → Expand (Ollama LLM) → Retrieve (Qdrant hybrid: dense + sparse, server-side RRF)
       → Rerank (CrossEncoder) → Build prompt → Generate (Ollama stream)
       → Stream tokens to UI via SSE
 ```
@@ -80,7 +80,9 @@ Query → Expand (Ollama LLM) → Retrieve (vector + BM25 hybrid)
 | Module | Purpose |
 |--------|---------|
 | `api/main.py` | FastAPI endpoints, streaming SSE, upload, auth |
-| `rag/retriever.py` | Hybrid BM25 + Qdrant search, multi-query expansion |
+| `rag/retriever.py` | Multi-query expansion over Qdrant hybrid search, neighbor expansion |
+| `vector_db/qdrant_client.py` | Qdrant hybrid search (dense+sparse RRF fusion), payload indexes |
+| `vector_db/sparse_encoder.py` | BM25-style sparse vector construction (RU/EN tokenizer) |
 | `rag/reranker.py` | CrossEncoder reranking with SimpleReranker fallback |
 | `rag/query_expander.py` | LLM-powered query decomposition |
 | `rag/prompt_builder.py` | Context assembly, token budgets, multi-doc mode |
@@ -88,7 +90,7 @@ Query → Expand (Ollama LLM) → Retrieve (vector + BM25 hybrid)
 | `ingestion/pdf_parser.py` | PyMuPDF text extraction + Tesseract OCR fallback |
 | `ingestion/chunker.py` | Sentence/paragraph-aware chunking |
 | `embeddings/embedding_service.py` | BAAI/bge-m3 multilingual embeddings (CUDA) |
-| `vector_db/qdrant_client.py` | Qdrant upsert and folder-filtered search |
+| `rag/executors.py` | Single-worker thread pool for GPU-bound calls — keeps embed/rerank off the event loop |
 | `api/telegram.py` | Telegram webhook bot |
 | `frontend/app.js` | UI: SSE streaming, PDF.js viewer, model switching |
 
@@ -210,6 +212,25 @@ Pass `X-API-Key: <key>` header or `?key=<key>` query param when `API_KEY` is set
 
 ---
 
+## Testing
+
+Unit tests (fast, mocked — no Docker/Qdrant/Ollama needed):
+
+```bash
+source venv/bin/activate
+pip install -r requirements-dev.txt
+pytest
+```
+
+Scripts that exercise a running instance (`docker compose up -d` + API started):
+
+```bash
+python scripts/scale_test.py --count 1000        # ingest a synthetic corpus, check throughput + exact-term retrieval
+python scripts/concurrency_test.py --requests 10 # simultaneous /query requests vs sequential baseline
+```
+
+---
+
 ## Backups
 
 ```bash
@@ -254,6 +275,8 @@ BM25 is ideal for exact keyword matching but misses paraphrased questions.
 Both searches run in parallel → rankings merged → cross-encoder reranks (ms-marco-MiniLM-L-6-v2).
 On my test datasets (legal contracts + technical docs), hybrid + rerank delivers **+18–27% nDCG@5** and **+12–19% Recall@5** vs. pure dense or pure BM25.
 
+**Implementation note**: the sparse side originally ran as an in-process `rank_bm25` index, rebuilt from scratch on every upload and restart — fine at demo scale, but it doesn't survive a growing library or multiple API replicas. It now runs as a native Qdrant sparse vector (`Modifier.IDF`), fused with the dense vector server-side in a single `query_points` call — same hybrid retrieval behavior, but the corpus-wide term statistics are maintained incrementally by Qdrant itself instead of rebuilt client-side.
+
 ### Why BAAI/bge-m3 instead of nomic-embed-text, voyage-3, e5-mistral, etc.?
 
 Three reasons (as of early 2026):
@@ -292,7 +315,7 @@ Both were tested in 2024–2025 and dropped:
 
 - **Too much magic** — when retrieval breaks (and in RAG it is the core), you end up reading 4–5 layers of abstraction. In this codebase it's 3 files and everything is visible.
 - **Massive dependency footprint** — LangChain pulls 150–250 transitive packages. This project's `requirements.txt` is ~20 packages.
-- **Poor hybrid + customization support** — LangChain's hybrid retrievers (as of 2025–early 2026) didn't support per-folder BM25, atomic index rebuild during concurrent uploads, or fine-grained RRF + relevance cutoff tuning.
+- **Poor hybrid + customization support** — LangChain's hybrid retrievers (as of 2025–early 2026) didn't support per-folder filtering, native Qdrant sparse-vector fusion, or fine-grained RRF + relevance cutoff tuning the way calling `qdrant-client` directly does.
 - **Performance** — direct `qdrant-client` + `httpx` calls are 25–45% faster than LangChain async wrappers, especially under concurrent load.
 
 The custom retriever is ~220 lines and does exactly what's needed. For a system where retrieval quality *is* the product, the framework tax wasn't justified.
@@ -309,7 +332,7 @@ If the problem grows significantly more complex (multi-agent, complex tool-calli
 - **Ollama** — local LLM inference
 - **BAAI/bge-m3** — multilingual embeddings (1024-dim)
 - **CrossEncoder ms-marco-MiniLM-L-6-v2** — reranking
-- **BM25 (rank-bm25)** — keyword retrieval
+- **Qdrant sparse vectors (BM25-style, `Modifier.IDF`)** — keyword retrieval, fused server-side with dense search
 - **PyMuPDF** — PDF parsing and highlight coordinates
 - **Tesseract** — OCR for scanned pages
 - **Langfuse** — observability (self-hosted, optional)

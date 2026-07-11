@@ -20,7 +20,7 @@ Rules:
 3. Be concise and precise — 2-5 sentences max
 4. Interpret context broadly: if the answer is implied or uses different wording (e.g. "interest charge" answers a question about "penalty"), use it. Only say "I could not find this information in the provided documents" if the context is truly unrelated to the question.
 5. {lang_rule}
-6. Never repeat the question back"""
+6. Never repeat the question back, and never output the literal <question> or </question> tags — they are structural markers, not part of the text to reproduce"""
 
 LANG_RULES = {
     "en": "Always respond in English, regardless of the language of the question or documents.",
@@ -41,7 +41,7 @@ Rules:
 3. Plain text only — no markdown, no asterisks, no formatting
 4. If the answer is not in the context, say: "Не нашёл информацию по этому вопросу в базе знаний."
 5. {lang_rule}
-6. Never repeat the question back"""
+6. Never repeat the question back, and never output the literal <question> or </question> tags — they are structural markers, not part of the text to reproduce"""
 
 
 class PromptBuilder:

@@ -7,22 +7,13 @@ import pytesseract
 from PIL import Image
 import io
 import logging
-from dataclasses import dataclass
 from typing import Optional
 from pathlib import Path
 
+from ingestion.document import ParsedDocument
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-
-@dataclass
-class ParsedDocument:
-    """Structured output from PDF parsing"""
-    filename: str
-    total_pages: int
-    pages: list[dict]  # [{page_num, text, has_ocr}]
-    metadata: dict
-    file_size_kb: float
 
 
 class PDFParser:

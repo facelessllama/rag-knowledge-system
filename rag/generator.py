@@ -5,10 +5,21 @@ Uses Ollama's OpenAI-compatible API endpoint
 so switching to real OpenAI requires only URL change.
 """
 import logging
+import re
 import httpx
 import asyncio
 
 logger = logging.getLogger(__name__)
+
+# Some models (observed on qwen3) occasionally echo the <question> wrapper
+# used to isolate user input (see prompt_builder.py) instead of just
+# answering — strip it defensively even though the system prompt now also
+# instructs against it.
+_LEAKED_QUESTION_TAG = re.compile(r'^\s*<question>.*?</question>\s*', re.DOTALL)
+
+
+def strip_leaked_question_tag(text: str) -> str:
+    return _LEAKED_QUESTION_TAG.sub('', text, count=1)
 
 
 class PartialStreamError(Exception):
@@ -53,6 +64,11 @@ class LLMGenerator:
                             "model": active_model,
                             "messages": messages,
                             "stream": False,
+                            # Reasoning models (qwen3, deepseek-r1, ...) emit a hidden
+                            # <think> pass by default — 5-10x more tokens, no benefit
+                            # for RAG Q&A since retrieval already did the "thinking".
+                            # Ignored by non-reasoning models (qwen2.5, ...).
+                            "think": False,
                             "options": {
                                 "temperature": self.temperature,
                                 "num_predict": 1024
@@ -64,7 +80,7 @@ class LLMGenerator:
                     if attempt > 1:
                         logger.info(f"LLM succeeded on attempt {attempt}")
                     return {
-                        "answer": data["message"]["content"],
+                        "answer": strip_leaked_question_tag(data["message"]["content"]),
                         "model": active_model,
                         "prompt_tokens": data.get("prompt_eval_count", 0),
                         "completion_tokens": data.get("eval_count", 0),
@@ -110,6 +126,7 @@ class LLMGenerator:
                             "model": model or self.model,
                             "messages": messages,
                             "stream": True,
+                            "think": False,
                             "options": {"temperature": self.temperature}
                         }
                     ) as response:

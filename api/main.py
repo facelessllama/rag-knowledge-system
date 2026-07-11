@@ -27,11 +27,13 @@ from psycopg2.extras import RealDictCursor
 from langfuse import Langfuse
 
 from ingestion.pdf_parser import PDFParser
-from ingestion.chunker import SmartChunker
+from ingestion.txt_parser import TxtParser, decode_text_file
+from ingestion.chunker import SmartChunker, normalize_whitespace
 from embeddings.embedding_service import EmbeddingService
 from vector_db.qdrant_client import VectorStore
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 from rag.retriever import HybridRetriever
+from rag.executors import run_on_gpu
 from rag.reranker import CrossEncoderReranker, SimpleReranker
 from rag.prompt_builder import PromptBuilder
 from rag.generator import LLMGenerator, PartialStreamError
@@ -75,6 +77,16 @@ MAX_CONCURRENT_QUERIES = int(os.getenv("MAX_CONCURRENT_QUERIES", "3"))
 _query_semaphore = asyncio.Semaphore(MAX_CONCURRENT_QUERIES)
 
 parser = PDFParser(ocr_language=os.getenv("PDF_OCR_LANGUAGE", "rus+eng"))
+txt_parser = TxtParser()
+PARSERS_BY_EXT = {"pdf": (parser, "pdf"), "txt": (txt_parser, "txt")}
+
+
+def pick_parser(filename: str):
+    """Returns (parser_instance, format) for a supported extension, or (None, None)."""
+    ext = filename.lower().rsplit(".", 1)[-1] if "." in filename else ""
+    return PARSERS_BY_EXT.get(ext, (None, None))
+
+
 chunker = SmartChunker(
     chunk_size=int(os.getenv("MAX_CHUNK_SIZE", "512")),
     chunk_overlap=int(os.getenv("CHUNK_OVERLAP", "50"))
@@ -151,15 +163,85 @@ def init_db():
                     created_at TIMESTAMP DEFAULT NOW()
                 )
             """)
+            # Source of truth for document metadata — startup restore reads this
+            # table instead of scrolling the entire Qdrant collection.
+            cur.execute("""
+                CREATE TABLE IF NOT EXISTS documents (
+                    doc_id VARCHAR(8) PRIMARY KEY,
+                    filename VARCHAR(255) NOT NULL,
+                    pages INTEGER DEFAULT 0,
+                    chunks INTEGER DEFAULT 0,
+                    size_kb REAL DEFAULT 0,
+                    metadata JSONB DEFAULT '{}',
+                    folder VARCHAR(255) DEFAULT '',
+                    format VARCHAR(10) DEFAULT 'pdf',
+                    created_at TIMESTAMP DEFAULT NOW()
+                )
+            """)
+            # documents table may already exist from before `format` was added
+            cur.execute("ALTER TABLE documents ADD COLUMN IF NOT EXISTS format VARCHAR(10) DEFAULT 'pdf'")
             cur.execute("SELECT hash, doc_id FROM file_hashes")
             for row in cur.fetchall():
                 file_hashes[row[0]] = row[1]
             cur.execute("SELECT name FROM folders")
             for row in cur.fetchall():
                 folders_registry.add(row[0])
-        logger.info(f"DB ready | loaded {len(file_hashes)} hashes, {len(folders_registry)} folders")
+            cur.execute("SELECT doc_id, filename, pages, chunks, size_kb, metadata, folder, format FROM documents")
+            for doc_id, filename, pages, chunks, size_kb, metadata, folder, doc_format in cur.fetchall():
+                documents_registry[doc_id] = {
+                    "doc_id": doc_id,
+                    "filename": filename,
+                    "pages": pages,
+                    "chunks": chunks,
+                    "size_kb": size_kb,
+                    "metadata": metadata or {},
+                    "folder": folder or "",
+                    "format": doc_format or "pdf",
+                }
+        logger.info(
+            f"DB ready | loaded {len(file_hashes)} hashes, {len(folders_registry)} folders, "
+            f"{len(documents_registry)} documents"
+        )
     except Exception as e:
         logger.warning(f"DB init failed: {e}")
+
+
+def db_save_document(doc: dict):
+    try:
+        with db_conn() as conn:
+            conn.cursor().execute(
+                """
+                INSERT INTO documents (doc_id, filename, pages, chunks, size_kb, metadata, folder, format)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                ON CONFLICT (doc_id) DO UPDATE SET
+                    filename = EXCLUDED.filename, pages = EXCLUDED.pages, chunks = EXCLUDED.chunks,
+                    size_kb = EXCLUDED.size_kb, metadata = EXCLUDED.metadata, folder = EXCLUDED.folder,
+                    format = EXCLUDED.format
+                """,
+                (doc["doc_id"], doc["filename"], doc["pages"], doc["chunks"], doc["size_kb"],
+                 json.dumps(doc.get("metadata", {})), doc.get("folder", ""), doc.get("format", "pdf")),
+            )
+    except Exception as e:
+        logger.warning(f"DB save document failed: {e}")
+
+
+def db_update_document_folder(doc_id: str, folder: str):
+    try:
+        with db_conn() as conn:
+            conn.cursor().execute("UPDATE documents SET folder = %s WHERE doc_id = %s", (folder, doc_id))
+    except Exception as e:
+        logger.warning(f"DB update document folder failed: {e}")
+
+def db_save_file_hash(file_hash: str, doc_id: str, filename: str):
+    try:
+        with db_conn() as conn:
+            conn.cursor().execute(
+                "INSERT INTO file_hashes (hash, doc_id, filename) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING",
+                (file_hash, doc_id, filename)
+            )
+    except Exception as e:
+        logger.warning(f"DB save hash failed: {e}")
+
 
 def db_save_folder(name: str):
     try:
@@ -181,83 +263,15 @@ def db_rename_folder(old_name: str, new_name: str):
             cur = conn.cursor()
             cur.execute("INSERT INTO folders (name) VALUES (%s) ON CONFLICT DO NOTHING", (new_name,))
             cur.execute("DELETE FROM folders WHERE name = %s", (old_name,))
+            cur.execute("UPDATE documents SET folder = %s WHERE folder = %s", (new_name, old_name))
     except Exception as e:
         logger.warning(f"DB rename folder failed: {e}")
-
-async def restore_from_qdrant():
-    try:
-        all_points = []
-        offset = None
-        while True:
-            result = vector_store.client.scroll(
-                collection_name=vector_store.collection,
-                limit=1000,
-                offset=offset,
-                with_payload=True,
-                with_vectors=False,
-            )
-            batch, next_offset = result
-            all_points.extend(batch)
-            if next_offset is None:
-                break
-            offset = next_offset
-
-        if not all_points:
-            logger.info("Qdrant empty — nothing to restore")
-            return
-
-        doc_meta = {}
-        bm25_chunks = []
-
-        for point in all_points:
-            p = point.payload or {}
-            doc_id = p.get("document_id") or p.get("doc_id", "")
-            filename = p.get("filename", "unknown")
-            text = p.get("text", "")
-            chunk_id = p.get("chunk_id", str(point.id))
-            page_num = p.get("page_num", 0)
-            chunk_index = p.get("chunk_index", 0)
-
-            if text:
-                bm25_chunks.append({
-                    "text": text,
-                    "chunk_id": chunk_id,
-                    "page_num": page_num,
-                    "document_id": doc_id,
-                    "chunk_index": chunk_index,
-                    "filename": filename,
-                    "folder": p.get("folder", ""),
-                })
-
-            if doc_id:
-                if doc_id not in doc_meta:
-                    doc_meta[doc_id] = {
-                        "doc_id": doc_id,
-                        "filename": filename,
-                        "pages": p.get("pages", 0),
-                        "chunks": 0,
-                        "size_kb": p.get("size_kb", 0),
-                        "metadata": p.get("metadata", {}),
-                        "folder": p.get("folder", ""),
-                    }
-                doc_meta[doc_id]["chunks"] += 1
-
-        for doc_id, meta in doc_meta.items():
-            documents_registry[doc_id] = meta
-
-        if bm25_chunks:
-            await retriever.index_chunks_for_bm25(bm25_chunks)
-
-        logger.info(f"Restored: {len(documents_registry)} docs, {len(bm25_chunks)} chunks in BM25")
-
-    except Exception as e:
-        logger.warning(f"Restore failed (non-critical): {e}")
 
 @app.on_event("startup")
 async def startup():
     vector_store.create_collection(vector_size=embedder.get_vector_size())
-    init_db()
-    await restore_from_qdrant()
+    init_db()  # documents_registry, file_hashes, folders_registry all load from Postgres here —
+               # no Qdrant scroll needed at startup (see documents table in init_db())
     logger.info("RAG Knowledge Base API started")
 
 
@@ -287,8 +301,9 @@ class QueryResponse(BaseModel):
 @protected.post("/upload")
 async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
     safe_filename = Path(file.filename).name  # strip any path components
-    if not safe_filename.lower().endswith(".pdf"):
-        raise HTTPException(400, "Only PDF files are supported")
+    doc_parser, doc_format = pick_parser(safe_filename)
+    if doc_parser is None:
+        raise HTTPException(400, "Only PDF and TXT files are supported")
 
     content = await file.read()
     file_hash = hashlib.md5(content).hexdigest()
@@ -305,7 +320,7 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
         await f.write(content)
 
     t_parse = time.time()
-    parsed = parser.parse(str(file_path))
+    parsed = await asyncio.to_thread(doc_parser.parse, str(file_path))
     parse_ms = int((time.time() - t_parse) * 1000)
     chunks = chunker.chunk_document(parsed.pages, doc_id)
 
@@ -319,9 +334,9 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
 
     texts = [c.text for c in chunks]
     t_embed = time.time()
-    vectors = embedder.embed_batch(texts)
+    vectors = await run_on_gpu(embedder.embed_batch, texts)
     embed_ms = int((time.time() - t_embed) * 1000)
-    vector_store.upsert_chunks(chunks, vectors)
+    await asyncio.to_thread(vector_store.upsert_chunks, chunks, vectors)
 
     ocr_pages = sum(1 for p in parsed.pages if p.get("has_ocr"))
     logger.info(
@@ -339,35 +354,25 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
         except Exception:
             pass
 
-    bm25_chunks = [{"text": c.text, "chunk_id": c.chunk_id,
-                    "page_num": c.page_num, "document_id": c.document_id,
-                    "chunk_index": c.chunk_index, "filename": c.filename,
-                    "folder": folder or ""}
-                   for c in chunks]
-    await retriever.index_chunks_for_bm25(bm25_chunks)
-
     file_hashes[file_hash] = doc_id
-    try:
-        with db_conn() as conn:
-            conn.cursor().execute(
-                "INSERT INTO file_hashes (hash, doc_id, filename) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING",
-                (file_hash, doc_id, safe_filename)
-            )
-    except Exception as e:
-        logger.warning(f"DB save hash failed: {e}")
+    await asyncio.to_thread(db_save_file_hash, file_hash, doc_id, safe_filename)
 
     if folder:
         folders_registry.add(folder)
-        db_save_folder(folder)
-    documents_registry[doc_id] = {
+        await asyncio.to_thread(db_save_folder, folder)
+
+    doc_meta = {
         "doc_id": doc_id,
         "filename": safe_filename,
         "pages": parsed.total_pages,
         "chunks": len(chunks),
         "size_kb": parsed.file_size_kb,
         "metadata": parsed.metadata,
-        "folder": folder or ""
+        "folder": folder or "",
+        "format": doc_format,
     }
+    documents_registry[doc_id] = doc_meta
+    await asyncio.to_thread(db_save_document, doc_meta)
 
     return {
         "doc_id": doc_id,
@@ -384,8 +389,9 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
     for file in files:
         try:
             safe_name = Path(file.filename).name
-            if not safe_name.lower().endswith(".pdf"):
-                results.append({"filename": safe_name, "status": "error", "error": "Only PDF files supported"})
+            doc_parser, doc_format = pick_parser(safe_name)
+            if doc_parser is None:
+                results.append({"filename": safe_name, "status": "error", "error": "Only PDF and TXT files are supported"})
                 continue
 
             content = await file.read()
@@ -403,7 +409,7 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
             async with aiofiles.open(file_path, "wb") as f_out:
                 await f_out.write(content)
 
-            parsed = parser.parse(str(file_path))
+            parsed = await asyncio.to_thread(doc_parser.parse, str(file_path))
             chunks = chunker.chunk_document(parsed.pages, doc_id)
 
             if not chunks:
@@ -416,35 +422,24 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
                 c.folder = folder or ""
 
             texts = [c.text for c in chunks]
-            vectors = embedder.embed_batch(texts)
-            vector_store.upsert_chunks(chunks, vectors)
-
-            new_bm25 = [{"text": c.text, "chunk_id": c.chunk_id,
-                         "page_num": c.page_num, "document_id": c.document_id,
-                         "chunk_index": c.chunk_index, "filename": c.filename,
-                         "folder": folder or ""}
-                        for c in chunks]
-            await retriever.index_chunks_for_bm25(retriever._bm25_state[1] + new_bm25)
+            vectors = await run_on_gpu(embedder.embed_batch, texts)
+            await asyncio.to_thread(vector_store.upsert_chunks, chunks, vectors)
 
             file_hashes[file_hash] = doc_id
-            try:
-                with db_conn() as conn:
-                    conn.cursor().execute(
-                        "INSERT INTO file_hashes (hash, doc_id, filename) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING",
-                        (file_hash, doc_id, safe_name)
-                    )
-            except Exception as e:
-                logger.warning(f"DB save hash failed: {e}")
+            await asyncio.to_thread(db_save_file_hash, file_hash, doc_id, safe_name)
 
-            documents_registry[doc_id] = {
+            doc_meta = {
                 "doc_id": doc_id,
                 "filename": safe_name,
                 "pages": parsed.total_pages,
                 "chunks": len(chunks),
                 "size_kb": parsed.file_size_kb,
                 "metadata": parsed.metadata,
-                "folder": folder or ""
+                "folder": folder or "",
+                "format": doc_format,
             }
+            documents_registry[doc_id] = doc_meta
+            await asyncio.to_thread(db_save_document, doc_meta)
             results.append({"doc_id": doc_id, "filename": safe_name, "status": "indexed",
                             "pages": parsed.total_pages, "chunks_created": len(chunks)})
 
@@ -502,7 +497,7 @@ async def _do_query(request: QueryRequest):
         return QueryResponse(answer="I couldn't find relevant information in the knowledge base to answer this question.",
                            sources=[], model=generator.model, tokens_used=0)
 
-    top_chunks = reranker.rerank(request.question, chunks, top_k=request.top_k)
+    top_chunks = await run_on_gpu(reranker.rerank, request.question, chunks, top_k=request.top_k)
 
     messages = prompt_builder.build(query=request.question, chunks=top_chunks,
                                    chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [],
@@ -536,7 +531,9 @@ async def _do_query(request: QueryRequest):
                 "document": doc_id,
                 "excerpt": excerpt,
                 "chunk_text": raw,
-                "relevance_score": round(score, 3)
+                "relevance_score": round(score, 3),
+                "char_start": c.get("char_start"),
+                "char_end": c.get("char_end"),
             }
     sources = sorted(seen_docs.values(), key=lambda x: x["relevance_score"], reverse=True)
 
@@ -637,7 +634,7 @@ async def query_stream(request: QueryRequest):
                 return
 
             t2 = time.time()
-            top_chunks = reranker.rerank(request.question, chunks, top_k=request.top_k)
+            top_chunks = await run_on_gpu(reranker.rerank, request.question, chunks, top_k=request.top_k)
             rerank_ms = int((time.time() - t2) * 1000)
             reranker_type = type(reranker).__name__
 
@@ -694,7 +691,9 @@ async def query_stream(request: QueryRequest):
                         "document": doc_id,
                         "excerpt": excerpt,
                         "chunk_text": raw,
-                        "relevance_score": round(score, 3)
+                        "relevance_score": round(score, 3),
+                        "char_start": c.get("char_start"),
+                        "char_end": c.get("char_end"),
                     }
             sources = sorted(seen_docs.values(), key=lambda x: x["relevance_score"], reverse=True)
 
@@ -757,8 +756,10 @@ async def update_document_folder(doc_id: str, body: dict):
     documents_registry[doc_id]["folder"] = folder
     if folder:
         folders_registry.add(folder)
-        db_save_folder(folder)
-    vector_store.client.set_payload(
+        await asyncio.to_thread(db_save_folder, folder)
+    await asyncio.to_thread(db_update_document_folder, doc_id, folder)
+    await asyncio.to_thread(
+        vector_store.client.set_payload,
         collection_name=vector_store.collection,
         payload={"folder": folder},
         points=Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=doc_id))])
@@ -800,14 +801,15 @@ async def rename_folder(name: str, body: dict):
     for doc_id, doc in documents_registry.items():
         if doc.get("folder") == name:
             doc["folder"] = new_name
-            vector_store.client.set_payload(
+            await asyncio.to_thread(
+                vector_store.client.set_payload,
                 collection_name=vector_store.collection,
                 payload={"folder": new_name},
                 points=Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=doc_id))])
             )
     folders_registry.discard(name)
     folders_registry.add(new_name)
-    db_rename_folder(name, new_name)
+    await asyncio.to_thread(db_rename_folder, name, new_name)  # also updates documents.folder in bulk
     return {"old": name, "new": new_name}
 
 
@@ -820,7 +822,8 @@ async def delete_document(doc_id: str):
     errors = {}
 
     try:
-        vector_store.client.delete(
+        await asyncio.to_thread(
+            vector_store.client.delete,
             collection_name=vector_store.collection,
             points_selector=Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=doc_id))])
         )
@@ -829,18 +832,12 @@ async def delete_document(doc_id: str):
         errors["qdrant"] = str(e)
 
     try:
-        remaining = [c for c in retriever._bm25_state[1] if c.get("document_id") != doc_id]
-        if remaining:
-            await retriever.index_chunks_for_bm25(remaining)
-        else:
-            retriever._bm25_state = (None, [])
-    except Exception as e:
-        logger.error(f"BM25 rebuild failed for {doc_id}: {e}")
-        errors["bm25"] = str(e)
-
-    try:
-        with db_conn() as conn:
-            conn.cursor().execute("DELETE FROM file_hashes WHERE doc_id = %s", (doc_id,))
+        def _delete_doc_rows():
+            with db_conn() as conn:
+                cur = conn.cursor()
+                cur.execute("DELETE FROM file_hashes WHERE doc_id = %s", (doc_id,))
+                cur.execute("DELETE FROM documents WHERE doc_id = %s", (doc_id,))
+        await asyncio.to_thread(_delete_doc_rows)
         for h in [h for h, d in file_hashes.items() if d == doc_id]:
             del file_hashes[h]
     except Exception as e:
@@ -861,6 +858,27 @@ async def delete_document(doc_id: str):
 
     del documents_registry[doc_id]
     return {"status": "deleted", "doc_id": doc_id, "filename": filename}
+
+
+@protected.get("/documents/{doc_id}/content")
+async def get_document_content(doc_id: str):
+    """Full normalized text for TXT documents — used by the text viewer.
+    Offsets in /query sources (char_start/char_end) are indices into this
+    same normalize_whitespace() output, so the two always line up exactly."""
+    doc = documents_registry.get(doc_id)
+    if not doc:
+        raise HTTPException(404, "Document not found")
+    if doc.get("format") != "txt":
+        raise HTTPException(400, "This endpoint only serves TXT documents — use /pdf/{doc_id} for PDFs")
+    txt_file = next(UPLOAD_DIR.glob(f"{doc_id}_*"), None)
+    if not txt_file:
+        raise HTTPException(404, "File not found on disk")
+
+    def _read_normalized():
+        return normalize_whitespace(decode_text_file(txt_file.read_bytes()))
+
+    text = await asyncio.to_thread(_read_normalized)
+    return {"text": text}
 
 
 @protected.get("/pdf/{doc_id}/highlights")

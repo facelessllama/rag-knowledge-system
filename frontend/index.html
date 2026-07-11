@@ -48,10 +48,21 @@
   </div>
   <div class="header-right">
     <span class="header-stats" id="headerStats"></span>
+    <button class="key-btn" onclick="openKeyModal()" title="API Key">&#128273;</button>
     <div class="status-pill">
       <div class="status-dot" id="statusDot"></div>
       <span id="statusText">connecting...</span>
     </div>
+  </div>
+</div>
+
+<div class="key-overlay" id="keyOverlay">
+  <div class="key-modal">
+    <div class="key-modal-title">API Key</div>
+    <div class="key-modal-hint">Enter the API key to access the knowledge base (see API_KEY in .env).</div>
+    <input type="password" id="keyInput" class="key-input" placeholder="API key" autocomplete="off"
+           onkeydown="if(event.key==='Enter') saveApiKey()">
+    <button class="key-save-btn" onclick="saveApiKey()">Save</button>
   </div>
 </div>
 
@@ -147,7 +158,7 @@
   </div>
 </div>
 
-<div class="pdf-overlay" id="pdfOverlay" onclick="closePdfPanel()"></div>
+<div class="pdf-overlay" id="pdfOverlay" onclick="closePdfPanel(); closeTxtPanel();"></div>
 <div class="pdf-panel" id="pdfPanel">
   <div class="pdf-panel-header">
     <span>&#128196;</span>
@@ -173,6 +184,15 @@
       <div id="pdfTextLayer" class="textLayer"></div>
     </div>
   </div>
+</div>
+
+<div class="txt-panel" id="txtPanel">
+  <div class="txt-panel-header">
+    <span>&#128196;</span>
+    <span class="txt-panel-title" id="txtPanelTitle">Document</span>
+    <button class="txt-panel-close" onclick="closeTxtPanel()">&#10005;</button>
+  </div>
+  <div class="txt-panel-body" id="txtPanelBody">Loading...</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>

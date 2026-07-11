@@ -57,7 +57,11 @@ async function loadModels() {
   try {
     const data = await apiGetModels();
     availableModels = data.models || [];
-    currentModel = data.current;
+    // Only adopt the server's "current" on first load — after that, an
+    // explicit selectModel() choice must win over the periodic poll (the
+    // backend has no persistent model-switch state, /models always reports
+    // its .env default, which would otherwise silently revert the user's pick).
+    if (currentModel === null) currentModel = data.current;
     renderModelDropdown();
     updateModelBtn();
   } catch(e) {
@@ -120,7 +124,14 @@ document.addEventListener('click', function(e) {
   var srcEl = e.target.closest('[data-src]');
   if (srcEl) {
     var s = _sourcesStore[parseInt(srcEl.dataset.src, 10)];
-    if (s) openPdfViewer(s.document, s.page || 1, s.chunk_text || s.excerpt || '');
+    if (s) {
+      var srcDoc = docsData[s.document] || {};
+      if (srcDoc.format === 'txt') {
+        openTextViewer(s.document, s.char_start, s.char_end);
+      } else {
+        openPdfViewer(s.document, s.page || 1, s.chunk_text || s.excerpt || '');
+      }
+    }
   }
 
   // Folder filter dropdown close / option select
@@ -230,7 +241,12 @@ function renderDocTree() {
   list.querySelectorAll('.doc-item').forEach(function(item) {
     item.addEventListener('click', function() {
       const doc = docsData[item.dataset.docId];
-      if (doc) openPdfViewer(item.dataset.docId, 1, '');
+      if (!doc) return;
+      if (doc.format === 'txt') {
+        openTextViewer(item.dataset.docId, null, null);
+      } else {
+        openPdfViewer(item.dataset.docId, 1, '');
+      }
     });
   });
 
@@ -704,6 +720,10 @@ function sendMessage(topK) {
     },
     function onSources(sources, debug) {
       pendingSources = { sources: sources, debug: debug };
+      // The 'sources' SSE event can arrive after the token queue has already
+      // fully drained (draining stops rescheduling itself once empty), so
+      // nothing would ever re-check pendingSources without this nudge.
+      if (!draining) drainQueue();
     },
     function onDone(err) {
       if (err) {
@@ -867,8 +887,69 @@ function closePdfPanel() {
   document.getElementById('pdfOverlay').classList.remove('show');
 }
 
+// ── TXT viewer ────────────────────────────────────────────────────────────────
+// Offset-based highlighting: char_start/char_end come straight from the query
+// response (already computed at chunking time against the same normalized
+// text this endpoint returns), so no fuzzy text search is needed here at all
+// — unlike the PDF viewer's doHighlight(), which searches the PDF page.
+
+async function openTextViewer(docId, charStart, charEnd) {
+  const doc = docsData[docId] || {};
+  document.getElementById('txtPanelTitle').textContent = doc.filename || docId;
+  document.getElementById('txtPanel').classList.add('open');
+  document.getElementById('pdfOverlay').classList.add('show');
+  const body = document.getElementById('txtPanelBody');
+  body.textContent = 'Loading...';
+  try {
+    const data = await apiGetDocumentContent(docId);
+    const text = data.text || '';
+    let html;
+    if (charStart != null && charEnd != null && charStart >= 0 && charEnd <= text.length && charStart < charEnd) {
+      html = esc(text.slice(0, charStart)) +
+             '<mark id="txtHighlight">' + esc(text.slice(charStart, charEnd)) + '</mark>' +
+             esc(text.slice(charEnd));
+    } else {
+      html = esc(text);
+    }
+    body.innerHTML = html;
+    const mark = document.getElementById('txtHighlight');
+    if (mark) mark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } catch (e) {
+    body.textContent = 'Failed to load document.';
+  }
+}
+
+function closeTxtPanel() {
+  document.getElementById('txtPanel').classList.remove('open');
+  document.getElementById('pdfOverlay').classList.remove('show');
+}
+
+// ── API Key ───────────────────────────────────────────────────────────────────
+
+function openKeyModal() {
+  document.getElementById('keyInput').value = localStorage.getItem('api_key') || '';
+  document.getElementById('keyOverlay').classList.add('show');
+  document.getElementById('keyInput').focus();
+}
+
+function closeKeyModal() {
+  document.getElementById('keyOverlay').classList.remove('show');
+}
+
+function saveApiKey() {
+  const val = document.getElementById('keyInput').value.trim();
+  localStorage.setItem('api_key', val);
+  closeKeyModal();
+  checkHealth();
+  loadDocuments();
+  loadModels();
+}
+
 // ── Init ──────────────────────────────────────────────────────────────────────
 
+if (!localStorage.getItem('api_key')) {
+  openKeyModal();
+}
 checkHealth();
 loadDocuments();
 loadModels();

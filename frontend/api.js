@@ -24,6 +24,12 @@ async function apiGetDocuments() {
   return r.json(); // { documents: [...] }
 }
 
+async function apiGetDocumentContent(docId) {
+  const r = await fetch(API + '/documents/' + docId + '/content', { headers: authHeaders() });
+  if (!r.ok) throw new Error('content fetch failed');
+  return r.json(); // { text: "..." }
+}
+
 async function apiUploadFile(file, folder) {
   const fd = new FormData();
   fd.append('file', file);

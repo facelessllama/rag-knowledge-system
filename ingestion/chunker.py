@@ -10,6 +10,14 @@ from typing import Optional
 logger = logging.getLogger(__name__)
 
 
+def normalize_whitespace(text: str) -> str:
+    """Collapse all whitespace runs to single spaces. Chunk char_start/char_end
+    are offsets into this normalized form — callers that need to slice back
+    into a chunk's source text (e.g. a TXT-document viewer) must normalize
+    the same way first, or offsets won't line up."""
+    return re.sub(r'\s+', ' ', text).strip()
+
+
 @dataclass
 class TextChunk:
     """A single chunk of text with metadata"""
@@ -23,6 +31,11 @@ class TextChunk:
     filename: Optional[str] = None
     pages: int = 0
     folder: str = ""
+    # Offsets into normalize_whitespace(page_text) — page-relative, not
+    # document-relative. Populated for every chunk; only actually consumed
+    # by the TXT viewer today (PDF highlighting still uses PyMuPDF search_for).
+    char_start: Optional[int] = None
+    char_end: Optional[int] = None
 
 
 class SmartChunker:
@@ -80,40 +93,17 @@ class SmartChunker:
         if not text or len(text) < self.min_chunk_size:
             return []
 
-        # Split into sentences first
-        sentences = self._split_into_sentences(text)
+        # Normalize once; all offsets below are relative to this string.
+        normalized = normalize_whitespace(text)
+        sentences = self._split_sentences_with_offsets(normalized)
         chunks = []
-        current_chunk = []
+        current: list[tuple[int, int, str]] = []  # (start, end, text) triples
         current_size = 0
 
-        for sentence in sentences:
-            sentence_size = len(sentence)
-
-            # If adding this sentence exceeds chunk_size — save current chunk
-            if current_size + sentence_size > self.chunk_size and current_chunk:
-                chunk_text = " ".join(current_chunk).strip()
-                if len(chunk_text) >= self.min_chunk_size:
-                    chunks.append(TextChunk(
-                        chunk_id=f"{doc_id}_p{page_num}_c{start_index + len(chunks)}",
-                        text=chunk_text,
-                        page_num=page_num,
-                        chunk_index=start_index + len(chunks),
-                        char_count=len(chunk_text),
-                        has_ocr=has_ocr,
-                        document_id=doc_id
-                    ))
-
-                # Overlap: keep last N chars for context continuity
-                overlap_text = chunk_text[-self.chunk_overlap:]
-                current_chunk = [overlap_text, sentence]
-                current_size = len(overlap_text) + sentence_size
-            else:
-                current_chunk.append(sentence)
-                current_size += sentence_size
-
-        # Save the last chunk
-        if current_chunk:
-            chunk_text = " ".join(current_chunk).strip()
+        def emit(pieces: list[tuple[int, int, str]]) -> None:
+            chunk_start = pieces[0][0]
+            chunk_end = pieces[-1][1]
+            chunk_text = normalized[chunk_start:chunk_end]
             if len(chunk_text) >= self.min_chunk_size:
                 chunks.append(TextChunk(
                     chunk_id=f"{doc_id}_p{page_num}_c{start_index + len(chunks)}",
@@ -122,15 +112,49 @@ class SmartChunker:
                     chunk_index=start_index + len(chunks),
                     char_count=len(chunk_text),
                     has_ocr=has_ocr,
-                    document_id=doc_id
+                    document_id=doc_id,
+                    char_start=chunk_start,
+                    char_end=chunk_end,
                 ))
+
+        for sent_start, sent_end, sentence in sentences:
+            sentence_size = sent_end - sent_start
+
+            # If adding this sentence exceeds chunk_size — save current chunk
+            if current_size + sentence_size > self.chunk_size and current:
+                emit(current)
+
+                # Overlap: keep last N chars for context continuity — this is
+                # a contiguous slice of `normalized` ending exactly where the
+                # emitted chunk ended, so it composes cleanly with the next
+                # sentence (no gap, no re-search needed).
+                prev_end = current[-1][1]
+                overlap_start = max(current[0][0], prev_end - self.chunk_overlap)
+                current = [(overlap_start, prev_end, normalized[overlap_start:prev_end]),
+                           (sent_start, sent_end, sentence)]
+                current_size = (prev_end - overlap_start) + sentence_size
+            else:
+                current.append((sent_start, sent_end, sentence))
+                current_size += sentence_size
+
+        # Save the last chunk
+        if current:
+            emit(current)
 
         return chunks
 
-    def _split_into_sentences(self, text: str) -> list[str]:
-        """Split text into sentences respecting Russian and English"""
-        # Clean text first
-        text = re.sub(r'\s+', ' ', text).strip()
-        # Split on sentence endings
-        sentences = re.split(r'(?<=[.!?])\s+', text)
-        return [s.strip() for s in sentences if s.strip()]
+    def _split_sentences_with_offsets(self, normalized: str) -> list[tuple[int, int, str]]:
+        """Split already-normalized text into (start, end, sentence) triples,
+        respecting Russian and English sentence endings."""
+        if not normalized:
+            return []
+        spans = []
+        pos = 0
+        for m in re.finditer(r'(?<=[.!?])\s+', normalized):
+            sep_start, sep_end = m.span()
+            if sep_start > pos:
+                spans.append((pos, sep_start, normalized[pos:sep_start]))
+            pos = sep_end
+        if pos < len(normalized):
+            spans.append((pos, len(normalized), normalized[pos:]))
+        return spans

@@ -56,6 +56,7 @@ Output:"""
                         "model": self.model,
                         "messages": [{"role": "user", "content": prompt}],
                         "stream": False,
+                        "think": False,  # reasoning models would blow the 80-token budget on <think> alone
                         "options": {"temperature": 0.1, "num_predict": 80}
                     }
                 )
