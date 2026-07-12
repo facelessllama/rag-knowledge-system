@@ -22,7 +22,7 @@ class PDFParser:
     Falls back to OCR for scanned pages.
     """
 
-    def __init__(self, ocr_language: str = "rus+eng"):
+    def __init__(self, ocr_language: str = "eng"):
         self.ocr_language = ocr_language
         self.ocr_available = self._check_tesseract()
         logger.info(f"PDFParser initialized | OCR language: {ocr_language} | OCR available: {self.ocr_available}")
@@ -110,3 +110,35 @@ class PDFParser:
             "page_count": len(doc),
             "file_size_kb": round(path.stat().st_size / 1024, 2)
         }
+
+
+def split_for_highlight_search(text: str, max_len: int = 110) -> list[str]:
+    """Split chunk text into word-bounded segments for PyMuPDF page.search_for().
+
+    A single search_for() call needs a near-exact substring match, so it only
+    reliably works on short spans — that's why highlighting used to search
+    only the chunk's opening ~120 chars, leaving the rest of a longer chunk
+    (the majority of chunks — see chunker.py's chunk_size=512 default, often
+    exceeded) never highlighted even though it's part of the shown excerpt.
+    Searching multiple short segments instead covers the whole chunk, and a
+    formatting quirk breaking one segment's match doesn't take down the rest.
+    """
+    text = text.strip()
+    if not text:
+        return []
+    segments = []
+    pos = 0
+    n = len(text)
+    while pos < n:
+        end = min(pos + max_len, n)
+        if end < n:
+            last_space = text.rfind(' ', pos, end)
+            if last_space > pos + 20:
+                end = last_space
+        seg = text[pos:end].strip()
+        if seg:
+            segments.append(seg)
+        pos = end
+        while pos < n and text[pos] == ' ':
+            pos += 1
+    return segments

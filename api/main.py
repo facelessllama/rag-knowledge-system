@@ -26,7 +26,7 @@ from psycopg2.extras import RealDictCursor
 
 from langfuse import Langfuse
 
-from ingestion.pdf_parser import PDFParser
+from ingestion.pdf_parser import PDFParser, split_for_highlight_search
 from ingestion.txt_parser import TxtParser, decode_text_file
 from ingestion.chunker import SmartChunker, normalize_whitespace
 from embeddings.embedding_service import EmbeddingService
@@ -901,14 +901,17 @@ async def get_pdf_highlights(doc_id: str, text: str = "", page: int = 1):
         doc.close()
         return {"rects": [], "page_width": page_width, "page_height": page_height}
 
-    # Use first ~120 chars as search anchor, cut at word boundary
-    anchor = text.strip()[:120]
-    last_space = anchor.rfind(' ')
-    if last_space > 40:
-        anchor = anchor[:last_space]
-
-    # pg.search_for — built-in PyMuPDF text search, handles whitespace/case
-    rects = pg.search_for(anchor)
+    # Search the whole chunk in word-bounded segments (not just its opening
+    # ~120 chars) — pg.search_for handles whitespace/case per segment, and one
+    # segment failing to match doesn't take down the rest.
+    seen = set()
+    rects = []
+    for segment in split_for_highlight_search(text):
+        for r in pg.search_for(segment):
+            key = (round(r.x0, 1), round(r.y0, 1), round(r.x1, 1), round(r.y1, 1))
+            if key not in seen:
+                seen.add(key)
+                rects.append(r)
     doc.close()
 
     return {
