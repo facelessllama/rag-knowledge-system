@@ -1,0 +1,85 @@
+The Plant Health (England) (Amendment) Order 2012
+The Secretary of State, in whom the powers conferred by sections 2(1) and 3(1) of the Plant Health Act 1967 are now vested , makes the following Order in exercise of those powers.
+Title and commencement
+1
+1
+This Order may be cited as the Plant Health (England) (Amendment) Order 2012.
+2
+This Order comes into force on 14th December 2012.
+Amendment of the Plant Health (England) Order 2005
+2
+1
+The Plant Health (England) Order 2005 is amended as follows.
+2
+In article 2(1) (general interpretation), for the definition of “ ISPM No. 4”, substitute —
+“ISPM No. 4” means International Standard for Phytosanitary Measures No. 4 of November 1995 on the requirements for the establishment of pest free areas, prepared by the Secretariat of the IPPC established by the Food and Agriculture Organisation of the United Nations ;
+.
+3
+In article 8(2) (exceptions from certain prohibitions and requirements) —
+a
+in sub-paragraph (a)(iii), after “potatoes” insert “or seeds of Fraxinus L.”; and
+b
+in sub-paragraph (b)(ii), after “sub-paragraph (i)” insert “or plants of Fraxinus L. intended for planting”.
+4
+In article 22(1) (exceptions from certain prohibitions and requirements), after “small quantities of any relevant material”, insert “other than plants of Fraxinus L. intended for planting”.
+5
+For article 40 (licences to carry out prohibited activities), substitute —
+Licences to carry out activities prohibited by this Order
+40
+1
+Notwithstanding any of the provisions of this Order, any plant pest or relevant material may be landed, kept, stored, sold, planted, moved or otherwise disposed of in England and any other thing prohibited by this Order may be done under the authority of a licence granted by the Secretary of State —
+a
+in exercise of any derogation permitted by Directive 2000/29/ EC ; or
+b
+for trial or scientific purposes, or for work on varietal selections, in relation to a domestic quarantine plant pest.
+2
+A licence granted under paragraph (1)(b) must be in writing and may be granted —
+a
+subject to conditions;
+b
+for an indefinite period or a specified period.
+3
+In this article, “domestic quarantine plant pest” means a plant pest which is not listed in Annex I or Annex II to Directive 2000/29/EC and which is not normally present in, and is likely to be injurious to plants in, Great Britain.
+.
+6
+In the heading of article 41 (licences for trial or scientific purposes and for work on varietal selections), after “varietal selections”, insert “permitted by Directive 2008/61/EC ”.
+7
+In Part B (plant pests known to occur in the European Union which may not be landed or spread within England) of Schedule 1 , for the items under the heading “Fungi”, substitute —
+1 Chalara fraxinea T. Kowalski, including its teleomorph Hymenoscyphus pseudoalbidus 2 Melampsora medusae Thümen 3 Synchytrium endobioticum (Schilbersky) Percival
+.
+8
+In Part B (relevant material which may not be landed in or moved within England if that material is carrying or infected with plant pests known to occur in the European Union) of Schedule 2 , after item 1 under the heading “Fungi”, insert —
+1a Plants of Fraxinus L. intended for planting. Chalara fraxinea T. Kowalski, including its teleomorph Hymenoscyphus pseudoalbidus
+.
+9
+In Part A (relevant material, from third countries, which may only be landed in England if special requirements are satisfied) of Schedule 4 —
+a
+in the third column of item 7a of the table , for “The plants shall be accompanied by an official statement” substitute “Without prejudice to the requirements in item 7b, the plants shall be accompanied by an official statement”; and
+b
+after item 7a, insert —
+7b Plants of Fraxinus L. intended for planting, which originate in a third country Without prejudice to the requirements in item 7a, the plants shall be accompanied by a phytosanitary certificate which has been issued by the national plant protection organisation of the country from which the plants originate and which includes under the heading “Additional Declaration” an official statement that the plants have been grown throughout their life in an area which has been established and is maintained as an area free from Chalara fraxinea T. Kowalski (including its teleomorph Hymenoscyphus pseudoalbidus ) in accordance with ISPM No. 4
+.
+10
+In Part B (relevant material, from another part of the European Union, which may only be landed in or moved within England if special requirements are satisfied) of Schedule 4, after item 37 of the table , insert —
+38 Plants of Fraxinus L. intended for planting The plants shall be accompanied by an official statement that they have been grown throughout their life in an area which has been established and is maintained as an area free from Chalara fraxinea T. Kowalski (including its teleomorph Hymenoscyphus pseudoalbidus ) in accordance with ISPM No. 4
+.
+11
+In Part A (relevant material from a third country which may only be landed in England if accompanied by a phytosanitary certificate) of Schedule 5 —
+a
+in sub-paragraph (c) of item 1, for “or Phaseolus L.” substitute “, Phaseolus L. or Fraxinus L.”; and
+b
+in sub-paragraph (a) of item 2, after “ Dianthus L.,” insert “ Fraxinus L.,”.
+12
+In Part A (relevant material, from England or elsewhere in the European Union, which may only be landed in or moved within England if accompanied by a plant passport) of Schedule 6, after item 8 , insert —
+9
+Plants of Fraxinus L. intended for planting.
+.
+13
+In Part A (relevant material which may only be consigned to another part of the European Union if accompanied by a plant passport) of Schedule 7, after item 8 , insert —
+9
+Plants of Fraxinus L. intended for planting.
+.
+de Mauley
+Parliamentary Under Secretary of State
+Department for Environment, Food and Rural Affairs
+Date 21st November 2012

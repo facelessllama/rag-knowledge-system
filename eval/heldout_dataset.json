@@ -1,0 +1,636 @@
+[
+  {
+    "id": "ho_date_EN_0151_The_Civil_Legal_Aid_Procedure_Regulations_2012",
+    "question": "When does the Civil Legal Aid Procedure Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0151_The_Civil_Legal_Aid_Procedure_Regulations_2012.txt",
+    "expected_substring": "1st April 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0154_The_Road_Vehicles_Individual_Approval_Fees_Amendment_Regulations_2012",
+    "question": "When does the Road Vehicles Individual Approval Fees Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0154_The_Road_Vehicles_Individual_Approval_Fees_Amendment_Regulations_2012.txt",
+    "expected_substring": "20th June 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0155_The_Local_Authority_Referendums_Relating_to_Council_Tax_Increases_Regulations_20",
+    "question": "When does the Local Authority Referendums Relating to Council Tax Increases Regulations 20 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0155_The_Local_Authority_Referendums_Relating_to_Council_Tax_Increases_Regulations_20.txt",
+    "expected_substring": "16th March 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0156_The_Republic_of_Guinea_Asset-Freezing_Regulations_2012",
+    "question": "When does the Republic of Guinea Asset-Freezing Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0156_The_Republic_of_Guinea_Asset-Freezing_Regulations_2012.txt",
+    "expected_substring": "4th July 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0157_The_Sixth_Form_College_Corporations_Publication_of_Proposals_England_Regulations",
+    "question": "When does the Sixth Form College Corporations Publication of Proposals England Regulations come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0157_The_Sixth_Form_College_Corporations_Publication_of_Proposals_England_Regulations.txt",
+    "expected_substring": "22nd May 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0158_The_Town_and_Country_Planning_Compensation_England_Regulations_2012",
+    "question": "When does the Town and Country Planning Compensation England Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0158_The_Town_and_Country_Planning_Compensation_England_Regulations_2012.txt",
+    "expected_substring": "6th April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0159_The_Schools_Forums_England_Regulations_2012",
+    "question": "When does the Schools Forums England Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0159_The_Schools_Forums_England_Regulations_2012.txt",
+    "expected_substring": "1st October 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0160_The_Police_Performance_Regulations_2012",
+    "question": "When does the Police Performance Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0160_The_Police_Performance_Regulations_2012.txt",
+    "expected_substring": "22nd November 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0162_The_Local_Government_Officers_Political_Restrictions_Amendment_England_Regulatio",
+    "question": "When does the Local Government Officers Political Restrictions Amendment England Regulatio come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0162_The_Local_Government_Officers_Political_Restrictions_Amendment_England_Regulatio.txt",
+    "expected_substring": "6th August 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0165_The_Social_Security_and_Child_Support_Supersession_of_Appeal_Decisions_Regulatio",
+    "question": "When does the Social Security and Child Support Supersession of Appeal Decisions Regulatio come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0165_The_Social_Security_and_Child_Support_Supersession_of_Appeal_Decisions_Regulatio.txt",
+    "expected_substring": "4th June 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0166_The_Money_Laundering_Amendment_Regulations_2012",
+    "question": "When does the Money Laundering Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0166_The_Money_Laundering_Amendment_Regulations_2012.txt",
+    "expected_substring": "1st October 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0167_The_Registrar_of_Companies_Fees_European_Economic_Interest_Grouping_and_European",
+    "question": "When does the Registrar of Companies Fees European Economic Interest Grouping and European come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0167_The_Registrar_of_Companies_Fees_European_Economic_Interest_Grouping_and_European.txt",
+    "expected_substring": "1st October 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0168_The_Removal_and_Disposal_of_Vehicles_Amendment_England_Regulations_2012",
+    "question": "When does the Removal and Disposal of Vehicles Amendment England Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0168_The_Removal_and_Disposal_of_Vehicles_Amendment_England_Regulations_2012.txt",
+    "expected_substring": "1st October 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0169_The_United_Nations_International_Tribunals_Former_Yugoslavia_and_Rwanda_Amendmen",
+    "question": "When does the United Nations International Tribunals Former Yugoslavia and Rwanda Amendmen come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0169_The_United_Nations_International_Tribunals_Former_Yugoslavia_and_Rwanda_Amendmen.txt",
+    "expected_substring": "8th November 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0172_The_Green_Deal_Disclosure_Regulations_2012",
+    "question": "When does the Green Deal Disclosure Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0172_The_Green_Deal_Disclosure_Regulations_2012.txt",
+    "expected_substring": "28th January 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0173_The_School_Governance_England_Amendment_Regulations_2012",
+    "question": "When does the School Governance England Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0173_The_School_Governance_England_Amendment_Regulations_2012.txt",
+    "expected_substring": "17th March 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0174_The_Building_Repeal_of_Provisions_of_Local_Acts_Regulations_2012",
+    "question": "When does the Building Repeal of Provisions of Local Acts Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0174_The_Building_Repeal_of_Provisions_of_Local_Acts_Regulations_2012.txt",
+    "expected_substring": "9th January 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0175_The_Family_Procedure_Amendment_No.5_Rules_2012",
+    "question": "When does the Family Procedure Amendment No.5 Rules 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0175_The_Family_Procedure_Amendment_No.5_Rules_2012.txt",
+    "expected_substring": "31st January 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0177_The_Local_Authority_Duty_to_Secure_Early_Years_Provision_Free_of_Charge_Regulati",
+    "question": "When does the Local Authority Duty to Secure Early Years Provision Free of Charge Regulati come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0177_The_Local_Authority_Duty_to_Secure_Early_Years_Provision_Free_of_Charge_Regulati.txt",
+    "expected_substring": "1st September 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0180_The_Town_and_Country_Planning_Development_Management_Procedure_England_Amendment",
+    "question": "When does the Town and Country Planning Development Management Procedure England Amendment come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0180_The_Town_and_Country_Planning_Development_Management_Procedure_England_Amendment.txt",
+    "expected_substring": "6th April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0181_The_Occupational_and_Personal_Pension_Schemes_Automatic_Enrolment_Amendment_No.",
+    "question": "When does the Occupational and Personal Pension Schemes Automatic Enrolment Amendment No. come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0181_The_Occupational_and_Personal_Pension_Schemes_Automatic_Enrolment_Amendment_No..txt",
+    "expected_substring": "2nd July 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0183_The_Immigration_Appeals_Family_Visitor_Regulations_2012",
+    "question": "When does the Immigration Appeals Family Visitor Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0183_The_Immigration_Appeals_Family_Visitor_Regulations_2012.txt",
+    "expected_substring": "9th July 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0184_The_Product_Safety_Amendment_and_Revocation_Regulations_2012",
+    "question": "When does the Product Safety Amendment and Revocation Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0184_The_Product_Safety_Amendment_and_Revocation_Regulations_2012.txt",
+    "expected_substring": "6th April 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0188_The_Social_Security_Miscellaneous_Amendments_No._2_Regulations_2012",
+    "question": "When does the Social Security Miscellaneous Amendments No. 2 Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0188_The_Social_Security_Miscellaneous_Amendments_No._2_Regulations_2012.txt",
+    "expected_substring": "5th November 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0189_The_Tax_Avoidance_Schemes_Information_Regulations_2012",
+    "question": "When does the Tax Avoidance Schemes Information Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0189_The_Tax_Avoidance_Schemes_Information_Regulations_2012.txt",
+    "expected_substring": "1st September 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0190_The_Community_Infrastructure_Levy_Amendment_Regulations_2012",
+    "question": "When does the Community Infrastructure Levy Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0190_The_Community_Infrastructure_Levy_Amendment_Regulations_2012.txt",
+    "expected_substring": "the day after the day on which they are made",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0191_The_Magistrates_Courts_Regulation_of_Investigatory_Powers_Rules_2012",
+    "question": "When does the Magistrates Courts Regulation of Investigatory Powers Rules 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0191_The_Magistrates_Courts_Regulation_of_Investigatory_Powers_Rules_2012.txt",
+    "expected_substring": "1 November 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0195_The_Restrictive_Measures_Amendment_Overseas_Territories_Order_2012",
+    "question": "When does the Restrictive Measures Amendment Overseas Territories Order 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0195_The_Restrictive_Measures_Amendment_Overseas_Territories_Order_2012.txt",
+    "expected_substring": "8th March 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_date_EN_0200_The_Business_Investment_Relief_Regulations_2012",
+    "question": "When does the Business Investment Relief Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0200_The_Business_Investment_Relief_Regulations_2012.txt",
+    "expected_substring": "10th August 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "ho_case_A.B.A._1129_2020_JAGMOHAN_YADAV_vs_THE_S",
+    "question": "What is the case JAGMOHAN YADAV vs THE STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "A.B.A._1129_2020_JAGMOHAN_YADAV_vs_THE_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_A.B.A._1215_2020_CHOTU_KHAN_ALIAS_MD_MIN",
+    "question": "What is the case CHOTU KHAN ALIAS MD MINHAZ SHEIKH vs THE STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "A.B.A._1215_2020_CHOTU_KHAN_ALIAS_MD_MINHAZ_SHEIKH_vs_THE_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_A.B.A._1281_2020_NIMESH_ANAND_vs_THE_STA",
+    "question": "What is the case NIMESH ANAND vs THE STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "A.B.A._1281_2020_NIMESH_ANAND_vs_THE_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_A.B.A._2439_2020_RUSTAM_ALI_vs_THE_STATE",
+    "question": "What is the case RUSTAM ALI vs THE STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "A.B.A._2439_2020_RUSTAM_ALI_vs_THE_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_A.B.A._428_2020_BHARAT_RANA_ALIAS_BHARAT",
+    "question": "What is the case BHARAT RANA ALIAS BHARAT MISTRI vs THE STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "A.B.A._428_2020_BHARAT_RANA_ALIAS_BHARAT_MISTRI_vs_THE_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_A.B.A._493_2020_RAJKUMAR_YADAV_vs_THE_ST",
+    "question": "What is the case RAJKUMAR YADAV vs THE STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "A.B.A._493_2020_RAJKUMAR_YADAV_vs_THE_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_A.B.A._851_2020_SUJEET_KUMAR_MEHTA_vs_TH",
+    "question": "What is the case SUJEET KUMAR MEHTA vs THE STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "A.B.A._851_2020_SUJEET_KUMAR_MEHTA_vs_THE_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_ABLAPL_1380_2020_MANGULI_CHARAN_BEHERA_v",
+    "question": "What is the case MANGULI CHARAN BEHERA vs STATE OF ODISHA about?",
+    "expect_answer": true,
+    "expected_doc_filename": "ABLAPL_1380_2020_MANGULI_CHARAN_BEHERA_vs_STATE_OF_ODISHA.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_ABLAPL_1743_2020_TUTUNA_SAHOO_vs_STATE_O",
+    "question": "What is the case TUTUNA SAHOO vs STATE OF ODISHA about?",
+    "expect_answer": true,
+    "expected_doc_filename": "ABLAPL_1743_2020_TUTUNA_SAHOO_vs_STATE_OF_ODISHA.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_ABLAPL_2756_2020_SK.HASIBULA_SK_HAJIBULA",
+    "question": "What is the case SK.HASIBULA SK HAJIBULA vs STATE OF ODISHA about?",
+    "expect_answer": true,
+    "expected_doc_filename": "ABLAPL_2756_2020_SK.HASIBULA_SK_HAJIBULA_vs_STATE_OF_ODISHA.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_ABLAPL_3466_2020_RAMA_CHANDRA_BISWAL_vs_",
+    "question": "What is the case RAMA CHANDRA BISWAL vs STATE OF ODISHA about?",
+    "expect_answer": true,
+    "expected_doc_filename": "ABLAPL_3466_2020_RAMA_CHANDRA_BISWAL_vs_STATE_OF_ODISHA.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_ABLAPL_3648_2020_LIPU_PRADHAN_vs_STATE_O",
+    "question": "What is the case LIPU PRADHAN vs STATE OF ODISHA about?",
+    "expect_answer": true,
+    "expected_doc_filename": "ABLAPL_3648_2020_LIPU_PRADHAN_vs_STATE_OF_ODISHA.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_ABLAPL_694_2020_SARBESWAR_SETHY_vs_STATE",
+    "question": "What is the case SARBESWAR SETHY vs STATE OF ODISHA about?",
+    "expect_answer": true,
+    "expected_doc_filename": "ABLAPL_694_2020_SARBESWAR_SETHY_vs_STATE_OF_ODISHA.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_B.A._1172_2020_DHARMENDRA_KUMAR_RAM_vs_T",
+    "question": "What is the case DHARMENDRA KUMAR RAM vs THE STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "B.A._1172_2020_DHARMENDRA_KUMAR_RAM_vs_THE_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_B.A._1221_2020_MD_SAMIM_ANSARI_vs_THE_ST",
+    "question": "What is the case MD SAMIM ANSARI vs THE STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "B.A._1221_2020_MD_SAMIM_ANSARI_vs_THE_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_B.A._145_2020_RASID_ANSARI_vs_THE_STATE_",
+    "question": "What is the case RASID ANSARI vs THE STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "B.A._145_2020_RASID_ANSARI_vs_THE_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_B.A._2302_2020_LAL_BAHADUR_ALIAS_CHHOTE_",
+    "question": "What is the case LAL BAHADUR ALIAS CHHOTE LAL vs THE STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "B.A._2302_2020_LAL_BAHADUR_ALIAS_CHHOTE_LAL_vs_THE_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_B.A._3086_2020_RAJENDRA_URAON_ALIAS_RAJE",
+    "question": "What is the case RAJENDRA URAON ALIAS RAJENDRA KR ORAON vs THE STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "B.A._3086_2020_RAJENDRA_URAON_ALIAS_RAJENDRA_KR_ORAON_vs_THE_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_B.A._4541_2020_VIJAY_SHANKAR_SINGH_vs_TH",
+    "question": "What is the case VIJAY SHANKAR SINGH vs THE STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "B.A._4541_2020_VIJAY_SHANKAR_SINGH_vs_THE_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_BLAPL_1862_2020_NIRANJAN_MOHARANA_vs_STA",
+    "question": "What is the case NIRANJAN MOHARANA vs STATE OF ODISHA about?",
+    "expect_answer": true,
+    "expected_doc_filename": "BLAPL_1862_2020_NIRANJAN_MOHARANA_vs_STATE_OF_ODISHA.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_CRLMC_820_2009_SUKANTI_MALLICK_vs_STATE",
+    "question": "What is the case SUKANTI MALLICK vs STATE about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRLMC_820_2009_SUKANTI_MALLICK_vs_STATE.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_CRLMP_121_2020_SUMANTA_KUMAR_ROUT_vs_THE",
+    "question": "What is the case SUMANTA KUMAR ROUT vs THE STATE OF ORISSA about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRLMP_121_2020_SUMANTA_KUMAR_ROUT_vs_THE_STATE_OF_ORISSA.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_CRLREV_205_2020_CHINMAYA_PRADHAN_vs_STAT",
+    "question": "What is the case CHINMAYA PRADHAN vs STATE OF ODISHA about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRLREV_205_2020_CHINMAYA_PRADHAN_vs_STATE_OF_ODISHA.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_CRMC_9706_2001_BIPIN_KR._SAHOO_vs_BASANT",
+    "question": "What is the case BIPIN KR. SAHOO vs BASANTA KR. BISWAL about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRMC_9706_2001_BIPIN_KR._SAHOO_vs_BASANTA_KR._BISWAL.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_CRM_10691_2020_MOHAN_VISWAKARMA_vs_State",
+    "question": "What is the case MOHAN VISWAKARMA vs State of West Bengal about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRM_10691_2020_MOHAN_VISWAKARMA_vs_State_of_West_Bengal.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_CRM_1152_2019_SUBRATA_DEB_vs_State_of_We",
+    "question": "What is the case SUBRATA DEB vs State of West Bengal about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRM_1152_2019_SUBRATA_DEB_vs_State_of_West_Bengal.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_CRM_7526_2020_SAHARAJ_MONDAL_vs_State_of",
+    "question": "What is the case SAHARAJ MONDAL vs State of West Bengal about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRM_7526_2020_SAHARAJ_MONDAL_vs_State_of_West_Bengal.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_CRM_8594_2020_SOGIRUDDIN_SEKH_LALTU_SK_v",
+    "question": "What is the case SOGIRUDDIN SEKH LALTU SK vs State of West Bengal about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRM_8594_2020_SOGIRUDDIN_SEKH_LALTU_SK_vs_State_of_West_Bengal.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_CRM_9364_2020_RUPAK_MUKHERJEE_SANTANU_MU",
+    "question": "What is the case RUPAK MUKHERJEE SANTANU MUKHERJEE vs State of West Bengal about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRM_9364_2020_RUPAK_MUKHERJEE_SANTANU_MUKHERJEE_vs_State_of_West_Bengal.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_Cr.ASJ_412_2006_HARUN_BUTT_And_ANR._vs_S",
+    "question": "What is the case HARUN BUTT And ANR. vs STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "Cr.ASJ_412_2006_HARUN_BUTT_And_ANR._vs_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_Cr.ASJ_79_2006_MIHIR_KUMAR_GHOSH_vs_STAT",
+    "question": "What is the case MIHIR KUMAR GHOSH vs STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "Cr.ASJ_79_2006_MIHIR_KUMAR_GHOSH_vs_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_Cr.M.P._1133_2020_AJAY_BAHADUR_SINGH_vs_",
+    "question": "What is the case AJAY BAHADUR SINGH vs THE UNION OF INDIA THROUGH CENTRAL BUREAU OF INV about?",
+    "expect_answer": true,
+    "expected_doc_filename": "Cr.M.P._1133_2020_AJAY_BAHADUR_SINGH_vs_THE_UNION_OF_INDIA_THROUGH_CENTRAL_BUREAU_OF_INV.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_Cr.M.P._1267_2020_SUDHIR_KUMAR_vs_THE_ST",
+    "question": "What is the case SUDHIR KUMAR vs THE STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "Cr.M.P._1267_2020_SUDHIR_KUMAR_vs_THE_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_FAO_293_2019_ANURAG_KHOONTE_vs_UNION_OF_",
+    "question": "What is the case ANURAG KHOONTE vs UNION OF INDIA about?",
+    "expect_answer": true,
+    "expected_doc_filename": "FAO_293_2019_ANURAG_KHOONTE_vs_UNION_OF_INDIA.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_MACA_80_2020_M_-_S._IFFCO_TOKIO_G.I.CO._",
+    "question": "What is the case M - S. IFFCO TOKIO G.I.CO. LTD. vs SWARNAPRABHA LENKA about?",
+    "expect_answer": true,
+    "expected_doc_filename": "MACA_80_2020_M_-_S._IFFCO_TOKIO_G.I.CO._LTD._vs_SWARNAPRABHA_LENKA.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_T_3_2020_DR_SARMILA_CHANDRA_vs_THE_KOLKA",
+    "question": "What is the case DR SARMILA CHANDRA vs THE KOLKATA MUNICIPAL CORPORATION AND ORS about?",
+    "expect_answer": true,
+    "expected_doc_filename": "T_3_2020_DR_SARMILA_CHANDRA_vs_THE_KOLKATA_MUNICIPAL_CORPORATION_AND_ORS.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_W.P.Cr._13_2020_PURNIMA_KUMARI_vs_THE_ST",
+    "question": "What is the case PURNIMA KUMARI vs THE STATE OF JHARKHAND about?",
+    "expect_answer": true,
+    "expected_doc_filename": "W.P.Cr._13_2020_PURNIMA_KUMARI_vs_THE_STATE_OF_JHARKHAND.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_WPA_10672_2020_MAMATA_ROY_vs_STATE_OF_WE",
+    "question": "What is the case MAMATA ROY vs STATE OF WEST BENGAL AND ORS about?",
+    "expect_answer": true,
+    "expected_doc_filename": "WPA_10672_2020_MAMATA_ROY_vs_STATE_OF_WEST_BENGAL_AND_ORS.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_case_WPA_310_2020_PARITOSH_CHANDRA_CHAKLADER_",
+    "question": "What is the case PARITOSH CHANDRA CHAKLADER vs THE STATE OF WEST BENGAL AND ORS about?",
+    "expect_answer": true,
+    "expected_doc_filename": "WPA_310_2020_PARITOSH_CHANDRA_CHAKLADER_vs_THE_STATE_OF_WEST_BENGAL_AND_ORS.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "ho_adv_capital_japan",
+    "question": "What is the capital city of Japan?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "ho_adv_ecb_rate",
+    "question": "What is the European Central Bank's current base interest rate?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "ho_adv_recipe_pasta",
+    "question": "What ingredients do I need to make carbonara?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "ho_adv_weather_tokyo",
+    "question": "Will it rain in Tokyo next week?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "ho_adv_philosophy",
+    "question": "What did Aristotle believe about virtue ethics?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "ho_adv_canada_law",
+    "question": "What does the Canadian Charter of Rights and Freedoms guarantee?",
+    "expect_answer": false,
+    "type": "adjacent_wrong_jurisdiction"
+  },
+  {
+    "id": "ho_adv_hipaa",
+    "question": "What are the requirements for HIPAA compliance in the US healthcare system?",
+    "expect_answer": false,
+    "type": "adjacent_wrong_topic"
+  },
+  {
+    "id": "ho_adv_stock",
+    "question": "What is the current share price of Apple Inc.?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "ho_adv_nonsense2",
+    "question": "Seventeen singing bicycles orbited the moon on a Tuesday.",
+    "expect_answer": false,
+    "type": "nonsense"
+  },
+  {
+    "id": "ho_adv_math2",
+    "question": "What is 17 multiplied by 23?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "ho_adv_medical2",
+    "question": "What is the standard adult dosage for paracetamol?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "ho_adv_fake_regulation2",
+    "question": "What does the Lunar Settlement Taxation Regulations 2087 provide for?",
+    "expect_answer": false,
+    "type": "plausible_but_fake"
+  },
+  {
+    "id": "ho_adv_fake_case2",
+    "question": "What was decided in Brown vs Wilson concerning trademark infringement in New York?",
+    "expect_answer": false,
+    "type": "plausible_but_fake"
+  },
+  {
+    "id": "ho_adv_olympics",
+    "question": "Which city will host the next Winter Olympics?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "ho_adv_coding",
+    "question": "How do I reverse a linked list in JavaScript?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  }
+]

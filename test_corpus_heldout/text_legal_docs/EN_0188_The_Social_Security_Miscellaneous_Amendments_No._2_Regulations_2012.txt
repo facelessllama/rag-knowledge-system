@@ -1,0 +1,91 @@
+The Social Security (Miscellaneous Amendments) (No. 2) Regulations 2012
+In accordance with section 173(1)(b) of the Social Security Administration Act 1992 , the Secretary of State has obtained the agreement of the Social Security Advisory Committee that proposals in respect of these Regulations should not be referred to it.
+Citation and commencement
+1
+1
+These Regulations may be cited as the Social Security (Miscellaneous Amendments) (No. 2) Regulations 2012.
+2
+They come into force on 5th November 2012.
+Amendment of the Income Support (General) Regulations 1987
+2
+1
+The Income Support (General) Regulations 1987 are amended as follows.
+2
+In regulation 2(1) (interpretation), after the definition of “the Contributions and Benefits Act”, insert —
+“the Contributions Regulations ” means the Social Security (Contributions) Regulations 2001 ;
+.
+3
+In regulation 29 (calculation of earnings derived from employed earner’s employment and income other than earnings) , after paragraph (2B), insert —
+2C
+Earnings derived by a claimant as a member of any territorial or reserve force prescribed in Part 1 of Schedule 6 to the Contributions Regulations in respect of a period of annual continuous training for a maximum of 15 days in any calendar year, whether paid to the claimant alone or together with other earnings derived from the same source, are to be taken into account —
+a
+in the case of a period of training exceeding 14 days, over a period of 14 days, or
+b
+in any other case, over a period which is equal to the duration of the training period.
+2D
+The period over which earnings to which paragraph (2C) applies are to be taken into account shall begin on the date on which the payment is treated as paid under regulation 31.
+.
+4
+In Schedule 8 (sums to be disregarded in the calculation of earnings) for paragraph 15A , substitute —
+15A
+1
+Where earnings to which sub-paragraph (2) applies (in aggregate with the claimant’s other income (if any) calculated in accordance with this Part) exceed the applicable amount (as specified in Part IV and Schedule 2) less 10 pence, the amount of those earnings corresponding to that excess.
+2
+This sub-paragraph applies to earnings, in so far as they exceed the amount disregarded under paragraph 7, derived by the claimant from employment as a member of any territorial or reserve force prescribed in Part 1 of Schedule 6 to the Contributions Regulations in respect of a period of annual continuous training for a maximum of 15 days in any calendar year.
+.
+Amendment of the Jobseeker’s Allowance Regulations 1996
+3
+1
+The Jobseeker’s Allowance Regulations 1996 are amended as follows.
+2
+In regulation 50 (persons temporarily absent from Great Britain), after paragraph (6C) , insert —
+6D
+For the purposes of the Act, a person (“P”) shall be treated as being in Great Britain during any period of temporary absence from Great Britain not exceeding 15 days where —
+a
+P’s absence is for the purpose of taking part in annual continuous training as a member of any territorial or reserve force prescribed in Part 1 of Schedule 6 to the Contributions Regulations; and
+b
+P or P’s partner was entitled to a jobseeker’s allowance immediately before the period of absence began.
+.
+3
+In regulation 72 (good reason for the purposes of section 19(2)(c) and (d) and 19A(2)(c)) , for paragraphs (a) and (b) (and the preceding “ — ”), substitute “one hour and thirty minutes either way,”.
+4
+Regulation 74A (person in receipt of a training allowance) is revoked.
+5
+In regulation 94(2C)(a) (calculation of earnings derived from employed earner’s employment and income other than earnings) , omit “or which is equal to the duration of the training period,”.
+Amendment of the Social Security and Child Support (Decisions and Appeals) Regulations 1999
+4
+1
+The Social Security and Child Support (Decisions and Appeals) Regulations 1999 are amended as follows.
+2
+In regulation 3 (revision of decisions) , after paragraph (6A), insert —
+6B
+A decision of the Secretary of State under section 8 or 10 awarding a jobseeker’s allowance may be revised where the Secretary of State makes a decision under regulation 69B (the period of a reduction under section 19B: claimants ceasing to be available for employment etc. ) of the Jobseeker’s Allowance Regulations (“the JSA Regulations ”) that the amount of the award is to be reduced in accordance with regulations 69B and 70 of the JSA Regulations.
+.
+Amendment of the Employment and Support Allowance Regulations 2008
+5
+1
+The Employment and Support Allowance Regulations 2008 are amended as follows.
+2
+In regulation 91 (calculation of earnings derived from employed earner’s employment and income other than earnings), after paragraph (4), insert —
+4A
+Earnings derived by a claimant’s partner as a member of any territorial or reserve force prescribed in Part 1 of Schedule 6 to the Social Security (Contributions) Regulations 2001 in respect of a period of annual continuous training for a maximum of 15 days in any calendar year, whether paid to the claimant’s partner alone or together with other earnings derived from the same source, are to be taken into account —
+a
+in the case of a period of training exceeding 14 days, over a period of 14 days, or
+b
+in any other case, over a period which is equal to the duration of the training period.
+4B
+The period over which earnings to which paragraph (4A) applies are to be taken into account shall begin on the date on which the payment is treated as paid under regulation 93.
+.
+3
+In Schedule 7 (sums to be disregarded in the calculation of earnings) , after paragraph 11, insert —
+11A
+1
+In the case of an income-related employment and support allowance, where earnings to which sub-paragraph (2) applies (in aggregate with the claimant’s other income (if any) calculated in accordance with this Part) exceed the applicable amount (calculated as specified in section 4(2) and (3) of the Act) less 10 pence, the amount of those earnings corresponding to that excess.
+2
+This sub-paragraph applies to earnings, in so far as they exceed the amount disregarded under paragraph 7, derived by the claimant’s partner from employment as a member of any territorial or reserve force prescribed in Part 1 of Schedule 6 to the Social Security (Contributions) Regulations 2001 in respect of annual continuous training for a maximum period of 15 days in any calendar year.
+.
+Signed by authority of the Secretary of State for Work and Pensions
+Freud
+Parliamentary Under-Secretary of State
+Department for Work and Pensions
+11th October 2012

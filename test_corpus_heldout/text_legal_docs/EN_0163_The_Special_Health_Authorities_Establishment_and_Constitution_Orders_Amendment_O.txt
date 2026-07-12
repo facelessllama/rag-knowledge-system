@@ -1,0 +1,90 @@
+The Special Health Authorities (Establishment and Constitution Orders) Amendment Order 2012
+In accordance with section 28(7) of that Act, the Secretary of State has consulted such bodies as the Secretary of State recognises as representing officers who in the Secretary of State’s opinion are likely to be transferred or affected by transfers in pursuance of this Order.
+Citation, commencement, and interpretation
+1
+1
+This Order may be cited as the Special Health Authorities (Establishment and Constitution Orders) Amendment Order 2012 and comes into force on 1st April 2012.
+2
+In this Order —
+“ NPSA Order ” means the National Patient Safety Agency (Establishment and Constitution) Order 2001 ;
+“ NICE Order ” means the National Institute for Clinical Excellence (Establishment and Constitution) Order 1999 .
+Amendment of article 3 of the NPSA Order
+2
+In article 3 of the NPSA Order (functions of the Agency), omit paragraph (b).
+Amendment of article 1 of the NICE Order
+3
+In article 1 of the NICE Order (citation, commencement and interpretation), for paragraph (2) substitute —
+2
+In this Order —
+“Agency” means the National Patient Safety Agency established by the National Patient Safety Agency (Establishment and Constitution) Order 2001 ;
+“Institute” means the National Institute for Health and Clinical Excellence established by this Order;
+“transfer date” means 1st April 2012.
+.
+Transfer of officers, property and liabilities and enforceability of rights
+4
+After article 6 of the NICE Order (admission to meetings), insert —
+Transfer of officers from the Agency to the Institute
+7
+1
+This paragraph applies in relation to any person who —
+a
+immediately before the transfer date is employed by the Agency and is engaged wholly or mainly in performing functions in connection with the assessment of the performance of doctors, dentists or pharmacists engaged in the health service; and
+b
+has been notified in writing by the Agency by 31st March 2012 that they are to be transferred to the Institute.
+2
+Any person to whom paragraph (1) applies is, on the transfer date, to be transferred to the employment of the Institute.
+3
+The contract of employment of a person whose employment has transferred to the Institute under paragraph (2) —
+a
+is not terminated by the transfer; and
+b
+has effect from the transfer date as if originally made between that person and the Institute.
+4
+Without prejudice to paragraph (3) —
+a
+all the rights, powers, duties and liabilities of the Agency, under or in connection with its contract of employment with a person transferred under paragraph (2), are to transfer to the Institute on the transfer date; and
+b
+any act or omission before the transfer date of or in relation to the Agency, in respect of that person or that person’s contract of employment, is deemed to have been an act or omission of or in relation to the Institute.
+5
+Paragraphs (2) to (4) do not operate to transfer the contract of employment of a person to whom paragraph (1) applies, or any rights, powers, duties and liabilities under, or in connection with, that contract, if, before the transfer date, that person informs the Agency or the Institute that they object to becoming employed by the Institute.
+6
+Where a person to whom paragraph (1) applies has objected to the transfer of that person’s contract of employment as described in paragraph (5), the transfer operates so as to terminate that person’s contract of employment with the Agency.
+7
+A person whose contract of employment is terminated in accordance with paragraph (6) is not to be treated, for any purpose, as having been dismissed by the Agency.
+8
+This article is without prejudice to any right of a person whose employment is or would have been transferred to the Institute to terminate that person’s contract of employment if the transfer involved or would have involved a substantial change in working conditions to the material detriment of that person.
+Enforceability of rights and transfer of property and liabilities from the Agency to the Institute
+8
+1
+The property of the Agency identified as property to transfer to the Institute in the document entitled “The National Patient Safety Agency Property Schedule 2012 ” and signed on behalf of the Agency on 9th February 2012, and on behalf of the Institute on 8th February 2012, is to be transferred to the Institute on the transfer date.
+2
+All liabilities of the Agency relating to the property referred to in paragraph (1) are to be transferred to the Institute on the transfer date.
+3
+Any right relating to the property of the Agency referred to in paragraph (1) that was immediately before the transfer date enforceable by or against the Agency is, on or after the transfer date, to be enforceable by or against the Institute.
+.
+Consequential amendment of regulations
+5
+The amendments to Regulations contained in the Schedule have effect.
+Signed by the authority of the Secretary of State for Health.
+Earl Howe
+Parliamentary Under-Secretary of State,
+Department of Health
+22nd February 2012
+SCHEDULE
+Amendments consequential on changes in the functions of the National Patient Safety Agency
+Article 5
+Medical Profession (Responsible Officers) Regulations 2010
+1
+In regulation 18(b) (duty to have regard to guidance) of the Medical Profession (Responsible Officers) Regulations 2010 , for “National Clinical Assessment Service division of the National Patient Safety Agency” substitute “National Clinical Assessment Service division of the National Institute for Health and Clinical Excellence”.
+National Health Service (Performers Lists) Regulations 2004
+2
+1
+The National Health Service (Performers Lists) Regulations 2004 are amended as follows.
+2
+In regulation 2(1) (interpretation), after the definition of “the NHS Counter Fraud and Security Management Service”, insert —
+“the NICE ” means the National Institute for Health and Clinical Excellence established by the National Institute for Clinical Excellence (Establishment and Constitution) Order 1999;
+.
+3
+In regulation 11(6)(e) (criteria for a decision on removal) for “or thereafter by the NPSA ” substitute “, by the NPSA between 1st April 2005 and 31st March 2012 inclusive, or thereafter by the NICE”.
+4
+In regulations 4(3)(d) (application for inclusion in a performers list), 16(2)(g) (notification) and 20(1)(f) (disclosure of information) for “NPSA” substitute “NICE”.

@@ -1,0 +1,86 @@
+The Marine and Coastal Access Act 2009 (Transitional Provisions) Order 2012
+Citation, commencement and interpretation
+1
+1
+This Order may be cited as the Marine and Coastal Access Act 2009 (Transitional Provisions) Order 2012.
+2
+This Order comes into force on 6th April 2012.
+3
+In this Order —
+“the 2009 Act” means the Marine and Coastal Access Act 2009;
+“dredging operation” means an operation which falls within item 9 in section 66(1) of the 2009 Act”; and
+“an excepted dredging operation” is a dredging operation in respect of which the appropriate licensing authority is —
+the Welsh Ministers by virtue of section 113(4) of the 2009 Act; or
+the Department of the Environment in Northern Ireland by virtue of section 113(6) of the 2009 Act.
+Transitional provision relating to dredging operations
+2
+Paragraph 9 of Schedule 9 (licensing: transitional provision relating to Part 4) to the 2009 Act has effect, other than in relation to an excepted dredging operation, as if for sub-paragraph (4) there were substituted —
+4
+The “relevant transitional period” —
+a
+is, in the case of any person —
+i
+in the case of any dredging operation falling within sub-paragraph (5), (6) or (8), one year beginning with the commencement date, and
+ii
+in the case of any other dredging operation, three years beginning with that date, but
+b
+if a marine licence which authorises the carrying on of the dredging operation by the person comes into force (or has come into force) at any time before the end of the period in question, the transitional period ends with the coming into force of that licence.
+5
+A dredging operation falls within this sub-paragraph if it is a project —
+a
+which —
+i
+is not directly connected with or necessary to the management of a European site, and
+ii
+ii)is likely (either alone or in combination with other plans or projects) to have a significant effect on a European site, and
+b
+in respect of which no relevant assessment has been, is being, or is to be undertaken by the appropriate licensing authority or any other authority under any enactment for the purposes of the consideration by that authority of any application for its consent.
+6
+A dredging operation falls within this sub-paragraph if —
+a
+it is to be carried out —
+i
+in the course of an Annex I project, or
+ii
+in the course of an Annex II project which is likely, because of its size, nature or location, to have significant effects on the environment, and
+b
+the project in question is one in respect of which no relevant assessment has been, is being, or is to be undertaken by —
+i
+the appropriate licensing authority ;
+ii
+an authority to whom the functions of the appropriate licensing authority have been delegated ; or
+iii
+any other authority under any enactment for the purposes of the consideration by such authority of any application for its consent.
+7
+A dredging operation is not to be taken to be an operation of a kind falling within sub-paragraph (6) if a person carrying on that operation has obtained a screening opinion from the appropriate authority under regulation 11 of the Marine Works Regulations and paragraph (5) of that regulation (screening opinion that an environmental impact assessment is not required in relation to the activity) applies.
+8
+A dredging operation falls within this sub-paragraph if it is an operation which has or is likely to have the effect, in relation to any body of water, of —
+a
+preventing the achievement of any of the environmental objectives listed in the relevant river basin management plan as applicable in relation to that body of water; or
+b
+causing environmental damage.
+9
+A person who proposes to carry out a dredging operation may request an opinion from the appropriate licensing authority, or (as the case may be) the authority to whom the functions of the appropriate licensing authority have been delegated, as to whether any dredging operation falls within sub-paragraph (5), (6) or (8), and that authority must provide such an opinion as soon as practicable.
+10
+In this paragraph —
+“appropriate authority” has the meaning given by regulation 2(1) of the Marine Works Regulations ;
+“Annex I project” means a project of a type specified in Annex I to the EIA Directive;
+“Annex II project” means a project of a type specified in Annex II to the EIA Directive;
+“the EIA Directive” means Directive 2011/92/EU of the European Parliament and of the Council on the assessment of the effects of certain public and private projects on the environment ;
+“body of water” means a body of groundwater or surface water, and for this purpose, “groundwater” and “surface water” have the meaning given by Article 2 of the Water Framework Directive;
+“environmental damage” means damage of a kind falling within regulation 4(1)(b) of the Environmental Damage (Prevention and Remediation) Regulations 2009 ;
+“a European site” means —
+a European site within the meaning of regulation 8(1) of the Conservation of Habitats and Species Regulations 2010 ;
+a European offshore marine site within the meaning of regulation 15 of the Offshore Marine Conservation (Natural Habitats, &c.) Regulations 2007 ;
+“the Marine Works Regulations” means the Marine Works (Environmental Impact Assessment) Regulations 2007 ;
+“relevant assessment” means —
+in relation to a project falling within sub-paragraph (5), an appropriate assessment within the meaning of Article 6.3 of Council Directive 92/43/EEC on the conservation of natural habitats and of wild fauna and flora ;
+in relation to a project falling within sub-paragraph (6), an assessment of the effects of that project on the environment in accordance with Article 2 of the EIA Directive;
+“the relevant river basin management plan”, in relation to a body of water, means the river basin management plan making provision in relation to that body of water;
+“river basin management plan” means a river basin management plan within the meaning of Article 13 of the Water Framework Directive which is prepared pursuant to any enactment giving effect to that Article; and
+“the Water Framework Directive” means Directive 2000/60/EC of the European Parliament and of the Council establishing a framework for Community action in the field of water policy .
+.
+Richard Benyon
+Parliamentary Under Secretary of State
+Department for Environment, Food and Rural Affairs
+3rd March 2012

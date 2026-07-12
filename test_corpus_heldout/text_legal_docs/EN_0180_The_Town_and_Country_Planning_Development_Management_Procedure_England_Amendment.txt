@@ -1,0 +1,155 @@
+The Town and Country Planning (Development Management Procedure) (England) (Amendment) Order 2012
+The Secretary of State, in exercise of the powers conferred by sections 59, 69, 74(1)(c) and 188 of and paragraph 1 of Schedule 4A to the Town and Country Planning Act 1990 , makes the following Order:
+Citation, commencement and application
+1
+1
+This Order may be cited as the Town and Country Planning (Development Management Procedure) (England) (Amendment) Order 2012 and shall come into force on 6th April 2012.
+2
+This Order applies in relation to England only.
+Amendment of the Town and Country Planning (Development Management Procedure) (England) Order 2010
+2
+1
+The Town and Country Planning (Development Management Procedure) (England) Order 2010 is amended in accordance with the following articles.
+Amendment relating to consultees
+3
+1
+In article 34 (local development orders) delete paragraph (3)(h).
+2
+In Schedule 5 (consultations before the grant of permission) —
+a
+in paragraph (x) of the Table for “The Secretary of State for the Environment, Food and Rural Affairs” substitute “Natural England”;
+b
+delete paragraph (zd) of the Table; and
+c
+in paragraph 1 after the Table (interpretation of Table) delete sub-paragraph (m).
+Amendments relating to register of neighbourhood development orders
+4
+After article 37 (register of local development orders) insert —
+Register of neighbourhood development orders
+37A
+1
+The register kept by each local planning register authority under article 36 shall include as Part 4 a Part with 2 sections relating to neighbourhood development orders.
+2
+The first (“Section 1”) shall contain copies of draft neighbourhood development orders which have been submitted to the authority by a qualifying body and not finally disposed of, and such of the following as have been submitted with each order —
+a
+a copy of any plan or statement identifying the land to which the proposal relates;
+b
+copies of any other accompanying plans or drawings;
+c
+copies of any planning obligation or section 278 agreement entered into, or proposed to be entered into, in connection with any planning permission proposed to be granted by the draft neighbourhood development order; and
+d
+in the case of a draft community right to build order, details of any enfranchisement rights which the qualifying body proposes are not exercisable, and the properties, or types of properties, in relation to which those rights are not exercisable.
+3
+For the purposes of paragraph (2), a draft neighbourhood development order shall not be treated as finally disposed of unless —
+a
+the proposal for the order has been withdrawn before the authority have made a decision under paragraph 12 of Schedule 4B (consideration by authority of recommendations made by examiner etc ) or paragraph 10 of Schedule 4C (examination of proposals for community right to build orders etc) to the 1990 Act ;
+b
+the authority have refused the proposal for the order in accordance with paragraph 6(4) of Schedule 4B to the 1990 Act (consideration of proposals by authority);
+c
+the order has not been made following a referendum because a majority of persons voting have not voted in favour of it, or as a result of a decision made under section 61E(5) or (8) of the 1990 Act (neighbourhood development orders) ; or
+d
+the order has been made (with or without modifications).
+4
+The second (“Section 2”) shall contain copies of neighbourhood development orders which have been made by the authority, and with respect to each order —
+a
+a copy of any accompanying plan or statement identifying the land to which the order relates;
+b
+copies of any other accompanying plans or drawings;
+c
+if the order is revoked, particulars of the revocation, including the date on which the revocation took effect;
+d
+the date on which any subsequent approval is given which the order specifies is required;
+e
+a copy of any planning obligation or section 278 agreement entered into in connection with any planning permission granted by the order; and
+f
+in the case of a community right to build order, details of any enfranchisement rights which are not exercisable and the properties, or types of properties, in relation to which those rights are not exercisable.
+5
+A reference in this article to a copy includes a reference to a copy in photographic or electronic form.
+Amendments relating to register of enforcement and stop notices and other enforcement action
+5
+For article 38, substitute —
+Register of enforcement and stop notices and other enforcement action
+38
+1
+Subject to paragraphs (2) and (3), the register under section 188 of the 1990 Act (register of enforcement and stop notices and other enforcement action) shall contain the following information with respect to every planning enforcement order made in relation to land in the area of the authority maintaining the register —
+a
+the address of the land to which the order relates or a plan by reference to which its situation can be ascertained;
+b
+the name of the applying authority;
+c
+the name of the court that made the order;
+d
+the date on which the court’s decision to make the order was given;
+e
+the day which marks the beginning of the enforcement year for the order;
+f
+the day which marks the end of that year;
+g
+information on any postponement of the day which marks the beginning of the enforcement year for the order by reason of section 171BA(4) of the 1990 Act (time limits in cases involving concealment) and the date of the final determination or withdrawal of any application;
+h
+the apparent breach of planning control identified in the order; and
+i
+in relation to any enforcement notice issued or breach of condition notice served in respect of that breach, details of where in the register the information specified in paragraphs (2) and (3) in relation to that notice is to be found.
+2
+The register shall also contain the following information with respect to every enforcement notice issued in relation to land in the area of the authority maintaining the register —
+a
+the address of the land to which the notice relates or a plan by reference to which its situation can be ascertained;
+b
+the name of the issuing authority;
+c
+the date of issue of the notice;
+d
+the date of service of copies of the notice;
+e
+a statement or summary of the breach of planning control alleged and the requirements of the notice, including the period within which any required steps are to be taken;
+f
+the date specified in the notice as the date on which it is to take effect;
+g
+information on any postponement of the date specified as the date on which the notice will take effect by reason of section 175(4) of the 1990 Act (appeals: supplementary provisions) and the date of the final determination or withdrawal of any appeal;
+h
+the date of service and, if applicable, of withdrawal of any stop notice referring to the enforcement notice, together with a statement or summary of the activity prohibited by any such stop notice; and
+i
+the date, if any, on which the local planning authority are satisfied that steps required by the notice for a purpose mentioned in section 173(4)(b) of the 1990 Act (contents and effect of notice: remedying any injury to amenity) have been taken.
+3
+The register shall also contain the following information with respect to every breach of condition notice served in relation to land in the area of the authority maintaining the register —
+a
+the address of the land to which the notice relates or a plan by reference to which its situation can be ascertained;
+b
+the name of the serving authority;
+c
+the date of service of the notice;
+d
+details of the relevant planning permission sufficient to enable it to be identified; and
+e
+a statement or summary of the condition which has not been complied with and the requirements of the notice, including the period allowed for compliance.
+4
+All entries relating to a planning enforcement order, enforcement notice, stop notice or breach of condition notice shall be removed from the register if —
+a
+in the case of a planning enforcement order —
+i
+the order is rescinded; or
+ii
+the enforcement year for the order expires without enforcement action having been taken during that year;
+b
+in the case of an enforcement notice or stop notice, the relevant enforcement notice is quashed by the Secretary of State or is withdrawn; and
+c
+in the case of a breach of condition notice, the notice is quashed by a court or is withdrawn.
+5
+Every register shall include an index for enabling a person to trace any entry in the register by reference to the address of the land to which the notice relates.
+6
+Paragraph (7) applies where a magistrates’ court make a planning enforcement order on the application of a county planning authority or a county planning authority issue an enforcement notice or serve a stop notice or a breach of condition notice.
+7
+The county planning authority shall —
+a
+supply the information specified in paragraph (1), (2) or (3), as the case may be, in relation to the order or notice to the district planning authority (if any) in whose area the land to which the order or notice relates is situated; and
+b
+inform that authority if the order is rescinded or expires without enforcement action having been taken during the enforcement year for that order or the relevant enforcement notice or breach of condition notice is withdrawn or quashed.
+8
+The information prescribed in paragraphs (1), (2) and (3) shall be entered in the register as soon as practicable and in any event within 14 days of the occurrence to which it relates, and information shall be so supplied under paragraph (7) that entries may be made within that period of 14 days.
+9
+The register shall either be kept at the principal office of the local planning register authority or that part of the register which relates to land in part of that authority’s area shall be kept at a place within or convenient to that part.
+Signed by authority of the Secretary of State for Communities and Local Government
+Greg Clark
+Minister of State
+Department for Communities and Local Government
+1st March 2012

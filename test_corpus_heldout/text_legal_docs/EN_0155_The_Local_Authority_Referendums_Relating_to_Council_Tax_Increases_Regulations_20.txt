@@ -1,0 +1,271 @@
+The Local Authority (Referendums Relating to Council Tax Increases) Regulations 2012
+The Secretary of State, in exercise of the powers conferred by sections 31(6), 52ZK(8), 52ZM(4), 52ZN(8) and 52ZX(5), (7) and (8) and 113(1) of the Local Government Finance Act 1992 and section 235(2) and 236(1) of the Localism Act 2011 , makes the following Regulations:
+PART 1 General
+Citation, commencement, application and interpretation
+1
+1
+These Regulations —
+a
+may be cited as the Local Authority (Referendums Relating to Council Tax Increases) Regulations 2012, and
+b
+come into force on 16th March 2012.
+2
+These Regulations apply in relation to England only.
+3
+In these Regulations, “ the Act ” means the Local Government Finance Act 1992.
+Consequential amendments
+2
+The Schedule (amendments consequential and to give full effect to Chapter 1 of Part 4 of the Localism Act 2011) to these Regulations has effect.
+PART 2 Major precepting authorities
+Major precepting authority’s duty to notify appropriate billing authorities
+3
+For the purposes of section 52ZK(8) of the Act (major precepting authority’s duty to notify appropriate billing authorities), the date prescribed as the date by which a major precepting authority must make a notification under section 52ZK(1) of the Act is —
+a
+in relation to the financial year beginning on 1st April 2012, 17th March in the financial year preceding that year; and
+b
+in relation to any financial year beginning on or after 1st April 2013, 8th March in the financial year preceding that year.
+Expenses incurred by a billing authority
+4
+1
+This regulation applies in relation to a financial year if —
+a
+by the date prescribed by regulation 3 a major precepting authority has notified each appropriate billing authority under section 52ZK of the Act in relation to that year, and
+b
+one or more of those billing authorities fails to hold a referendum in relation to the major precepting authority’s relevant basic amount of council tax for that year in accordance with section 52ZN (arrangements for a referendum) of the Act.
+2
+In relation to the precept mentioned in section 52ZK(2) of the Act, sections 31(5) (substituted amounts) and 52ZN(7) of the Act do not apply to a defaulting authority.
+3
+In relation to the precept mentioned in section 52ZK(2) of the Act, section 31(5) of the Act applies in relation to a complying authority with the following modifications —
+a
+if there is only one defaulting authority, for “the major precepting authority” substitute “the defaulting authority”; or
+b
+if there is more than one defaulting authority, for “the major precepting authority” substitute “each defaulting authority an equal proportion of the”.
+4
+In relation to the precept mentioned in section 52ZK(2) of the Act, section 52ZN(7) of the Act applies in relation to a complying authority with the following modifications —
+a
+if there is only one defaulting authority, for “the precepting authority” substitute “the defaulting authority”; or
+b
+if there is more than one defaulting authority, for the words from “from” to the end substitute “an equal proportion of the expenses incurred by it in connection with the referendum from each defaulting authority.”.
+5
+In this regulation —
+“complying authority” means an appropriate billing authority mentioned in paragraph (1)(a) which is not a defaulting authority, and
+“defaulting authority” means an appropriate billing authority to which paragraph (1)(b) applies.
+PART 3 Local precepting authorities
+Local precepting authority’s duty to notify appropriate billing authority
+5
+For the purposes of section 52ZM(4) (local precepting authority’s duty to notify appropriate billing authority) of the Act, the date prescribed as the date by which a local precepting authority must make a notification under section 52ZM(1) of the Act is —
+a
+in relation to the financial year beginning on 1st April 2012, 17th March in the financial year preceding that year; and
+b
+in relation to any financial year beginning on or after 1st April 2013, 8th March in the financial year preceding that year.
+Expenses incurred by a billing authority
+6
+1
+This regulation applies in relation to a financial year if —
+a
+by the date prescribed by regulation 5 a local precepting authority has notified its appropriate billing authority under section 52ZM of the Act in relation to that year, and
+b
+the billing authority fails to hold a referendum in relation to the local precepting authority’s relevant basic amount of council tax for that year in accordance with section 52ZN (arrangements for a referendum) of the Act.
+2
+Sections 31(4A) and 52ZN(7) of the Act do not apply in relation to the billing authority mentioned in paragraph (1)(b).
+Signed by authority of the Secretary of State for Communities and Local Government
+Bob Neill
+Parliamentary Under Secretary of State
+Department for Communities and Local Government
+21st February 2012
+SCHEDULE
+Amendments consequential and to give full effect to Chapter 1 of Part 5 of the Localism Act 2011
+Regulation 2
+The Local Authorities (Calculation of Council Tax Base) Regulations 1992
+Regulation 2
+1
+In regulation 2 (application of rules), for “33(1) and 44(1)” substitute “31B(1) , 42B(1) , and 52ZX(5)”.
+Regulation 3
+2
+In regulation 3(1) (calculation of billing authority’s council tax base), for “33(1)” substitute “31B(1)”.
+Regulation 6
+3
+In regulation 6 (calculation of billing authority’s council tax base for a part of its area) —
+a
+in paragraph (1) —
+i
+after “34(3)” insert “and item T in section 52ZX(5)”, and
+ii
+in the definition of item N, for “33(1)” substitute “31B(1)”,
+b
+in paragraph (2)(b), for “33(1)” substitute “31B(1)”, and
+c
+in paragraph (2)(d)(ii), after each occurrence of “34(3)” insert “and item T in section 52ZX(5)”.
+Regulation 7
+4
+In regulation 7 (calculation of council tax base for the purposes of a major precepting authority) —
+a
+in paragraph (1) —
+i
+before “33(1)” insert “31B(1) or”, and
+ii
+before “44(1)” insert “42B(1) or”, and
+b
+in paragraph (2), before “44(1)” insert “42B(1) or”.
+Regulation 8
+5
+In regulation 8 (prescribed period) —
+a
+in paragraph (1) —
+i
+for “33(1) and 44(1)” substitute “31B(1), 42B(1), and 52ZX(5)”, and
+ii
+for “(2) and (3)” substitute “(2) to (4)”, and
+b
+after paragraph (3), insert —
+4
+In respect of the financial year beginning on 1st April 2012, the prescribed period for the purposes of item T in section 52ZX(5) is the period beginning on 1st April 2012 and ending on 31st May 2012.
+Regulation 9
+6
+In regulation 9(1) (determination of billing authority’s council tax base), for “33(1)” substitute “31B(1)”.
+Regulation 10
+7
+In regulation 10 (determination of council tax base for the purposes of a major precepting authority) —
+a
+in paragraph (1), for “44(1)” substitute “42B(1)”, and
+b
+in paragraph (4), for “33(1)” substitute “31B(1)”.
+New regulation 10A
+8
+After regulation 10 insert —
+Determination of council tax base for the purposes of a local precepting authority
+10A
+1
+Item T in section 52ZX(5) shall, in a case where a billing authority fails to notify its calculation for a financial year to the local precepting authority concerned within the period prescribed in regulation 8, be determined by the local precepting authority in the following manner.
+2
+Item T shall be determined in accordance with the rules contained in regulation 6 on the basis of all the information available to the local precepting authority but, for this purpose, the relevant day in respect of a financial year is the day on which the authority calculates the relevant amount for the year for the purposes of the determination.
+3
+The local precepting authority shall, in particular, have regard to any amount calculated for the preceding financial year by the billing authority —
+a
+as item TP in section 34(3) for the part of its area falling within the local precepting authority’s area, or
+b
+as item T in section 52ZX(5).
+The Transport Levying Bodies Regulations 1992
+Regulation 12
+9
+In regulation 12 (anticipation of levies: billing authorities), for each occurrence of “32” substitute “31A” .
+Regulation 13
+10
+In regulation 13 (anticipation of levies: county councils), for each occurrence of “43” substitute “42A” .
+The Levying Bodies (General) Regulations 1992
+Regulation 11
+11
+In regulation 11 (anticipation of levies), in paragraph (2) —
+a
+for “32” substitute “31A”, and
+b
+for “43” substitute “42A”.
+The National Park Authorities (Levies) (England) Regulations 1996
+Regulation 9
+12
+In regulation 9 (anticipation of levies), in paragraph (3), for “that section 32 or 43” substitute “section 31A or 42A of the 1992 Act (calculation of council tax requirement by authorities in England)”.
+The Charter Trustees Regulations 1996
+Regulation 13
+13
+In regulation 13 (precepts) —
+a
+in paragraph (2), in the text substituted for section 41(3) of the Local Government Finance Act 1992, for each occurrence of “32” substitute “31A”,
+b
+in paragraph (3)(a) —
+i
+for “32” substitute “31A”,
+ii
+for “budget” substitute “council tax”, and
+iii
+after “(6)” insert “(b)”,
+c
+in paragraph (4), for “32” substitute “31A”, and
+d
+in paragraph (5) —
+i
+for “50” substitute “49A”,
+ii
+for each occurrence of “budget” substitute “council tax”, and
+iii
+for “local precepting authorities” substitute “authorities in England”.
+The Local Authorities (Standing Orders) (England) Regulations 2001
+Schedule 2
+14
+1
+In Part 1 (authority with mayor and cabinet executive or mayor and council manager executive) —
+a
+in paragraph 8(a) —
+i
+for “32 to 37” substitute “31A, 31B and 34 to 36A ”,
+ii
+for “43 to 49” substitute “42A, 42B and 45 to 49 ”, and
+iii
+for “budget” substitute “council tax”, and
+b
+omit paragraph 14.
+2
+In Part 2 (authority with leader and cabinet executive) —
+a
+in paragraph 6(a) —
+i
+for “32 to 37” substitute “31A, 31B and 34 to 36A”, and
+ii
+for “43 to 49” substitute “42A, 42B and 45 to 49”.
+b
+omit paragraph 10.
+The Local Government Finance (New Parishes) (England) Regulations 2008
+Regulation 3
+15
+In regulation 3 (calculation of budget requirement) —
+a
+in the heading, for “budget” substitute “council tax”,
+b
+in paragraph (2) —
+i
+for “32” substitute “31A”, and
+ii
+for “budget” substitute “council tax”,
+c
+in paragraph (3) —
+i
+for “32” substitute “31A”, and
+ii
+after “(6)” insert “(b)”, and
+d
+in paragraph (4) —
+i
+for “50” substitute “49A”,
+ii
+for each occurrence of “budget” substitute “council tax”, and
+iii
+for “local precepting authorities” substitute “authorities in England”.
+The Local Government (Structural Changes) (Further Financial Provisions and Amendment) Regulations 2009
+Regulation 3
+16
+In regulation 3 (establishment of collection funds) —
+a
+for “32” substitute “31A”, and
+b
+for “budget” substitute “council tax”.
+Regulation 6
+17
+In regulation 6 (anticipation of amounts required to discharge functions of charter trustees) —
+a
+in paragraph (1) —
+i
+for “32” substitute “31A”, and
+ii
+for “budget” substitute “council tax”, and
+b
+for paragraph (3) substitute —
+3
+Where paragraph 1 applies, section 36A(1) of the 1992 Act (substitute calculations: England) shall have effect as if after “purpose” there were inserted “and taking into account the modification of that section by regulation 6(1) of the Local Government (Structural Changes) (Further Provisions and Amendment) Regulations 2008.
+.
+The Environment Agency (Levies) (England and Wales) Regulations 2011
+Regulation 11
+18
+In regulation 11 (anticipation of levy) —
+a
+in paragraph (4)(a), for “32” substitute “31A”, and
+b
+in paragraph 4(b), for “43” substitute “42A”.

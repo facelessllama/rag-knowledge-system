@@ -1,0 +1,605 @@
+Small Charitable Donations Act 2012
+B e it enacted by the Queen’s most Excellent Majesty, by and with the advice and consent of the Lords Spiritual and Temporal, and Commons, in this present Parliament assembled, and by the authority of the same, as follows: —
+Top-up payments
+Top-up payments in respect of small donations made to eligible charities
+1
+1
+A charity is entitled to a payment from HMRC (a “top-up payment”) if —
+a
+the charity is an eligible charity for a tax year,
+b
+the charity has made a successful gift aid exemption claim in respect of gifts made to it in the tax year,
+c
+small donations are made to the charity in the tax year, and
+d
+the charity makes a claim in respect of small donations made to it in the tax year.
+2
+The amount of the top-up payment is —
+SD ×
+R
+100 - R
+where —
+SD is the amount of the small donations to which the claim relates, and
+R is the percentage rate of the basic rate of income tax for the tax year in question.
+3
+A charity is not entitled to top-up payments in respect of small donations made to it in a tax year in excess of the maximum donations limit for the charity for the tax year.
+4
+The “maximum donations limit” for a charity for a tax year is —
+a
+an amount equal to 10 times the gift aid donations amount for the charity for the tax year, or
+b
+if less, the specified amount for the charity for the tax year.
+5
+The “gift aid donations amount” for a charity for a tax year is the amount of the gifts made to the charity in the tax year and in respect of which it has made successful gift aid exemption claims.
+6
+The “specified amount” for a charity for a tax year is £5,000.
+7
+This section is subject to sections 4, 6 and 9 (connected charities and charities running charitable activities in community buildings).
+Meaning of “eligible charity”
+2
+1
+A charity is an eligible charity for a tax year if —
+a
+it has made a successful gift aid exemption claim in at least 2 of the previous 4 tax years, and
+b
+the charity’s start-up period expired before that year.
+2
+If a charity did not make any successful gift aid exemption claims in a period of 2 consecutive tax years, any claim made in an earlier tax year is to be disregarded for the purposes of subsection (1)(a) .
+3
+A charity on which a penalty has been imposed in connection with a gift aid exemption claim or top-up claim made by the charity is not an eligible charity —
+a
+for the tax year in which the claim was made, or
+b
+for the next tax year,
+(even if the penalty was imposed after the tax year in which the claim was made).
+4
+For the purposes of this section —
+a
+a charity’s “start-up period” is the first period of 2 consecutive tax years during which it is, at all times, a charity (as defined by section 18(1));
+b
+“penalty” means a penalty under —
+i
+Schedule 24 to the Finance Act 2007, or
+ii
+regulations under section 11;
+c
+a penalty is not to be regarded as having been imposed if all of the penalty is suspended (or the decision that a penalty is payable is cancelled on appeal); but this does not apply to a suspended penalty that subsequently becomes payable.
+Meaning of “small donation”
+3
+1
+In this Act “small donation” means a gift made to a charity by an individual in relation to which each of the conditions in the Schedule is met (but does not include a membership fee).
+2
+But if a small donation made to a charity is applied to purposes other than charitable purposes, or any part of the donation is applied to purposes other than charitable purposes, the donation or part is to be treated as if it were not a small donation.
+3
+Subsection (2) does not apply to —
+a
+the Trustees of the National Heritage Memorial Fund;
+b
+the Historic Buildings and Monuments Commission for England;
+c
+the Trustees of the British Museum;
+d
+the Trustees of the Natural History Museum.
+Connected charities and community buildings
+Connected charities
+4
+1
+This section applies if two or more charities —
+a
+are connected with one another in a tax year, and
+b
+are eligible charities for the tax year.
+2
+Section 1 applies to each of the charities in relation to the tax year as if references to small donations made to a charity included small donations made to any of the charities.
+3
+The specified amount for the purposes of section 1(4) for each of the charities for the tax year is an amount equal to —
+a
+£5,000, divided by
+b
+the number of the charities which make a top-up claim in respect of small donations made in the tax year.
+4
+This section does not apply if any of the charities runs charitable activities in a community building in the tax year (as to which see section 9).
+Meaning of “connected”
+5
+1
+For the purposes of this Act a charity is connected with another charity in a tax year if it is connected with that other charity at any time in the tax year (as to which see subsections (3) to (7) ).
+2
+If —
+a
+a charity (“charity A”) is connected with another charity (“charity B”) (including by virtue of this subsection) in a tax year, and
+b
+charity B is connected with a further charity (“charity C”) in the tax year,
+charity A and charity C are also connected with each other in the tax year for the purposes of this Act.
+3
+Section 993 of the Income Tax Act 2007 applies for determining whether a charity is connected with another charity at any time for the purposes of this section.
+4
+In the application of section 993 for the purposes of subsection (3) —
+a
+a charity that is a trust is to be treated as if it were a company (and accordingly a person), including in this subsection;
+b
+a charity that is a trust has “control” of another person if the trustees (in their capacity as trustees of the trust) have, or any of them has, control of the person;
+c
+a person (other than a charity regulator) has “control” of a charity that is a trust if —
+i
+the person is a trustee of the charity and some or all of the powers of the trustees of the charity could be exercised by the person acting alone or by the person acting together with any other persons who are trustees of the charity and who are connected with the person,
+ii
+the person, alone or together with other persons, has power to appoint or remove a trustee of the charity, or
+iii
+the person, alone or together with other persons, has any power of approval or direction in relation to the carrying out by the trustees of any of their functions.
+5
+A charity that is a trust is also to be regarded as connected with another charity that is a trust at a time for the purposes of this section if, at that time, at least half of the trustees of one of the charities are —
+a
+trustees of the other charity,
+b
+persons who are connected with persons who are trustees of the other charity, or
+c
+a combination of both.
+6
+In determining whether a person is connected with another person for the purposes of subsection (4)(c)(i) or (5)(b) , apply section 993 of the Income Tax Act 2007, with the omission of subsection (3) of that section (and without the modifications in subsection (4) above).
+7
+But a charity is not to be regarded as connected with another charity at a time for the purposes of subsection (1) unless, at that time, the purposes and activities of the charities are the same or substantially similar.
+8
+The Treasury may by order amend this Act so as to change the circumstances in which a charity is connected with another charity in a tax year for the purposes of the Act.
+Charities running charitable activities in community buildings
+6
+1
+This section determines the specified amount for the purposes of section 1(4) for a charity that runs charitable activities in one or more community buildings in a tax year (see sections 7 and 8 for the meaning of certain terms used in this section).
+2
+The specified amount for the charity for the tax year is an amount equal to —
+a
+the sum of the amounts which, for each community building in which the charitable activities are run, is the community building amount, plus
+b
+the remaining amount.
+3
+The “community building amount”, in relation to a community building, means —
+a
+the sum of the small donations that are made to the charity in the community building in the tax year by group members while it is running charitable activities in the building, or
+b
+if less, £5,000.
+4
+The “remaining amount” means —
+a
+the sum of the remaining donations made to the charity in the tax year, or
+b
+if less, £5,000.
+5
+“Remaining donations”, in relation to a charity and a tax year, means the small donations made to the charity in the tax year other than any made to it in community buildings in the tax year by group members while it is running charitable activities in the buildings.
+6
+“Group member”, in relation to a charitable activity run by a charity in a community building, means a member of the group of people with whom the charity is carrying out the activity.
+7
+Section 9 modifies this section as it applies to a charity that is connected with another eligible charity.
+Meaning of “running charitable activities in a community building” etc
+7
+1
+For the purposes of this Act a charity “runs” charitable activities in a community building in a tax year if, on 6 or more occasions in the tax year —
+a
+it carries out a charitable activity with a group of people in the community building, at least 10 of whom are in the class of people for whose benefit the charitable activity is being carried out,
+b
+the activity is of a kind that the charity makes available to the public or a section of the public, and
+c
+none of the group is required to pay to access the building, or the part of the building, in which the activity is carried out;
+(and references to donations made to a charity “while” it is running charitable activities in a community building are to be construed accordingly).
+2
+For this purpose the people forming the group need not be the same on any two of the occasions.
+3
+The Treasury may by order amend the numbers for the time being specified in subsection (1) .
+4
+In this Act “charitable activity” means an activity carried out for a charitable purpose, other than primarily for the purpose of fund-raising.
+5
+In this Act a reference to a “charity” that runs charitable activities does not include a registered club within the meaning of Chapter 9 of Part 13 of the Corporation Tax Act 2010 that runs such activities.
+Meaning of “community building”
+8
+1
+In this Act “community building” —
+a
+means a building (such as a village hall, town hall or place of worship), or those parts of it, to which the public or a section of the public have access at some or all times, but
+b
+does not include any parts of a building excluded by subsection (2) or (3) .
+2
+Any parts of a building that are used wholly or mainly for residential purposes or the sale or supply of goods are excluded.
+3
+Any parts of a building that are used wholly or mainly for other commercial purposes are excluded, except at any times when —
+a
+a charity is carrying out a charitable activity in those parts, and
+b
+the parts are available for use exclusively by the charity in carrying out the activity.
+4
+Where a person holds a freehold or leasehold interest in land, any two or more buildings on the land, or on any adjoining land in which the person holds such an interest, are to be treated as a single building for the purposes of this Act.
+5
+The Treasury may by order —
+a
+provide for cases in which a building, or part of it, is or is not to be treated as a community building or as part of a community building for the purposes of this Act;
+b
+provide for cases in which 2 or more buildings in the same vicinity are to be treated as a single building for the purposes of this Act.
+6
+Provision under subsection (5) may be framed by reference to a description of building, the use to which it is put or any other circumstances; and the provision may be framed so as to apply at all times or at certain times only.
+7
+In the application of this section to Scotland —
+a
+a reference to a freehold interest in land is to the interest of the owner, and
+b
+a reference to a leasehold interest in land is to a tenant’s right over or interest in a property subject to a lease.
+Connected charities and community buildings
+9
+1
+This section applies if —
+a
+two or more charities (“connected eligible charities”) are connected with one another in a tax year and are eligible charities for the tax year, and
+b
+one or more of them runs charitable activities in a community building in the tax year.
+2
+Section 1 applies to each of the charities in relation to the tax year as if references to small donations made to a charity included remaining donations made to any of the charities.
+3
+In relation to any of the charities that does not run charitable activities in a community building in the tax year, the specified amount for the purposes of section 1(4) for the charity for the tax year is an amount equal to —
+a
+the capped total of remaining donations, divided by
+b
+the number of the connected eligible charities which make a top-up claim in respect of small donations made in the tax year.
+4
+In subsection (3) “the capped total of remaining donations” means —
+a
+the sum of the remaining donations made to each of the connected eligible charities in the tax year, or
+b
+if less, £5,000.
+5
+But for the purposes of subsection (3), a charity that runs charitable activities in a community building in the tax year is to be treated as not having made a top-up claim in respect of small donations made in the tax year unless —
+a
+its total claimed amount for the year, exceeds
+b
+its community buildings amount for the year.
+6
+In subsection (5) —
+“total claimed amount for the year” means the sum of the small donations made to the charity in the tax year and in respect of which it has made successful top-up claims;
+“community buildings amount for the year” means the amount that would be the specified amount for the charity for the tax year under section 6 if the charity’s remaining amount for that year were nil.
+7
+In relation to any of the charities that runs charitable activities in a community building in the tax year, section 6 applies as if the charity’s remaining amount were the specified amount given by subsection (3).
+8
+“Remaining donations” has the meaning given by section 6(5).
+Overpayments and administration
+Overpayments
+10
+If —
+a
+an amount is paid to a charity under section 1, and
+b
+the charity was not, or has ceased to be, entitled to it (because of section 2(3), 3(2), 4 or 9, or otherwise),
+the amount must be repaid to HMRC.
+Management of top-up payments
+11
+1
+Matters relating to top-up payments are to be under the management of HMRC.
+2
+HMRC may by regulations make provision —
+a
+about the administration of top-up payments;
+b
+otherwise for the purposes of fully implementing this Act.
+3
+Regulations under subsection (2) may in particular —
+a
+make provision in relation to top-up claims applying or incorporating, with or without modifications, any enactment that applies in relation to gift aid exemption claims;
+b
+make provision in relation to top-up payments applying or incorporating, with or without modifications, any enactment that applies in relation to repayments of income tax treated as having been paid;
+c
+make provision in relation to overpayments applying or incorporating, with or without modifications, any enactment that applies in relation to amounts of income tax or corporation tax which are due and payable;
+d
+make other provision applying or incorporating, with or without modifications, any enactment relating to the collection or management of income tax or corporation tax;
+e
+make provision postponing the determination of a top-up claim in prescribed circumstances.
+4
+The enactments mentioned in subsection (3) include, in particular, enactments —
+a
+providing for the payment of interest;
+b
+requiring the provision of information;
+c
+conferring a power of entry onto land;
+d
+providing for the imposition of a civil penalty;
+e
+creating a criminal offence (including, in particular, offences relating to the provision of false or misleading information or failure to provide information);
+f
+providing for enforcement of sums owed (whether by action on a debt, by distraint against goods or in any other way);
+g
+providing for appeals.
+5
+A power conferred by subsection (3) to apply or incorporate a provision creating an offence does not include power to increase the level of any punishment for which a person may be liable on conviction for the offence.
+6
+A power conferred by subsection (3) to apply or incorporate a provision imposing a civil penalty does not include power to increase the maximum amount of the penalty.
+7
+In subsection (3) “enactment” includes —
+a
+a provision of an Act passed after the day on which this Act is passed, and
+b
+a provision made, or that may be made, under an enactment.
+8
+In subsection (3)(c) “overpayment” means an amount to which section 10 applies.
+9
+An amount calculated for the purposes of any provision of this Act is to be rounded to the nearest whole penny, taking 0.5p as nearest to the next whole penny.
+Miscellaneous
+Charity mergers: new charity taking over activities of one charity
+12
+1
+This section applies if, on an application made by a charity (“the new charity”), HMRC certify that in their opinion —
+a
+the new charity was created with a view to taking over all of the activities of one other charity (the “old charity”),
+b
+the new charity has taken over those activities,
+c
+the purposes of the new charity are substantially similar to the purposes of the old charity, and
+d
+more than half of the managers of the new charity were old charity managers.
+2
+For the purposes of determining whether a charity is eligible under section 2 for a relevant tax year —
+a
+things done (or treated as having been done) by or in relation to the old charity before the time of the merger (or after that time but in connection with things done before that time) are to be treated as if they had instead been done by or in relation to the new charity;
+b
+the new charity is to be treated as if it had been a charity (as defined by section 18(1)) at any time, before the time of the merger, when the old charity was (or is treated as having been) a charity.
+3
+“Relevant tax year” means —
+a
+if the old charity does not make a successful top-up claim in respect of small donations made in the year of the merger, that year or any later tax year;
+b
+otherwise, any tax year after the year of the merger.
+4
+In deciding whether to issue a certificate under this section, HMRC must have regard in particular to the extent to which the property of the old charity has been transferred to the new charity.
+5
+HMRC must issue such guidance as they consider appropriate about the exercise of their functions under this section.
+6
+Regulations under section 11 may in particular make provision —
+a
+about the form and contents of applications under this section;
+b
+imposing a time limit for the making of an application;
+c
+for an application to require the consent of the old charity if it is in existence at the time of the application;
+d
+for appeals against a refusal to issue a certificate under this section.
+7
+In this section —
+“managers” means the persons having the general control and management of the administration of a charity;
+“old charity manager” means a person who was a manager of the old charity immediately before the last of the activities of the old charity were transferred to the new charity;
+“time of the merger” means the time when the new charity took over the activities of the old charity (or, if that occurred over a period of time, the end of that period);
+“year of the merger” means the tax year in which the time of the merger fell.
+Charity mergers: new charity taking over activities of several charities
+13
+1
+This section applies if, on an application made by a charity (“the new charity”), HMRC certify that in their opinion —
+a
+the new charity was created with a view to taking over all of the activities of more than one other charity (the “old charities”),
+b
+the new charity has taken over those activities,
+c
+the purposes of the new charity are substantially similar to the purposes of the old charities (taken together), and
+d
+more than half of the managers of the new charity were old charity managers.
+2
+For the purposes of determining whether a charity is eligible under section 2 for a relevant tax year —
+a
+things done (or treated as having been done) by or in relation to the relevant old charity before the time of the merger (or after that time but in connection with things done before that time) are to be treated as if they had instead been done by or in relation to the new charity;
+b
+the new charity is to be treated as if it had been a charity (as defined by section 18(1)) at any time, before the time of the merger, when the relevant old charity was (or is treated as having been) a charity.
+3
+“Relevant tax year” means —
+a
+if none of the old charities makes a successful top-up claim in respect of small donations made in the year of the merger, that year or any later tax year;
+b
+otherwise, any tax year after the year of the merger.
+4
+Which of the old charities is the “relevant old charity” is determined as follows —
+a
+if each of the old charities was an eligible charity for the year of the merger, the relevant old charity is whichever of those charities would first cease to be an eligible charity, assuming that none of them were to make a successful gift aid exemption claim in the year of the merger or any later tax year;
+b
+if only one of the old charities was not an eligible charity for the year of the merger, the relevant old charity is that charity;
+c
+if more than one of the old charities was not an eligible charity for the year of the merger, the relevant old charity is whichever of those charities would last become an eligible charity, assuming that each of them were to make a successful gift aid exemption claim in the year of the merger and every later tax year;
+d
+if two or more old charities would otherwise be the relevant old charity under paragraph (a) or (c) , the new charity must elect which of those charities is the relevant old charity.
+5
+In deciding whether to issue a certificate under this section, HMRC must have regard in particular to the extent to which the property of the old charities has been transferred to the new charity.
+6
+HMRC must issue such guidance as they consider appropriate about the exercise of their functions under this section.
+7
+Regulations under section 11 may in particular make provision —
+a
+about the form and contents of applications under this section;
+b
+imposing a time limit for the making of an application;
+c
+for an application to require the consent of each old charity that is in existence at the time of the application;
+d
+about elections under subsection (4)(d) ;
+e
+for appeals against a refusal to issue a certificate under this section.
+8
+In this section —
+“managers” means the persons having the general control and management of the administration of a charity;
+“old charity manager” means a person who was a manager of an old charity immediately before the last of the activities of the old charity were transferred to the new charity;
+“time of the merger” means the time when the new charity took over the activities of the old charities (or, if that occurred over a period of time, the end of that period);
+“year of the merger” means the tax year in which the time of the merger fell.
+Power to alter specified amount etc
+14
+1
+The Treasury may by order amend —
+a
+section 1(6) (the specified amount),
+b
+section 4(3)(a),
+c
+section 6(3)(b) and (4)(b), and
+d
+section 9(4)(b),
+by substituting a different sum for the sum for the time being specified in each of those provisions.
+2
+The Treasury may by order amend this Act for the purpose of —
+a
+amending the gift aid matching rule;
+b
+abolishing that rule;
+c
+reinstating that rule (if previously abolished), with or without amendment.
+3
+In subsection (2) “the gift aid matching rule” means the rule that limits the amount of top-up payments to which a charity is entitled by reference to the amount of gifts made to the charity in respect of which it has made successful gift aid exemption claims.
+4
+The Treasury may by order amend section 2 (meaning of “eligible charity”).
+5
+Section 2, as amended by an order under subsection (4) , must as a minimum include a condition requiring the making of a successful gift aid exemption claim in a previous tax year.
+6
+The Treasury may by order amend paragraph 1(1) and (2) of the Schedule (limit on value of individual donations) by substituting a different sum for the sum for the time being specified in each of those provisions.
+Top-up payments not taxable
+15
+A top-up payment is not to be treated as income for any purpose of the Tax Acts.
+General
+Northern Ireland
+16
+In Schedule 2 to the Northern Ireland Act 1998 (excepted matters), before paragraph 10 insert —
+9C
+The operation of the Small Charitable Donations Act 2012.
+Regulations and orders
+17
+1
+Regulations and orders under this Act are to be made by statutory instrument.
+2
+A statutory instrument containing regulations or an order under the preceding provisions of this Act may not be made unless a draft of the instrument has been laid before and approved by a resolution of the House of Commons.
+3
+Regulations and orders under this Act —
+a
+may apply generally or only in specified cases or circumstances;
+b
+may make different provision for different cases or circumstances;
+c
+may make consequential, supplementary, incidental, transitional or saving provision.
+General interpretation
+18
+1
+In this Act “charity” means —
+a
+a charity within the meaning of Part 1 of Schedule 6 to the Finance Act 2010;
+b
+the Trustees of the National Heritage Memorial Fund;
+c
+the Historic Buildings and Monuments Commission for England;
+d
+a registered club within the meaning of Chapter 9 of Part 13 of the Corporation Tax Act 2010 (community amateur sports clubs).
+2
+In this Act —
+“charitable activity” has the meaning given by section 7;
+“charitable purpose” —
+in the case of a charity within subsection (1) (a) to (c), has the meaning given by section 2(1) of the Charities Act 2011 (reading the reference in section 2(1) to the law of England and Wales as including a reference to the law of Scotland and the law of Northern Ireland);
+in the case of a charity within subsection (1) (d), means qualifying purpose within the meaning given by section 661(3) of the Corporation Tax Act 2010;
+“community building” is to be read in accordance with section 8;
+“connected charities”: references to a charity being connected with another charity in a tax year are to be read in accordance with section 5;
+“eligible charity” is to be read in accordance with section 2;
+“gift aid exemption claim” means a claim for amounts to be exempt from income tax or corporation tax by virtue of —
+section 521(4) of the Income Tax Act 2007, or
+section 472, 475 or 664 of the Corporation Tax Act 2010,
+(and for related expressions see subsection (3) below);
+“HMRC” means the Commissioners for Her Majesty’s Revenue and Customs;
+“running charitable activities in a community building”: references to a charity running charitable activities in a community building in a tax year are to be read in accordance with section 7;
+“small donation” is to be read in accordance with section 3;
+“tax year” means a year beginning on 6 April and ending on the following 5 April;
+“top-up claim” means a claim under section 1 (and for related expressions see subsection (3) below);
+“top-up payment” has the meaning given by section 1.
+3
+For the purposes of this Act —
+a
+a gift aid exemption claim is “successful” if an amount falls to be exempt from income tax or corporation tax as a result of the claim;
+b
+a successful gift aid exemption claim is made in respect of a gift to the extent that the gift, or the grossed up amount of the gift, falls to be exempt from income tax or corporation tax as a result of the claim;
+c
+a successful top-up claim is made in respect of small donations if, and to the extent that, a top-up payment falls to be made because of the claim (and does not fall to be repaid under section 10);
+d
+in determining whether a successful claim has been made in a tax year, it does not matter when the claim is determined.
+4
+In this Act a reference to the making of a claim by a charity includes a reference to the making of a claim on behalf of the charity.
+Financial provisions
+19
+There is to be paid out of money provided by Parliament any increase attributable to this Act in the sums payable under any other Act out of money so provided.
+Extent
+20
+This Act extends to —
+a
+England and Wales,
+b
+Scotland, and
+c
+Northern Ireland.
+Commencement and transitional provision
+21
+1
+This Act comes into force on 6 April 2013, subject to subsections (2) and (3) .
+2
+Any provision of this Act that confers a power to make regulations or an order comes into force, for the purposes of the use of the power, on the day on which this Act is passed.
+3
+The following provisions of this Act come into force on that day —
+a
+sections 16 to 20;
+b
+this section;
+c
+section 22.
+4
+In section 2 the references to claims having been made, or penalties having been imposed, include claims made, or penalties imposed, before the date on which that section comes into force.
+5
+In applying section 2 by virtue of subsection (4) —
+a
+the reference in section 2(4)(b) to Schedule 24 to the Finance Act 2007 includes a reference to any enactment omitted by paragraph 29 of that Schedule;
+b
+any reference in the definition of “gift aid exemption claim” in section 18(2) to a provision of the Income Tax Act 2007 or the Corporation Tax Act 2010 includes a reference to any corresponding earlier enactment rewritten in that provision.
+6
+The Treasury may by order make other transitional provision in connection with the coming into force of any provision of this Act.
+Short title
+22
+This Act may be cited as the Small Charitable Donations Act 2012.
+Schedule
+Meaning of “small donation”: conditions
+Section 3
+Small cash payment
+1
+1
+The gift must be £20 or less in cash.
+2
+Where a gift of cash is made to the charity and its managers do not know whether the gift is £20 or less, the condition in sub-paragraph (1) is to be treated as met if the managers have taken reasonable steps to find out.
+3
+In this paragraph —
+“cash” means coins and notes in any currency;
+“managers”, in relation to a charity, means the persons having the general control and management of the administration of the charity.
+Collected in the United Kingdom
+2
+The gift must be received in the United Kingdom by or on behalf of the charity.
+Deposited in United Kingdom in a bank account
+3
+1
+The cash given to the charity must have been deposited in an account kept by or on behalf of the charity at a relevant institution and the deposit must have been made in the United Kingdom.
+2
+“Relevant institution” has the meaning given by section 109(3) of the Charities Act 2011.
+Not eligible for gift aid
+4
+1
+The gift must be one in relation to which no gift aid declaration is given to the charity.
+2
+“Gift aid declaration” means a declaration which is a gift aid declaration for the purposes of Chapter 2 of Part 8 of the Income Tax Act 2007.
+Not payment under payroll deduction scheme
+5
+The gift must not be a sum falling within section 713(3) of the Income Tax (Earnings and Pensions) Act 2003 (payroll deduction scheme).
+Not deductible in calculating income
+6
+The gift must not be deductible in calculating the individual’s income from any source for the purposes of income tax.
+Not subject to condition as to repayment
+7
+The gift must not be subject to any condition as to repayment.
+Not conditional on acquisition of property by charity
+8
+1
+The gift must not be conditional on, associated with or part of an arrangement involving, the acquisition of property by the charity from the individual or a person connected with the individual.
+2
+An acquisition by way of gift is to be ignored for the purposes of this condition.
+No, or only negligible, benefits associated with gift
+9
+1
+There must be no benefits associated with the gift, or any benefits associated with the gift must be of negligible value (for example, a lapel sticker designed to acknowledge the making of a gift).
+2
+For this purpose a benefit is associated with a gift if it is received by the individual who makes the gift, or a person connected with the individual, in consequence of making the gift.
+Interpretation
+10
+For the purposes of this Schedule whether a person is connected with another person is to be determined in accordance with section 993 of the Income Tax Act 2007.

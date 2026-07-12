@@ -1,0 +1,217 @@
+The Money Laundering (Amendment) Regulations 2012
+The Treasury, in exercise of the powers conferred on them by section 2(2) of the European Communities Act 1972, make the following Regulations:
+Citation and commencement
+1
+These Regulations may be cited as the Money Laundering (Amendment) Regulations 2012 and come into force on 1st October 2012.
+Amendment of the Money Laundering Regulations 2007
+2
+The Money Laundering Regulations 2007 are amended as follows.
+3
+In regulation 3 —
+a
+in paragraph (3)(a), renumber paragraph (ii) as paragraph (iii) and insert after paragraph (i) —
+ii
+an undertaking whose only listed activity is as a creditor under an agreement which —
+aa
+falls within section 12(a) of the Consumer Credit Act 1974 (debtor-creditor-supplier agreements),
+bb
+provides fixed sum credit (within the meaning given in section 10 of the Consumer Credit Act 1974 (running-account credit and fixed-sum credit) ) in relation to the provision of services, and
+cc
+provides financial accommodation by way of deferred payment or payment by instalments over a period not exceeding 12 months;
+;
+b
+in paragraph (11), omit “(within the meaning given by section 1 of the Estate Agents Act 1979 (estate agency work))” ;
+c
+after paragraph (11), insert —
+11A
+For the purposes of paragraph (11) “estate agency work” is to be read in accordance with section 1 of the Estate Agents Act 1979 (estate agency work), but for those purposes references in that section to disposing of or acquiring an interest in land are (despite anything in section 2 of that Act) to be taken to include references to disposing of or acquiring an estate or interest in land outside the United Kingdom where that estate or interest is capable of being owned or held as a separate interest.
+.
+4
+In regulation 4 —
+a
+for paragraph (1)(f), substitute —
+f
+a person, when he prepares a home report.
+;
+b
+for paragraph (4), substitute —
+4
+In paragraph (1)(f), “home report” means the documents prescribed for the purposes of section 98, 99(1) or 101(2) of the Housing (Scotland) Act 2006 .
+.
+5
+In regulation 17(2) —
+a
+after sub-paragraph (a), insert —
+aa
+a consumer credit financial institution;
+;
+b
+in sub-paragraph (b)(ii), omit “Part 1 of”.
+6
+Omit regulation 18.
+7
+In regulation 22(1), at the end insert the following definition —
+“recognised investment exchange” has the same meaning as in section 285 of the 2000 Act (exemption for recognised investment exchanges and clearing houses).
+.
+8
+In regulation 23(1)(a), after paragraph (vi), insert —
+vii
+recognised investment exchanges;
+.
+9
+After regulation 24, insert —
+Disclosure by supervisory authorities
+24A
+1
+A supervisory authority may disclose to another supervisory authority information it holds relevant to its functions under these Regulations, provided the disclosure is made for purposes connected with the effective exercise of the functions of either supervisory authority under these Regulations.
+2
+Information disclosed to a supervisory authority under paragraph (1) may not be further disclosed by that authority, except —
+a
+in accordance with paragraph (1);
+b
+with a view to the institution of, or otherwise for the purposes of, any criminal or other enforcement proceedings; or
+c
+as otherwise required by law.
+.
+10
+In regulation 28 —
+a
+in paragraph (1), at the end insert “with regard to the risk of money laundering or terrorist financing”;
+b
+omit paragraphs (2) and (3).
+11
+In regulation 30 —
+a
+in paragraph (1), for “28(2)” substitute “28”;
+b
+for paragraph (2), substitute —
+2
+The Commissioners may cancel a person’s registration in a register maintained by them under regulation 25 if, at any time after registration —
+a
+it appears to them that that any condition in regulation 29(1) is met; or
+b
+the person has failed to comply with any requirement of a notice given under regulation 37.
+.
+12
+For regulation 34(7), substitute —
+7
+The Authority or the OFT may cancel a person’s registration in a register maintained by them under regulation 32 if, at any time after registration —
+a
+it appears to them that any condition in paragraph (3) is met; or
+b
+the person has failed to comply with any requirement of a notice given under regulation 37.
+.
+13
+For regulation 37(2), substitute —
+2
+For the purposes of paragraph (1) —
+a
+“relevant person” includes a person whom a designated authority believes, or has reasonable grounds to suspect, is or has at any time been a relevant person; and
+b
+a person is connected with a relevant person if the person is, or has at any time been, in relation to the relevant person, a person listed in Schedule 4 to these Regulations.
+.
+14
+In regulation 42 —
+a
+in paragraph (1) —
+i
+omit “relevant”;
+ii
+omit the words from “or a direction” to the end;
+b
+in paragraph (1A), omit the words “and, for this purpose,” to the end;
+c
+after paragraph (1A), insert —
+1B
+A designated authority may impose a penalty of such amount as it considers appropriate on a person who fails to comply with any requirement of a notice given under regulation 37(1).
+1C
+In paragraphs (1), (1A) and (1B), “appropriate” means effective, proportionate and dissuasive.
+;
+d
+in paragraph (2), for “or (1A)”, substitute “, (1A) or (1B)”.
+15
+In regulation 43(1), before sub-paragraph (a), insert —
+za
+regulation 28, to the effect that a person is not a fit and proper person;
+.
+16
+In regulation 45(1) omit “, or a direction made under regulation 18,”.
+17
+For Schedule 3, substitute the text contained in the Schedule to these Regulations.
+Review
+18
+1
+The Treasury must from time to time —
+a
+carry out a review of the Money Laundering Regulations 2007 as amended by regulations 2 to 17,
+b
+set out the conclusions of the review in a report, and
+c
+publish the report.
+2
+In carrying out the review the Treasury must, so far as is reasonable, have regard to how Directive 2005/60/ EC of the European Parliament and of the Council on the protection of the use of the financial system for the purpose of money laundering and terrorist financing (which is implemented in part by the Money Laundering Regulations 2007) is implemented in other member States.
+3
+The report must in particular —
+a
+set out the objectives intended to be achieved by the regulatory system established by the Money Laundering Regulations 2007 as amended by regulations 2 to 17,
+b
+assess the extent to which those objectives are achieved, and
+c
+assess whether those objectives remain appropriate and, if so, the extent to which they could be achieved with a system that imposes less regulation.
+4
+The first report under this regulation must be published before the end of the period of five years beginning with the day on which these Regulations come into force.
+5
+Reports under this regulation are afterwards to be published at intervals not exceeding five years.
+James Duddridge
+Angela Watkinson
+Two of the Lords Commissioners of Her Majesty’s Treasury
+6th September 2012
+SCHEDULE
+Regulation 17
+SCHEDULE 3
+Professional Bodies
+Regulations 17(2)(b), 23(1)(c) and 32(4)
+1
+Association of Accounting Technicians
+2
+Association of Chartered Certified Accountants
+3
+Association of International Accountants
+4
+Association of Taxation Technicians
+5
+Chartered Institute of Management Accountants
+6
+Chartered Institute of Public Finance and Accountancy
+7
+Chartered Institute of Taxation
+8
+Council for Licensed Conveyancers
+9
+Faculty of Advocates
+10
+Faculty Office of the Archbishop of Canterbury
+11
+General Council of the Bar
+12
+General Council of the Bar of Northern Ireland
+13
+Insolvency Practitioners Association
+14
+Institute of Certified Bookkeepers
+15
+Institute of Chartered Accountants in England and Wales
+16
+Institute of Chartered Accountants in Ireland
+17
+Institute of Chartered Accountants of Scotland
+18
+Institute of Financial Accountants
+19
+International Association of Book-keepers
+20
+Law Society
+21
+Law Society of Northern Ireland
+22
+Law Society of Scotland

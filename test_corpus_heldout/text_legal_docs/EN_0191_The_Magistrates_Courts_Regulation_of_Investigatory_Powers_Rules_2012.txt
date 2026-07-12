@@ -1,0 +1,149 @@
+The Magistrates’ Courts (Regulation of Investigatory Powers) Rules 2012
+In accordance with section 144 of the Magistrates’ Courts Act 1980 he has consulted the rule committee appointed under that section and makes these Rules with the concurrence of the Lord Chancellor.
+Citation and commencement
+1
+These Rules may be cited as the Magistrates’ Courts (Regulation of Investigatory Powers) Rules 2012, and come into force on 1 November 2012.
+When these Rules apply
+2
+These Rules apply when, in a case which is not a criminal case, a justice of the peace can make an order approving —
+a
+the grant or renewal of an authorisation, or the giving or renewal of a notice, under section 23A of the Regulation of Investigatory Powers Act 2000 ;
+b
+the grant or renewal of an authorisation under section 32A of the 2000 Act .
+Meaning of ‘court’, ‘applicant’ and ‘respondent’
+3
+In these Rules —
+a
+a reference to the ‘court’ includes a reference to any justice of the peace who can exercise a power to which these Rules apply;
+b
+‘applicant’ means person who, or an authority which, can apply for an order to which these Rules apply; and
+c
+‘respondent’ means the person (if any) against whom such an order is sought or made.
+Exercise of court’s powers
+4
+1
+Subject to paragraphs (2) and (3), the court may determine an application for an order, or to vary or discharge an order —
+a
+at a hearing (which must be in private unless the court otherwise directs), or without a hearing; and
+b
+in the absence of —
+i
+the applicant,
+ii
+the respondent (if any),
+iii
+any other person affected by the order.
+2
+The court must not determine such an application in the applicant’s absence if —
+a
+the applicant asks for a hearing; or
+b
+it appears to the court that —
+i
+the proposed order may infringe legal privilege, within the meaning of section 10 of the Police and Criminal Evidence Act 1984 or of section 348 or 361 of the Proceeds of Crime Act 2002 ,
+ii
+the proposed order may require the production of excluded material, within the meaning of section 11 of the 1984 Act, or
+iii
+for any other reason the application is so complex or serious as to require the court to hear the applicant.
+3
+The court must not determine such an application in the absence of any respondent or other person affected, unless —
+a
+the absentee has had at least 2 business days in which to make representations; or
+b
+the court is satisfied that —
+i
+the applicant cannot identify or contact the absentee,
+ii
+it would prejudice the investigation if the absentee were present,
+iii
+it would prejudice the investigation to adjourn or postpone the application so as to allow the absentee to attend, or
+iv
+the absentee has waived the opportunity to attend.
+4
+The court must not make, vary or discharge an order unless the applicant states, in writing or orally, that to the best of the applicant’s knowledge and belief —
+a
+the application discloses all the information that is material to what the court must decide; and
+b
+the content of the application is true.
+5
+Where the statement required by paragraph (4) is made orally —
+a
+the statement must be on oath or affirmation, unless the court otherwise directs; and
+b
+the court must arrange for a record of the making of the statement.
+Court’s power to vary requirements under these Rules
+5
+1
+The court may —
+a
+shorten or extend (even after it has expired) a time limit under these Rules;
+b
+dispense with a requirement for service under these Rules (even after service was required); and
+c
+consider an application made orally instead of in writing.
+2
+A person who wants an extension of time must —
+a
+apply when serving the application for which it is needed; and
+b
+explain the delay.
+Documents served on the court officer
+6
+1
+Unless the court otherwise directs, the court officer may —
+a
+keep a written application; or
+b
+arrange for the whole or any part to be kept by some other appropriate person, subject to any conditions that the court may impose.
+2
+Where the court makes an order when the court office is closed, the applicant must, not more than 72 hours later, serve on the court officer —
+a
+a copy of the order; and
+b
+any written material that was submitted to the court.
+Application for approval for authorisation or notice
+7
+1
+This rule applies where an applicant wants a magistrates’ court to make an order approving —
+a
+under sections 23A and 23B of the Regulation of Investigatory Powers Act 2000 —
+i
+an authorisation to obtain or disclose communications data, under section 22(3) of the 2000 Act , or
+ii
+a notice that requires a postal or telecommunications operator if need be to obtain, and in any case to disclose, communications data, under section 22(4) of the 2000 Act;
+b
+under sections 32A and 32B of the Regulation of Investigatory Powers Act 2000 , an authorisation for —
+i
+the carrying out of directed surveillance, under section 28 of the 2000 Act, or
+ii
+the conduct or use of a covert human intelligence source, under section 29 of the 2000 Act .
+2
+The applicant must —
+a
+apply in writing and serve the application on the court officer;
+b
+attach the authorisation or notice which the applicant wants the court to approve;
+c
+attach such other material (if any) on which the applicant relies to satisfy the court —
+i
+as required by section 23A(3) and (4) of the 2000 Act, in relation to communications data,
+ii
+as required by section 32A(3) and (4) of the 2000 Act, in relation to directed surveillance, or
+iii
+as required by section 32A(5) and (6), and, if relevant, section 43(6A), of the 2000 Act , in relation to a covert human intelligence source; and
+d
+propose the terms of the order.
+Exercise of court’s power to quash an authorisation or notice
+8
+1
+This rule applies where, under section 23A or 32A of the Regulation of Investigatory Powers Act 2000, a magistrates’ court refuses to approve the grant, giving or renewal of an authorisation or notice.
+2
+The court must not exercise its power to quash that authorisation or notice unless the applicant has had at least 2 business days from the date of the refusal in which to make representations.
+Judge, C.J.
+3rd October 2012
+I agree
+Signed on the authority of the Lord Chancellor
+Damian Green
+Minister of State
+Ministry of Justice
+6th October 2012

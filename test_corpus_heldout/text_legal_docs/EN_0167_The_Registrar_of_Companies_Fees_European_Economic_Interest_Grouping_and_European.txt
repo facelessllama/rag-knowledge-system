@@ -1,0 +1,219 @@
+The Registrar of Companies (Fees) (European Economic Interest Grouping and European Public Limited-Liability Company) Regulations 2012
+The Secretary of State makes the following Regulations in exercise of the powers conferred by sections 1063(1) to (3) and 1292(1) of the Companies Act 2006 .
+Citation and commencement
+1
+These Regulations may be cited as the Registrar of Companies (Fees) (European Economic Interest Grouping and European Public Limited-Liability Company) Regulations 2012 and come into force on 1st October 2012.
+Interpretation
+2
+In these Regulations —
+“the 2006 Act ” means the Companies Act 2006;
+“Companies House Direct” and “ CHD ” mean the service by which information is accessed by the applicant in Hyper Text Markup Language using a website of the registrar by delivering a non-encrypted access code;
+“ EEIG ” means a European Economic Interest Grouping formed under Council Regulation (EEC) No. 2137/85 of 25th July 1985 on the European Economic Interest Grouping ;
+“ Extranet ” means the service by which information is accessed by means of the access codes of the applicant in Hyper Text Markup Language using a website of the registrar;
+“limited liability partnership” means a body corporate incorporated under the Limited Liability Partnerships Act 2000 ;
+“limited partnership” means a partnership registered under the Limited Partnerships Act 1907 ;
+“ SE ” means a European Public Limited-Liability Company within the meaning of Council Regulation 2157/2001/ EC of 8 October 2001 on the Statute for a European Company ;
+“ XML Gateway” and “XML” mean the service by which information is accessed by the applicant in Extensible Markup Language by means of a partially encrypted access code.
+Fees payable in respect of functions relating to the registration of documents by the registrar
+3
+Schedule 1 makes provision for the fees that are payable to the registrar in respect of the registration of documents relating to EEIGs and SEs by the registrar.
+Fees payable in respect of the inspection or provision of copies of documents kept by the registrar relating to EEIGs
+4
+1
+Schedule 2 makes provision for the fees that are payable to the registrar in respect of the inspection, or provision of copies, of documents kept by the registrar relating to EEIGs.
+2
+The fees prescribed in relation to paragraphs 3(a), 4(a) and 6(a) of Schedule 2 are not payable in respect of any month for which the applicant pays a fee to the registrar for subscription to Companies House Direct, Extranet or XML under regulations providing for the payment of fees in respect of the functions of the registrar in relation to the inspection, or provision of copies, of documents kept by the registrar relating to companies, overseas companies, limited liability partnerships and limited partnerships
+Transitional provisions
+5
+1
+Where any document delivered to the registrar on or before 30th September 2012 is registered on or after 1st October 2012 the fee prescribed in Schedule 1 to the Regulations in respect of that document shall not apply and any fee payable in respect of that document by virtue of the Registrar of Companies (Fees) (European Economic Interest Grouping and European Public Limited Liability Company) Regulations 2009 shall apply.
+2
+Where any application is made or subscription is payable to the registrar on or before 30th September 2012 in respect of the inspection of, or the provision of copies of, material kept by the registrar, the fee prescribed in Schedule 2 to these Regulations in respect of that application or subscription shall not apply and any fee payable under the Registrar of Companies (Fees) (European Economic Interest Grouping and European Public Limited Liability Company) Regulations 2009 shall apply.
+Revocation
+6
+The following regulations are revoked–
+a
+the Registrar of Companies (Fees) (European Economic Interest Grouping and European Public Limited Liability Company) Regulations 2009; and
+b
+the Registrar of Companies (Fees) (European Economic Interest Grouping) (Amendment) Regulations 2011 .
+Norman Lamb
+Parliamentary Under Secretary of State for Employment Relations, Consumer and Postal Affairs,
+Department for Business, Innovation and Skills
+18th July 2012
+SCHEDULE 1
+THE PERFORMANCE OF FUNCTIONS RELATING TO THE REGISTRATION OF DOCUMENTS BY THE REGISTRAR
+Regulation 3
+PART 1 INTERPRETATION
+Meaning of “the EC Regulation ” and “the EEIG Regulations ” and words and expressions used in those Regulations
+1
+1
+In this Schedule —
+the “EC Regulation” means Council Regulation 2157/2001/EC of 8 October 2001 on the Statute for a European Company;
+the “EEIG Regulations” mean the European Economic Interest Grouping Regulations 1989 .
+2
+Words and expressions used in the enactments set out in sub-paragraph (1) have the same meaning when used in this Schedule as they have in those enactments.
+Meaning of “same day registration”
+2
+For the purposes of this Schedule documents are delivered for “same day registration” if —
+a
+a request for same day registration and all documents required to be delivered to the registrar in connection with that registration are received by the registrar by 3.00 pm on the day in question; and
+b
+the registration is completed on that day.
+General
+3
+Where, in relation to any matter in respect of which a fee is payable under this Schedule, the means of delivery to the registrar of the documents required to be delivered in relation to that matter, or the form of those documents are not specified, that fee is payable only in respect of documents that are delivered in hard copy form.
+4
+Where, in relation to any matter in respect of which a fee is payable under this Schedule, no provision is made for same day registration of the documents required to be delivered to the registrar in relation to that matter, that fee is only payable in respect of the delivery of documents other than for same day registration.
+PART 2 FEES PAYABLE
+European Economic Interest Groupings
+5
+In respect of the performance by the registrar of his functions in relation to the registration of documents delivered to him in respect of EEIGs, the fee specified in relation to each matter below is payable on the registration of the documents so delivered relating to that matter–
+Matter in relation to which the fee is payable Amount of fee
+for the registration under regulation 9 of the EEIG Regulations of an EEIG;
+£20.00
+for the registration under regulation 12 of the EEIG Regulations of an EEIG that is situating an establishment in the United Kingdom but whose official address is outside the United Kingdom;
+£20.00
+for the registration of a change of name of an EEIG under regulation 11 of the EEIG Regulations ;
+£10.00
+for the registration of a charge under paragraph 26 of Schedule 4 to the EEIG Regulations .
+£13.00
+European Public Limited-Liability Companies
+6
+In respect of the performance by the registrar of his functions in relation to the registration of documents delivered to him in respect of SEs, the fee specified in relation to each matter below is payable on the registration of the documents so delivered relating to that matter–
+Matter in relation to which the fee is payable Amount of fee
+for the registration of an SE whose registered office is in the United Kingdom on its formation–
+by merger in accordance with Article 2(1) of the EC Regulation,
+£20.00
+by the formation of a holding SE in accordance with Article 2(2) of the EC Regulation,
+£20.00
+by the formation of a subsidiary SE in accordance with Article 2(3) of the EC Regulation,
+£20.00
+by the transformation of a public company in accordance with Article 2(4) of the EC Regulation,
+£20.00
+by the formation of a subsidiary SE in accordance with Article 3(2) of the EC Regulation;
+£20.00
+for the registration of a public company by the conversion of an SE in accordance with Article 66 of the EC Regulation;
+£20.00
+for the registration of an SE on the transfer of its registered office to the United Kingdom in accordance with Article 8 of the EC Regulation.
+£20.00
+SCHEDULE 2
+THE PERFORMANCE OF FUNCTIONS RELATING TO THE INSPECTION OR PROVISION OF COPIES OF DOCUMENTS KEPT BY THE REGISTRAR IN RELATION TO EEIGS
+Regulation 4
+PART 1 INTERPRETATION
+Means by which the register may be inspected and copies provided
+1
+In this Schedule —
+“Companies House Contact Centre” and “ CHCC ” mean a contact centre maintained by or on behalf of the registrar through which a facility is provided for applying by telephone, fax or e-mail for copies of material on the register;
+“Companies House Information Centre” and “ CHIC ” mean an office of the registrar where facilities are made available for applicants to inspect the register and to obtain copies of material on the register and “searchroom terminal” means a computer terminal operated by an applicant at a CHIC;
+“WebCHeck” means the service by which information is accessed by the applicant in Hyper Text Markup Language using a website of the registrar with no requirement for the applicant to deliver an access code.
+Meaning of “same day delivery” and “same day collection”
+2
+For the purposes of this Schedule certified copies are provided for “same day delivery” or “same day collection” if–
+a
+a request for same day delivery or same day collection is received by the registrar before 2.00pm on the day in question; and
+b
+the appropriate certified copy is issued to the applicant on that day.
+PART 2 FEES PAYABLE
+Companies House Direct
+3
+In respect of the performance of the registrar’s function in relation to the inspection of material kept by the registrar and the provision of copies of material kept by the registrar in respect of EEIGs, where an application for inspection or a copy is made by means of CHD, the following fees are payable–
+Matter in relation to which the fee is payable Amount of fee
+for subscribing to CHD for each calendar month payable in arrears at the end of that month;
+£4.00
+for the inspection by means of CHD of a statement of particulars of a charge registered in respect of an EEIG;
+£1.00
+for a copy provided by means of CHD (without prior inspection) of a document in respect of an EEIG;
+£1.00
+for the inspection and provision of a copy of a document, by means of CHD in respect of an EEIG;
+£1.00
+for the delivery by post in hard copy form of a document specified in sub-paragraph (c) above applied for by means of CHD;
+£3.00
+for a copy of a document, or extract from a document, in hard copy form, certified under section 1091 of the 2006 Act in relation to EEIGs, applied for by means of CHD–
+where that copy or extract is delivered by post by same day delivery,
+£60.00
+where that copy or extract is delivered by post other than by same day delivery,
+£20.00
+where that copy or extract is made available for collection at a CHIC other than for same day collection,
+£20.00
+where that copy or extract is made available for collection at a CHIC for same day collection.
+£60.00
+Extranet
+4
+In respect of the performance of the registrar’s functions in relation to the inspection of material kept by the registrar and the provision of copies of material kept by the registrar in respect of EEIGs, where an application for inspection or a copy is made by means of Extranet, the following fees are payable–
+Matter in relation to which the fee is payable Amount of fee
+for subscribing to Extranet, for each calendar month payable in arrears at the end of that month;
+£4.70
+for the inspection and provision of a copy of a document by means of Extranet in respect of an EEIG;
+£1.00
+for a copy provided by means of Extranet (without prior inspection) of a document in respect of an EEIG.
+£1.00
+WebCHeck
+5
+In respect of the performance of the registrar’s functions in relation to the provision of copies of material kept by the registrar in respect of EEIGs, where the application for a copy is made by means of WebCHeck, the following fee is payable–
+Matter in relation to which the fee is payable Amount of fee
+for a copy provided by means of WebCHeck (without prior inspection) of a document in respect of an EEIG.
+£1.00
+XML
+6
+In respect of the performance of the registrar’s functions in relation to the provision of copies of material kept by the registrar in respect of EEIGs, where the application for a copy is made by means of XML, the following fee is payable–
+Matter in relation to which the fee is payable Amount of fee
+for subscribing to XML, for each calendar month payable in arrears at the end of that month;
+£4.70
+for a copy provided by means of XML (without prior inspection) of a document in respect of an EEIG.
+£1.00
+Companies House Information Centre
+7
+In respect of the performance of the registrar’s functions in relation to the inspection of material kept by the registrar and the provision of copies of material kept by the registrar in respect of EEIGs, where the application for inspection or a copy is made at a CHIC, the following fees are payable–
+Matter in relation to which the fee is payable Amount of fee
+for the inspection by means of a searchroom terminal of a statement of particulars of a charge registered in respect of an EEIG;
+£1.00
+for the inspection of a document by means of a searchroom terminal in respect of an EEIG;
+£1.00
+for a copy, in hard copy form, provided by means of a searchroom terminal (without prior inspection) of a document in respect of an EEIG;
+£1.00
+for a copy of any document specified in sub-paragraphs (a) and (b) above, applied for at a CHIC and made available at a CHIC;
+£3.00
+for the inspection, at a CHIC, of an original document delivered to the registrar in hard copy form in respect of an EEIG;
+£6.00
+for the inspection and for a copy, in hard copy form of a document of the type specified in sub-paragraph (e) above;
+£9.00
+for a copy in hard copy form of a screen of information in respect of an EEIG displayed on a searchroom terminal and made available for collection at a CHIC;
+£0.10
+for a copy, in hard copy form, of a document or extract from a document certified under section 1091 of the 2006 Act in relation to an EEIG, applied for at a CHIC and delivered to the applicant by post–
+where the copy or extract consists of up to 10 pages (including the tenth page),
+£20.00
+for each subsequent page of the copy or extract,
+£1.00
+where any copy or extract is delivered by same day delivery;
+£60.00
+for a copy, in hard copy form, of a document or an extract from a document certified under section 1091 of the 2006 Act in relation to an EEIG, applied for at a CHIC and made available for collection at a CHIC–
+where the copy or extract consists of up to 10 pages (including the tenth page),
+£20.00
+for each subsequent page of the copy or extract,
+£1.00
+where the copy or extract is made available for same day collection.
+£60.00
+Companies House Contact Centre
+8
+In respect of the performance of the registrar’s functions in relation to the provision of copies of material kept by the registrar in respect of EEIGs, where the application for a copy is made by means of a CHCC, the following fees are payable–
+Matter in relation to which the fee is payable Amount of fee
+for a copy, in hard copy form provided on application to a CHCC, of a statement of particulars of a charge registered in respect of an EEIG delivered by post;
+£3.00
+for a copy provided on application to a CHCC, of a statement of particulars of a charge registered in respect of an EEIG delivered by e-mail;
+£3.00
+for a copy, in hard copy form, provided on application to a CHCC of a document in respect of an EEIG delivered by post;
+£3.00
+for a copy, provided on application to a CHCC of a document in respect of an EEIG delivered by e-mail;
+£3.00
+for a copy, provided on application to a CHCC of an original document delivered to the registrar and kept by the registrar in hard copy form in respect of an EEIG and delivered by post;
+£9.00
+for a copy, in hard copy form, provided on application to a CHCC, of a document or extract from a document, certified under section 1091 of the 2006 Act in relation to an EEIG–
+where that copy or extract is delivered by post other than by same day delivery,
+£20.00
+where that copy or extract is delivered by post by same day delivery;
+£60.00
+for a copy, in hard copy form, provided on application to a CHCC, of a document or extract from a document of the type specified in sub-paragraph (f) above and made available for collection at a CHIC–
+where that copy or extract is made available for collection other than for same day collection,
+£20.00
+where that copy or extract is made available for same day collection.
+£60.00

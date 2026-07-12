@@ -1,0 +1,1453 @@
+The Police (Performance) Regulations 2012
+In accordance with section 63(3)(a) of that Act , she has supplied the Police Advisory Board for England and Wales with a draft of these Regulations and has taken into consideration the representations of that Board.
+PART 1 Preliminary
+Citation, commencement and extent
+1
+1
+These Regulations may be cited as the Police (Performance) Regulations 2012 and shall come into force on 22nd November 2012.
+2
+These Regulations extend to England and Wales.
+Application
+2
+These Regulations shall not apply in relation to —
+a
+a member of a police force above the rank of chief superintendent;
+b
+an officer of the rank of constable who has not completed his period of probation.
+Revocation and transitional provisions
+3
+1
+Subject to paragraph (2), the following Regulations are revoked —
+a
+the Police (Performance) Regulations 2008 (“the 2008 Performance Regulations ”);
+b
+the Police (Performance and Conduct) (Amendment: Metropolitan Police) Regulations 2011 .
+2
+Where unsatisfactory performance or attendance by a police officer came to the attention of the line manager for such an officer before 22nd November 2012, nothing in these Regulations shall apply and the 2008 Performance Regulations shall continue to have effect with the modification that, in regulation 4(1), for the definition of “police staff member” there is substituted —
+“police staff member” means —
+a member of the civilian staff of a police force, within the meaning of section 102(4) and (6) of the Police Reform and Social Responsibility Act 2011; or
+an employee of the Common Council of the City of London who is under the direction and control of the Commissioner of the City of London Police;
+.
+3
+In so far as they continue to apply by virtue of paragraph (2) above and regulation 3(2) of the 2008 Performance Regulations, the Police (Efficiency) Regulations 1999 shall have effect with the following modifications —
+a
+in regulation 3(1) —
+i
+in the definition of “countersigning officer”, for paragraph (b) substitute —
+b
+a police staff member who has supervisory responsibility for the reporting officer;
+;
+ii
+omit the definition of “the metropolitan police force’s civilian staff”;
+iii
+for the definition of “personnel officer” substitute —
+“personnel officer” means a police staff member or a member of a police force who, in either case, has responsibility for personnel matters relating to members of the police force concerned;
+;
+iv
+after the definition of “police force concerned”, insert —
+“police staff member” means —
+a member of the civilian staff of a police force, within the meaning of section 102(4) and (6) of the Police Reform and Social Responsibility Act 2011;
+a person employed under section 15 of the 1996 Act ; or
+a person employed under section 55(1)(c) of the 1997 Act;
+;
+v
+for the definition of “reporting officer” substitute —
+“reporting officer” means the member of the police force concerned or the police staff member who, in either case, has the immediate supervisory responsibility for the officer concerned;
+;
+b
+in regulation 4(2) and (3), for “a person employed under section 15 of the 1996 Act or section 55(1)(c) of the 1997 Act or a member of the metropolitan police force’s civilian staff” substitute “a police staff member”;
+c
+in regulation 8(3), for “a person employed under section 15 of the 1996 Act or a member of the metropolitan police force’s civilian staff” substitute “a police staff member”.
+Interpretation and delegation
+4
+1
+In these Regulations —
+“the 1996 Act” means the Police Act 1996;
+“the 2002 Act ” means the Police Reform Act 2002 ;
+“the Police Regulations ” means the Police Regulations 2003 ;
+“appropriate authority” means the chief officer of police of the police force concerned;
+“bank holiday” means a day which is a bank holiday under the Banking and Financial Dealings Act 1971 in England and Wales;
+“complainant” means the person referred to at section 12(1)(a) to (c) (as the case may be) of the 2002 Act (complaints, matters and persons to which Part 2 applies);
+“complaint” has the meaning given to it by section 12(1) of the 2002 Act;
+“ the Commission ” means the Independent Police Complaints Commission established under section 9 of the 2002 Act (the Independent Police Complaints Commission);
+“conduct matter” has the meaning given to it by section 12(2) of the 2002 Act;
+“document” means anything in which information of any description is recorded and includes any recording of a visual image or images;
+“first stage appeal meeting” has the meaning assigned to it by regulation 18;
+“first stage meeting” has the meaning assigned to it by regulation 14;
+“gross incompetence” and cognate expressions mean a serious inability or serious failure of a police officer to perform the duties of his rank or the role he is currently undertaking to a satisfactory standard or level, to the extent that dismissal would be justified, except that no account shall be taken of the attendance of a police officer when considering whether he has been grossly incompetent;
+“human resources professional” means a police officer or police staff member who has specific responsibility for personnel matters relating to members of a police force;
+“interested party” means a person whose appointment could reasonably give rise to a concern as to whether he could act impartially under these Regulations;
+“interested person” has the meaning given to it by section 21 of the 2002 Act;
+“investigator” means a person appointed or designated under paragraph 16, 17, 18 or 19 of Schedule 3 to the 2002 Act;
+“line manager” means the police officer or the police staff member who, in either case, has immediate supervisory responsibility for the officer concerned;
+“nominated person” means a person appointed by the senior manager in accordance with regulation 9;
+“officer concerned” means the police officer in respect of whom proceedings under these Regulations are, or are proposed to be, taken;
+“panel” means a panel appointed by the appropriate authority in accordance with regulation 32 subject to any change to the membership of that panel in accordance with regulation 33 and to the provisions of regulations 46 and 47;
+“panel chair” means the chair of the panel;
+“police force concerned” means —
+where the officer concerned is a member of a police force, the police force of which he is a member; and
+where the officer concerned is a special constable, the police force maintained for the police area for which he is appointed;
+“police friend” means a person chosen by the officer concerned in accordance with regulation 5;
+“police officer” means a member of a police force or a special constable;
+“police staff member” means —
+a member of the civilian staff of a police force, within the meaning of section 102(4) and (6) of the Police Reform and Social Responsibility Act 2011; or
+an employee of the Common Council of the City of London who is under the direction and control of the Commissioner of the City of London Police;
+“proposed witness” means a witness whose attendance at a third stage meeting the officer concerned or the appropriate authority (as the case may be) wishes to request of the panel chair;
+“relevant lawyer” has the same meaning as in section 84(4) of the 1996 Act, subject to the provisions of paragraph 35 of Schedule 27 to the Criminal Justice and Immigration Act 2008 ;
+“relevant terms of the final written improvement notice” has the meaning assigned to it by regulation 25;
+“relevant terms of the written improvement notice” has the meaning assigned to it by regulation 18;
+“second line manager” means the person appointed by the appropriate authority to act as the second line manager for the purposes of these Regulations in relation to the officer concerned and who is either —
+a member of the police force concerned having supervisory responsibility for the line manager and who (in a case where the line manager is a member of the force) is senior in rank to the line manager, or
+a police staff member who has supervisory responsibility for the line manager;
+“second stage appeal meeting” has the meaning assigned to it by regulation 25;
+“second stage meeting” has the meaning assigned to it by regulation 21;
+“senior manager” means —
+the police officer or police staff member who is for the time being the supervisor of the person who is, in relation to the officer concerned, the second line manager; or
+in the absence of such supervisor, the police officer or police staff member nominated by the appropriate authority to carry out any of the functions of such supervisor under these Regulations, being of at least the same rank (or equivalent) as the person who is, in relation to the officer concerned, the second line manager;
+“senior officer” means a member of a police force holding a rank above that of chief superintendent;
+“staff association” means —
+in relation to a member of a police force of the rank of chief inspector or below, the Police Federation of England and Wales; and
+in relation to a member of a police force of the rank of superintendent or chief superintendent, the Police Superintendents’ Association of England and Wales;
+“third stage meeting” has the meaning assigned to it by regulations 28 and 30;
+“unsatisfactory performance procedures” means the procedures set out in these Regulations;
+“validity period” has the meaning assigned to it by regulations 17(4), 24(4), 44(7)(d) and (8)(c); and
+“working day” means any day other than a Saturday or a Sunday or a day which is a bank holiday or a public holiday in England and Wales.
+2
+In these Regulations —
+a
+references to —
+i
+unsatisfactory performance or attendance;
+ii
+the performance or attendance of an officer being unsatisfactory,
+mean an inability or failure of a police officer to perform the duties of the role or rank he is currently undertaking to a satisfactory standard or level;
+b
+“unsatisfactory performance or attendance” may be construed as a reference to unsatisfactory performance and attendance;
+c
+“performance or attendance” may be construed as a reference to performance and attendance.
+3
+Information in documents which are stated to be subject to the harm test under these Regulations shall not be supplied to the officer concerned in so far as the appropriate authority considers that preventing disclosure to him is —
+a
+necessary for the purpose of preventing the premature or inappropriate disclosure of information that is relevant to, or may be used in, criminal proceedings;
+b
+necessary in the interests of national security;
+c
+necessary for the purposes of the prevention or detection of crime, or the apprehension or prosecution of offenders;
+d
+necessary for the purpose of the prevention or detection of misconduct by police officers or police staff members or their apprehension for such matters;
+e
+justified on the grounds that providing the information would involve disproportionate effort in comparison to the seriousness of the unsatisfactory performance or attendance in question;
+f
+necessary and proportionate for the protection of the welfare and safety of any informant or witness; or
+g
+otherwise in the public interest.
+4
+The appropriate authority may, subject to paragraph (5), delegate any of its functions under these Regulations to —
+a
+a member of a police force of at least the rank of chief inspector; or
+b
+a police staff member who, in the opinion of the appropriate authority is of at least a similar level of seniority to a chief inspector.
+5
+Where the appropriate authority delegates its functions under regulation 30, the decisions shall be authorised by a senior officer.
+6
+Any proceedings under these Regulations are disciplinary proceedings for the purposes of section 87 of the 1996 Act .
+7
+Any proceedings under these Regulations are disciplinary proceedings within the meaning of section 29(1) of the 2002 Act, but only for the purposes of the following provisions of that Act —
+a
+section 22;
+b
+section 36;
+c
+paragraph 22 of Schedule 3;
+d
+paragraph 23 of Schedule 3;
+e
+paragraph 25 of Schedule 3; and
+f
+paragraph 27 of Schedule 3.
+PART 2 General
+Police friend
+5
+1
+The officer concerned may choose —
+a
+a police officer;
+b
+a police staff member; or
+c
+where the officer concerned is a member of a police force, a person nominated by his staff association,
+who is not otherwise involved in the matter, to act as his police friend.
+2
+A police friend may —
+a
+advise the officer concerned throughout the proceedings under these Regulations;
+b
+unless the officer concerned has the right to be legally represented under regulation 6 and chooses to be so represented, represent the officer concerned at a meeting under these Regulations;
+c
+make representations to the appropriate authority concerning any aspect of the proceedings under these Regulations; and
+d
+accompany the officer concerned to any meeting which the officer concerned is required to attend under these Regulations.
+3
+Where a police friend is a police officer or a police staff member, the chief officer of police of the force of which the police friend is a member shall permit him to use a reasonable amount of duty time for the purposes referred to in paragraph (2).
+4
+The reference in paragraph (3) to the force of which the police friend is a member shall include a reference to the force maintained for the police area for which a special constable is appointed and the force in which a police staff member is serving.
+Legal representation
+6
+1
+Where a police officer is required to attend a third stage meeting under regulation 30, he has the right to be legally represented at such meeting by a relevant lawyer of his choice.
+2
+If such an officer chooses not to be legally represented —
+a
+such meeting may take place and he may be dismissed or receive any other outcome under regulation 44(2) or (6) without his being legally represented; and
+b
+the panel conducting such meeting may nevertheless be advised by a relevant lawyer at the meeting in accordance with regulation 40(3).
+3
+Except in a case where the officer concerned has the right to be legally represented and chooses to be so represented, he may be represented at a meeting under these Regulations only by a police friend.
+4
+A third stage meeting under regulation 30 shall not take place unless the officer concerned has been notified in writing of the effect of this regulation.
+Provision of notices or documents
+7
+Where any written notice or document is to be given or supplied to the officer concerned under these Regulations, it shall be —
+a
+given to him in person; or
+b
+left with some person at, or sent by recorded delivery to, his last known address.
+Procedure at meetings under these Regulations
+8
+1
+Where the officer concerned does not attend a meeting under these Regulations or where the officer concerned participates in a third stage meeting by video link or other means under regulation 36(9), he may nonetheless be represented at that meeting by his–
+a
+police friend; or
+b
+where the officer is required to attend the third stage meeting under regulation 30, his relevant lawyer.
+2
+Where the officer concerned does not attend a meeting under these Regulations or participate in a third stage meeting by video link or other means under regulation 36(9), the meeting may be proceeded with and concluded in the absence of the officer concerned whether or not he is so represented.
+3
+During any meeting under these Regulations, the person representing the officer concerned may —
+a
+address the meeting in order to do any or all of the following–
+i
+put the case of the officer concerned;
+ii
+sum up that case;
+iii
+respond on behalf of the officer concerned to any view expressed at the meeting;
+iv
+make representations concerning any aspect of proceedings under these Regulations; and
+v
+in the case of a third stage meeting only, subject to paragraph (7), ask questions of any witnesses;
+b
+confer with the officer concerned.
+4
+Where the person representing the officer concerned is a relevant lawyer, the police friend of the officer concerned may also confer with the officer concerned.
+5
+Where the officer concerned is participating in a third stage meeting by video link or other means in accordance with regulation 36(9), the person representing the officer or (if different) his police friend (or both) may also participate in the third stage meeting by such means together with the officer concerned.
+6
+The police friend or relevant lawyer of the officer concerned may not answer any questions asked of the officer concerned during a meeting.
+7
+Whether any question should or should not be put to a witness at a third stage meeting shall be determined by the panel chair.
+8
+At any meeting under these Regulations, the person or the panel conducting the meeting shall not make a finding of unsatisfactory performance or attendance or gross incompetence unless —
+a
+he is or they are satisfied on the balance of probabilities that there has been unsatisfactory performance or attendance or gross incompetence; or
+b
+the officer concerned consents to such a finding.
+9
+The person conducting or chairing a meeting under these Regulations may allow any document to be considered at that meeting notwithstanding that a copy of it has not been —
+a
+supplied to him by the officer concerned in accordance with regulation 15(8), 18(6)(b), 22(8), 25(6)(b) or 34(3);
+b
+supplied to the officer concerned in accordance with regulation 15(2), 22(2), 29(2) or 31(2); or
+c
+made available to each panel member or given to the officer concerned under regulation 32(11).
+Nominated persons
+9
+1
+A senior manager may appoint another person (a “nominated person”) to carry out any of the functions of the line manager or the second line manager in these Regulations.
+2
+Where a person is appointed to carry out any of the functions of the line manager under paragraph (1) he may not also be appointed to carry out any of the functions of the second line manager under that paragraph.
+3
+Where a person is appointed to carry out any of the functions of the second line manager under paragraph (1) he may not also be appointed to carry out any of the functions of the line manager under that paragraph.
+4
+A nominated person shall be a member of the police force concerned or a police staff member in the police force concerned and shall be, in the opinion of the appropriate authority, of at least the same or equivalent rank or grade as the person whose functions he is carrying out.
+5
+Where a nominated person is appointed by the senior manager, references in these Regulations to a line manager or a second line manager, as the case may be, shall be construed as references to the nominated person, in relation to the functions which the nominated person has been appointed to carry out.
+References to certain periods
+10
+1
+The appropriate authority may, on the application of the officer concerned or otherwise, extend the period specified in accordance with any of the regulations mentioned in paragraph (2) if it is satisfied that it is appropriate to do so.
+2
+The regulations mentioned in this paragraph are —
+a
+regulation 16(6)(c);
+b
+regulation 23(6)(c); and
+c
+regulation 44(7)(c) and (8)(a).
+3
+Unless the appropriate authority is satisfied that there are exceptional circumstances making it appropriate, any such period may not be extended if the extension would result in the total length of that period exceeding 12 months.
+4
+Where an extension is granted under paragraph (1) to a period specified under a regulation mentioned in paragraph (2), any reference in these Regulations to such period shall be construed as a reference to that period as so extended.
+Suspension of certain periods
+11
+1
+Any reference in these Regulations to a period mentioned in paragraph (2) shall not include any time the officer concerned is taking a career break under regulation 33(12) of the Police Regulations (leave) and the determination of the Secretary of State made under that regulation.
+2
+The periods mentioned in this paragraph are —
+a
+a period specified in accordance with regulation 16(6)(c);
+b
+the validity period of a written improvement notice;
+c
+a period specified in accordance with regulation 23(6)(c);
+d
+the validity period of a final written improvement notice;
+e
+a period specified under regulation 44(7)(c) or (8)(a);
+f
+the validity period of a final written improvement notice extended under regulation 44.
+Meeting following investigation under Schedule 3 to the 2002 Act
+12
+1
+Subject to regulation 30, where the appropriate authority —
+a
+i
+receives an investigator’s written report submitted under paragraph 22 of Schedule 3 to the 2002 Act; and
+ii
+in making a determination under paragraph 23(7) or 24(6) of that Schedule, considers that the performance of a police officer is unsatisfactory;
+b
+accepts a recommendation under paragraph 27(3) of that Schedule in relation to the unsatisfactory performance of a police officer; or
+c
+has a duty under paragraph 27(4) of that Schedule to comply with a direction to give effect to such a recommendation,
+it shall direct the line manager for the officer concerned to take the action specified in paragraph (2), (3) or (4), as the case may be.
+2
+In a case where —
+a
+the officer concerned has received a final written improvement notice under regulation 24 or 44 in relation to unsatisfactory performance which is similar to or connected with the unsatisfactory performance to which the determination mentioned in paragraph (1)(a) or the recommendation mentioned in paragraph (1)(b) and (c) relates; and
+b
+the validity period of the final written improvement notice, within the meaning of regulation 24(4) or 44(7)(d) or (8)(c), has not expired,
+the specified action is that the line manager shall require the officer to attend a third stage meeting.
+3
+In a case where —
+a
+the officer concerned has received a written improvement notice under regulation 17 or 44 in relation to unsatisfactory performance which is similar to or connected with the unsatisfactory performance to which the determination mentioned in paragraph (1)(a) or the recommendation mentioned in paragraph (1)(b) and (c) relates; and
+b
+the validity period of the written improvement notice, within the meaning of regulation 17(4) or 44(7)(d), has not expired,
+the specified action is that the line manager shall require the officer to attend a second stage meeting.
+4
+In any other case, the specified action is that the line manager shall require the officer concerned to attend a first stage meeting.
+5
+The line manager shall comply with a direction given by the appropriate authority under paragraph (1).
+6
+Where a police officer is required to attend a meeting under this regulation —
+a
+regulations 15 to 20 shall apply, if the meeting is a first stage meeting;
+b
+regulations 22 to 27 shall apply, if the meeting is a second stage meeting; and
+c
+regulations 29, 32 to 37 and 40 to 47 shall apply, if the meeting is a third stage meeting,
+but this is subject to paragraphs (7) and (8).
+7
+The duty to provide documents in regulation 15(2), 22(2) or 29(2) shall have effect as a duty to provide the officer concerned with (subject to the harm test in regulation 4(3)) a copy of —
+a
+the investigator’s written report submitted under paragraph 22 of Schedule 3 to the 2002 Act; and
+b
+any recommendation of the Commission under paragraph 27(3) of that Schedule.
+8
+Where a police officer is required to attend a third stage meeting under paragraph (2) by reason of the fact that he is subject to a final written improvement notice issued or extended under regulation 44 —
+a
+the meeting shall be conducted by the same panel as conducted the initial third stage meeting;
+b
+regulation 46(11) to (15) shall apply in relation to that panel; and
+c
+the officer concerned shall not have the right to object to panel members under regulation 33, except in accordance with regulation 46(15).
+9
+Where the appropriate authority fails to make the determination referred to in paragraph (1)(a)(ii) (in so far as it involves consideration of the performance of a police officer) before the end of 15 working days beginning with the first working day after the receipt of the investigator’s written report, it shall notify the officer concerned of the reason for this.
+Provision of information to the Commission
+13
+1
+This regulation applies in a case where —
+a
+paragraph 18 or 19 of Schedule 3 to the 2002 Act applied; or
+b
+paragraph 16 or 17 of that Schedule applied and the Commission —
+i
+made a recommendation under paragraph 27(3) of that Schedule which the appropriate authority accepted; or
+ii
+gave a direction to the appropriate authority under paragraph 27(4) of that Schedule.
+2
+Where this regulation applies, the appropriate authority shall send the Commission a copy of —
+a
+any written record and written improvement notice given to the officer concerned under regulation 17(5);
+b
+any written notice and written summary given to the officer concerned under regulation 20(9);
+c
+any notification as to improvement in performance or attendance under regulation 21(1)(b);
+d
+any written record and final written improvement notice given to the officer concerned under regulation 24(5);
+e
+any written notice and written summary given to the officer concerned under regulation 27(9);
+f
+any notification as to improvement in performance or attendance under regulation 28(1)(b);
+g
+any written decision given to the officer concerned under regulation 43(3);
+h
+any final written improvement notice issued or extended under regulation 44(3);
+i
+any written improvement notice issued under regulation 44(6);
+j
+any notification as to improvement in performance or attendance under regulation 46(2)(b).
+3
+Where this regulation applies, the appropriate authority shall notify the Commission if it extends, under regulation 10(1), any period specified in accordance with regulation 16(6)(c), 23(6)(c) or 44(7)(c) or (8)(a).
+PART 3 First stage
+Circumstances in which a first stage meeting may be required
+14
+Where the line manager for a police officer considers that the performance or attendance of that officer is unsatisfactory, he may require the officer concerned to attend a meeting (in these Regulations referred to as a first stage meeting) to discuss the performance or attendance of the officer concerned.
+Arrangement of first stage meeting
+15
+1
+Where the line manager requires a police officer to attend a first stage meeting, he shall give a notice in writing to the officer concerned —
+a
+requiring him to attend a first stage meeting of the unsatisfactory performance procedures with the line manager;
+b
+informing him of the procedures for determining the date and time of the meeting under paragraphs (3) to (6);
+c
+summarising the reasons why his performance or attendance is considered unsatisfactory;
+d
+informing him of the possible outcomes of a first stage meeting, a second stage meeting and a third stage meeting;
+e
+informing him that a human resources professional or a police officer may attend the meeting to advise the line manager on the proceedings;
+f
+informing him that, if he consents, any other person specified in the notice may attend the meeting;
+g
+where the officer concerned is a member of a police force, informing him that he may seek advice from a representative of his staff association;
+h
+informing him that he may be accompanied and represented at the meeting by a police friend; and
+i
+informing him that he must provide to the line manager in advance of the meeting a copy of any document he intends to rely on at the meeting.
+2
+Such notice shall be accompanied by a copy of any document relied upon by the line manager when coming to his view mentioned in regulation 14 that the performance or attendance of the officer concerned is unsatisfactory.
+3
+The line manager shall, if reasonably practicable, agree a date and time for the meeting with the officer concerned.
+4
+Where no date and time is agreed under paragraph (3), the line manager shall specify a date and time for the meeting.
+5
+Where a date and time is specified under paragraph (4) and —
+a
+the officer concerned or his police friend will not be available at that time; and
+b
+the officer concerned proposes an alternative time which satisfies paragraph (6),
+the meeting must be postponed to the time proposed by the officer concerned.
+6
+An alternative time must —
+a
+be reasonable; and
+b
+fall before the end of five working days beginning with the first working day after the day specified by the line manager under paragraph (4).
+7
+The line manager shall give to the officer concerned a notice in writing of the date and time of the first stage meeting determined in accordance with paragraphs (3) to (6) and of the place of the meeting.
+8
+In advance of the first stage meeting, the officer concerned shall provide the line manager with a copy of any document he intends to rely on at the meeting.
+Procedure at first stage meeting
+16
+1
+The following provisions of this regulation apply to the procedure to be followed at the first stage meeting.
+2
+The meeting shall be conducted by the line manager.
+3
+A human resources professional or a police officer may attend the meeting to advise the line manager on the proceedings.
+4
+Any other person specified in the notice referred to in regulation 15(1) may attend the meeting if the officer concerned consents to such attendance.
+5
+The line manager shall —
+a
+explain to the officer concerned the reasons why the line manager considers that the performance or attendance of the officer concerned is unsatisfactory;
+b
+provide the officer concerned with an opportunity to make representations in response;
+c
+provide his police friend (if he has one) with an opportunity to address the meeting in accordance with regulation 8(3)(a).
+6
+If, after considering any representations made in accordance with paragraph (5)(b) or (c), the line manager finds that the performance or attendance of the officer concerned has been unsatisfactory, he shall —
+a
+inform the officer concerned in what respect his performance or attendance is considered unsatisfactory;
+b
+inform the officer concerned of the improvement that is required in his performance or attendance;
+c
+inform the officer concerned that, if a sufficient improvement is not made within such reasonable period as the line manager shall specify (being a period not greater than 12 months), he may be required to attend a second stage meeting in accordance with regulation 21 and the line manager shall specify the date on which this period ends;
+d
+inform the officer concerned that he will receive a written improvement notice; and
+e
+inform the officer concerned that if the sufficient improvement referred to in sub-paragraph (c) is not maintained during any part of the validity period of such notice remaining after the expiry of the period specified in accordance with sub-paragraph (c), he may be required to attend a second stage meeting in accordance with regulation 21.
+7
+The line manager may, if he considers it appropriate, recommend that the officer concerned seeks assistance in relation to any matter affecting his health or welfare.
+8
+The line manager may postpone or adjourn the meeting to a specified later time or date if it appears to him necessary or expedient to do so.
+Procedure following first stage meeting
+17
+1
+The line manager shall, as soon as reasonably practicable after the date of the conclusion of the first stage meeting —
+a
+cause to be prepared a written record of the meeting; and
+b
+where he found at the meeting that the performance or attendance of the officer concerned has been unsatisfactory, cause to be prepared a written improvement notice.
+2
+Where the officer concerned has failed to attend a first stage meeting, if the line manager finds that the performance or attendance of the officer has been unsatisfactory, he shall as soon as reasonably practicable —
+a
+cause to be prepared a written improvement notice; and
+b
+if the police friend of the officer concerned attended the meeting, cause to be prepared a written record of the meeting.
+3
+A written improvement notice shall —
+a
+record the matters of which the officer concerned was informed (or would have been informed had he attended the meeting) under sub-paragraphs (a) to (c) and (e) of regulation 16(6);
+b
+state the period for which it is valid; and
+c
+be signed and dated by the line manager.
+4
+A written improvement notice shall be valid for a period of twelve months from the date of the notice (the “validity period”).
+5
+The line manager shall give a copy of any written record and any written improvement notice to the officer concerned as soon as reasonably practicable after they have been prepared.
+6
+Where the line manager found that the performance or attendance of the officer concerned has been unsatisfactory and has caused to be prepared a written improvement notice, he shall, at the same time as supplying the documents mentioned in paragraph (5), notify the officer concerned in writing of the matters set out in regulation 18, of the name of the person to whom a written notice of appeal must be given under that regulation, of his entitlements under paragraphs (7) and (8) and of the effect of paragraph (9).
+7
+Subject to paragraphs (8) and (9), the officer concerned shall be entitled to submit written comments on any written record to the line manager before the end of 7 working days beginning with the first working day after the day on which the copy is received by the officer concerned.
+8
+The line manager may, on the application of the officer concerned, extend the period specified in paragraph (7) if he is satisfied that it is appropriate to do so.
+9
+The officer concerned shall not be entitled to submit written comments on the written record if he has exercised his right to appeal under regulation 18.
+10
+The line manager shall ensure that any written record, any written improvement notice and any written comments of the officer concerned on the written record are retained together and filed.
+Appeal against the finding and outcome of a first stage meeting
+18
+1
+This regulation applies where, at the first stage meeting, the line manager found that the performance or attendance of the officer concerned has been unsatisfactory.
+2
+Where this regulation applies, the officer concerned may appeal against–
+a
+such finding; or
+b
+any of the matters specified in paragraph (3) and recorded in the written improvement notice (in these Regulations referred to as the relevant terms of the written improvement notice),
+or both.
+3
+The matters specified in this paragraph are —
+a
+the respect in which the performance or attendance of the officer concerned is considered unsatisfactory;
+b
+the improvement that is required in his performance or attendance;
+c
+the length of the period specified by the line manager in accordance with regulation 16(6)(c).
+4
+The only grounds of appeal under this regulation are —
+a
+that the finding of unsatisfactory performance or attendance was unreasonable;
+b
+that any of the relevant terms of the written improvement notice are unreasonable;
+c
+that there is evidence that could not reasonably have been considered at the first stage meeting which could have materially affected the finding of unsatisfactory performance or attendance or any of the relevant terms of the written improvement notice;
+d
+that there was a breach of the procedures set out in these Regulations or other unfairness which could have materially affected the finding of unsatisfactory performance or attendance or any of the relevant terms of the written improvement notice.
+5
+Any appeal shall be commenced by the officer concerned giving written notice of appeal to the second line manager before the end of 7 working days beginning with the first working day after receipt of the documents referred to in regulation 17(5).
+6
+Such notification must–
+a
+set out the grounds of appeal of the officer concerned; and
+b
+be accompanied by any evidence on which the officer concerned relies.
+7
+The second line manager may, on the application of the officer concerned, extend the period specified in paragraph (5) if he is satisfied that it is appropriate to do so.
+8
+Subject to paragraph (9), the meeting at which the appeal will be heard (referred to in these Regulations as the first stage appeal meeting) shall take place before the end of 7 working days beginning with the first working day after the day on which the notification under paragraph (5) is received by the second line manager.
+9
+A first stage appeal meeting may take place after the period of 7 working days referred to in paragraph (8) if the second line manager considers it necessary or expedient, in which case he shall notify the officer concerned of his reasons in writing.
+Arrangement of first stage appeal meeting
+19
+1
+As soon as reasonably practicable after receipt by the second line manager of the notification of appeal referred to in regulation 18(5), the second line manager shall give a notice in writing to the officer concerned —
+a
+informing him of the procedures for determining the date and time of the meeting under paragraphs (2) to (5);
+b
+informing him that a human resources professional or a police officer may attend the meeting to advise the second line manager on the proceedings;
+c
+informing him that, if he consents, any other person specified in the notice may attend the meeting;
+d
+where the officer concerned is a member of a police force, informing him that he may seek advice from a representative of his staff association; and
+e
+informing him that he may be accompanied and represented at the meeting by a police friend.
+2
+The second line manager shall, if reasonably practicable, agree a date and time for the meeting with the officer concerned.
+3
+Where no date and time is agreed under paragraph (2), the second line manager shall specify a date and time for the meeting.
+4
+Where a date and time is specified under paragraph (3) and —
+a
+the officer concerned or his police friend will not be available at that time; and
+b
+the officer concerned proposes an alternative time which satisfies paragraph (5),
+the meeting must be postponed to the time proposed by the officer concerned.
+5
+An alternative time must —
+a
+be reasonable; and
+b
+fall before the end of five working days beginning with the first working day after the day specified by the second line manager under paragraph (3).
+6
+The second line manager shall give to the officer concerned a notice in writing of the date and time of the first stage appeal meeting determined in accordance with paragraphs (2) to (5) and of the place of the meeting.
+Procedure at first stage appeal meeting
+20
+1
+The following provisions of this regulation apply to the procedure to be followed at a first stage appeal meeting.
+2
+The meeting shall be conducted by the second line manager.
+3
+A human resources professional or a police officer may attend the meeting to advise the second line manager on the proceedings.
+4
+Any other person specified in the notice referred to in regulation 19(1) may attend the meeting if the officer concerned consents to such attendance.
+5
+The second line manager shall —
+a
+provide the officer concerned with an opportunity to make representations; and
+b
+provide his police friend (if he has one) with an opportunity to address the meeting in accordance with regulation 8(3)(a).
+6
+After considering any representations made in accordance with paragraph (5), the second line manager may —
+a
+confirm or reverse the finding of unsatisfactory performance or attendance;
+b
+confirm or vary the relevant terms of the written improvement notice appealed against.
+7
+Where the second line manager has reversed the finding of unsatisfactory performance or attendance, he shall also revoke the written improvement notice.
+8
+The second line manager may postpone or adjourn the meeting to a specified later time or date if it appears to him necessary or expedient to do so.
+9
+As soon as reasonably practicable after the conclusion of the meeting, the officer concerned shall be given written notice of the second line manager’s decision and a written summary of the reasons for that decision, but in any event, the officer concerned shall be given written notice of the decision before the end of three working days beginning with the first working day after the conclusion of the meeting.
+10
+Where the second line manager has —
+a
+reversed the finding of unsatisfactory performance or attendance and revoked the written improvement notice; or
+b
+varied any of the relevant terms of the written improvement notice,
+the decision of the second line manager shall take effect by way of substitution for the finding, the written improvement notice issued or the relevant terms of the written improvement notice appealed against from the date of the first stage meeting.
+PART 4 Second stage
+Circumstances in which a second stage meeting may be required
+21
+1
+Where a police officer has received a written improvement notice, as soon as reasonably practicable after the date on which the period specified in accordance with regulation 16(6)(c) ends —
+a
+the line manager shall assess the performance or attendance of the officer concerned during that period, in consultation with the second line manager or a human resources professional (or both); and
+b
+the line manager shall notify the officer concerned in writing whether the line manager considers that there has been a sufficient improvement in performance or attendance during that period.
+2
+If the line manager considers that there has not been a sufficient improvement, he shall, at the same time as he gives notification under paragraph (1)(b), also notify the officer concerned in writing that he is required to attend a meeting (in these Regulations referred to as a second stage meeting) to consider his performance or attendance.
+3
+Where —
+a
+the officer concerned has not been required to attend a second stage meeting under paragraph (2), or
+b
+the officer concerned has been required to attend a second stage meeting under paragraph (2) but the second line manager did not make a finding of unsatisfactory performance or attendance at that meeting,
+the officer concerned may be required to attend a second stage meeting under paragraph (4).
+4
+If the line manager considers that the officer concerned has failed to maintain a sufficient improvement in his performance or attendance during any part of the validity period of the written improvement notice remaining after the expiry of the period specified in accordance with regulation 16(6)(c), he shall notify the officer concerned in writing of the matters set out in paragraph (5).
+5
+Those matters are —
+a
+that he is of the view mentioned in paragraph (4); and
+b
+that the officer concerned is required to attend a meeting (in these Regulations referred to as a second stage meeting) to consider his performance or attendance.
+6
+Any second stage meeting which a police officer is required to attend must concern unsatisfactory performance or attendance which is similar to or connected with the unsatisfactory performance or attendance referred to in the written improvement notice.
+Arrangement of second stage meeting
+22
+1
+Where the line manager requires the officer concerned to attend a second stage meeting, the second line manager shall as soon as reasonably practicable give a notice in writing to the officer concerned —
+a
+referring to the requirement on the officer concerned to attend a second stage meeting of the unsatisfactory performance procedures with the second line manager;
+b
+informing him of the procedures for determining the date and time of the meeting under paragraphs (3) to (6);
+c
+summarising the reasons why his performance or attendance is considered unsatisfactory;
+d
+informing him of the possible outcomes of a second stage meeting and a third stage meeting;
+e
+informing him that the line manager may attend the meeting;
+f
+informing him that a human resources professional or a police officer may attend the meeting to advise the second line manager on the proceedings;
+g
+informing him that, if he consents, any other person specified in the notice may attend the meeting;
+h
+where the officer concerned is a member of a police force, informing him that he may seek advice from a representative of his staff association;
+i
+informing him that he may be accompanied and represented at the meeting by a police friend; and
+j
+informing him that he must provide to the second line manager in advance of the meeting a copy of any document he intends to rely on at the meeting.
+2
+Such notice shall be accompanied by a copy of any document relied upon by the line manager when he formed the view referred to in regulation 21(2) or (4), as the case may be.
+3
+The second line manager shall, if reasonably practicable, agree a date and time for the meeting with the officer concerned.
+4
+Where no date and time is agreed under paragraph (3), the second line manager shall specify a date and time for the meeting.
+5
+Where a date and time is specified under paragraph (4) and —
+a
+the officer concerned or his police friend will not be available at that time; and
+b
+the officer concerned proposes an alternative time which satisfies paragraph (6),
+the meeting must be postponed to the time proposed by the officer concerned.
+6
+An alternative time must —
+a
+be reasonable; and
+b
+fall before the end of five working days beginning with the first working day after the day specified by the second line manager under paragraph (4).
+7
+The second line manager shall give to the officer concerned a notice in writing of the date and time of the second stage meeting determined in accordance with paragraphs (3) to (6) and of the place of the meeting.
+8
+In advance of the second stage meeting, the officer concerned shall provide the second line manager with a copy of any document he intends to rely on at the meeting.
+Procedure at second stage meeting
+23
+1
+The following provisions of this regulation shall apply to the procedure to be followed at the second stage meeting.
+2
+The meeting shall be conducted by the second line manager and may be attended by the line manager.
+3
+A human resources professional or a police officer may attend the meeting to advise the second line manager on the proceedings.
+4
+Any other person specified in the notice referred to in regulation 22(1) may attend the meeting if the officer concerned consents to such attendance.
+5
+The second line manager shall —
+a
+explain to the officer concerned the reasons why he has been required to attend the meeting;
+b
+provide the officer concerned with an opportunity to make representations in response;
+c
+provide his police friend (if he has one) with an opportunity to address the meeting in accordance with regulation 8(3)(a).
+6
+If, after considering any representations made under paragraph (5)(b) or (c), the second line manager finds that the performance or attendance of the officer concerned has been unsatisfactory during the period specified in accordance with regulation 16(6)(c) or during any part of the validity period of the written improvement notice remaining after the expiry of such period, he shall —
+a
+inform the officer concerned in what respect his performance or attendance is considered unsatisfactory;
+b
+inform the officer concerned of the improvement that is required in his performance or attendance;
+c
+inform the officer concerned that, if a sufficient improvement is not made within such reasonable period as the second line manager shall specify (being a period not greater than 12 months), he may be required to attend a third stage meeting in accordance with regulation 28 and the second line manager shall specify the date on which this period ends;
+d
+inform the officer concerned that he will receive a final written improvement notice; and
+e
+inform the officer concerned that if the sufficient improvement referred to in sub-paragraph (c) is not maintained during any part of the validity period of such notice remaining after the expiry of the period specified in accordance with sub-paragraph (c), he may be required to attend a third stage meeting in accordance with regulation 28.
+7
+The second line manager may, if he considers it appropriate, recommend that the officer concerned seeks assistance in relation to any matter affecting his health or welfare.
+8
+The second line manager may postpone or adjourn the meeting to a specified later time or date if it appears to him necessary or expedient to do so.
+Procedure following second stage meeting
+24
+1
+The second line manager shall, as soon as reasonably practicable after the date of the conclusion of the second stage meeting —
+a
+cause to be prepared a written record of the meeting; and
+b
+where he made a finding at the meeting as set out in regulation 23(6), cause to be prepared a final written improvement notice.
+2
+Where the officer concerned has failed to attend a second stage meeting, if the second line manager makes a finding as set out in regulation 23(6), he shall as soon as reasonably practicable —
+a
+cause to be prepared a final written improvement notice; and
+b
+if the police friend of the officer concerned attended the meeting, cause to be prepared a written record of the meeting.
+3
+A final written improvement notice shall —
+a
+record the matters of which the officer concerned was informed (or would have been informed had he attended the meeting) under sub-paragraphs (a) to (c) and (e) of regulation 23(6);
+b
+state the period for which it is valid; and
+c
+be signed and dated by the second line manager.
+4
+A final written improvement notice shall be valid for a period of twelve months from the date of the notice (the “validity period”).
+5
+The second line manager shall give a copy of any written record and any final written improvement notice to the officer concerned as soon as reasonably practicable after they have been prepared.
+6
+Where the second line manager made a finding as set out in regulation 23(6) and has caused to be prepared a final written improvement notice, he shall, at the same time as supplying the documents mentioned in paragraph (5), notify the officer concerned in writing of the matters set out in regulation 25, of the name of the person to whom a written notice of appeal must be given under that regulation, of his entitlements under paragraphs (7) and (8) and of the effect of paragraph (9).
+7
+Subject to paragraphs (8) and (9), the officer concerned shall be entitled to submit written comments on the written record to the second line manager before the end of 7 working days beginning with the first working day after the day on which the copy is received by the officer concerned.
+8
+The second line manager may, on the application of the officer concerned, extend the period specified in paragraph (7) if he is satisfied that it is appropriate to do so.
+9
+The officer concerned shall not be entitled to submit written comments on the written record if he has exercised his right to appeal under regulation 25.
+10
+The second line manager shall ensure that any written record, any final written improvement notice and any written comments of the officer concerned on the written record are retained together and filed.
+Appeal against the finding and outcome of a second stage meeting
+25
+1
+This regulation applies where, at the second stage meeting, the second line manager found that the performance or attendance of the officer concerned has been unsatisfactory as set out in regulation 23(6).
+2
+Where this regulation applies, the officer concerned may appeal against one or more of the following —
+a
+such finding;
+b
+any of the matters specified in paragraph (3) and recorded in the final written improvement notice (in these Regulations referred to as the relevant terms of the final written improvement notice);
+c
+the decision of the line manager to require the officer concerned to attend the second stage meeting.
+3
+The matters specified in this paragraph are —
+a
+the respect in which the performance or attendance of the officer concerned is considered unsatisfactory;
+b
+the improvement that is required in his performance or attendance;
+c
+the length of the period specified by the second line manager in accordance with regulation 23(6)(c).
+4
+The only grounds of appeal under this regulation are–
+a
+that, in relation to an appeal under paragraph (2)(c), the officer concerned should not have been required to attend the second stage meeting as the meeting did not, in accordance with regulation 21(6), concern unsatisfactory performance or attendance which is similar to or connected with the unsatisfactory performance or attendance referred to in the written improvement notice;
+b
+that the finding of unsatisfactory performance or attendance was unreasonable;
+c
+that any of the relevant terms of the final written improvement notice are unreasonable;
+d
+that there is evidence that could not reasonably have been considered at the second stage meeting which could have materially affected the finding of unsatisfactory performance or attendance or any of the relevant terms of the final written improvement notice;
+e
+that there was a breach of the procedures set out in these Regulations or other unfairness which could have materially affected the finding of unsatisfactory performance or attendance or any of the relevant terms of the final written improvement notice.
+5
+An appeal shall be commenced by the officer concerned giving written notice of appeal to the senior manager before the end of 7 working days beginning with the first working day after receipt of the documents referred to in regulation 24(5).
+6
+Such notice must–
+a
+set out the grounds of appeal of the officer concerned; and
+b
+be accompanied by any evidence on which the officer concerned relies.
+7
+The senior manager may, on the application of the officer concerned, extend the period specified in paragraph (5) if he is satisfied that it is appropriate to do so.
+8
+Subject to paragraph (9), the meeting at which the appeal will be heard (referred to in these Regulations as a second stage appeal meeting) shall take place before the end of 7 working days beginning with the first working day after the day on which the notification under paragraph (5) is received by the senior manager.
+9
+A second stage appeal meeting may take place after the period of 7 working days referred to in paragraph (8) if the senior manager considers it necessary or expedient, in which case he shall notify the officer concerned of his reasons in writing.
+Arrangement of second stage appeal meeting
+26
+1
+As soon as reasonably practicable after receipt by the senior manager of the notice of appeal referred to in regulation 25(5), the senior manager shall give a notice in writing to the officer concerned —
+a
+informing him of the procedures for determining the date and time of the meeting under paragraphs (2) to (5);
+b
+informing him that a human resources professional or a police officer may attend the meeting to advise the senior manager on the proceedings;
+c
+informing him that, if he consents, any other person specified in the notice may attend the meeting;
+d
+where the officer concerned is a member of a police force, informing him that he may seek advice from a representative of his staff association; and
+e
+informing him that he may be accompanied and represented at the meeting by a police friend.
+2
+The senior manager shall, if reasonably practicable, agree a date and time for the meeting with the officer concerned.
+3
+Where no date and time is agreed under paragraph (2), the senior manager shall specify a date and time for the meeting.
+4
+Where a date and time is specified under paragraph (3) and —
+a
+the officer concerned or his police friend will not be available at that time; and
+b
+the officer concerned proposes an alternative time which satisfies paragraph (5),
+the meeting must be postponed to the time proposed by the officer concerned.
+5
+An alternative time must —
+a
+be reasonable; and
+b
+fall before the end of five working days beginning with the first working day after the day specified by the senior manager under paragraph (3).
+6
+The senior manager shall give to the officer concerned a notice in writing of the date and time of the second stage appeal meeting determined in accordance with paragraphs (2) to (5) and of the place of the meeting.
+Procedure at second stage appeal meeting
+27
+1
+The following provisions of this regulation apply to the procedure to be followed at a second stage appeal meeting.
+2
+The meeting shall be conducted by the senior manager.
+3
+A human resources professional or a police officer may attend the meeting to advise the senior manager on the proceedings.
+4
+Any other person specified in the notice referred to in regulation 26(1) may attend the meeting if the officer concerned consents to such attendance.
+5
+The senior manager shall —
+a
+provide the officer concerned with an opportunity to make representations; and
+b
+provide his police friend (if he has one) with an opportunity to address the meeting in accordance with regulation 8(3)(a).
+6
+After considering any representations made in accordance with paragraph (5), the senior manager may —
+a
+in an appeal under regulation 25(2)(c), make a finding that the officer concerned should not have been required to attend the second stage meeting and reverse the finding made at that meeting;
+b
+confirm or reverse the finding of unsatisfactory performance or attendance made at the second stage meeting;
+c
+confirm or vary the relevant terms of the final written improvement notice appealed against.
+7
+Where the senior manager has reversed the finding of unsatisfactory performance or attendance made at the second stage meeting, the senior manager shall also revoke the final written improvement notice.
+8
+The senior manager may postpone or adjourn the meeting to a specified later time or date if it appears to him necessary or expedient to do so.
+9
+As soon as reasonably practicable after the conclusion of the meeting, the officer concerned shall be given written notice of the senior manager’s decision and a written summary of the reasons for that decision but in any event, the officer concerned shall be given written notice of the decision before the end of three working days beginning with the first working day after the conclusion of the meeting.
+10
+Where the senior manager has —
+a
+reversed the finding made as set out in regulation 23(6) and revoked the final written improvement notice; or
+b
+varied any of the relevant terms of the final written improvement notice,
+the decision of the senior manager shall take effect by way of substitution for the finding, the final written improvement notice issued or the relevant terms of the final written improvement notice appealed against from the date of the second stage meeting.
+PART 5 Third stage
+Assessment following second stage meeting
+28
+1
+Where a police officer has received a final written improvement notice, as soon as reasonably practicable after the date on which the period specified in accordance with regulation 23(6)(c) ends —
+a
+the line manager shall assess the performance or attendance of the officer concerned during that period, in consultation with the second line manager or a human resources professional (or both); and
+b
+the line manager shall notify the officer concerned in writing whether the line manager considers that there has been a sufficient improvement in performance or attendance during that period.
+2
+If the line manager considers that there has not been a sufficient improvement, he shall, at the same time as he gives notification under paragraph (1)(b), also notify the officer concerned in writing that he is required to attend a meeting (in these Regulations referred to as a third stage meeting) to consider his performance or attendance.
+3
+Where —
+a
+the officer concerned has not been required to attend a third stage meeting under paragraph (2), or
+b
+the officer concerned has been required to attend a third stage meeting under paragraph (2) but the panel did not make a finding of unsatisfactory performance or attendance at that meeting,
+the officer concerned may be required to attend a third stage meeting under paragraph (4).
+4
+If the line manager considers that the officer concerned has failed to maintain a sufficient improvement in his performance or attendance during any part of the validity period of the final written improvement notice remaining after the expiry of the period specified in accordance with regulation 23(6)(c), he shall notify the officer concerned in writing of the matters set out in paragraph (5).
+5
+Those matters are —
+a
+that he is of the view mentioned in paragraph (4); and
+b
+that the officer concerned is required to attend a meeting (in these Regulations referred to as a third stage meeting) to consider his performance or attendance.
+6
+Subject to regulation 30, any third stage meeting which a police officer is required to attend must concern unsatisfactory performance or attendance which is similar to or connected with the unsatisfactory performance or attendance referred to in the final written improvement notice.
+Arrangement of a third stage meeting
+29
+1
+Where the line manager requires the officer concerned to attend a third stage meeting, the senior manager shall as soon as reasonably practicable give a notice in writing to the officer concerned —
+a
+referring to the requirement on the officer concerned to attend a third stage meeting of the unsatisfactory performance procedures with a panel appointed by the appropriate authority;
+b
+informing him of the procedures for determining the date and time of the meeting under regulation 36;
+c
+summarising the reasons why his performance or attendance is considered unsatisfactory;
+d
+informing him of the possible outcomes of the meeting;
+e
+informing him that a human resources professional and a police officer may attend the meeting to advise the panel on the proceedings;
+f
+informing him that a relevant lawyer may attend the meeting to advise the panel on the proceedings and on any question of law that may arise at the meeting;
+g
+where the officer concerned is a special constable, informing him that a special constable shall attend the meeting to advise the panel;
+h
+informing him that, if he consents, any other person specified in the notice may attend the meeting;
+i
+where the officer concerned is a member of a police force, informing him that he may seek advice from a representative of his staff association; and
+j
+informing him that he may be accompanied and represented at the meeting by a police friend.
+2
+Such notice shall be accompanied by a copy of any document relied upon by the line manager when he formed the view referred to in regulation 28(2) or (4), as the case may be.
+3
+A third stage meeting under this regulation shall not take place unless the officer concerned has been notified of his right to representation under paragraph (1)(j).
+Circumstances in which a third stage meeting may be required without a prior first or second stage meeting
+30
+1
+This regulation applies where the appropriate authority —
+a
+considers that the performance of a police officer constitutes gross incompetence;
+b
+accepts a recommendation under paragraph 27(3) of Schedule 3 to the 2002 Act that a police officer’s performance is unsatisfactory and amounts to gross incompetence; or
+c
+has a duty under paragraph 27(4) of that Schedule to comply with a direction to give effect to such a recommendation.
+2
+Where this regulation applies, the appropriate authority must inform the officer concerned in writing that he is required to attend a meeting to consider his performance.
+3
+Such meeting shall be referred to in these Regulations as a third stage meeting, notwithstanding that the officer concerned has not attended a first stage meeting or a second stage meeting in respect of such performance.
+Arrangement of a third stage meeting without a prior first or second stage meeting
+31
+1
+Where the appropriate authority has informed the officer concerned under regulation 30(2) that he is required to attend a third stage meeting, the appropriate authority shall as soon as reasonably practicable give to the officer concerned a notice in writing —
+a
+referring to the requirement on the officer concerned to attend a third stage meeting of the unsatisfactory performance procedures with a panel appointed by the appropriate authority;
+b
+informing him of the procedures for determining the date and time of the meeting under regulation 36;
+c
+summarising the reasons why his performance is considered to constitute gross incompetence;
+d
+informing him of the possible outcomes of the meeting;
+e
+informing him that a human resources professional and a police officer may attend the meeting to advise the panel on the proceedings;
+f
+informing him that a relevant lawyer may attend the meeting to advise the panel on the proceedings and on any question of law that may arise at the meeting;
+g
+where the officer concerned is a special constable, informing him that a special constable shall attend the meeting to act as an advisor to the panel;
+h
+in a case to which regulation 38 applies, informing him that the Commission may attend the meeting to make representations;
+i
+in a case to which regulation 39 applies, informing him that the complainant or any interested person may attend the meeting as an observer;
+j
+in a case to which regulation 40(5) applies, informing him that a person nominated by the Commission may attend the meeting as an observer;
+k
+informing him that, if he consents, any other person specified in the notice may attend the meeting;
+l
+in a case to which regulation 40(10) applies, informing him that the Commission may direct that the whole or part of the meeting be held in public;
+m
+where the officer concerned is a member of a police force, informing him that he may seek advice from a representative of his staff association;
+n
+informing him of the effect of regulation 6; and
+o
+informing him that he may be accompanied at the meeting by a police friend.
+2
+Such notice shall be accompanied by a copy of —
+a
+any document relied upon by the appropriate authority when it formed the view referred to in sub-paragraph (a) of regulation 30(1), in a case where regulation 30 applies by virtue of that sub-paragraph; or
+b
+subject to the harm test in regulation 4(3), the investigator’s written report under paragraph 22 of Schedule 3 to the 2002 Act and the recommendation of the Commission under paragraph 27(3) of that Schedule, in a case where regulation 30 applies by virtue of paragraph (1)(b) or (c).
+Appointment of panel members
+32
+1
+The third stage meeting shall be conducted by a panel, which shall comprise a panel chair and two other members.
+2
+The panel shall be appointed by the appropriate authority.
+3
+The panel chair shall be a senior officer or a senior human resources professional.
+4
+One panel member shall be either a police officer or a human resources professional of at least the rank of superintendent or (in the opinion of the appropriate authority) equivalent.
+5
+The other panel member shall be either a police officer or a police staff member of at least the rank of superintendent or (in the opinion of the appropriate authority) equivalent.
+6
+At least one panel member shall be a police officer.
+7
+At least one panel member shall be a human resources professional.
+8
+Each panel member shall be of at least the same rank as or (in the opinion of the appropriate authority) equivalent of the officer concerned.
+9
+No panel member shall be an interested party.
+10
+As soon as reasonably practicable after the panel members have been appointed, the appropriate authority shall notify in writing the officer concerned of their names.
+11
+As soon as the appropriate authority has appointed the panel members, the appropriate authority shall arrange for a copy of any document —
+a
+which was available to the line manager in relation to any first stage meeting;
+b
+which was available to the second line manager in relation to any second stage meeting; or
+c
+which was prepared or submitted under regulation 17, 20, 24, 27, 28, 29, 30 or 31 as the case may be,
+to be made available to each panel member; and a copy of any such document shall be given to the officer concerned.
+12
+For the purposes of this regulation, a “senior human resources professional” means a human resources professional who, in the opinion of the appropriate authority, has sufficient seniority, skills and experience to be a panel chair.
+Right of officer concerned to object to panel members
+33
+1
+The officer concerned may object to the appointment of any of the panel members.
+2
+Any such objection must be made in writing to the appropriate authority before the end of 3 working days beginning with the first working day after receipt of the notification referred to in regulation 32(10) and must set out the grounds of objection of the officer concerned.
+3
+The appropriate authority shall notify the officer concerned in writing whether it upholds or rejects an objection to any panel member.
+4
+If the appropriate authority upholds an objection, the appropriate authority shall remove that member from the panel and shall appoint a new member to the panel.
+5
+If the appropriate authority appoints a new panel member under paragraph (4), it must ensure that the requirements for the composition of the panel in regulation 32 continue to be met.
+6
+As soon as reasonably practicable after any such appointment, the appropriate authority shall notify in writing the officer concerned of the name of the new panel member.
+7
+The officer concerned may object to the appointment of a panel member appointed under paragraph (4).
+8
+Any such objection must be made in accordance with paragraph (2), provided that it must be made before the end of 3 working days beginning with the first working day after receipt of the notification referred to in paragraph (6); and the appropriate authority shall comply with paragraphs (3) to (6) in relation to the objection, but paragraph (7) shall not apply.
+Procedure on receipt of notice of third stage meeting
+34
+1
+Before the end of —
+a
+14 working days beginning with the first working day after the date on which a notice has been given to the officer concerned under regulation 29 or 31; or
+b
+where that period is extended by the panel chair for exceptional circumstances, such extended period,
+the officer concerned shall comply with paragraphs (2) and (3).
+2
+The officer concerned shall provide to the appropriate authority —
+a
+written notice of whether or not he accepts that his performance or attendance has been unsatisfactory or that he has been grossly incompetent, as the case may be;
+b
+where he accepts that his performance or attendance has been unsatisfactory or that he has been grossly incompetent, any written submission he wishes to make in mitigation;
+c
+where he does not accept that his performance or attendance has been unsatisfactory or that he has been grossly incompetent, or where he disputes all or part of the matters referred to in the notice given under regulation 29 or 31, written notice of —
+i
+the matters he disputes and his account of the relevant events; and
+ii
+any arguments on points of law he wishes to be considered by the panel.
+3
+The officer concerned shall provide the appropriate authority and the panel with a copy of any document he intends to rely on at the third stage meeting.
+4
+Before the end of 3 working days beginning with the first working day after the date on which the officer concerned has complied with paragraph (2), the senior manager and the officer concerned shall each supply to the other a list of proposed witnesses or give notice that they do not have any proposed witnesses; and any list of proposed witnesses shall include brief details of the evidence that each witness is able to adduce.
+5
+Where there are proposed witnesses, the officer concerned shall, if reasonably practicable, agree a list of proposed witnesses with the senior manager.
+6
+Where no list of proposed witnesses is agreed under paragraph (4), the officer concerned shall supply to the appropriate authority his list of proposed witnesses.
+Witnesses
+35
+1
+As soon as reasonably practicable after any list of proposed witnesses has been —
+a
+agreed under regulation 34(5); or
+b
+supplied under regulation 34(6),
+the appropriate authority shall supply that list to the panel chair together, in the latter case, with a list of its proposed witnesses.
+2
+The panel chair shall —
+a
+consider the list or lists of proposed witnesses; and
+b
+subject to paragraph (3), determine which, if any, witnesses should attend the third stage meeting.
+3
+The panel chair may determine that witnesses not named in any list of proposed witnesses should attend the third stage meeting.
+4
+No witness shall give evidence at a third stage meeting unless the panel chair reasonably believes that it is necessary in the interests of fairness for the witness to do so, in which case he shall —
+a
+where the witness is a police officer, cause that person to be ordered to attend the third stage meeting; and
+b
+in any other case, cause the witness to be given notice that his attendance is necessary and of the date, time and place of the meeting.
+Timing and notice of third stage meeting
+36
+1
+Subject to paragraphs (2) and (6) and regulation 37, the third stage meeting shall take place before the end of 30 working days beginning with the first working day after the day on which a notice has been given to the officer concerned under regulation 29 or 31.
+2
+The panel chair may extend the time period specified in paragraph (1) where he considers that it would be in the interests of fairness to do so.
+3
+Where the panel chair extends the time period under paragraph (2), he shall provide written notification of his reasons for so doing to the appropriate authority and the officer concerned.
+4
+The panel chair shall, if reasonably practicable, agree a date and time for the third stage meeting with the officer concerned.
+5
+Where no date and time is agreed under paragraph (4), the panel chair shall specify a date and time for the third stage meeting.
+6
+Where a date and time is specified under paragraph (5) and —
+a
+the officer concerned or his police friend will not be available at that time; and
+b
+the officer concerned proposes an alternative time which satisfies subsection (7),
+the third stage meeting shall be postponed to the time proposed by the officer concerned.
+7
+An alternative time must —
+a
+be reasonable; and
+b
+fall before the end of 5 working days beginning with the first working day after the day specified by the panel chair.
+8
+The panel chair shall give to the officer concerned a notice in writing of the date and time of the third stage meeting determined in accordance with this regulation and of the place of the meeting.
+9
+Where the officer concerned informs the panel chair in advance that he is unable to attend the third stage meeting on grounds which the panel chair considers reasonable, the panel chair may allow the officer concerned to participate in the meeting by video link or other means.
+10
+Where the Commission is entitled to attend the third stage meeting to make representations under regulation 38(2), or to nominate a person to attend the proceedings as an observer under regulation 40(5), the Commission shall be given written notice of the date, time and place of the proceedings.
+Postponement and adjournment of a third stage meeting
+37
+1
+If the panel chair considers it necessary or expedient, he may direct that the third stage meeting take place at a different time to that specified in the notice given under regulation 36.
+2
+Such direction may specify a time which falls after the period of 30 working days referred to in regulation 36(1).
+3
+Where the panel chair makes a direction under paragraph (1) he shall notify in writing the officer concerned, the other panel members and the appropriate authority of his reasons and the revised time and place for the meeting.
+Participation of Commission and investigator at a third stage meeting
+38
+1
+This regulation shall apply in a case falling within regulation 30 where —
+a
+paragraph 18 or 19 of Schedule 3 to the 2002 Act applied; or
+b
+paragraph 16 or 17 of that Schedule applied and the Commission —
+i
+made a recommendation under paragraph 27(3) of that Schedule which the appropriate authority accepted; or
+ii
+gave a direction under paragraph 27(4)(a) of that Schedule.
+2
+The Commission may attend the third stage meeting to make representations, and where the Commission does so —
+a
+it may instruct a relevant lawyer to represent it;
+b
+it shall notify the complainant or any interested person prior to those proceedings; and
+c
+the panel chair shall notify the officer concerned prior to those proceedings.
+3
+The investigator or a nominated person shall attend the third stage meeting on the request of the panel chair to answer questions.
+4
+For the purposes of this regulation, a “nominated person” is a person who, in the opinion of —
+a
+the appropriate authority; or
+b
+in a case to which paragraph 18 or 19 of Schedule 3 to the 2002 Act applied, the Commission,
+has sufficient knowledge of the investigation of the case to be able to assist the panel.
+Attendance of complainant or interested person at a third stage meeting
+39
+1
+This regulation shall apply in a case falling within regulation 30 where the third stage meeting arises from —
+a
+a conduct matter to which paragraph 16, 17, 18 or 19 of Schedule 3 to the 2002 Act applied; or
+b
+the investigation of a complaint which was certified as subject to special requirements under paragraph 19B(1) of that Schedule.
+2
+The appropriate authority shall notify the complainant or any interested person of the date, time and place of the third stage meeting.
+3
+Subject to the provisions of this regulation and any conditions imposed under regulation 40(13) —
+a
+the complainant may attend as an observer any part of the third stage meeting relating to the subject matter of his complaint; and
+b
+an interested person may attend as an observer any part of the third stage meeting relating to the subject matter of the complaint or conduct matter in respect of which he is an interested person.
+4
+Subject to paragraph (5) and any conditions imposed under regulation 40(13), a complainant or interested person may be accompanied by one other person, and if the complainant or interested person has a special need, by one further person to accommodate that need.
+5
+Where a complainant or interested person, or any person accompanying him, is to give evidence as a witness at the third stage meeting, he and any person allowed to accompany him shall not be allowed to attend the meeting before he gives his evidence.
+6
+Where the officer concerned objects to the complainant or interested person, or any person accompanying him, being present while a submission is made in mitigation on the officer’s behalf, the panel chair may require the complainant or interested person, or any person accompanying him, to withdraw while the submission is made.
+7
+The panel chair may, at his discretion, put any questions to the officer concerned that the complainant or interested person may request be put to him.
+8
+For the purposes of this regulation a person has a special need if, in the opinion of the panel chair, he has a disability or learning difficulty, or does not have sufficient knowledge of English, to fully participate in or understand the third stage meeting.
+Attendance of others at a third stage meeting
+40
+1
+Subject to regulations 38 and 39 and the provisions of this regulation, the third stage meeting shall be in private.
+2
+A human resources professional and a police officer may attend the meeting to advise the panel on the proceedings.
+3
+A relevant lawyer may attend the meeting to advise the panel on the proceedings and on any question of law that may arise at the meeting.
+4
+Where the officer concerned is a special constable, the appropriate authority shall appoint a special constable with sufficient seniority and experience to act as an adviser to the panel, who shall attend the meeting.
+5
+A person nominated by the Commission may, as an observer, attend a third stage meeting held under regulation 30 and arising from a case to which —
+a
+paragraph 17, 18 or 19 of Schedule 3 to the 2002 Act applied; or
+b
+paragraph 16 of that Schedule applied and in relation to which the Commission —
+i
+made a recommendation under paragraph 27(3) of that Schedule which the appropriate authority accepted; or
+ii
+gave a direction under paragraph 27(4)(a) of that Schedule.
+6
+In a case where a person nominated by the Commission is entitled under paragraph (5) to attend the third stage meeting, the appropriate authority shall notify the Commission of the date, time and place of the meeting.
+7
+Any other person specified in the notice to the officer concerned in accordance with regulation 29(1)(h) or 31(1)(k) may attend the meeting if the officer consents to such attendance.
+8
+Subject to any contrary decision by the panel chair, a witness other than a complainant, interested person or the officer concerned shall only attend the third stage meeting for the purposes of giving their evidence.
+9
+The panel chair may, at his discretion, permit a witness in the third stage meeting to be accompanied at that meeting by one other person.
+10
+Where a third stage meeting held under regulation 30 arises from a case to which paragraph 19 of Schedule 3 to the 2002 Act (investigations by the Commission) applied, and the Commission considers that because of the gravity of the case or other exceptional circumstances it would be in the public interest to do so, the Commission may, having consulted with —
+a
+the appropriate authority;
+b
+the officer concerned;
+c
+the complainant or interested person; and
+d
+any witnesses,
+direct that the whole or part of the third stage meeting be held in public.
+11
+It shall be the duty of the panel to comply with a direction given under paragraph (10).
+12
+A direction under paragraph (10), together with the reasons for it, shall be notified as soon as practicable, and in any event before the end of five working days beginning with the first working day after the decision was taken, to the persons consulted under that paragraph.
+13
+The panel chair may impose such conditions as he sees fit relating to the attendance under regulation 39 or this regulation of persons at the third stage meeting (including circumstances in which they may be excluded) in order to facilitate the proper conduct of the meeting.
+Exclusion from a third stage meeting
+41
+1
+Where it appears to the panel chair that any person may, in giving evidence, disclose information which ought not to be disclosed to any person attending the meeting because it is information to which paragraph (2) applies, he shall require such attendees to withdraw while the evidence is given.
+2
+This paragraph applies to information in so far as the panel chair considers that preventing disclosure of it is —
+a
+necessary for the purpose of preventing the premature or inappropriate disclosure of information that is relevant to, or may be used in, any criminal proceedings;
+b
+necessary in the interests of national security;
+c
+necessary for the purpose of the prevention or detection of crime, or the apprehension or prosecution of offenders;
+d
+necessary for the purposes of the prevention or detection of misconduct by other police officers or police staff members or their apprehension for such matters;
+e
+necessary and proportionate for the protection of the welfare and safety of any informant or witness; or
+f
+otherwise in the public interest.
+Procedure at a third stage meeting
+42
+1
+Subject to the provisions of these Regulations, the procedure at the third stage meeting shall be such as the panel chair may determine.
+2
+Where the officer concerned is required to attend a third stage meeting under regulation 28, the panel chair shall —
+a
+provide the officer concerned with an opportunity to make representations in relation to the matters referred to in the notice given under regulation 29;
+b
+provide his police friend (if he has one) with an opportunity to address the meeting in relation to such matters in accordance with regulation 8(3)(a).
+3
+Where the officer concerned is required to attend a third stage meeting under regulation 30, the panel chair shall —
+a
+provide the officer concerned with an opportunity to make representations in relation to the matters referred to in the notice given under regulation 31;
+b
+provide the person representing the officer with an opportunity to address the meeting in relation to such matters in accordance with regulation 8(3)(a).
+4
+The panel chair may adjourn the meeting to a specified later time or date if it appears to him necessary or expedient to do so.
+5
+A verbatim record of the meeting shall be taken and the officer concerned shall, on request, be supplied with a copy.
+Finding
+43
+1
+Following the third stage meeting, the panel shall make a finding whether —
+a
+in a case falling within regulation 28(2), the performance or attendance of the officer concerned during the period specified in accordance with regulation 23(6)(c) has been satisfactory or not;
+b
+in a case falling within regulation 28(4), the performance or attendance of the officer concerned during any part of the validity period of the final written improvement notice remaining after the expiry of the period specified in accordance with regulation 23(6)(c) has been satisfactory or not; or
+c
+in a case falling within regulation 30, the performance of the officer concerned constitutes gross incompetence, unsatisfactory performance or neither.
+2
+The panel shall prepare (or shall cause to be prepared) their decision in writing which shall state the finding and their reasons, as well as any outcome which they order under regulation 44.
+3
+As soon as reasonably practicable after the conclusion of the meeting, the panel chair shall give a written copy of the decision to —
+a
+the officer concerned; and
+b
+the line manager,
+but in any event, the officer concerned shall be given written notice of the finding before the end of three working days beginning with the first working day after the conclusion of the meeting.
+4
+Where the panel have made a finding of unsatisfactory performance or attendance or gross incompetence, the copy of the decision given to the officer concerned shall be accompanied by a notice in writing setting out the circumstances in which and the time within which a police officer may appeal to a police appeals tribunal under the Police Appeals Tribunals Rules 2012 .
+5
+Any finding or decision of the panel under this regulation or regulation 44 shall be based on a simple majority but shall not indicate whether it was taken unanimously or by a majority.
+Outcomes
+44
+1
+If the panel make a finding that, in a case falling within regulation 28(2) or (4), the performance or attendance of the officer concerned has been unsatisfactory they may, subject to paragraph (4), order —
+a
+one of the outcomes mentioned in paragraph (3)(a), (c) or (f); or
+b
+where the panel are satisfied that there are exceptional circumstances which justify it, the outcome mentioned in paragraph (3)(d).
+2
+If the panel make a finding that, in a case falling within regulation 30, the performance of the officer concerned constitutes gross incompetence, they may order one of the outcomes mentioned in paragraph (3)(b), (c), (e) or (f).
+3
+The outcomes mentioned in this paragraph are:
+a
+dismissal of the officer concerned with notice, the period of such notice to be decided by the panel, subject to a minimum period of 28 days;
+b
+dismissal of the officer concerned with immediate effect;
+c
+reduction in rank of the officer concerned with immediate effect;
+d
+an extension of the final written improvement notice;
+e
+the issue of a final written improvement notice;
+f
+redeployment to alternative duties (which may involve a reduction of rank) within the police force concerned.
+4
+The panel may not order the outcome mentioned in paragraph (3)(c) where–
+a
+the officer concerned is a special constable; or
+b
+the third stage meeting relates to the attendance of the officer concerned.
+5
+Where the question of ordering any of the outcomes mentioned in paragraph (3) is being considered, the panel —
+a
+shall have regard to the record of police service of the officer concerned as shown on his personal record;
+b
+may receive evidence from any witness whose evidence would, in their opinion, assist them in determining the question; and
+c
+shall give —
+i
+the officer concerned, his police friend or, in a case falling within regulation 30, his relevant lawyer; and
+ii
+the appropriate authority;
+an opportunity to make oral or written representations before any such question is determined.
+6
+If the panel make a finding, in a case falling within regulation 30, of unsatisfactory performance, they shall order the issue of a written improvement notice.
+7
+A written improvement notice or a final written improvement notice issued under this regulation shall —
+a
+state in what respect the performance or attendance of the officer concerned (as the case may be) is considered unsatisfactory or grossly incompetent;
+b
+state the improvement that is required in his performance or attendance;
+c
+state that, if a sufficient improvement is not made within such reasonable period as the panel shall specify (being a period not greater than 12 months), the officer concerned may be required to attend a second stage meeting (in the case of a written improvement notice) or another third stage meeting (in the case of a final written improvement notice) and state the date on which this period ends;
+d
+state that it shall be valid for a period of twelve months from the date of the notice (the “validity period”);
+e
+state that, if the sufficient improvement referred to in sub-paragraph (c) is not maintained during any part of the validity period remaining after the expiry of the period specified in accordance with sub-paragraph (c), he may be required to attend a second stage meeting (in the case of a written improvement notice) or another third stage meeting (in the case of a final written improvement notice); and
+f
+be signed and dated by the panel chair.
+8
+Where the panel orders an extension of the final written improvement notice —
+a
+the notice shall be amended —
+i
+to state that if the officer concerned does not make a sufficient improvement within such reasonable period as the panel shall specify (being a period not greater than 12 months) he may be required to attend another third stage meeting; and
+ii
+to state the date on which this period ends;
+b
+the panel may vary any of the other matters recorded in the notice;
+c
+the notice shall be valid for a further period of twelve months from the date of the extension (the “validity period”) and shall state the date on which it expires.
+Assessment of performance or attendance following third stage meeting
+45
+1
+This regulation applies where a written improvement notice has been issued under regulation 44.
+2
+Where this regulation applies, the performance of the officer concerned shall be assessed under regulation 21 as if he had received a written improvement notice under regulation 17.
+3
+Where, as a result of such assessment, the officer concerned is required to attend a second stage meeting, these Regulations shall have effect as if he had been required to attend that meeting under regulation 21; and —
+a
+references to the period specified in accordance with regulation 16(6)(c) shall be construed as references to the period specified under regulation 44(7)(c); and
+b
+references to the validity period of the written improvement notice shall be construed as references to the validity period of the written improvement notice issued under regulation 44.
+4
+Where a police officer is required to attend such a second stage meeting, that meeting must concern unsatisfactory performance which is similar to or connected with the unsatisfactory performance referred to in the written improvement notice.
+46
+1
+This regulation applies where a final written improvement notice has been issued or extended under regulation 44.
+2
+Where this regulation applies, as soon as reasonably practicable after the reasonable period specified by the panel under regulation 44(7)(c) or (8)(a) ends —
+a
+the panel shall assess the performance or attendance of the officer concerned (as the case may be) during that period; and
+b
+the panel chair shall notify the officer concerned in writing whether the panel considers that there has been a sufficient improvement in performance or attendance during that period.
+3
+If the panel considers that there has not been a sufficient improvement, the panel chair shall, at the same time as he gives notification under paragraph (2)(b), also notify the officer concerned in writing that he is required to attend another third stage meeting to consider his performance or attendance.
+4
+Where —
+a
+the officer concerned has not been required to attend a third stage meeting under paragraph (3), or
+b
+the officer concerned has been required to attend a third stage meeting under paragraph (3) but the panel did not make a finding of unsatisfactory performance or attendance at that meeting,
+the officer concerned may be required to attend a third stage meeting under paragraph (5).
+5
+If the panel considers that the officer concerned has failed to maintain a sufficient improvement in his performance or attendance during any part of the validity period of the final written improvement notice remaining after the expiry of the period specified in accordance with regulation 44(7)(c) or (8)(a), the panel chair shall notify the officer concerned in writing of the matters set out in paragraph (6).
+6
+Those matters are —
+a
+that the panel is of the view mentioned in paragraph (5); and
+b
+that the officer concerned is required to attend another third stage meeting to consider his performance or attendance.
+7
+In a case falling within paragraph (3) or (5), the appropriate authority shall give the officer concerned the notice referred to in regulation 29.
+8
+Where the officer concerned is required to attend a third stage meeting under this regulation, these Regulations shall have effect as if the case fell within regulation 28(2) or (4) as the case may be and —
+a
+references to the period specified in accordance with regulation 23(6)(c) shall be construed as references to the period specified under regulation 44(7)(c) or (8)(a), as the case may be; and
+b
+references to the validity period of the final written improvement notice shall be construed as references to the validity period mentioned in regulation 44(7)(d) or (8)(c), as the case may be.
+9
+Any third stage meeting which a police officer is required to attend under this regulation must concern unsatisfactory performance or attendance which is similar to or connected with the unsatisfactory performance or attendance referred to in the final written improvement notice issued or extended under regulation 44.
+10
+References in this regulation to the panel are references to the panel that conducted the initial third stage meeting, subject to paragraph (11).
+11
+Where any of the panel members are not able to continue to act as such, the appropriate authority shall remove that member from the panel and shall appoint a new member to the panel.
+12
+If the appropriate authority appoints a new panel member under paragraph (11), it must ensure that the requirements for the composition of the panel in regulation 32 continue to be met.
+13
+As soon as reasonably practicable after any such appointment, the appropriate authority shall notify in writing the officer concerned of the name of the new panel member.
+14
+The officer concerned may object to the appointment of a panel member appointed under paragraph (11).
+15
+Any such objection must be made in accordance with regulation 33(2), provided that it must be made before the end of 3 working days beginning with the first working day after receipt of the notification referred to in paragraph (13); and the appropriate authority shall comply with regulation 33(3) to (6) in relation to the objection but paragraph (7) of that regulation shall not apply.
+47
+1
+Where an officer is required to attend another third stage meeting under regulation 46 —
+a
+that meeting shall be conducted by the same panel as conducted the initial third stage meeting (subject to any change in that panel under regulation 46);
+b
+the officer concerned shall not have the right to object to panel members under regulation 33, except in accordance with regulation 46;
+c
+subject to paragraph (2), regulations 34 to 44 shall apply to, or in relation to, that meeting.
+2
+Following that third stage meeting, the panel may not order the outcome mentioned in regulation 44(3)(d).
+Damian Green
+Minister of State
+Home Office
+18th October 2012

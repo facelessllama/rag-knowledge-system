@@ -1,0 +1,381 @@
+The Family Procedure (Amendment) (No.5) Rules 2012
+Citation and commencement
+1
+These rules may be cited as the Family Procedure (Amendment) (No.5) Rules 2012 and come into force on 31st January 2013.
+Amendments to the Family Procedure Rules 2010
+2
+The Family Procedure Rules 2010 are amended in accordance with rules 3 to 6.
+3
+In rule 1.4 for paragraph (2) substitute —
+2
+Active case management includes —
+a
+setting timetables or otherwise controlling the progress of the case;
+b
+identifying at an early stage —
+i
+the issues; and
+ii
+who should be a party to the proceedings;
+c
+deciding promptly —
+i
+which issues need full investigation and hearing and which do not; and
+ii
+the procedure to be followed in the case;
+d
+deciding the order in which issues are to be resolved;
+e
+controlling the use of expert evidence;
+f
+encouraging the parties to use an alternative dispute resolution procedure if the court considers that appropriate and facilitating the use of such procedure;
+g
+helping the parties to settle the whole or part of the case;
+h
+encouraging the parties to co-operate with each other in the conduct of proceedings;
+i
+considering whether the likely benefits of taking a particular step justify the cost of taking it;
+j
+dealing with as many aspects of the case as it can on the same occasion;
+k
+dealing with the case without the parties needing to attend at court;
+l
+making use of technology; and
+m
+giving directions to ensure that the case proceeds quickly and efficiently.
+.
+4
+Omit rules 12.20 and 12.74.
+5
+For “proceedings relating to children” substitute “children proceedings” in —
+a
+the headings to Part 12 and to Part 12, Chapter 7; and
+b
+rule 12.43(a).
+6
+For Part 25 substitute Part 25 (Experts and assessors) as set out in the Schedule to these rules.
+Paul Carr
+Martyn Cook
+Chris Darbyshire
+Bruce Edgington
+Angela Finnerty
+Mike Hinchliffe
+Ruth Lindley-Glover
+David Salter
+Lucy Theis, J,
+Philip Waller
+John Wilson
+I allow these Rules
+Signed by authority of the Lord Chancellor
+McNally
+Minister of State
+Ministry of Justice
+10th December 2012
+SCHEDULE
+Rule 6
+PART 25 EXPERTS AND ASSESSORS
+Duty to restrict expert evidence
+25.1
+Expert evidence will be restricted to that which in the opinion of the court is necessary to assist the court to resolve the proceedings.
+Interpretation
+25.2
+1
+In this Part —
+“authorised applicant” means —
+the National Society for the Prevention of Cruelty to Children; or
+a person authorised by an order under section 31 of the 1989 Act to bring proceedings under that section;
+“children proceedings” means —
+proceedings referred to in rules 12.1 and 14.1 and any other proceedings which relate wholly or mainly to the maintenance or upbringing of a minor;
+applications for permission to start proceedings mentioned in paragraph (a);and
+applications made in the course of proceedings mentioned in paragraph (a);
+“expert” means a person who provides expert evidence for use in proceedings;
+“local authority” —
+in relation to England means —
+a county council;
+a district council for an area for which there is no county council;
+a London borough council;
+the Common Council of the City of London; or
+the Council of the Isles of Scilly; and
+in relation to Wales means a county council or a county borough council;
+“single joint expert” means a person who provides expert evidence for use in proceedings on behalf of two or more of the parties (including the applicant) to the proceedings.
+2
+References to providing expert evidence, or putting expert evidence before a court, do not include references to —
+a
+the provision or giving of evidence —
+i
+by a person who is a member of the staff of a local authority or an authorised applicant;
+ii
+in proceedings to which the authority or authorised applicant is a party; and
+iii
+in the course of the person’s work for the authority or the authorised applicant;
+b
+the provision or giving of evidence —
+i
+by a person within a description prescribed for the purposes of section 94(1) of the 2002 Act (suitability for adoption etc ); and
+ii
+about the matters mentioned in that subsection;
+c
+the provision or giving of evidence by an officer of the service, or by a Welsh family proceedings officer when acting in those capacities.
+(Regulation 3 of the Restriction on the Preparation of Adoption Reports Regulations 2005 ( S.I. 2005/1711 ) sets out which persons are within a prescribed description for the purposes of section 94(1) of the 2002 Act.)
+Experts-overriding duty to the court
+25.3
+1
+It is the duty of experts to help the court on matters within their expertise.
+2
+This duty overrides any obligation to the person from whom experts have received instructions or by whom they are paid.
+(Particular duties of an expert are set out in Practice Direction 25B (The Duties of an Expert, the Expert’s Report and Arrangements for an Expert to Attend Court.)
+Court’s power to restrict expert evidence
+25.4
+1
+In any proceedings, a person may not without the permission of the court put expert evidence (in any form) before the court.
+2
+In children proceedings —
+a
+an expert may not be instructed; and
+b
+a child may not be medically or psychiatrically examined or otherwise assessed for the purposes of the provision of expert evidence in the proceedings,
+without the court’s permission.
+3
+Where in contravention of paragraph 2(a) an expert is instructed, evidence resulting from the instructions is inadmissible in children proceedings unless the court rules that it is admissible.
+4
+Where in contravention of paragraph 2(b) a child is medically or psychiatrically examined or otherwise assessed, evidence resulting from the examination or other assessment is inadmissible in children proceedings unless the court rules that it is admissible.
+Further provisions about the court’s power to restrict expert evidence
+25.5
+1
+When deciding whether to give permission as mentioned in rule 25.4(1) or (2) in children proceedings, the court is to have regard in particular to —
+a
+any impact which giving permission would be likely to have on the welfare of the children concerned, including in the case of permission as mentioned in rule 25.4(2)(b) any impact which any examination or other assessment would be likely to have on the welfare of the child who would be examined or otherwise assessed;
+b
+the issues to which the expert evidence would relate;
+c
+the questions which the court would require the expert to answer;
+d
+what other expert evidence is available (whether obtained before or after the start of proceedings);
+e
+whether evidence could be given by another person on the matters on which the expert would give evidence;
+f
+the impact which giving permission would be likely to have on the timetable, duration and conduct of the proceedings;
+g
+any failure to comply with rule 25.6 or any direction of the court about expert evidence; and
+h
+the cost of the expert evidence.
+2
+When deciding whether to give permission as mentioned in rule 25.4(1) in proceedings other than children proceedings, the court is to have regard in particular to —
+a
+the issues to which the expert evidence would relate;
+b
+the questions which the court would require the expert to answer;
+c
+the impact which giving permission would be likely to have on the timetable, duration and conduct of the proceedings;
+d
+any failure to comply with rule 25.6 or any direction of the court about expert evidence; and
+e
+the cost of the expert evidence.
+When to apply for the court’s permission
+25.6
+Unless the court directs otherwise, parties must apply for the court’s permission as mentioned in rule 25.4 as soon as possible and —
+a
+in public law proceedings referred to in rule 12.2, no later than the Case Management Conference ;
+b
+in private law proceedings referred to in rule 12.2, no later than the First Hearing Dispute Resolution Appointment ;
+c
+in adoption proceedings and placement proceedings, no later than the first directions hearing ;
+d
+in proceedings for a financial remedy, no later than the first appointment ;
+e
+in a defended case referred to in rule 7.1(3), no later than any case management hearing directed by the court under rule 7.20.
+What an application notice requesting the court’s permission must include
+25.7
+1
+Part 18 applies to an application for the court’s permission as mentioned in rule 25.4.
+2
+In any proceedings —
+a
+the application notice requesting the court’s permission as mentioned in rule 25.4 must state —
+i
+the field in which the expert evidence is required;
+ii
+where practicable, the name of the proposed expert;
+iii
+the issues to which the expert evidence is to relate;
+iv
+whether the expert evidence could be obtained from a single joint expert;
+v
+the other matters set out in Practice Direction 25C or 25D, as the case may be; and
+b
+a draft of the order sought is to be attached to the application notice requesting the court’s permission and that draft order must set out the matters specified in Practice Direction 25C or 25D, as the case may be.
+3
+In children proceedings, an application notice requesting the court’s permission as mentioned in rule 25.4 must, in addition to the matters specified in paragraph (2)(a), state the questions which the expert is to be required to answer.
+Where permission is granted
+25.8
+1
+In any proceedings, where the court grants permission as mentioned in rule 25.4 —
+a
+it will grant permission only in relation to the expert named or the field identified in the application notice requesting the court’s permission; and
+b
+the court will give directions specifying the date by which the expert is to provide a written report.
+2
+In children proceedings, in addition to the directions in paragraph (1)(b), the court will give directions —
+a
+approving the questions which the expert is required to answer;
+b
+specifying the date by which the expert is to receive the letter of instruction.
+General requirement for expert evidence to be given in a written report
+25.9
+1
+Expert evidence is to be given in a written report unless the court directs otherwise.
+2
+The court will not direct an expert to attend a hearing unless it is necessary to do so in the interests of justice.
+Written questions to experts
+25.10
+1
+A party may put written questions about an expert’s report to —
+a
+an expert instructed by another party; or
+b
+a single joint expert appointed under rule 25.11.
+2
+Unless the court directs otherwise or a practice direction provides otherwise, written questions under paragraph (1) —
+a
+must be proportionate;
+b
+may be put once only;
+c
+must be put within 10 days beginning with the date on which the expert’s report was served;
+d
+must be for the purpose only of clarification of the report; and
+e
+must be copied and sent to the other parties at the same time as they are sent to the expert.
+3
+An expert’s answers to questions put in accordance with paragraph (1) —
+a
+must be given within the timetable specified by the court; and
+b
+are treated as part of the expert’s report.
+4
+Where —
+a
+a party has put a written question to an expert instructed by another party; and
+b
+the expert does not answer that question,
+the court may make one or both of the following orders in relation to the party who instructed the expert —
+i
+that the party may not rely on the evidence of that expert; or
+ii
+that the party may not recover the fees and expenses of that expert from any other party.
+Court’s power to direct that evidence is to be given by a single joint expert
+25.11
+1
+Where two or more parties wish to put expert evidence before the court on a particular issue, the court may direct that the evidence on that issue is to be given by a single joint expert.
+2
+Where the parties who wish to put expert evidence before the court (“the relevant parties”) cannot agree who should be the single joint expert, the court may —
+a
+select the expert from a list prepared or identified by the relevant parties; or
+b
+direct that the expert be selected in such other manner as the court may direct.
+Instructions to a single joint expert
+25.12
+1
+Where the court gives a direction under rule 25.11(1) for a single joint expert to be used, the instructions are to be contained in a jointly agreed letter unless the court directs otherwise.
+2
+Where the instructions are to be contained in a jointly agreed letter, in default of agreement the instructions may be determined by the court on the written request of any relevant party copied to the other relevant parties.
+3
+Where the court permits the relevant parties to give separate instructions to a single joint expert, each instructing party must, when giving instructions to the expert, at the same time send a copy of the instructions to the other relevant parties.
+4
+The court may give directions about —
+a
+the payment of the expert’s fees and expenses; and
+b
+any inspection, examination or assessments which the expert wishes to carry out.
+5
+The court may, before an expert is instructed, limit the amount that can be paid by way of fees and expenses to the expert.
+6
+Unless the court directs otherwise, the relevant parties are jointly and severally liable for the payment of the expert’s fees and expenses.
+Power of court to direct a party to provide information
+25.13
+1
+Subject to paragraph (2), where a party has access to information which is not reasonably available to another party, the court may direct the party who has access to the information to —
+a
+prepare and file a document recording the information; and
+b
+serve a copy of that document on the other party.
+2
+In proceedings under Part 14 (procedure for applications in adoption, placement and related proceedings), a court officer will send a copy of the document recording the information to the other party.
+Contents of report
+25.14
+1
+An expert’s report must comply with the requirements set out in Practice Direction 25B.
+2
+At the end of an expert’s report there must be a statement that the expert understands and has complied with the expert’s duty to the court.
+3
+The instructions to the expert are not privileged against disclosure.
+(Rule 21.1 explains what is meant by disclosure.)
+Use by one party of expert’s report disclosed by another
+25.15
+Where a party has disclosed an expert’s report, any party may use that expert’s report as evidence at any hearing where an issue to which the report relates is being considered.
+Discussions between experts
+25.16
+1
+The court may, at any stage, direct a discussion between experts for the purpose of requiring the experts to —
+a
+identify and discuss the expert issues in the proceedings; and
+b
+where possible, reach an agreed opinion on those issues.
+2
+The court may specify the issues which the experts must discuss.
+3
+The court may direct that following a discussion between the experts they must prepare a statement for the court setting out those issues on which —
+a
+they agree; and
+b
+they disagree, with a summary of their reasons for disagreeing.
+Expert’s right to ask court for directions
+25.17
+1
+Experts may file written requests for directions for the purpose of assisting them in carrying out their functions.
+2
+Experts must, unless the court directs otherwise, provide copies of the proposed requests for directions under paragraph (1) —
+a
+to the party instructing them, at least 7 days before they file the requests; and
+b
+to all other parties, at least 4 days before they file them.
+3
+The court, when it gives directions, may also direct that a party be served with a copy of the directions.
+Copies of orders and other documents
+25.18
+Unless the court directs otherwise, a copy of any order or other document affecting an expert filed with the court after the expert has been instructed, must be served on the expert by the party who instructed the expert or, in the case of a single joint expert, the party who was responsible for instructing the expert, within 2 days of that party receiving the order or other document.
+Action after final hearing
+25.19
+1
+Within 10 business days after the final hearing, the party who instructed the expert or, in the case of a single joint expert, the party who was responsible for instructing the expert, must inform the expert in writing about the court’s determination and the use made by the court of the expert’s evidence.
+2
+Unless the court directs otherwise, the party who instructed the expert or, in the case of the single joint expert, the party who was responsible for instructing the expert, must send to the expert a copy of the court’s final order and —
+a
+where the decision was one of the High Court or a county court, any transcript of the court’s decision;
+b
+where the decision was one of a magistrates’ court, the reasons for the court’s decision,
+within 10 business days from the date when that party received the order and transcript or reasons.
+Assessors
+25.20
+1
+This rule applies where the court appoints one or more persons under section 70 of the Senior Courts Act 1981 or section 63 of the County Courts Act 1984 as an assessor.
+2
+An assessor will assist the court in dealing with a matter in which the assessor has skill and experience.
+3
+The assessor will take such part in the proceedings as the court may direct and in particular the court may direct an assessor to —
+a
+prepare a report for the court on any matter at issue in the proceedings; and
+b
+attend the whole or any part of the hearing to advise the court on any such matter.
+4
+If the assessor prepares a report for the court before the hearing has begun —
+a
+the court will send a copy to each of the parties; and
+b
+the parties may use it at the hearing.
+5
+Unless the court directs otherwise, an assessor will be paid at the daily rate payable for the time being to a fee-paid deputy district judge of the principal registry and an assessor’s fees will form part of the costs of the proceedings.
+6
+The court may order any party to deposit in the court office a specified sum in respect of an assessor’s fees and, where it does so, the assessor will not be asked to act until the sum has been deposited.
+7
+Paragraphs (5) and (6) do not apply where the remuneration of the assessor is to be paid out of money provided by Parliament.

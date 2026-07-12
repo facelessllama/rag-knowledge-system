@@ -1,0 +1,427 @@
+The Republic of Guinea (Asset-Freezing) Regulations 2012
+The Treasury, in exercise of the powers conferred by section 2(2) of, and paragraph 1A of Schedule 2 to, the European Communities Act 1972, make the following Regulations.
+Citation, commencement and application
+1
+1
+These Regulations may be cited as the Republic of Guinea (Asset-Freezing) Regulations 2012 and come into force on 4th July 2012.
+2
+An offence under these Regulations may be committed by conduct wholly or partly outside the United Kingdom by —
+a
+a UK national, or
+b
+a body incorporated or constituted under the law of any part of the United Kingdom.
+3
+In paragraph (2) —
+“conduct” includes acts and omissions;
+“UK national” means —
+a British citizen,
+a British overseas territories citizen who acquired their citizenship from a connection with Gibraltar, or
+a British subject under Part 4 of the British Nationality Act 1981 (British subjects) with the right of abode in the United Kingdom.
+Interpretation
+2
+1
+In these Regulations —
+“the 2000 Act ” means the Financial Services and Markets Act 2000 ;
+“the Council Regulation ” means Council Regulation (EU) No. 1284/2009 of 22 December 2009 imposing certain specific restrictive measures in respect of the Republic of Guinea, and a reference to Annex II to that Regulation is to be construed as a reference to that Annex as amended from time to time;
+“designated person” means a person, entity or body listed in Annex II to the Council Regulation;
+“document” includes information recorded in any form and, in relation to information recorded otherwise than in legible form, references to its production include producing a copy of the information in legible form;
+“relevant institution” means —
+a person who has permission under Part 4 of the 2000 Act (permission to carry on regulated activities) ;
+an EEA firm of the kind mentioned in paragraph 5(b) of Schedule 3 to the 2000 Act (EEA passport rights) which has permission under paragraph 15 of that Schedule as a result of qualifying for authorisation under paragraph 12 of that Schedule to accept deposits; or
+an undertaking which by way of business operates a currency exchange office, transmits money (or any representations of monetary value) by any means or cashes cheques which are made payable to customers.
+2
+The definition of “relevant institution” in paragraph (1) must be read with —
+a
+section 22 of the 2000 Act (the classes of activity and categories of investment),
+b
+any relevant order under that section , and
+c
+Schedule 2 to that Act (regulated activities).
+3
+Any expression used both in these Regulations and in the Council Regulation has the meaning that it bears in the Council Regulation.
+Freezing of funds and economic resources
+3
+1
+A person (“P”) must not deal with funds or economic resources belonging to, or owned, held or controlled by, a designated person if P knows, or has reasonable cause to suspect, that P is dealing with such funds or economic resources.
+2
+In paragraph (1) “deal with” means —
+a
+in relation to funds —
+i
+use, alter, move, allow access to or transfer,
+ii
+deal with the funds in any other way that would result in a change in volume, amount, location, ownership, possession, character or destination, or
+iii
+make any other change that would enable use, including portfolio management;
+b
+in relation to economic resources, exchange or use in exchange for funds, goods or services.
+3
+Paragraph (1) is subject to regulation 9.
+Making funds available to a designated person
+4
+1
+A person (“P”) must not make funds available, directly or indirectly, to a designated person if P knows, or has reasonable cause to suspect, that P is making the funds so available.
+2
+Paragraph (1) is subject to regulations 8 and 9.
+Making funds available for the benefit of a designated person
+5
+1
+A person (“P”) must not make funds available to any person for the benefit of a designated person if P knows, or has reasonable cause to suspect, that P is making the funds so available.
+2
+For the purposes of this regulation —
+a
+funds are made available for the benefit of a designated person only if that person thereby obtains, or is able to obtain, a significant financial benefit, and
+b
+“financial benefit” includes the discharge of a financial obligation for which the designated person is wholly or partly responsible.
+3
+Paragraph (1) is subject to regulations 8 and 9.
+Making economic resources available to a designated person
+6
+1
+A person (“P”) must not make economic resources available, directly or indirectly, to a designated person if P knows, or has reasonable cause to suspect —
+a
+that P is making the economic resources so available, and
+b
+that the designated person would be likely to exchange the economic resources, or use them in exchange, for funds, goods or services.
+2
+Paragraph (1) is subject to regulation 9.
+Making economic resources available for the benefit of a designated person
+7
+1
+A person (“P”) must not make economic resources available to any person for the benefit of a designated person if P knows, or has reasonable grounds to suspect, that P is making the economic resources so available.
+2
+For the purposes of this regulation —
+a
+economic resources are made available for the benefit of a designated person only if that person thereby obtains, or is able to obtain, a significant financial benefit, and
+b
+“financial benefit” includes the discharge of a financial obligation for which the designated person is wholly or partly responsible.
+3
+Paragraph (1) is subject to regulation 9.
+Credits to a frozen account
+8
+1
+The prohibitions in regulations 4 and 5 are not contravened by a person crediting a frozen account with —
+a
+interest or other earnings due on the account, or
+b
+payments due under contracts, agreements or obligations that were concluded or arose before the account became a frozen account.
+2
+The prohibitions in regulations 4 and 5 on making funds available do not prevent a relevant institution from crediting a frozen account where it receives funds transferred to the account.
+3
+A relevant institution must inform the Treasury without delay if it credits a frozen account in accordance with paragraph (1)(b) or (2).
+4
+In this regulation “frozen account” means an account with a relevant institution which is held or controlled (directly or indirectly) by a designated person.
+Licences
+9
+1
+The prohibitions in regulations 3 to 7 do not apply to anything done under the authority of a licence granted by the Treasury.
+2
+A licence must specify the acts authorised by it and may be —
+a
+general or granted to a category of persons or to a particular person;
+b
+subject to conditions;
+c
+of indefinite duration or subject to an expiry date.
+3
+The Treasury may vary or revoke a licence at any time.
+4
+On the grant, variation or revocation of a licence, the Treasury must —
+a
+in the case of a licence granted to a particular person, give written notice of the grant, variation or revocation to that person;
+b
+in the case of a general licence or a licence granted to a category of persons, take such steps as the Treasury consider appropriate to publicise the grant, variation or revocation of the licence.
+5
+A person commits an offence who, for the purpose of obtaining a licence, knowingly or recklessly —
+a
+provides information that is false in a material respect, or
+b
+provides or produces a document that is not what it purports to be.
+6
+A person who purports to act under the authority of a licence but who fails to comply with any conditions included in the licence commits an offence.
+Contravention and circumvention of prohibitions
+10
+1
+A person who contravenes any of the prohibitions in regulations 3 to 7 commits an offence.
+2
+A person commits an offence who intentionally participates in activities knowing that the object or effect of them is (whether directly or indirectly) —
+a
+to circumvent any of the prohibitions in regulations 3 to 7, or
+b
+to enable or facilitate the contravention of any such prohibition.
+Information provisions
+11
+The Schedule (which contains provisions concerning information gathering and disclosure) has effect.
+Officers of a body corporate etc.
+12
+1
+Where an offence under these Regulations committed by a body corporate —
+a
+is committed with the consent or connivance of any director, manager, secretary or other similar officer of the body corporate, or any person who was purporting to act in any such capacity, or
+b
+is attributable to any neglect on the part of any such person,
+that person as well as the body corporate is guilty of the offence and is liable to be proceeded against and punished accordingly.
+2
+In paragraph (1) “director”, in relation to a body corporate whose affairs are managed by its members, means a member of the body corporate.
+3
+Paragraph (1) also applies in relation to a body that is not a body corporate, with the substitution for the reference to a director of the body for a reference —
+a
+in the case of a partnership, to a partner;
+b
+in the case of an unincorporated body other than a partnership —
+i
+where the body’s affairs are managed by its members, to a member of the body;
+ii
+in any other case, to a member of the governing body.
+Penalties
+13
+1
+A person guilty of an offence under regulation 9 or 10 is liable —
+a
+on conviction on indictment, to imprisonment for a term not exceeding two years or to a fine or to both;
+b
+on summary conviction, to imprisonment for a term not exceeding three months or to a fine not exceeding the statutory maximum or to both.
+2
+A person guilty of an offence under paragraph 1(5) or 4(1) of the Schedule is liable on summary conviction to imprisonment for a term not exceeding three months or to a fine not exceeding level 5 on the standard scale or to both.
+Proceedings
+14
+1
+Proceedings against any person for an offence under these Regulations may be taken before the appropriate court in the United Kingdom having jurisdiction in the place where that person is for the time being.
+2
+In England and Wales an information relating to an offence that is triable by a magistrates’ court may be so tried if it is laid —
+a
+at any time within three years after the commission of the offence, and
+b
+within twelve months after the date on which evidence sufficient in the opinion of the prosecutor to justify the proceedings comes to the knowledge of the prosecutor.
+3
+In Scotland —
+a
+summary proceedings for an offence may be commenced —
+i
+before the end of twelve months from the date on which evidence sufficient in the Lord Advocate’s opinion to justify the proceedings came to the Lord Advocate’s knowledge, and
+ii
+not later than three years after the commission of the offence; and
+b
+section 136(3) of the Criminal Procedure (Scotland) Act 1995 (time limit for certain offences) applies for the purpose of this paragraph as it applies for the purpose of that section.
+4
+In Northern Ireland summary proceedings for an offence may be instituted —
+a
+at any time within three years after the commission of the offence, and
+b
+within twelve months after the date on which evidence sufficient in the opinion of the prosecutor to justify proceedings comes to the knowledge of the prosecutor.
+5
+For the purposes of this regulation a certificate of the prosecutor (or in Scotland, the Lord Advocate) as to the date on which such evidence as is referred to above came to their notice is conclusive evidence.
+Consent to prosecution
+15
+1
+Proceedings for an offence under these Regulations (other than a summary offence) may not be instituted —
+a
+in England and Wales, except by or with the consent of the Attorney General,
+b
+in Northern Ireland —
+i
+where the offence is committed wholly or partly outside Northern Ireland, except by or with the consent of the Advocate General for Northern Ireland;
+ii
+for all other offences, except by or with the consent of the Director for Public Prosecutions for Northern Ireland.
+2
+Nothing in paragraph (1) prevents —
+a
+the arrest of a person in respect of an offence under these Regulations, or
+b
+the remand in custody or on bail of any person charged with such an offence.
+Notices
+16
+1
+This regulation has effect in relation to any notice to be given to a person by the Treasury under regulation 9.
+2
+Any such notice may be given —
+a
+by posting it to the person’s last known address, or
+b
+where the person is a body corporate, partnership or unincorporated body other than a partnership, by posting it to the registered or principal office of the body or partnership concerned.
+3
+Where the Treasury do not have an address for the person, they must make arrangements for the notice to be given to the person at the first available opportunity.
+The Crown
+17
+1
+These Regulations bind the Crown.
+2
+No contravention by the Crown of a provision of these Regulations makes the Crown criminally liable.
+3
+The High Court or, in Scotland, the Court of Session may, on the application of a person appearing to the court to have an interest, declare unlawful any act or omission of the Crown that constitutes a contravention of a provision of these Regulations.
+4
+Nothing in this regulation affects Her Majesty in her private capacity.
+5
+Paragraph (4) is to be read as if section 38(3) of the Crown Proceedings Act 1947 (meaning of Her Majesty in her private capacity) were contained in these Regulations.
+Michael Fabricant
+Brooks Newmark
+Two of the Lords Commissioners of Her Majesty’s Treasury
+12th June 2012
+SCHEDULE
+Information Provisions
+Regulation 11
+Reporting obligations of relevant institutions
+1
+1
+A relevant institution must inform the Treasury as soon as practicable if —
+a
+it knows, or has reasonable cause to suspect, that a person —
+i
+is a designated person, or
+ii
+has committed an offence under regulation 9 or 10, and
+b
+the information or other matter on which the knowledge or suspicion is based came to it in the course of carrying on its business.
+2
+Where a relevant institution informs the Treasury under sub-paragraph (1), it must state —
+a
+the information or other matter on which the knowledge or suspicion is based, and
+b
+any information it holds about the person by which the person can be identified.
+3
+Sub-paragraph (4) applies if —
+a
+a relevant institution informs the Treasury under sub-paragraph (1) that it knows, or has reasonable cause to suspect, that a person is a designated person, and
+b
+that person is a customer of the institution.
+4
+The relevant institution must also state the nature and amount or quantity of any funds or economic resources held by it for the customer.
+5
+A relevant institution that fails to comply with any requirement of sub-paragraph (1), (2) or (4) commits an offence.
+Powers to request information
+2
+1
+The Treasury may request a designated person to provide information concerning —
+a
+funds or economic resources owned, held or controlled by or on behalf of the designated person, or
+b
+any disposal of such funds or economic resources.
+2
+The Treasury may request a designated person to provide such information as the Treasury may reasonably require about expenditure —
+a
+by or on behalf of the designated person, or
+b
+for the benefit of the designated person.
+3
+The power in sub-paragraph (1) or (2) is exercisable only where the Treasury believe that it is necessary for the purpose of monitoring compliance with or detecting evasion of these Regulations.
+4
+The Treasury may request a person acting under a licence granted under regulation 9 to provide information concerning —
+a
+funds or economic resources dealt with under the licence, or
+b
+funds or economic resources made available under the licence.
+5
+The Treasury may request any person in or resident in the United Kingdom to provide such information as the Treasury may reasonably require for the purpose of —
+a
+establishing for the purposes of these Regulations —
+i
+the nature and amount or quantity of any funds or economic resources owned, held or controlled by or on behalf of a designated person,
+ii
+the nature and amount or quantity of any funds or economic resources made available directly or indirectly to, or for the benefit of, a designated person, or
+iii
+the nature of any financial transactions entered into by a designated person,
+b
+monitoring compliance with or detecting evasion of these Regulations, or
+c
+obtaining evidence of the commission of an offence under these Regulations.
+6
+The Treasury may specify the manner in which, and the period within which, information is to be provided.
+7
+If no such period is specified, the information which has been requested must be provided within a reasonable time.
+8
+A request may include a continuing obligation to keep the Treasury informed as circumstances change, or on such regular basis as the Treasury may specify.
+9
+Information requested under this paragraph may relate to any period of time during which a person is, or was, a designated person.
+10
+Information requested under sub-paragraph (1)(b), (2) or (5)(a)(iii) may relate to any period of time before a person became a designated person (as well as, or instead of, any subsequent period of time).
+Production of documents
+3
+1
+A request under paragraph 2 may include a request to produce specified documents or documents of a specified description.
+2
+Where the Treasury request that documents be produced, they may —
+a
+take copies of or extracts from any document so produced,
+b
+request any person producing a document to give an explanation of it, and
+c
+where that person is a body corporate, partnership or unincorporated body other than a partnership, request any person who is —
+i
+in the case of a partnership, a present or past partner or employee of the partnership,
+ii
+in any other case, a present or past officer or employee of the body concerned,
+to give such an explanation.
+3
+Where the Treasury request a designated person or a person acting under a licence granted under regulation 9 to produce documents, that person must —
+a
+take reasonable steps to obtain the documents (if not already in the person’s possession or control);
+b
+keep the documents under the person’s possession or control (except for the purpose of providing them to the Treasury or as the Treasury may otherwise permit).
+Failure to comply with request for information
+4
+1
+A person commits an offence who —
+a
+without reasonable excuse, refuses or fails within the time and in the manner specified (or, if no time has been specified, within a reasonable time) to comply with any request made under this Schedule,
+b
+knowingly or recklessly gives any information, or produces any document, which is false in a material particular in response to such a request,
+c
+with intent to evade the provisions of this Schedule, destroys, mutilates, defaces, conceals or removes any document, or
+d
+otherwise intentionally obstructs the Treasury in the exercise of their powers under this Schedule.
+2
+Where a person is convicted of an offence under this paragraph, the court may make an order requiring that person, within such period as may be specified in the order, to comply with the request.
+General power to disclose information
+5
+1
+The Treasury may disclose any information obtained by them pursuant to these Regulations —
+a
+to a police officer;
+b
+to any person holding or acting in any office under or in the service of —
+i
+the Crown in right of the Government of the United Kingdom,
+ii
+the Crown in right of the Scottish Administration, the Northern Ireland Administration or the Welsh Assembly Government,
+iii
+the States of Jersey, Guernsey or Alderney or the Chief Pleas of Sark,
+iv
+the Government of the Isle of Man, or
+v
+the Government of any British overseas territory;
+c
+to any law officer of the Crown for Jersey, Guernsey or the Isle of Man;
+d
+to the Legal Services Commission, the Scottish Legal Aid Board or the Northern Ireland Legal Services Commission;
+e
+to the Financial Services Authority, the Jersey Financial Services Commission, the Guernsey Financial Services Commission, the Isle of Man Insurance and Pensions Authority or the Isle of Man Financial Supervision Commission;
+f
+for the purpose of giving assistance or co-operation, pursuant to the Council Regulation, to the Council of the European Union, the European Commission or the Government of a Member State;
+g
+with a view to instituting, or otherwise for the purposes of, any proceedings —
+i
+in the United Kingdom, for an offence under these Regulations, or
+ii
+in any of the Channel Islands, the Isle of Man or any British overseas territory, for an offence under a similar provision in any such jurisdiction; or
+h
+with the consent of a person who, in their own right, is entitled to the information or to possession of the document, copy or extract, to any third party.
+2
+In sub-paragraph (1)(h) “in their own right” means not merely in the capacity as a servant or agent of another person.
+Application of provisions
+6
+1
+Nothing done under this Schedule is to be treated as a breach of any restriction imposed by statute or otherwise.
+2
+But nothing in this Schedule authorises a disclosure that —
+a
+contravenes the Data Protection Act 1998 , or
+b
+is prohibited by Part 1 of the Regulation of Investigatory Powers Act 2000 .
+3
+Nothing in this Schedule is to be read as requiring a person who has acted as counsel or solicitor for any person to disclose any privileged information in their possession in that capacity.
+4
+This Schedule does not limit the circumstances in which information may be disclosed apart from this Schedule.
+5
+This Schedule does not limit the powers of the Treasury to impose conditions in connection with the discharge of their functions under regulation 9.
+6
+In this paragraph “privileged information” means information with respect to which a claim to legal professional privilege (in Scotland, to confidentiality of communications) could be maintained in legal proceedings.

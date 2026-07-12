@@ -1,0 +1,139 @@
+The British Waterways Board (Tax Consequences) Order 2012
+Citation and commencement
+1
+This Order may be cited as the British Waterways Board (Tax Consequences) Order 2012 and comes into force at 3.30 p.m. on 2nd July 2012.
+Interpretation
+2
+In this Order —
+“ TCGA 1992 ” means the Taxation of Chargeable Gains Act 1992 ;
+“ CAA 2001 ” means the Capital Allowances Act 2001 ;
+“ CTA 2009 ” means the Corporation Tax Act 2009 ;
+“ BWB ” means the British Waterways Board;
+“ CRT ” means the Canal & River Trust, company registration number 07807276;
+“ CRT CIC ” means the Canal & River Trading CIC, company registration number 08069602;
+“relevant transfer” means —
+a transfer of property, rights and liabilities from BWB to CRT, or
+a transfer of property, rights and liabilities from BWB to CRT CIC,
+by, or under, the British Waterways Board Transfer Scheme 2012.
+Capital allowances: transfer of a trade
+3
+1
+This article applies where BWB is carrying on a trade and, as a result of a relevant transfer —
+a
+BWB ceases to carry on that trade, and
+b
+CRT or CRT CIC begins to carry on that trade.
+2
+For the purposes of the allowances and charges provided for by CAA 2001, the trade is not to be treated as permanently discontinued, nor a new trade as set up; but paragraphs (3) and (4) are to apply.
+3
+There are to be made to or on CRT, or CRT CIC, in accordance with CAA 2001, all such allowances and charges as would, if BWB had continued to carry on the trade, have fallen to be made to or on BWB.
+4
+The amounts of those allowances and charges are to be computed as if —
+a
+CRT or CRT CIC had been carrying on the trade since BWB began to do so, and
+b
+everything done to or by BWB had been done to or by CRT or CRT CIC,
+but so that a relevant transfer, so far it relates to assets in use for the purposes of the trade, is not treated as giving rise to an allowance or charge.
+Capital allowances: transfer involving part of a trade
+4
+1
+Where BWB is carrying on a trade and, as a result of a relevant transfer —
+a
+BWB ceases to carry on that trade, and
+b
+CRT or CRT CIC begins to carry on activities of that trade as part of a trade carried on by it,
+then that part of the trade carried on by CRT, or CRT CIC, is treated for the purposes of article 3 as a separate trade.
+2
+Where BWB is carrying on a trade and, as a result of a relevant transfer —
+a
+BWB ceases to carry on a part of that trade, and
+b
+CRT or CRT CIC begins to carry on activities of that part of that trade,
+then BWB is treated for the purposes of article 3 and paragraph (1) as having carried on that part of its trade as a separate trade.
+3
+Where activities fall to be treated under this article as a separate trade, such apportionments of receipts, expenses, assets and liabilities are to be made for the purposes of CAA 2001 as may be just and reasonable.
+Chargeable gains: no gain or loss on disposal
+5
+1
+For the purposes of TCGA 1992, a disposal constituted by a relevant transfer is to be treated in relation to BWB and CRT, or CRT CIC, as made for a consideration such that no gain or loss accrues to BWB.
+2
+For the purposes of any tax provision, paragraph (1) is to be treated as one of the no gain/no loss provisions in section 288(3A) of TCGA 1992 (meaning of “the no gain/no loss provisions”).
+Corporation tax: computation of profits and losses in respect of transfer of trade
+6
+1
+This article applies where BWB is carrying on a trade or part of a trade and, as a result of a relevant transfer —
+a
+BWB ceases to carry on that trade or part of a trade, and
+b
+CRT or CRT CIC begins to carry on that trade or part.
+2
+For the purposes of computing, in relation to the time when a relevant transfer takes effect and at subsequent times, the relevant trading profits or losses of BWB and CRT, or CRT CIC, —
+a
+the trade or part is to be treated as having been a separate trade at the time of its commencement and as having been carried on by CRT or CRT CIC at all times since its commencement as a separate trade, and
+b
+the trade carried on by CRT or CRT CIC after the time when a relevant transfer takes effect is to be treated as the same trade as that which CRT or CRT CIC is treated, by virtue of sub-paragraph (a), as having carried on as a separate trade before that time.
+3
+Where a trade or part of a trade falls to be treated under this article as a separate trade, such apportionments of receipts, expenses, assets, and liabilities are to be made for the purposes of computing relevant trading profits or losses as may be just and reasonable.
+4
+In this article “relevant trading profits or losses” means profits or losses under Part 3 of CTA 2009 in respect of the trade or part of a trade in question.
+Corporation tax: loan relationships
+7
+1
+For the purposes of Part 5 of CTA 2009 (loan relationships), in relation to a relevant transfer, BWB and CRT, or CRT CIC, are to be treated as if, for the purposes of the transfer, they were members of the same group.
+2
+In paragraph (1) the reference to being members of the same group is to be read in accordance with section 335(6) of that Act.
+Stamp duty
+8
+Stamp duty is not chargeable on an instrument making or executing a relevant transfer.
+Stamp duty land tax
+9
+1
+A land transaction entered into on, or in consequence of, or in connection with, a relevant transfer is exempt from the charge to stamp duty land tax.
+2
+Where in the case of a transaction (“the relevant transaction”) that is exempt by virtue of paragraph (1) (“the exemption”) —
+a
+a disqualifying event occurs —
+i
+before the end of the period of three years beginning with the effective date of the relevant transaction, or
+ii
+in pursuance of, or in connection with, arrangements made before the end of that period,
+and
+b
+at the time of the disqualifying event CRT, or CRT CIC, holds a chargeable interest —
+i
+that was acquired by CRT, or CRT CIC, under the relevant transaction, or
+ii
+that is derived from such an interest so acquired,
+the exemption in relation to the relevant transaction is withdrawn in whole, or in an appropriate proportion in the case of CRT where applicable, and tax is chargeable in accordance with paragraph (3).
+3
+The amount chargeable is the amount —
+a
+that would have been chargeable on CRT or CRT CIC in respect of the relevant transaction but for the exemption, or
+b
+in the case of CRT where applicable, an appropriate proportion of the tax that would have been so chargeable.
+4
+For the purposes of paragraph (2) a “disqualifying event” means —
+a
+for a relevant transaction involving either CRT or CRT CIC —
+i
+CRT ceasing to be established for charitable purposes only, or
+ii
+the subject matter of the relevant transaction, or any interest or right derived from it, being used or held by CRT otherwise than for qualifying charitable purposes;
+b
+for a relevant transaction involving CRT CIC, it ceasing to be a wholly-owned subsidiary of CRT.
+5
+For the purposes of sub-paragraph (a) of paragraph (2) “effective date” has the same meaning as in section 119 of the Finance Act 2003 .
+6
+For the purposes of this article —
+a
+“appropriate proportion” means an appropriate proportion having regard to —
+i
+what was acquired by CRT under the relevant transaction and what is held by CRT at the time of the disqualifying event, and
+ii
+the extent to which what is held by CRT at that time becomes used or held for purposes other than qualifying charitable purposes;
+b
+“qualifying charitable purposes” has the same meaning as in paragraph 1(2) of Schedule 8 to the Finance Act 2003 and references to “purchaser” are to be read as references to CRT.
+James Duddridge
+Brooks Newmark
+Two of the Lords Commissioners of Her Majesty’s Treasury
+12 noon on 2nd July 2012

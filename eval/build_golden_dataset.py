@@ -12,8 +12,9 @@ import json
 import re
 from pathlib import Path
 
-TXT_DIR = Path(__file__).resolve().parent.parent / "test_corpus" / "text_legal_docs"
-PDF_DIR = Path(__file__).resolve().parent.parent / "test_corpus" / "pdf_court_cases"
+REPO_ROOT = Path(__file__).resolve().parent.parent
+TXT_DIR = REPO_ROOT / "test_corpus" / "text_legal_docs"
+PDF_DIR = REPO_ROOT / "test_corpus" / "pdf_court_cases"
 OUT_PATH = Path(__file__).resolve().parent / "golden_dataset.json"
 
 FORCE_DATE_RE = re.compile(r"come into force on ([^.]{5,45}?)\.")
@@ -34,9 +35,9 @@ def title_from_filename(stem: str) -> str:
     return title
 
 
-def build_answerable_from_txt():
+def build_answerable_from_txt(txt_dir=TXT_DIR):
     cases = []
-    for f in sorted(TXT_DIR.glob("EN_*.txt")):
+    for f in sorted(txt_dir.glob("EN_*.txt")):
         text = f.read_text(encoding="utf-8")
         title = title_from_filename(f.stem)
 
@@ -73,9 +74,9 @@ def build_answerable_from_txt():
     return cases
 
 
-def build_answerable_from_pdf(limit=40):
+def build_answerable_from_pdf(pdf_dir=PDF_DIR, limit=40):
     cases = []
-    files = sorted(PDF_DIR.glob("*.pdf"))[:limit]
+    files = sorted(pdf_dir.glob("*.pdf"))[:limit]
     for f in files:
         m = re.match(r"(.+?)_vs_(.+)", f.stem)
         if not m:

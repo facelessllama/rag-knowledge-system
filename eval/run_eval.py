@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-Runs eval/golden_dataset.json against a live instance and reports:
+Runs an eval dataset (eval/golden_dataset.json by default, or any dataset
+built by build_golden_dataset.py / build_heldout_dataset.py) against a live
+instance and reports:
 
 - Recall@K (was the expected document among the K sources returned?)
 - MRR (mean reciprocal rank of the expected document among sources)
@@ -8,11 +10,15 @@ Runs eval/golden_dataset.json against a live instance and reports:
 - answer correctness (does the answer contain the expected fact substring?)
 
 Also dumps every case's retrieval score and rerank score to
-eval/last_run_scores.json — used by eval/calibrate_threshold.py to pick
-RELEVANCE_THRESHOLD from real score distributions instead of a guess.
+eval/last_run_scores_<dataset name>.json — the golden_dataset.json run is
+what RELEVANCE_THRESHOLD (see api/main.py) was calibrated from. Run against
+heldout_dataset.json (documents + adversarial questions never touched
+during that calibration) to check the threshold and fixes generalize
+rather than just fitting the set they were tuned on.
 
 Usage:
     python eval/run_eval.py
+    python eval/run_eval.py --dataset eval/heldout_dataset.json
     python eval/run_eval.py --api-url http://localhost:8000 --top-k 5
 """
 import argparse
@@ -27,8 +33,7 @@ import os
 
 load_dotenv()
 
-DATASET_PATH = Path(__file__).resolve().parent / "golden_dataset.json"
-SCORES_OUT_PATH = Path(__file__).resolve().parent / "last_run_scores.json"
+EVAL_DIR = Path(__file__).resolve().parent
 
 
 def normalize(s: str) -> str:
@@ -94,9 +99,14 @@ async def main():
     ap.add_argument("--api-url", default=os.getenv("EVAL_API_URL", "http://localhost:8000"))
     ap.add_argument("--api-key", default=os.getenv("API_KEY", ""))
     ap.add_argument("--top-k", type=int, default=5)
+    ap.add_argument("--dataset", default=str(EVAL_DIR / "golden_dataset.json"),
+                     help="Path to a dataset JSON built by build_golden_dataset.py or build_heldout_dataset.py")
     args = ap.parse_args()
 
-    dataset = json.loads(DATASET_PATH.read_text(encoding="utf-8"))
+    dataset_path = Path(args.dataset)
+    scores_out_path = EVAL_DIR / f"last_run_scores_{dataset_path.stem}.json"
+
+    dataset = json.loads(dataset_path.read_text(encoding="utf-8"))
     headers = {"X-API-Key": args.api_key} if args.api_key else {}
 
     async with httpx.AsyncClient() as client:
@@ -159,8 +169,8 @@ async def main():
         for w in wrong_answers[:15]:
             print(f"  {w['id']}: {w['answer'][:120]}")
 
-    SCORES_OUT_PATH.write_text(json.dumps(results, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"\nSaved per-case scores to {SCORES_OUT_PATH}")
+    scores_out_path.write_text(json.dumps(results, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"\nSaved per-case scores to {scores_out_path}")
 
 
 if __name__ == "__main__":

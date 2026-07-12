@@ -1,0 +1,281 @@
+The Fishing Boats (Satellite-Tracking Devices and Electronic Reporting) (England) Scheme 2012
+The Secretary of State, in whom the powers conferred by section 15(1) and (2) of the Fisheries Act 1981 are now vested , makes this Scheme in exercise of those powers, with the approval of the Treasury.
+PART 1 INTRODUCTORY PROVISIONS
+Citation, commencement and application
+1
+1
+This Scheme may be cited as the Fishing Boats (Satellite-Tracking Devices and Electronic Reporting) (England) Scheme 2012 and comes into force on 28th May 2012.
+2
+It applies in England and in relation to English fishing boats.
+Interpretation
+2
+In this Scheme —
+“the Control Regulation” means Council Regulation (EC) No 1224/2009 establishing a Community control system for ensuring compliance with the rules of the common fisheries policy ;
+“English fishing boat” means a fishing boat which —
+is registered in the United Kingdom under Part II of the Merchant Shipping Act 1995 , and
+has its port of administration in England;
+“fishing boat” means a vessel equipped for commercial exploitation of living aquatic resources, which include sea fish;
+“the Implementing Regulation” means Commission Implementing Regulation ( EU ) No 404/2011 laying down detailed rules for the implementation of Council Regulation (EC) No 1224/2009 establishing a Community control system for ensuring compliance with the rules of the Common Fisheries Policy;
+“LIBOR”, in relation to a day, means the sterling three month London interbank offered interest rate in force for that day, rounded if necessary to two decimal places;
+“master” includes the person for the time being in charge of a fishing boat;
+“port of administration”, in relation to a fishing boat, means the port from which the licence granted in respect of that boat under section 4 of the Sea Fish (Conservation) Act 1967 is issued.
+PART 2 PAYMENTS FOR SATELLITE-TRACKING DEVICES
+Interpretation of Part 2
+3
+In this Part —
+“application” means an application under this Part, and “applicant” is to be construed accordingly;
+“authorised provider” means the supplier and installer of satellite-tracking devices specified in a notice under paragraph 5(2)(f);
+“satellite-tracking device” has the same meaning as in Article 2(9) of the Implementing Regulation.
+Eligibility to make an application
+4
+A person is eligible to make an application if that person —
+a
+is —
+i
+the owner, charterer or master of an English fishing boat which is required by Article 9(2) of the Control Regulation or pursuant to Article 9(9) of that Regulation to have installed on board a satellite-tracking device, or
+ii
+the representative of the owner, charterer or master of such a boat; and
+b
+satisfies any other criteria specified in a notice under paragraph 5(2) (which may include criteria as to the length of the boat in respect of which the application is made).
+Applications
+5
+1
+The Secretary of State may invite applications in accordance with the following provisions of this paragraph.
+2
+The Secretary of State must publish a notice specifying —
+a
+who is eligible to apply;
+b
+the form and manner of applications;
+c
+any information or documents which applicants must provide;
+d
+the closing date for applications;
+e
+the address to which applications must be made;
+f
+the provider authorised by the Secretary of State for the purposes of this Part to supply and install satellite-tracking devices; and
+g
+any other information the Secretary of State considers relevant to an application.
+3
+The Secretary of State may extend the closing date in respect of a particular application where the Secretary of State considers that there is a particular reason to do so.
+Determination of applications
+6
+1
+The Secretary of State may require an applicant to provide further information relevant to the application.
+2
+The Secretary of State must determine an application as soon as reasonably practicable following its receipt (or, where further information is required under sub-paragraph (1), following the provision of that further information).
+3
+The Secretary of State must reject an application in respect of a boat —
+a
+if satisfied that its port of administration has been changed for the primary purpose of eligibility to make an application; or
+b
+if a payment has already been made under this Part in respect of the installation of a satellite-tracking device on the boat.
+4
+When rejecting an application, the Secretary of State must notify the applicant of the decision in writing with reasons.
+5
+When approving an application, the Secretary of State —
+a
+may attach conditions to the approval; and
+b
+must notify the applicant in writing of —
+i
+the decision to approve the application; and
+ii
+any conditions attached to the approval under paragraph (a).
+6
+The Secretary of State may revise any conditions previously notified, and in such a case must notify the applicant in writing of the revised conditions.
+Payments for satellite-tracking devices
+7
+1
+Subject to paragraph 8, where the Secretary of State approves an application, the Secretary of State must pay to the authorised provider or the applicant a sum equal to the cost, agreed between the Secretary of State and the provider, of —
+a
+the purchase of a satellite-tracking device from the authorised provider;
+b
+the purchase of a three-year warranty for that device from the authorised provider; and
+c
+the installation of that device by the authorised provider.
+2
+The cost specified in sub-paragraph (1)(c) does not include any cost wholly or partly incurred in respect of the concealment of the satellite-tracking device, its associated cables and wires, or any other associated materials or equipment, for cosmetic purposes.
+3
+But no payment in respect of an application is to be made unless the Secretary of State is satisfied that —
+a
+a satellite-tracking device has been supplied and installed by the authorised provider on the boat in respect of which the application was made in accordance with procedures agreed by the Secretary of State with that provider;
+b
+the device functions correctly so as to enable compliance with the requirements of the Control Regulation and the Implementing Regulation relating to the vessel monitoring system; and
+c
+any conditions attached to the approval of the application under paragraph 6(5)(a) or (6) which were required to be satisfied before payment could be made have been satisfied.
+Reduction, withholding or recovery of payments
+8
+1
+This paragraph applies where, having approved an application, the Secretary of State considers that —
+a
+any condition attached to that approval under paragraph 6(5)(a) or (6) has been breached or has not been complied with;
+b
+the applicant was not eligible to make the application; or
+c
+the applicant provided materially false or misleading information in relation to the application.
+2
+The Secretary of State, if proposing to take action under sub-paragraph (3), must first —
+a
+give the applicant a written explanation of the reasons for the proposed action;
+b
+invite the applicant to make written representations before such specified date as the Secretary of State considers reasonable; and
+c
+consider any such representations made before that date.
+3
+The Secretary of State, following consideration of any representations made under sub-paragraph (2), may —
+a
+overturn the approval of the application;
+b
+withhold the whole or part of any payment to be made under paragraph 7(1); and
+c
+where a payment has been made under paragraph 7(1), recover on demand from the applicant an amount equal to the whole or part of that payment (irrespective of whether the payment was made to the applicant or to the authorised provider).
+4
+When recovering an amount under sub-paragraph (3)(c), the Secretary of State may also recover interest on that amount at a rate of 1% above the LIBOR calculated on a daily basis for the period beginning with the day after the amount was paid and ending on the day the amount is recovered.
+5
+In any proceedings for recovery under this Part, a certificate issued by the Secretary of State stating the LIBOR applicable for a day, the amount of interest recoverable or the period for which interest is calculated is sufficient evidence of those matters, unless the contrary is shown.
+PART 3 PAYMENTS FOR APPROVED SOFTWARE
+Interpretation of Part 3
+9
+In this Part —
+“application” means an application under this Part, and “applicant” is to be construed accordingly;
+“approved software” means software specified in a list published under paragraph 10(a);
+“fishing data” means the logbook data, transhipment declaration data and landing declaration data required by the Control Regulation to be electronically recorded and transmitted.
+List of approved software
+10
+The Secretary of State must publish a list specifying —
+a
+software approved for the purposes of this Part for the electronic recording and transmission of fishing data; and
+b
+the suppliers of that software.
+Eligibility to make an application
+11
+A person is eligible to make an application if that person —
+a
+is —
+i
+the owner, charterer or master of an English fishing boat which is required by Article 15, 22 or 24 of the Control Regulation or pursuant to Article 15(7), 22(6) or 24(6) of that Regulation to electronically record and transmit fishing data, or
+ii
+the representative of the owner, charterer or master of such a boat; and
+b
+satisfies any other criteria specified in a notice under paragraph 12(2) (which may include criteria as to the length of the boat in respect of which the application is made).
+Applications
+12
+1
+The Secretary of State may invite applications in accordance with the following provisions of this paragraph.
+2
+The Secretary of State must publish a notice specifying —
+a
+who is eligible to apply;
+b
+the form and manner of applications;
+c
+any information or documents which applicants must provide;
+d
+the closing date for applications;
+e
+the address to which applications must be made; and
+f
+any other information the Secretary of State considers relevant to an application.
+3
+An application must specify the particular approved software in respect of which funding is sought.
+4
+The Secretary of State may extend the closing date in respect of a particular application where the Secretary of State considers that there is a particular reason to do so.
+Determination of applications
+13
+1
+The Secretary of State may require an applicant to provide further information relevant to the application.
+2
+The Secretary of State must determine an application as soon as reasonably practicable following its receipt (or, where further information is required under sub-paragraph (1), following the provision of that further information).
+3
+The Secretary of State must reject an application in respect of a boat —
+a
+if satisfied that its port of administration has been changed for the primary purpose of eligibility to make an application; or
+b
+if a payment has already been made under this Part in respect of the installation of approved software on the boat.
+4
+When rejecting an application, the Secretary of State must notify the applicant of the decision in writing with reasons.
+5
+When approving an application, the Secretary of State —
+a
+may attach conditions to the approval; and
+b
+must notify the applicant in writing of —
+i
+the decision to approve the application; and
+ii
+any conditions attached to the approval under paragraph (a).
+6
+The Secretary of State may revise any conditions previously notified, and in such a case must notify the applicant in writing of the revised conditions.
+Payments for software
+14
+1
+Subject to paragraph 15, where the Secretary of State approves an application, the Secretary of State must make a payment not exceeding the amount specified in sub-paragraph (2) to —
+a
+the applicant; or
+b
+the supplier which supplied the approved software specified in the application.
+2
+The amount is the sum equal to the cost of purchase from the supplier of the approved software specified in the application.
+3
+But no payment in respect of an application is to be made unless the Secretary of State is satisfied that —
+a
+the approved software specified in the application has been supplied and installed on the boat in respect of which the application was made;
+b
+that software functions correctly so as to enable compliance with the requirements of the Control Regulation and the Implementing Regulation relating to the electronic recording and reporting system for fishing vessels; and
+c
+any conditions attached to the approval of the application under paragraph 13(5)(a) or (6) which were required to be satisfied before payment could be made have been satisfied.
+Reduction, withholding or recovery of payments
+15
+1
+This paragraph applies where, having approved an application, the Secretary of State considers that —
+a
+any condition attached to that approval under paragraph 13(5)(a) or (6) has been breached or has not been complied with;
+b
+the applicant was not eligible to make the application; or
+c
+the applicant provided materially false or misleading information in relation to the application.
+2
+The Secretary of State, if proposing to take action under sub-paragraph (3), must first —
+a
+give the applicant a written explanation of the reasons for the proposed action;
+b
+invite the applicant to make written representations before such specified date as the Secretary of State considers reasonable; and
+c
+consider any such representations made before that date.
+3
+The Secretary of State, following consideration of any representations made under sub-paragraph (2), may —
+a
+overturn the approval of the application;
+b
+withhold the whole or part of any payment to be made under paragraph 14(1); and
+c
+where a payment has been made under paragraph 14(1), recover on demand from the applicant an amount equal to the whole or part of that payment (irrespective of whether the payment was made to the applicant or to the supplier of the approved software).
+4
+When recovering an amount under sub-paragraph (3)(c), the Secretary of State may also recover interest on that amount at a rate of 1% above the LIBOR calculated on a daily basis for the period beginning with the day after the amount was paid and ending on the day the amount is recovered.
+5
+In any proceedings for recovery under this Part, a certificate issued by the Secretary of State stating the LIBOR applicable for a day, the amount of interest recoverable or the period for which interest is calculated is sufficient evidence of those matters, unless the contrary is shown.
+PART 4 REVOCATIONS AND SAVINGS
+Revocations and savings
+16
+1
+The following are revoked —
+a
+the Fishing Boats (Satellite-Tracking Devices) (England) Scheme 2004 (“the 2004 Scheme ”); and
+b
+the Fishing Boats (Electronic Transmission of Fishing Activities Data) (England) Scheme 2010 (“the 2010 Scheme ”).
+2
+But the Secretary of State may —
+a
+make payments in respect of outstanding applications under the 2004 Scheme or the 2010 Scheme; and
+b
+reduce, withhold or recover an amount, and recover interest, in accordance with paragraphs 9 and 10 of the 2004 Scheme or paragraphs 10 and 11 of the 2010 Scheme.
+Richard Benyon
+Parliamentary Under Secretary of State
+Department for Environment, Food and Rural Affairs
+17th May 2012
+James Duddridge
+Jeremy Wright
+Two of the Lords Commissioners of Her Majesty’s Treasury
+21st May 2012

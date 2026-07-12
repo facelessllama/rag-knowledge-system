@@ -1,0 +1,791 @@
+The Enactment of Extra-Statutory Concessions Order 2012
+In accordance with section 160(7) of that Act, a draft of this instrument was laid before the House of Commons and approved by a resolution of that House.
+Citation and commencement
+1
+This Order may be cited as the Enactment of Extra-Statutory Concessions Order 2012 and comes into force on 1st March 2012.
+De minimis exemption: insurance premium tax
+2
+1
+Part 3 of the Finance Act 1994 (insurance premium tax) is amended as follows.
+2
+In section 50(3) (chargeable amount), for “section 69” substitute “sections 69 and 69A”.
+3
+In section 59(1) (appeals), after paragraph (h) insert —
+ha
+a refusal of an application for an exemption under section 69C or the withdrawal of such an exemption;
+.
+4
+In section 69 (charge to tax where different rates apply), after subsection (1) insert —
+1A
+But this section does not apply for the purpose of determining the chargeable amount in relation to an excepted premium (as to which see section 69A).
+5
+After section 69 (charge to tax where different rates apply) insert —
+Part-exempt contracts: excepted premiums
+69A
+1
+Where —
+a
+an insurer at any time (“the relevant time”) receives a premium under a part-exempt contract, and
+b
+the conditions in subsection (2) are met,
+the chargeable amount in relation to the premium is nil.
+2
+The conditions are that —
+a
+the relevant total is £500,000 or less, and
+b
+10% or less of the relevant total is attributable to any non-exempt matter or matters.
+3
+For this purpose “the relevant total” is the total of —
+a
+the amount of the premium,
+b
+the amount of any other premium received by the insurer under the contract at or before the relevant time, and
+c
+the amount of any premium that, at the relevant time, the insurer has a present or future right to receive under the contract.
+4
+In applying subsection (2)(b), any amount that is included in a premium as being referable to tax (whether or not the amount corresponds to the actual amount of tax payable in respect of the premium) shall be taken to be wholly attributable to a non-exempt matter.
+5
+Subject to that, any attribution under subsection (2)(b) is to be made on such basis as is just and reasonable.
+6
+For the purposes of this section —
+a
+an “exempt matter” is any matter such that, if it were the only matter for which the contract provided cover, the contract would not be a taxable insurance contract, and
+b
+a “non-exempt matter” is a matter which is not an exempt matter.
+7
+In this Part —
+“excepted premium” means a premium under an insurance contract in relation to which, by virtue of subsection (1), the chargeable amount is nil;
+“part-exempt contract” means an insurance contract that provides–
+cover for one or more exempt matters, and
+cover for one or more non-exempt matters.
+Treatment of excepted premiums where limits breached after receipt
+69B
+1
+This section applies if —
+a
+an insurer at any time —
+i
+receives a premium under a part-exempt contract that is not an excepted premium, or
+ii
+acquires a present or future right to receive a premium under a part-exempt contract that, on receipt, will not be an excepted premium,
+b
+one or more excepted premiums were previously received by the insurer under the contract, and
+c
+this section has not already applied in relation to the contract.
+2
+The insurer is deemed for the purposes of this Part to have received, at the time mentioned in subsection (1)(a), premiums under the contract of the same amounts, and attributable to the same matters, as the excepted premiums mentioned in subsection (1)(b).
+Part-exempt contracts: exemption from requirement to make returns
+69C
+1
+If the condition in subsection (2) is met, a registrable person may apply in writing to the Commissioners for an exemption under this section.
+2
+The condition is that the person has not received, and does not expect to receive, at any time after the beginning of a specified accounting period, any premium under a taxable insurance contract that is not an excepted premium.
+3
+In subsection (2) “specified” means specified in the application.
+4
+The application must contain such information as the Commissioners may direct.
+5
+The Commissioners must grant the application unless it appears to them that the condition in subsection (2) is not met.
+6
+Where an exemption has effect the applicant —
+a
+is exempt from any requirement imposed under section 54 to make returns in relation to the accounting period specified in the application or subsequent accounting periods, and
+b
+must ensure that any records that the applicant is required to keep by virtue of paragraph 1(1) of Schedule 7 are, so far as they relate to premiums received, kept in a form enabling records relating to excepted premiums to be readily distinguished from records relating to other premiums.
+Withdrawal of exemption
+69D
+1
+The Commissioners may by notice withdraw an exemption if it appears to them that —
+a
+the condition in section 69C(2) is no longer met, or
+b
+the person is not keeping, or has not kept, records as required by section 69C(6)(b).
+2
+Where an exemption is withdrawn under subsection (1), the exemption ceases to have effect in relation to the accounting period in which the notice is given and subsequent accounting periods.
+3
+If, during an accounting period in relation to which an exemption has effect, a person receives a premium under a taxable insurance contract that is not an excepted premium, the exemption ceases to have effect in relation to that and subsequent accounting periods.
+4
+References in this section to an exemption are to an exemption granted under section 69C.
+6
+In section 73(1) (interpretation), at the appropriate places, insert —
+“excepted premium” has the meaning given by section 69A(7) above;
+, and
+“part-exempt contract” has the meaning given by section 69A(7) above;
+.
+Reduction of cash equivalent where car is shared: income tax
+3
+1
+The Income Tax (Earnings and Pensions) Act 2003 is amended as follows.
+2
+In section 121 (method of calculating the cash equivalent of the benefit of a car) for subsection (3) substitute —
+3
+Where the car is shared the cash equivalent is calculated under this section in accordance with section 148.
+3
+In section 148 (reduction of cash equivalent where car is shared) —
+a
+in subsection (2) omit paragraph (b) and the “and” before it,
+b
+after that subsection, insert —
+2A
+The provisional sum calculated under step 7 in section 121(1) is to be reduced on a just and reasonable basis before making any deduction under step 8.
+, and
+c
+in subsection (3) for “(2)(b)” substitute “(2A)”.
+Sale of memorials and niches by crematoria: income tax
+4
+1
+Chapter 11 of Part 2 of the Income Tax (Trading and Other Income) Act 2005 (trade profits: other specific trades) is amended as follows.
+2
+For the heading immediately preceding section 169 substitute “ Cemeteries and crematoria: interests in land ”.
+3
+In subsection (3) of section 170 (deduction for capital expenditure) —
+a
+omit “or” at the end of paragraph (a), and
+b
+at the end of paragraph (b) insert —
+or
+c
+under both subsection (2)(b) above and section 172ZB(4), 172ZC(4) or 172ZD(3).
+4
+After section 172 insert —
+Crematoria: niches, memorials and inscriptions
+Niches, memorials and inscriptions: introduction
+172ZA
+1
+Sections 172ZB to 172ZE apply in calculating the profits of a trade which consists of or includes —
+a
+the carrying on of a crematorium, and
+b
+in connection with carrying on the crematorium —
+i
+the sale of niches or memorials, or
+ii
+the making of inscriptions.
+2
+In those sections —
+a
+“the trade” is the trade mentioned in subsection (1),
+b
+“the trader” is the person carrying on the trade, and
+c
+a “predecessor” is a person who carried on the trade at any time before the trader started doing so.
+Allowable deductions: niches
+172ZB
+1
+This section sets out the deductions that are allowed in respect of a niche if proceeds from the sale of the niche are brought into account as a receipt in calculating the profits of the trade.
+2
+A deduction is allowed for two-thirds of the costs incurred (by the trader or a predecessor) in the formation of the niche.
+3
+Formation of the lining and of any tablet associated with the niche is taken to be part of the formation of the niche.
+4
+If the niche is in a building that is used wholly or mainly for the purpose of providing niches, a further deduction is allowed for two-thirds of the associated building costs.
+5
+In relation to a niche in a building —
+a
+“the associated building costs” is the relevant proportion of the costs of the building, and
+b
+“the relevant proportion” is the proportion that the area occupied by the niche bears to the area of the building as a whole or, if the proportion cannot reasonably be calculated on that basis, such proportion as may be calculated on a just and reasonable basis.
+Allowable deductions: memorials
+172ZC
+1
+This section sets out the deductions that are allowed in respect of a memorial if proceeds from the sale of the memorial are brought into account as a receipt in calculating the profits of the trade.
+2
+A deduction is allowed for the costs incurred (by the trader or a predecessor) in producing the memorial.
+3
+If the memorial includes an inscription, making that inscription is taken to be part of producing the memorial.
+4
+If the memorial is attached to a building that is used wholly or mainly for the purpose of accommodating memorials or the memorial comprises an entire building, a further deduction is allowed for two-thirds of the associated building costs.
+5
+In relation to a memorial attached to or comprising a building, “the associated building costs” means —
+a
+the amount found by dividing the costs of the building by the total number of memorials that the building is capable of accommodating, or
+b
+if the memorial comprises an entire building, the costs of that building.
+Allowable deductions: inscriptions
+172ZD
+1
+This section sets out the deductions that are allowed in respect of an inscription if proceeds from making the inscription are brought into account in calculating the profits of the trade.
+2
+A deduction is allowed for the costs incurred (by the trader or a predecessor) in making the inscription.
+3
+If the inscription is made on an existing framework designed to hold more than one inscription, a further deduction is allowed for two-thirds of the associated framework costs.
+4
+In relation to an inscription made on an existing framework, “the associated framework costs” —
+a
+is the amount found by dividing the costs of the framework by the total number of inscriptions that the framework is designed to hold, and
+b
+includes, if the framework is attached to a building that is used wholly or mainly for the purpose of accommodating memorials, the amount found by dividing the costs of the building by the total number of memorials that the building is capable of accommodating.
+5
+This section does not apply to an inscription if it is made as part of producing a memorial (see section 172ZC).
+Costs of the building
+172ZE
+1
+For the purposes of sections 172ZB to 172ZD, the costs of a building are to be determined in accordance with this section.
+2
+If the building was acquired for the purposes of the trade, the costs of the building are the lower of —
+a
+the market value of the building when it was acquired, and
+b
+the costs incurred in acquiring the building.
+3
+If the building was constructed for the purposes of the trade, the costs of the building are the costs incurred in constructing the building.
+4
+In either case —
+a
+the acquisition cost (or market value) of the land on which the building is situated is to be ignored, and
+b
+for these purposes, costs (or values) are to be apportioned between the land and the building on a just and reasonable basis.
+5
+Any construction costs incurred with respect to the building after it was acquired or constructed for the purposes of the trade must be brought into account as costs of the building.
+6
+But costs incurred in maintaining the building must not be brought into account.
+7
+Costs must not be included as costs of the building if a deduction is or is to be brought into account for them under section 170(2) (deduction for capital expenditure).
+8
+A reference in this section to costs incurred is to costs incurred either by the trader or a predecessor.
+9
+In sections 172ZB to 172ZD and this section, “building” includes any other type of structure.
+5
+The amendments made by this article have effect in relation to niches and memorials sold, and inscriptions made, after the date on which this Order comes into force.
+Sale of memorials and niches by crematoria: corporation tax
+5
+1
+Chapter 9 of Part 3 of the Corporation Tax Act 2009 (trade profits: other specific trades) is amended as follows.
+2
+For the heading immediately preceding section 146 substitute “ Cemeteries and crematoria: interests in land ”.
+3
+In subsection (3) of section 147 (deduction for capital expenditure) —
+a
+omit “or” at the end of paragraph (a),
+b
+at the end of paragraph (b) insert —
+or
+c
+under both subsection (2)(b) above and section 149B(4), 149C(4) or 149D(3).
+4
+After section 149 insert —
+Crematoria: niches, memorials and inscriptions
+Niches, memorials and inscriptions: introduction
+149A
+1
+Sections 149B to 149E apply in calculating the profits of a trade which consists of or includes —
+a
+the carrying on of a crematorium, and
+b
+in connection with carrying on the crematorium —
+i
+the sale of niches or memorials, or
+ii
+the making of inscriptions.
+2
+In those sections —
+a
+“the trade” is the trade mentioned in subsection (1),
+b
+“the trader” is the company carrying on the trade, and
+c
+a “predecessor” is a person who carried on the trade at any time before the trader started doing so.
+Allowable deductions: niches
+149B
+1
+This section sets out the deductions that are allowed in respect of a niche if proceeds from the sale of the niche are brought into account as a receipt in calculating the profits of the trade.
+2
+A deduction is allowed for two-thirds of the costs incurred (by the trader or a predecessor) in the formation of the niche.
+3
+Formation of the lining and of any tablet associated with the niche is taken to be part of the formation of the niche.
+4
+If the niche is in a building that is used wholly or mainly for the purpose of providing niches, a further deduction is allowed for two-thirds of the associated building costs.
+5
+In relation to a niche in a building —
+a
+“the associated building costs” is the relevant proportion of the costs of the building, and
+b
+“the relevant proportion” is the proportion that the area occupied by the niche bears to the area of the building as a whole or, if the proportion cannot reasonably be calculated on that basis, such proportion as may be calculated on a just and reasonable basis.
+Allowable deductions: memorials
+149C
+1
+This section sets out the deductions that are allowed in respect of a memorial if proceeds from the sale of the memorial are brought into account as a receipt in calculating the profits of the trade.
+2
+A deduction is allowed for the costs incurred (by the trader or a predecessor) in producing the memorial.
+3
+If the memorial includes an inscription, making that inscription is taken to be part of producing the memorial.
+4
+If the memorial is attached to a building that is used wholly or mainly for the purpose of accommodating memorials or the memorial comprises an entire building, a further deduction is allowed for two-thirds of the associated building costs.
+5
+In relation to a memorial attached to or comprising a building, “the associated building costs” means —
+a
+the amount found by dividing the costs of the building by the total number of memorials that the building is capable of accommodating, or
+b
+if the memorial comprises an entire building, the costs of that building.
+Allowable deductions: inscriptions
+149D
+1
+This section sets out the deductions that are allowed in respect of an inscription if proceeds from making the inscription are brought into account in calculating the profits of the trade.
+2
+A deduction is allowed for the costs incurred (by the trader or a predecessor) in making the inscription.
+3
+If the inscription is made on an existing framework designed to hold more than one inscription, a further deduction is allowed for two-thirds of the associated framework costs.
+4
+In relation to an inscription made on an existing framework, “the associated framework costs” —
+a
+is the amount found by dividing the costs of the framework by the total number of inscriptions that the framework is designed to hold, and
+b
+includes, if the framework is attached to a building that is used wholly or mainly for the purpose of accommodating memorials, the amount found by dividing the costs of the building by the total number of memorials that the building is capable of accommodating.
+5
+This section does not apply to an inscription if it is made as part of producing a memorial (see section 149C).
+Costs of the building
+149E
+1
+For the purposes of sections 149B to 149D, the costs of a building are to be determined in accordance with this section.
+2
+If the building was acquired for the purposes of the trade, the costs of the building are the lower of —
+a
+the market value of the building when it was acquired, and
+b
+the costs incurred in acquiring the building.
+3
+If the building was constructed for the purposes of the trade, the costs of the building are the costs incurred in constructing the building.
+4
+In either case —
+a
+the acquisition cost (or market value) of the land on which the building is situated is to be ignored, and
+b
+for these purposes, costs (or values) are to be apportioned between the land and the building on a just and reasonable basis.
+5
+Any construction costs incurred with respect to the building after it was acquired or constructed for the purposes of the trade must be brought into account as costs of the building.
+6
+But costs incurred in maintaining the building must not be brought into account.
+7
+Costs must not be included as costs of the building if a deduction is or is to be brought into account for them under section 147(2) (deduction for capital expenditure).
+8
+A reference in this section to costs incurred is to costs incurred either by the trader or a predecessor.
+9
+In sections 149B to 149D and this section, “building” includes any other type of structure.
+5
+The amendments made by this article have effect in relation to niches and memorials sold, and inscriptions made, after the date on which this Order comes into force.
+Compensation for compulsory slaughter of animals: income tax
+6
+In the Income Tax (Trading and Other Income) Act 2005 , after section 225 insert —
+CHAPTER 16ZA
+COMPENSATION FOR COMPULSORY SLAUGHTER OF ANIMALS
+Application of Chapter 16ZA
+225ZA
+1
+This Chapter applies if —
+a
+an animal treated as trading stock of a farming trade is slaughtered under a disease control order,
+b
+the animal is not part of a production herd of a class in respect of which a herd basis election may be made under section 126, and
+c
+the farmer receives or will receive compensation for the animal.
+2
+Such an animal is referred to in this Chapter as a “relevant animal”.
+3
+“Disease control order” has the same meaning as in section 126.
+Right to make claim
+225ZB
+1
+The farmer may make a claim under this section.
+2
+A claim may only be made in respect of the total compensation profit for a period of account.
+3
+The total compensation profit for a period of account is the sum of the profits which the farmer makes for all the relevant animals slaughtered in that period.
+4
+For the purposes of this Chapter the profit which the farmer makes for a relevant animal is —
+a
+the amount by which the compensation for the animal exceeds its book value, or
+b
+if the trade is carried on in partnership, the farmer’s share of that amount, determined in accordance with Part 9.
+5
+Nothing in this section prevents a claim being made before the amount of the compensation has been finally determined.
+Book value
+225ZC
+1
+For the purposes of this Chapter the book value of an animal is the value shown in the accounts as the value of the animal at the start of the period of account in which it was slaughtered.
+2
+If, for an animal, no value is shown in the accounts as that value, the book value is as follows —
+a
+in the case of an animal which was born in the period of account in which it was slaughtered and did not become part of the trading stock in any other way, the book value is 75% of the compensation payable for it,
+b
+in the case of an animal in relation to which section 172C (trading stock supplied by trader) or 172E (acquisitions not made in the course of trade) applies, the book value is the cost treated as incurred under section 172C(2) or 172E(2) as the case may be, and
+c
+in any other case, the book value is the cost of acquiring the animal for the purposes of the trade.
+Effect of claim for spreading profits
+225ZD
+1
+If the farmer makes a claim under section 225ZB in respect of the total compensation profit for a period of account (“period X”), the profits of the trade carried on by the farmer are to be adjusted for income tax purposes as follows —
+Step 1
+Treat the compensation payable for all of the relevant animals slaughtered in period X as a receipt of that period (regardless of when the compensation is finally determined or paid).
+Step 2
+If the farmer makes a profit in the trade in Year 1, deduct from the profits of Year 1 an amount equal to —
+the total compensation profit for period X, or
+if the total compensation profit exceeds the profits of Year 1, such portion of the total compensation profit as will reduce the profits to nil.
+“Year 1” is —
+the tax year whose basis period includes the whole or a part of period X, or
+if there is more than one, the earliest of those tax years.
+Step 3
+If —
+there is more than one tax year whose basis period includes the whole or a part of period X,
+either —
+the farmer did not make a profit in the trade in Year 1, or
+by virtue of step 2, a portion only of the total compensation profit for period X is deducted from the profits of Year 1, and
+the farmer makes a profit in the trade in the next tax year (“Year 2”),
+deduct from the profits of Year 2 the applicable amount.
+In a case where the farmer did not make a profit in Year 1, “the applicable amount” is —
+the total compensation profit for period X, or
+if the total compensation profit exceeds the profits of Year 2, such portion of the total compensation profit as will reduce the profits to nil.
+In a case where a portion only of the total compensation profit for period X is deducted from the profits of Year 1, “the applicable amount” is —
+an amount equal to the difference between the total compensation profit for period X and the portion so deducted, or
+if that amount exceeds the profits of Year 2, such portion of that amount as will reduce the profits to nil.
+No further deduction is to be made in respect of the total compensation profit for period X from the profits of any later tax year whose basis period includes a part of that period.
+Step 4
+Include in the profits of each of the 3 consecutive tax years following Year 1 an amount equal to one third of the total amount deducted by virtue of steps 2 and 3.
+2
+Nothing in this section affects the calculation of overlap profit (within the meaning of Chapter 15 of this Part).
+Adjustment: cessation of trading
+225ZE
+If the farmer permanently ceases to carry on the farming trade before the end of the second of the 3 consecutive tax years following Year 1, step 4 in section 225ZD(1) is to be replaced by the following two steps —
+Step 4
+Divide the total amount deducted by virtue of steps 2 and 3 by the number of tax years (“the remaining tax years”) in which, or in any part of which, the farmer carried on the farming trade, starting with Year 1.
+Step 5
+Include in the profits of each of the remaining tax years the amount resulting from the division in step 4.
+Time limits etc for spreading claim
+225ZF
+1
+A claim under section 225ZB must be made on or before the first anniversary of the normal self-assessment filing date for Year 1.
+2
+If the profits of a tax year are to be adjusted or further adjusted in accordance with this Chapter after an assessment for that tax year has become final and conclusive, any assessment or repayment or discharge of tax that is necessary to give effect to this Chapter must be made.
+3
+But repayment or discharge of tax is due only if a claim for it is made.
+Interpretation
+225ZG
+In this Chapter —
+“animal” means any animal or other living creature;
+“farming trade” means a trade of farming;
+“the farmer”, in relation to a farming trade, means the individual who (alone or in partnership) carries on that trade;
+“total compensation profit” has the meaning given by section 225ZB.
+7
+In section 221 of the Income Tax (Trading and Other Income) Act 2005 (claim for averaging of fluctuating profits), insert at the end —
+6
+For the purposes of this Chapter references to the relevant profits of a tax year are to profits after any adjustment made under Chapter 16ZA (compensation for compulsory slaughter of animals).
+8
+In Part 2 of Schedule 4 to that Act (index of expressions), at the appropriate places insert —
+“animal (in Chapter 16ZA of Part 2) section 225ZG” “the farmer (in Chapter 16ZA of Part 2) section 225ZG” “farming trade (in Chapter 16ZA of Part 2) section 225ZG” “total compensation profit (in Chapter 16ZA of Part 2) section 225ZB”.
+9
+The amendments made by articles 6 to 8 have effect for the purposes of making claims in respect of the total compensation profit for periods of account beginning on or after the date on which this Order comes into force.
+Compensation for the compulsory slaughter of animals: corporation tax
+10
+In the Corporation Tax Act 2009 , after section 127 insert —
+CHAPTER 8A
+COMPENSATION FOR COMPULSORY SLAUGHTER OF ANIMALS
+Application of Chapter 8A
+127A
+1
+This Chapter applies if —
+a
+an animal treated as trading stock of a farming trade is slaughtered under a disease control order,
+b
+the animal is not part of a production herd of a class in respect of which a herd basis election may be made under section 124, and
+c
+the farm company receives or will receive compensation for the animal.
+2
+Such an animal is referred to in this Chapter as a “relevant animal”.
+3
+“Disease control order” has the same meaning as in section 124.
+Right to make claim
+127B
+1
+The farm company may make a claim under this section.
+2
+A claim may only be made in respect of the total compensation profit for an accounting period.
+3
+The total compensation profit for an accounting period is the sum of the profits which the farm company makes for all the relevant animals slaughtered in that period.
+4
+For the purposes of this Chapter the profit which the farm company makes for a relevant animal is —
+a
+the amount by which the compensation for the animal exceeds its book value, or
+b
+if the trade is carried on in partnership, the farm company’s share of that amount, determined in accordance with Part 17.
+5
+Nothing in this section prevents a claim being made before the amount of the compensation has been finally determined.
+Book value
+127C
+1
+For the purposes of this Chapter the book value of an animal is the value shown in the accounts as the value of the animal at the start of the accounting period in which it was slaughtered.
+2
+If, for an animal, no value is shown in the accounts as that value, the book value is as follows —
+a
+in the case of an animal which was born in the accounting period in which it was slaughtered and did not become part of the trading stock in any other way, the book value is 75% of the compensation payable for it,
+b
+in the case of an animal in relation to which section 158 (trading stock supplied by trader) or 160 (acquisitions not made in the course of trade) applies, the book value is the cost treated as incurred under section 158(2) or 160(2) as the case may be, and
+c
+in any other case, the book value is the cost of acquiring the animal for the purposes of the trade.
+Effect of claim for spreading of profits
+127D
+If the farm company makes a claim under section 127B in respect of the total compensation profit for an accounting period (“period X”), the profits of the trade carried on by the farm company are to be adjusted for corporation tax purposes as follows —
+Step 1
+Treat the compensation payable for all of the relevant animals slaughtered in period X as a receipt of that period (regardless of when the compensation is finally determined or paid).
+Step 2
+If the farm company makes a profit in the trade in period X, deduct from the profits of that period an amount equal to —
+the total compensation profit for period X, or
+if the total compensation profit exceeds the profits of period X, such portion of the total compensation profit as will reduce the profits to nil.
+Step 3
+In calculating the profits for each of the 3 consecutive accounting periods following period X, include an amount equal to one third of the amount deducted by virtue of step 2.
+Adjustment: cessation of trading
+127E
+If the farm company permanently ceases to carry on the farming trade before the end of the second consecutive accounting period following period X, step 3 in section 127D is to be replaced by the following two steps —
+Step 3
+Divide the amount deducted by virtue of step 2 by the number of accounting periods (“the remaining accounting periods”) in which, or in any part of which, the farm company carried on the farming trade, starting with period X.
+Step 4
+In calculating the profits for each of the remaining accounting periods, include the amount resulting from the division in step 3.
+Time limits etc for spreading claim
+127F
+1
+A claim under section 127B must be made on or before the first anniversary of the filing date for the company tax return of the farm company for period X (see paragraph 14 of Schedule 18 to FA 1998 ).
+2
+If the profits for an accounting period are to be adjusted or further adjusted in accordance with this Chapter after an assessment for that period has become final and conclusive, any assessment or repayment or discharge of tax that is necessary to give effect to this Chapter must be made.
+3
+But repayment or discharge of tax is due only if a claim for it is made.
+Interpretation
+127G
+In this Chapter —
+“animal” means any animal or other living creature;
+“farming trade” means a trade of farming;
+“the farm company”, in relation to a farming trade, means the company that (alone or in partnership) carries on that trade;
+“the total compensation profit” has the meaning given by section 127B.
+11
+In Schedule 4 to the Corporation Tax Act 2009 (index of defined expressions), at the appropriate places insert —
+“animal (in Chapter 8A of Part 3) section 127G” “the farm company (in Chapter 8A of Part 3) section 127G” “farming trade (in Chapter 8A of Part 3) section 127G” “total compensation profit (in Chapter 8A of Part 3) section 127B”.
+12
+The amendments made by articles 10 and 11 have effect for the purposes of making claims in respect of the total compensation profit for accounting periods beginning on or after the date on which this Order comes into force.
+Groups of companies arrangements: corporation tax
+13
+1
+In the Corporation Tax Act 2010 , after section 155 (arrangements for transfer of company owned by consortium etc) insert —
+Certain arrangements not within sections 154 and 155
+155A
+1
+Arrangements entered into by a joint venture company which, apart from this section, would be arrangements within section 154(3) or 155(3) are not to be treated as such arrangements if and so long as —
+a
+the arrangements fall within subsection (2), and
+b
+none of the contingencies mentioned in subsection (3) to which the arrangements relate has occurred.
+2
+Arrangements fall within this subsection if they are —
+a
+an agreement which provides for the transfer of shares or securities in the joint venture company to one or more members of that company on, or as a result of, one or more contingencies mentioned in subsection (3) occurring, or
+b
+a provision in a constitutional document of the joint venture company which provides for the suspension of a member’s voting rights on, or as a result of, one or more of those contingencies occurring.
+3
+The contingencies referred to in subsections (1)(b) and (2) are —
+a
+the voluntary departure of a member,
+b
+the commencement of the liquidation, administration, administrative receivership or receivership of, or the entering into of a voluntary arrangement by, a member under the Insolvency Act 1986 or the Insolvency (Northern Ireland) Order 1989 or the commencement, or entering into, of equivalent proceedings or arrangements under the law of any country or territory outside the United Kingdom,
+c
+a serious deterioration in the financial condition of a member,
+d
+a change of control of a member,
+e
+a default by a member in performing its obligations under any agreement between the members or with the joint venture company (which, for this purpose, includes any constitutional document of the joint venture company),
+f
+an external change in the commercial circumstances in which the joint venture company operates such that its viability is threatened,
+g
+an unresolved disagreement between members, and
+h
+any contingency of a similar kind to that mentioned in any of paragraphs (a) to (g) which is provided for, but not intended to happen, when the arrangements in question are entered into.
+4
+This section does not apply if a member could alone or together with connected persons dictate the terms or timing of —
+a
+the transfer of shares or securities, or
+b
+the suspension of a member’s voting rights,
+in advance of one or more of the contingencies occurring.
+5
+For the purposes of subsection (4) members are not connected with each other by reason only of their membership of the joint venture company.
+6
+In this section —
+“connected” has the same meaning as in section 1122;
+“constitutional document” means a memorandum of association, articles of association or any other similar document regulating the affairs of the joint venture company;
+“joint venture company” means a company which —
+has two or more member companies, and
+carries on a commercial activity governed by an agreement regulating the affairs of its members;
+“member” means a holder of shares or securities in the joint venture company.
+Certain mortgage arrangements not within sections 154 and 155
+155B
+1
+Arrangements entered into by a company which, apart from this section, would be arrangements within section 154(3) or 155(3) are not to be treated as such arrangements if and so long as —
+a
+the arrangements are a mortgage, secured by way of shares or securities in the company, which on default or the happening of any other event allows the mortgagee to exercise its rights against the mortgagor, and
+b
+the mortgagee has not exercised its rights against the mortgagor.
+2
+This section does not apply if the mortgagee —
+a
+possesses greater rights in respect of the shares or securities which are the subject of the mortgage than it requires to protect its interest as mortgagee, or
+b
+could alone or together with connected persons dictate the terms or timing of the default or the happening of any other event which allows it to exercise its rights against the mortgagor.
+3
+For the purposes of subsection (2)(b) the mortgagee is not, by reason only of the mortgage, connected with a company whose shares or securities are the subject of the mortgage.
+4
+In this section —
+“connected” has the same meaning as in section 1122;
+“mortgage” means —
+in England and Wales, and Northern Ireland, any legal or equitable charge, and
+in Scotland, any right in security,
+(and section 1166(1) (definition of “mortgage”: Scotland) does not apply).
+2
+In section 154 of that Act (arrangements for transfer of member of group of companies etc), in subsection (3), after “the following effects” insert “(but see sections 154A and 155B)”.
+3
+In section 155 of that Act (arrangements for transfer of company owned by consortium etc), in subsection (3), after “the following effects” insert “(but see sections 154A and 155B)”.
+4
+In section 156 of that Act (sections 154 and 154: supplementary), in subsection (1) for “and 155” substitute “to 155B”.
+14
+1
+In the Corporation Tax Act 2010, after section 174 (Company A’s proportion if option arrangements in place) insert —
+Certain option arrangements not within section 173
+174A
+1
+Arrangements entered into by a joint venture company which, apart from this section, would be option arrangements within section 173 are not to be treated as such arrangements if and so long as —
+a
+the arrangements are within subsection (2), and
+b
+none of the contingencies mentioned in subsection (3) to which the arrangements relate has occurred.
+2
+Arrangements are within this subsection if they are —
+a
+an agreement which provides for the transfer of shares or securities in the joint venture company to one or more members of that company on, or as a result of, one or more contingencies mentioned in subsection (3) occurring, or
+b
+a provision in a constitutional document of the joint venture company which provides for the suspension of a member’s voting rights on, or as a result of, one or more of those contingencies occurring.
+3
+The contingencies referred to in subsections (1)(b) and (2) are —
+a
+the voluntary departure of a member,
+b
+the commencement of the liquidation, administration, administrative receivership or receivership of, or the entering into of a voluntary arrangement by, a member under the Insolvency Act 1986 or the Insolvency (Northern Ireland) Order 1989 or the commencement, or entering into, of equivalent proceedings or arrangements under the law of any country or territory outside the United Kingdom,
+c
+a serious deterioration in the financial condition of a member,
+d
+a change of control of a member,
+e
+a default by a member in performing its obligations under any agreement between the members or with the joint venture company (which, for this purpose, includes any constitutional document of the joint venture company),
+f
+an external change in the commercial circumstances in which the joint venture company operates such that its viability is threatened,
+g
+an unresolved disagreement between members, and
+h
+any contingency of a similar kind to that mentioned in any of paragraphs (a) to (g) which is provided for, but not intended to happen, when the option arrangements in question are entered into.
+4
+This section does not apply if a member could alone or together with connected persons dictate the terms or timing of —
+a
+the transfer of shares or securities, or
+b
+the suspension of a member’s voting rights,
+in advance of one or more of the contingencies occurring.
+5
+For the purposes of subsection (4) members are not connected with each other by reason only of their membership of the joint venture company.
+6
+In this section —
+“connected” has the same meaning as in section 1122;
+“constitutional document” means a memorandum of association, articles of association or any other similar document regulating the affairs of the joint venture company;
+“joint venture company” means a company which —
+has two or more member companies, and
+carries on a commercial activity governed by an agreement regulating the affairs of its members;
+“member” means a holder of shares or securities in the joint venture company.
+Certain mortgage arrangements not within section 173
+174B
+1
+Arrangements entered into by a company which, apart from this section, would be option arrangements within section 173 are not to be treated as such arrangements if and so long as —
+a
+the arrangements are a mortgage, secured by way of shares or securities in the company, which on default or the happening of any other event allows the mortgagee to exercise its rights against the mortgagor, and
+b
+the mortgagee has not exercised its rights against the mortgagor.
+2
+This section does not apply if the mortgagee —
+a
+possesses greater rights in respect of the shares or securities which are the subject of the mortgage than it requires to protect its interest as mortgagee, or
+b
+could alone or together with connected persons dictate the terms or timing of the default or the happening of any other event which allows it to exercise its rights against the mortgagor.
+3
+For the purposes of subsection (2)(b) the mortgagee is not by reason only of the mortgage connected with a company whose shares or securities are the subject of the mortgage.
+4
+In this section —
+“connected” has the same meaning as in section 1122;
+“mortgage” means —
+in England and Wales, and Northern Ireland, any legal or equitable charge, and
+in Scotland, any right in security,
+(and section 1166(1) (definition of “mortgage”: Scotland) does not apply).
+2
+In section 173 of that Act (cases in which option arrangements are in place), in subsection (2), at the end insert “(but see sections 174A and 174B)”.
+15
+The amendments made by articles 13 and 14 have effect in relation to arrangements entered into in accounting periods beginning on or after the date on which this Order comes into force.
+Distributions in respect of share capital prior to dissolution of company: corporation tax
+16
+1
+In Part 23 of the Corporation Tax Act 2010 (company distributions), Chapter 3 (matters which are not distributions) is amended as follows.
+2
+In section 1029(1) (overview of Chapter), after paragraph (a) insert —
+aa
+section 1030A (distributions in respect of share capital prior to dissolution of company),
+.
+3
+After section 1030 insert —
+Distributions prior to dissolution of company
+Distributions in respect of share capital prior to dissolution of company
+1030A
+1
+This section applies where —
+a
+the procedure in section 1000 of the Companies Act 2006 (power to strike off company not carrying on business or in operation) has been commenced in relation to a company, and
+b
+the company makes a distribution in respect of share capital in anticipation of its dissolution under that section.
+2
+This section also applies where —
+a
+a company intends to make, or has made, an application under section 1003 of that Act (striking off on application by company), and
+b
+the company makes a distribution in respect of share capital in anticipation of its dissolution under that section.
+3
+The distribution is not a distribution of a company for the purposes of the Corporation Tax Acts if conditions A and B are met (but see section 1030B).
+4
+Condition A is that, at the time of the distribution, the company —
+a
+intends to secure, or has secured, the payment of any sums due to the company, and
+b
+intends to satisfy, or has satisfied, any debts or liabilities of the company.
+5
+Condition B is that —
+a
+the amount of the distribution, or
+b
+in a case where the company makes more than one distribution falling within subsection (1)(b) or (2)(b), the total amount of the distributions,
+does not exceed £25,000.
+6
+In the case of a company incorporated in a territory outside the United Kingdom, any reference in subsection (1) or (2) to a section of the Companies Act 2006 is to be read as a reference to any provision of the law of that territory corresponding to that section.
+Section 1030A: effect of company not being dissolved, etc
+1030B
+1
+Where this section applies, a distribution made by a company is to be treated for the purposes of the Corporation Tax Acts as if section 1030A(3) had never applied to it.
+2
+This section applies where 2 years have passed since the making of the distribution and —
+a
+the company has not been dissolved during that time, or
+b
+the company has failed —
+i
+to secure, so far as is reasonably practicable, the payment of all sums due to the company, or
+ii
+to satisfy all of its debts and liabilities.
+3
+In a case where this section applies, all such adjustments as are required in order to give effect to subsection (1) are to be made, whether by the making of assessments or otherwise.
+17
+In section 122 of the Taxation of Chargeable Gains Act 1992 , after subsection (5) insert —
+5A
+The reference in subsection (5)(b) to a distribution in the course of dissolving a company includes a reference to a distribution to which section 1030A(3) of CTA 2010 (distributions prior to dissolution of company) applies.
+18
+The amendments made by articles 16 and 17 have effect in relation to distributions made on or after the date on which this Order comes into force.
+Michael Fabricant
+Angela Watkinson
+Two of the Lords Commissioners of Her Majesty’s Treasury
+2nd February 2012

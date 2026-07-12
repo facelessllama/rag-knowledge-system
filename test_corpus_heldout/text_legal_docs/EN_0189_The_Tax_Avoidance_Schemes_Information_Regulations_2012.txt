@@ -1,0 +1,390 @@
+The Tax Avoidance Schemes (Information) Regulations 2012
+The Commissioners for Her Majesty’s Revenue and Customs in exercise of the powers conferred by section 98C(2A),(2B) and (2C)(b) of the Taxes Management Act 1970 , section 132 of the Finance Act 1999 , section 135 of the Finance Act 2002 and sections 306A(6), 307(5), 308(1) and (3), 308A(5) and (6)(a), 309(1), 310, 312(2) and (5), 312A(2) and (5), 313(1) and (3), 313ZA(3) and (4), 313A(4)(a), 313B(2)(a), 313C(1) and (3)(a), 317(2) and 318(1) of the Finance Act 2004 , make the following Regulations:
+Citation and commencement
+1
+These Regulations may be cited as the Tax Avoidance Schemes (Information) Regulations 2012 and shall come into force on 1st September 2012.
+Interpretation
+2
+1
+In these Regulations a reference to a numbered section (without more) is a reference to the section of the Finance Act 2004 which is so numbered.
+2
+In these Regulations —
+“employment” has the same meaning as it has for the purposes of the employment income Parts of the Income Tax (Earnings and Pensions) Act 2003 (see section 4 of that Act) and includes offices to which the provisions of those Parts that are expressed to apply to employments apply equally (see section 5 of that Act); and “employee” and “employer” have corresponding meanings;
+“the filing date” is —
+whichever date in regulation 12(4)(a) to (c) applies to the relevant return or in the case of inheritance tax the last day of the period mentioned in regulation 9(5)(b); or
+in the case of regulation 10(7) the date by which the relevant return is required to be delivered;
+“the prescribed taxes” means capital gains tax, corporation tax, income tax, inheritance tax and stamp duty land tax.
+3
+In reckoning any period under regulation 5 (apart from paragraph (8)), or regulations 14, 15 and 16, any day which is a non-business day within the meaning of section 92 of the Bills of Exchange Act 1882 (computation of time) shall be disregarded.
+4
+In regulations 10(2) and (3), 11(4) and 12(2) expressions which are used in Part 4 of the Finance Act 2003 have the same meaning as in that Part.
+Revocations
+3
+1
+The Regulations described in the Schedule to these Regulations are revoked.
+2
+Anything begun under or for the purpose of any Regulations revoked by these Regulations shall be continued under or, as the case may be, for the purpose of the corresponding provision of these Regulations.
+3
+Where any document refers to a provision of a regulation revoked by these Regulations, such reference shall, unless the context otherwise requires, be construed as a reference to the corresponding provision of these Regulations.
+Prescribed information in respect of notifiable proposals and arrangements
+4
+1
+The information which must be provided to HMRC by a promoter under section 308(1) or (3) (duties of promoter) in respect of a notifiable proposal or notifiable arrangements is sufficient information as might reasonably be expected to enable an officer of HMRC to comprehend the manner in which the proposal or arrangements are intended to operate, including —
+a
+the promoter’s name and address;
+b
+details of the provision of the Arrangements Regulations , the IHT Arrangements Regulations or the SDLT Arrangements Regulations by virtue of which the arrangements or the proposed arrangements are notifiable;
+c
+a summary of the arrangements or proposed arrangements and the name (if any) by which they are known;
+d
+information explaining each element of the arrangements or proposed arrangements (including the way in which they are structured) from which the tax advantage expected to be obtained under those arrangements arises; and
+e
+the statutory provisions, relating to any of the prescribed taxes, on which that tax advantage is based.
+2
+The information which must be provided to HMRC by a client under section 309 (duty of person dealing with promoter outside the United Kingdom) in respect of notifiable arrangements is sufficient information as might reasonably be expected to enable an officer of HMRC to comprehend the manner in which the arrangements are intended to operate, including —
+a
+the client’s name and address;
+b
+the name and address of the promoter;
+c
+details of the provision of the Arrangements Regulations, the IHT Arrangements Regulations or the SDLT Arrangements Regulations by virtue of which the arrangements are notifiable;
+d
+a summary of the arrangements, and the name (if any) by which they are known;
+e
+information explaining each element of the arrangements (including the way in which they are structured) from which the tax advantage expected to be obtained under the arrangements arises; and
+f
+the statutory provisions, relating to any of the prescribed taxes, on which that tax advantage is based.
+3
+The information which must be provided to HMRC by a person obliged to do so by section 310 (duty of parties to notifiable arrangements not involving promoter) is sufficient information as might reasonably be expected to enable an officer of HMRC to comprehend the manner in which the arrangements of which that transaction forms part are intended to operate, including —
+a
+the name and address of the person entering into the transaction;
+b
+details of the provision of the Arrangements Regulations, the IHT Arrangements Regulations or the SDLT Arrangements Regulations by virtue of which the arrangements are notifiable;
+c
+a summary of the arrangements and the name (if any) by which they are known;
+d
+information explaining each element of the arrangements (including the way in which they are structured) from which the tax advantage expected to be obtained under the arrangements arises; and
+e
+the statutory provisions, relating to any of the prescribed taxes, on which that tax advantage is based.
+4
+If, but for this paragraph —
+a
+a person would be obliged to provide information in relation to two or more notifiable arrangements,
+b
+those arrangements are substantially the same (whether they relate to the same parties or different parties), and
+c
+the person has already provided information under paragraph (2) or (3) in relation to any of the other arrangements,
+the person need not provide further information under paragraph (2) or (3).
+5
+In this regulation —
+“the Arrangements Regulations” means the Tax Avoidance Schemes (Prescribed Descriptions of Arrangements) Regulations 2006 ;
+“the IHT Arrangements Regulations” means the Inheritance Tax Avoidance Schemes (Prescribed Descriptions of Arrangements) Regulations 2011 ;
+“the SDLT Arrangements Regulations” means the Stamp Duty Land Tax Avoidance Schemes (Prescribed Descriptions of Arrangements) Regulations 2005 .
+Time for providing information under section 308, 308A, 309 or 310
+5
+1
+The period or time (as the case may be) within which —
+a
+the prescribed information under section 308, 309 or 310, and
+b
+the information or documents which will support or explain the prescribed information under section 308A (supplemental information),
+must be provided to HMRC is found in accordance with the following paragraphs of this regulation.
+2
+Where a proposal or arrangements (not being otherwise notifiable) is or are treated as notifiable by virtue of an order under section 306A(1) (doubt as to notifiability) the prescribed period is the period of 10 days beginning on the day after that on which the order is made.
+3
+In the case of a requirement to provide specified information about, or documents relating to, the notifiable proposal or arrangements which arises by virtue of an order under section 308A(2), the prescribed period is the period of 10 days beginning on the day after that on which the order is made.
+4
+In any other case of a notification under section 308(1), the prescribed period is the period of 5 days beginning on the day after the relevant date.
+5
+In any other case of a notification under section 308(3), the prescribed period is the period of 5 days beginning on the day after that on which the promoter first becomes aware of any transaction forming part of arrangements to which that subsection applies.
+6
+In the case of a notification under section 309(1), the prescribed period is the period of 5 days beginning on the day after that on which the client enters into the first transaction forming part of notifiable arrangements to which that subsection applies.
+7
+In the case of a notification under section 310 which arises by virtue of the application of regulation 6 of the Tax Avoidance Schemes (Promoters and Prescribed Circumstances) Regulations 2004 (persons not to be treated as promoters: legal professional privilege), the prescribed time is any time during the period of 5 days beginning on the day after that on which the person enters into the first transaction forming part of the notifiable arrangements.
+8
+In any other case of a notification under section 310 the prescribed time is any time during the period of 30 days beginning on the day after that on which the person enters into the first transaction forming part of the notifiable arrangements.
+Prescribed information under sections 312 and 312A
+6
+For the purposes of sections 312(2) and (5) (duty of promoter to notify client of number) and 312A(2) (duty of client to notify parties of number) the prescribed information is —
+a
+the name and address of the promoter;
+b
+the name, or a brief description of the notifiable arrangements or proposal;
+c
+the reference number (or if more than one, any one reference number) allocated by HMRC under section 311 (arrangements to be given reference number) to the notifiable arrangements or proposed notifiable arrangements;
+d
+the date that the reference number was —
+i
+sent by the promoter to the client; or (as the case may be)
+ii
+sent to any other person by the client under section 312A(2).
+Time for providing information under section 312A
+7
+In the case of a notification under section 312A(2) the prescribed period is the period of 30 days beginning on —
+a
+the day on which the client first becomes aware of any transaction forming part of notifiable arrangements or proposed notifiable arrangements; or, if later,
+b
+the day on which the prescribed information is notified to the client by the promoter under section 312.
+Exemption from duty under section 312A
+8
+The duty of a client to notify other persons under section 312A(2) does not apply to an employer of an employee where the employee by reason of employment receives or expects to receive a tax advantage in respect of income tax or capital gains tax as a result of notifiable arrangements or proposed notifiable arrangements.
+Prescribed cases under section 313(3)(a)
+9
+1
+The prescribed cases for the purposes of section 313(3)(a) (cases in which the information is to be included in returns) are as follows.
+2
+Subject to regulation 10(4), (7) and (8), in the case of a person who —
+a
+expects an advantage to arise in respect of that person’s liability to pay, entitlement to a repayment of, or to a deferment of the liability to pay, income tax or capital gains tax as a result of notifiable arrangements; and
+b
+is required to make a return to HMRC by a notice under section 8 or 8A of the Taxes Management Act 1970 (income tax and capital gains tax: personal return and trustee’s return), in respect of income tax or capital gains tax,
+the prescribed information shall be included in the return (under the section which applies) which relates to the year of assessment in which the person first enters into a transaction forming part of the notifiable arrangements and in the return for each subsequent year of assessment until the advantage ceases to apply to that person.
+3
+Subject to regulation 10(4), (7) and (8) in the case of a company which —
+a
+expects a tax advantage to arise in respect of its liability to pay, entitlement to a repayment of, or to a deferment of its liability to pay, corporation tax as a result of notifiable arrangements; and
+b
+is required to make a return to HMRC by a notice under paragraph 3 of Schedule 18 to the Finance Act 1998 (company tax return), in respect of corporation tax,
+the prescribed information shall be included in the return under that paragraph covering the period in which the company first enters into a transaction forming part of the notifiable arrangements and in the return covering each subsequent period until the tax advantage ceases to apply to the company.
+4
+Subject to regulation 10(4), (7), and (8) in the case of a partnership —
+a
+which expects an advantage to arise in respect of a partner’s liability to pay, entitlement to a repayment of, or to a deferment of the liability to pay income tax, capital gains tax or corporation tax in respect of partnership profits or gains as a result of notifiable arrangements; and
+b
+in respect of which a return is required to be made to HMRC by virtue of a notice under section 12AA of the Taxes Management Act 1970 (partnership return) in respect of income tax, capital gains tax or corporation tax,
+in addition to any duty under paragraph (2) or (3) the prescribed information shall be included in the return under that section covering the period in which the partnership first enters into a transaction forming part of the notifiable arrangements and in the returns covering each subsequent period until the tax advantage ceases to apply to the partner in question.
+5
+Subject to regulation 10(7) and (8) in the case of a person who —
+a
+expects an advantage to arise in respect of that person’s liability to pay, entitlement to a repayment of, or to a deferment of the liability to pay inheritance tax as a result of notifiable arrangements; and
+b
+is required to make a return to HMRC under section 216 of the Inheritance Tax Act 1984 (accounts and information) in respect of a transaction forming part of the notifiable arrangements within a period of 12 months from the end of the month in which the first transaction forming part of the arrangements is entered into,
+the prescribed information shall be included in the return under that section.
+Prescribed cases under section 313(3)(b)
+10
+1
+The prescribed cases for the purposes of section 313(3)(b) (cases in which the information is to be provided separately) are as follows.
+2
+In a case where a purchaser expects an advantage to arise in respect of that person’s liability to pay, entitlement to a repayment of, or to a deferment of the liability to pay stamp duty land tax as a result of notifiable arrangements the prescribed information shall be provided separately to HMRC in such form and manner as they may specify.
+3
+If paragraph (2) applies in relation to a land transaction entered into as purchaser by or on behalf of a partnership notification of the prescribed information by or in relation to the responsible partners may instead be done by or in relation to a representative partner or partners.
+4
+In the case of a person who is the employer of an employee, by reason of whose employment a tax advantage is expected to arise to any person in respect of income tax, corporation tax or capital gains tax as a result of notifiable arrangements, the prescribed information shall be provided separately to HMRC in such form and manner as they may specify.
+5
+In the case of a person who would be obliged to comply with a duty under regulation 9(2) to (4), but is not required, in respect of a year of assessment, accounting period or tax year —
+a
+in the case of notifiable arrangements to which regulation 9(2) applies, to make a return under either of the provisions referred to in regulation 9(2)(b);
+b
+in the case of notifiable arrangements to which regulation 9(3) applies, to make a return under the provision referred to in regulation 9(3)(b); or
+c
+in the case of notifiable arrangements to which regulation 9(4) applies, to make a return under the provision referred to in regulation 9(4)(b);
+the prescribed information shall be provided separately to HMRC in such form and manner as they may specify.
+6
+In the case of a person who —
+a
+expects an advantage to arise in respect of that person’s liability to pay, entitlement to a repayment of, or to a deferment of the liability to pay inheritance tax as a result of notifiable arrangements; and
+b
+is not required to make a return to HMRC under section 216 of the Inheritance Tax Act 1984 in respect of a transaction forming part of the notifiable arrangements within a period of 12 months from the end of the month in which the first transaction forming part of the arrangements is entered into,
+the prescribed information shall be provided separately to HMRC in such form and manner as they may specify.
+7
+In a case of a person who would, but for this paragraph, be obliged to comply with a duty under regulation 9 and —
+a
+the relevant return is not delivered by the filing date; or
+b
+the relevant return is delivered by the filing date but does not include the prescribed information;
+the prescribed information shall be provided separately to HMRC in such form and manner as they may specify.
+8
+In a case where —
+a
+a person is required to provide information relating to more than one reference number;
+b
+the information is included in a return under regulation 9; and
+c
+the number of reference numbers in relation to which information is required exceeds the number of spaces allocated to the information on the return form;
+the information relating to so many of the reference numbers as exceeds the number of allocated spaces shall be provided separately to HMRC in such form and manner as they may specify.
+9
+In addition to the duty under any other paragraph above, or regulation 9, in a case where the arrangements give rise to a claim submitted separately from the return under —
+a
+section 261B of the Taxation of Chargeable Gains Act 1992 (treating trade loss etc as CGT loss); or
+b
+Part 4 of the Income Tax Act 2007 (loss relief);
+the prescribed information shall be provided separately to HMRC in such form and manner as they may specify.
+Prescribed information under section 313(1)
+11
+1
+For the purposes of section 313(1) (duty of parties to notifiable arrangements to notify Board of number, etc) the prescribed information is that specified in whichever of paragraph (2), (3) or (4) is applicable.
+2
+In cases prescribed in regulation 9 the prescribed information is —
+a
+the reference number (or if more than one, any one reference number) allocated by HMRC under section 311 to the notifiable arrangements or proposed notifiable arrangements; and
+b
+the year of assessment, tax year or accounting period (as the case may be) in which, or the date on which, the person providing the information expects a tax advantage to be obtained.
+3
+In the cases prescribed in regulation 10 (apart from paragraph (2)) the prescribed information is —
+a
+the name and address of the person providing it;
+b
+any National Insurance number, tax reference number, PAYE reference number or other personal identifier allocated by HMRC to the person to whom the information relates;
+c
+the reference number (or if more than one, any one reference number) allocated by HMRC under section 311 to the notifiable arrangements or proposed notifiable arrangements;
+d
+the year of assessment, tax year or accounting period (as the case may be) in which, or the date on which, the person providing the information or, in the case of regulation 10(4), an employee of that person, expects to obtain a tax advantage by virtue of the notifiable arrangements;
+e
+the name of the person providing the declaration as to the accuracy and completeness of the notification; and
+f
+the capacity in which the person mentioned in sub-paragraph (e) is acting.
+4
+In the case prescribed at regulation 10(2) the prescribed information is —
+a
+the name and address of the purchaser;
+b
+the reference number (or if more than one, any one reference number) allocated by HMRC under section 311 to the notifiable arrangements or proposed notifiable arrangements;
+c
+the address of the property forming the subject of the arrangements (“the property”);
+d
+the title number of the property (if any is allocated);
+e
+the unique transaction reference number (if a land transaction return has been submitted to HMRC at the time the prescribed information is provided);
+f
+the market value of the property, taking into account all chargeable interests in the property held by the same person or connected persons;
+g
+the effective date of the first land transaction which forms part of the arrangements;
+h
+the name of the person providing the declaration as to the accuracy and completeness of the notification; and
+i
+the capacity in which that person is acting.
+Time for providing information under section 313(3)(b)
+12
+1
+The prescribed times for providing information in the cases prescribed in regulation 10 are as follows.
+2
+In the case of regulation 10(2) any time during the period of 30 days beginning with the later of —
+a
+the effective date of the first land transaction which forms part of the arrangements; or
+b
+the date of the receipt of the reference number allocated under the provisions of section 311.
+3
+In the case of regulation 10(4) whichever of (a) or (b) below applies in respect of the tax year in which the employer first enters into a transaction forming part of the notifiable arrangements and whichever applies in respect of each subsequent year until an advantage ceases to apply to any person —
+a
+for a non-Real Time Information employer, any time during the period ending on the date on which the return under regulation 73 of the Income Tax (Pay As You Earn) Regulations 2003 (annual return of relevant payments liable to deduction of tax (Forms P35 and P14)) is or would be due; or
+b
+for a Real Time Information employer, 14 days after the end of the final tax period of the tax year.
+In this paragraph, “non-Real Time Information employer” and “Real Time Information employer” have the meanings given in regulation 2(1) (interpretation) of the Income Tax (Pay As You Earn) Regulations 2003.
+4
+In the case of regulation 10(5) —
+a
+for regulation 10(5)(a), any time during the period ending on 31st January next following the end of the year of assessment in question;
+b
+for regulation 10(5)(b), any time during the period ending on the date defined as the filing date for the purposes of paragraph 14 of Schedule 18 to the Finance Act 1998 in respect of the period of account in question;
+c
+for regulation 10(5)(c), any time during the period ending on the earliest date by which the person in question could be required to file a return under section 12AA of the Taxes Management Act 1970, determined in accordance with whichever of subsections (4) and (5) of that section is applicable.
+5
+In the case of regulation 10(6) any time during the period of 12 months from the end of the month in which the first transaction forming part of the arrangements is entered into.
+6
+In the case of regulation 10(7) and (8) any time during the period ending on the filing date for the relevant return.
+7
+In the case of regulation 10(9) the time that the claim is made.
+Prescribed information under section 313ZA: information and timing
+13
+1
+For the purposes of section 313ZA(3) (duty of promoter to provide client lists)-
+a
+the prescribed period is 30 days;
+b
+the prescribed information is –
+i
+any reference number allocated by HMRC under section 311 to the arrangements (or to a proposal for them) to which the information provided relates;
+ii
+the name and address of each client in relation to whom the relevant date (within the meaning of section 312(3)) occurs in the relevant period in relation to which the information is being provided;
+iii
+the promoter’s name and address; and
+iv
+the end date of the relevant period in relation to which the information is being provided.
+c
+in sub-paragraph (b)(ii) the address of the client is the address to which the promoter has sent or would have sent the prescribed information under section 312.
+2
+For the purposes of section 313ZA(4) the relevant period is each calendar quarter.
+Time for providing information under section 313A and 313B
+14
+1
+In the case of a requirement under or by virtue of section 313A(1) (pre-disclosure enquiry), the prescribed period is the period of 10 days beginning on the day after that on which the notice is issued.
+2
+In the case of a requirement under or by virtue of section 313B(1) (reasons for non-disclosure: supporting information), the prescribed period is the period of 14 days beginning on the day after that on which the order is made.
+Prescribed information under section 313C: information and timing
+15
+1
+For the purposes of section 313C(1) (information provided to introducers) the prescribed information is –
+a
+P’s name and address; and
+b
+the name and address of each person who has provided P with any information relating to the proposal.
+2
+For the purposes of section 313C(3)(a) the prescribed period is 10 days.
+Higher rate of penalty following a failure to comply with an order under section 306A or 314A
+16
+1
+For the purposes of section 98C(2A) of the Taxes Management Act 1970 (higher rate of penalty after the making of an order under section 306A) the prescribed period is the period of 10 days beginning on the date on which the order is made.
+2
+For the purposes of section 98C(2B) of the Taxes Management Act 1970 (higher rate of penalty after the making of an order under section 314A) the prescribed period is the period of 10 days beginning on the date on which the order is made.
+Electronic delivery of information
+17
+1
+Information required to be delivered to HMRC or to any other person by virtue of these Regulations may be delivered in such form and by such means of electronic communications as are for the time being authorised for that purpose.
+2
+The use of a particular means of electronic communications is authorised for the purposes of paragraph (1) only if —
+a
+it is authorised by directions given by HMRC under section 132(5) of the Finance Act 1999 (voluntary filing by electronic means of returns and other documents); and
+b
+the user complies with any conditions imposed by HMRC under that section.
+3
+Nothing in this regulation prevents the delivery of information by electronic communications if the information is contained in a return which is —
+a
+authorised to be delivered electronically by virtue of regulations under section 132 of the Finance Act 1999; or
+b
+required to be so delivered by virtue of regulations under section 135 of the Finance Act 2002 (mandatory e-filing).
+Amendment of the Tax Avoidance Schemes (Promoters and Prescribed Circumstances) Regulations 2004
+18
+In regulation 6 of the Tax Avoidance Schemes (Promoters and Prescribed Circumstances) Regulations 2004 for “paragraph (1) or (2) (as the case may be) of regulation 3 of the Tax Avoidance Schemes (Information) Regulations 2004” substitute “regulation 4(1) of the Tax Avoidance Schemes (Information) Regulations 2012”.
+Dave Hartnett
+Mike Eland
+Two of the Commissioners for Her Majesty’s Revenue and Customs
+12th July 2012
+SCHEDULE
+REVOCATIONS
+Regulation 3
+Statutory Instrument Number
+Title of Regulations
+Extent of revocation
+S.I.2004/1864
+The Tax Avoidance Schemes (Information) Regulations 2004
+The whole regulations
+S.I. 2004/2613
+The Tax Avoidance Schemes (Promoters, Prescribed Circumstances and Information) (Amendment) Regulations 2004
+Regulation 3
+S.I. 2005/1869
+The Tax Avoidance Schemes (Information) (Amendment) Regulations 2005
+The whole regulations
+S.I. 2006/1544
+The Tax Avoidance Schemes (Information) (Amendment) Regulations 2006
+The whole regulations
+S.I. 2007/2153
+The Tax Avoidance Schemes (Information) (Amendment) Regulations 2007
+The whole regulations
+S.I. 2007/3103
+The Tax Avoidance Schemes (Information) (Amendment) ( No. 2) Regulations 2007
+The whole regulations
+S.I. 2008/1947
+The Tax Avoidance Schemes (Information) (Amendment) Regulations 2008
+The whole regulations
+S.I. 2009/611
+The Tax Avoidance Schemes (Information) (Amendment) Regulations 2009
+The whole regulations
+S.I. 2010/410
+The Tax Avoidance Schemes (Information) (Amendment) Regulations 2010
+The whole regulations
+S.I. 2010/2928
+The Tax Avoidance Schemes (Information) (Amendment) Regulations (No. 2) 2010
+The whole regulations
+S.I. 2011/171
+The Tax Avoidance Schemes (Information) (Amendment) Regulations 2011
+The whole regulations

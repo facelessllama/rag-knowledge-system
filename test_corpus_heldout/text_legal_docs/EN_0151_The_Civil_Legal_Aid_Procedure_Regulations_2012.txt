@@ -1,0 +1,1434 @@
+The Civil Legal Aid (Procedure) Regulations 2012
+The Lord Chancellor makes the following Regulations in exercise of the powers conferred by sections 5(2) and (4), 12(2) to (6), 28(1) and (3) and 41(1)(a) and (b), (2) and (3)(a) and (b) of, and paragraph 3(3) and (4) of Schedule 3 to, the Legal Aid, Sentencing and Punishment of Offenders Act 2012 .
+Citation and commencement
+1
+These Regulations may be cited as the Civil Legal Aid (Procedure) Regulations 2012 and come into force on 1st April 2013.
+PART 1 Interpretation and General
+Interpretation
+2
+In these Regulations —
+“ the Act ” means the Legal Aid, Sentencing and Punishment of Offenders Act 2012;
+“adjudicator” means an independent funding adjudicator appointed by the Lord Chancellor under section 2 of the Act;
+“business day” means any day except Saturday, Sunday, a bank holiday, Good Friday or Christmas Day;
+“child” means an individual under the age of 18;
+“children’s guardian” has the meaning given in rule 2.3 of the Family Procedure Rules 2010 ;
+“Controlled Work” has the meaning given in regulation 21(2);
+“costs” means the fees payable to any provider calculated by reference to remuneration rates set out in arrangements made by the Lord Chancellor under section 2(1) of the Act or in regulations under section 2(3) of the Act, including (but not limited to) —
+counsel’s fees;
+disbursements; and
+any fees paid to providers at an enhanced rate,
+but not including Value Added Tax;
+“cost benefit criteria” means the criteria of that name which the Director must apply when determining whether an individual qualifies for full representation in accordance with regulations made under section 11 of the Act;
+“the effective administration of justice test” has the meaning given in regulation 31(5);
+“emergency representation” means legal representation (that is not Controlled Work) or family help (higher) provided following a determination made on an urgent application;
+“face-to-face provider” means a provider with whom the Lord Chancellor has made an arrangement under section 2(1) of the Act for the provision of civil legal services to an individual in person;
+“family dispute” means any matter which is described in any of the following paragraphs of Part 1 of Schedule 1 to the Act —
+paragraph 1 (care, supervision and protection of children);
+paragraph 9 (inherent jurisdiction of the High Court in relation to children and vulnerable adults), to the extent that it relates to —
+a child; or
+a vulnerable adult, but only in so far as such matters arise out of a family relationship within the meaning of paragraph 14(7) of Part 1 of Schedule 1 to the Act;
+paragraph 10 (unlawful removal of children);
+paragraph 11 (family homes and domestic violence);
+paragraph 12 (victims of domestic violence and family matters);
+paragraph 13 (protection of children and family matters);
+paragraph 14 (mediation in family disputes);
+paragraph 15 (children who are parties to family proceedings);
+paragraph 16 (forced marriage);
+paragraph 17 ( EU and international agreements concerning children); or
+paragraph 18 (EU and international agreements concerning maintenance);
+“individual case contract” means an arrangement between the Lord Chancellor and a provider under section 2(1) of the Act for the provision of civil legal services in an individual case;
+“Licensed Work” has the meaning given in regulation 29(2);
+“litigation friend” has the meaning given in Part 21 of the Civil Procedure Rules 1998 and rule 2.3 of the Family Procedure Rules 2010;
+“parental order reporter” has the meaning given in rule 13.1 of the Family Procedure Rules 2010;
+“prospects of success” means the prospects of success as assessed by the Director in accordance with regulations made under section 11 of the Act;
+“protected party” means a party or a proposed party who lacks capacity (within the meaning of the Mental Capacity Act 2005 ) to conduct proceedings;
+“provider” means a person who provides civil legal services under Part 1 of the Act;
+“revocation” means the withdrawal of a determination which has the consequences described in regulations made under section 23 and 26 of the Act (and “revoked” and “revoke” have equivalent meanings);
+“Special Case Work” means civil legal services provided under an individual case contract in the circumstances described in regulation 54(3);
+“specialist telephone provider” means a provider with whom the Lord Chancellor has made an arrangement under section 2(1) of the Act for the provision of civil legal services by telephone or other means that do not require the attendance in person of the individual to whom the services are provided; and
+“2010 Standard Civil Contract”, “2013 Standard Civil Contract” and “2013 CLA Contract” mean the contracts so named between the Lord Chancellor and a provider for the provision of civil legal services .
+Form of civil legal services
+3
+“Form of civil legal services” means —
+a
+legal help;
+b
+help at court;
+c
+family help;
+d
+family mediation;
+e
+help with family mediation;
+f
+legal representation; and
+g
+other legal services,
+which are further defined in regulations 4 to 10.
+Legal help
+4
+“Legal help” means the provision of civil legal services other than —
+a
+acting as a mediator or arbitrator;
+b
+issuing or conducting court proceedings;
+c
+instructing an advocate in proceedings;
+d
+preparing to provide advocacy in proceedings; or
+e
+advocacy in proceedings.
+Help at court
+5
+“Help at court” means the provision of any of the following civil legal services at a particular hearing —
+a
+instructing an advocate;
+b
+preparing to provide advocacy; or
+c
+advocacy.
+Family help
+6
+1
+Family help may be provided in a family dispute as either family help (lower) or family help (higher).
+2
+“Family help (lower)” means —
+a
+civil legal services provided in relation to the negotiation of a family dispute before the issuing of proceedings; or
+b
+civil legal services provided in relation to the issuing of proceedings in order to obtain a consent order following the settlement of a family dispute.
+3
+“Family help (higher)” means such civil legal services as are available under legal representation but does not include preparation for, or representation at, a contested final hearing or appeal.
+Family mediation
+7
+“Family mediation” means the provision of any of the following civil legal services in a family dispute —
+a
+an assessment by a mediator of whether, in light of all the circumstances, a case is suitable for mediation; or
+b
+acting as a mediator.
+Help with family mediation
+8
+“Help with family mediation” means the provision of any of the following civil legal services, in relation to a family dispute —
+a
+civil legal services provided in relation to family mediation; or
+b
+civil legal services provided in relation to the issuing of proceedings to obtain a consent order following the settlement of the dispute following family mediation.
+Legal representation
+9
+1
+Legal representation may be provided as either investigative representation or full representation.
+2
+“Legal representation” means the provision of civil legal services, other than acting as a mediator or arbitrator, to an individual or legal person in particular proceedings where that individual or legal person —
+a
+is a party to those proceedings;
+b
+wishes to be joined as a party to those proceedings; or
+c
+is contemplating issuing those proceedings.
+3
+“Investigative representation” means legal representation which is limited to the investigation of the strength of the contemplated proceedings and includes the issuing and conducting of proceedings but only so far as necessary —
+a
+to obtain disclosure of information relevant to the prospects of success of the proceedings;
+b
+to protect the position of the individual or legal person applying for investigative representation in relation to an urgent hearing; or
+c
+to protect the position of the individual or legal person applying for investigative representation in relation to the time limit for the issue of the proceedings.
+4
+“Full representation” means legal representation other than investigative representation.
+Other legal services
+10
+“Other legal services” means the provision of any of the following civil legal services —
+a
+instructing an advocate;
+b
+preparing to provide advocacy; or
+c
+advocacy,
+in proceedings in relation to which the Director, having applied the relevant merits criteria in accordance with regulations made under section 11 of the Act, has made a determination under section 10(2)(b) or (4)(c) of the Act.
+Notification
+11
+1
+Where these Regulations provide for notice to be given, one or more of the following methods of delivery must be used —
+a
+personal service;
+b
+first class post, document exchange or other service which provides for delivery on the next business day;
+c
+fax or other means of electronic communication; or
+d
+any method authorised in writing by the Director.
+2
+Where the intended recipient is represented by a provider, notice must be delivered to the business address of the provider.
+3
+Where the intended recipient is not represented by a provider, notice must be delivered to that person’s usual or last known residence or, for legal persons, business address.
+Delegation
+12
+Except as provided in regulation 39(3), a function of the Lord Chancellor or Director under these Regulations may be exercised by, or by an employee of, a person authorised for that purpose by the Lord Chancellor or Director respectively .
+Disregarding determinations
+13
+The Director may disregard a determination about whether an individual qualifies for civil legal services under Part 1 of the Act if the determination was made —
+a
+by a person to whom the Director has delegated that function; and
+b
+in response to an application made otherwise than in accordance with these Regulations.
+Duty Scheme
+14
+These Regulations do not apply to civil legal services which are —
+a
+provided under the Housing Possession Court Duty Scheme (as described in the Specification to the 2013 Standard Civil Contract); or
+b
+required by the Specification to the 2013 Standard Civil Contract to be treated as services described in sub-paragraph (a).
+Applications by legal persons
+15
+1
+An application by a legal person for a determination under paragraph 3 of Schedule 3 to the Act must be made in a form specified by the Lord Chancellor.
+2
+The legal person must provide any additional information and documents requested by the Director in order to make a determination in relation to the application.
+3
+A determination that a legal person qualifies for civil legal services must specify any limitation or condition to which the determination is subject.
+4
+Where the Director —
+a
+does not make the determination for which the legal person has applied; or
+b
+withdraws a determination that the legal person qualifies for civil legal services,
+the Director must notify the legal person, giving written reasons and notice of the right of review.
+5
+Within fourteen days of receipt of the notification described in paragraph (4), the legal person may —
+a
+apply to the Director in a form specified by the Lord Chancellor for a review of the determination or the withdrawal of a determination; and
+b
+include written representations supporting that application.
+6
+The Director must —
+a
+consider the application for review and any written representations;
+b
+confirm or amend the determination or withdrawal or substitute a new determination; and
+c
+notify the legal person of the determination or withdrawal following the review.
+PART 2 Gateway Work
+General
+16
+1
+This Part makes provision about the making and withdrawal of determinations under section 9 of the Act about Gateway Work.
+2
+Except as specifically provided in this Part, Part 3 (Controlled Work) applies to Gateway Work.
+3
+Regulations 22(1) and 23(1)(d) do not apply to Gateway Work.
+Applicants
+17
+1
+An individual, other than an exempted person, must apply to the Gateway (established by the Lord Chancellor under section 2 of the Act) for a determination by the Director about Gateway Work.
+2
+An exempted person may apply for a determination by the Director about Gateway Work to —
+a
+the Gateway; or
+b
+a face-to-face provider.
+The application
+18
+An application to the Gateway may be made by —
+a
+telephone;
+b
+email;
+c
+electronic format made available by the Lord Chancellor for the purpose of such applications; or
+d
+post.
+Determinations
+19
+1
+Where a determination is made that an individual qualifies for Gateway Work, the determination must specify whether the services are to be provided by —
+a
+a specialist telephone provider; or
+b
+a face-to-face provider.
+2
+A determination described in paragraph (1) may be amended to change the description of the provider specified in the determination.
+Interpretation
+20
+In this Part —
+“debt matter” means —
+a matter described in paragraph 33(1)(a) of Part 1 of Schedule 1 to the Act that relates to a court order for sale of the individual’s home;
+a matter described in paragraph 33(1)(a) of Part 1 of Schedule 1 to the Act that relates to a court order for possession of the individual’s home arising out of a failure to make payments due under a mortgage; or
+a matter described in paragraph 33(2) of Part 1 of Schedule 1 to the Act;
+“exempted person” means an individual who —
+has been deprived of their liberty;
+is a child; or
+is a previously assessed person with a linked problem;
+“Gateway discrimination matter” means a matter described in paragraph 43 of Part 1 of Schedule 1 to the Act, except where the matter to which the alleged contravention of the Equality Act 2010 or previous discrimination enactment relates is a matter described in a relevant category;
+“Gateway Work” means the provision of legal help by a specialist telephone provider or a face-to-face provider in —
+a matter described in paragraph 2 of Part 1 of Schedule 1 to the Act;
+a debt matter; or
+a Gateway discrimination matter;
+“linked problem” means a matter arising out of or related to a matter in relation to which Gateway Work was provided by a face-to-face provider;
+“previously assessed person” means an individual —
+in respect of whom a determination has been made within the previous twelve months that the individual qualifies for Gateway Work to be provided by a face-to-face provider; and
+who is applying for Gateway Work from the same face-to-face provider in relation to a linked problem; and
+“relevant category” means any of the following categories in the Category Definitions that form part of the 2010 Standard Civil Contract or 2013 Standard Civil Contract: Actions Against the Police; Clinical Negligence; Community Care; Family; Housing; Immigration and Asylum; Mental Health; Public Law; or Welfare Benefits.
+PART 3 Controlled Work
+General
+21
+1
+This Part makes provision in relation to the making and withdrawal of determinations under section 9 of the Act about Controlled Work.
+2
+In this Part, “Controlled Work” means the provision of any of the following forms of civil legal services —
+a
+legal help;
+b
+help with family mediation;
+c
+help at court;
+d
+family help (lower); or
+e
+legal representation for proceedings in —
+i
+the Health, Education and Social Care Chamber of the First-tier Tribunal under the Mental Health Act 1983 or paragraph 5(2) of the Schedule to the Repatriation of Prisoners Act 1984 ;
+ii
+the Mental Health Review Tribunal for Wales ;
+iii
+the Immigration and Asylum Chamber of the First-tier Tribunal ; or
+iv
+the Immigration and Asylum Chamber of the Upper Tribunal in relation to an appeal or review from the Immigration and Asylum Chamber of the First-tier Tribunal.
+Applicants
+22
+1
+An individual applying for Controlled Work must attend the proposed provider’s premises in person unless —
+a
+the proposed provider decides that attendance in person is not necessary in accordance with the provider’s arrangement with the Lord Chancellor under section 2(1) of the Act;
+b
+the individual —
+i
+resides, or is present, in the European Union;
+ii
+cannot attend in person for good reason; and
+iii
+authorises another person to attend on their behalf; or
+c
+the individual is applying for Controlled Work to be provided by a specialist telephone provider.
+2
+A child may make an application for Controlled Work if —
+a
+the civil legal services which are the subject of the application are in relation to proceedings or proposed proceedings which the child may conduct without —
+i
+a children’s guardian or litigation friend in accordance with rule 16.6 of the Family Procedure Rules 2010 ; or
+ii
+a litigation friend in accordance with rule 21.2 of the Civil Procedure Rules 1998 ; or
+b
+there is good reason why none of the persons described in paragraph (3)(a) or (b) can make the application on behalf of the child and the provider considers that child is able, having regard to the child’s understanding, to give instructions.
+3
+The following persons may make an application for Controlled Work on behalf of a child —
+a
+the child’s parent, guardian or other person who has care of the child;
+b
+a person acting or proposing to act as the child’s professional children’s guardian or litigation friend; or
+c
+any other person where there is good reason why none of the persons described in sub-paragraph (a) or (b) can make the application.
+4
+The following persons may make an application for Controlled Work on behalf of a protected party —
+a
+a person acting or proposing to act as the protected party’s litigation friend; or
+b
+any other person where there is good reason why a litigation friend or proposed litigation friend cannot make the application.
+5
+The proposed provider may not make an application for Controlled Work on behalf of a child or protected party.
+The application
+23
+1
+An application for Controlled Work must be in a form specified by the Lord Chancellor and must specify —
+a
+the form of civil legal services to which the application relates;
+b
+the matter to which the application relates;
+c
+the category within which the civil legal services fall (as described in the Category Definitions that form part of the 2010 Standard Civil Contract or 2013 Standard Civil Contract); and
+d
+a proposed provider with whom the Lord Chancellor has made an arrangement under section 2(1) of the Act for the provision of the services which are the subject of the application.
+2
+An application for civil legal services described in paragraph 12 of Part 1 of Schedule 1 to the Act to be provided as Controlled Work must include evidence of the domestic violence or risk of domestic violence and regulation 33 applies to such an application.
+3
+An application for civil legal services described in paragraph 13 of Part 1 of Schedule 1 to the Act to be provided as Controlled Work must include evidence that the child who is or would be the subject of the order to which the application relates is at risk of abuse from an individual other than the applicant for civil legal services and regulation 34 applies to such an application.
+4
+Where a determination has been made that an individual qualifies for legal help in a particular matter (the “initial determination”), the individual may not, within the six month period following the last provision of services pursuant to that determination, make an application for legal help in the same matter which proposes a different provider unless —
+a
+there has been a material change in relevant circumstances since the initial determination;
+b
+the individual has reasonable cause to be dissatisfied with the services provided under the initial determination;
+c
+the individual’s usual residence has changed since the initial determination and, as a result, effective communication between the individual and the provider is not practicable; or
+d
+the provider named in the initial determination has confirmed in writing that no remuneration will be claimed under arrangements made by the Lord Chancellor under section 2(1) of the Act in respect of any services provided under the initial determination.
+5
+An application for help with family mediation in relation to the issuing of proceedings to obtain a consent order following the settlement of a family dispute must be made within three months of the final family mediation session at which the dispute was settled.
+6
+The individual must provide any additional information and documents requested by the Director in order to make a determination in relation to the application.
+Position of providers
+24
+1
+Notwithstanding the relationship between an individual and the provider or any privilege arising out of that relationship, where the provider knows or suspects that the individual —
+a
+has failed without good reason to comply with a requirement to provide information or documents; or
+b
+in providing required information or documents has made a statement or representation knowing or believing it to be false,
+the provider must immediately report the relevant circumstances to the Director.
+2
+A provider’s retainer terminates upon the withdrawal of a determination that an individual qualifies for Controlled Work following the conclusion of any review or appeal for which provision is made in these Regulations.
+3
+Where an authorised person within the meaning of the Legal Services Act 2007 has been instructed (by a provider with whom the Lord Chancellor has made an arrangement under section 2(1) of the Act) to provide civil legal services in relation to a determination, the reporting requirement described in paragraph (1) also applies to that authorised person.
+Reasons
+25
+1
+Where the Director has —
+a
+made a determination that the services which are the subject of the application are not civil legal services described in Part 1 of Schedule 1 to the Act;
+b
+made a determination that an individual does not qualify for Controlled Work; or
+c
+withdrawn a determination that an individual qualifies for Controlled Work,
+the Director must notify the individual.
+2
+The Director must also provide —
+a
+reasons for the determination or withdrawal of a determination; and
+b
+notice of the right to a review of the determination or withdrawal of a determination,
+and may provide information about alternative ways of obtaining or funding civil legal services.
+Withdrawal of determinations
+26
+The Director may withdraw a determination about Controlled Work where —
+a
+the individual no longer qualifies for the services to be made available by the determination in accordance with —
+i
+the criteria set out in regulations made under section 11 of the Act; or
+ii
+regulations made under section 21 of the Act;
+b
+the services made available by the determination have been provided;
+c
+the proceedings to which the determination relates have been concluded;
+d
+the individual consents;
+e
+the individual has died;
+f
+a bankruptcy order has been made against the individual; or
+g
+the individual has failed without good reason to comply with a requirement to provide information or documents or, in providing required information or documents, has made a statement or representation knowing or believing it to be false.
+Review
+27
+1
+An individual may apply to the Director for a review of —
+a
+a determination that an individual does not qualify for Controlled Work; or
+b
+a withdrawal of a determination in the circumstances described in regulation 26(a)(i) and (g),
+within fourteen days of receipt of the determination or withdrawal (“the original decision”).
+2
+The Director must consider the application and may confirm the original decision or substitute a new determination.
+3
+Where the original decision was the withdrawal of a determination and, following the review, the Director substitutes a determination for that withdrawal, the determination takes effect (unless the Director directs otherwise) as if the original decision had not been made.
+4
+The Director must notify the individual of —
+a
+the determination or withdrawal following the review; and
+b
+any right of appeal described in regulation 28.
+Appeal
+28
+1
+Following the conclusion of a review, an individual may appeal to an adjudicator against —
+a
+a determination that an individual does not qualify for legal representation that is Controlled Work; or
+b
+a withdrawal of a determination that an individual qualifies for legal representation that is Controlled Work.
+2
+The provisions about appeals in Part 4 (Licensed Work) apply to an appeal under paragraph (1).
+PART 4 Licensed Work
+General
+29
+1
+This Part makes provision in relation to the making and withdrawal of determinations under section 9 of the Act about Licensed Work.
+2
+In this Part, “Licensed Work” means the provision of any of the following forms of civil legal services —
+a
+family help (higher); or
+b
+legal representation that is not Controlled Work or Special Case Work.
+Applicants
+30
+1
+An individual applying for Licensed Work must be —
+a
+a party to the proceedings to which the application relates;
+b
+proposing to be joined as a party to those proceedings; or
+c
+contemplating issuing those proceedings.
+2
+An application on behalf of a child must be made by —
+a
+a person who is, or proposes to be, the child’s litigation friend, professional children’s guardian or parental order reporter; or
+b
+the proposed provider if the application is made in relation to proceedings which the child may conduct without —
+i
+a children’s guardian or litigation friend in accordance with rule 16.6 of the Family Procedure Rules 2010; or
+ii
+a litigation friend in accordance with rule 21.2 of the Civil Procedure Rules 1998.
+3
+An individual acting as a professional children’s guardian or parental order reporter may not make an application other than on behalf of a child.
+4
+An application on behalf of a protected party must be made by a person who is, or proposes to be, the protected party’s litigation friend.
+5
+The Director may waive any or all of the requirements of this regulation if the application otherwise satisfies the requirements of these Regulations.
+The application
+31
+1
+An application for Licensed Work must be made in writing in a form specified by the Lord Chancellor and signed by the individual and proposed provider.
+2
+Except as provided in paragraph (3), the application must be in English unless —
+a
+the individual resides in or is present in Wales; or
+b
+the application relates to proceedings which may be heard in Wales,
+in which case the application may be in English or Welsh.
+3
+Where the individual resides outside the European Union and is not present in England and Wales when the application is made, the application must —
+a
+be in English or French;
+b
+include a written statement of the individual’s financial resources; and
+c
+be verified by a statement that the individual believes that the facts stated in the application are true.
+4
+The application must specify —
+a
+the form of civil legal services to which the application relates;
+b
+the matter to which the application relates;
+c
+the category within which the civil legal services fall (as described in the Category Definitions that form part of the 2010 Standard Civil Contract or 2013 Standard Civil Contract); and
+d
+a proposed provider with whom the Lord Chancellor has made an arrangement under section 2(1) of the Act for the provision of the services which are the subject of the application (unless the effective administration of justice test described in paragraph (5) is satisfied).
+5
+The effective administration of justice test is satisfied if the Director decides that it is necessary for a provider to provide the services which are the subject of the application under an individual case contract having considered —
+a
+the provider’s knowledge of the particular proceedings or dispute and expertise in providing the civil legal services which are the subject of the application;
+b
+the nature and likely length of the particular proceedings or dispute;
+c
+the complexity of the issues; and
+d
+the circumstances of the individual making the application.
+6
+The individual must provide any additional information or documents requested by the Director in order to make a determination in relation to the application.
+7
+Where additional information or documents are requested in accordance with paragraph (6), the application may not be considered until the requested information or documents are provided.
+8
+An application for civil legal services described in paragraph 32(1) of Part 1 of Schedule 1 to the Act must be made within —
+a
+twelve months of the date of a conclusive determination described in paragraph 32(1)(a) of Part 1 of Schedule 1 to the Act; or
+b
+a period beginning with the date of a determination by a competent authority described in paragraph 32(6) of Part 1 of Schedule 1 to the Act and ending with the date on which the applicant’s leave to remain in the United Kingdom (outside the rules made under section 3(2) of the Immigration Act 1971 ) comes to an end,
+whichever is longer.
+Supporting documents: damages
+32
+1
+Where an application for Licensed Work requires the Director to consider likely damages (in accordance with regulations made under section 11 of the Act), the application must include —
+a
+an estimate of likely damages; and
+b
+an explanation of the estimate, including the calculations required by paragraph (2).
+2
+An estimate of likely damages must take into account —
+a
+any likely reduction in the damages or other sum of money contested in the case through contributory negligence, set-off or otherwise;
+b
+any amount of damages the individual is likely to receive in addition to any amount that is offered by way of settlement;
+c
+any likely reduction in damages or other sum of money contested in the case to take account of any amount which is recoverable under the Social Security (Recovery of Benefits) Act 1997 ; and
+d
+the ability of the other party to the proceedings to pay any damages or other sum of money contested in the case.
+Supporting documents: domestic violence
+33
+1
+An application for civil legal services described in paragraph 12 of Part 1 of Schedule 1 to the Act must include evidence of the domestic violence or the risk of domestic violence.
+2
+For the purpose of paragraph (1), the evidence of domestic violence or risk of domestic violence must be provided in one or more of the following forms —
+a
+a relevant unspent conviction for a domestic violence offence;
+b
+a relevant police caution for a domestic violence offence given within the twenty four month period immediately preceding the date of the application for civil legal services;
+c
+evidence of relevant criminal proceedings for a domestic violence offence which have not concluded;
+d
+a relevant protective injunction which is in force or which was granted within the twenty four month period immediately preceding the date of the application for civil legal services;
+e
+an undertaking given in England and Wales under section 46 or 63E of the Family Law Act 1996 (or given in Scotland or Northern Ireland in place of a protective injunction) —
+i
+by the individual (“B”) with whom the applicant for civil legal services (“A”) was in a family relationship giving rise to the need for the civil legal services which are the subject of the application; and
+ii
+within the twenty four month period immediately preceding the date of the application for civil legal services,
+provided that a cross-undertaking was not given by A;
+f
+a letter from the person appointed to chair a multi-agency risk assessment conference confirming that —
+i
+A was referred to the conference as a high risk victim of domestic violence; and
+ii
+the conference has, within the twenty four month period immediately preceding the date of the application for civil legal services, put in place a plan to protect A from a risk of harm by B;
+g
+a copy of a finding of fact, made in proceedings in the United Kingdom within the twenty four month period immediately preceding the date of the application for civil legal services, that there has been domestic violence by B giving rise to a risk of harm to A;
+h
+a letter or report from a health professional confirming that the professional —
+i
+has examined A within the twenty four month period immediately preceding the date of the application for civil legal services;
+ii
+was satisfied following that examination that A had injuries or a condition consistent with those of a victim of domestic violence; and
+iii
+has no reason to believe that A’s injures or condition were not caused by domestic violence;
+i
+a letter from a social services department in England or Wales (or its equivalent in Scotland or Northern Ireland) confirming that, within the twenty four month period immediately preceding the date of the application, A was assessed as being, or at risk of being, a victim of domestic violence by B (or a copy of that assessment);
+j
+a letter or report from a domestic violence support organisation in the United Kingdom confirming —
+i
+that A was, within the twenty four month period immediately preceding the date of the application for civil legal services, admitted for a period of twenty four hours or more to a refuge established for the purpose of providing accommodation for victims of, or those at risk of, domestic violence;
+ii
+the dates on which A was admitted to and, where relevant, left the refuge; and
+iii
+that A was admitted to the refuge because of allegations by A of domestic violence.
+3
+For the purpose of this regulation —
+“A” and “B” have the meaning given in paragraph (2)(e)(i);
+“domestic violence offence” has the meaning given in the document published by the Lord Chancellor for that purpose under section 2 of the Act;
+“health professional” means a registered —
+medical practitioner who holds a licence to practise;
+nurse; or
+midwife; and
+“protective injunction” means —
+a non-molestation order under section 42 of the Family Law Act 1996 or article 20 of the Family Homes and Domestic Violence (Northern Ireland) Order 1998 ;
+an occupation order under section 33, 35, 36, 37 or 38 of the Family Law Act 1996 or article 11, 13, 14, 15 or 16 of the Family Homes and Domestic Violence (Northern Ireland) Order 1998 ;
+an exclusion order under section 4 of the Matrimonial Homes (Family Protection) (Scotland) Act 1981 or section 104 of the Civil Partnership Act 2004;
+a forced marriage protection order or interim forced marriage protection order under any of the following provisions —
+Part 4A of the Family Law Act 1996 ;
+section 2 of, and paragraph 1 of Schedule 1 to, the Forced Marriage (Civil Protection) Act 2007 ;
+section 1 of the Forced Marriage etc. (Protection & Jurisdiction) (Scotland) Act 2011 ; and
+section 5 of the Forced Marriage etc. (Protection & Jurisdiction) (Scotland) Act 2011;
+a restraining order under section 5 or 5A of the Protection from Harassment Act 1997 ;
+a restraining injunction under article 5 or a restraining order under article 7 or 7A of the Protection from Harassment (Northern Ireland) Order 1997 ;
+a non-harassment order under section 234A of the Criminal Procedure (Scotland) Act 1995 or section 8 or 8A of the Protection from Harassment Act 1997 ;
+a common law injunction;
+any of the following interdicts —
+a matrimonial interdict within the meaning of section 14 of the Matrimonial Homes (Family Protection) (Scotland) Act 1981;
+a domestic interdict within the meaning of section 18A of the Matrimonial Homes (Family Protection) (Scotland) Act 1981 ;
+an interdict for civil partners within the meaning of section 113 of the Civil Partnership Act 2004 ;
+an interdict that has been determined to be a domestic abuse interdict within the meaning of section 3 of the Domestic Abuse (Scotland) Act 2011 ; and
+a common law interdict.
+4
+“Relevant” means that the evidence identifies —
+a
+A as being, or at risk of being, the victim of domestic violence unless the evidence —
+i
+is in a form described in paragraph (2)(a) to (c), and
+ii
+relates to a domestic violence offence which does not identify the victim; and
+b
+B as being —
+i
+for evidence described in paragraph (2)(a) to (c) convicted of, cautioned with or charged with the domestic violence offence; and
+ii
+for evidence described in paragraph (2)(d), the respondent to the protective injunction.
+Supporting documents: protection of children
+34
+1
+An application for civil legal services described in paragraph 13 of Part 1 of Schedule 1 to the Act must include evidence that the child who is or would be the subject of the order to which the application relates is at risk of abuse from an individual (“B”) other than the applicant for civil legal services (“A”) against which risk of abuse the order is to provide protection.
+2
+For the purpose of paragraph (1), evidence of the risk of abuse must be provided in one or more of the following forms —
+a
+a relevant unspent conviction for a child abuse offence;
+b
+a relevant police caution for a child abuse offence given within the twenty four month period immediately preceding the date of the application for civil legal services;
+c
+evidence of relevant criminal proceedings for a child abuse offence which have not concluded;
+d
+a relevant protective injunction which is in force or which was granted within the twenty four month period immediately preceding the date of the application for civil legal services;
+e
+a copy of a finding of fact, made in proceedings in the United Kingdom within the twenty four month period immediately preceding the date of the application for civil legal services, of abuse of a child by B;
+f
+a letter from a social services department in England or Wales (or its equivalent in Scotland or Northern Ireland) confirming that, within the twenty four month period immediately preceding the date of the application, the child was assessed as being, or at risk of being, a victim of child abuse by B (or a copy of that assessment);
+g
+a letter from a social services department in England or Wales (or its equivalent in Scotland or Northern Ireland) confirming that, within the twenty four month period immediately preceding the date of the application, a child protection plan was put in place to protect the child from abuse or a risk of abuse by B (or a copy of that plan);
+h
+an application for an injunction described in paragraph (2)(d) made with an application for a prohibited steps order against B under section 8 of the Children Act 1989 which has not, at the date of the application for civil legal services, been decided by the court.
+3
+In this regulation —
+“child abuse offence” has the meaning given in the document published by the Lord Chancellor for that purpose under section 2 of the Act;
+“protective injunction” has the meaning given in regulation 33(3); and
+“relevant” means —
+for the purpose of paragraph (2)(a), (b) and (c) that the conviction, caution or criminal proceedings identifies B as being convicted of, cautioned with or charged with the child abuse offence; and
+for the purpose of paragraph (2)(d), that the protective injunction —
+identifies B as the respondent; and
+is made for the protection of the child who is or would be the subject of the order to which the application relates.
+Determinations: general
+35
+1
+A determination that an individual qualifies for Licensed Work must specify —
+a
+the maximum costs which may be incurred in providing the services to which the determination relates; and
+b
+any other limitations and conditions to which the determination is subject.
+2
+Where a limitation is exceeded or a condition is breached, the Director may —
+a
+withdraw the determination; or
+b
+amend the relevant limitation or condition.
+Determinations: contributions
+36
+1
+Where an individual is required to make a contribution in respect of the cost of the civil legal services in accordance with regulations made under section 23 of the Act, a determination that an individual qualifies for Licensed Work must be made subject to a condition that the individual pays, or arranges payment of, the required contribution.
+2
+The determination must specify —
+a
+the amount of any contribution;
+b
+whether the individual is required to pay, or arrange payment of, the contribution —
+i
+by periodical payments;
+ii
+by one or more lump sums;
+iii
+out of income;
+iv
+out of capital; and
+c
+any time limit about payment.
+3
+The individual must —
+a
+complete and return the form specified by the Lord Chancellor to indicate acceptance of a condition; and
+b
+pay any contribution required by the determination,
+within any time limit specified in the determination.
+4
+If the individual fails to comply with the obligation in paragraph (3), the determination may be withdrawn.
+Certificates
+37
+1
+When the Director makes a determination that an individual qualifies for Licensed Work, the Director must —
+a
+issue a certificate recording the determination and send the certificate to the provider; and
+b
+send a copy of the certificate to the individual.
+2
+A certificate issued by the Director must specify —
+a
+the name and address of —
+i
+the individual;
+ii
+where an application was made on behalf of a child or protected party, the person who is acting on behalf of the child or protected party; and
+iii
+the provider;
+b
+the date of the determination;
+c
+the form of civil legal services to which the determination relates;
+d
+the matter in relation to which the civil legal services are to be available;
+e
+the proceedings to which the determination relates;
+f
+the parties to any proceedings to which the determination relates (except to the extent that the Director considers it inappropriate to name any of the parties); and
+g
+any limitation or condition to which the determination is subject.
+3
+Except as provided in paragraph (4), the Director must issue a separate certificate for each —
+a
+form of civil legal services for which the individual qualifies; and
+b
+set of proceedings to which a determination relates, unless the Director decides that the proceedings are so closely connected that they should be covered by a single certificate.
+4
+The Director may amend a certificate for —
+a
+family help (higher) to record a subsequent determination that the individual qualifies for legal representation in family proceedings which arose out of the dispute which was the subject of the initial determination in relation to family help (higher); or
+b
+investigative representation to record a subsequent determination that the individual qualifies for full representation in the same proceedings.
+5
+The Director may amend a certificate to ensure that it accurately records a determination either —
+a
+upon the application of the individual in a form specified by the Lord Chancellor; or
+b
+of the Director’s own volition.
+6
+The Director must amend a certificate to record an amendment of a limitation or condition to which the determination is subject.
+7
+When the Director amends a certificate, the Director must send —
+a
+the amended certificate to the provider; and
+b
+a copy of the amended certificate to the individual.
+8
+Where the Director withdraws a determination, the Director must withdraw the certificate recording that determination and notify the provider.
+Notice of determinations
+38
+1
+Where the Director issues a certificate in relation to proceedings that have been issued, the provider must —
+a
+send a copy of the certificate to the court or tribunal, and
+b
+give notice of the determination in a form specified by the Lord Chancellor to all parties to the proceedings.
+2
+Where the Director issues a certificate before proceedings are issued, the provider must —
+a
+give notice of the determination in a form specified by the Lord Chancellor to any proposed party to those proceedings except in proceedings relating to a family dispute; and
+b
+when proceedings are issued —
+i
+send a copy of the certificate to the court or tribunal, and
+ii
+give notice of the determination in a form specified by the Lord Chancellor to all parties to the proceedings.
+3
+The provider must give notice of a determination in accordance with paragraph (1)(b) to any person subsequently joined as a party to the proceedings.
+4
+Where, in relation to proceedings which have been issued, the Director amends a certificate to alter the description of the proceedings or the form of civil legal services to which the determination relates, the provider must —
+a
+send a copy of the amended certificate to the court or tribunal; and
+b
+give notice of the new or amended determination in a form specified by the Lord Chancellor to all parties to the proceedings, unless the Director directs otherwise.
+5
+Nothing in this regulation entitles a party or proposed party to the proceedings to which the determination relates to see the certificate recording the determination.
+Authorised representation
+39
+1
+Where the Director has authorised a provider to make a determination under section 9 of the Act that an individual qualifies for legal representation that is Licensed Work (“authorised representation”), the provider must, within 5 business days of making a determination, notify the Director in a form specified by the Lord Chancellor.
+2
+The Director may remove or amend any limitation or condition to which a determination about authorised representation is subject or impose a new limitation or condition on such a determination.
+3
+The following functions of the Director may not be delegated to the provider —
+a
+issuing a certificate recording the determination in relation to authorised representation;
+b
+amending a limitation or condition to which the determination is subject (unless the determination relates to emergency representation);
+c
+the withdrawal of the determination; and
+d
+conducting a review in relation to authorised representation under regulation 44.
+4
+Where, following a review in relation to authorised representation under regulation 44, the Director makes a determination that an individual qualifies for the legal representation which was the subject of the application, the individual may choose a different authorised provider from the provider named on the original application.
+Reporting duties
+40
+1
+The individual (or the person acting on behalf of the individual) must —
+a
+immediately notify the provider of any change in circumstances which might affect a determination that the individual qualifies for civil legal services; and
+b
+attend a meeting with the Director if requested to do so.
+2
+The provider must report to the Director any change in the individual’s circumstances which become known to the provider and which might affect a determination that an individual qualifies for civil legal services.
+3
+The provider must report to the Director —
+a
+a refusal by the individual (or the person acting on behalf of the individual) to accept —
+i
+an offer to settle;
+ii
+an offer to mediate any issue in the proceedings;
+iii
+an offer to use an alternative dispute resolution procedure; or
+iv
+any other offer of settlement which the provider considers to be reasonable;
+b
+any aspect of the conduct of the individual (or the person acting on behalf of the individual) which the provider considers relevant to the determination that the individual qualifies for civil legal services;
+c
+notice of any other party to the proceedings to which the determination relates qualifying for civil legal services;
+d
+any other information which might affect a determination that an individual qualifies for civil legal services; or
+e
+the fact that the provider has concluded that it is no longer possible to act for the individual, together with reasons for the provider’s conclusion.
+4
+Where an authorised person within the meaning of the Legal Services Act 2007 has been instructed by the provider to provide civil legal services in relation to a determination, the reporting requirements described in paragraphs (2) and (3) also apply to that person.
+Position of providers
+41
+1
+Notwithstanding the relationship between an individual and the provider or any privilege arising out of that relationship, where the provider knows or suspects that the individual (or the person acting on behalf of the individual) —
+a
+has failed without good reason to comply with a requirement to provide information or documents; or
+b
+in providing required information or documents has made a statement or representation knowing or believing it to be false,
+the provider must immediately report the relevant circumstances to the Director.
+2
+A provider’s retainer terminates upon the withdrawal of a determination that an individual qualifies for Licensed Work but that termination does not take effect until —
+a
+the conclusion of any review or appeal for which provision is made in this Part; and
+b
+the provider has complied with any obligation to give notice of the withdrawal of the determination.
+3
+Where an authorised person within the meaning of the Legal Services Act 2007 has been instructed (by a provider with whom the Lord Chancellor has made an arrangement under section 2(1) of the Act) to provide civil legal services in relation to a determination, the reporting requirement described in paragraph (1) also applies to that authorised person.
+Withdrawal of determinations
+42
+1
+The Director may withdraw a determination where —
+a
+the individual no longer qualifies for the services to be made available by the determination in accordance with —
+i
+the criteria set out in regulations made under section 11 of the Act; or
+ii
+regulations made under section 21 of the Act;
+b
+the services made available by the determination have been provided;
+c
+the proceedings to which the determination relates have been concluded;
+d
+the service made available by the determination was investigative representation and sufficient work has been carried out to determine the prospects of success and the cost benefit criteria;
+e
+the individual consents;
+f
+the individual has died;
+g
+a bankruptcy order has been made against the individual;
+h
+the individual has —
+i
+failed without good reason to comply with a requirement to provide information or documents;
+ii
+failed without good reason to attend a meeting with the Director; or
+iii
+in providing required information or documents, made a statement or representation knowing or believing it to be false;
+i
+an order has been made under section 42 of the Senior Courts Act 1981 or section 33 of the Employment Tribunals Act 1996 (restriction of vexatious proceedings) in relation to the individual;
+j
+the Director is satisfied that the individual has required the proceedings to be conducted unreasonably so as to incur unjustifiable expense; or
+k
+in relation to services described in paragraphs 12 and 13 of Part 1 of Schedule 1 to the Act, the evidence included with the application was —
+i
+a conviction for an offence and that conviction has subsequently been quashed;
+ii
+evidence of ongoing criminal proceedings and those proceedings have subsequently been concluded without a conviction; or
+iii
+evidence of an application described in regulation 34(2)(h) and that application has subsequently been withdrawn or refused,
+unless the individual provides another form of evidence (excluding evidence described in paragraphs (i) to (iii)) which would have been permitted in accordance with these Regulations at the date of the application.
+2
+In any of the circumstances described in paragraph (1)(h) to (j) the Director may —
+a
+revoke the determination; and
+b
+withdraw any other determination that the individual qualifies for civil legal services.
+3
+Except in the circumstances described in paragraph (1)(a)(ii), (b), (e) and (f), before withdrawing a determination, the Director must —
+a
+notify the individual of the intention to withdraw the determination;
+b
+invite written representations within a specified time limit;
+c
+upon the expiry of the time limit specified under sub-paragraph (b) —
+i
+consider the written representations;
+ii
+decide whether to withdraw the determination; and
+iii
+notify the individual of the decision as to whether to withdraw the determination.
+4
+The withdrawal is to be treated as having effect from the date of the notification described in paragraph (3)(a).
+5
+The withdrawal of a determination does not affect the provider’s right to remuneration for work done prior to the date of the withdrawal unless the provider failed without good reason to comply with the reporting requirements in regulations 40(2) and (3) and 41(1).
+6
+Where the Director has withdrawn a determination, the Director may subsequently determine that the withdrawal is to be treated as a revocation following the provision of new information which demonstrates that the circumstances described in paragraph (1)(h) to (j) were present at the time of withdrawal.
+Reasons
+43
+1
+Where the Director has —
+a
+determined that the services which are the subject of the application are not civil legal services described in Part 1 of Schedule 1 to the Act;
+b
+determined that an individual does not qualify for particular services;
+c
+determined that an individual does qualify but not on the terms requested in the application (whether because of a limitation or condition to which the determination has been made subject or otherwise);
+d
+amended a limitation or condition to which the determination is subject; or
+e
+withdrawn a determination,
+the Director must notify the individual.
+2
+In the circumstances described in paragraph (1), the Director must send to the individual and provider or proposed provider —
+a
+written notice of the determination, amendment or withdrawal of a determination in a form specified by the Lord Chancellor;
+b
+written reasons for the determination, amendment or withdrawal of a determination; and
+c
+notice of the right to a review of the determination, amendment or withdrawal of a determination,
+and may provide information about alternative ways of obtaining or funding civil legal services.
+Review
+44
+1
+An individual may apply for a review by the Director of any of the following —
+a
+a determination that the services which are the subject of the application are not civil legal services described in Part 1 of Schedule 1 to the Act;
+b
+a determination that an individual does not qualify for the civil legal services which are the subject of the application;
+c
+a determination that an individual qualifies for civil legal services but not on the terms requested in the application (whether because of a limitation or condition to which the determination has been made subject or otherwise);
+d
+an amendment of, or refusal to amend, a limitation or condition to which the determination is subject; or
+e
+a withdrawal of a determination,
+within fourteen days of receipt of the notice of the determination, amendment or withdrawal (“the original decision”).
+2
+The application for review must be in a form specified by the Lord Chancellor and must include any written representations supporting the application.
+3
+The Director must consider the application and any written representations and may confirm or amend the original decision or substitute a new determination, amendment or withdrawal.
+4
+Where the original decision was the withdrawal of a determination and, following the review, the Director substitutes a determination for that withdrawal, the determination takes effect (unless the Director directs otherwise) as if the original decision had not been made.
+5
+The Director must ensure that a certificate accurately records the civil legal services for which an individual qualifies following the review.
+6
+The Director must notify the individual and the provider or proposed provider identified in the individual’s application of —
+a
+the decision following the review; and
+b
+any right of appeal to an adjudicator.
+Appeal: general
+45
+1
+Where an individual remains dissatisfied following a review, the individual may appeal to an adjudicator unless the determination in question is —
+a
+a determination under section 21 of the Act; or
+b
+a determination that the services which are the subject of the application are not civil legal services described in Part 1 of Schedule 1 to the Act.
+2
+An appeal must be considered without a hearing unless the adjudicator considers that it is in the interests of justice for the individual or a person acting on their behalf to make oral representations.
+3
+Where the Director or adjudicator considers that the appeal is of exceptional complexity or importance, the Director or adjudicator may refer the appeal to a panel of two or more adjudicators.
+Appeal: power to refer for reconsideration
+46
+1
+The adjudicator may do one or more of the following —
+a
+decide certain issues in accordance with regulation 47; and
+b
+consider whether the determination, amendment or withdrawal under appeal (“the decision under appeal”) was unlawful or unreasonable.
+2
+Where the adjudicator decides that the decision under appeal was not unlawful or unreasonable —
+a
+the adjudicator must confirm the decision under appeal, giving written reasons; and
+b
+the Director must notify the individual.
+3
+Where the adjudicator decides that the decision under appeal was unlawful or unreasonable —
+a
+the adjudicator must refer the decision under appeal to the Director for reconsideration, giving written reasons; and
+b
+the Director must notify the individual.
+4
+Where new information relevant to the decision under appeal is provided by the individual following the review, the adjudicator may refer the decision under appeal to the Director for reconsideration instead of determining the appeal.
+Appeal: power to decide certain issues
+47
+1
+The adjudicator may decide any of the following issues on appeal and the decision of the adjudicator on any such issue is binding on the Director —
+a
+the prospects of success;
+b
+the cost benefit criteria;
+c
+whether a case has overwhelming importance to the individual; and
+d
+whether a determination should be made, withdrawn or revoked in light of the individual’s conduct.
+2
+Where the adjudicator confirms the Director’s assessment of any of the issues described in paragraph (1) —
+a
+the adjudicator must give written reasons, and
+b
+the Director must notify the individual.
+3
+Where the adjudicator disagrees with the Director’s assessment of any of the issues described in paragraph (1), the adjudicator must —
+a
+refer the determination, amendment or withdrawal under appeal to the Director for reconsideration, giving written reasons; and
+b
+the Director must notify the individual.
+4
+In this regulation, “case with overwhelming importance to the individual” means a case which is not primarily a claim for damages or other sum of money and which relates to one or more of the following —
+a
+the life, liberty or physical safety of the individual or a member of that individual’s family (an individual is a member of another individual’s family if the requirements of section 10(6) of the Act are met); or
+b
+the immediate risk that the individual may become homeless.
+Appeal: reconsideration by the Director
+48
+1
+Where a determination, amendment or withdrawal (“the decision under appeal”) is referred to the Director by the adjudicator under regulation 46 or 47, the Director must reconsider that decision taking into account —
+a
+the adjudicator’s decision and written reasons; and
+b
+any new information provided by the individual following the review.
+2
+After reconsidering the decision under appeal, the Director may confirm or amend that decision or substitute a new determination, amendment or withdrawal.
+3
+The Director must notify the individual and the provider or proposed provider identified in the individual’s application of the decision following the appeal, giving written reasons.
+4
+Where the Director confirms the decision under appeal but for reasons that are materially different from the reasons for the decision under appeal, the individual may make a further appeal to the adjudicator (using the appeal provisions in this Part), following which there is no further review or appeal under these Regulations.
+5
+Where the decision under appeal was the withdrawal of a determination and, following the appeal, the Director substitutes a determination for that withdrawal, the determination takes effect (unless the Director directs otherwise) as if the original withdrawal had not been made.
+6
+The Director must ensure that a certificate accurately records the civil legal services for which an individual qualifies following the appeal.
+Notice to third parties
+49
+Where the Director withdraws a determination and the proceedings to which the determination related have not been concluded, the provider must give notice of the withdrawal in a form specified by the Lord Chancellor to —
+a
+the court or tribunal; and
+b
+any parties to the proceedings who were given notice of the determination under regulation 38.
+PART 5 Emergency Representation
+General
+50
+1
+This Part makes provision about the making and withdrawal of determinations under section 9 of the Act about emergency representation.
+2
+Except as specifically provided in this Part, determinations about emergency representation must be made and withdrawn in accordance with the provisions of these Regulations which would have applied had the application not been made on an urgent basis.
+3
+Regulation 42(3) does not apply in relation to emergency representation.
+The application
+51
+1
+An individual may make an application for emergency representation by such method (including by fax, telephone or e-mail) as the Director has agreed to accept given the urgency of the particular circumstances.
+2
+The application must specify whether the emergency representation is to be provided as Licensed Work or under an individual case contract.
+Determinations
+52
+1
+A determination that an individual qualifies for emergency representation —
+a
+must be made subject to a specified time limit; and
+b
+may be made on the basis of limited information and documents if the Director considers that it would be in the interests of justice to do so.
+2
+A determination made on the basis of limited information and documents —
+a
+must be made conditional upon the provision, within a specified time limit, of the information and documents which would have been required had the application not been made on an urgent basis;
+b
+may be disregarded if the condition is not satisfied within the specified time limit; and
+c
+must be revoked where, following the provision of further information and documents, the Director determines that the individual does not qualify for legal representation or family help (higher) in accordance with section 21 of the Act and regulations made under that section.
+3
+Where, following the provision of further information and documents —
+a
+the Director determines that the individual qualifies for legal representation subject to a condition requiring the payment of a contribution in accordance with regulation 36; and
+b
+the individual does not agree to pay, or arrange payment of, the contribution described in sub-paragraph (a),
+the determination in relation to emergency representation may be revoked or withdrawn.
+Appeal
+53
+1
+An individual may not appeal —
+a
+against a determination that the individual does not qualify for emergency representation made on the basis of limited information and documents; or
+b
+the withdrawal of a determination about emergency representation on the basis only of the expiry of a time limit.
+PART 6 Special Case Work
+General
+54
+1
+This Part makes provision about the making and withdrawal of determinations about Special Case Work.
+2
+An application for —
+a
+a determination that an individual qualifies for a form of civil legal services; or
+b
+an amendment of a determination,
+may be treated by the Director as an application for Special Case Work in the circumstances described in paragraph (3).
+3
+The circumstances mentioned in paragraph (2) are where the Director has reasonable grounds to believe that —
+a
+the actual or likely costs of the case exceed £25,000;
+b
+if the case were to proceed to —
+i
+a trial or final hearing; or
+ii
+in the case of appeal proceedings before the Court of Appeal, the conclusion of that appeal,
+the likely costs would exceed £75,000;
+c
+the application relates to a multi-party action or potential multi-party action;
+d
+the application relates to an appeal or proposed appeal to the Supreme Court;
+e
+it is necessary to decide whether —
+i
+the case is of significant wider public interest; or
+ii
+the substance of the case relates to a breach of Convention rights (within the meaning of the Human Rights Act 1998 ),
+in order to determine whether the individual qualifies for civil legal services in accordance with the criteria set out in regulations made under section 11 of the Act;
+f
+the application relates to a case which satisfies the effective administration of justice test; or
+g
+the application relates to a community action.
+4
+Different proceedings may be treated as if they were a single case for the purpose of paragraph (2) if the Director decides that the proceedings are closely connected or are being heard together by the court or tribunal.
+5
+Except as provided in this Part, Part 4 (Licensed Work) applies to Special Case Work.
+6
+In this Part —
+“community action” means proceedings proposed, begun or continued by or against one or more individuals who belong to an identifiable geographic community the members of which have a common interest in the proceedings;
+“likely costs” means the total costs likely to have been incurred on behalf of the applicant for civil legal services at final judgment or settlement of the proceedings —
+calculated on the basis that the proceedings fail to obtain a successful outcome or costs are not recovered from another party to the proceedings; and
+taking into account the prospects of the proceedings settling before trial or other final hearing;
+“multi-party action” means proceedings in which a number of individuals have a cause of action which involves common or related issues of fact or law; and
+“significant wider public interest” has the meaning given in regulations made under section 11 of the Act.
+Conditions
+55
+1
+The Director may make a determination about Special Case Work conditional upon the proposed provider entering into an individual case contract with the Lord Chancellor.
+2
+The Director may make a determination about Special Case Work conditional upon the proposed provider submitting a costed case plan in a form specified by the Lord Chancellor which —
+a
+sets out proposals for progressing the Special Case Work; and
+b
+identifies —
+i
+the key stages of the case;
+ii
+the form of civil legal services likely to be needed at each key stage;
+iii
+the likely costs at each key stage; and
+iv
+appropriate intervals for the plan to be checked and adjusted by the provider with the agreement of the Director to reflect the progress of the Special Case Work.
+3
+The Director may make a determination about a case which is of significant wider public interest conditional upon the individual agreeing not to settle the proceedings without the prior written consent of the Director.
+Determinations affecting several cases
+56
+1
+A determination (“a determination of principle”) about Special Case Work which appears likely to affect a group of cases or cases of a particular description may specify that it applies generally to the cases which appear likely to be affected.
+2
+A determination of principle must specify —
+a
+the group of cases or the particular description of cases to which it applies;
+b
+the date on which it takes effect and, if relevant, ceases to have effect;
+c
+whether the cases are being treated as a multi-party action.
+3
+An application for a determination about Special Case Work may include a request, with written reasons, for the case to be covered by a determination of general principle.
+Multi-party actions
+57
+1
+An application for a determination in relation to a multi-party action must name a lead provider.
+2
+Applications from different individuals in the same multi-party action may be treated as a single application.
+3
+The Director must specify in a determination in relation to a multi-party action —
+a
+the identity of the lead provider;
+b
+whether the civil legal services to be made available are limited to an issue which is common to all parties or a particular group of parties (a “generic issue”); and
+c
+if the civil legal services do relate to a generic issue, whether the services include or are limited to —
+i
+the selection, preparation and trial of lead issues and lead cases;
+ii
+the co-ordination of the action; and
+iii
+any other civil legal services which the Director considers necessary for the action to be progressed as a multi-party action.
+4
+The Director may send any notices in relation to a multi-party action to the lead provider who must communicate the information in those notices to the parties for whom that provider is the lead provider.
+5
+The Director may waive any of the requirements of regulations 37 and 49 in relation to a multi-party action.
+6
+A certificate recording a determination in relation to a multi-party action must be amended to record a change in the identity of the lead provider.
+Special controls
+58
+1
+Special Case Work to be provided in the circumstances described in —
+a
+regulation 54(3)(c), (d), (e) and (g); and
+b
+regulation 54(3)(b) where the Director has reasonable grounds to believe that the likely costs would exceed £250,000,
+is subject to special controls.
+2
+The provisions about appeals in Part 4 (Licensed Work) do not apply to Special Case Work subject to special controls.
+3
+Where the individual remains dissatisfied following a review about Special Case Work subject to special controls, the individual may appeal to the Special Controls Review Panel appointed by the Lord Chancellor (“ the Panel ”) under section 2 of the Act unless the determination in question is —
+a
+a determination under section 21 of the Act; or
+b
+a determination that the services which are the subject of the application are not civil legal services described in Part 1 of Schedule 1 to the Act.
+4
+The Director may refer to the Panel any issue which is relevant to a determination or the withdrawal of a determination about Special Case Work subject to special controls.
+5
+Appeals and issues referred to the Panel must be considered without a hearing unless the Panel considers that it is in the interests of justice for the individual, the Director or any person authorised by the individual or the Director to make oral representations before the Panel.
+6
+The Panel may —
+a
+confirm the determination or withdrawal of a determination; or
+b
+report to the Director its views on the case and any issues referred by the Director.
+7
+The Panel must —
+a
+give written reasons for its findings; and
+b
+send a copy of the confirmation or report to the Director and the individual.
+8
+The individual or any person authorised by the individual may make further written representations to the Director about the Panel’s findings or any issue addressed in the Panel’s report.
+9
+The Director must —
+a
+consider the Panel’s report and any further representations;
+b
+make a determination on the issues raised in the report;
+c
+give written reasons for any determination;
+d
+send a copy of the determination with written reasons to the individual; and
+e
+ensure that any certificate accurately records the civil legal services for which an individual qualifies following an appeal.
+10
+A determination by the Panel about the prospects of success made in accordance with the criteria set out in regulations made under section 11 of the Act is binding on the Director.
+Appeals
+59
+Where an adjudicator is considering an appeal in relation to Special Case Work, regulation 47(1)(b) does not apply but the adjudicator must instead consider the likely damages or any other benefit or remedy which the individual is likely to receive.
+PART 7 Family Mediation
+General
+60
+This Part makes provision about the making and withdrawal of determinations under section 9 of the Act about family mediation.
+The application
+61
+An individual applying for family mediation must —
+a
+attend the mediator’s premises in person;
+b
+complete the application form specified by the Lord Chancellor; and
+c
+provide any additional information and documents requested by the Director in order to make a determination in relation to the application.
+Mediators
+62
+The individual must propose a mediator with whom the Lord Chancellor has made an arrangement under section 2(1) of the Act for the mediator to provide family mediation in accordance with a code of practice approved by the Lord Chancellor.
+Reasons
+63
+1
+Where the Director —
+a
+determines that an individual does not qualify for family mediation; or
+b
+withdraws a determination in relation to family mediation,
+the Director must notify the individual.
+2
+In the circumstances described in paragraph (1), the Director must send to the individual —
+a
+written notice of the determination or withdrawal in a form specified by the Lord Chancellor;
+b
+written reasons for the determination or withdrawal; and
+c
+notice of the right to a review of the determination or withdrawal,
+and may provide information about alternative ways of obtaining or funding civil legal services.
+3
+The withdrawal of a determination does not affect the right of the mediator to remuneration for work done before the date of withdrawal.
+Withdrawal of determinations
+64
+The Director may withdraw a determination where —
+a
+the individual no longer qualifies for the services made available by the determination in accordance with section 21 of the Act and regulations made under that section;
+b
+the services made available by the determination have been provided;
+c
+the Director is satisfied that continuing to act would breach the mediator’s code of practice referred to in regulation 62;
+d
+the individual consents;
+e
+the individual has died;
+f
+a bankruptcy order has been made against the individual; or
+g
+the individual has failed without good reason to comply with a requirement to provide information or documents or in providing required information or documents has made a statement or representation knowing or believing it to be false.
+Review
+65
+1
+An individual may apply to the Director for a review of a determination or withdrawal of a determination about family mediation, making written representations supporting the application.
+2
+The Director must —
+a
+consider the application and any written representations;
+b
+confirm the determination or withdrawal or substitute a new determination or withdrawal; and
+c
+notify the individual of the determination or withdrawal following the review.
+PART 8 Exceptional Cases
+General
+66
+1
+This Part makes provision about the making and withdrawal of determinations under section 10 of the Act about exceptional cases.
+2
+Except as provided in this Part —
+a
+determinations under section 10 of the Act must be made and withdrawn in accordance with the provisions of these Regulations which apply to the form of civil legal services which is the subject of the application; and
+b
+Part 4 (Licensed Work), applies to other legal services.
+3
+The provisions in these Regulations about —
+a
+appeals;
+b
+review (other than in this Part); and
+c
+emergency representation,
+do not apply to the making and withdrawal of determinations under section 10 of the Act.
+4
+Regulations 23(1)(c) and (d) and 31(4)(c) and (d) do not apply to the making and withdrawal of determinations under section 10 of the Act.
+The application
+67
+1
+Where the civil legal services which are the subject of an application are described in a category in the Category Definitions that form part of the 2010 Standard Civil Contract or 2013 Standard Civil Contract, the application must specify —
+a
+the category within which the civil legal services are described; and
+b
+if the individual has identified a proposed provider, a provider with whom the Lord Chancellor has made an arrangement under section 2(1) of the Act for the provision of services which fall within the category specified in the application (unless the effective administration of justice test is satisfied).
+2
+An application for a determination under section 10 of the Act must —
+a
+be made to the Director in writing in a form specified by the Lord Chancellor and signed by the individual and any proposed provider; and
+b
+state whether it is proposed that the services should be provided as Controlled Work, Licensed Work or under an individual case contract.
+Determinations
+68
+1
+A determination under section 10 of the Act may specify that the determination is to be treated as having effect from a date earlier than the date of the determination.
+2
+Where the Director makes —
+a
+an exceptional case determination under section 10(2)(a) of the Act; or
+b
+a wider public interest determination under section 10(4)(b) of the Act,
+the Director must provide written reasons for the determination and notice of any right of review.
+Review
+69
+1
+The individual may, in accordance with paragraph (2), apply for a review of —
+a
+a refusal to make a determination under section 10(2)(a) or 10(4)(b) of the Act;
+b
+a determination that an individual does not qualify for the services under section 10(2)(b) or 10(4)(c) of the Act;
+c
+an amendment of, or refusal to amend, a limitation or condition to which a determination under section 10(2)(b) or 10(4)(c) of the Act is subject; or
+d
+a withdrawal of a determination.
+2
+Within fourteen days of receipt of a refusal, determination, amendment, or withdrawal described in paragraph (1) (a “decision”), the individual may —
+a
+apply to the Director for a review of the decision in a form specified by the Lord Chancellor; and
+b
+include written representations supporting that application.
+3
+The Director must consider the application and any written representations and may —
+a
+confirm or amend the decision which is the subject of the review; or
+b
+substitute a new decision.
+4
+Where the decision which is the subject of the review was the withdrawal of a determination and, following the review, the Director substitutes a determination for that withdrawal, the determination takes effect (unless the Director directs otherwise) as if the original decision had not been made.
+5
+The Director must ensure that a certificate accurately records the civil legal services for which the individual qualifies following the review (unless the services are to be provided as Controlled Work).
+6
+The Director must notify the individual and the provider or proposed provider identified in the individual’s application of the decision following the review.
+Signed by authority of the Lord Chancellor
+McNally
+Minister of State
+Ministry of Justice
+12th December 2012

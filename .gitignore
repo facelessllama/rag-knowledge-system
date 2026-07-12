@@ -17,4 +17,4 @@ patch_*.py
 *.save
 .env.save
 backups/
-eval/last_run_scores.json
+eval/last_run_scores*.json
