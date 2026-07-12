@@ -1,7 +1,9 @@
 """
 Tests for ingestion/chunker.py — sentence/paragraph-aware chunking.
 """
-from ingestion.chunker import SmartChunker, normalize_whitespace
+from types import SimpleNamespace
+
+from ingestion.chunker import SmartChunker, normalize_whitespace, chunk_context_text
 
 
 def _pages(*texts):
@@ -104,3 +106,28 @@ def test_char_offsets_are_page_relative_not_document_relative():
     for c in chunks:
         expected = normalized1 if c.page_num == 1 else normalized2
         assert expected[c.char_start:c.char_end] == c.text
+
+
+# ── chunk_context_text ───────────────────────────────────────────────────────
+
+def test_chunk_context_text_prepends_filename_as_title():
+    chunk = SimpleNamespace(filename="ABLAPL_3648_2020_LIPU_PRADHAN_vs_STATE_OF_ODISHA.pdf",
+                             text="Heard learned counsel for the petitioner.")
+    result = chunk_context_text(chunk)
+    assert result == "ABLAPL 3648 2020 LIPU PRADHAN vs STATE OF ODISHA: Heard learned counsel for the petitioner."
+
+
+def test_chunk_context_text_falls_back_to_bare_text_without_filename():
+    chunk = SimpleNamespace(filename="", text="some chunk text")
+    assert chunk_context_text(chunk) == "some chunk text"
+
+
+def test_chunk_context_text_handles_missing_filename_attribute():
+    chunk = SimpleNamespace(text="some chunk text")  # no .filename at all
+    assert chunk_context_text(chunk) == "some chunk text"
+
+
+def test_chunk_context_text_does_not_mutate_original_text():
+    chunk = SimpleNamespace(filename="doc.txt", text="original")
+    chunk_context_text(chunk)
+    assert chunk.text == "original"

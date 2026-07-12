@@ -28,7 +28,7 @@ from langfuse import Langfuse
 
 from ingestion.pdf_parser import PDFParser, split_for_highlight_search
 from ingestion.txt_parser import TxtParser, decode_text_file
-from ingestion.chunker import SmartChunker, normalize_whitespace
+from ingestion.chunker import SmartChunker, normalize_whitespace, chunk_context_text
 from embeddings.embedding_service import EmbeddingService
 from vector_db.qdrant_client import VectorStore
 from qdrant_client.models import Filter, FieldCondition, MatchValue
@@ -340,7 +340,7 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
         c.pages = parsed.total_pages
         c.folder = folder or ""
 
-    texts = [c.text for c in chunks]
+    texts = [chunk_context_text(c) for c in chunks]
     t_embed = time.time()
     vectors = await run_on_gpu(embedder.embed_batch, texts)
     embed_ms = int((time.time() - t_embed) * 1000)
@@ -429,7 +429,7 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
                 c.pages = parsed.total_pages
                 c.folder = folder or ""
 
-            texts = [c.text for c in chunks]
+            texts = [chunk_context_text(c) for c in chunks]
             vectors = await run_on_gpu(embedder.embed_batch, texts)
             await asyncio.to_thread(vector_store.upsert_chunks, chunks, vectors)
 

@@ -18,6 +18,7 @@ from qdrant_client.models import (
     PayloadSchemaType,
 )
 
+from ingestion.chunker import chunk_context_text
 from vector_db.sparse_encoder import build_sparse_vector
 
 logger = logging.getLogger(__name__)
@@ -67,7 +68,7 @@ class VectorStore:
                 id=str(uuid.uuid4()),
                 vector={
                     DENSE_VECTOR_NAME: vector,
-                    SPARSE_VECTOR_NAME: build_sparse_vector(chunk.text),
+                    SPARSE_VECTOR_NAME: build_sparse_vector(chunk_context_text(chunk)),
                 },
                 payload={
                     "chunk_id": chunk.chunk_id,

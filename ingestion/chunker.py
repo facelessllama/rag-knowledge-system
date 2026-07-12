@@ -5,6 +5,7 @@ Splits documents into semantically meaningful chunks with overlap
 import re
 import logging
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Optional
 
 logger = logging.getLogger(__name__)
@@ -16,6 +17,21 @@ def normalize_whitespace(text: str) -> str:
     into a chunk's source text (e.g. a TXT-document viewer) must normalize
     the same way first, or offsets won't line up."""
     return re.sub(r'\s+', ' ', text).strip()
+
+
+def chunk_context_text(chunk) -> str:
+    """Prepends a short document-level context (the descriptive filename,
+    underscores -> spaces) to a chunk's text — 'contextual retrieval'
+    (Anthropic). Many chunks, especially short heavily-templated legal
+    boilerplate ("Heard learned counsel for the petitioner...", near-
+    identical across many different case documents), carry almost no
+    signal on their own distinguishing which document they came from. Use
+    this for what gets embedded/indexed, never for what gets stored/shown —
+    chunk.text itself stays untouched so char_start/char_end offsets and
+    displayed excerpts remain exact."""
+    filename = getattr(chunk, "filename", "") or ""
+    title = Path(filename).stem.replace("_", " ") if filename else ""
+    return f"{title}: {chunk.text}" if title else chunk.text
 
 
 @dataclass
