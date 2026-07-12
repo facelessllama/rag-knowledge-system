@@ -1,0 +1,1124 @@
+[
+  {
+    "id": "date_EN_0001_The_Housing_Right_to_Buy_Limit_on_Discount_England_Order_2012",
+    "question": "When does the Housing Right to Buy Limit on Discount England Order 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0001_The_Housing_Right_to_Buy_Limit_on_Discount_England_Order_2012.txt",
+    "expected_substring": "2nd April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "money_EN_0001_The_Housing_Right_to_Buy_Limit_on_Discount_England_Order_2012",
+    "question": "What monetary amount is prescribed in the Housing Right to Buy Limit on Discount England Order 2012?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0001_The_Housing_Right_to_Buy_Limit_on_Discount_England_Order_2012.txt",
+    "expected_substring": "75 000",
+    "type": "fact_money"
+  },
+  {
+    "id": "date_EN_0002_The_Jurors_Allowances_Amendment_Regulations_2012",
+    "question": "When does the Jurors Allowances Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0002_The_Jurors_Allowances_Amendment_Regulations_2012.txt",
+    "expected_substring": "30th July 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0003_The_Energy_Performance_of_Buildings_England_and_Wales_Regulations_2012",
+    "question": "When does the Energy Performance of Buildings England and Wales Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0003_The_Energy_Performance_of_Buildings_England_and_Wales_Regulations_2012.txt",
+    "expected_substring": "9th January 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "money_EN_0003_The_Energy_Performance_of_Buildings_England_and_Wales_Regulations_2012",
+    "question": "What monetary amount is prescribed in the Energy Performance of Buildings England and Wales Regulations 2012?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0003_The_Energy_Performance_of_Buildings_England_and_Wales_Regulations_2012.txt",
+    "expected_substring": "1",
+    "type": "fact_money"
+  },
+  {
+    "id": "date_EN_0005_The_Education_Educational_Provision_for_Improving_Behaviour_Amendment_Regulation",
+    "question": "When does the Education Educational Provision for Improving Behaviour Amendment Regulation come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0005_The_Education_Educational_Provision_for_Improving_Behaviour_Amendment_Regulation.txt",
+    "expected_substring": "1st January 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0006_The_National_Health_Service_Local_Pharmaceutical_Services_Amendment_Regulations",
+    "question": "When does the National Health Service Local Pharmaceutical Services Amendment Regulations come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0006_The_National_Health_Service_Local_Pharmaceutical_Services_Amendment_Regulations.txt",
+    "expected_substring": "1st July 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0009_The_Iraq_Asset-Freezing_Regulations_2012",
+    "question": "When does the Iraq Asset-Freezing Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0009_The_Iraq_Asset-Freezing_Regulations_2012.txt",
+    "expected_substring": "2nd July 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0011_The_Education_Specified_Work_England_Regulations_2012",
+    "question": "When does the Education Specified Work England Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0011_The_Education_Specified_Work_England_Regulations_2012.txt",
+    "expected_substring": "1st April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0012_The_Child_Trust_Funds_Amendment_Regulations_2012",
+    "question": "When does the Child Trust Funds Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0012_The_Child_Trust_Funds_Amendment_Regulations_2012.txt",
+    "expected_substring": "8th August 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0014_The_Mesothelioma_Lump_Sum_Payments_Conditions_and_Amounts_Amendment_Regulations",
+    "question": "When does the Mesothelioma Lump Sum Payments Conditions and Amounts Amendment Regulations come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0014_The_Mesothelioma_Lump_Sum_Payments_Conditions_and_Amounts_Amendment_Regulations.txt",
+    "expected_substring": "1st April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0016_The_Penalties_for_Disorderly_Behaviour_Amount_of_Penalty_Amendment_Order_2012",
+    "question": "When does the Penalties for Disorderly Behaviour Amount of Penalty Amendment Order 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0016_The_Penalties_for_Disorderly_Behaviour_Amount_of_Penalty_Amendment_Order_2012.txt",
+    "expected_substring": "30th June 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0017_The_Personal_Injuries_Civilians_Scheme_Amendment_Order_2012",
+    "question": "When does the Personal Injuries Civilians Scheme Amendment Order 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0017_The_Personal_Injuries_Civilians_Scheme_Amendment_Order_2012.txt",
+    "expected_substring": "9th April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "money_EN_0017_The_Personal_Injuries_Civilians_Scheme_Amendment_Order_2012",
+    "question": "What monetary amount is prescribed in the Personal Injuries Civilians Scheme Amendment Order 2012?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0017_The_Personal_Injuries_Civilians_Scheme_Amendment_Order_2012.txt",
+    "expected_substring": "4,940",
+    "type": "fact_money"
+  },
+  {
+    "id": "date_EN_0021_The_School_Information_England_Amendment_Regulations_2012",
+    "question": "When does the School Information England Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0021_The_School_Information_England_Amendment_Regulations_2012.txt",
+    "expected_substring": "the 1st September 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0022_The_Assets_of_Community_Value_England_Regulations_2012",
+    "question": "When does the Assets of Community Value England Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0022_The_Assets_of_Community_Value_England_Regulations_2012.txt",
+    "expected_substring": "the day after they are made",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0023_The_M25_Motorway_Junctions_7_to_16_Variable_Speed_Limits_Regulations_2012",
+    "question": "When does the M25 Motorway Junctions 7 to 16 Variable Speed Limits Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0023_The_M25_Motorway_Junctions_7_to_16_Variable_Speed_Limits_Regulations_2012.txt",
+    "expected_substring": "17th September 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0026_The_Taxes_etc._Fees_for_Payment_by_Telephone_Regulations_2012",
+    "question": "When does the Taxes etc. Fees for Payment by Telephone Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0026_The_Taxes_etc._Fees_for_Payment_by_Telephone_Regulations_2012.txt",
+    "expected_substring": "2nd April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0028_The_Council_Tax_Prescribed_Classes_of_Dwellings_England_Amendment_Regulations_20",
+    "question": "When does the Council Tax Prescribed Classes of Dwellings England Amendment Regulations 20 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0028_The_Council_Tax_Prescribed_Classes_of_Dwellings_England_Amendment_Regulations_20.txt",
+    "expected_substring": "1st April 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0029_The_Police_and_Crime_Commissioner_Elections_Returning_Officers_Accounts_Regulati",
+    "question": "When does the Police and Crime Commissioner Elections Returning Officers Accounts Regulati come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0029_The_Police_and_Crime_Commissioner_Elections_Returning_Officers_Accounts_Regulati.txt",
+    "expected_substring": "15th September 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0032_The_Local_Authorities_Committee_System_England_Regulations_2012",
+    "question": "When does the Local Authorities Committee System England Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0032_The_Local_Authorities_Committee_System_England_Regulations_2012.txt",
+    "expected_substring": "4th May 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0033_The_Waste_England_and_Wales_Amendment_Regulations_2012",
+    "question": "When does the Waste England and Wales Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0033_The_Waste_England_and_Wales_Amendment_Regulations_2012.txt",
+    "expected_substring": "1st October 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0038_The_Pupil_Referral_Units_Miscellaneous_Amendments_No.2_England_Regulations_2012",
+    "question": "When does the Pupil Referral Units Miscellaneous Amendments No.2 England Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0038_The_Pupil_Referral_Units_Miscellaneous_Amendments_No.2_England_Regulations_2012.txt",
+    "expected_substring": "1st April 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0039_The_Neighbourhood_Planning_Prescribed_Dates_Regulations_2012",
+    "question": "When does the Neighbourhood Planning Prescribed Dates Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0039_The_Neighbourhood_Planning_Prescribed_Dates_Regulations_2012.txt",
+    "expected_substring": "1st September 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0041_The_Education_Student_Loans_Repayment_Amendment_No._2_Regulations_2012",
+    "question": "When does the Education Student Loans Repayment Amendment No. 2 Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0041_The_Education_Student_Loans_Repayment_Amendment_No._2_Regulations_2012.txt",
+    "expected_substring": "18 June 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "money_EN_0041_The_Education_Student_Loans_Repayment_Amendment_No._2_Regulations_2012",
+    "question": "What monetary amount is prescribed in the Education Student Loans Repayment Amendment No. 2 Regulations 2012?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0041_The_Education_Student_Loans_Repayment_Amendment_No._2_Regulations_2012.txt",
+    "expected_substring": "21,000",
+    "type": "fact_money"
+  },
+  {
+    "id": "date_EN_0043_The_UK_Borders_Act_2007_Border_and_Immigration_InspectorateJoint_Working_etc._Or",
+    "question": "When does the UK Borders Act 2007 Border and Immigration InspectorateJoint Working etc. Or come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0043_The_UK_Borders_Act_2007_Border_and_Immigration_InspectorateJoint_Working_etc._Or.txt",
+    "expected_substring": "11th December 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0045_The_Non-Domestic_Rating_Small_Business_Rate_Relief_England_Order_2012",
+    "question": "When does the Non-Domestic Rating Small Business Rate Relief England Order 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0045_The_Non-Domestic_Rating_Small_Business_Rate_Relief_England_Order_2012.txt",
+    "expected_substring": "25th February 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0046_The_Local_Policing_Bodies_Consequential_Amendments_No._2_Regulations_2012",
+    "question": "When does the Local Policing Bodies Consequential Amendments No. 2 Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0046_The_Local_Policing_Bodies_Consequential_Amendments_No._2_Regulations_2012.txt",
+    "expected_substring": "22nd November 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0047_The_Criminal_Procedure_Amendment_Rules_2012",
+    "question": "When does the Criminal Procedure Amendment Rules 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0047_The_Criminal_Procedure_Amendment_Rules_2012.txt",
+    "expected_substring": "1st April 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0049_The_Pension_Protection_Fund_Miscellaneous_Amendments_Regulations_2012",
+    "question": "When does the Pension Protection Fund Miscellaneous Amendments Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0049_The_Pension_Protection_Fund_Miscellaneous_Amendments_Regulations_2012.txt",
+    "expected_substring": "23rd July 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0051_The_Wireless_Telegraphy_Control_of_Interference_from_Apparatus_The_London_Olympi",
+    "question": "When does the Wireless Telegraphy Control of Interference from Apparatus The London Olympi come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0051_The_Wireless_Telegraphy_Control_of_Interference_from_Apparatus_The_London_Olympi.txt",
+    "expected_substring": "23rd July 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0052_The_Community_Interest_Company_Amendment_Regulations_2012",
+    "question": "When does the Community Interest Company Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0052_The_Community_Interest_Company_Amendment_Regulations_2012.txt",
+    "expected_substring": "1st October 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0053_The_Teachers_Pensions_Amendment_No._2_Regulations_2012",
+    "question": "When does the Teachers Pensions Amendment No. 2 Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0053_The_Teachers_Pensions_Amendment_No._2_Regulations_2012.txt",
+    "expected_substring": "1st October 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0054_The_Thurrock_Development_Corporation_Transfer_of_Property_Rights_and_Liabilities",
+    "question": "When does the Thurrock Development Corporation Transfer of Property Rights and Liabilities come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0054_The_Thurrock_Development_Corporation_Transfer_of_Property_Rights_and_Liabilities.txt",
+    "expected_substring": "31st March 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0056_The_National_Health_Service_Trust_Development_Authority_Regulations_2012",
+    "question": "When does the National Health Service Trust Development Authority Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0056_The_National_Health_Service_Trust_Development_Authority_Regulations_2012.txt",
+    "expected_substring": "1st June 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0057_The_Common_Agricultural_Policy_Single_Payment_and_Support_Schemes_Amendment_Regu",
+    "question": "When does the Common Agricultural Policy Single Payment and Support Schemes Amendment Regu come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0057_The_Common_Agricultural_Policy_Single_Payment_and_Support_Schemes_Amendment_Regu.txt",
+    "expected_substring": "1st January 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0058_The_Merchant_Shipping_Passenger_Ships_on_Domestic_VoyagesAmendment_Regulations_2",
+    "question": "When does the Merchant Shipping Passenger Ships on Domestic VoyagesAmendment Regulations 2 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0058_The_Merchant_Shipping_Passenger_Ships_on_Domestic_VoyagesAmendment_Regulations_2.txt",
+    "expected_substring": "16th November 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0059_The_Education_Information_About_Individual_Pupils_England_Amendment_Regulations",
+    "question": "When does the Education Information About Individual Pupils England Amendment Regulations come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0059_The_Education_Information_About_Individual_Pupils_England_Amendment_Regulations.txt",
+    "expected_substring": "1st January 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0061_The_Registered_Pension_Schemes_Authorised_Payments_Amendment_Regulations_2012",
+    "question": "When does the Registered Pension Schemes Authorised Payments Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0061_The_Registered_Pension_Schemes_Authorised_Payments_Amendment_Regulations_2012.txt",
+    "expected_substring": "6th April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0062_The_Iran_European_Union_Financial_Sanctions_Amendment_No.2_Regulations_2012",
+    "question": "When does the Iran European Union Financial Sanctions Amendment No.2 Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0062_The_Iran_European_Union_Financial_Sanctions_Amendment_No.2_Regulations_2012.txt",
+    "expected_substring": "22nd November 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0064_The_Health_Research_Authority_Amendment_Regulations_2012",
+    "question": "When does the Health Research Authority Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0064_The_Health_Research_Authority_Amendment_Regulations_2012.txt",
+    "expected_substring": "28th May 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0066_The_Community_Emissions_Trading_Scheme_Allocation_of_Allowances_for_Payment_Regu",
+    "question": "When does the Community Emissions Trading Scheme Allocation of Allowances for Payment Regu come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0066_The_Community_Emissions_Trading_Scheme_Allocation_of_Allowances_for_Payment_Regu.txt",
+    "expected_substring": "14th November 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0070_The_Pension_Schemes_Categories_of_Country_and_Requirements_for_Overseas_Pension",
+    "question": "When does the Pension Schemes Categories of Country and Requirements for Overseas Pension come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0070_The_Pension_Schemes_Categories_of_Country_and_Requirements_for_Overseas_Pension.txt",
+    "expected_substring": "25th May 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0071_The_Nursing_and_Midwifery_Council_Fitness_to_Practise_Amendment_Rules_2011_Order",
+    "question": "When does the Nursing and Midwifery Council Fitness to Practise Amendment Rules 2011 Order come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0071_The_Nursing_and_Midwifery_Council_Fitness_to_Practise_Amendment_Rules_2011_Order.txt",
+    "expected_substring": "6th February 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0072_The_Community_Right_to_Challenge_Expressions_of_Interest_and_Excluded_Services_E",
+    "question": "When does the Community Right to Challenge Expressions of Interest and Excluded Services E come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0072_The_Community_Right_to_Challenge_Expressions_of_Interest_and_Excluded_Services_E.txt",
+    "expected_substring": "27th June 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0073_The_Merchant_Shipping_Accident_Reporting_and_Investigation_Regulations_2012",
+    "question": "When does the Merchant Shipping Accident Reporting and Investigation Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0073_The_Merchant_Shipping_Accident_Reporting_and_Investigation_Regulations_2012.txt",
+    "expected_substring": "31st July 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0074_The_National_Health_Service_Primary_Dental_Services_Miscellaneous_Amendments_Reg",
+    "question": "When does the National Health Service Primary Dental Services Miscellaneous Amendments Reg come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0074_The_National_Health_Service_Primary_Dental_Services_Miscellaneous_Amendments_Reg.txt",
+    "expected_substring": "1st April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0075_The_Employment_Rights_Increase_of_Limits_Order_2012",
+    "question": "When does the Employment Rights Increase of Limits Order 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0075_The_Employment_Rights_Increase_of_Limits_Order_2012.txt",
+    "expected_substring": "1st February 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0077_The_Climate_Change_Levy_General_Amendment_Regulations_2012",
+    "question": "When does the Climate Change Levy General Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0077_The_Climate_Change_Levy_General_Amendment_Regulations_2012.txt",
+    "expected_substring": "1st April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0079_The_Education_Pupil_Referral_Units_Application_of_Enactments_England_Amendment_R",
+    "question": "When does the Education Pupil Referral Units Application of Enactments England Amendment R come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0079_The_Education_Pupil_Referral_Units_Application_of_Enactments_England_Amendment_R.txt",
+    "expected_substring": "31st May 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0080_The_Social_Security_Habitual_Residence_Amendment_Regulations_2012",
+    "question": "When does the Social Security Habitual Residence Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0080_The_Social_Security_Habitual_Residence_Amendment_Regulations_2012.txt",
+    "expected_substring": "8th November 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0082_The_Education_Teacher_Student_Loans_Repayment_etc_Amendment_Regulations_2012",
+    "question": "When does the Education Teacher Student Loans Repayment etc Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0082_The_Education_Teacher_Student_Loans_Repayment_etc_Amendment_Regulations_2012.txt",
+    "expected_substring": "1st April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0083_The_Jobseekers_Allowance_Sanctions_Amendment_Regulations_2012",
+    "question": "When does the Jobseekers Allowance Sanctions Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0083_The_Jobseekers_Allowance_Sanctions_Amendment_Regulations_2012.txt",
+    "expected_substring": "22nd October 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0084_The_Localism_Act_2011_Commencement_No._6_and_Transitional_Savings_and_Transitory",
+    "question": "When does the Localism Act 2011 Commencement No. 6 and Transitional Savings and Transitory come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0084_The_Localism_Act_2011_Commencement_No._6_and_Transitional_Savings_and_Transitory.txt",
+    "expected_substring": "the day after the day on which it is made",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0086_The_School_and_Early_Years_Finance_England_Regulations_2012",
+    "question": "When does the School and Early Years Finance England Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0086_The_School_and_Early_Years_Finance_England_Regulations_2012.txt",
+    "expected_substring": "1st January 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "money_EN_0086_The_School_and_Early_Years_Finance_England_Regulations_2012",
+    "question": "What monetary amount is prescribed in the School and Early Years Finance England Regulations 2012?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0086_The_School_and_Early_Years_Finance_England_Regulations_2012.txt",
+    "expected_substring": "10,000",
+    "type": "fact_money"
+  },
+  {
+    "id": "date_EN_0087_The_Prosecution_of_Offences_Custody_Time_Limits_Amendment_Regulations_2012",
+    "question": "When does the Prosecution of Offences Custody Time Limits Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0087_The_Prosecution_of_Offences_Custody_Time_Limits_Amendment_Regulations_2012.txt",
+    "expected_substring": "18th June 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0088_The_Animals_Scientific_Procedures_Act_1986_Fees_Order_2012",
+    "question": "When does the Animals Scientific Procedures Act 1986 Fees Order 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0088_The_Animals_Scientific_Procedures_Act_1986_Fees_Order_2012.txt",
+    "expected_substring": "the 1st January 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "money_EN_0088_The_Animals_Scientific_Procedures_Act_1986_Fees_Order_2012",
+    "question": "What monetary amount is prescribed in the Animals Scientific Procedures Act 1986 Fees Order 2012?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0088_The_Animals_Scientific_Procedures_Act_1986_Fees_Order_2012.txt",
+    "expected_substring": "252",
+    "type": "fact_money"
+  },
+  {
+    "id": "date_EN_0091_The_Community_Right_to_Challenge_Fire_and_Rescue_Authorities_and_Rejection_of_Ex",
+    "question": "When does the Community Right to Challenge Fire and Rescue Authorities and Rejection of Ex come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0091_The_Community_Right_to_Challenge_Fire_and_Rescue_Authorities_and_Rejection_of_Ex.txt",
+    "expected_substring": "the day after the day on which they are made",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0092_The_Licensing_Act_2003_Premises_licences_and_club_premises_certificates_Amendmen",
+    "question": "When does the Licensing Act 2003 Premises licences and club premises certificates Amendmen come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0092_The_Licensing_Act_2003_Premises_licences_and_club_premises_certificates_Amendmen.txt",
+    "expected_substring": "25th April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0097_The_Regional_Strategy_for_the_East_of_England_Revocation_Order_2012",
+    "question": "When does the Regional Strategy for the East of England Revocation Order 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0097_The_Regional_Strategy_for_the_East_of_England_Revocation_Order_2012.txt",
+    "expected_substring": "3rd January 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0100_The_Police_Amendment_No._4_Regulations_2012",
+    "question": "When does the Police Amendment No. 4 Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0100_The_Police_Amendment_No._4_Regulations_2012.txt",
+    "expected_substring": "22nd November 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0104_The_Data-gathering_Powers_Relevant_Data_Regulations_2012",
+    "question": "When does the Data-gathering Powers Relevant Data Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0104_The_Data-gathering_Powers_Relevant_Data_Regulations_2012.txt",
+    "expected_substring": "1st April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0106_The_Care_Quality_Commission_Registration_and_Membership_Amendment_Regulations_20",
+    "question": "When does the Care Quality Commission Registration and Membership Amendment Regulations 20 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0106_The_Care_Quality_Commission_Registration_and_Membership_Amendment_Regulations_20.txt",
+    "expected_substring": "1st June 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0111_The_Council_Tax_Reduction_Schemes_Prescribed_Requirements_and_Default_Scheme_Eng",
+    "question": "When does the Council Tax Reduction Schemes Prescribed Requirements and Default Scheme Eng come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0111_The_Council_Tax_Reduction_Schemes_Prescribed_Requirements_and_Default_Scheme_Eng.txt",
+    "expected_substring": "10th January 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0112_The_Occupational_Pension_Schemes_Disclosure_of_Information_Amendment_Regulations",
+    "question": "When does the Occupational Pension Schemes Disclosure of Information Amendment Regulations come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0112_The_Occupational_Pension_Schemes_Disclosure_of_Information_Amendment_Regulations.txt",
+    "expected_substring": "1st October 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0113_The_Civil_Courts_Amendment_No._2_Order_2012",
+    "question": "When does the Civil Courts Amendment No. 2 Order 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0113_The_Civil_Courts_Amendment_No._2_Order_2012.txt",
+    "expected_substring": "10th September 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0115_The_A30_Trunk_Road_Turks_Head_Link_Trunking_Order_2012",
+    "question": "When does the A30 Trunk Road Turks Head Link Trunking Order 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0115_The_A30_Trunk_Road_Turks_Head_Link_Trunking_Order_2012.txt",
+    "expected_substring": "27th November 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0116_The_Council_Tax_and_Non-Domestic_Rating_Demand_Notices_England_Amendment_Regulat",
+    "question": "When does the Council Tax and Non-Domestic Rating Demand Notices England Amendment Regulat come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0116_The_Council_Tax_and_Non-Domestic_Rating_Demand_Notices_England_Amendment_Regulat.txt",
+    "expected_substring": "31 st March 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0118_The_Social_Security_Revaluation_of_Earnings_Factors_Order_2012",
+    "question": "When does the Social Security Revaluation of Earnings Factors Order 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0118_The_Social_Security_Revaluation_of_Earnings_Factors_Order_2012.txt",
+    "expected_substring": "6th April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0120_The_Registered_Pension_Schemes_and_Overseas_Pension_Schemes_Miscellaneous_Amendm",
+    "question": "When does the Registered Pension Schemes and Overseas Pension Schemes Miscellaneous Amendm come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0120_The_Registered_Pension_Schemes_and_Overseas_Pension_Schemes_Miscellaneous_Amendm.txt",
+    "expected_substring": "6th April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0122_The_Road_Vehicles_Registration_and_Licensing_Amendment_Regulations_2012",
+    "question": "When does the Road Vehicles Registration and Licensing Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0122_The_Road_Vehicles_Registration_and_Licensing_Amendment_Regulations_2012.txt",
+    "expected_substring": "1st April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "money_EN_0123_The_Ecclesiastical_Judges_Legal_Officers_and_Others_Fees_Order_2012",
+    "question": "What monetary amount is prescribed in the Ecclesiastical Judges Legal Officers and Others Fees Order 2012?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0123_The_Ecclesiastical_Judges_Legal_Officers_and_Others_Fees_Order_2012.txt",
+    "expected_substring": "189",
+    "type": "fact_money"
+  },
+  {
+    "id": "date_EN_0125_The_Eritrea_Asset-Freezing_Regulations_2012",
+    "question": "When does the Eritrea Asset-Freezing Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0125_The_Eritrea_Asset-Freezing_Regulations_2012.txt",
+    "expected_substring": "5th July 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0126_The_Excise_Goods_Holding_Movement_and_Duty_Point_Amendment_Regulations_2012",
+    "question": "When does the Excise Goods Holding Movement and Duty Point Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0126_The_Excise_Goods_Holding_Movement_and_Duty_Point_Amendment_Regulations_2012.txt",
+    "expected_substring": "1st December 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0128_The_Customs_Inspections_by_Her_Majestys_Inspectors_of_Constabulary_and_the_Scott",
+    "question": "When does the Customs Inspections by Her Majestys Inspectors of Constabulary and the Scott come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0128_The_Customs_Inspections_by_Her_Majestys_Inspectors_of_Constabulary_and_the_Scott.txt",
+    "expected_substring": "10 th December 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0129_The_Early_Years_Foundation_Stage_Welfare_Requirements_Regulations_2012",
+    "question": "When does the Early Years Foundation Stage Welfare Requirements Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0129_The_Early_Years_Foundation_Stage_Welfare_Requirements_Regulations_2012.txt",
+    "expected_substring": "1st September 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0132_The_Merchant_Shipping_Ship-to-Ship_Transfers_Amendment_Regulations_2012",
+    "question": "When does the Merchant Shipping Ship-to-Ship Transfers Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0132_The_Merchant_Shipping_Ship-to-Ship_Transfers_Amendment_Regulations_2012.txt",
+    "expected_substring": "31st March 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0133_The_Health_and_Social_Care_Act_2008_Consequential_Amendments_Council_Tax_Order_2",
+    "question": "When does the Health and Social Care Act 2008 Consequential Amendments Council Tax Order 2 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0133_The_Health_and_Social_Care_Act_2008_Consequential_Amendments_Council_Tax_Order_2.txt",
+    "expected_substring": "23rd August 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0137_The_Police_Act_1997_Criminal_Records_Amendment_No._2_Regulations_2012",
+    "question": "When does the Police Act 1997 Criminal Records Amendment No. 2 Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0137_The_Police_Act_1997_Criminal_Records_Amendment_No._2_Regulations_2012.txt",
+    "expected_substring": "10th September 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0140_The_Occupational_Pensions_Revaluation_Order_2012",
+    "question": "When does the Occupational Pensions Revaluation Order 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0140_The_Occupational_Pensions_Revaluation_Order_2012.txt",
+    "expected_substring": "1st January 2013",
+    "type": "fact_date"
+  },
+  {
+    "id": "money_EN_0141_The_Police_and_Crime_Commissioner_Elections_Local_Returning_Officers_and_Police",
+    "question": "What monetary amount is prescribed in the Police and Crime Commissioner Elections Local Returning Officers and Police?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0141_The_Police_and_Crime_Commissioner_Elections_Local_Returning_Officers_and_Police.txt",
+    "expected_substring": "1,750",
+    "type": "fact_money"
+  },
+  {
+    "id": "date_EN_0143_The_Information_as_to_Provision_of_Education_England_Amendment_Regulations_2012",
+    "question": "When does the Information as to Provision of Education England Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0143_The_Information_as_to_Provision_of_Education_England_Amendment_Regulations_2012.txt",
+    "expected_substring": "16th July 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0144_The_National_Minimum_Wage_Amendment_Regulations_2012",
+    "question": "When does the National Minimum Wage Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0144_The_National_Minimum_Wage_Amendment_Regulations_2012.txt",
+    "expected_substring": "1st October 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0145_The_Social_Security_Contributions_Amendment_No._3_Regulations_2012",
+    "question": "When does the Social Security Contributions Amendment No. 3 Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0145_The_Social_Security_Contributions_Amendment_No._3_Regulations_2012.txt",
+    "expected_substring": "6th April 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0147_The_Childcare_General_Childcare_Register_Amendment_Regulations_2012",
+    "question": "When does the Childcare General Childcare Register Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0147_The_Childcare_General_Childcare_Register_Amendment_Regulations_2012.txt",
+    "expected_substring": "1st September 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "date_EN_0150_The_Energy_Act_2004_Amendment_Regulations_2012",
+    "question": "When does the Energy Act 2004 Amendment Regulations 2012 come into force?",
+    "expect_answer": true,
+    "expected_doc_filename": "EN_0150_The_Energy_Act_2004_Amendment_Regulations_2012.txt",
+    "expected_substring": "4th December 2012",
+    "type": "fact_date"
+  },
+  {
+    "id": "case_AB_1852_2020_JINTU_DAS_vs_THE_STATE_OF_A",
+    "question": "What is the case JINTU DAS vs THE STATE OF ASSAM about?",
+    "expect_answer": true,
+    "expected_doc_filename": "AB_1852_2020_JINTU_DAS_vs_THE_STATE_OF_ASSAM.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_AB_2520_2020_RATAN_SHIL_vs_THE_STATE_OF_",
+    "question": "What is the case RATAN SHIL vs THE STATE OF ASSAM about?",
+    "expect_answer": true,
+    "expected_doc_filename": "AB_2520_2020_RATAN_SHIL_vs_THE_STATE_OF_ASSAM.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_AB_2880_2020_HUSSAIN_ALI_AND_2_ORS_vs_TH",
+    "question": "What is the case HUSSAIN ALI AND 2 ORS vs THE STATE OF ASSAM about?",
+    "expect_answer": true,
+    "expected_doc_filename": "AB_2880_2020_HUSSAIN_ALI_AND_2_ORS_vs_THE_STATE_OF_ASSAM.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_AB_819_2020_JASIM_UDDIN_LASKAR_vs_THE_ST",
+    "question": "What is the case JASIM UDDIN LASKAR vs THE STATE OF ASSAM about?",
+    "expect_answer": true,
+    "expected_doc_filename": "AB_819_2020_JASIM_UDDIN_LASKAR_vs_THE_STATE_OF_ASSAM.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_Arb.P._2_2020_Chhabil_Dass_Agarwal_vs_St",
+    "question": "What is the case Chhabil Dass Agarwal vs State of Sikkim and Ors about?",
+    "expect_answer": true,
+    "expected_doc_filename": "Arb.P._2_2020_Chhabil_Dass_Agarwal_vs_State_of_Sikkim_and_Ors.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_BAIL_APPLN._13_2020_Anthony_Rai_vs_State",
+    "question": "What is the case 2020 Anthony Rai vs State of Sikkim about?",
+    "expect_answer": true,
+    "expected_doc_filename": "BAIL_APPLN._13_2020_Anthony_Rai_vs_State_of_Sikkim.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_BAIL_APPLN._1_2020_Sayan_Ghosh_and_Anr._",
+    "question": "What is the case 2020 Sayan Ghosh and Anr. vs State of Sikkim about?",
+    "expect_answer": true,
+    "expected_doc_filename": "BAIL_APPLN._1_2020_Sayan_Ghosh_and_Anr._vs_State_of_Sikkim.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_BAIL_APPLN._2_2020_Rupa_Gurung_vs_State_",
+    "question": "What is the case 2020 Rupa Gurung vs State of Sikkim about?",
+    "expect_answer": true,
+    "expected_doc_filename": "BAIL_APPLN._2_2020_Rupa_Gurung_vs_State_of_Sikkim.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_BAIL_APPLN._9_2020_Shri_Tshering_Ganjay_",
+    "question": "What is the case 2020 Shri Tshering Ganjay Lachunpa vs State Of Sikkim about?",
+    "expect_answer": true,
+    "expected_doc_filename": "BAIL_APPLN._9_2020_Shri_Tshering_Ganjay_Lachunpa_vs_State_Of_Sikkim.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_BA_10_2020_MINTU_DEBNATH_vs_STATE_OF_MEG",
+    "question": "What is the case MINTU DEBNATH vs STATE OF MEGHALAYA about?",
+    "expect_answer": true,
+    "expected_doc_filename": "BA_10_2020_MINTU_DEBNATH_vs_STATE_OF_MEGHALAYA.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_Bail_App_211_2020_AMAN_SAGOTRA_vs_UNION_",
+    "question": "What is the case 2020 AMAN SAGOTRA vs UNION TERRITORY OF JAMMU AND KASHMIR TH OFFICE IN CHAR about?",
+    "expect_answer": true,
+    "expected_doc_filename": "Bail_App_211_2020_AMAN_SAGOTRA_vs_UNION_TERRITORY_OF_JAMMU_AND_KASHMIR_TH_OFFICE_IN_CHAR.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_Bail_Appln._370_2020_UJJAL_BORO_vs_THE_S",
+    "question": "What is the case 2020 UJJAL BORO vs THE STATE OF ASSAM about?",
+    "expect_answer": true,
+    "expected_doc_filename": "Bail_Appln._370_2020_UJJAL_BORO_vs_THE_STATE_OF_ASSAM.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_Bail_Appln._62_2020_MD_KUTUB_ALI_vs_THE_",
+    "question": "What is the case 2020 MD KUTUB ALI vs THE STATE OF ASSAM about?",
+    "expect_answer": true,
+    "expected_doc_filename": "Bail_Appln._62_2020_MD_KUTUB_ALI_vs_THE_STATE_OF_ASSAM.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_Bail_Appln._834_2020_AKHIL_GOGOI_vs_THE_",
+    "question": "What is the case 2020 AKHIL GOGOI vs THE STATE OF ASSAM about?",
+    "expect_answer": true,
+    "expected_doc_filename": "Bail_Appln._834_2020_AKHIL_GOGOI_vs_THE_STATE_OF_ASSAM.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CONAA_5_2015_ABDUL_QAYOOM_NIZAMI_vs_M.D.",
+    "question": "What is the case ABDUL QAYOOM NIZAMI vs M.D.JKSFC.AND ANR about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CONAA_5_2015_ABDUL_QAYOOM_NIZAMI_vs_M.D.JKSFC.AND_ANR.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CPOWP_100_2010_DHARMINDER_KOHLI_AND_ORS_",
+    "question": "What is the case DHARMINDER KOHLI AND ORS vs B.S.BALICHIEF EXCUTIVE OFFICER AND ORS about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CPOWP_100_2010_DHARMINDER_KOHLI_AND_ORS_vs_B.S.BALICHIEF_EXCUTIVE_OFFICER_AND_ORS.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CPSW_510_2011_NIGHAT_PARVEEN_vs_MR._FARO",
+    "question": "What is the case NIGHAT PARVEEN vs MR. FAROOQ AHMAD FAKHTOO about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CPSW_510_2011_NIGHAT_PARVEEN_vs_MR._FAROOQ_AHMAD_FAKHTOO.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CR._MISC._10251_2020_MD._MOHASIN_MD._MOH",
+    "question": "What is the case 2020 MD. MOHASIN MD. MOHSHIN vs THE STATE OF BIHAR about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CR._MISC._10251_2020_MD._MOHASIN_MD._MOHSHIN_vs_THE_STATE_OF_BIHAR.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CR._MISC._11115_2020_BARUN_KUMAR_THAKUR_",
+    "question": "What is the case 2020 BARUN KUMAR THAKUR VARUN KUMAR THAKUR BARUN THAKUR vs THE STATE OF BIH about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CR._MISC._11115_2020_BARUN_KUMAR_THAKUR_VARUN_KUMAR_THAKUR_BARUN_THAKUR_vs_THE_STATE_OF_BIH.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CR._MISC._1505_2020_HARI_OM_KUMAR_vs_The",
+    "question": "What is the case 2020 HARI OM KUMAR vs The State of Bihar about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CR._MISC._1505_2020_HARI_OM_KUMAR_vs_The_State_of_Bihar.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CR._MISC._3024_2020_CHANDAN_KUMAR_vs_THE",
+    "question": "What is the case 2020 CHANDAN KUMAR vs THE STATE OF BIHAR about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CR._MISC._3024_2020_CHANDAN_KUMAR_vs_THE_STATE_OF_BIHAR.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CR._MISC._3739_2020_RANJIT_MANJHI_RANJEE",
+    "question": "What is the case 2020 RANJIT MANJHI RANJEET MANJHI vs The State of Bihar about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CR._MISC._3739_2020_RANJIT_MANJHI_RANJEET_MANJHI_vs_The_State_of_Bihar.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CR._MISC._4749_2020_PRABHAT_KUMAR_MAHTO_",
+    "question": "What is the case 2020 PRABHAT KUMAR MAHTO PINTU MAHTO vs The State of Bihar about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CR._MISC._4749_2020_PRABHAT_KUMAR_MAHTO_PINTU_MAHTO_vs_The_State_of_Bihar.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CR._MISC._4828_2020_Rambabu_Prasad_vs_Th",
+    "question": "What is the case 2020 Rambabu Prasad vs The State of Bihar about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CR._MISC._4828_2020_Rambabu_Prasad_vs_The_State_of_Bihar.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CR._MISC._5617_2020_RANJIT_RANJEET_SINGH",
+    "question": "What is the case 2020 RANJIT RANJEET SINGH vs The State of Bihar about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CR._MISC._5617_2020_RANJIT_RANJEET_SINGH_vs_The_State_of_Bihar.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CR._MISC._6649_2020_SUMIT_YADAV_vs_The_S",
+    "question": "What is the case 2020 SUMIT YADAV vs The State of Bihar about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CR._MISC._6649_2020_SUMIT_YADAV_vs_The_State_of_Bihar.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CR._MISC._6705_2020_RADHEY_SHYAM_YADAV_R",
+    "question": "What is the case 2020 RADHEY SHYAM YADAV RADHEY SHYAM vs The State of Bihar about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CR._MISC._6705_2020_RADHEY_SHYAM_YADAV_RADHEY_SHYAM_vs_The_State_of_Bihar.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CR._MISC._817_2020_KUNDAN_KUMAR_vs_The_S",
+    "question": "What is the case 2020 KUNDAN KUMAR vs The State of Bihar about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CR._MISC._817_2020_KUNDAN_KUMAR_vs_The_State_of_Bihar.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CR._MISC._8546_2020_PAWAN_KUMAR_vs_THE_S",
+    "question": "What is the case 2020 PAWAN KUMAR vs THE STATE OF BIHAR about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CR._MISC._8546_2020_PAWAN_KUMAR_vs_THE_STATE_OF_BIHAR.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CR._MISC._9247_2020_RAHUL_KUMAR_vs_The_S",
+    "question": "What is the case 2020 RAHUL KUMAR vs The State of Bihar about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CR._MISC._9247_2020_RAHUL_KUMAR_vs_The_State_of_Bihar.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CR._WJC_871_2017_Ajeet_Kumar_vs_The_Stat",
+    "question": "What is the case 2017 Ajeet Kumar vs The State Of Bihar Through The Director General Of Poli about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CR._WJC_871_2017_Ajeet_Kumar_vs_The_State_Of_Bihar_Through_The_Director_General_Of_Poli.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CRIL._PETN._28_2020_JANGPAO_HAOKIP_vs_ST",
+    "question": "What is the case 2020 JANGPAO HAOKIP vs STATE OF MANIPUR AND ORS about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRIL._PETN._28_2020_JANGPAO_HAOKIP_vs_STATE_OF_MANIPUR_AND_ORS.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CRL.L.P_1_2018_State_of_Sikkim_vs_Vinay_",
+    "question": "What is the case State of Sikkim vs Vinay Rai about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRL.L.P_1_2018_State_of_Sikkim_vs_Vinay_Rai.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CRL._REV._P_3_2019_Binod_Tamang_vs_State",
+    "question": "What is the case 3 2019 Binod Tamang vs State Of Sikkim about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRL._REV._P_3_2019_Binod_Tamang_vs_State_Of_Sikkim.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CRM_4369_2020_PADMA_BHAKAT_ANR_vs_STATE_",
+    "question": "What is the case PADMA BHAKAT ANR vs STATE OF WEST BENGAL about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRM_4369_2020_PADMA_BHAKAT_ANR_vs_STATE_OF_WEST_BENGAL.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CRM_5758_2020_GOLAM_KIBRIA_TITAN_TITAN_S",
+    "question": "What is the case GOLAM KIBRIA TITAN TITAN SK ORS vs STATE OF WEST BENGAL about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRM_5758_2020_GOLAM_KIBRIA_TITAN_TITAN_SK_ORS_vs_STATE_OF_WEST_BENGAL.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CRM_6559_2020_SADIQUL_ISLAM_vs_State_of_",
+    "question": "What is the case SADIQUL ISLAM vs State of West Bengal about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRM_6559_2020_SADIQUL_ISLAM_vs_State_of_West_Bengal.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CRM_8976_2020_RIYAJUL_GOLDER_vs_State_of",
+    "question": "What is the case RIYAJUL GOLDER vs State of West Bengal about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRM_8976_2020_RIYAJUL_GOLDER_vs_State_of_West_Bengal.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CRPI_-_O_239_2018_BABU_BISWAS_vs_TUSHAR_",
+    "question": "What is the case 239 2018 BABU BISWAS vs TUSHAR KR. DAS AND 2 ORS about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRPI_-_O_239_2018_BABU_BISWAS_vs_TUSHAR_KR._DAS_AND_2_ORS.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "case_CRP_35_2020_LORINA_JYRWA_NONGSIEJ_vs_ROB",
+    "question": "What is the case LORINA JYRWA NONGSIEJ vs ROBERT FELLER KHARBUKI about?",
+    "expect_answer": true,
+    "expected_doc_filename": "CRP_35_2020_LORINA_JYRWA_NONGSIEJ_vs_ROBERT_FELLER_KHARBUKI.pdf",
+    "expected_substring": null,
+    "type": "case_summary"
+  },
+  {
+    "id": "adv_capital_france",
+    "question": "What is the capital of France?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "adv_fed_rate",
+    "question": "What interest rate does the Federal Reserve currently set?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "adv_recipe",
+    "question": "How do I bake a chocolate cake?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "adv_weather",
+    "question": "What is the weather forecast for tomorrow in London?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "adv_meaning_of_life",
+    "question": "What is the meaning of life according to these documents?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "adv_us_law",
+    "question": "What does the United States Constitution say about free speech?",
+    "expect_answer": false,
+    "type": "adjacent_wrong_jurisdiction"
+  },
+  {
+    "id": "adv_gdpr",
+    "question": "What are the penalties under the EU GDPR for data breaches?",
+    "expect_answer": false,
+    "type": "adjacent_wrong_topic"
+  },
+  {
+    "id": "adv_crypto",
+    "question": "What is the current price of Bitcoin?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "adv_nonsense",
+    "question": "Purple elephants dance quietly beneath the number seven.",
+    "expect_answer": false,
+    "type": "nonsense"
+  },
+  {
+    "id": "adv_math",
+    "question": "What is the square root of 144?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "adv_medical",
+    "question": "What is the recommended dosage of ibuprofen for adults?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "adv_fake_regulation",
+    "question": "What does the Martian Colonization Amendment Regulations 2099 specify?",
+    "expect_answer": false,
+    "type": "plausible_but_fake"
+  },
+  {
+    "id": "adv_fake_case",
+    "question": "What was the ruling in Smith vs Jones regarding intellectual property in California?",
+    "expect_answer": false,
+    "type": "plausible_but_fake"
+  },
+  {
+    "id": "adv_sports",
+    "question": "Who won the World Cup in 2022?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "adv_programming",
+    "question": "How do I write a for loop in Python?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  }
+]
