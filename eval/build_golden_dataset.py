@@ -20,6 +20,10 @@ FORCE_DATE_RE = re.compile(r"come into force on ([^.]{5,45}?)\.")
 # UK statutory instruments in this corpus use a space as the thousands
 # separator ("£75 000"), not a comma — match either.
 MONEY_RE = re.compile(r"(?:is|of|sum of|amount of) £(\d+(?:[,\s]\d{3})*)(?:\s|\.)")
+# Broader match (no preceding-phrase requirement) used only to count how many
+# *distinct* amounts a document mentions, to detect ambiguous fee-schedule
+# documents — see build_answerable_from_txt.
+ALL_MONEY_RE = re.compile(r"£(\d+(?:[,\s]\d{3})*)")
 
 
 def title_from_filename(stem: str) -> str:
@@ -48,8 +52,15 @@ def build_answerable_from_txt():
                 "type": "fact_date",
             })
 
+        # Only ask a money question when the document mentions exactly one
+        # distinct amount — fee schedules and allowance tables with many
+        # different figures make "what monetary amount is prescribed"
+        # genuinely ambiguous (there's no single correct answer), which
+        # showed up as false "failures" where the model's refusal to pick
+        # one number was actually the more honest response.
+        distinct_amounts = set(ALL_MONEY_RE.findall(text))
         m2 = MONEY_RE.search(text)
-        if m2:
+        if m2 and len(distinct_amounts) == 1:
             amount = m2.group(1)
             cases.append({
                 "id": f"money_{f.stem}",

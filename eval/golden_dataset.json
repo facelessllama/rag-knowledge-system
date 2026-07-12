@@ -32,14 +32,6 @@
     "type": "fact_date"
   },
   {
-    "id": "money_EN_0003_The_Energy_Performance_of_Buildings_England_and_Wales_Regulations_2012",
-    "question": "What monetary amount is prescribed in the Energy Performance of Buildings England and Wales Regulations 2012?",
-    "expect_answer": true,
-    "expected_doc_filename": "EN_0003_The_Energy_Performance_of_Buildings_England_and_Wales_Regulations_2012.txt",
-    "expected_substring": "1",
-    "type": "fact_money"
-  },
-  {
     "id": "date_EN_0005_The_Education_Educational_Provision_for_Improving_Behaviour_Amendment_Regulation",
     "question": "When does the Education Educational Provision for Improving Behaviour Amendment Regulation come into force?",
     "expect_answer": true,
@@ -102,14 +94,6 @@
     "expected_doc_filename": "EN_0017_The_Personal_Injuries_Civilians_Scheme_Amendment_Order_2012.txt",
     "expected_substring": "9th April 2012",
     "type": "fact_date"
-  },
-  {
-    "id": "money_EN_0017_The_Personal_Injuries_Civilians_Scheme_Amendment_Order_2012",
-    "question": "What monetary amount is prescribed in the Personal Injuries Civilians Scheme Amendment Order 2012?",
-    "expect_answer": true,
-    "expected_doc_filename": "EN_0017_The_Personal_Injuries_Civilians_Scheme_Amendment_Order_2012.txt",
-    "expected_substring": "4,940",
-    "type": "fact_money"
   },
   {
     "id": "date_EN_0021_The_School_Information_England_Amendment_Regulations_2012",
@@ -198,14 +182,6 @@
     "expected_doc_filename": "EN_0041_The_Education_Student_Loans_Repayment_Amendment_No._2_Regulations_2012.txt",
     "expected_substring": "18 June 2012",
     "type": "fact_date"
-  },
-  {
-    "id": "money_EN_0041_The_Education_Student_Loans_Repayment_Amendment_No._2_Regulations_2012",
-    "question": "What monetary amount is prescribed in the Education Student Loans Repayment Amendment No. 2 Regulations 2012?",
-    "expect_answer": true,
-    "expected_doc_filename": "EN_0041_The_Education_Student_Loans_Repayment_Amendment_No._2_Regulations_2012.txt",
-    "expected_substring": "21,000",
-    "type": "fact_money"
   },
   {
     "id": "date_EN_0043_The_UK_Borders_Act_2007_Border_and_Immigration_InspectorateJoint_Working_etc._Or",
@@ -448,14 +424,6 @@
     "type": "fact_date"
   },
   {
-    "id": "money_EN_0086_The_School_and_Early_Years_Finance_England_Regulations_2012",
-    "question": "What monetary amount is prescribed in the School and Early Years Finance England Regulations 2012?",
-    "expect_answer": true,
-    "expected_doc_filename": "EN_0086_The_School_and_Early_Years_Finance_England_Regulations_2012.txt",
-    "expected_substring": "10,000",
-    "type": "fact_money"
-  },
-  {
     "id": "date_EN_0087_The_Prosecution_of_Offences_Custody_Time_Limits_Amendment_Regulations_2012",
     "question": "When does the Prosecution of Offences Custody Time Limits Amendment Regulations 2012 come into force?",
     "expect_answer": true,
@@ -470,14 +438,6 @@
     "expected_doc_filename": "EN_0088_The_Animals_Scientific_Procedures_Act_1986_Fees_Order_2012.txt",
     "expected_substring": "the 1st January 2013",
     "type": "fact_date"
-  },
-  {
-    "id": "money_EN_0088_The_Animals_Scientific_Procedures_Act_1986_Fees_Order_2012",
-    "question": "What monetary amount is prescribed in the Animals Scientific Procedures Act 1986 Fees Order 2012?",
-    "expect_answer": true,
-    "expected_doc_filename": "EN_0088_The_Animals_Scientific_Procedures_Act_1986_Fees_Order_2012.txt",
-    "expected_substring": "252",
-    "type": "fact_money"
   },
   {
     "id": "date_EN_0091_The_Community_Right_to_Challenge_Fire_and_Rescue_Authorities_and_Rejection_of_Ex",
@@ -592,14 +552,6 @@
     "type": "fact_date"
   },
   {
-    "id": "money_EN_0123_The_Ecclesiastical_Judges_Legal_Officers_and_Others_Fees_Order_2012",
-    "question": "What monetary amount is prescribed in the Ecclesiastical Judges Legal Officers and Others Fees Order 2012?",
-    "expect_answer": true,
-    "expected_doc_filename": "EN_0123_The_Ecclesiastical_Judges_Legal_Officers_and_Others_Fees_Order_2012.txt",
-    "expected_substring": "189",
-    "type": "fact_money"
-  },
-  {
     "id": "date_EN_0125_The_Eritrea_Asset-Freezing_Regulations_2012",
     "question": "When does the Eritrea Asset-Freezing Regulations 2012 come into force?",
     "expect_answer": true,
@@ -662,14 +614,6 @@
     "expected_doc_filename": "EN_0140_The_Occupational_Pensions_Revaluation_Order_2012.txt",
     "expected_substring": "1st January 2013",
     "type": "fact_date"
-  },
-  {
-    "id": "money_EN_0141_The_Police_and_Crime_Commissioner_Elections_Local_Returning_Officers_and_Police",
-    "question": "What monetary amount is prescribed in the Police and Crime Commissioner Elections Local Returning Officers and Police?",
-    "expect_answer": true,
-    "expected_doc_filename": "EN_0141_The_Police_and_Crime_Commissioner_Elections_Local_Returning_Officers_and_Police.txt",
-    "expected_substring": "1,750",
-    "type": "fact_money"
   },
   {
     "id": "date_EN_0143_The_Information_as_to_Provision_of_Education_England_Amendment_Regulations_2012",
