@@ -1,0 +1,607 @@
+The Merchant Shipping (Accident Reporting and Investigation) Regulations 2012
+The Secretary of State for Transport, in exercise of the powers conferred by section 267 of the Merchant Shipping Act 1995 , makes the following Regulations:
+Citation, commencement and revocation
+1
+1
+These Regulations may be cited as the Merchant Shipping (Accident Reporting and Investigation) Regulations 2012.
+2
+These Regulations come into force on 31st July 2012.
+3
+The Merchant Shipping (Accident Reporting and Investigation) Regulations 2005 are revoked and any investigation commenced under those Regulations which has not been completed shall continue as if it had been started under these Regulations.
+Interpretation
+2
+1
+In these Regulations —
+“access” means the process of embarking on or disembarking from a ship, by whatever means employed;
+“accident” has the meaning given in regulation 3;
+“ the Act ” means the Merchant Shipping Act 1995;
+“ Chief Inspector ” means the Chief Inspector of Marine Accidents appointed by the Secretary of State under section 267(1) of the Act, and any Deputy Chief Inspector;
+“Council Directive 1999/35/ EC ” means Council Directive 1999/35/EC of 29th April 1999 on a system of mandatory surveys for the safe operation of regular ro-ro ferries and high speed passenger craft services ;
+“Court”, in the case of judicial proceedings or an application for disclosure made in England, Wales or Northern Ireland means the High Court , or in the case of judicial proceedings or an application for disclosure in Scotland means the Court of Session;
+“Directive vessel” means a vessel covered by the scope of the Directive ;
+“the Directive” means Directive 2009/18/EC of the European Parliament and the Council of 23 rd April 2009 establishing the fundamental principles governing the investigation of accidents in the maritime transport sector and amending Council Directive 1999/35/EC and Directive 2002/59/EC of the European Parliament and the Council ;
+“ EMCIP ” means the European Marine Information Casualty Platform ;
+“ IMO ” means the International Maritime Organisation;
+“IMO Code” means the Code for the Investigation of Marine Casualties and Incidents annexed to Resolution A.849(2.0) of the IMO Assembly of 27 th November 1997 as amended at the time of the making of these Regulations;
+“IMO guidelines” means the Resolution and guidelines on fair treatment of seafarers in the event of a maritime accident ;
+“incapacitation” means a person’s inability to undertake their full range of normal activities;
+“inspector” means an inspector of marine accidents appointed by the Secretary of State under section 267(1) of the Act and in the context of the safety investigation of a particular accident includes any person appointed to investigate that accident under regulation 11(2);
+“ MCA ” means the Maritime and Coastguard Agency, an executive agency of the Department for Transport;
+“pleasure vessel” means —
+any vessel which is —
+wholly owned by an individual or individuals and used only for the sport or pleasure of the owner or the immediate family or friends of the owner, or
+owned by a body corporate and used only for the sport or pleasure of employees or officers of the body corporate, or their immediate family or friends,
+and is on a voyage or excursion which is one for which the owner is not paid for or in connection with operating the vessel or carrying any person , other than as a contribution to the direct expenses of the operation of the vessel incurred during the voyage or excursion, or
+any vessel which is wholly owned by or on behalf of a members’ club formed for the purpose of sport or pleasure which, at the time it is being used, is used only for the sport or pleasure of members of that club or their immediate family, and for the use of which any charges levied are paid into club funds and applied for the general use of the club;
+and no payments other than those mentioned above are made by or on behalf of the users of the vessel, other than by the owner, and in this definition, “immediate family” means in relation to an individual, the husband, wife or civil partner of the individual, and a brother, sister, ancestor or lineal descendant of that individual or of that individual’s husband, wife or civil partner;
+“preliminary assessment” means a preparatory evaluation by the Chief Inspector which is intended to establish the likely causes and circumstances of an accident with a view to deciding whether or not a safety investigation should be undertaken;
+“ro-ro ferry” and “high speed passenger craft” shall have the same meaning as those contained in Article 2 of Council Directive 1999/35/EC ;
+“safety investigation” means an investigation or inquiry into an accident conducted with the objective of preventing future accidents.
+“senior surviving officer” means the senior surviving officer in the deck department and if there is no surviving officer in the deck department; then whoever is the senior surviving officer between —
+the senior surviving engineer officer; or
+the senior surviving electro-technical officer;
+“serious injury” means —
+any fracture, other than to a finger, thumb or toe;
+any loss of a limb or part of a limb;
+dislocation of the shoulder, hip, knee or spine;
+loss of sight, whether temporary or permanent;
+penetrating injury to the eye;
+any injury to a person employed or carried in a ship which occurs on board or during access which results in incapacitation for more than three consecutive days excluding the day of the accident;
+any other injury —
+leading to hypothermia or unconsciousness,
+requires resuscitation, or
+requiring admittance to a hospital or other medical facility as an in-patient for more than 24 hours;
+“severe pollution” shall have the same meaning as that set out by the IMO ;
+“ship’s boat” includes a liferaft, painting punt and any boat normally carried by a ship;
+“substantial interest” shall have the same meaning as that set out in paragraph 2.20 of the IMO Code Casualty Related Matters MSC-MEPC.3/circ.2. of 13 th June 2008.
+“United Kingdom ship” means a ship registered in the United Kingdom or a ship that is not registered under the law of any State but is eligible for registration in the United Kingdom under the Act;
+“voyage data recorder” means the electronic or mechanical equipment which may be installed on a ship to record key navigational and control information.
+2
+Where a ship is managed by a person other than by the owner (whether on behalf of the owner or some other person, or on their own behalf), a reference in these Regulations to the owner shall be construed as including a reference to that person.
+Meaning of “accident”
+3
+1
+Subject to paragraph (2), for the purposes of these Regulations and of section 267 of the Act, “accident” means —
+a
+a marine casualty, which is an event or sequence of events that has resulted in any of the following and has occurred directly by or in connection with the operation of a ship involving —
+i
+the death of, or serious injury to, a person;
+ii
+the loss of a person from a ship;
+iii
+the loss, presumed loss or abandonment of a ship;
+iv
+material damage to a ship;
+v
+the stranding or disabling of a ship, or the involvement of a ship in a collision;
+vi
+material damage to marine infrastructure external of a ship, that could seriously endanger the safety of the ship, another ship or any individual;
+vii
+pollution, or the potential for such pollution to the environment caused by damage to a ship or ships, or
+b
+a very serious marine casualty, which is an event or sequence of events that has resulted in any of the following and has occurred directly by or in connection with the operation of a ship involving —
+i
+the total loss of a ship;
+ii
+loss of life;
+iii
+severe pollution, or
+c
+a serious marine casualty, which is an event or sequence of events that has occurred directly by or in connection with the operation of a ship but which does not qualify as a very serious marine casualty, that involves —
+i
+fire;
+ii
+explosion;
+iii
+collision;
+iv
+grounding;
+v
+contact;
+vi
+heavy weather damage;
+vii
+ice damage, or a suspected hull defect;
+resulting in any of the following —
+aa
+the immobilization of the main engines;
+bb
+extensive accommodation damage;
+cc
+severe structural damage including penetration of the hull under water rendering the ship unfit to proceed;
+dd
+pollution;
+ee
+a breakdown that necessitates towage or shore assistance, or
+d
+a marine incident, which is an event or sequences of events other than those listed in sub-paragraphs (a) to (c) which has occurred directly in connection with the operation of a ship that endangered, or if not corrected would endanger the safety of a ship, its occupants or any other person or the environment.
+2
+An accident does not include a deliberate act or omission with the intention to cause harm to the safety of a ship, an individual or the environment.
+Application
+4
+1
+These Regulations apply to all accidents involving or occurring on board —
+a
+any United Kingdom ship, except that regulation 6 does not apply in relation to —
+i
+a pleasure vessel;
+ii
+a recreational craft which is hired on a bareboat basis; or
+iii
+any other craft or boat, other than one carrying passengers, which is in commercial use in a harbour or on an inland waterway and is less than 8 metres overall in length unless, in the case of a craft or boat mentioned in sub-paragraphs (ii) or (iii), the accident involves any of the following —
+aa
+explosion;
+bb
+fire;
+cc
+death;
+dd
+serious injury;
+ee
+capsize of a power-driven craft or boat; or
+ff
+severe pollution; or
+b
+any other ship within the United Kingdom or United Kingdom waters save that regulations 6, 10(1), 10(2) or 10(3) only apply in relation to such a ship, to which these Regulations apply, if-
+i
+it is within the jurisdiction of a harbour master or Queen’s harbour master appointed or required to be appointed, under any enactment;
+ii
+it is employed in carrying passengers to or from a port in the United Kingdom or a place mentioned in sub-paragraph (i); or
+iii
+an inspector, or other person acting on behalf of the Chief Inspector, requires that any of the evidence mentioned in regulation 10(1) or 10(2) be preserved; or
+c
+any ship which in the opinion of the Chief Inspector involves the substantial interests of the United Kingdom.
+2
+A safety investigation may also be held under regulation 8 into an accident involving or occurring on board a ship which is not a United Kingdom ship and which at the time of the accident was not within the United Kingdom or United Kingdom waters , if the Secretary of State so determines.
+3
+For the purpose of this regulation, “hired on a bareboat basis” means hired without a professional master, skipper or crew.
+Objective of a safety investigation
+5
+1
+The sole objective of a safety investigation into an accident under these Regulations shall be the prevention of future accidents through the ascertainment of its causes and circumstances.
+2
+It shall not be the purpose of such an investigation to determine liability nor, except so far as is necessary to achieve its objective, to apportion blame.
+Duty to report accidents and serious injuries
+6
+1
+When an accident occurs the following persons associated with the ship shall notify the Chief Inspector as soon as is practicable following the accident and by the quickest means available —
+a
+the master or, if the master has not survived, the senior surviving officer; and
+b
+the ship’s owner unless they have ascertained to their satisfaction that the master or senior surviving officer has reported the accident in accordance with sub-paragraph (a).
+2
+In addition to any notification made under paragraph (1) the following persons shall notify the Chief Inspector as soon as is practicable and by the quickest means available any accident of which they are aware —
+a
+in the case of an accident within or adjacent to the limits of any harbour, the harbour authority for that harbour;
+b
+in the case of an accident on any inland waterway in the United Kingdom, the person, authority or body having responsibility for that waterway; or
+c
+an official of the MCA in respect of an accident within United Kingdom waters.
+3
+A person making a notification in accordance with paragraph (1) or (2) must, in so far as is practicable, include the information set out in the Schedule.
+4
+In addition to making a notification under the preceding paragraphs, the persons specified in paragraphs (1)(a) and (b) and (2) must, so far as is reasonably practicable, ensure that the circumstances of every accident are examined and that a report giving the findings of such examination, stating any measures taken or proposed to be taken to prevent a recurrence, shall be provided to the Chief Inspector as soon as is practicable.
+Preliminary assessments
+7
+1
+In the case of a serious marine casualty, in relation to a vessel covered by the Directive, the Chief Inspector must carry out a preliminary assessment in order to decide whether or not to undertake a safety investigation.
+2
+When carrying out a preliminary assessment the Chief Inspector must take into account, but need not be limited to;
+a
+the seriousness of the accident;
+b
+the type of vessel and or cargo involved;
+c
+the potential for the findings of a safety investigation to lead to the prevention of future accidents.
+3
+Where the Chief Inspector decides not to undertake a safety investigation into a serious marine casualty in relation to a vessel covered by the Directive, the reasons for that decision shall be recorded and notified to the European Commission.
+4
+For the purposes of a preliminary assessment the powers in section 259 of the Act shall apply.
+Ordering of a safety investigation
+8
+1
+The Chief Inspector must ensure a safety investigation is carried out in relation to any accident that is a very serious marine casualty as regards a vessel covered by the Directive.
+2
+The Chief Inspector may decide to undertake a safety investigation in relation to an accident that is a serious marine casualty having carried out a preliminary assessment in accordance with regulation 7(1) and (2).
+3
+The safety investigation shall include but is not limited to —
+a
+the collection and analysis of evidence;
+b
+the identification of causal factors, and
+c
+where appropriate, the making of safety recommendations.
+4
+The Chief Inspector may carry out a safety investigation in relation to an accident that is a marine casualty.
+5
+Where the Chief Inspector has received a notification under paragraph (1) or (2) of regulation 6 or a report under paragraph (4) of that regulation, the Chief Inspector must decide whether or not a safety investigation should be carried out and shall publish details of that decision as soon as is reasonably practical, in such manner as is seen fit.
+6
+Before deciding whether a safety investigation should be carried out and if so, what form it should take, the Chief Inspector may obtain such information as the Chief Inspector considers necessary concerning the accident and any remedial action taken as a result.
+7
+Any person mentioned in regulation 6(1) or (2), as well as any other person who is in possession of information requested by an inspector for the purposes of paragraph (6), shall provide such information to the best of their ability and knowledge.
+8
+In the case of an accident to which regulation 3 applies, the Chief Inspector may decide not to carry out a safety investigation if satisfied, or it is otherwise established to the Chief Inspector’s satisfaction, that —
+a
+any loss of life resulted from suicide or natural causes, or
+b
+any serious injury resulted from attempted suicide,
+and in such circumstances the Chief Inspector may discontinue any safety investigation which has already been commenced.
+9
+Public notice that a safety investigation has been commenced may be given in such manner as the Chief Inspector may think fit, and may invite any persons who so desire to present relevant evidence to an Inspector in such a manner and within such a time as is specified in the notice.
+10
+A safety investigation shall be started as promptly as is practicable by the Chief Inspector after an accident occurs, and in any event no later than two months after the Chief Inspector is notified of its occurrence.
+Subsequent or reopened investigations
+9
+1
+Notwithstanding a decision not to investigate, the Chief Inspector may at any subsequent time undertake a safety investigation if satisfied that there is a good reason in the interests of future safety to do so.
+2
+The Chief Inspector may re-open a safety investigation if, following its completion, new and important evidence is discovered which in the Chief Inspector’s opinion could have a material effect on any safety recommendations made.
+3
+Any safety investigation may be re-opened either in whole or as to any part of it and a re-opened investigation shall be subject to and conducted in accordance with the provisions of these Regulations.
+Preservation of evidence
+10
+1
+Following an accident involving a ship to which regulation 4 applies and is reportable under regulation 6, the persons mentioned in paragraph (3) shall so far as is practicable ensure that all —
+a
+charts;
+b
+log books;
+c
+recorded information relating to the period preceding, during and after an accident, howsoever recorded or retained, including information from a voyage data recorder and video recorders; and
+d
+all documents or other records which might reasonably be considered pertinent to the accident,
+are kept and that no alteration is made to any recordings or entries in them.
+2
+In the case of an accident involving a ship to which regulation 4 applies and is reportable under regulation 6, the persons mentioned in paragraph (3) must also ensure that —
+a
+all information from a voyage data recorder or recording system relating to the circumstances of an accident is saved and preserved, in particular by taking steps, where necessary to prevent such information from being overwritten; and
+b
+any other equipment which might reasonably be considered pertinent to the investigation of the accident is so far as practicable left undisturbed.
+3
+The persons referred to in paragraphs (1) and (2) are —
+a
+the master or, if the master has not survived, the senior surviving officer, and
+b
+the ship’s owner, unless the ship’s owner has ascertained to their satisfaction that the master or senior surviving officer has taken the action in question.
+4
+The duty under paragraph (1) to ensure that documents, information or records are kept and not altered and to ensure under paragraph (2) that information is saved and preserved, or that equipment is left undisturbed continues until —
+a
+published notification is received from the Chief Inspector that no safety investigation is to take place or that the investigation has been completed;
+b
+30 days have passed since the Chief Inspector received the report referred to in regulation 6(1) and no notice has been published by the Chief Inspector that it has been decided to investigate the matter; or
+c
+the Chief Inspector or an inspector carrying out the investigation gives written notification that they are no longer required.
+5
+Following an accident in United Kingdom waters involving a ship which is not a United Kingdom ship, the persons mentioned in paragraph (3) must comply with the requirements of paragraphs (1) and (2) if required to do so by or on behalf of the Chief Inspector.
+6
+An inspector may, pending investigation, prohibit persons from gaining access to, or interfering with, any ship, ship’s boat or other equipment involved in an accident.
+7
+Following an accident, the Chief Inspector may, if it is considered reasonably necessary for the collection or preservation of evidence in connection with any safety investigation, including a preliminary assessment, relating to the accident, require any of the master or, if the master has not survived, the senior surviving officer and the ship’s owner to ensure that a ship is accessible to any inspector engaged in the investigation of such accident, until the process of collecting or preserving evidence has been completed to the inspector’s satisfaction.
+8
+The Chief Inspector shall not require a ship to which regulations 4(1)(a), (b) or (c) apply to remain in United Kingdom waters any longer than is necessary for the collection or preservation, as the case may be, of the evidence mentioned in paragraph (7) and shall take all reasonable steps to ensure that such evidence is collected or preserved expeditiously.
+9
+No requirement under paragraph (7) shall be made unless the Chief Inspector has reasonable grounds for concern that if a ship to which regulation 4(1)(a), (b) or (c) applies leaves United Kingdom waters, access to it, to any member of the crew, or to any evidence on board relating to the investigation may subsequently be denied to the Chief Inspector or any inspector conducting such investigation.
+Conduct of a safety investigation
+11
+1
+If the Chief Inspector decides in accordance with regulation 8(2) and (4) and (5) that a safety investigation must be carried out, it must be undertaken by one or more inspectors at such times and places and in such manner as appear to them most conducive to achieving the objective set out in regulation 5.
+2
+The Chief Inspector may also appoint one or more persons who are not inspectors appointed under the Act for the purpose of carrying out an investigation in circumstances where inspectors appointed under the Act are not conveniently available or where the persons appointed have special qualifications or experience, and such persons will have the powers conferred on an inspector by sections 259 and 267(8) of the Act.
+3
+A safety investigation may extend to cover, but need not be limited to —
+a
+all events and circumstances preceding the accident together with subsequent events and circumstances;
+b
+issues involving salvage and pollution connected with the accident;
+c
+the conduct of search and rescue operations,
+if in the opinion of the Chief Inspector they are relevant to future safety.
+4
+Every person required to attend before an inspector must be allowed the reasonable expenses of attending, payable by the Secretary of State.
+5
+Any person, not being a solicitor or other professional legal adviser acting solely on behalf of the person required to attend, who —
+a
+has been allowed by an inspector to be present; or
+b
+has been nominated to be present by a person required to attend,
+at a witness interview before an inspector , may at any time be excluded from being present by the inspector with the agreement of the Chief Inspector, if —
+i
+both the inspector and Chief Inspector have substantial reason to believe that the person’s presence would hamper the investigation with the result that the objective in regulation 5 is likely to be hindered and future safety thereby endangered; and
+ii
+the Chief Inspector is satisfied, having regard to all the circumstances, that it is proper to exclude that person.
+6
+Where a person nominated to be present has been excluded in accordance with paragraph (5), the person required to attend may be entitled to nominate another person to be present at the witness interview in place of the excluded person and paragraph (5) applies to that other person.
+7
+Any document, record or information mentioned in regulation 10, properly required by an inspector to be produced for the purposes of a safety investigation (whether on board the ship involved or otherwise) may be retained by the inspector until the safety investigation is completed.
+8
+In relation to any preliminary assessment which the Chief Inspector has conducted under regulation 7 the Chief Inspector must decide, having regard to the objective set out in regulation 5, whether it is appropriate in the circumstances to conduct a safety investigation leading to the publication of a report.
+9
+Subject to paragraph (10), the Chief Inspector may subsequently decide to discontinue a safety investigation of any accident (whether or not it involves a vessel covered by the Directive) at any time and must make any reasons publicly available.
+10
+Paragraph (9) will not apply to the safety investigation of an accident involving a vessel covered by the Directive that is —
+a
+a very serious marine casualty; or
+b
+a serious marine casualty, where following a preliminary assessment undertaken in accordance with regulation 7(1) and (2) a decision is made to conduct a safety investigation.
+11
+When the Chief Inspector is conducting a safety investigation into an accident the Chief Inspector must take into account the provisions of the IMO guidelines on the fair treatment of seafarers.
+12
+An inspector may record a witness interview of any person who is assisting a safety investigation carried out in accordance with these Regulations in any manner that the Chief Inspector considers reasonable.
+13
+When the Chief Inspector is requested to assist another member State in a safety investigation in which the United Kingdom is not involved then the costs of any such assistance provided must be agreed between them.
+Co-operation with other States
+12
+1
+A safety investigation commenced by the Chief Inspector under regulation 8 shall, where appropriate, be conducted in co-operation with,
+a
+another member State, or
+b
+another Substantially Interested State.
+2
+A Substantially Interested State shall be allowed to participate in a safety investigation led by the Chief Inspector at any stage of that investigation by mutual agreement.
+3
+Where a safety investigation has been commenced, under regulation 12(1) the Chief Inspector and any other States involved shall agree in the shortest possible time —
+a
+which of them shall lead the safety investigation, and
+b
+the procedures to be adopted for the purposes of such an investigation.
+4
+For the purposes of this regulation a Substantially Interested State —
+a
+has equal rights and access to witnesses and evidence involved in a safety investigation, and
+b
+any representations that it may make to the lead investigating State must be taken into consideration for the purposes of the safety investigation.
+5
+For the purposes of this regulation, paragraph (4)(a) shall only apply if the Chief Inspector is satisfied that the Substantially Interested State will comply with the provisions of Article 9 of the Directive.
+6
+Where a Substantially Interested State has been allowed to participate in a safety investigation and no agreement in accordance with regulation 12(3)(a) has occurred then the Chief Inspector and such other member States or Substantially Interested States, or both shall —
+a
+conduct parallel safety investigations,
+b
+exchange evidence and information with each other for the purposes, as far as possible, of reaching shared conclusions, and
+c
+in the case of two member States conducting parallel safety investigations, notify the European Commission of the reasons for doing so.
+7
+The Chief Inspector may delegate the whole or any part of a safety investigation to another member State by mutual agreement with the member State.
+8
+Where an investigation conducted under these Regulations involves a ro-ro ferry or a high-speed passenger craft to which Council Directive 1999/35/EC applies, the Chief Inspector shall enable an EEA State to participate or co-operate in accordance with the IMO Code.
+9
+When a ro-ro ferry or high-speed passenger craft is involved in an accident in —
+a
+United Kingdom waters a safety investigation shall be started by the Chief Inspector; or
+b
+if the accident occurred outside of United Kingdom waters and outside the territorial waters of another member State the Chief Inspector shall start a safety investigation if the United Kingdom was the last point of departure.
+10
+In the case of an accident to which regulation 12(9)(b) applies the United Kingdom remains responsible for the safety investigation unless it has been agreed with any other substantially interested member State, that the other member State will be responsible for leading the safety investigation.
+Disclosure of records
+13
+1
+Subject to the following paragraphs, the names, addresses or other details of anyone who has given evidence to an inspector must not be disclosed.
+2
+Subject to paragraphs (4) and (7) the following documents or records whether held electronically, mechanically or otherwise must not be made available for purposes other than a safety investigation, unless a Court orders otherwise —
+a
+subject to paragraph (3), all declarations or statements taken from persons by an inspector or supplied to an inspector in the course of an investigation, together with any notes or recordings of witness interviews;
+b
+medical or confidential information regarding persons involved in an accident;
+c
+any report made under regulation 6(4);
+d
+copies of the report other than the final report except as mentioned in regulation 14(4)(a), (5), or (12);
+e
+all correspondence received by the Chief Inspector from parties involved in a safety investigation;
+f
+evidence from voyage data recorders;
+g
+the notes made by an inspector or person appointed under regulation 11(2), whether written or held electronically along with any recordings or photographs;
+h
+all communications between persons having been involved in the operation of the ship or ships; and
+i
+Inspector’s opinions expressed in the analysis of information.
+3
+A person who has given a declaration or statement to an inspector in the course of a safety investigation may make available a copy of their statement or declaration to another person as they see fit.
+4
+Any independent technical analysis commissioned by the Chief Inspector and opinions expressed in such analysis may be made publicly available if the Chief Inspector considers it appropriate to do so.
+5
+Subject to paragraph (6), no order must be made under paragraph (2) unless the Court is satisfied, having regard to the views of the Chief Inspector, that the interests of justice in disclosure outweigh any prejudice, or likely prejudice, to —
+a
+the safety investigation into the accident to which the document or record relates;
+b
+any future accident safety investigation undertaken in the United Kingdom; or
+c
+relations between the United Kingdom and any other State, or international organisation.
+6
+The provisions of this regulation shall be without prejudice to any rule of law which authorises or requires the withholding of any document or record or part thereof on the ground that disclosure of it would be injurious to the public interest.
+7
+Copies of information obtained from a voyage recorder or from other recording systems, pertinent to the accident, including voice recordings (other than any recordings mentioned in paragraph (2)(a)), video recordings and other electric or magnetic recordings and any transcripts made from such information or recordings, may be provided at the discretion of the Chief Inspector to the police or other official authorities.
+Reports of safety investigations
+14
+1
+Subject to paragraph (4), the Chief Inspector must submit to the Secretary of State a report of any safety investigation conducted in accordance with regulation 11.
+2
+The Chief Inspector must make every effort to make a report of a safety investigation publicly available —
+a
+in the shortest possible time or within 12 months of the date of an accident being notified to the Chief Inspector, and
+b
+in the case of a report to which the Directive applies, if it is not possible to produce such a report within that time, an interim report must be published within 12 months of the date of the accident being notified to the Chief Inspector.
+3
+A report in relation to an accident to which the Directive applies must contain but need not be limited to —
+a
+the information set out in Annex 1 of the Directive;
+b
+conclusions relating to the facts of the evidence;
+c
+where the facts cannot be clearly established, analysis and professional judgement to determine the probable facts;
+d
+recommendations for future safety where appropriate.
+4
+A report must not be made publicly available until the Chief Inspector has —
+a
+served a notice under this regulation upon any person who, or organisation which, could be adversely affected by the report or, if that person is deceased, upon such person or persons as appear to the Chief Inspector, at the time it is proposed to serve notice in accordance with this paragraph, as best to represent the interests and reputation of the deceased in the matter;
+b
+considered the representations relating to the facts or analysis contained in the report which may be made to the Chief Inspector in accordance with —
+i
+paragraph (6) by or on behalf of the persons served with such notice , or
+ii
+paragraph (7),
+and the report must be amended in such manner as the Chief Inspector thinks fit.
+5
+The notice referred to in paragraph (4)(a) shall be accompanied by a draft copy of the report.
+6
+The representations referred to in paragraph (4)(b) must be in writing and must be served on the Chief Inspector within 30 days of service of the notice referred to in paragraph (4)(b) or within such further period as may be allowed under regulation 17.
+7
+When a Substantially Interested State requests the Chief Inspector to supply it with a draft safety investigation report the Chief Inspector must not do so unless that State has agreed, in writing to comply with the provisions of Chapter 13 of the IMO Code .
+8
+Where the Chief Inspector is of the view that a safety investigation will not have the potential to lead to the prevention of future accidents then a simplified report may be published in such manner as the Chief Inspector thinks fit.
+9
+For the purposes of regulation 14(2) a report may be published in such manner as the Chief Inspector sees fit.
+10
+Subject to any Court order under regulation 13, no person shall disclose any information —
+a
+which has been furnished to them in accordance with paragraph (4) of this regulation; or
+b
+which has otherwise been furnished to them by or on behalf of the Chief Inspector in advance of the publication of a report and whose confidentiality is protected by regulation 13,
+or permit such information to be disclosed, except with the prior consent in writing of the Chief Inspector, to any other person, except to such advisers as are necessary in order to make representations to the Chief Inspector referred to in paragraph (4)(b), and those advisers must be similarly be subject to the duty not to disclose the information or permit it to be disclosed.
+11
+A copy of the report when made publicly available must be given by the Chief Inspector to —
+a
+any person who has been served with a notice in accordance with paragraph (4)(a);
+b
+those persons or bodies to whom recommendations have been addressed in that report;
+c
+the Secretary of State;
+d
+the IMO;
+e
+any person or organisation whom the Chief Inspector considers may find the report useful or of interest; and
+f
+the European Commission, where the report pertains to Directive vessels or where the Chief Inspector deems it appropriate.
+12
+Data will be provided to the EMCIP in accordance with the requirements of Article 17 of the Directive.
+13
+Where an inquest or fatal accident inquiry is to be held following an accident which has been subject to a safety investigation, a draft report may be made available in confidence to the coroner or procurator fiscal by the Chief Inspector.
+14
+If any part of any document or analysis it contains to which this paragraph applies is based on information obtained in accordance with an inspector’s powers under sections 259 and 267(8) of the Act, that part is inadmissible in any judicial proceedings whose purpose or one of whose purposes is to attribute or apportion liability or blame unless a Court, having regard to the factors mentioned in regulation 13(5)(b) or (c), determines otherwise.
+15
+For the purposes of paragraph (14) the documents are any publication produced by the Chief Inspector as a result of a safety investigation.
+16
+For the purposes of these Regulations where any inspector is required to attend judicial proceedings the inspector is not required to provide opinion evidence or analysis of information provided to them, or to provide information obtained in accordance with an inspector’s powers under sections 259 and 267(8) of the Act where the purpose or one of the purposes of those proceedings is to attribute or apportion liability or blame unless a Court, having regard to all the factors mentioned in regulation 13(5)(b) or (c) determines otherwise.
+17
+In this regulation “judicial proceedings” includes any civil or criminal proceedings before any Court, or person having by law the power to hear, receive and examine evidence on oath.
+Publications other than reports of safety investigations
+15
+1
+The Chief Inspector may from time to time publish collective short reports of accidents which have not been the subject of a report published under regulation 14(1).
+2
+The Chief Inspector may submit a report to the Secretary of State on any matter arising from the Chief Inspector’s analysis of marine accident investigations.
+Recommendations
+16
+1
+The Chief Inspector may at any time make recommendations as to how future accidents may be prevented.
+2
+The actions recommended shall be addressed to those persons who, in the opinion of the Chief Inspector, are most fitted to implement them.
+3
+Recommendations shall be made publicly available if the Chief Inspector considers that to do so is in the interests of safety or preventing pollution.
+4
+Any person to whom a recommendation is addressed in accordance with paragraph (2) must, as soon as is reasonably practical —
+a
+take that recommendation into consideration;
+b
+send to the Chief Inspector —
+i
+details of the measures, if any, that they have taken or propose to take to implement recommendations, and the timetable for securing that implementation, or
+ii
+an explanation as to why the recommendation is not to be the subject of measures to be taken to implement it,
+and any details or timetable under (i) or explanation under (ii) must be provided to the Chief Inspector within 30 days following receipt of the recommendation; and
+c
+give notice to the Chief Inspector if at any time any information provided to the Chief Inspector in accordance with paragraph (4)(b)(i) concerning the measures they propose to take or the timetable for securing their implementation is rendered inaccurate by any change of circumstances.
+5
+Subject to paragraphs (6) and (7) the Chief Inspector must, annually or at such other intervals as the Chief Inspector sees fit, make information publicly available in respect of the matters, including any explanation, mentioned in paragraphs (4)(b) and (c) which have been communicated to the Chief Inspector and must inform the Secretary of State of those matters.
+6
+The Chief Inspector must not publish information under paragraph (5) unless notification has been sent to all persons mentioned in the information and the Chief Inspector has considered any representations relating to the information which may have been made in accordance with paragraph (7) by or on behalf of any person so notified, and amended the information in such manner as the Chief Inspector thinks fit.
+7
+Any representations made in accordance with paragraph (6) must be in writing and must be served on the Chief Inspector within 30 days of receipt of the notification referred to in that paragraph or within such further period as may be allowed under regulation 17.
+8
+Without prejudice to paragraph (1) if the Chief Inspector is of the view that at any stage of a safety investigation, urgent action is required to be taken so as to prevent the risk of further accidents occurring then the Chief Inspector may inform the European Commission as soon as possible as regards what urgent action should be taken by member States or other States or other relevant parties.
+Extension of time
+17
+1
+The Chief Inspector may extend the period of 30 days prescribed in regulation 14(6), if the Chief Inspector considers that there are good reasons to do so having regard to the requirements in regulation 14(2) for a report of a safety investigation to be made available in the shortest time possible.
+2
+The Chief Inspector may extend the period of 30 days prescribed in regulation 16(4) where the Chief Inspector considers it appropriate to do so.
+3
+The powers under this regulation may be exercised not withstanding that the prescribed period has expired.
+Service of documents
+18
+Any notice or other document required or authorised by any provision of these Regulations to be served on or given to any person may be served or given —
+a
+by delivering it to that person;
+b
+by leaving it at their usual or last-known residence or place of business, whether in the United Kingdom or elsewhere;
+c
+by sending it to them by post at that address; or
+d
+by sending it to them by facsimile, or other means which produces a document containing a text of the communication, or by electronic mail in which event the document shall be regarded as having been served when it is sent.
+Penalties
+19
+1
+A person is guilty of an offence if —
+a
+being a person mentioned in regulation 6(1), (2)(a) or (b), they fail without reasonable cause to report an accident as required by regulation 6, or
+b
+being a person referred to in paragraph (a), they fail without reasonable cause to provide information as required by regulation 6(3), or
+c
+they falsely claim to have any additional information or new evidence pertaining to any accident,
+and is liable on summary conviction to a fine not exceeding level 5 on the standard scale.
+2
+If any person fails without reasonable cause to comply with any requirement, duty or prohibition in regulation 10(1), (2), (6) or (7), they shall be guilty of an offence and liable on summary conviction to a fine not exceeding the statutory maximum and on conviction on indictment to a fine.
+3
+If any person without reasonable cause discloses or permits to be disclosed any information in contravention of regulations 13(1) or 14(10), or makes available any documents or records in contravention of regulation 13(2), they shall be guilty of an offence and liable on summary conviction to a fine not exceeding level 5 on the standard scale.
+Review
+20
+1
+Before the end of each review period, the Secretary of State must —
+a
+carry out a review of these Regulations,
+b
+set out the conclusions of the review in a report, and
+c
+lay the report before Parliament.
+2
+In carrying out the review the Secretary of State must, so far as is reasonable, have regard to how the Directive which is implemented by means of these Regulations is implemented in other member States.
+3
+The report must in particular —
+a
+set out the objectives intended to be achieved by the regulatory system established by these Regulations,
+b
+assess the extent to which those objectives are achieved, and
+c
+assess whether those objectives remain appropriate and, if so, the extent to which they could be achieved with a system that imposes less regulation.
+4
+“Review period” means —
+a
+the period of five years beginning with the day on which these Regulations come into force, and
+b
+subject to paragraph (5), each successive period of five years.
+5
+If a report under this regulation is laid before Parliament before the last day of the review period to which it relates, the following review period is to begin with the day on which that report is laid.
+Signed on behalf of the Secretary of State
+Mike Penning
+Parliamentary Under Secretary of State
+Department for Transport
+4th July 2012
+THE SCHEDULE
+MARINE CASUALTY OR INCIDENT NOTIFICATION DA TA
+Regulation 6
+(This Schedule substantially reproduces the provisions of Annex II to the Directive)
+name of ship and IMO, official or fishing vessel number including flag of the country of registration;
+type of ship;
+date and time of the accident;
+latitude and longitude or geographical position in which the accident occurred;
+name and port of registry of any other ship involved;
+number of people killed or seriously injured and associated type or types of casualty;
+brief details of the accident including ship, cargo or any other damage ;
+if the ship is fitted with a voyage data recorder , the make and model of the recorder;
+ports of departure and destination;
+Traffic separation scheme if appropriate;
+place on board;
+the nature of any pollution that occurs as a result of an accident.

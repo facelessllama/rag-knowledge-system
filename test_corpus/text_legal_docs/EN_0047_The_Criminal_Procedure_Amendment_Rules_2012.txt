@@ -1,0 +1,451 @@
+The Criminal Procedure (Amendment) Rules 2012
+Citation, commencement and interpretation
+1
+These Rules may be cited as The Criminal Procedure (Amendment) Rules 2012 and shall come into force on 1st April 2013.
+2
+In these Rules, a reference to a Part or rule by number alone means the Part or rule so numbered in The Criminal Procedure Rules 2012 .
+Amendments to the Criminal Procedure Rules 2012
+3
+In Part 2 (Understanding and applying the Rules) —
+a
+in rule 2.4 (Representatives) —
+i
+in paragraph (1)(b), for ‘where that party is a corporation’ substitute ‘where that corporation is a defendant’, and
+ii
+in paragraph (2), for ‘Anyone with a prosecutor’s authority to do so may, on that prosecutor’s behalf’ substitute ‘A member, officer or employee of a prosecutor may, on the prosecutor’s behalf’; and
+b
+in the note to rule 2.4, after the second paragraph insert —
+Sections 3 and 6 of the Prosecution of Offences Act 1985 make provision about the institution of prosecutions.
+.
+4
+In rule 3.8 (Case preparation and progression), for paragraph (4) substitute —
+4
+In order to prepare for the trial, the court must take every reasonable step―
+a
+to encourage and to facilitate the attendance of witnesses when they are needed; and
+b
+to facilitate the participation of any person, including the defendant.
+.
+5
+In the note to rule 7.2 (Information and written charge), in the third paragraph, for ‘ Part 2 contains rules allowing someone with a prosecutor’s authority, on that prosecutor’s behalf, to ’ substitute ‘ Part 2 contains rules allowing a member, officer or employee of a prosecutor, on the prosecutor’s behalf, to ’.
+6
+In Part 18 (Warrants for arrest, detention or imprisonment) —
+a
+in rule 18.3 (Terms of a warrant for detention or imprisonment) —
+i
+for paragraph (1)(a) substitute —
+a
+require each person to whom it is directed to detain the defendant and —
+i
+take the defendant to any place specified in the warrant or required or allowed by law, and
+ii
+deliver the defendant to the custodian of that place; and
+; and
+ii
+in paragraph (1)(b) and in paragraph (2)(b), for ‘keep the defendant in custody’ substitute ‘detain the defendant’;
+b
+in rule 18.4 (Information to be included in a warrant) —
+i
+for paragraph (2)(a) substitute —
+a
+section 91 of the Legal Aid, Sentencing and Punishment of Offenders Act 2012 (remands of children otherwise than on bail), including in particular —
+i
+whether the defendant must be detained in local authority accommodation or youth detention accommodation,
+ii
+the local authority designated by the court,
+iii
+any requirement imposed by the court on that authority,
+iv
+any condition imposed by the court on the defendant, and
+v
+the reason for any such requirement or condition;
+; and
+c
+in the note to rule 18.4, for the first paragraph substitute —
+[Note. See sections 93(7) and 102(5) of the Legal Aid, Sentencing and Punishment of Offenders Act 2012 . Under section 91 of the Act, instead of granting bail to a defendant under 18 the court may —
+a
+remand him or her to local authority accommodation and, after consulting with that authority, impose on the defendant a condition that the court could impose if granting bail; or
+b
+remand him or her to youth detention accommodation, if the defendant is at least 12 years old and the other conditions, about the offence and the defendant, prescribed by the Act are met.
+.
+7
+In rule 19.2 (Exercise of court’s powers to which this Part applies) —
+a
+for paragraph (5)(c) substitute —
+c
+where the defendant is under 18 —
+i
+imposing or varying a bail condition when ordering the defendant to be detained in local authority accommodation, or
+ii
+ordering the defendant to be detained in youth detention accommodation.
+; and
+b
+in the note to the rule —
+i
+in the first paragraph, for ‘ section 23 of the Children and Young Persons Act 1969 ’ substitute ‘ sections 93(7) and 102(4) of the Legal Aid, Sentencing and Punishment of Offenders Act 2012 ’, and
+ii
+after the second paragraph insert —
+Under section 91 of the 2012 Act, instead of granting bail to a defendant under 18 the court may —
+a
+remand him or her to local authority accommodation and, after consulting with that authority, impose on the defendant a condition that the court could impose if granting bail; or
+b
+remand him or her to youth detention accommodation, if the defendant is at least 12 years old and the other conditions, about the offence and the defendant, prescribed by the Act are met.
+.
+8
+For rule 21.2 (Providing initial details of the prosecution case), substitute —
+21.2
+1
+The prosecutor must serve initial details of the prosecution case on the court officer —
+a
+as soon as practicable; and
+b
+in any event, no later than the beginning of the day of the first hearing.
+2
+Where a defendant requests those details, the prosecutor must serve them on the defendant —
+a
+as soon as practicable; and
+b
+in any event, no later than the beginning of the day of the first hearing.
+3
+Where a defendant does not request those details, the prosecutor must make them available to the defendant at, or before, the beginning of the day of the first hearing.
+.
+9
+In Part 37 (Trial and sentence in a magistrates’ court) —
+a
+in rule 37.10 (Procedure if the court convicts) —
+i
+in paragraph (3)(c), after ‘sentence’ insert ‘, including any statement of the effect of the offence on the victim, the victim’s family or others’,
+ii
+for paragraph (4) substitute —
+4
+The defendant must provide details of financial circumstances —
+a
+in any form required by the court officer;
+b
+by any date directed by the court or by the court officer.
+,
+iii
+for paragraph (9) substitute —
+9
+When the court has taken into account all the evidence, information and any report available, the court must —
+a
+as a general rule, pass sentence there and then;
+b
+when passing sentence, explain the reasons for deciding on that sentence, unless neither the defendant nor any member of the public is present;
+c
+when passing sentence, explain to the defendant its effect, the consequences of failing to comply with any order or pay any fine, and any power that the court has to vary or review the sentence, unless —
+i
+the defendant is absent, or
+ii
+the defendant’s ill-health or disorderly conduct makes such an explanation impracticable;
+d
+give any such explanation in terms the defendant, if present, can understand (with help, if necessary); and
+e
+consider exercising any power it has to make a costs or other order.
+, and
+iv
+for paragraph (10)(a) substitute —
+a
+the court must adjourn the hearing if the defendant is absent, the case started with a summons or requisition, and either —
+i
+the court considers passing a custodial sentence, or
+ii
+the court considers imposing a disqualification (unless it has already adjourned the hearing to give the defendant an opportunity to attend);
+;
+b
+in the note to rule 37.10, after the twelfth paragraph insert —
+Under section 174(4) of the Criminal Justice Act 2003 , Criminal Procedure Rules may prescribe cases in which there do not apply the court’s usual duties to give reasons and explanations. Written notice of the effect of some sentences is required by rule 42.2 (notice of requirements of suspended sentence or community, etc. order), rule 42.3 (notice of statutory notification requirements) and rule 52.2 (notice of fine or other financial order).
+;
+c
+for rule 37.12 (Provision of documents for the court), substitute —
+37.12
+1
+A party who introduces a document in evidence, or who otherwise uses a document in presenting that party’s case, must provide a copy for —
+a
+each other party;
+b
+any witness that party wants to refer to that document;
+c
+the court; and
+d
+the justices’ legal adviser.
+2
+Unless the court otherwise directs, on application or on its own initiative, the court officer must provide for the court —
+a
+any copy received under paragraph (1) before the hearing begins; and
+b
+a copy of the court officer’s record of —
+i
+information supplied by each party for the purposes of case management, including any revision of information previously supplied,
+ii
+each pre-trial direction for the management of the case,
+iii
+any pre-trial decision to admit evidence,
+iv
+any pre-trial direction about the giving of evidence, and
+v
+any admission to which rule 37.6 applies.
+[Note. A written witness statement to which Part 27 applies may only be introduced in evidence if there has been no objection within the time limit to which rule 27.4 refers.
+An expert report to which Part 33 applies may only be introduced in evidence if it has been served in accordance with rule 33.4.
+See also rule 34.3 for the procedure where a party objects to the introduction of hearsay evidence, including such evidence in a document, and rules 35.3 and 35.4 for the procedure where a party objects to the introduction of evidence of bad character.
+A direction about the giving of evidence may be made on an application to which Part 29 applies (measures to assist a witness or defendant to give evidence).]
+; and
+d
+in rule 37.14 (Duty of justices’ legal adviser), for paragraph (2) substitute —
+2
+A justices’ legal adviser must —
+a
+before the hearing begins, by reference to what is provided for the court under rule 37.12 draw the court’s attention to —
+i
+what the prosecutor alleges,
+ii
+what the parties say is agreed,
+iii
+what the parties say is in dispute, and
+iv
+what the parties say about how each expects to present the case, especially where that may affect its duration and timetabling;
+b
+whenever necessary, give the court legal advice and —
+i
+if necessary, attend the members of the court outside the courtroom to give such advice, but
+ii
+inform the parties of any such advice given outside the courtroom; and
+c
+assist the court, where appropriate, in the formulation of its reasons and the recording of those reasons.
+.
+10
+In Part 42 (Sentencing procedures in special cases) —
+a
+in the table of contents —
+i
+for the first entry in the first column substitute ‘Reasons for not following usual sentencing requirements’,
+ii
+after the last entry in the first column insert ‘Application to review sentence because of assistance given or withheld’, and
+iii
+after the last entry in the second column insert ‘rule 42.11’;
+b
+in rule 42.1 (Reasons for deciding not to follow a guideline or make an order) —
+i
+for the heading to the rule substitute ‘Reasons for not following usual sentencing requirements’,
+ii
+after paragraph (1)(c) insert —
+d
+to pass a lesser sentence than it otherwise would have passed because the defendant has assisted, or has agreed to assist, an investigator or prosecutor in relation to an offence.
+,
+iii
+in paragraph (2), for ‘why it has not done so’ substitute ‘why it has so decided’, and
+iv
+after paragraph (2) insert —
+3
+Where paragraph (1)(d) applies, the court must arrange for such an explanation to be given to the defendant and to the prosecutor in writing, if the court thinks that it would not be in the public interest to explain in public.
+;
+c
+in the note to rule 42.1, in the first paragraph, omit ‘and’, in the second place it occurs, and at the end of the paragraph insert ‘ and section 73 of the Serious Organised Crime and Police Act 2005 .’; and
+d
+after rule 42.10 (Information to be supplied on committal for sentence, etc.) insert —
+Application to review sentence because of assistance given or withheld
+42.11
+1
+This rule applies where the Crown Court can reduce or increase a sentence on application by a prosecutor in a case in which —
+a
+since being sentenced, the defendant has assisted, or has agreed to assist, an investigator or prosecutor in relation to an offence; or
+b
+since receiving a reduced sentence for agreeing to give such assistance, the defendant has failed to do so.
+2
+A prosecutor who wants the court to exercise that power must —
+a
+apply in writing as soon as practicable after becoming aware of the grounds for doing so;
+b
+serve the application on —
+i
+the court officer, and
+ii
+the defendant; and
+c
+in the application —
+i
+explain why the sentence should be reduced, or increased, as appropriate, and
+ii
+specify any reduction or increase that the applicant proposes.
+3
+The general rule is that the application must be determined by the judge who passed the sentence, unless that judge is unavailable.
+4
+The court must not determine the application in the defendant’s absence unless the defendant has had an opportunity to make representations at a hearing (whether or not the defendant in fact attends).
+[Note.Under section 73 of the Serious Organised Crime and Police Act 2005 , the Crown Court may pass a lesser sentence than it otherwise would have passed because the defendant has assisted, or has agreed to assist, an investigator or prosecutor in relation to an offence.
+Under section 74 of the 2005 Act , where the Crown Court has sentenced a defendant a prosecutor may apply to the court —
+a
+to reduce the sentence, if the defendant subsequently assists, or agrees to assist, in the investigation or prosecution of an offence; or
+b
+to increase a reduced sentence to that which the court otherwise would have passed, if the defendant agreed to give such assistance but subsequently has knowingly failed to do so.
+Such an application may be made only where —
+a
+the defendant is still serving the sentence; and
+b
+the prosecutor thinks it is in the interests of justice to apply.]
+.
+11
+In rule 61.16 (Change of solicitor), omit paragraphs (4), (5) and (6).
+12
+In the note to rule 62.5 (Initial procedure on obstruction, disruption, etc.), in the fifth paragraph —
+a
+for ‘ section 12 of the Access to Justice Act 1999 ’ substitute ‘ sections 14, 15 and 16 of the Legal Aid, Sentencing and Punishment of Offenders Act 2012 ’; and
+b
+omit ‘ funded by the Legal Services Commission ’.
+13
+In the note to rule 74.3 (Determination of detention pending appeal, etc.), for the second paragraph substitute —
+For the grant of legal aid for proceedings in the Supreme Court, see sections 14, 16 and 19 of the Legal Aid, Sentencing and Punishment of Offenders Act 2012 .
+.
+14
+In Part 76 (Costs) —
+a
+in rule 76.1 (When this Part applies) —
+i
+from paragraph (1)(i), omit ‘or’,
+ii
+at the end of paragraph (1)(j), insert ‘; or’, and
+iii
+after paragraph (1)(j) insert —
+k
+Part 1 or 2 of the Extradition Act 2003 .
+;
+b
+in the note to rule 76.1 —
+i
+from sub-paragraph (r) of the first paragraph, omit ‘or’, and
+ii
+after sub-paragraph (s) of the first paragraph insert —
+t
+section 60 or 133 of the Extradition Act 2003 (costs where extradition ordered) for the payment by a defendant of another person’s costs; or
+u
+section 61 or 134 of the Extradition Act 2003 (costs where discharge ordered) for the payment out of central funds of a defendant’s costs.
+;
+c
+in the note to rule 76.2 (Costs orders: general rules), at the end of the second paragraph insert ‘ See, for example, section 16A of the Prosecution of Offences Act 1985 .’;
+d
+in rule 76.4 (Costs out of central funds) —
+i
+in paragraph (2)(b), for ‘costs funded by the Legal Services Commission’ substitute ‘costs met by legal aid’,
+ii
+for paragraph (6) substitute —
+6
+If the court makes an order —
+a
+the court may direct an assessment under, as applicable —
+i
+Part III of The Costs in Criminal Cases (General) Regulations 1986 , or
+ii
+Part 3 of The Serious Crime Act 2007 (Appeals under Section 24) Order 2008 ;
+b
+the court may assess the amount itself in a case in which either —
+i
+the recipient agrees the amount, or
+ii
+the court decides to allow a lesser sum than that which is reasonably sufficient to compensate the recipient for expenses properly incurred in the proceedings;
+c
+an order for the payment of a defendant’s costs which includes an amount in respect of fees payable to a legal representative, or disbursements paid by a legal representative, must include a statement to that effect.
+; and
+iii
+after paragraph (6) insert —
+7
+If the court directs an assessment, the order must specify any restriction on the amount to be paid that the court considers appropriate.
+8
+If the court assesses the amount itself, it must do so subject to any restriction on the amount to be paid that is imposed by regulations made by the Lord Chancellor.
+;
+e
+in the note to rule 76.4, in the second paragraph —
+i
+from sub-paragraph (a)(vi) omit ‘or’, in the second place it occurs,
+ii
+at the end of sub-paragraph (a)(vii) insert ‘, or’, and
+iii
+after sub-paragraph (a)(vii) insert —
+viii
+where the defendant is discharged under Part 1 or 2 of the Extradition Act 2003;
+,
+iv
+in the final sentence of sub-paragraph (a) omit ‘and’, in the third place it occurs, and at the end of the sentence insert ‘ and sections 61 and 134 of the Extradition Act 2003 ’, and
+v
+after sub-paragraph (c) insert —
+Where the court makes an order for the payment of a defendant’s costs out of central funds —
+a
+the general rule is that the order may not require the payment of any amount in respect of fees payable to a legal representative, or disbursements paid by a legal representative (including expert witness costs), but if the defendant is an individual then an order may require payment of such an amount in a case —
+i
+in a magistrates’ court, including in an extradition case,
+ii
+in the Crown Court, on appeal from a magistrates’ court, or
+iii
+in the Court of Appeal, on an appeal against a verdict of not guilty by reason of insanity, or against a finding under the Criminal Procedure (Insanity) Act 1964 , or on an appeal under section 16A of the Criminal Appeal Act 1968 (appeal against order made in cases of insanity or unfitness to plead); and
+b
+any such amount may not exceed an amount specified by regulations made by the Lord Chancellor.
+(See section 16A of the Prosecution of Offences Act 1985 , sections 62A, 62B, 135A and 135B of the Extradition Act 2003 and regulations 4A and 7 of The Costs in Criminal Cases (General) Regulations 1986 .)
+;
+f
+in rule 76.5 (Costs on conviction and sentence) —
+i
+from paragraph (1)(b), omit ‘or’,
+ii
+at the end of paragraph (1)(c), insert ‘; or’, and
+iii
+after paragraph (1)(c) insert —
+d
+in an extradition case —
+i
+ordered to be extradited, under Part 1 of the Extradition Act 2003, or
+ii
+sent for extradition to the Secretary of State, under Part 2 of that Act.
+;
+g
+in the note to rule 76.5, in the first paragraph —
+i
+from sub-paragraph (a) omit ‘and’,
+ii
+at the end of sub-paragraph (b) insert ‘, and’, and
+iii
+after sub-paragraph (b) insert —
+c
+sections 60 and 133 of the Extradition Act 2003.
+;
+h
+in rule 76.6 (Costs on appeal), in paragraph (2)(b), for ‘costs funded by the Legal Services Commission’ substitute ‘costs met by legal aid’;
+i
+in rule 76.8 (Costs resulting from unnecessary or improper act, etc.), in paragraph (2), for ‘costs funded by the Legal Services Commission’ substitute ‘costs met by legal aid’;
+j
+in rule 76.9 (Costs against a legal representative) —
+i
+in paragraph (2), for ‘costs funded by the Legal Services Commission’ substitute ‘costs met by legal aid’, and
+ii
+in paragraph (8)(a)(i), for ‘funded by the Legal Services Commission’ substitute ‘to be met by legal aid’;
+k
+in the note to rule 76.9, from the first paragraph omit sub-paragraph (d); and
+l
+in rule 76.10 (Costs against a third party), in paragraph (2), for ‘costs funded by the Legal Services Commission’ substitute ‘costs met by legal aid’.
+15
+In the Glossary at the end of The Criminal Procedure Rules 2012, in the entry for ‘wasted costs order’, omit ‘by the Legal Services Commission’.
+16
+In the preamble to The Criminal Procedure Rules 2012, in sub-paragraph (b) —
+a
+in the first column, headed ‘Rule’, after the entry for rule 34.4 insert ‘37.10’; and
+b
+in the second column, headed ‘Power’, in the corresponding position insert ‘Section 174(4) of the Criminal Justice Act 2003 ’.
+Judge, C.J.
+Rafferty, L.J.
+Thomas, P.
+Openshaw, J.
+Anna Guggenheim
+Martin Picton
+Stephen Earl
+Nicholas Moss
+Richard Chown
+Tessa Szagun
+Keir Starmer
+Patrick Gibbs
+Nathaniel Rudolf
+Michael Caplan
+Paul Harris
+James Barker-McCardle
+David Kenyon
+Matthew Evans
+I allow these Rules, which shall come into force on 1st April 2013.
+Chris Grayling
+Lord Chancellor
+11th December 2012

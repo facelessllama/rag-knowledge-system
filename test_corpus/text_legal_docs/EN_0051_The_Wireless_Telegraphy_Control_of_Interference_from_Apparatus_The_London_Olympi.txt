@@ -1,0 +1,49 @@
+The Wireless Telegraphy (Control of Interference from Apparatus) (The London Olympic Games and Paralympic Games) Regulations 2012
+The Secretary of State, in accordance with section 54(7) of that Act, has approved the making by OFCOM of these Regulations.
+Citation, commencement and extent
+1
+These Regulations may be cited as the Wireless Telegraphy (Control of Interference from Apparatus) (The London Olympic Games and Paralympic Games) Regulations 2012 and shall come into force on 23rd July 2012.
+2
+These Regulations shall not extend to the Channel Islands or to the Isle of Man.
+Interpretation
+3
+In these Regulations —
+“apparatus” means any finished appliance or combination of appliances made commercially available as a single functional unit, intended for the end user and liable to generate electromagnetic disturbance, or the performance of which is liable to be affected by such disturbance and which generates, or is designed to generate, or is liable to generate fortuitously, electromagnetic energy at frequencies not exceeding 3,000 gigahertz and includes —
+components or sub-assemblies intended for incorporation into an apparatus by an end-user, which are liable to generate electromagnetic disturbance, or the performance of which is liable to be affected by such disturbance;
+mobile installations defined as a combination of apparatus and, where applicable, other devices, intended to be moved and operated in a range of locations;
+“essential requirements” means the requirements set out in regulations 4(1) and 4(2)(a) of the Electromagnetic Compatibility Regulations 2006 ;
+“protection area” means, a circular area surrounding an Olympic or Paralympic sports venue which —
+is named in column 1 of the Schedule; and
+has a centre point at the location (expressed by latitude and longitude coordinates) in columns 2 and 3 (in the same row of the Schedule as the name) and a radius of the distance specified in column 4 (also in the same row of the Schedule as the name).
+Requirement
+4
+The requirement to be complied with, for the purposes of section 54(1) of the Wireless Telegraphy Act 2006 in the case of apparatus which is to be used, is set out in regulation 5.
+Use of Apparatus during the London Olympic Games and Paralympic Games
+5
+1
+The requirement is that between 26th July 2012 and 10th September 2012 apparatus must when in use operate at a sufficiently low intensity of electromagnetic energy such that it does not cause undue interference with wireless telegraphy used for public safety purposes within a protection area.
+2
+The requirement applies even if the maximum intensity of electromagnetic energy emitted by that apparatus is lower than a level permissible under the essential requirements.
+Radio Equipment and Telecommunications Terminal Equipment
+6
+These Regulations do not apply to apparatus covered by Directive 1995/5/ EC of the European Parliament and of the Council on radio equipment and telecommunications terminal equipment and the mutual recognition of their conformity .
+Ed Richards
+Chief Executive of the Office of Communications
+For and by the authority of the Office of Communications
+11th June 2012
+I approve the making of these Regulations by the Office of Communications
+Jeremy Hunt
+Secretary of State for Culture, Olympics, Media and Sport
+Department for Culture, Media and Sport
+11th June 2012
+SCHEDULE
+Regulation 3
+Column 1
+Protection area name
+Column 2
+Latitude
+Column 3
+Longitude
+Column 4
+Distance
+London 51:30:14N 0:7:42W 35km Eton Dorney 51:29:35.148N 0:39:44.535W 25km Hampden Park 55:49:31.718N 4:15:2.717W 25km Millennium Stadium 51:28:42.16N 3:10:52.289W 25km Old Trafford 53:27:47.128N 2:17:25.234W 25km St. James’ Park 54:58:31.902N 1:37:14.562W 25km Lee Valley White Water Centre 51:41:14.802N 0:0:53.935W 25 km Weymouth and Portland 50:36:21.637N 2:24:33.404W 25km City of Coventry Stadium 52:26:50.723N 1:29:44.211W 25km Hadleigh Farm 51:54:67N 0:59:91:14W 25km

@@ -1,0 +1,303 @@
+The Armed Forces (Enhanced Learning Credit Scheme and Further and Higher Education Commitment Scheme) Order 2012
+The Secretary of State, in exercise of the powers conferred by sections 1(1) and (3) of the Armed Forces (Pensions and Compensation) Act 2004 makes the following Order:
+PART 1 PRELIMINARY
+Citation and Commencement
+1
+This Order may be cited as the Armed Forces (Enhanced Learning Credit Scheme and Further and Higher Education Commitment Scheme) Order 2012 and comes into force on 2nd September 2012.
+Interpretation
+2
+In this Order —
+“the 2004 Act” means the Armed Forces (Pensions and Compensation) Act 2004;
+“academic year” means the period of twelve months beginning on 1st January, 1st April, 1st July or 1st September of the calendar year in which the academic year of the course in question begins according to whether that academic year begins on or after 1st January and before 1st April, on or after 1st April and before 1st July, on or after 1st July and before 1st August, or on or after 1 August and on or before 31 December, respectively;
+“additional adoption leave” means leave which, in the opinion of the Defence Council, corresponds to additional adoption leave prescribed in regulations made under section 75B(2) and (3) of the Employment Rights Act 1996 ;
+“additional maternity leave” means leave which, in the opinion of the Defence Council, corresponds to additional maternity leave prescribed in regulations made under section 73(2) and (3) of the Employment Rights Act 1996 ;
+“additional paternity leave” means leave which, in the opinion of the Defence Council, corresponds to additional paternity leave within the meaning of the Additional Paternity Leave Regulations 2010 ;
+“applicant” means a person who has applied for a payment under the ELC Scheme or the FHEC Scheme;
+“approved learning provider” means an establishment on the Scheme administrator’s list of approved providers;
+“the Armed Forces Pension Scheme 1975” means the occupational pension scheme arrangements set out in —
+the Naval and Marine Pensions (Armed Forces Pension Scheme 1975 and Attributable Benefits Scheme) (Amendment) Order 2010 made on 15th December 2010 as amended by the Naval and Marine Pensions (Armed Forces Pension Scheme 1975 and Attributable Benefits Scheme) (Amendment) Order 2012 made on 15th February 2012 ;
+the Army Pensions (Armed Forces Pension Scheme 1975 and Attributable Benefits Scheme) (Amendment) Warrant 2010 made on 15th December 2010 as amended by the Army Pensions (Armed Forces Pension Scheme 1975 and Attributable Benefits Scheme) (Amendment) Warrant 2012 ;
+the Air Force (Armed Forces Pension Scheme 1975 and Attributable Benefits Scheme) made on 14th December 2010 as amended by the Air Force (Armed Forces Pension Scheme 1975 and Attributable Benefits Scheme) (Amendment) Order 2012 .
+“the Armed Forces Pension Scheme 2005” means the occupational pension scheme arrangements set out in the Armed Forces Pension Scheme Order 2005 ;
+“discharged on attributable medical grounds” means that a person has been discharged from service on the grounds that they are medically unfit to continue in service due to an injury or illness caused wholly or predominantly by service or predominantly worsened by service and the phrase “attributable medical discharge” is to be construed accordingly;
+“ELC Scheme” means the Enhanced Learning Credit Scheme established by article 4(1);
+“FHEC Scheme” means the Further and Higher Education Commitment Scheme established by article 4(2);
+“higher level learning” means full or part time study towards the achievement of a higher level learning qualification;
+“higher level learning qualification” means a qualification at Level 3 or above on the Qualifications and Credit Framework or other equivalent qualification (including an equivalent vocational qualification);
+“higher tier payment” has the meaning given by article 9(4);
+“individual resettlement training costs grant” means a grant paid towards the cost of training to enhance skills and qualifications in preparation for new employment;
+“lower tier payment” has the meaning given by article 9(3);
+“ordinary adoption leave” means leave which, in the opinion of the Defence Council, corresponds to ordinary adoption leave prescribed in regulations made under section 75A(2) and (2A) of the Employment Rights Act 1996 ;
+“ordinary maternity leave” means leave which, in the opinion of the Defence Council, corresponds to ordinary maternity leave prescribed in regulations made under section 71(2) and (3) of the Employment Rights Act 1996 ;
+“ordinary paternity leave” means leave which, in the opinion of the Defence Council, corresponds to paternity leave within the meaning of regulation 4 or 8 of the Paternity and Adoption Leave Regulations 2002 ;
+“Phase 1 training” means all initial training to recruits into the armed forces to provide basic military skills;
+“Phase 2 training” means —
+initial individual specialisation training, and
+technical training,
+following phase 1 training;
+“publicly funded” means maintained or assisted by recurrent grants of public funds;
+“qualification level learning” means learning leading to —
+a first full Level 3 qualification as defined by the Qualifications and Credit Framework;
+a first vocational qualification which is the equivalent of a qualification falling within paragraph (a);
+a first undergraduate degree (including a foundation degree);
+a first Higher National Certificate or first Higher National Diploma for which the entry qualification is lower than a degree; or
+such qualifications in Scotland which are the equivalent of qualifications falling within paragraphs (a) to (d).
+“qualifying service” means service in the armed forces and includes time spent on ordinary maternity leave, additional maternity leave, ordinary paternity leave, additional paternity leave, ordinary adoption leave or additional adoption leave, but does not include time spent on any unpaid career break;
+“senior responsible officer” means the person within each single service with overall responsibility for the ELC Scheme;
+“service leaver” means a person who has ceased to be a member of the armed forces;
+“six month window” means the six month period which commences on the eighth anniversary of enlistment or commission;
+“the Scheme administrator” means the person appointed by the Secretary of State under section 1(3) of the 2004 Act to administer the ELC Scheme and the FHEC Scheme;
+“tuition fees” means the costs charged by the approved learning provider which may include registration, examination and accreditation fees.
+Definition of “eligible adult dependant”
+3
+1
+A person is an eligible adult dependant if they are the spouse, civil partner or eligible partner of a member of the armed forces, or, where a member of the armed forces has died, they are the surviving spouse, surviving civil partner or surviving eligible partner of the deceased and in this paragraph “eligible partner” and “surviving eligible partner” have the meaning set out in paragraphs (2) and (3).
+2
+A person is a surviving eligible partner of a member of the armed forces if the Secretary of State is satisfied that the person is a surviving eligible partner for the purposes of either the Armed Forces Pension Scheme 1975 or the Armed Forces Pension Scheme 2005.
+3
+A person is an eligible partner of a member of the armed forces if the Secretary of State is satisfied that if the member of the armed forces had died the person would be a surviving eligible partner for the purposes of either the Armed Forces Pension Scheme 1975 or the Armed Forces Pension Scheme 2005.
+PART 2 ESTABLISHMENT OF THE ELC AND FHEC SCHEMES
+4
+1
+The Scheme set out in Part 3 of this Order has effect and is to be known as “the ELC Scheme”.
+2
+The Scheme set out in Part 4 of this Order has effect and is to be known as “the FHEC Scheme”.
+3
+The Scheme Administrator shall administer both Schemes.
+PART 3 THE ENHANCED LEARNING CREDIT SCHEME
+Registration as a member of the ELC Scheme
+5
+1
+A member of the armed forces may register as a member of the ELC Scheme —
+a
+within 12 months of enlistment or commission into the armed forces; or
+b
+within the six month window.
+2
+Where the senior responsible officer is satisfied that, for reasons due to service, a member of the armed forces was unable to comply with the time limits in paragraph (1), that member may register outside the time limits.
+Eligibility conditions for payments under the ELC Scheme
+6
+1
+A service leaver is eligible for payments under the ELC Scheme for higher level learning if conditions A to D of this article are met.
+2
+Condition A is that the service leaver’s course of higher level learning commences before the tenth anniversary of their ceasing to be a member of the armed forces.
+3
+Condition B is that the service leaver is a member of the ELC Scheme.
+4
+Condition C is that the service leaver has completed eligible service.
+5
+Condition D is that the service leaver is not applying for, or in receipt of, any other payment from public funds towards the cost of tuition fees for higher level learning unless such payment is either an individual resettlement training costs grant or is made under the FHEC Scheme.
+6
+In this article “eligible service” means —
+a
+in relation to a lower tier payment, at least 4 years but less than 8 years qualifying service; or
+b
+in relation to a higher tier payment, at least 8 years qualifying service.
+7
+For both higher and lower tier payments, the period of eligible service is to be calculated in accordance with paragraphs (8) to (10).
+8
+Subject to paragraph (9), eligible service commences from —
+a
+the date of enlistment or commission for persons to whom article 5(1)(a) applies; or
+b
+the first day of the six month window for persons to whom article 5(1)(b) applies.
+9
+Where —
+a
+a service leaver’s service in the armed forces commenced before 1st April 2003, and
+b
+they registered as a member of the ELC Scheme before 1st April 2004,
+eligible service commences from whichever is the later of 1st April 2000 and the date of enlistment or commission.
+10
+Where a service leaver registered as a member of the ELC Scheme by virtue of article 5(2) and their service in the armed forces commenced —
+a
+before 1st April 2003, eligible service commences from whichever is the later of 1st April 2000 and the date of enlistment or commission;
+b
+on or after 1st April 2003, eligible service commences from the date of enlistment or commission.
+Eligibility conditions in certain cases of attributable medical discharge
+7
+1
+A service leaver who has not met conditions A to D of article 6 is eligible for payments under the ELC Scheme if conditions A to E of this article are met.
+2
+Where this article applies any payment made under the ELC Scheme must be a lower tier payment.
+3
+Condition A is that the service leaver is discharged on attributable medical grounds on or after 1st November 2010.
+4
+Condition B is that the service leaver’s course of higher level learning commences before the tenth anniversary of their ceasing to be a member of the armed forces.
+5
+Condition C is that the service leaver is a member of the ELC Scheme.
+6
+Condition D is that the service leaver has completed Phase 1 and Phase 2 training.
+7
+Condition E is that the service leaver is not applying for, or in receipt of, any other payment from public funds towards the costs of tuition fees for higher level learning unless such payment is either an individual resettlement training costs grant or is made under the FHEC Scheme.
+Entitlement of eligible adult dependants in certain cases of death or attributable medical discharge
+8
+1
+Where a member of the armed forces (A) dies and such death is caused either wholly or predominantly by service, an eligible adult dependant of A is eligible for payments under the ELC Scheme if —
+a
+the conditions in either paragraph (2) or (3) are met; and
+b
+the conditions in both paragraphs (11) and (12) are met.
+2
+The conditions are that —
+a
+A died on or after 1st April 2004, and
+b
+on the date of A’s death, A was a member of the ELC Scheme and had completed the eligible service specified in either article 6(6)(a) or article 6(6)(b).
+3
+The conditions are that —
+a
+A died on or after 1st November 2010, and
+b
+on the date of A’s death, A was a member of the ELC Scheme and had completed Phase 1 and Phase 2 training.
+4
+In any case where the conditions in paragraph (2) are met the payment made under the ELC Scheme must be —
+a
+a lower tier payment if on the date of A’s death, A had completed the eligible service specified in article 6(6)(a), or
+b
+a higher tier payment if on the date of A’s death, A had completed the eligible service specified in article 6(6)(b).
+5
+In any case where the conditions in paragraph (2) are not met but the conditions in paragraph (3) are met the payment made under the ELC Scheme must be a lower tier payment.
+6
+Where a member of the armed forces (B) is discharged on attributable medical grounds, and due to the illness or injury which caused that attributable medical discharge, B is unable to undertake higher level learning, an eligible adult dependant of B is eligible for payments under the ELC Scheme if —
+a
+the conditions in either paragraph (7) or (8) are met; and
+b
+the conditions in both paragraphs (11) and (12) are met.
+7
+The conditions are that —
+a
+B’s attributable medical discharge occurred on or after 1st April 2004, and
+b
+on the date of B’s attributable medical discharge, B was a member of the ELC Scheme and had completed the eligible service specified in either article 6(6)(a) or article 6(6)(b).
+8
+The conditions are that —
+a
+B’s attributable medical discharge occurred on or after 1st November 2010, and
+b
+on the date of B’s attributable medical discharge, B was a member of the ELC Scheme and had completed Phase 1 and Phase 2 training.
+9
+In any case where the conditions in paragraph (7) are met the payment made under the ELC Scheme must be —
+a
+a lower tier payment if on the date of B’s attributable medical discharge B had completed the eligible service specified in article 6(6)(a), or
+b
+a higher tier payment if on the date of B’s attributable medical discharge B had completed the eligible service specified in article 6(6)(b).
+10
+In any case where the conditions in paragraph (7) are not met, but the conditions in paragraph (8) are met, the payment under the ELC Scheme must be a lower tier payment.
+11
+The condition is that the eligible adult dependant must not be applying for, or in receipt of, any other payment from public funds towards the costs of tuition fees for higher level learning unless such funding is made under the FHEC scheme.
+12
+The condition is that the eligible adult dependant’s course of higher level learning commences before the tenth anniversary of the death of A or the attributable medical discharge of B.
+Payments under the ELC Scheme
+9
+1
+A payment under the ELC Scheme must be made to an approved learning provider.
+2
+Subject to paragraph (3) a payment referred to in paragraph (1) may be —
+a
+a lower tier payment; or
+b
+a higher tier payment.
+3
+A lower tier payment —
+a
+may be up to 80% of the total cost of the tuition fees for higher level learning; but
+b
+must not exceed £1,000 per financial year.
+4
+A higher tier payment —
+a
+may be up to 80% of the total cost of the tuition fees for higher level learning; but
+b
+must not exceed £2,000 per financial year.
+5
+Only one payment may be made under the ELC Scheme in any one financial year in respect of the qualifying service of any one member of the armed forces.
+6
+The maximum number of payments which may be made under the ELC Scheme in respect of the qualifying service of any one member of the armed forces is three.
+7
+Where a payment has previously been made under the ELC Scheme, any subsequent application for a further payment must be accompanied by written evidence from the previous approved learning provider that the applicant satisfactorily completed the study to which the previous payment related.
+PART 4 THE FURTHER AND HIGHER EDUCATION COMMITMENT SCHEME
+Eligibility conditions for payments to service leaders under the FHEC Scheme
+10
+1
+A service leaver is eligible for payments under the FHEC Scheme for qualification level learning if conditions A to I are met.
+2
+Condition A is that the service leaver left the armed forces on or after 17th July 2008.
+3
+Condition B is that the service leaver’s course of qualification level learning commences before the tenth anniversary of their ceasing to be a member of the armed forces.
+4
+Condition C is that the service leaver is a member of the ELC Scheme.
+5
+Condition D is that the service leaver has completed eligible service.
+6
+Condition E is that the service leaver is not applying for, or in receipt of, any other payment from public funds for tuition fees for qualification level learning unless such payment is made under the ELC Scheme.
+7
+Condition F is that if the service leaver has any remaining entitlement under the ELC Scheme then such entitlement must be used for the purposes of study under the FHEC Scheme.
+8
+Condition G is that the service leaver is applying for payment of tuition fees in order to undertake no less than half of a full-time course leading to a qualification which falls within the definition of qualification level learning.
+9
+Condition H is that the service leaver satisfies the eligibility requirements concerning assistance by way of allowances or support for tuition fees in the part of Great Britain where they are ordinarily resident.
+10
+Condition I is that the service leaver remains resident in the United Kingdom for the period of the qualification level learning.
+11
+Subject to paragraph (12), in this article “eligible service” means 4 or more years qualifying service.
+12
+Where a service leaver is discharged on attributable medical grounds “eligible service” means the completion of Phase 1 and Phase 2 training.
+13
+For the purposes of paragraph (9), any period during which the service leaver served outside the United Kingdom as a member of the armed forces is to be treated as a period of ordinary residence in the United Kingdom.
+Entitlement of eligible adult dependants under the FHEC Scheme in certain cases of death or attributable medical discharge
+11
+1
+Where a member of the armed forces dies and such death is caused either wholly or predominantly by service, or is discharged on attributable medical grounds, their eligible adult dependant is eligible for payments under the FHEC Scheme if —
+a
+the conditions in either paragraph (2) or (3) are met; and
+b
+conditions A to G are met.
+2
+The condition is that the member of the armed forces died on or after 17th July 2008.
+3
+The condition is that the member of the armed forces has been discharged on attributable medical grounds on or after 17th July 2008, and is unable, due to the injury or illness which caused the attributable medical discharge, to undertake qualification level learning.
+4
+Condition A is that the member of the armed forces was, at the date of death or attributable medical discharge as the case may be, a member of the ELC Scheme.
+5
+Condition B is that the member of the armed forces had completed, at the date of death or attributable medical discharge as the case may be, either —
+a
+the eligible service requirement specified in article 10(11) above, or
+b
+Phase 1 and Phase 2 training.
+6
+Condition C is that the eligible adult dependant is not applying for, or in receipt of, any other payment from public funds for tuition fees for qualification level learning unless such payment is made under the ELC Scheme.
+7
+Condition D is that the eligible adult dependant is applying for the payment of tuition fees in order to undertake no less than half of a full-time course leading to a qualification which falls within the definition of qualification level learning.
+8
+Condition E is that the eligible adult dependant satisfies the eligibility requirements concerning assistance by way of allowances or support for tuition fees in the part of Great Britain where they are ordinarily resident.
+9
+Condition F is that the eligible adult dependant remains resident in the United Kingdom for the period of the qualification level learning.
+10
+Condition G is that the eligible adult dependant’s course of qualification level learning commences before the tenth anniversary of the death or attributable medical discharge of the member of the armed forces.
+11
+For the purposes of paragraph (8), any period during which the eligible adult dependant accompanied the service leaver on their service in the armed forces outside the United Kingdom is to be treated as a period of ordinary residence in the United Kingdom.
+Payments under the FHEC Scheme
+12
+1
+A payment under the FHEC Scheme must be made to an approved learning provider.
+2
+A payment under the FHEC Scheme must be for the total amount of the tuition fees charged in respect of an academic year to the applicant by the approved learning provider for the course of qualification level learning for which the applicant has enrolled, provided that such payment shall not exceed the total amount of the capped fees as defined in paragraphs (3) to (5).
+3
+Where an approved learning provider is located in England, “capped fees” means the maximum tuition fees which that establishment may lawfully charge persons who fall within Schedule 1 to the Education (Fees and Awards) (England) Regulations 2007 provided that —
+a
+where that approved learning provider is a publicly funded educational establishment, those fees do not exceed the higher amount as defined in section 24(6) of the Higher Education Act 2004 and as prescribed in regulations made for the purposes of that sub-section ; or
+b
+where that approved learning provider is not a publicly funded educational establishment, those fees do not exceed whichever is the higher of the two alternative amounts specified in regulation 23(4) of the Education (Student Support) Regulations 2011 .
+4
+Where an approved learning provider is located in Wales, “capped fees” means the maximum tuition fees which that establishment may lawfully charge persons who fall within the Schedule to the Education (Fees and Awards) (Wales) Regulations 2007 provided that —
+a
+where that approved learning provider is a publicly funded educational establishment, those fees do not exceed the higher amount as defined in section 28(6) of the Higher Education Act 2004 and as prescribed in regulations made for the purposes of that sub-section ; or
+b
+where that approved learning provider is not a publicly funded educational establishment, those fees do not exceed whichever is the higher of the two alternative amounts set out in regulation 24A(3) of the Assembly Loans and Grants (Higher Education) (Wales) (No 2) Regulations 2011 .
+5
+Where an approved learning provider is located in Scotland, “capped fees” means the tuition fees which that establishment may lawfully charge students with a relevant connection with Scotland within the meaning of regulation 3 of the Education (Fees) (Scotland) Regulations 2011 , provided that those fees do not exceed the highest amount specified in regulations made under section 9(6) and (7) of the Further and Higher Education (Scotland) Act 2005 or determined thereafter by the Scottish Ministers .
+Andrew Robathan
+Parliamentary Under Secretary of State
+Ministry of Defence
+9th July 2012

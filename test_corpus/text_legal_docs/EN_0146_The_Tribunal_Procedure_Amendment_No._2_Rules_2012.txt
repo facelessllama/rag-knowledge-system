@@ -1,0 +1,109 @@
+The Tribunal Procedure (Amendment No. 2) Rules 2012
+The Lord Chancellor has allowed the Rules in accordance with paragraph 28(3) of that Schedule.
+Citation and commencement
+1
+These Rules may be cited as the Tribunal Procedure (Amendment No. 2) Rules 2012 and come into force —
+a
+for the purposes of rules 2 and 3, on 1st September 2012;
+b
+for all other purposes, on 1st July 2012.
+Amendments to the Tribunal Procedure (First-tier Tribunal) (Health, Education and Social Care Chamber) Rules 2008
+2
+The Tribunal Procedure (First-tier Tribunal) (Health, Education and Social Care Chamber) Rules 2008 are amended as follows.
+3
+In paragraph (1) of rule 21 (the response) —
+a
+in sub-paragraph (c), after “in schools case” insert “to which sub-paragraph (cc) does not apply”;
+b
+at the end of sub-paragraph (c) insert a new sub-paragraph —
+cc
+in a disability discrimination in schools case that includes a claim for the reinstatement of a child who has been permanently excluded, within 15 working days after the respondent received the application notice;
+.
+Amendments to the Tribunal Procedure (Upper Tribunal) Rules 2008
+4
+The Tribunal Procedure (Upper Tribunal) Rules 2008 are amended as follows.
+5
+In paragraph (3) of rule 1 (interpretation etc ) —
+a
+in the definition of “appropriate national authority” after “Scottish Ministers” insert “, the Department of the Environment in Northern Ireland”;
+b
+for the definition of “authorised person” substitute —
+“authorised person” means —
+an examiner appointed by the Secretary of State under section 66A of the Road Traffic Act 1988 ;
+an examiner appointed by the Department of the Environment in Northern Ireland under Article 74 of the Road Traffic (Northern Ireland) Order 1995 ; or
+any person authorised in writing by the Department of the Environment in Northern Ireland for the purposes of the Goods Vehicles (Licensing of Operators) Act (Northern Ireland) 2010 ;
+and includes a person acting under the direction of such an examiner or other authorised person, who has detained the vehicle to which an appeal relates;
+c
+in the definition of “respondent”, for “against any other decision except a decision of a traffic commissioner” substitute “other than a road transport case”;
+d
+before the definition of “tribunal” insert —
+“road transport case” means an appeal against a decision of a traffic commissioner or the Department of the Environment in Northern Ireland;
+.
+6
+In paragraph (3) of rule 20A (procedure for applying for a stay of a decision pending an appeal) —
+a
+in the first line, for “for a stay of a decision of a traffic commissioner” substitute “in a road transport case”;
+b
+for each reference to “traffic commissioner” in sub-paragraphs (a) and (b), substitute “decision maker”.
+7
+In paragraph (6) of rule 23 (notice of appeal), for sub-paragraph (b) substitute —
+b
+in a road transport case, to —
+i
+the decision maker;
+ii
+the appropriate national authority; and
+iii
+in a case relating to the detention of a vehicle, the authorised person
+.
+8
+In paragraph (1) of rule 24 (response to the notice of appeal), for “an appeal against a decision of a traffic commissioner” substitute “a road transport case”.
+9
+In Schedule 1 (procedure after the notice of appeal in appeals against decisions of traffic commissioners) —
+a
+in the heading for “appeals against decisions of traffic commissioners” substitute “road transport cases”;
+b
+in paragraph 1, for “an appeal against the decision of a traffic commissioner” substitute “road transport cases”;
+c
+in paragraph 3, for each reference to “traffic commissioner” and “traffic commissioner’s”, substitute “decision maker” and “decision maker’s” respectively;
+d
+for paragraph 3(d), substitute —
+d
+in an appeal under —
+i
+section 50 of the Public Passenger Vehicles Act 1981 or section 37 of the Goods Vehicles (Licensing of Operators) Act 1995 , or
+ii
+section 35 of the Goods Vehicles (Licensing of Operators) Act (Northern Ireland) 2010,
+a list of the names and addresses of objectors and representors.
+;
+e
+in paragraph 4 —
+i
+in sub-paragraph (b) —
+aa
+before “each” insert “to”, and
+bb
+at the end of that sub-paragraph omit “and”;
+ii
+after sub-paragraph (c), insert —
+d
+in an appeal under section 35(5) of the Goods Vehicles (Licensing of Operators) Act (Northern Ireland) 2010, to each person who made representations under section 11(4) or 18(2) of that Act.
+;
+f
+in paragraph 10, for “traffic commissioner” substitute “decision maker”.
+We make these Rules
+Brian F J Langstaff
+Philip Brook Smith QC
+Simon Cox
+Simon Ennals
+Mark Rowland
+Lesley Clare
+Douglas J May QC
+Bronwyn McKenna
+M T Reed
+I allow these Rules,
+Signed by the authority of the Lord Chancellor
+J Djanogly
+Parliamentary Under Secretary of State
+Ministry of Justice
+22nd May 2012

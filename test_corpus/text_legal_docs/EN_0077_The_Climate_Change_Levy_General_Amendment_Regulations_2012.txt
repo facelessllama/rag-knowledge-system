@@ -1,0 +1,107 @@
+The Climate Change Levy (General) (Amendment) Regulations 2012
+The Commissioners for Her Majesty’s Revenue and Customs make the following Regulations in exercise of the powers conferred by section 30 of, and paragraphs 22, 43(A)(8) and (9), 62(1)(ca) and (cb), 125(1) and 146(7)(c) of Schedule 6 to, the Finance Act 2000 :
+Citation and commencement
+1
+These Regulations may be cited as the Climate Change Levy (General) (Amendment) Regulations 2012 and come into force on 1st April 2012.
+Amendments to the Climate Change Levy (General) Regulations 2001
+2
+Amend the Climate Change Levy (General) Regulations 2001 as follows.
+3
+In paragraph (1) of regulation 2 (general interpretation) —
+a
+before “and “reduced-rate part”” insert “, recycling lower-rate part”;
+b
+before “a reduced-rate supply” insert “a recycling lower-rate supply or”;
+c
+after the definition of “recipient” insert —
+“recycling lower-rate supply” means a taxable supply to which paragraph 42(1)(d) of the Act applies (a supply for use in scrap metal recycling);
+.
+4
+In sub-paragraph (c)(ii) of regulation 8 (obligation to keep records) before “reduced-rate supply” insert “recycling lower-rate supply or a”.
+5
+In regulation 11 (other tax credits: entitlement) —
+a
+in paragraph (1) —
+i
+in sub-paragraph (c) before “a reduced-rate supply” (in both places) insert “a recycling lower-rate supply or”;
+ii
+after sub-paragraph (c) insert —
+ca
+after a taxable supply has been made on the basis that it was (to any extent) a recycling lower-rate supply, it is determined that the supply was such a supply to a greater extent than previously determined;
+;
+b
+in sub-paragraph (2)(a) after “(c),” insert “(ca)”.
+6
+In paragraph (1) of regulation 12 (tax credits: general) before “and reduced-rate supplies” insert “, recycling lower-rate supplies”.
+7
+In regulation 33 (special rules for excluded, exempt and reduced-rate supplies), and the heading to that regulation, before “and reduced-rate supplies” insert “, recycling lower-rate supplies”.
+8
+In the heading to Part III before “ AND REDUCED-RATE SUPPLIES ” insert “ , RECYCLING LOWER-RATE ”.
+9
+In sub-paragraph (1)(a) of regulation 34 (supplier certificates: basic rules) —
+a
+for “, 18” substitute “or 18”; and
+b
+omit “or 18A (recycling processes)”.
+10
+In regulation 35 (delivery of supplier certificates) —
+a
+in paragraph (1) before “a reduced-rate” insert “ a recycling lower-rate or”;
+b
+for sub-paragraph (2)(a) substitute —
+a
+represent (as the case may be) that the supply (or a quantified part of it) —
+i
+meets the requirements of a reduced-rate supply in paragraph 44(1) of the Act (reduced-rate for supplies covered by climate change agreements), or
+ii
+is for use in scrap metal recycling, within the meaning of paragraph 43A(1) of the Act (supplies for use in scrap metal recycling),
+;
+c
+in paragraph (3) after “reduced-rate-supply” insert “or is for use in scrap metal recycling”.
+11
+In Schedule 1 —
+a
+in the heading after “ EXEMPT ” insert “ , RECYCLING LOWER-RATE ”;
+b
+in paragraph 2 —
+i
+in the CCL relief formula, after “0.65R” insert “+ 0.8L”;
+ii
+in the definition of “M” omit sub-paragraph (fa);
+iii
+after the definition of “0.65R” insert —
+0.8L = 80% of the quantity of the taxable commodity referable to the sum of every recycling lower-rate part.
+;
+c
+in paragraph 3(1) —
+i
+after “regulation 35(2)” insert “(recycling lower-rate and reduced-rate)”;
+ii
+for “(reduced rates)” substitute “(reduced-rate for certain supplies to a facility covered by a climate change agreement)”;
+d
+in paragraph 5 —
+i
+in sub-paragraph (7) —
+aa
+for “45A” substitute “43B”;
+bb
+for “Reduced-rate supplies” substitute “Supplies for use in scrap metal re-cycling and reduced-rate supplies”;
+ii
+in sub-paragraphs (8) and (9C) for “45A(2)” substitute “43B(2)”;
+iii
+in sub-paragraph (9) for “45A(2)(a)” substitute “43B(2)(a)”;
+e
+in paragraph 6(1) —
+i
+in sub-paragraph (c) before “a reduced-rate supply” (in both places) insert “a recycling lower-rate supply or”;
+ii
+after sub-paragraph (c) insert —
+ca
+after a taxable supply has been made on the basis that it was (to any extent) a recycling lower-rate supply, it is determined that the supply was such a supply to a greater extent than previously determined;
+;
+f
+in paragraph 9(5) for “three” substitute “4”.
+Dave Hartnett
+Simon Bowles
+Two of the Commissioners for Her Majesty’s Revenue and Customs
+27th March 2012

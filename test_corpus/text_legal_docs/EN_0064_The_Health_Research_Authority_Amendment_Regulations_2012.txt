@@ -1,0 +1,323 @@
+The Health Research Authority (Amendment) Regulations 2012
+The Secretary of State for Health makes the following Regulations in exercise of the powers conferred by section 272(7) and (8) of, and paragraphs 5 and 13 of Schedule 6 to, the National Health Service Act 2006 .
+Citation and commencement
+1
+These Regulations may be cited as the Health Research Authority (Amendment) Regulations 2012 and come into force on 28th May 2012.
+Amendments of the Health Research Authority Regulations 2011
+2
+1
+The Health Research Authority Regulations 2011 are amended as follows.
+2
+In regulation 1 (citation, commencement and interpretation), in paragraph (2) —
+a
+omit the definitions of “chief officer” and “member”;
+b
+after the definition of “ the Authority ” insert —
+“the chair” means the chairman of the Authority;
+“final outcome”, in relation to any proceedings where there are rights of appeal, means the outcome of proceedings —
+once the period for bringing an appeal has expired without an appeal being brought; or
+if an appeal is brought in accordance with those rights, once those rights have been exhausted;
+“health service body” means —
+a Strategic Health Authority, a Special Health Authority, a Primary Care Trust, an NHS trust, a Local Health Board or an NHS foundation trust ;
+a Health Board or Special Health Board constituted under section 2 of the National Health Service (Scotland) Act 1978 ;
+the Scottish Dental Practice Board, the Common Services Agency for the Scottish Health Service, Healthcare Improvement Scotland or an NHS trust constituted under, respectively, sections 4, 10, 10A or 12A of the National Health Service (Scotland) Act 1978 ;
+the Care Quality Commission ;
+the Health Protection Agency ;
+the Independent Regulator of NHS Foundation Trusts ;
+the Secretary of State;
+the Northern Ireland Central Services Agency for Health and Social Services established under the Health and Personal Social Services (Northern Ireland) Order 1972 ;
+a special health and social services agency established under the Health and Personal Social Services (Special Agencies) (Northern Ireland) Order 1990 ;
+a Health and Social Services Board constituted under the Health and Personal Social Services (Northern Ireland) Order 1972;
+a Health and Social Services trust established under the Health and Personal Social Services (Northern Ireland) Order 1991 ; and
+the Department of Health, Social Services and Public Safety for Northern Ireland;
+“member”, except in regulation 2A(1)(d), (2) and (3), means a member of the Authority, including the chair;
+“non-officer member”, except in regulation 2A(2)(a), means a member who is not an officer of the Authority; and
+“primary care list” means —
+a list referred to in section 159(1)(a) to (e) of the Act ;
+a list of persons undertaking to provide general medical services or general dental services prepared in accordance with regulations under section 29 or 36 of the National Health Service Act 1977 as the list existed on or before 31st March 2004;
+a list of persons approved for the purposes of assisting in the provision of general medical services or general dental services prepared in accordance with regulations under section 43D(1) of the National Health Service Act 1977 as the list existed on or before 31st March 2004; or
+a services list referred to in section 8ZA(1)(a) of the National Health Service (Primary Care) Act 1997 as the list existed on or before 31st March 2004.
+.
+3
+For regulation 2 (appointment of members), substitute the following —
+Appointment and tenure of office of members
+2
+1
+The non-officer members must be appointed by the Secretary of State.
+2
+Subject to regulation 2C, the term of appointment of a non-officer member must be such period, not exceeding four years, as the Secretary of State specifies on making the appointment.
+3
+Subject to regulation 2A, a non-officer member is, on the termination of his appointment, eligible for re-appointment as a non-officer member.
+4
+The non-officer members, with the agreement of the Secretary of State, must appoint the member who is to be the chief executive of the Authority.
+5
+The non-officer members and the chief executive must appoint the other members who are officers of the Authority.
+.
+4
+After regulation 2 insert —
+Disqualification for appointment
+2A
+1
+Subject to regulation 2B, a person is disqualified for appointment as a non-officer member if —
+a
+that person has, within the period of five years immediately preceding the date of the proposed appointment, been convicted —
+i
+in the United Kingdom of any offence, or
+ii
+outside of the United Kingdom of any offence which, if committed in any part of the United Kingdom, would constitute a criminal offence in that part, and
+in either case, the final outcome of the proceedings was a sentence of imprisonment (whether suspended or not) for a period of not less than three months without the option of a fine;
+b
+that person is the subject of a bankruptcy restrictions order or an interim bankruptcy restrictions order under Schedule 4A to the Insolvency Act 1986 , Schedule 2A to the Insolvency (Northern Ireland) Order 1989 or sections 56A to 56K of the Bankruptcy (Scotland) Act 1985 (which relate to bankruptcy restrictions orders and undertakings);
+c
+that person has been dismissed within the period of five years immediately preceding the date of the proposed appointment, otherwise than by reason of redundancy, from any paid employment with a health service body;
+d
+that person is a person whose term of appointment as the chairman, a member, a director or a governor of a health service body has been terminated on the grounds —
+i
+that it was not in the interests of, or conducive to the good management of, the health service body or of the health service that the person should continue to hold that office,
+ii
+that the person failed, without reasonable cause, to attend any meeting of that health service body for three successive meetings,
+iii
+that the person failed to declare a pecuniary interest or withdraw from consideration of any matter in respect of which that person had a pecuniary interest, or
+iv
+of misbehaviour, misconduct or failure to carry out the person’s duties;
+e
+that person —
+i
+is subject to a national disqualification by the First-tier Tribunal ,
+ii
+is subject to a national disqualification under a decision by the National Health Service Tribunal which is treated as a national disqualification by virtue of regulation 6(4)(b) of the Abolition of the NHS Tribunal (Consequential Provisions) Regulations 2001 or regulation 6(4)(b) of the Abolition of the NHS Tribunal (Consequential Provisions) Regulations 2002 ,
+iii
+has been refused admission to a primary care list and was not subsequently nominated or approved for inclusion in a primary care list,
+iv
+is conditionally included in a primary care list ,
+v
+is contingently removed from a primary care list ,
+vi
+is suspended from a primary care list or treated as so suspended by virtue of regulation 6(2) of the Abolition of the NHS Tribunal (Consequential Provisions) Regulations 2001 or regulation 6(2) of the Abolition of the NHS Tribunal (Consequential Provisions) Regulations 2002, or
+vii
+has been removed from a primary care list on any of the grounds set out in regulation 10(1)(a) or (b) or (4) of the National Health Service (Performers Lists) Regulations 2004 , or by a direction of the National Health Service Tribunal and has not subsequently been included in such a list,
+and in this sub-paragraph any reference to a provision in, or made under, the Act includes a reference to the provision corresponding to that provision in legislation relating to Scotland or Northern Ireland;
+f
+that person is subject to —
+i
+a disqualification order or disqualification undertaking under the Company Directors Disqualification Act 1986 ,
+ii
+a disqualification order or disqualification undertaking under the Company Directors Disqualification (Northern Ireland) Order 2002 , or
+iii
+an order made under section 429(2)(b) of the Insolvency Act 1986 (disabilities on revocation of administration order against an individual); or
+g
+that person has at any time been removed —
+i
+from the office of charity trustee or trustee for a charity by an order made by the Charity Commissioners, the Charity Commission, the Charity Commission for Northern Ireland or the High Court on the grounds of any misconduct or mismanagement in the administration of the charity —
+aa
+for which the person was responsible or to which the person was privy, or
+bb
+which the person by their conduct contributed to or facilitated, or
+ii
+under —
+aa
+section 7 of the Law Reform (Miscellaneous Provisions) (Scotland) Act 1990 (powers of Court of Session to deal with management of charities), or
+bb
+section 34(5)(e) of the Charities and Trustee Investment (Scotland) Act 2005 (powers of Court of Session)
+from being concerned in the management or control of any body.
+2
+For the purposes of paragraph (1)(c), a person is not to be treated as having been in paid employment by reason only of that person having been —
+a
+in the case of a health service body which is not an NHS trust or an NHS foundation trust, the chairman or a non-officer member of the health service body in question;
+b
+in the case of an NHS trust, the chairman or a non-executive director of, the NHS trust; or
+c
+in the case of an NHS foundation trust, the chairman, a governor or a non-executive director of the NHS foundation trust.
+3
+In paragraph (2)(a), “non-officer member” means a member of a health service body who is not employed by that body.
+Cessation of disqualification
+2B
+1
+A person who is disqualified under regulation 2A(1)(c) or (g) may, on the expiry of the period of two years beginning on the date of the dismissal or removal, apply in writing to the Secretary of State to have that disqualification removed.
+2
+Where a person makes an application under paragraph (1), the Secretary of State may direct that the disqualification of that person under regulation 2A(1)(c) or (g) is to cease to have effect.
+3
+Where the Secretary of State refuses an application made by a person under paragraph (1) (“the first application”) no further application may be made by that person before the expiry of the period of two years beginning with the date of the first, or any subsequent, application under that paragraph.
+4
+Subject to paragraph (5), where a person is disqualified under regulation 2A(1)(d), the disqualification is to cease to have effect on the expiry of the period of two years beginning on the date of the termination of the term of appointment, or such longer period as the Secretary of State may specify when the period of office is terminated.
+5
+Where a person who is disqualified under regulation 2A(1)(d) applies to the Secretary of State, the Secretary of State may reduce the period of disqualification which applies in respect of that person.
+Termination of term of appointment of non-officer members
+2C
+1
+A non-officer member may resign from that office at any time during the term of that member’s appointment by giving notice in writing to the Secretary of State.
+2
+Where the Secretary of State considers that it is not in the interests of, or conducive to the good management of, the Authority or of the health service that the term of appointment of a non-officer member should continue, the Secretary of State may terminate that member’s appointment with immediate effect by giving that member notice in writing to that effect.
+3
+If a non-officer member fails to attend three successive meetings of the Authority the Secretary of State must terminate that member’s appointment with immediate effect unless the Secretary of State is satisfied that —
+a
+the absence was due to a reasonable cause; and
+b
+the member will be able to attend meetings of the Authority within such a period as the Secretary of State considers reasonable.
+4
+Where a person has been appointed to be a non-officer member and becomes disqualified for appointment under regulation 2A, that person must notify the Secretary of State in writing of such disqualification.
+5
+If it comes to the notice of the Secretary of State that at the time of a person’s appointment as a non-officer member the person was disqualified under regulation 2A, the Secretary of State must declare that the person in question was not duly appointed and must notify that person in writing to that effect.
+6
+If it comes to the notice of the Secretary of State (whether under paragraph (4) or otherwise) that a person appointed as a non-officer member has, since the appointment, become disqualified under regulation 2A, the Secretary of State must notify that person in writing of such disqualification.
+7
+When a person receives a notification under paragraph (5) or (6), that person’s term of appointment, if any, is terminated with immediate effect and that person is to cease to act as a non-officer member.
+8
+If it appears to the Secretary of State that a non-officer member has failed to comply with regulation 6 the Secretary of State may terminate that member’s appointment with immediate effect by giving that member notice in writing to that effect.
+Suspension of non-officer members
+2D
+1
+The Secretary of State may suspend a non-officer member from office while the Secretary of State considers whether —
+a
+to remove the member under regulation 2C(2) or (8); or
+b
+the member has become disqualified for appointment under regulation 2A, or was so disqualified at the time of appointment.
+2
+The Secretary of State must give notice to the member of the decision to suspend and the suspension is to take effect on the date on which the notification is received by the member.
+3
+A notice under paragraph (2) may be —
+a
+delivered in person to the member, in which case the member is treated as receiving it when it is delivered; or
+b
+sent by first class post to the member’s last known postal address, in which case the member is treated as receiving it on the third day after the day on which it was posted.
+4
+The initial period of suspension must not exceed 6 months.
+5
+The Secretary of State may review the member’s suspension at any time.
+6
+The Secretary of State may review the member’s suspension if requested in writing by the member to do so, but need not carry out a review if a period of less than 3 months has elapsed since the beginning of the initial period of suspension.
+7
+Following a review, the Secretary of State may —
+a
+revoke the member’s suspension; or
+b
+suspend the member for another period of not more than 6 months from the expiry of the current period.
+8
+The Secretary of State must revoke the member’s suspension if at any time the Secretary of State decides that —
+a
+there are no grounds to remove the member from office under regulation 2C(2) or (8);
+b
+there are such grounds but the Secretary of State is not minded to remove the member from office under those provisions; or
+c
+the member is not disqualified for appointment under regulation 2A.
+Appointment of vice-chair
+2E
+1
+The members may appoint one of the non-officer members, other than the chair, to be vice-chair for such period, not exceeding the remainder of that person’s term as a member, as they may specify on the making of the appointment.
+2
+Any member appointed under paragraph (1) may at any time resign from the office of vice-chair by giving notice in writing to the chair or, if the office of chair is vacant, the members.
+3
+This regulation does not apply where regulation 2F applies.
+Appointment of vice-chair when chair is suspended
+2F
+1
+This regulation applies where the chair is suspended under regulation 2D.
+2
+If a vice-chair has been appointed under regulation 2E(1) that appointment is to cease to have effect.
+3
+The Secretary of State may re-appoint the person mentioned in paragraph (2) or appoint another non-officer member to be the vice-chair.
+4
+The appointment of a vice-chair under paragraph (3) must be for a period not exceeding the shorter of —
+a
+the period for which the chair is suspended; and
+b
+the remainder of the non-officer member’s term of appointment as a member.
+5
+When the period for which a member is appointed as vice-chair expires, the Secretary of State may re-appoint the member, or appoint another non-officer member, as vice-chair.
+6
+Any person appointed under paragraph (3) or (5) may at any time resign from the office of vice-chair by giving notice in writing to the Secretary of State.
+7
+A notice given under paragraph (6) takes effect —
+a
+where a date is specified in the notice as that on which the resignation is to take effect, on that date; or
+b
+in any other case, on the date that the notice is received by the Secretary of State.
+8
+The Secretary of State may terminate a person’s appointment as vice-chair under paragraph (3) or (5) if the Secretary of State is of the opinion that it would be in the best interests of the Authority for another non-officer member to be vice-chair.
+9
+If —
+a
+a person resigns from the office of vice–chair under paragraph (6); or
+b
+the Secretary of State terminates a person’s appointment as vice-chair under paragraph (8),
+the Secretary of State may appoint another non-officer member as vice-chair under paragraph (3).
+Powers of vice-chair
+2G
+1
+This regulation applies where —
+a
+the chair is suspended under regulation 2D and a non-officer member is appointed to be vice-chair under regulation 2F; or
+b
+a non-officer member is appointed to be vice-chair under regulation 2E and —
+i
+the office of chair is vacant for any reason, or
+ii
+the chair is unable to perform his duties as chair owing to illness, absence or any other cause.
+2
+Where this regulation applies —
+a
+the vice-chair is to act as chair until a new chair is appointed or the existing chair resumes the chair’s duties, as the case may be; and
+b
+references to the chair in the Schedule are, for so long as there is no chair available to perform the duties of the chair, to be taken to include references to the vice-chair.
+.
+5
+In regulation 3 (appointment of committees and sub-committees), after paragraph (2) insert —
+3
+Subject to such directions as may be given by the Secretary of State, regulations 2A and 2B apply to the appointment of members of committees and sub-committees appointed under this regulation as they apply to the appointment of members of the Authority.
+.
+6
+In regulation 8 (public meeting), after paragraph (3) insert —
+4
+If under regulation 7, the Secretary of State directs the Authority to make an annual report to the Secretary of State for any particular year or for each year, the Authority must present the report at a public meeting held not later than 30 days after the date on which the report was made.
+.
+7
+For the Schedule, substitute the following —
+SCHEDULE
+RULES AS TO MEETINGS AND PROCEEDINGS OF THE AUTHORITY
+Regulation 5(1)
+1
+1
+The chair may call a meeting of the Authority at any time.
+2
+If a requisition for a meeting, signed by at least one third of the total number of members, is presented to the chair, and the chair either —
+a
+refuses to call a meeting; or
+b
+without so refusing, does not within 21 days after the requisition has been presented call a meeting,
+those members may immediately call a meeting.
+3
+In sub-paragraph (2), “the total number of members” means the total number of members excluding the chair or any member suspended under regulation 2D.
+4
+Before each meeting of the Authority, other than a meeting called pursuant to sub-paragraph (2) a notice of the meeting which —
+a
+specifies the principal business proposed to be transacted at it; and
+b
+is signed by the chair or by an officer of the Authority authorised by the chair to sign on his behalf,
+must be delivered to each member, or sent by post to each member’s last known postal address, at least seven clear days before the day of the meeting.
+5
+The proceedings of any meeting are not invalidated by a failure to deliver such notice to any member.
+6
+In the case of a meeting called under sub-paragraph (2) by members, the notice must be signed by those members and no business other than that specified in the notice may be transacted at the meeting.
+2
+1
+At any meeting of the Authority the chair, or in the absence of the chair the vice-chair (if there is one and that vice chair is present), must preside.
+2
+If both the chair and any vice-chair are absent, such other non-officer member present as the other members present may choose for the purpose must preside.
+3
+Every question at a meeting must be determined by a majority of votes of the members present and competent to vote on the question and, in the case of an equality of votes, the chair or, in the chair’s absence, the person presiding at the meeting is to have a second or casting vote.
+4
+1
+Subject to sub-paragraph (2), no business may be transacted at any meeting unless at least two members are present, one of whom must be a non-officer member.
+2
+The chair and the chief executive must be present at a meeting of the Authority at which any other officer members are appointed.
+5
+1
+The minutes of the proceedings of a meeting must be drawn up and must be signed at the next ensuing meeting by the person presiding at that next meeting.
+2
+The names of the members present at a meeting must be recorded in the minutes.
+.
+Signed by authority of the Secretary of State for Health.
+Earl Howe
+Parliamentary Under-Secretary of State,
+Department of Health
+17th April 2012

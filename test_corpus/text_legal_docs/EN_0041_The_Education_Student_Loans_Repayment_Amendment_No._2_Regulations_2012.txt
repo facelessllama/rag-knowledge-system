@@ -1,0 +1,329 @@
+The Education (Student Loans) (Repayment) (Amendment) (No. 2) Regulations 2012
+Citation, commencement and extent
+1
+1
+These Regulations may be cited as the Education (Student Loans) (Repayment) (Amendment) (No.2) Regulations 2012 and come into force on 18 June 2012.
+2
+Subject to paragraph (3), these Regulations extend to England and Wales only.
+3
+Regulation 11 extends to all of the United Kingdom in so far as it imposes any obligation or confers any power on HMRC, an employer or a borrower in relation to repayments under Part 3 or 4 of the Education (Student Loans) (Repayment) Regulations 2009 .
+Amendment of the Education (Student Loans) (Repayment) Regulations 2009
+2
+The Education (Student Loans) (Repayment) Regulations 2009 are amended in accordance with regulations 3 to 14.
+3
+In regulation 3 —
+a
+before “In these Regulations” insert “(1)”;
+b
+after the definition of “the 2008 Act” insert —
+“the 2011 Support Regulations” means the Education (Student Support) Regulations 2011 ;
+“the 2011 Welsh Regulations” means the Assembly Learning Grants and Loans (Higher Education) (Wales) (No.2) Regulations 2011 ;
+;
+c
+after the definition of “part-time” insert —
+“post-2012 student loan” has the meaning given in paragraph (2)
+;
+d
+delete the definition of “repayment threshold” and insert —
+“repayment threshold” —
+in relation to a student loan which is not a post-2012 student loan, has the meaning given to it in regulation 29(7);
+in relation to a post-2012 student loan, has the meaning given to it in regulation 29(8);
+; and
+e
+after the definition of “Welsh Ministers” insert —
+2
+In these Regulations a “post-2012 student loan” means any student loan paid under the 2011 Support Regulations or the 2011 Welsh Regulations or any subsequent Regulations made by the Secretary of State or the Welsh Ministers (as the case may be) under section 22 of the 1998 Act and taken out by a borrower in respect of a course which that borrower begins on or after 1 September 2012 and which is not —
+a
+a full-time honours degree course beginning on or after 1 September 2012 which, disregarding any intervening vacation, a student begins to attend immediately after ceasing to attend a full-time course mentioned in paragraph 2, 3 or 4 of Schedule 2 to the 2011 Support Regulations or a full-time foundation or ordinary degree course, which started before 1 September 2012, having achieved a qualification; or
+b
+one to which the borrower’s status as a student eligible for support under Regulations made under section 22 of the 1998 Act has been transferred from another course which the borrower began before 1 September 2012 and where the transfer takes place on or after 1 September 2012 and it is from a full-time course to a full-time course.
+.
+4
+In regulation 9(1), after the definition of “the 2006 Welsh Regulations” insert ““course start date” means 1 January, 1 April, 1 July or 1 September of the calendar year where the first day of the course is on or after 1 January and before 1 April, on or after 1 April and before 1 July, on or after 1 July and before 1 August or on or after 1 August and on or before 31 December, respectively;”.
+5
+In regulation 15 —
+a
+in paragraph (2), before “A borrower is not required” insert “Subject to paragraphs (2A), (2B) and (2C),”; and
+b
+after paragraph (2) insert —
+2A
+Subject to paragraph (2C), where a borrower takes out a post-2012 student loan in relation to a part-time course, the borrower is not required to repay any part of that post-2012 student loan until the earlier of —
+a
+the start of the following tax year commencing on 6 April after the borrower ceases to be eligible for financial support under Regulations made pursuant to section 22 of the 1998 Act whether by reason of having completed that course or otherwise; or
+b
+the start of the following tax year commencing on 6 April after the fourth anniversary of the course start date.
+2B
+Subject to paragraph (2C), a borrower who takes out a post-2012 student loan and who changes their mode of study between full-time and part-time study is required to repay —
+a
+where there is a change from a full-time course to a part-time course, in accordance with paragraph (2A);
+b
+where there is a change from a part-time course to a full-time course before the requirement to repay under paragraph (2A) applies, in accordance with paragraph (2);
+c
+where there is a change from a part-time course to a full-time course and the requirement to repay under paragraph (2A) applies, in accordance with paragraph (2A).
+2C
+A borrower with a post-2012 student loan is not required to repay any part of the post-2012 student loan under paragraphs (2), (2A) and (2B) before 6 April 2016.
+2D
+For the purposes of paragraphs (2), (2A) and (2B), an original course and a top-up course are treated as one course where —
+a
+“original course” means a course which, disregarding any intervening vacation, a student attended immediately before a top-up course; and
+b
+“top-up course” means —
+i
+a full-time honours degree course beginning after 1 September 2012 which, disregarding any intervening vacation, a student begins immediately after ceasing to attend a full-time course mentioned in paragraph 2, 3 or 4 of Schedule 2 to the 2011 Support Regulations or a full-time foundation or ordinary degree course, which started on or after 1 September 2012, having achieved a qualification; or
+ii
+a part-time honours degree course beginning after 1 September 2012 which, disregarding any intervening vacation, a student begins immediately after ceasing to attend or undertake a part-time higher education course mentioned in paragraph 2, 3 or 4 of Schedule 2 to the 2011 Support Regulations or a part-time foundation or ordinary degree course, which started on or after 1 September 2012, having achieved a qualification.
+.
+6
+After regulation 18 insert —
+Division of repayment
+18A
+Where a borrower has a post-2012 student loan and a student loan which is not a post-2012 student loan and it is time for the borrower to repay both loans in accordance with regulation 15, the repayment will be divided between the loans so that —
+a
+the part of the repayment relating to income above the repayment threshold in regulation 29(8) is to reduce the outstanding balance of the post-2012 student loan; and
+b
+the part of the repayment relating to income above the repayment threshold in regulation 29(7) up to and including the repayment threshold in regulation 29(8) is to reduce the outstanding balance of the student loan which is not a post-2012 student loan.
+.
+7
+In regulation 19 —
+a
+In paragraph (2), after “section 22 of the 1998 Act” insert “, other than a post-2012 student loan,”;
+b
+in paragraph (3)(c) delete “or”;
+c
+in paragraph (3)(d) —
+i
+after “post-2006 student loans” insert “and not post-2012 student loans”; and
+ii
+delete the “.” and insert “; or”; and
+d
+after paragraph (3)(d) insert —
+e
+in the case of post-2012 student loans, the 30 th anniversary of the date on which the borrower became liable to repay the student loan.
+.
+8
+In regulation 20 —
+a
+in paragraph (1), delete from “as if it were the principal” to the end and substitute “in accordance with paragraph (1A).”;
+b
+after paragraph (1) insert —
+1A
+Interest is calculated —
+a
+for a student loan which is not a post-2012 student loan on or after 18 June 2012 up to and including 5 April 2016, as if it were the principal of a student loan outstanding from the date of receipt of the repayment to the date of the refund;
+b
+for a student loan which is not a post-2012 student loan on or after 6 April 2016, as if it were the principal of a student loan, which is not a post-2012 student loan, outstanding from the date of receipt of the repayment to the earlier of —
+i
+the end of a period 60 days after the Authority issues a notice; or
+ii
+the date on which the Authority makes the refund to the borrower;
+after which period no interest will accrue;
+c
+for a post-2012 student loan, as if it were the principal of a student loan outstanding, to which the interest rate is limited to that in regulation 21A(9), from the date of receipt of the repayment to the earlier of —
+i
+the end of a period 60 days after the Authority issues a notice ; or
+ii
+the date on which the Authority makes the refund to the borrower;
+after which period no interest will accrue;
+1B
+The notice to the borrower under paragraph (1A)(b)(i) and (c)(i) must state that interest will accrue on any overpayment from the date of receipt of the repayment, under paragraph (1), until the earlier of —
+a
+the end of a period 60 days after the Authority issues the notice; or
+b
+the date on which the Authority makes the refund to the borrower;
+after which period no interest will accrue.
+;
+c
+after paragraph (5) insert —
+6
+Where a borrower has a post-2012 student loan and a student loan which is not a post-2012 student loan and the Authority has received a repayment either directly from the borrower under regulation 15(1) or from HMRC under Parts 3 and 4 —
+a
+which results in the student loan which is not a post-2012 student loan being repaid in full but where the post-2012 student loan has not been repaid in full, or
+b
+when the student loan which is not a post-2012 student loan has already been repaid in full but where the post-2012 student loan has not been repaid in full,
+the Authority must give notice to the borrower that any amount not required to repay the student loan which is not a post-2012 student loan and which was a repayment above the repayment threshold for the student loan which is not a post-2012 student loan and not above the repayment threshold for a post-2012 student loan, shall be treated as a direct payment to the Authority under regulation 15(1) for the post-2012 student loan unless the borrower notifies the Authority, within 60 days of the date of the Authority’s notice, that an amount should be refunded to the borrower.
+7
+A refund under paragraph (6) will carry interest calculated as if it were the principal of a student loan, which is not a post-2012 student loan, outstanding from the date of receipt of the repayment to the earlier of —
+a
+the end of a period 60 days after the Authority issues a notice; or
+b
+the date on which the Authority makes the refund to the borrower;
+after which period no interest will accrue.
+8
+A notice given by the Authority in paragraph (6) must state that interest will accrue on a refund from the date of receipt of the repayment until the earlier of —
+a
+the end of a period 60 days after the Authority issues the notice; or
+b
+the date on which the Authority makes the refund to the borrower.
+.
+9
+In regulation 21, before paragraph (1) insert —
+A1
+This regulation applies in relation to students loans which are not post-2012 student loans.
+.
+10
+After regulation 21 insert —
+Interest rate on post-2012 student loans
+21A
+1
+This regulation applies in relation to post-2012 student loans.
+2
+Subject to paragraphs (3), (4) and (5), during any academic year, if the Authority determines that post-2012 student loans will bear interest, loans bear interest at the rate which will result in an annual percentage rate of charge determined in accordance with the Consumer Credit (Total Charge for Credit) Regulations 2010 equal to —
+a
+the standard interest rate plus 3%, until the earlier of the end of the tax year in which —
+i
+the borrower completes the course;
+ii
+the borrower leaves the course; or
+iii
+the fourth anniversary of the course start date occurs, in the case of loans in relation to part-time courses;
+b
+after the period in sub-paragraph (a) for a borrower to whom Part 3 or 4 applies —
+i
+in a tax year in which the borrower’s interest income is the lower interest threshold or less, the standard interest rate;
+ii
+in a tax year in which the borrower’s interest income is more than the lower interest threshold but not more than the higher interest threshold, the standard interest rate plus the additional interest rate; or
+iii
+in a tax year in which the borrower’s interest income is more than the higher interest threshold, the standard interest rate plus 3%;
+c
+after the period in sub-paragraph (a) for a borrower to whom Part 5 applies, where the Authority has determined under regulation 75(1) that the borrower may repay a loan by income-related instalments and the Authority considers that the interest income the borrower is likely to receive in the next 12 month period is —
+i
+the lower interest threshold or less, the standard interest rate;
+ii
+more than the lower interest threshold but not more than the higher interest threshold, the standard interest rate plus the additional interest rate;
+iii
+more than the higher interest threshold, the standard interest rate plus 3%;
+d
+after the period in sub-paragraph (a) for a borrower to whom Part 5 applies, in any period during which a borrower is required to pay to the Authority a fixed instalment in accordance with a notice served under regulation 73, the standard interest rate plus 3%.
+3
+During any academic year, which starts on or after 1 September 2012 but ends on or before 31 August 2015 and for the period from 1 September 2015 to 5 April 2016, if the Authority determines that post-2012 student loans will bear interest, loans bear interest at the rate which will result in an annual percentage rate of charge determined in accordance with the Consumer Credit (Total Charge for Credit) Regulations 2010 equal to —
+a
+the standard interest rate plus 3%, until the end of the tax year in which the borrower —
+i
+completes the course; or
+ii
+leaves the course,
+b
+after the period in sub-paragraph (a) the standard interest rate.
+4
+During any academic year or part of any academic year beginning on or after 6 April 2016, where a borrower fails to comply with one or more of regulations 22, 23(4) and 72, post-2012 student loans bear interest at the rate which will result in an annual percentage rate of charge determined in accordance with the Consumer Credit (Total Charge for Credit) Regulations 2010 equal to the standard interest rate plus 3% for the period from the date the borrower fails to comply with one or more of regulations 22, 23(4) and 72, until the borrower complies with those regulations.
+5
+Where a borrower changes their mode of study between full-time and part-time study the interest under paragraph (2)(a) is to be calculated as if the course is a —
+a
+full-time course, where there is a change from a part-time course to a full-time course but before the requirement to repay under regulation 15(2A) applies;
+b
+part-time course, where there is a change from a part-time course to a full-time course and the requirement to repay under paragraph 15(2A) applies;
+c
+part-time course, where there is a change from a full-time course to a part-time course.
+6
+Interest is calculated on the principal outstanding daily and is added to the principal monthly.
+7
+The Authority must publish, at least once a year, by whatever means and in whatever media the Authority thinks fit, the interest rate determined in accordance with paragraphs (2) and (4) or where relevant paragraph (3), for any forthcoming academic year or part of that year.
+8
+If, for any academic year, the Authority publishes more than one rate of interest to apply to post-2012 student loans, any subsequent rate so published will replace any previously published rate as the rate to apply from the date specified in the notice published in accordance with paragraph (7).
+9
+The standard interest rate is the greater of —
+a
+0%; or
+b
+an amount equal to the percentage increase between the retail prices all items index published by the Office for National Statistics for the two Marches immediately before the commencement of the academic year.
+10
+The additional interest rate is a percentage equal to 3 x (I - L)/(H - L) where —
+I is the borrower’s interest income,
+L is the lower interest threshold,
+H is the higher interest threshold.
+11
+The borrower’s interest income is —
+a
+for a borrower to whom regulation 28 (but not regulation 42) applies, total income as calculated in accordance with regulation 29(4) but without excluding the repayment threshold in regulation 29(4)(a);
+b
+for a borrower to whom regulation 42 (but not regulation 28) applies, earnings as defined in regulation 41;
+c
+for a borrower where the Authority makes a determination that the borrower may repay a loan by income-related instalments under regulation 75, gross income as defined in regulation 71;
+d
+for a borrower to whom both regulations 28 and 42 apply in the same tax year, total income as calculated in accordance with regulation 29(4) but without excluding the repayment threshold in regulation 29(4)(a).
+12
+The lower interest threshold is —
+a
+for a borrower to whom Part 3 or 4 applies, an amount of £21,000; and
+b
+for a borrower to whom Part 5 applies, an amount to be determined by reference to the most recent price level index for the borrower’s country of residence and in accordance with the following table —
+Band Price Level Index Lower Interest Threshold
+A 0<30 £4,200 B 30<50 £8,400 C 50<70 £12,600 D 70<90 £16,800 E 90<110 £21,000 F 110<130 £25,200 G 130+ £29,400
+13
+The higher interest threshold is —
+a
+for a borrower to which Part 3 or 4 applies, an amount of £41,000;
+b
+for a borrower to whom Part 5 applies, an amount to be determined by reference to the most recent price level index for the borrower’s country of residence and in accordance with the following table —
+Band Price Level Index Higher Interest Threshold
+A 0<30 £8,200 B 30<50 £16,400 C 50<70 £24,600 D 70<90 £32,800 E 90<110 £41,000 F 110<130 £49,200 G 130+ £57,400
+14
+In relation to the tables in paragraphs (12)(b) and (13)(b) the following conditions apply —
+a
+the price level index for the United Kingdom is 100;
+b
+price level indices are to be calculated using the most recent provisional comparative price level indices measured in gross domestic product produced by the World Bank’s Development Indicators ;
+c
+subject to sub-paragraph (d), where a price level index cannot be calculated under sub-paragraph (b), the applicable thresholds are those for band A;
+d
+the Authority may determine that the applicable threshold for a borrower is to be that for a country other than the borrower’s present country of residence.
+.
+11
+In regulation 29 —
+a
+in paragraph (7) before “The repayment threshold is” insert “Subject to paragraph (8)”;
+b
+in paragraph (7)(b), for “tax year” substitute “repayment threshold year”;
+c
+after paragraph (7) insert —
+8
+The repayment threshold for a borrower with a post-2012 student loan is an amount of £21,000.
+.
+12
+In regulation 71 delete the definition for “Eurostat”.
+13
+In regulation 75 —
+a
+for paragraph (3), substitute —
+3
+“The Authority must determine the amount of each instalment and must ensure that the total amount of all instalments paid in the period up to 12 months from the date of the first instalment referred to in paragraph (2) must not exceed the relevant amount.
+; and
+b
+for paragraph (5), substitute —
+5
+The amount of each instalment must be stated in the determination.
+.
+14
+In regulation 76 —
+a
+in paragraph (1), delete the table and insert —
+Band Price level index Fixed instalment for student loans which are not post-2012 student loans
+A 0<30 £49.20 B 30<50 £98.40 C 50<70 £147.60 D 70<90 £196.80 E 90<110 £246 F 110<130 £295.20 G 130+ £344.40 Band Price level index Fixed instalment for post-2012 student loans A 0<30 £40.20 B 30<50 £80.40 C 50<70 £120.60 D 70<90 £160.80 E 90<110 £201.00 F 110<130 £241.20 G 130+ £281.40 Band Price level index Applicable threshold for student loans which are not post-2012 student loans A 0<30 £3,160 B 30<50 £6,320 C 50<70 £9,480 D 70<90 £12,640 E 90<110 £15,795 F 110<130 £18,955 G 130+ £22,115 Band Price level index Applicable threshold for post-2012 student loans A 0<30 £4,200 B 30<50 £8,400 C 50<70 £12,600 D 70<90 £16,800 E 90<110 £21,000 F 110<130 £25,200 G 130+ £29,400
+b
+in paragraph (1A) —
+i
+for “2012” substitute “2013”;
+ii
+for each occurrence of “Applicable threshold” substitute “Applicable threshold for student loans which are not post-2012 student loans”; and
+iii
+delete “in the amount”;
+c
+in paragraph (3), for “Eurostat” substitute “the World Bank’s Development Indicators”;
+d
+delete paragraph (4);
+e
+in paragraph (5), delete “or (4)”.
+Education Act 2011 prescribed exceptions to student loans: interest rates
+15
+For the purposes of section 76 of the Education Act 2011, the circumstances in which that section will not apply are where a student enters into a loan, made in accordance with regulations under section 22 of the Teaching and Higher Education Act 1998, in respect of a course which satisfies one or both of the following conditions —
+a
+it is a full-time honours degree course beginning on or after 1 September 2012 which, disregarding any intervening vacation, a student begins to attend immediately after ceasing to attend a full-time course mentioned in paragraph 2, 3 or 4 of Schedule 2 to the Education (Student Support) Regulations 2011 or a full-time foundation or ordinary degree course, which started before 1 September 2012, having achieved a qualification;
+b
+it is one to which the student’s status as a student eligible for support under Regulations made under section 22 of the of the Teaching and Higher Education Act 1998 has been transferred from another course which the student began before 1 September 2012 and where the transfer takes place on or after 1 September 2012 and is from a full time course to a full time course.
+David Willetts
+Minister of State for Universities and Science
+Department for Business, Innovation and Skills
+16th May 2012
+Leighton Andrews
+Minister for Education and Skills One of the Welsh Ministers
+15th May 2012

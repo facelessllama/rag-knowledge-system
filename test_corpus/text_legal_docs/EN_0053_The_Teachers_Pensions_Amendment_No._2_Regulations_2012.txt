@@ -1,0 +1,103 @@
+The Teachers’ Pensions (Amendment) (No. 2) Regulations 2012
+In accordance with section 9(1) of that Act, these Regulations are made with the consent of the Treasury .
+Citation and commencement
+1
+These Regulations may be cited as the Teachers’ Pensions (Amendment) (No. 2) Regulations 2012 and come into force on 1st October 2012.
+Amendments to the Teachers’ Pensions Regulations 2010
+2
+The Teachers’ Pensions Regulations 2010 are amended in accordance with regulations 3 to 9.
+3
+In regulation 6 (pensionable employment: general) —
+a
+after paragraph (1), insert —
+1A
+In this regulation —
+a
+paragraphs (2) and (3) apply to a person’s employment before the automatic enrolment date in relation to that person in respect of that employment; and
+b
+paragraphs (2A) and (3A) apply to a person’s employment on or after the automatic enrolment date in relation to that person in respect of that employment.
+;
+b
+after paragraph (2) insert —
+2A
+A person’s employment in a capacity mentioned in Part 2 of Schedule 2 is pensionable employment if either —
+a
+an election made under regulation 10 (election for employment to be pensionable) has effect before the automatic enrolment date; or
+b
+the employer enrols the person into the Scheme in relation to that employment, and no election under regulation 9 (election for employment not to be pensionable) has effect.
+;
+c
+after paragraph (3) insert —
+3A
+A person’s employment in a capacity mentioned in Part 3 of Schedule 2 is pensionable employment if either —
+a
+an election made under regulation 10 (election for employment to be pensionable) has effect before the automatic enrolment date; or
+b
+the employer enrols the person into the Scheme in relation to that employment, and no election under regulation 9 (election for employment not to be pensionable) has effect.
+.
+4
+In regulation 7 (employment not pensionable: general) —
+a
+in paragraph (1)(a), for “18” substitute “16”;
+b
+for paragraph (3), substitute —
+The employment of a person who makes an election under regulation 9 (election for employment not to be pensionable) in respect of that employment is not pensionable while the election has effect.
+;
+c
+in paragraphs (7) and (9), after “pensionable employment”, insert “or the person’s employer makes arrangements under section 3(2)(automatic enrolment) or 5(2)(automatic re-enrolment) PA 2008 in respect of that employment.”.
+5
+In regulation 8 (employment not pensionable: contributions not paid), in paragraph (2), after “Any period of” insert “the”.
+6
+In regulation 9 (election for employment not to be pensionable) —
+a
+for paragraph (1), substitute —
+A person may make an election under this regulation in respect of a particular pensionable employment by giving written notice to the employer.
+;
+b
+for paragraph (3), substitute —
+But —
+a
+if the notice is given within 3 months after the start of employment in a capacity mentioned in Schedule 2, the election has effect from the first day of that employment; and
+b
+if the notice is given within 3 months after the date on which arrangements made by the employer under section 3(2) (automatic enrolment) or section 5(2) (automatic re-enrolment) of PA 2008 have effect in respect of that employment, the election has effect from that date.
+;
+c
+for paragraph (4), substitute —
+An election ceases to have effect from the earlier of —
+a
+the date on which an election under regulation 10 (election for employment to be pensionable) has effect; and
+b
+the date on which arrangements made by the employer under section 3(2) (automatic enrolment) or section 5(2) (automatic re-enrolment) of PA 2008 have effect in respect of the employment.
+.
+7
+In regulation 10(1) (election for employment to be pensionable) —
+a
+after “under this regulation” insert “in respect of a particular employment” ; and
+b
+after “Secretary of State” insert “save that a person mentioned in paragraph (2)(b), (2)(c) or (2)(d) may only make an election before the automatic enrolment date in relation to that person in respect of that employment.”.
+8
+In regulation 11 (backdating elections for employment to be pensionable) —
+a
+in paragraph (1)(a), after “by a person in” insert “respect of an”;
+b
+in paragraph (2), after “by a person in” insert “respect of an”;
+c
+for paragraph (7)(b)(i), substitute —
+“any period of any of the person’s opted-out employments, or”.
+9
+In Schedule 1 (Glossary of expressions) —
+a
+below “PA 1995” in the “Expression” column, insert “PA 2008”, and below “the Pensions Act 1995” in the “Meaning” column, insert “the Pensions Act 2008 ”;
+b
+below “appropriate factor” in the “Expression” column, insert “automatic enrolment date”, and below “see regulation 130 (appropriate factor)” in the “Meaning” column, insert “the meaning in section 3(7) PA 2008.”;
+c
+below “retirement pension” in the “Expression” column, insert “Scheme”, and below “a pension payable under regulation 60 (retirement benefits)” in the “Meaning” column, insert “scheme for the provision of pensions to teachers in England and Wales established under section 9 of SA 1972”.
+Nick Gibb
+Minister of State
+Department for Education
+3rd September 2012
+We consent
+Brooks Newmark
+James Dudderidge
+Two of the Lords Commissioners of Her Majesty’s Treasury
+3rd September 2012

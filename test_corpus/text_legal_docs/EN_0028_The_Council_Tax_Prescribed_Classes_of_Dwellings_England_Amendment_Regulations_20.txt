@@ -1,0 +1,91 @@
+The Council Tax (Prescribed Classes of Dwellings) (England) (Amendment) Regulations 2012
+The Secretary of State, in exercise of the powers conferred by sections 11A(1), (2), (4) and (4A) and 11B(2) and (3) of the Local Government Finance Act 1992 , makes the following Regulations:
+Citation, commencement and application
+1
+1
+These Regulations may be cited as the Council Tax (Prescribed Classes of Dwellings) (England) (Amendment) Regulations 2012 and shall come into force on 1st April 2013.
+2
+These Regulations apply in relation to billing authorities in England only.
+Amendment of Regulations
+2
+1
+The Council Tax (Prescribed Classes of Dwellings) (England) Regulations 2003 are amended in accordance with paragraphs (2) to (4) below.
+2
+For regulation 2 (interpretation) substitute —
+Interpretation
+2
+1
+In these Regulations —
+“ the Act ” means the Local Government Finance Act 1992;
+“caravan” shall be construed in accordance with Part 1 of the Caravan Sites and Control of Development Act 1960 ;
+“Class A” means the class of dwellings described in regulation 4;
+“Class B” means the class of dwellings described in regulation 5;
+“Class C” means the class of dwellings described in regulation 7;
+“Class D” means the class of dwellings described in regulation 8;
+“Class E means the class of dwellings described in regulation 9;
+“Class F” means the class of dwellings described in regulation 10;
+“qualifying person” means a person who is liable for the council tax in respect of a dwelling on a particular day, whether or not jointly with any other person, or who would be liable for the council tax in respect of a dwelling on a particular day if that dwelling did not fall within —
+Class O of the Council Tax (Exempt Dwellings) Order 1992 ; or
+Class E of the Council Tax (Liability for Owners) Regulations 1992 ;
+“the relevant year” means the financial year for which a billing authority makes a determination under section 11A of the Act;
+an “unoccupied dwelling” means a dwelling in which no one lives.
+2
+For the purposes of Class D —
+a
+a dwelling is vacant on any day if on the day —
+i
+in the case of a dwelling consisting of a pitch occupied by a caravan or a mooring occupied by a boat, the caravan or boat is unoccupied; and
+ii
+in any other case, the dwelling is unoccupied and substantially unfurnished; and
+b
+in considering whether a dwelling has been vacant for any period, any one period, not exceeding six weeks, during which it was not vacant shall be disregarded.
+3
+In regulation 3 (prescribed classes), for paragraphs (1) and (2) substitute —
+1
+Class A and Class B are prescribed as classes of dwelling for the purposes of section 11A(4) of the Act for each financial year beginning on or after 1st April 2013.
+2
+Class C and Class D are prescribed as classes of dwelling for the purposes of section 11A(4A) of the Act for each financial year beginning on or after 1st April 2013.
+3
+Class E and Class F are prescribed classes of dwelling for the purposes of section 11B(2) of the Act for each financial year beginning or after 1st April 2013.
+4
+After regulation 7 (Class C) insert —
+Class D
+8
+The class of dwellings described in this regulation (“Class D”) comprises every chargeable dwelling in England —
+a
+which satisfies the requirement set out in paragraph (b) unless it has been such a dwelling for a continuous period of twelve months or more ending immediately before the day in question;
+b
+the requirement referred to in paragraph (a) is that the dwelling is vacant and —
+i
+requires or is undergoing major repair work to render it habitable, or
+ii
+is undergoing structural alteration; or
+iii
+has undergone major repair work to render it habitable, if less than six months have elapsed since the date on which the alteration was substantially completed and the dwelling has continuously remained vacant since that date;
+c
+for the purposes of paragraph (b) above “major repair work” includes structural repair work.
+Class E
+9
+1
+) The class of dwellings described in this regulation (“Class E”) comprises every chargeable dwelling in England which —
+a
+is the sole or main residence of an individual where that individual is a qualifying person in relation to another dwelling provided by the Secretary of State for Defence for the purposes of armed forces accommodation, and which for that individual is job-related; or
+b
+would be the sole or main residence of an individual if that individual were not a qualifying person in relation to another dwelling provided by the Secretary of State for Defence for the purposes of armed forces accommodation, and which for that individual is job-related.
+2
+For the purposes of paragraph (1) a dwelling is job-related if it falls within the description set out in paragraph 1 of the Schedule to these Regulations.
+Class F
+10
+1
+The class of dwellings described in this regulation (“Class F”) comprises every chargeable dwelling in England —
+a
+which forms part of a single property which includes at least one other dwelling; and
+b
+which is being used by a resident of that other dwelling, or as the case may be, one of those other dwellings, as part of their sole or main residence.
+2
+For the purposes of paragraph (1) “single property” means property which would apart from the Council Tax (Chargeable Dwellings) Order 1992 be one dwelling within the meaning of section 3 of the Act.
+Signed by authority of the Secretary of State for Communities and Local Government
+Brandon Lewis
+Parliamentary Under Secretary of State
+Department for Communities and Local Government
+26th November 2012

@@ -1,0 +1,48 @@
+The Energy Act 2004 (Amendment) Regulations 2012
+The Secretary of State is a Minister designated for the purposes of section 2(2) of the 1972 Act in relation to energy and energy sources .
+Citation and commencement
+1
+These Regulations may be cited as the Energy Act 2004 (Amendment) Regulations 2012 and come into force on 4th December 2012.
+Amendment of section 132 of the Energy Act 2004
+2
+In Chapter 5 of Part 2 of the Energy Act 2004 (renewable transport fuel obligations), section 132 (interpretation) is amended as follows.
+3
+For subsection (3) substitute —
+3
+For the purposes of this section fuel is used for transport purposes if —
+a
+it is used as fuel for one or more of the following —
+i
+any mode of transport, including vehicles, vessels, aircraft and trains;
+ii
+recreational craft which do not normally operate at sea;
+iii
+agricultural or forestry tractors;
+iv
+non-road mobile machinery, including inland waterway vessels which do not normally operate at sea; or
+b
+it is used for producing fuel that is intended to be so used.
+4
+After subsection (3) insert —
+3A
+For the purposes of subsection (3) “sea” —
+a
+includes tidal rivers and estuaries;
+b
+does not include —
+i
+non-tidal rivers and canals where the significant wave height could not be expected to exceed 0.6 metres at any time; and
+ii
+lakes and lochs where the significant wave height could not be expected to exceed 1.2 metres at any time.
+5
+In subsection (4), insert the following definitions at the appropriate place in alphabetical order —
+“agricultural or forestry tractor” has the meaning given by Article 1 of Directive 2000/25/ EC of the European Parliament and of the Council of 22 May 2000 on action to be taken against the emission of gaseous and particulate pollutants by engines intended to power agricultural or forestry tractors ;
+“inland waterway vessel” has the meaning given by Article 2 of Directive 97/68/EC of the European Parliament and of the Council of 16 December 1997 on the approximation of the laws of the Member States relating to measures against the emission of gaseous and particulate pollutants from internal combustion engines to be installed in non-road mobile machinery (“Directive 97/68”);
+“non-road mobile machinery” has the meaning given by Article 2 of Directive 97/68;
+“recreational craft” has the meaning given by Article 1(3) of Directive 94/25/EC of the European Parliament and of the Council of 16 June 1994 on the approximation of the laws, regulations and administrative provisions of the Member States relating to recreational craft ;
+.
+Signed by authority of the secretary of State for Transport
+Norman Baker
+Parliamentary Under Secretary of State
+Department for Transport
+29th October 2012

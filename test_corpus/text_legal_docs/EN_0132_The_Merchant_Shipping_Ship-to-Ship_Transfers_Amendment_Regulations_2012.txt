@@ -1,0 +1,147 @@
+The Merchant Shipping (Ship-to-Ship Transfers) (Amendment) Regulations 2012
+The Secretary of State makes the following Regulations in exercise of the powers conferred by section 130 of the Merchant Shipping Act 1995 :
+Citation and commencement
+1
+1
+These Regulations may be cited as the Merchant Shipping (Ship-to-Ship Transfers) (Amendment) Regulations 2012.
+2
+They come into force on 31st March 2012.
+Expiry and review of the Merchant Shipping (Ship-to-Ship Transfers) Regulations 2010
+2
+1
+After regulation 1(4) of the Merchant Shipping (Ship-to-Ship Transfers) Regulations 2010 , insert —
+5
+These Regulations cease to have effect at the end of the period of seven years beginning with the day on which these Regulations come into force.
+Review
+1A
+1
+Before the end of the review period, the Secretary of State must —
+a
+carry out a review these Regulations;
+b
+set out the conclusions of the review in a report; and
+c
+publish the report.
+2
+The report must in particular —
+a
+set out the objectives intended to be achieved by the regulatory system established by these Regulations;
+b
+assess the extent to which those objectives are achieved; and
+c
+assess whether those objectives remain appropriate and, if so, the extent to which they could be achieved with a system that imposes less regulation .
+3
+“Review period” means the period of five years beginning with the day on which these Regulations come into force.
+Other amendments of the Merchant Shipping (Ship-to-Ship Transfers) Regulations 2010
+3
+1
+The Merchant Shipping (Ship-to-Ship Transfers) Regulations 2010 are amended as follows.
+2
+After regulation 1(3), insert —
+3A
+Regulation 5A(2) comes into force on 1st April 2012
+.
+3
+In regulation 2 —
+a
+in paragraph (b) of the definition of “lightening operation”, for “at the direction” substitute “with the prior consent”;
+b
+for paragraph (c) of that definition substitute —
+c
+in order to reduce the draught of the ship transferring the cargo, to enable it to move to shallower waters in a harbour authority area;
+;
+c
+after the definition of “lightening operation” insert —
+“Merchant Shipping Notice” means a notice described as such and issued by the Maritime and Coastguard Agency, an executive agency of the Department for Transport, and any reference to a particular Merchant Shipping Notice includes a reference to that Merchant Shipping Notice as revised or reissued from time to time;
+.
+4
+In regulation 3 —
+a
+for paragraph (1) substitute —
+1
+Subject to paragraph (3) and regulation 6, a cargo transfer must not be carried out in United Kingdom waters unless —
+a
+the ships carrying out the transfer are within harbour authority waters; or
+b
+the ships carrying out the cargo transfer are within the permit area, and a permit has been obtained from the Secretary of State in accordance with the procedure set out in Merchant Shipping Notice 1829 .
+;
+b
+after paragraph (2) insert —
+2A
+Subject to paragraphs (3) and (5) and regulation 6, a bunkering operation must not be carried out in United Kingdom waters unless the ships carrying out the operation are within harbour authority waters.
+;
+c
+in paragraph (3), for “Paragraphs (1) and (2)” substitute “Paragraphs (1), (2) and (2A)”;
+d
+after paragraph (4) insert —
+5
+Paragraph (2A) does not apply to a bunkering operation between a ship and its rescue boat or tender.
+6
+In this regulation —
+“permit area” means the area of sea off Southwold in Suffolk defined by a circle of radius 1.5 nautical miles centred on position 52° 16’N. 01° 57.3’E;
+“rescue boat” means a ship designed or used to rescue persons in distress and to marshal life rafts.
+.
+5
+After regulation 5, insert —
+Ship-to-ship transfer operations plans and notification of cargo transfers in the Pollution Control Zone
+5A
+1
+A cargo transfer to or from a ship with a gross tonnage of 150 tons or more must not be carried out in United Kingdom waters or in the Pollution Control Zone unless a ship-to-ship transfer operations plan has been approved by the ship’s flag State.
+2
+A cargo transfer to or from such a ship must not be carried out in the Pollution Control Zone unless the Secretary of State has been notified in accordance with the procedure specified in Merchant Shipping Notice 1829.
+3
+A cargo transfer to or from such a ship in United Kingdom waters or in the Pollution Control Zone must be carried out in compliance with its ship-to-ship transfer operations plan.
+4
+In this regulation —
+“flag State”, in relation to a ship, means the State whose flag the ship is entitled to fly;
+“Pollution Control Zone” means the areas of sea defined in the Schedule to the Merchant Shipping (Prevention of Pollution) (Limits) Regulations 1996 ; and
+“ship-to-ship transfer operations plan” means a document which —
+is in the working language of the ship to which it relates; and
+sets out how cargo transfer operations should be conducted, based on best practice guidelines identified by the International Maritime Organization.
+5
+For the purposes of this regulation, gross tonnage is to be determined in accordance with Schedule 3.
+.
+6
+In regulation 8, for “1st October 2010” (twice occurring) substitute “1st April 2012”.
+7
+After Schedule 2, insert the Schedule set out in the Schedule to these Regulations.
+Signed by authority of the Secretary of State for Transport
+Mike Penning
+Parliamentary Under Secretary of State
+Department for Transport
+5th March 2012
+SCHEDULE
+New Schedule to be inserted in the Merchant Shipping (Ship-to-Ship Transfers) Regulations 2010
+Regulation 3(7)
+SCHEDULE 3
+Gross Tonnage
+Regulation 5A(5)
+1
+The “gross tonnage” of a United Kingdom ship is to be determined in accordance with paragraphs 3 to 5. The “gross tonnage” of a ship other than a United Kingdom ship is to be determined in accordance with paragraphs 6 to 8.
+2
+In this Schedule —
+“the 1997 Regulations ” means the Merchant Shipping (Tonnage) Regulations 1997 ;
+“length” has the same meaning as in the 1997 Regulations; and
+“the Tonnage Convention ” means the International Convention on Tonnage Measurement of Ships, 1969 .
+United Kingdom ships
+3
+In the case of a ship of 24 metres in length or over for which the Secretary of State permits the continuing use of a gross tonnage pursuant to regulation 12(1) of the 1997 Regulations, the “gross tonnage” is the smaller of —
+a
+the largest gross tonnage permitted for that ship pursuant to regulation 12(1) of the 1997 Regulations; and
+b
+the gross tonnage of the ship determined in accordance with regulation 6 of the 1997 Regulations.
+4
+In the case of any other ship of 24 metres in length or over, the “gross tonnage” is the gross tonnage of the ship determined in accordance with regulation 6 of the 1997 Regulations.
+5
+In the case of a ship of less than 24 metres in length, the “gross tonnage” is the tonnage of the ship determined in accordance with regulation 14(2) of the 1997 Regulations.
+Ships other than United Kingdom ships
+6
+Subject to paragraph 7, in the case of a ship which has a gross tonnage determined in accordance with the Tonnage Convention, the “gross tonnage” is that gross tonnage.
+7
+Where a ship has a gross tonnage determined in accordance with the Tonnage Convention but the State whose flag the ship flies or is entitled to fly permits the use of some other gross tonnage, the “gross tonnage” of the ship is the smaller of —
+a
+the largest gross tonnage permitted by the flag State to be used for that ship; and
+b
+the gross tonnage determined in accordance with the Tonnage Convention.
+8
+In the case of a ship which does not have a gross tonnage determined in accordance with the Tonnage Convention, the “gross tonnage” is the gross tonnage or equivalent measure determined in accordance with the law of the State whose flag the ship flies or is entitled to fly (and where the ship has more than one such gross tonnage or equivalent measure, the “gross tonnage” is to be taken to be the largest of them).

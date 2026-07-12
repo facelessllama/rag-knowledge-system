@@ -1,0 +1,1112 @@
+The School and Early Years Finance (England) Regulations 2012
+The Secretary of State for Education makes the following Regulations in exercise of powers conferred by sections 45A , 45AA , 47 , 47ZA , 47A(4) , 48(1) and (2) , 49(2) and (2A) and 138(7) of, and paragraph 2B of Schedule 14 to, the School Standards and Framework Act 1998 and section 24(3) of the Education Act 2002 .
+PART 1 Introduction
+Citation, commencement, application and interpretation
+1
+1
+These Regulations may be cited as the School and Early Years Finance (England) Regulations 2012 and come into force on 1st January 2013.
+2
+These Regulations apply in relation to the financial year beginning on 1st April 2013.
+3
+These Regulations apply only in relation to England.
+4
+In these Regulations —
+“the 1996 Act ” means the Education Act 1996 ;
+“the 1998 Act ” means the School Standards and Framework Act 1998;
+“the 2002 Act ” means the Education Act 2002;
+“the 2005 Act ” means the Education Act 2005 ;
+“the 2006 Act ” means the Education and Inspections Act 2006 ;
+“the 2009 Act ” means the Apprenticeships, Skills, Children and Learning Act 2009 ;
+“the 2012 Regulations ” means the School Finance (England) Regulations 2012 ;
+“academic year” means any period commencing with 1st August and ending with the next 31st July;
+“capital expenditure” means expenditure of a local authority which falls to be capitalised in accordance with proper practices, or expenditure treated as capital expenditure by virtue of
+any regulations or directions made under section 16 of the Local Government Act 2003 ;
+“ CRC ” means the CRC Energy Efficiency Scheme operated by the Environment Agency;
+“central expenditure” means the total amount deducted by a local authority from their schools budget in accordance with regulation 8;
+“ CERA ” means capital expenditure which an authority expect to charge to a revenue account of the authority within the meaning of section 22 of the Local Government Act 2003;
+“children in need” means children in respect of whom the local authority in whose area they reside must provide a range and level of services appropriate to their needs under section 17 of the Children Act 1989 ;
+“combined service” is a service funded partly from central expenditure, and partly from other budgets of the authority or contributions from other bodies;
+“Dedicated Schools Grant” is a grant of that name paid to a local authority by the Secretary of State under section 14 of the 2002 Act;
+“Early Years Foundation Stage Profile” has the meaning given in section 39 of the Childcare Act 2006 ;
+“early years provision” has the meaning given in section 20 of the Childcare Act 2006;
+“expenditure on the schools specific contingency” is central expenditure deducted for the purpose of ensuring that monies are available to enable an increase in a school’s budget share after it has been allocated and where it subsequently becomes apparent that a governing body have incurred expenditure which it would be unreasonable to expect them to meet from the school’s budget share which may include expenditure in relation to —
+schools in financial difficulty,
+the writing-off of deficits of schools which are discontinued, excluding any associated costs and overheads,
+new, amalgamating or closing schools, or
+other expenditure where the circumstances were unforeseen when initially determining the school’s budget share;
+“funding period” means the financial year beginning on 1st April 2013;
+“hospital education” means education provided at a community special school or foundation special school established in a hospital, or under any arrangements made by the local authority under section 19 of the 1996 Act (exceptional provision of education), where the child is being provided with such education by reason of a decision made by a medical practitioner and “hospital education places” shall be read accordingly;
+“ IDACI ” means the Income Deprivation Affecting Children Index;
+“IDACI bands” means the groupings of IDACI scores as published by the Department for Education in the document named “School Funding Reform: Arrangements for 2013-14” ;
+“IDACI score” means the score allocated to a child under IDACI;
+“institution within the further education sector” has the meaning given in section 91(3) of the Further and Higher Education Act 1992 ;
+“key stage” means the key stage of the National Curriculum for England comprising the requirements and entitlements described in sections 84, 85 and 85A of the 2002 Act and “key stage 1”, “key stage 2”, “key stage 3” and “key stage 4” mean the first, second, third and fourth key stages referred to in those sections respectively, and references to the number of pupils at those key stages are references to the number at the school on 4th October 2012 unless otherwise stated;
+“learning difficulty” means a significantly greater difficulty in learning than the majority of persons of his or her age, or a disability which either prevents or hinders the person from making use of facilities of a kind generally provided for further education to persons of his or her age;
+“learning difficulty assessment” has the meaning given in section 13(5) of the 1996 Act, and a reference to a person being subject to learning difficulty assessment has the meaning given in section 13(4) of the 1996 Act;
+“looked after child” means a person who, for the purposes of the Children Act 1989, is a child looked after by a local authority, and references to the authority looking after the child are to be read accordingly;
+“non-domestic rate” has the meaning given in section 54 of the Local Government Finance Act 1988 ;
+“ PFI scheme unitary payment” means a charge payable by a local authority under a private finance transaction, as defined in regulation 16 of the Local Authorities (Capital Finance) Regulations 1997 ;
+“prescribed early years provision” means early years provision prescribed for the purposes of section 7(1) of the Childcare Act 2006;
+“previous funding period” means the financial year beginning on 1st April 2012;
+“primary or secondary school” means a primary or secondary school which is a community, foundation or voluntary school;
+“proper practices” means those accounting practices which a local authority are required to follow by virtue of any enactment, or which, so far as they are consistent with any such enactment are generally regarded, whether by reference to any generally recognised published code or otherwise, as proper accounting practices to be followed in the keeping of the accounts of local authorities, either generally or of the description concerned ;
+“provider”, in relation to prescribed early years provision, may be a governing body of a school or a relevant early years provider;
+“prudential borrowing” means borrowing money for the purpose of facilitating the modernisation and rationalisation of the school estate, where the revenue savings expected to be achieved are equal to or more than the expenditure expected to be incurred in borrowing the money;
+“pupil premium” means the amount allocated by a local authority from the pupil premium grant to a school in respect of each registered pupil at that school who is entitled to it under the terms and conditions of the grant;
+“pupil premium grant” is a grant of that name paid to a local authority by the Secretary of State under section 14 of the 2002 Act in respect of pupils who are entitled to a pupil premium;
+“relevant early years provider” means a provider of prescribed early years provision, other than the governing body of a maintained school;
+“relevant early years provision” means prescribed early years provision provided by a relevant early years provider;
+“school census” means the record of individual pupil information supplied by local authorities to the Secretary of State under section 537A of the 1996 Act;
+“school year” has the meaning given in section 579(1) of the 1996 Act ;
+“sixth form grant” means a grant of that name paid to a local authority by the Secretary of State under section 14 of the 2002 Act in respect of sixth form pupils, on condition that it is passed on to a particular school;
+“special Academy” means an Academy which meets the requirements of section 1A(2) of the Academies Act 2010 ;
+“specific grant” means any grant (other than the Dedicated Schools Grant or any sixth form grant) paid to a local authority under conditions which impose restrictions on the particular purposes for which the grant may be used;
+“unavoidable costs” means costs which must be incurred by virtue of a statutory requirement.
+5
+In these Regulations —
+a reference to a determination or redetermination of a budget share or amount to be allocated is for the funding period, unless otherwise stated;
+a reference to a “governing body” of a school shall include the management committee of a pupil referral unit;
+a reference to a particular class or description of expenditure in relation to maintained schools and to pupils registered at such schools includes such expenditure of that class or description as the authority may incur in relation to Academies, and to pupils registered at Academies;
+a reference to “special educational needs transport costs”, for the purposes of paragraph 4(d) of Schedule 2, is a reference to the costs of home to school transport for pupils with special educational needs in schools maintained by a local authority where the authority are meeting such costs because the revenue savings that will be achieved by placing such children in a school maintained by them are equal to, or greater than, the costs of such transport; and
+a reference to “termination of employment costs”, for the purposes of paragraph 4(b) of Schedule 2, is a reference to expenditure relating to the dismissal or premature retirement of, or for the purpose of securing the resignation of, any person employed in a maintained school.
+Revocation of previous Regulations
+2
+The Financing of Maintained Schools (England) Regulations 2004 , the School Finance (England) Regulations 2011 and the School Finance (Amendment) (England) Regulations 2011 are revoked on 1st April 2013.
+Amendments
+3
+1
+The Schools Forums (England) Regulations 2012 are amended as follows.
+2
+In regulation 8 —
+a
+in paragraph (9), for “paragraph (10)”, substitute “paragraphs (9A) to (10)”,
+b
+after paragraph (9) insert —
+9A
+Only the schools members of the schools forum who are representatives of primary schools may vote to decide whether or not to authorise the matters referred to in regulation 12(1)(d) of the School and Early Years Finance (England) Regulations 2012 where they relate to primary schools.
+9B
+Only the schools members of the schools forum who are representatives of secondary schools may vote to decide whether or not to authorise the matters referred to in regulation 12(1)(d) of the School and Early Years Finance (England) Regulations 2012 where they relate to secondary schools.
+PART 2 Action to be Taken by a Local Authority
+CHAPTER 1
+Appropriation of the Non-Schools Education Budget
+The Non-Schools Education Budget
+4
+The following classes or descriptions of local authority expenditure are prescribed for the purposes of section 45A(1) of the 1998 Act and the determination of a local authority’s non-schools education budget, subject to the exceptions in regulation 7 —
+a
+those specified in Schedule 1, including expenditure on associated administrative costs and overheads; and
+b
+any expenditure which falls outside the classes or descriptions of expenditure specified in regulation 6 and Schedule 2 (the schools budget).
+CHAPTER 2
+Determination of Schools Budgets, Individual Schools Budgets, and Budget Shares
+Initial determination of a local authority’s schools budget
+5
+A local authority must not later than 15th March 2013 —
+a
+make an initial determination of their schools budget; and
+b
+give notice of that determination to the governing bodies of the schools they maintain.
+The schools budget
+6
+1
+The classes or descriptions of local authority expenditure specified in sub-paragraphs (a) to (e) and Schedule 2 are prescribed for the purposes of section 45A(2) of the 1998 Act and the determination of a local authority’s schools budget, subject to paragraph (2) and the exceptions in regulation 7 —
+a
+expenditure on the provision and maintenance of maintained schools and on the education of pupils registered at maintained schools;
+b
+expenditure on the education of pupils at independent schools, non-maintained special schools, pupil referral units, at home or in hospital, and on any other arrangements for the provision of primary and secondary education for pupils otherwise than at schools maintained by a local authority;
+c
+all other expenditure incurred in connection with the authority’s functions in relation to the provision of primary and secondary education, in so far as that expenditure does not fall within sub-paragraph (a) or (b);
+d
+expenditure on the education of —
+i
+pupils or students up to the age of 25 with special educational needs,
+ii
+persons provided with further education who are aged under 19 and have learning difficulties, and
+iii
+persons provided with further education who are aged 19 or over but under 25 and are subject to learning difficulty assessment,
+in so far as that expenditure does not fall within sub-paragraphs (a) to (c); and
+e
+expenditure on early years provision, in so far as that expenditure does not fall within sub-paragraphs (a) to (d).
+2
+Where a local authority operates a combined service for the benefit of pupils referred to in paragraph (1), expenditure referred to in paragraph 36(c) of Schedule 2 to the 2012 Regulations is only expenditure prescribed for the purposes of section 45A(2) of the 1998 Act and the determination of a local authority’s schools budget where that expenditure is incurred in providing an educational benefit to those pupils.
+Exceptions
+7
+A local authority’s non-schools education budget or schools budget must not include the following classes or descriptions of expenditure —
+a
+capital expenditure, other than —
+i
+CERA,
+ii
+capital expenditure appropriated to the schools budget for the purpose of funding pay arrears due to staff whose salaries are met from the schools budget;
+b
+expenditure on capital financing, other than expenditure incurred —
+i
+on prudential borrowing,
+ii
+for the purpose of meeting the costs of financing the payment of pay arrears referred to in paragraph (a)(ii); and
+c
+expenditure for the purposes of section 26 of the Road Traffic Regulation Act 1984 (arrangements for patrolling school crossings).
+Determination of the individual schools budget for the funding period and limit on increase in central expenditure
+8
+1
+Subject to paragraphs (2) to (8), not later than 15th March 2013, a local authority must deduct from their schools budget such of the classes or descriptions of planned expenditure set out in Schedule 2 (“the central expenditure”) as they propose to deduct, in order to determine their individual schools budget.
+2
+Central expenditure referred to in paragraphs 3 and 4 of Part 1 (Central Services) of Schedule 2 may only be deducted by the local authority where the expenditure is to be incurred as a result of decisions taken in previous funding periods that commit the authority to incur expenditure in the funding period.
+3
+In deducting the central expenditure referred to in Part 1 (Central Services) of Schedule 2, a local authority must not exceed the limits referred to in paragraph 5 of Schedule 2, unless they are authorised to do so under regulation 25.
+4
+A local authority must not deduct the central expenditure referred to in paragraphs 8 or 9 of Schedule 2 without authorisation from their schools forum under regulation 12(1), or the Secretary of State under regulation 12(3), of the criteria for determining the expenditure.
+5
+A local authority must not deduct the central expenditure referred to in Part 1 (Central Services), Part 2 (Central Schools Expenditure), Part 3 (Central Early Years Expenditure) or Part 5 (Items That May Be Removed From Maintained Schools’ Budget Shares) of Schedule 2 without authorisation from their schools forum under regulation 12(1), or the Secretary of State under regulation 12(3).
+6
+Where a local authority carries forward a deficit in the central expenditure from the previous funding period to the funding period which reduces the amount of the schools budget available, the funding of this deficit from the schools budget must be authorised by their schools forum under regulation 12(1), or the Secretary of State under regulation 12(3).
+7
+A local authority may apply to the Secretary of State for authorisation under regulation 25(1) to deduct from their schools budget any expenditure falling outside the classes or descriptions of planned expenditure set out in Schedule 2, in order to determine their individual schools budget.
+8
+References to planned expenditure in this regulation and Schedule 2 are references to that expenditure net of —
+a
+all related specific grants;
+b
+all related fees, charges and income; and
+c
+any funding received from the Secretary of State in respect of PFI scheme unitary payments,
+and the expenditure referred to in Schedule 2 includes expenditure on associated administrative costs and overheads.
+Consultation
+9
+1
+In determining the formulae under regulation 10 a local authority may make changes to the formulae they determined under regulation 9 of the 2012 Regulations.
+2
+Subject to paragraph (4), a local authority must consult their schools forum and schools maintained by them about any proposed changes under paragraph (1), in relation to the factors and criteria taken into account, and the methods, principles and rules adopted.
+3
+Where a local authority proposes to makes changes under paragraph (1) which will affect relevant early years providers in their area they must also consult those providers in relation to the factors and criteria taken into account, and the methods, principles and rules adopted.
+4
+Paragraph (2) does not apply to changes made relating to matters referred to in regulation 20 (sixth form funding) or 23 (excluded pupils).
+5
+A local authority must consult their schools forum before incurring any of the expenditure referred to in paragraphs 8 or 9 of Schedule 2.
+Formulae for determination of budget shares etc for certain maintained schools and early years providers
+10
+1
+A local authority must, before the beginning of the funding period and after carrying out any consultation required by regulation 9(2), decide upon the formula which they will use to determine the budget shares for schools maintained by them (other than special schools, pupil referral units, nursery schools and in relation to nursery classes in schools maintained by them).
+2
+A local authority must use the formula determined under paragraph (1) in all determinations of school budget shares in respect of the funding period.
+3
+A local authority must, before the beginning of the funding period and after carrying out any consultation required by regulation 9(2) or 9(3), decide upon the formula they will use to determine —
+a
+the budget shares for nursery schools maintained by them;
+b
+the amounts to be allocated in respect of nursery classes in schools maintained by them; and
+c
+the amounts to be allocated to relevant early years providers in their area.
+4
+A local authority must use the formula determined under paragraph (3) in all determinations of budget shares for nursery schools maintained by them, the amounts to be allocated in respect of nursery classes in schools maintained by them and the amounts to be allocated to relevant early years providers in their area in respect of the funding period.
+5
+A local authority may not make changes to their formulae after the funding period has commenced.
+Determination of allocation of budget shares etc for the funding period
+11
+1
+Not later than 15th March 2013, a local authority must determine the budget share for each of the schools maintained by them (other than special schools, pupil referral units, nursery schools and in relation to nursery classes in schools maintained by them), using the formula referred to in regulation 10(1) in accordance with Part 3 of these Regulations.
+2
+When making the determination under paragraph (1) the local authority must identify within each budget share an amount calculated by reference to the requirements, factors and criteria specified in Part 3 which are relevant to pupils with special educational needs.
+3
+After the local authority has made a determination under paragraph (1) but before giving notice under paragraph (6), the authority may apply to their schools forum under regulation 12(1), or to the Secretary of State under regulation 12(3) for authorisation to redetermine schools’ budget shares by removing any of the expenditure referred to in Part 5 of Schedule 2 (Items That May Be Removed From Maintained Schools’ Budget Shares) from the budget shares of —
+a
+all primary schools other than nursery schools,
+b
+all secondary schools, or
+c
+all primary schools other than nursery schools, and all secondary schools,
+where the expenditure is instead to be treated as central expenditure.
+4
+Not later than 15th March 2013, a local authority must determine the budget share for each of the special schools and pupil referral units maintained by them in accordance with Part 3 of these Regulations.
+5
+Not later than 31st March 2013, a local authority must determine the budget share for each of the nursery schools maintained by them, the amount to be allocated in respect of each nursery class in schools maintained by them and the amount to be allocated to each relevant early years provider in their area, using the formula referred to in regulation 10(3) in accordance with Part 3 of these Regulations.
+6
+Not later than 31st March 2013, a local authority must give notice of each budget share or amount determined under paragraphs (1), (4) and (5) to the governing body of the school or the relevant early years provider concerned, except where the budget share has been redetermined under paragraph (3) in which case the authority must give notice of the redetermined budget share.
+CHAPTER 3
+Further Deductions and Variations to Limits Authorised by Schools Forums or the Secretary of State
+Applications to the schools forum and the Secretary of State
+12
+1
+Subject to paragraph (2), on the application of a local authority, their schools forum may authorise —
+a
+the criteria for determining expenditure referred to in paragraphs 8 or 9 of Schedule 2, under regulation 8(4);
+b
+the making of deductions from the authority’s schools budget of certain central expenditure under regulation 8(5);
+c
+the funding of any deficit in the authority’s central expenditure from the schools budget under regulation 8(6); or
+d
+the redetermination of schools’ budget shares by removal of any of the expenditure referred to in Part 5 of Schedule 2 (Items That May Be Removed From Maintained Schools’ Budget Shares) from schools’ budget shares where it is instead to be treated by the authority as central expenditure, under regulation 11(3).
+2
+Where —
+a
+a schools forum does not authorise any of the matters referred to in paragraph (1); or
+b
+a local authority are not required to establish a schools forum for their area,
+the authority may make an application to the Secretary of State for such authorisation.
+3
+On the application of a local authority under paragraph (2), the Secretary of State may authorise the matters referred to in paragraph (1).
+PART 3 Determination of Budget Shares etc
+CHAPTER 1
+Requirements, and Factors and Criteria Taken into Account
+Pupil numbers
+13
+1
+Subject to regulation 16 (special arrangements for pupils in maintained nursery schools and nursery classes and children receiving relevant early years provision) and paragraph (2), in determining and redetermining budget shares for primary and secondary schools, a local authority must ascertain and take into account in their formula the number of registered pupils at those schools on the date specified in paragraph (3).
+2
+For the purposes of paragraph (1), the number of registered pupils does not include pupils —
+a
+in places in primary or secondary schools which the authority have reserved for children with special educational needs, or
+b
+in respect of whom a sixth form grant is payable.
+3
+The date for ascertaining pupil numbers is 4th October 2012.
+4
+Where a primary school had more registered pupils in reception classes on 19th January 2012 than on 6th October 2011, the authority may take into account in their formula the number of additional pupils, and where they do so this factor must be applied to all primary schools in the area.
+5
+A local authority must include in their formula a single per pupil amount for each of the following —
+a
+the number of registered pupils in reception classes and at key stage 1 and 2,
+b
+the number of registered pupils at key stage 3, and
+c
+the number of registered pupils at key stage 4,
+where the number of registered pupils is calculated with reference to paragraphs (2) to (4).
+Places
+14
+1
+In determining and redetermining budget shares for —
+a
+special schools, and
+b
+primary or secondary schools with places which the authority have reserved for children with special educational needs,
+paragraphs (2) and (3) have effect.
+2
+A local authority must include the sum of £10,000 for each place other than —
+a
+places for pupils in respect of whom a sixth form grant is payable, and
+b
+hospital education places.
+3
+For each hospital education place the local authority must include the equivalent amount per place which the authority included in their budget share in the previous funding period for hospital education.
+4
+In determining and redetermining budget shares for pupil referral units, paragraphs (5) and (6) have effect.
+5
+A local authority must include the sum of £8,000 for each place other than hospital education places.
+6
+For each hospital education place the local authority must include the equivalent amount per place which the authority provided to the pupil referral unit in the previous funding period for hospital education.
+Social deprivation
+15
+1
+In determining budget shares for schools maintained by them (other than special schools, pupil referral units or nursery schools), a local authority must take into account in their formula a factor or factors based on the incidence of social deprivation in pupils registered at the schools maintained by them, subject to paragraphs (2) to (4).
+2
+The authority must base the incidence of social deprivation referred to in paragraph (1) on one or both of the following —
+a
+either a pupil’s eligibility for free school meals on 4th October 2012 or a pupil’s eligibility for free school meals recorded in any school census between and including Summer 2006 and Spring 2012,
+b
+a pupil’s IDACI score on 4th October 2012,
+and where it is based on an IDACI score the authority may use factors which differentiate between different IDACI bands.
+3
+In determining budget shares pursuant to paragraph (1) the authority may take into account in their formula a single per pupil amount for each socially deprived pupil in reception classes and at key stage 1 and 2, and a single per pupil amount for each socially deprived pupil at key stage 3 and 4.
+4
+In paragraph (3) a reference to a “socially deprived pupil” is to a pupil who has been determined as being such pursuant to paragraph (2).
+5
+Other than in respect of two year olds, in determining —
+a
+budget shares for maintained nursery schools,
+b
+amounts to be allocated in respect of nursery classes in schools maintained by them, and
+c
+amounts to be allocated to relevant early years providers in their area,
+a local authority must take into account in their formula a factor or factors based on the incidence of social deprivation in pupils registered at the nursery school or in the nursery class or among children receiving relevant early years provision from the provider, and the determination of the incidence of social deprivation must be based on the characteristics of the pupils or children and not on the location of the school or provider.
+6
+In determining —
+a
+budget shares for maintained nursery schools,
+b
+amounts to be allocated in respect of nursery classes in schools maintained by them, and
+c
+amounts to be allocated to relevant early years providers in their area,
+in respect of two year olds, a local authority may take into account in their formula a factor or factors based on the incidence of social deprivation in pupils registered at the nursery school or in the nursery class or among children receiving relevant early years provision from the provider, and the determination of the incidence of social deprivation must be based on the characteristics of the pupil or child and not on the location of the school or provider.
+Special arrangements for pupils in maintained nursery schools and nursery classes and for children receiving relevant early years provision
+16
+1
+Subject to paragraphs (5) and (6), in determining —
+a
+budget shares for nursery schools maintained by them,
+b
+amounts to be allocated in respect of nursery classes in schools maintained by them, and
+c
+amounts to be allocated to relevant early years providers in their area,
+a local authority must take into account in their formula the predicted total number of hours of attendance of registered pupils in the nursery school or nursery class or of children receiving prescribed early years provision from the relevant early years provider, as the case may be, using as a basis for the calculation the most recent data available about the actual numbers of registered pupils or children receiving prescribed early years provision.
+2
+A local authority must review the budget share for each maintained nursery school and the amount allocated in respect of each nursery class when further information about hours of attendance becomes available, taking into account —
+a
+in the case where the local authority decide to fund only prescribed early years provision —
+i
+the predicted total number of hours of attendance of registered pupils in the nursery school or nursery class who will receive prescribed early years provision during the period (using as a basis for the calculation the actual hours of such attendance in each of at least three sample weeks); or
+ii
+the actual total number of hours of such attendance for the period;
+b
+in the case where the local authority decide to fund early years provision in excess of that which is prescribed —
+i
+the predicted total number of hours of attendance of registered pupils in the nursery school or nursery class who will receive early years provision during the period (using as a basis for the calculation the actual hours of such attendance in each of at least three sample weeks); or
+ii
+the actual total number of hours of such attendance for the period; and
+redetermine that budget share or amount allocated, as the case may be.
+3
+A local authority must review the amount allocated to each relevant early years provider, when further information about hours of attendance becomes available, taking into account —
+a
+the predicted total number of hours of attendance of children who will receive prescribed early years provision from the relevant early years provider during the period (using as a basis for the calculation the actual hours of such attendance in each of at least three sample weeks); or
+b
+the actual total numbers of hours of such attendance for the period; and
+redetermine the amount allocated.
+4
+Where a local authority make any redetermination pursuant to paragraph (2) or (3) they must give notice to the governing body of the school or the relevant early years provider concerned of the redetermination and the date on which it will be implemented, within 28 days of the redetermination.
+5
+When determining budget shares for maintained nursery schools, amounts to be allocated in respect of nursery classes and amounts to be allocated to relevant early years providers in their area, a local authority may weight the predicted total number of hours of attendance of registered pupils in the nursery school or nursery class or of children receiving prescribed early years provision from the relevant early years provider according to the special educational needs of any such pupils or children.
+6
+When determining amounts to be allocated to relevant early years providers in their area, a local authority may weight the predicted total number of hours of attendance of children receiving prescribed early years provision from the relevant early years provider according to whether any children have been admitted to the relevant early years provider in excess of the number agreed with the authority.
+7
+When determining —
+a
+budget shares for maintained nursery schools,
+b
+amounts to be allocated in respect of nursery classes in schools maintained by them, and
+c
+amounts to be allocated to relevant early years providers in their area,
+a local authority may take into account in their formula the number of places they wish to fund in the school, class or provider (instead of the predicted total number of hours of attendance), where those places have been reserved by the authority for children with special educational needs, children in need or children that meet the condition prescribed by regulation 3(2) of the Local Authority (Duty to Secure Early Years Provision Free of Charge) Regulations 2012 .
+Differential funding
+17
+For the purpose of determining or redetermining —
+a
+budget shares for maintained nursery schools,
+b
+amounts to be allocated in respect of nursery classes in schools maintained by them, and
+c
+amounts to be allocated to relevant early years providers in their area,
+a local authority may use factors or criteria which differentiate between different categories or descriptions of school or provider on the basis of unavoidable costs.
+Additional requirements, factors or criteria
+18
+1
+Subject to paragraph (3), in determining budget shares, a local authority may take into account in their formula any or all of the requirements, factors or criteria set out in Part 1 of Schedule 3, and where they do the date for ascertaining pupil numbers is 4th October 2012, save as otherwise stated.
+2
+Subject to regulation 17 (differential funding), in determining budget shares for nursery schools maintained by them, amounts to be allocated in respect of nursery classes in schools maintained by them and amounts to be allocated to relevant early years providers in their area, a local authority may take into account in their formula any or all of the requirements, factors or criteria set out in Part 2 of Schedule 3.
+3
+The requirements, factors and criteria set out in Schedule 3 may not be taken into account by a local authority on the basis of actual or estimated cost unless otherwise stated in that Schedule.
+4
+Subject to paragraphs (5) and (6), in determining the budget shares for schools maintained by them (other than special schools, pupil referral units and nursery schools), with reference to the per pupil amount of redetermined adjusted budget share for the previous funding period, a local authority may —
+a
+determine a percentage beyond which the per pupil amount of redetermined adjusted budget share a school would otherwise be allocated must not increase by, or
+b
+determine a proportionate limit to this increase.
+5
+In paragraph (4) “redetermined adjusted budget share for the previous funding period” and “redetermined adjusted budget share” have the same meanings as in Schedule 4.
+6
+Where the local authority decide to determine such a percentage or proportionate limit under paragraph (4) it must be applied to the budget shares of all schools in the local authority area.
+Minimum funding guarantee
+19
+1
+Subject to paragraph (4), in determining and redetermining budget shares for primary and secondary schools maintained by them, a local authority must ensure that an amount equal to the guaranteed funding level is included, calculated in accordance with Schedule 4.
+2
+For the purpose of determining budget shares, paragraph (1) does not apply to any school opening during the funding period, except in the circumstances set out in paragraph 3 of Schedule 4.
+3
+In determining and redetermining —
+a
+budget shares for nursery schools maintained by them,
+b
+amounts to be allocated in respect of nursery classes in schools maintained by them, and
+c
+amounts to be allocated to relevant early years providers in their area,
+a local authority must ensure that the number by which they multiply the predicted total number of hours calculated pursuant to regulation 16(1) is no lower than 1.5 percent less than the number by which they multiplied the predicted total number of hours calculated pursuant to regulation 16(1) of the 2012 Regulations for making such determinations in the previous funding period.
+4
+A local authority may make changes to the operation of this regulation and to the operation of Schedule 4 in determining and redetermining budget shares where authorised to do so by the Secretary of State under regulation 25 (alternative arrangements).
+Sixth form funding
+20
+1
+A local authority must include in the budget shares of secondary and special schools an amount equal to any sum notified to the local authority by the Secretary of State as being the allocation in respect of that school’s sixth form grant.
+2
+A local authority may, in determining budget shares, use a factor which allocates funding in respect of the number of registered pupils in sixth forms on 4th October 2012 subject to the limitation in paragraph (3).
+3
+Where a local authority use a factor in determining budget shares pursuant to paragraph (2) they must ensure that the amount allocated per pupil in respect of this factor in the funding period is no greater that the amount that was allocated per pupil in sixth forms in the previous funding period, save that in determining the amount allocated per pupil in the previous funding period account should be taken of amounts that formed part of central expenditure in that funding period.
+4
+A local authority must redetermine the budget share of a secondary school before the end of the funding period where the authority receive a written notification from the Secretary of State of a revised allocation in respect of the sum referred to in paragraph (1).
+New schools
+21
+A local authority must determine a budget share for any new school in their area from the date of the school’s opening in accordance with this Part.
+Federated schools
+22
+1
+Subject to paragraphs (2) and (3), where two or more schools are federated under section 24 of the 2002 Act, the local authority must determine a budget share for each school in accordance with Part 3 of these Regulations.
+2
+After carrying out the determination under paragraph (1) the local authority may treat the schools as a single school for the purposes of these Regulations and, accordingly, allocate a single budget share to the governing body of the federation.
+3
+Where the local authority decide to allocate a single budget share to the governing body of a federation under paragraph (2) they must determine this by combining the budget shares of all the schools that form part of that federation.
+4
+Where one or more schools are to leave a federation which has been allocated a single budget share under paragraph (2), the local authority must —
+a
+determine the budget share for each of the leaving schools; and
+b
+redetermine the budget share for the federation,
+in accordance with Part 3 of these Regulations.
+CHAPTER 2
+Adjustments, Correction of Errors, and Alternative Arrangements Authorised by the Secretary of State
+Pupils permanently excluded from, or leaving, maintained schools
+23
+1
+Where a pupil is permanently excluded from a school maintained by a local authority (other than a special school, pupil referral unit or from a place which the authority have reserved for children with special educational needs) (“the excluding school”) the authority must redetermine the excluding school’s budget share in accordance with paragraph (2).
+2
+The excluding school’s budget share must be reduced by the amount
+A x ( B / 52 ) + C
+where —
+a
+A is the amount determined by the authority in accordance with this Part, that would be attributable to a registered pupil of the same age and personal circumstances as the pupil in question at primary or secondary schools maintained by the authority for the full funding period;
+b
+B is the number of complete weeks remaining in the funding period calculated from the relevant date, except that where the permanent exclusion takes effect on or after 1st April in a school year at the end of which pupils of the same age, or age group, as the pupil in question normally leave that school before being admitted to another school with a different pupil age range, B is the number of complete weeks remaining in that school year calculated from the relevant date; and
+c
+C is the amount of the adjustment made to the school’s budget share pursuant to a financial adjustment order.
+3
+Where a pupil who has been permanently excluded from a school maintained by a local authority is admitted to another school maintained by a local authority other than a pupil referral unit (“the admitting school”) in the funding period, the authority must redetermine the admitting school’s budget share in accordance with paragraphs (4) and (5).
+4
+The admitting school’s budget share must be increased by an amount which may not be less than the amount
+D x ( E / F )
+where —
+a
+D is the amount by which the authority reduced the budget share of the excluding school, or would have reduced the budget share had that school been maintained by the authority, except that any reduction in the excluding school’s budget share made pursuant to a financial adjustment order must not be taken into account for these purposes;
+b
+E is the number of complete weeks remaining in the funding period during which the pupil is a registered pupil at the admitting school; and
+c
+F is the number of complete weeks remaining in the funding period calculated from the relevant date.
+5
+In redetermining the admitting school’s budget share, the authority may increase it by any amount up to the amount of the adjustment made by the excluding school’s budget share pursuant to a financial adjustment order.
+6
+Where a permanently excluded pupil is subsequently reinstated by the governing body of the school, the school’s budget share must be increased by an amount which is no less than
+G x ( H / I )
+where —
+a
+G is the amount by which the authority reduced the school’s budget share under paragraph (2);
+b
+H is the number of complete weeks remaining in the funding period during which the pupil is reinstated; and
+c
+I is the number of complete weeks remaining in the funding period calculated from the relevant date.
+7
+Paragraphs (1) and (2) also apply where a pupil leaves a maintained school other than a pupil referral unit for reasons other than permanent exclusion and is receiving education funded by a local authority other than at a school which is maintained by that authority.
+8
+For the purposes of paragraph (2)(a), the amount attributable to a registered pupil is the sum of the amounts determined in accordance with the authority’s formula, by reference to pupil numbers rather than by reference to any other factor or criterion not dependent on pupil numbers (except that, where the registered pupil in question is a pupil in respect of whom a sixth form grant is payable, the amount attributable to that pupil is £3,135 for the funding period).
+9
+Where a pupil in respect of whom a pupil premium is payable has been permanently excluded from a school maintained by a local authority other than a pupil referral unit (“the excluding school”) the local authority must redetermine the excluding school’s budget share in accordance with paragraph (10).
+10
+The excluding school’s budget share must be reduced by
+J x ( K / 52 )
+where —
+a
+J is the amount of the pupil premium allocated to the excluding school for the funding period in respect of that child; and
+b
+K is the number of complete weeks remaining in the funding period calculated from the relevant date, except that where the permanent exclusion takes effect on or after 1st April in a school year at the end of which pupils of the same age, or age group, as the pupil in question normally leave that school before being admitted to another school with a different pupil age range, K is the number of complete weeks remaining in that school year calculated from the relevant date.
+11
+Where a pupil in respect of whom a pupil premium is payable has been permanently excluded from a school maintained by a local authority and admitted to another school maintained by a local authority other than a pupil referral unit (“the admitting school”) in the funding period, the authority must redetermine the budget share of the admitting school in accordance with paragraph (12).
+12
+The admitting school’s budget share must be increased by an amount which may not be less than
+L x ( M / N )
+where —
+a
+L is the amount by which the authority reduced the budget share of the excluding school or would have reduced the budget share had that school been maintained by the authority;
+b
+M is the number of complete weeks remaining in the funding period during which the pupil is a registered pupil at the admitting school; and
+c
+N is the number of complete weeks remaining in the funding period calculated from the relevant date.
+13
+Where a permanently excluded pupil in respect of whom a pupil premium is payable is subsequently reinstated by the governing body of the school, the school’s budget share must be increased by an amount which is no less than
+O x ( P / Q )
+where —
+a
+O is the amount by which the authority reduced the school’s budget share under paragraph (10);
+b
+P is the number of complete weeks remaining in the funding period during which the pupil is reinstated; and
+c
+Q is the number of complete weeks remaining in the funding period calculated from the relevant date.
+14
+Paragraphs (9) and (10) also apply where a pupil in respect of whom a pupil premium is payable leaves a maintained school other than a pupil referral unit for reasons other than permanent exclusion and is receiving education funded by a local authority other than at a school which is maintained by that authority.
+15
+For the purposes of this regulation —
+a
+“the relevant date” is the sixth school day following the date on which the pupil has been permanently excluded; and
+b
+“a financial adjustment order” means an order for the adjustment of a school’s budget share made under regulation 25(5)(b) of The School Discipline (Pupil Exclusions and Reviews) (England) Regulations in respect of the exclusion of the pupil from the excluding school.
+Correction of errors and changes in non-domestic rates
+24
+1
+A local authority may at any time during the funding period redetermine a school’s budget share or the amount allocated to a relevant early years provider for the funding period or any earlier funding period in order to correct an error in a determination or redetermination under these or any previous Regulations, whether arising from a mistake as to the number of registered pupils at the school or otherwise, and any such redetermination will take effect in the following funding period.
+2
+A local authority may redetermine a school’s budget share to take into account any changes in that school’s non-domestic rate liability in relation to the funding period or any earlier funding period.
+3
+In so far as any redetermination under paragraph (1) would require the amount that would otherwise have been the budget share of a school to be reduced, it may not be reduced to a figure which is lower than that which could have been allocated to that school under the regulations in force during the funding period in which the error occurred.
+Alternative arrangements approved by Secretary of State
+25
+1
+Subject to paragraph (2), on application by a local authority, the Secretary of State may authorise the authority to —
+a
+disregard the limits referred to in paragraph 5 of Schedule 2 when deducting any expenditure referred to in regulation 8(3) (Central Services expenditure),
+b
+deduct any expenditure referred to in regulation 8(7) (expenditure falling outside of Schedule 2),
+c
+determine or redetermine budget shares of schools maintained by them,
+d
+determine or redetermine amounts to be allocated in respect of nursery classes in schools maintained by them,
+e
+determine or redetermine amounts to be allocated to relevant early years providers in their area,
+f
+include additional factors or criteria in their formula under regulation 10(1) (formula for determining budget shares) where the nature of a school’s premises exceptionally gives rise to significant additional cost,
+g
+include additional factors or criteria that the authority propose to include in their formula under regulation 10(3) (early years single funding formula),
+h
+vary the amount by which a school’s redetermined adjusted budget shall be reduced for the purpose of determining the guaranteed level of funding in paragraph 1 of Schedule 4,
+i
+disregard regulation 13 (pupil numbers), or
+j
+disregard regulation 14 (places) in the determination and redetermination of budget shares for pupil referral units.
+2
+The Secretary of State may authorise the matters referred to in paragraph (1) to such extent as the Secretary of State may specify in accordance with arrangements approved in place of the arrangements provided for by these Regulations.
+PART 4 Schemes
+Required content of schemes
+26
+A scheme prepared by a local authority under section 48(1) of the 1998 Act must deal with the matters connected with the financing of schools maintained by the authority set out in Schedule 5.
+Approval by the schools forum or the Secretary of State of proposals to revise schemes
+27
+1
+Where a local authority submit a copy of their proposals to revise their scheme to their schools forum for approval pursuant to paragraph 2A(3)(b) of Schedule 14 to the 1998 Act, the members of the schools forum who represent schools maintained by the authority may —
+a
+approve any such proposals;
+b
+approve any such proposals subject to modifications; or
+c
+refuse to approve any such proposals.
+2
+Where the schools forum approves the proposals to revise the scheme, it may specify the date upon which the revised scheme is to come into force.
+3
+Where —
+a
+the schools forum refuses to approve proposals submitted under paragraph 2A(3)(b) of Schedule 14 to the 1998 Act, or approves any such proposals subject to modifications which are not acceptable to the local authority; or
+b
+the local authority are not required to establish a schools forum for their area,
+the authority may apply to the Secretary of State for approval of such proposals.
+4
+The Secretary of State may —
+a
+approve any such proposals;
+b
+approve any such proposals subject to modifications; or
+c
+refuse to approve any such proposals.
+5
+When approving proposals to revise the scheme, the Secretary of State may specify the date upon which the revised scheme is to come into force.
+6
+No revised scheme is to come into force unless approved by the schools forum or the Secretary of State in accordance with this regulation.
+Publication of schemes
+28
+1
+A local authority —
+a
+must publish their scheme on a website which is accessible to the general public; and
+b
+may publish it elsewhere, in such manner as they see fit.
+2
+Whenever a local authority revise the whole or part of their scheme they must publish the scheme as revised on a website which is accessible to the general public by the date that the revisions are due to come into force, together with a statement that the revised scheme comes into force on that date.
+David Laws
+Minister of State
+Department for Education
+27th November 2012
+SCHEDULE 1
+CLASSES OR DESCRIPTIONS OF PLANNED EXPENDITURE PRESCRIBED FOR THE PURPOSES OF THE NON-SCHOOLS EDUCATION BUDGET OF A LOCAL AUTHORITY
+Regulation 4
+Special educational provision
+1
+Expenditure on services provided by educational psychologists.
+2
+Expenditure in connection with the authority’s functions under sections 321 to 331 of the 1996 Act (which functions relate to the identification and assessment of children with special educational needs and the making, maintaining and reviewing of statements for such children).
+3
+Expenditure on monitoring the provision for pupils in schools (whether or not maintained by the authority) for the purposes of disseminating good practice in relation to, and improving the quality of educational provision for, children with special educational needs.
+4
+Expenditure on collaboration with other statutory and voluntary bodies to provide support for children with special educational needs.
+5
+Expenditure in connection with —
+a
+the provision of parent partnership services (that is services provided under section 332A of the 1996 Act to give advice and information to parents of children with special educational needs), or other guidance and information to such parents which, in relation to pupils at a school maintained by the authority, are in addition to the information usually provided by the governing bodies of such schools; or
+b
+arrangements made by the authority with a view to avoiding or resolving disagreements with the parents of children with special educational needs.
+6
+Expenditure on carrying out the authority’s child protection functions under the Children Act 1989, functions under section 175 of the 2002 Act, and other functions relating to child protection.
+7
+Expenditure incurred in entering into, or subsequently incurred pursuant to, an arrangement under section 31 of the Health Act 1999 or regulations made under section 75 of the National Health Service Act 2006 (arrangements between NHS bodies and local authorities).
+8
+Expenditure on the provision of special medical support for individual pupils in so far as such expenditure is not met by a Primary Care Trust, National Health Service Trust, NHS foundation trust or Local Health Board.
+School improvement
+9
+Expenditure incurred by a local authority in respect of action to support the improvement of standards in the authority’s schools, in particular expenditure incurred in connection with functions under the following sections of the 2006 Act —
+a
+section 60 (performance standards and safety warning notice),
+b
+section 60A (teachers’ pay and conditions warning notice),
+c
+section 63 (power of local authority to require governing bodies of schools eligible for intervention to enter into arrangements),
+d
+section 64 (power of local authority to appoint additional governors),
+e
+section 65 (power of local authority to provide for governing bodies to consist of interim executive members) and Schedule 6; and
+f
+section 66 (power of local authority to suspend right to delegated budget).
+Access to education
+10
+Expenditure in relation to the following matters —
+a
+management of the authority’s capital programme including preparation and review of an asset management plan and negotiation and management of private finance transactions;
+b
+planning and managing the supply of school places, including the authority’s functions in relation to the establishment, alteration or discontinuance of schools pursuant to Part 2 of, and Schedule 2 to, the 2006 Act;
+c
+the authority’s functions in relation to the exclusion of pupils from schools, excluding any provision of education to excluded pupils, but including advice to the parents of such pupils;
+d
+the authority’s functions under sections 508A, 508E and 509 (school travel) of the 1996 Act; and
+e
+the authority’s functions under sections 510 and 514 of the 1996 Act (provision and administration of clothing grants and boarding grants), and pursuant to regulations made under section 518(2) of the 1996 Act.
+11
+Expenditure arising from the authority’s functions under Chapter 2 of Part 6 of the 1996 Act (school attendance).
+12
+Expenditure on the provision of support for students under regulations made under section 1(1) of the Education Act 1962 and under section 22 of the Teaching and Higher Education Act 1998.
+13
+Expenditure on discretionary grants paid under section 1(6) or 2 of the Education Act 1962 (awards for designated and other courses).
+14
+Expenditure on the payment of 16-19 Bursaries .
+15
+Expenditure on the provision of tuition in music, or on other activities which provide opportunities for pupils to enhance their experience of music.
+16
+Expenditure incurred in enabling pupils to enhance their experience of the visual, creative and performing arts other than music.
+17
+Expenditure on outdoor education centres, but not including centres wholly or mainly for the provision of organised games, swimming or athletics.
+Additional education and training for children, young persons and adults
+18
+Expenditure on the provision of education and training and of organised leisure time occupation, and other provision under sections 15ZA and 15ZC of the 1996 Act.
+19
+Expenditure on the provision by the local authority under sections 507A and 507B of the 1996 Act of recreation, social and physical training, educational leisure-time activities and recreational leisure-time activities.
+Strategic management
+20
+Expenditure on education functions related to —
+a
+functions of the director of children’s services and the personal staff of the director;
+b
+planning for the education service as a whole;
+c
+functions of the authority under Part I of the Local Government Act 1999 (Best Value) and the provision of advice to assist governing bodies in procuring goods and services with a view to securing continuous improvement in the way the functions of those governing bodies are exercised, having regard to a combination of economy, efficiency and effectiveness;
+d
+revenue budget preparation, preparation of information on income and expenditure relating to education for incorporation into the authority’s annual statement of accounts, and the external audit of grant claims and returns relating to education;
+e
+administration of grants to the authority (including preparation of applications), functions imposed by or under Chapter IV of Part 2 of the 1998 Act (financing of maintained schools) and, where it is the authority’s duty to do so, ensuring payments are made in respect of taxation, national insurance and superannuation contributions;
+f
+authorisation and monitoring of —
+i
+expenditure which is not met from schools’ budget shares, and
+ii
+expenditure in respect of schools which do not have delegated budgets,
+and all related financial administration;
+g
+the formulation and review of the methods of allocation of resources to schools and other bodies;
+h
+the authority’s monitoring of compliance with the requirements of their financial scheme prepared under section 48 of the 1998 Act, and any other requirements in relation to the provision of community facilities by governing bodies under section 27 of the 2002 Act;
+i
+internal audit and other tasks necessary for the discharge of the authority’s chief finance officer’s responsibilities under section 151 of the Local Government Act 1972 ;
+j
+the authority’s functions under regulations made under section 44 of the 2002 Act ;
+k
+recruitment, training, continuing professional development, performance management and personnel management of staff who are funded by expenditure not met from schools’ budget shares and who are paid for services carried out in relation to those of the authority’s functions and services which are referred to in other paragraphs of this Schedule;
+l
+investigations which the authority carry out of employees, or potential employees, of the authority, or of governing bodies of schools, or of persons otherwise engaged, or to be engaged, with or without remuneration to work at or for schools;
+m
+functions of the authority in relation to local government superannuation which it is not reasonably practicable for another person to carry out, and functions of the authority in relation to the administration of teachers’ pensions;
+n
+retrospective membership of pension schemes and retrospective elections made in respect of pensions where it would not be appropriate to expect the governing body of a school to meet the cost from the school’s budget share;
+o
+advice, in accordance with the authority’s statutory functions, to governing bodies in relation to staff paid, or to be paid, to work at a school, and advice in relation to the management of all such staff collectively at any individual school, including in particular advice with reference to alterations in remuneration, conditions of service and the collective composition and organisation of such staff;
+p
+determination of conditions of service for non-teaching staff, and advice to schools on the grading of such staff;
+q
+the authority’s functions regarding the appointment or dismissal of employees;
+r
+consultation and functions preparatory to consultation with or by governing bodies, pupils and persons employed at schools or their representatives, or with other interested bodies;
+s
+compliance with the authority’s duties under the Health and Safety at Work etc Act 1974 and the relevant statutory provisions as defined in section 53(1) of that Act, in so far as compliance cannot reasonably be achieved through tasks delegated to the governing bodies of schools; but including expenditure incurred by the authority in monitoring the performance of such tasks by governing bodies and, where necessary, the giving of advice to them;
+t
+the investigation and resolution of complaints;
+u
+legal services relating to the statutory functions of the authority;
+v
+the preparation and review of plans involving collaboration with other local authority services or with public or voluntary bodies;
+w
+provision of information to or at the request of the Crown and the provision of other information which the authority are under a duty to make available;
+x
+the authority’s functions pursuant to regulations made under section 12 of the 2002 Act (supervising authorities of companies formed by governing bodies); and
+y
+the authority’s functions under the discrimination provisions of the Equality Act 2010 in so far as compliance cannot reasonably be achieved through tasks delegated to the governing bodies of schools; but including expenditure incurred by the authority in monitoring the performance of such tasks by governing bodies and, where necessary, the giving of advice to them.
+Other functions
+21
+Expenditure in pursuance of a binding agreement, where the other party is a local authority, or the other parties include one or more local authorities, in relation to the operation of a facility provided partly, but not solely, for the use of schools.
+22
+Expenditure on establishing and maintaining those electronic computer systems, including data storage, which are intended primarily to maintain linkage between local authorities and their schools.
+23
+Expenditure on monitoring National Curriculum assessment arrangements required by orders made under section 87 of the 2002 Act.
+24
+Expenditure in connection with the authority’s functions in relation to the standing advisory council on religious education constituted by the authority under section 390 of the 1996 Act or in the reconsideration and preparation of an agreed syllabus of religious education in accordance with Schedule 31 to the 1996 Act.
+25
+Expenditure in respect of the dismissal or premature retirement of, or for the purpose of securing the resignation of, or in respect of acts of discrimination against, any person except to the extent that these costs are chargeable to schools’ budget shares or fall within paragraph 4(b) of Schedule 2.
+26
+Expenditure in respect of a teacher’s emoluments under section 19(9) of the Teaching and Higher Education Act 1998.
+27
+Expenditure on the appointment of governors, the making of instruments of government, the payment of expenses to which governors are entitled and which are not payable from a school’s budget share, and the provision of information to governors.
+28
+Expenditure on making pension payments, other than in respect of staff employed in schools.
+29
+Expenditure on insurance, other than for liability arising in connection with schools or school premises.
+30
+Expenditure in connection with powers and duties performed under Part 2 of the Children and Young Persons Act 1933 (enforcement of, and power to make byelaws in relation to, restrictions on the employment of children).
+SCHEDULE 2
+CLASSES OR DESCRIPTIONS OF PLANNED EXPENDITURE PRESCRIBED FOR THE PURPOSES OF THE SCHOOLS BUDGET OF A LOCAL AUTHORITY WHICH MAY BE DEDUCTED FROM IT TO DETERMINE THE INDIVIDUAL SCHOOLS BUDGET
+Regulations 6 and 8
+PART 1 Central Services
+1
+Expenditure on the operation of the system of admissions of pupils to schools (including expenditure incurred in carrying out consultations under section 88C(2) of the 1998 Act ) and in relation to appeals.
+2
+Expenditure in connection with the authority’s functions under section 47A of the 1998 Act (establishment and maintenance of, and consultation with, schools forums).
+3
+CERA incurred for purposes not falling within any other paragraph of this Schedule or Schedule 1.
+4
+Expenditure on —
+a
+prudential borrowing;
+b
+termination of employment costs, where the schools forum have approved the charging of these costs to the schools budget for the funding period in which they were incurred and the revenue savings achieved by the termination of employment to which they relate are equal to or greater than the costs incurred;
+c
+combined services where the expenditure relates to classes or descriptions of expenditure falling outside those set out in this Schedule;
+d
+special educational needs transport costs; and
+e
+purposes not falling within any other paragraph of this Schedule, provided that the expenditure does not amount in total to more than 0.1% of the authority’s schools budget;
+where the expenditure has been approved by the schools forum or the Secretary of State in a previous funding period.
+5
+Any deductions under each of paragraphs 1 to 4 must not exceed the amount deducted under each of paragraphs 13, 31, 33, 34, 36(a), 36(b), 36(c) and 36(e) of Schedule 2 to the 2012 Regulations for the previous funding period.
+PART 2 Central Schools Expenditure
+6
+Expenditure on pay arrears due to staff employed at maintained schools and other staff whose salaries are met from the schools budget, and expenditure on the costs of financing payment of such arrears, where the expenditure is not chargeable to a maintained school’s budget share under the terms of the local authority’s scheme.
+7
+Expenditure pursuant to section 18 of the 1996 Act in making any grant or other payment in respect of fees or expenses (of whatever nature) which are payable in connection with the attendance of pupils at a school which is not maintained by any local authority.
+8
+Expenditure due to a significant growth in pupil numbers as a result of the local authority’s duty under section 13(1) of the 1996 Act to secure that efficient primary education and secondary education are available to meet the needs of the population of their area.
+9
+Expenditure to be incurred prior to the opening of new schools to fund the appointment of staff and to enable the purchase of any goods and services necessary in order to admit pupils.
+10
+Expenditure in order to make provision for extra classes in order to comply with the School Admissions (Infant Class Sizes) (England) Regulations 2012 .
+11
+Expenditure on the purchase of CRC allowances for schools.
+12
+Remission of boarding fees payable in connection with the attendance of pupils at maintained schools and Academies.
+PART 3 Central Early Years Expenditure
+13
+Expenditure on early years provision, excluding expenditure —
+a
+on such provision in a maintained school; and
+b
+on relevant early years provision.
+14
+Expenditure on determining the eligibility —
+a
+of a pupil for free school meals where that pupil is being provided with early years provision; or
+b
+of a child for prescribed early years provision.
+PART 4 Pupils With High Needs
+15
+Expenditure in respect of pupils with special educational needs at primary and secondary schools and in relevant early years providers, excluding expenditure —
+a
+in respect of pupils in places which the authority have reserved for children with special educational needs; or
+b
+where it would be reasonable to expect such expenditure to be met from a school’s budget share, the amount allocated to a relevant early years provider or the general annual grant paid to an Academy by the Secretary of State.
+16
+Expenditure in respect of pupils —
+a
+with special educational needs at special schools and special Academies; or
+b
+in places at primary or secondary schools or Academies which the authority have reserved for children with special educational needs,
+where the expenditure cannot be met from the sum referred to in regulation 14(2).
+17
+Expenditure in respect of persons provided with further education who are —
+a
+aged under 19 and have learning difficulties, or
+b
+aged 19 or over but under 25 and are subject to learning difficulty assessment.
+18
+Expenditure on support services for pupils who have a statement of special educational needs and for pupils with special educational needs who do not have such a statement.
+19
+Expenditure for the purposes of encouraging —
+a
+collaboration between special schools and primary and secondary schools to enable children with special educational needs to engage in activities at primary and secondary schools;
+b
+the education of children with special educational needs at primary and secondary schools; and
+c
+the engagement of children with special educational needs at primary and secondary schools in activities at the school with children who do not have special educational needs
+in cases where the local authority consider it would be unreasonable for such expenditure to be met from a school’s budget share.
+20
+Expenditure incurred in relation to education otherwise than at school under section 19 of the 1996 Act or in relation to a pupil referral unit, where the expenditure cannot be met from the sum referred to in regulation 14(5).
+21
+Expenditure on the payment of fees in respect of pupils with special educational needs —
+a
+at independent schools or at special schools which are not maintained by a local authority under section 348 of the 1996 Act; or
+b
+at an institution outside England and Wales under section 320 of the 1996 Act.
+22
+Expenditure on hospital education services, aside from expenditure on hospital education places referred to in regulation 14(3) and (6).
+23
+Expenditure on special schools and pupil referral units in financial difficulty.
+24
+Expenditure on costs in connection with private finance initiatives and the programme known as “Building Schools for the Future” at special schools.
+PART 5 Items That May Be Removed From Maintained Schools’ Budget Shares
+25
+Expenditure (other than expenditure referred to in Schedule 1 or any other paragraph of this Schedule) incurred on services relating to the education of children with behavioural difficulties, and on other activities for the purpose of avoiding the exclusion of pupils from schools.
+26
+Expenditure on determining the eligibility of a pupil for free school meals.
+27
+Expenditure on making payments to, or in providing a temporary replacement for, a woman on maternity leave or a person on adoption leave.
+28
+Expenditure on making payments to, or in providing a temporary replacement for, any person —
+a
+carrying out trade union duties or undergoing training under sections 168 and 168A of the Trade Union and Labour Relations (Consolidation) Act 1992 ;
+b
+taking part in trade union activities under section 170 of the Trade Union and Labour Relations (Consolidation) Act 1992;
+c
+performing public duties under section 50 of the Employment Rights Act 1996 ;
+d
+undertaking jury service;
+e
+who is a safety representative under the Safety Representatives and Safety Committees Regulations 1977 ;
+f
+who is a representative of employee safety under the Health and Safety (Consultation with Employees) Regulations 1996 ;
+g
+who is an employee representative for the purposes of Chapter 2 of Part 4 of the Trade Union and Labour Relations (Consolidation) Act 1992, as defined in section 196 of that Act or regulation 13(3) of the Transfer of Undertakings (Protection of Employment) Regulations 2006 ;
+h
+taking time off for ante-natal care under section 55 of the Employment Rights Act 1996;
+i
+undertaking duties as a member of the reserve forces as defined in section 1(2) of the Reserve Forces Act 1996 ;
+j
+suspended from working at a school; or
+k
+who is appointed a learning representative of a trade union, in order for that person to analyse training requirements or to provide or promote training opportunities, and to carry out consultative or preparatory work in connection with such functions.
+29
+Expenditure on making payments to, or in providing a temporary replacement for, a person who is seconded on a full-time basis for a period of three months or more other than to a local authority or the governing body of a school.
+30
+Expenditure on making payments to, or in providing a temporary replacement for, persons who have been continuously absent from work because of illness for 21 days or more.
+31
+Expenditure on insurance in respect of liability arising in connection with schools and school premises.
+32
+Expenditure on services to schools provided by museums and galleries.
+33
+Expenditure on library services.
+34
+Expenditure on licence fees or subscriptions paid on behalf of schools.
+35
+Expenditure on the schools’ specific contingency.
+36
+Expenditure for the purposes of —
+a
+improving the performance of under-performing pupils from minority ethnic groups; or
+b
+meeting the specific needs of bilingual pupils.
+SCHEDULE 3
+ADDITIONAL REQUIREMENTS, OR FACTORS OR CRITERIA WHICH MAY BE TAKEN INTO ACCOUNT, IN A LOCAL AUTHORITY’S FORMULA UNDER REGULATION 18
+Regulation 18
+PART 1 Applicable only to budget shares for maintained schools
+1
+A single sum of an equal amount to be given to each school of up to £200,000 per school.
+2
+Prior attainment based on the number of pupils in school years 1 to 4, who achieved either —
+a
+fewer than 78 points; or
+b
+fewer than 73 points,
+on the current Early Years Foundation Stage Profile.
+3
+Prior attainment based on the number of pupils at key stages 3 and 4 who achieved level 3 or lower in both English and Maths at key stage 2.
+4
+A single per pupil amount for each pupil, based on the number of pupils in school years 1 and 2 and at key stage 2 for whom English is not their first language, where either —
+a
+the pupil has been attending a school or schools in England since 7th October 2010;
+b
+the pupil has been attending a school or schools in England since 6th October 2011; or
+c
+the pupil has been attending a school or schools in England since 4th October 2012.
+5
+A single per pupil amount for each pupil, based on the number of pupils at key stages 3 and 4 for whom English is not their first language, where either —
+a
+the pupil has been attending a school or schools in England since 7th October 2010;
+b
+the pupil has been attending a school or schools in England since 6th October 2011; or
+c
+the pupil has been attending a school or schools in England since 4th October 2012.
+6
+A single per pupil amount in respect of pupil mobility, based on the number of pupils at key stages 1 and 2 who joined the school —
+a
+in the previous three academic years at any time other than August or September, excluding pupils who joined the school in the nursery class, if the school has such a class; and
+b
+in the reception class at any time other than January, in the previous three academic years.
+7
+A single per pupil amount in respect of pupil mobility, based on the number of pupils at key stages 3 and 4 who joined the school in the last three academic years at any time other than August or September.
+8
+A single per pupil amount, based on the number of pupils who on 31st March 2012 were either —
+a
+looked after children and were attending a school in the local authority area;
+b
+children who had been looked after for six months or more and were attending a school in the local authority area; or
+c
+children who had been looked after for twelve months or more and were attending a school in the local authority area.
+9
+Funding for schools with split sites, where the funding must be in accordance with criteria published by the authority.
+10
+Non-domestic rates payable in respect of the premises of each school (including actual or estimated cost).
+11
+Payments in relation to a private finance initiative (including actual or estimated cost).
+12
+Differential salaries of teachers at schools in the county councils of Buckinghamshire, Essex, Hertfordshire, Kent or West Sussex due to the schools being in different London salary weighting areas.
+PART 2 Applicable only to budget shares for, and amounts to be allocated to, providers of prescribed early years provision
+13
+Incidence of looked after children.
+14
+Prior attainment of pupils entering a school or relevant early years provider.
+15
+Pupils and children for whom English is not their first language.
+16
+A single sum for each school and relevant early years provider which may vary according to the type of provider.
+17
+Funding for schools and relevant early years providers with split sites, where the funding must be in accordance with criteria published by the authority.
+18
+Non-domestic rates payable in respect of the premises of each school or relevant early years provider (including actual or estimated cost).
+19
+Payments in relation to a private finance initiative (including actual or estimated cost).
+20
+Differential salaries of teachers at schools in the county councils of Buckinghamshire, Essex, Hertfordshire, Kent or West Sussex due to the schools being in different London salary weighting areas.
+21
+The need to improve the quality of provision by particular providers or types of provider.
+22
+The degree of flexibility in the hours of attendance that a provider makes available.
+23
+The need to secure or sustain a sufficiency of prescribed early years provision within the authority’s area or any sub-area within that area; and in this paragraph “sub-area” means —
+a
+an electoral division or ward of the authority; or
+b
+such other appropriate geographical division into which the authority have notionally divided their area.
+SCHEDULE 4
+MINIMUM FUNDING GUARANTEE
+Regulation 19
+1
+In this Schedule —
+a
+references to the number of pupils exclude those funded by a sixth form grant and those in places which the local authority have reserved for children with special educational needs;
+b
+the “relevant number” of pupils for the previous funding period is the number of pupils at the school on 6th October 2011;
+c
+the “relevant number” of pupils for the funding period is the number of pupils at the school on 4th October 2012;
+d
+references to a redetermined adjusted budget share for the previous funding period must be reduced by the following —
+i
+any amount included pursuant to regulation 20 (sixth form funding) of the 2012 Regulations,
+ii
+any amount allocated to the school pursuant to Schedule 3 of the 2012 Regulations where such amount has been deducted from the schools budget under Part 4 (Pupils With High Needs) of Schedule 2,
+iii
+any amount the local authority estimates the school would have been allocated for places the authority reserves for children with special educational needs in the previous funding period had regulation 14(2) applied to the previous funding period,
+iv
+any amount allocated to the school pursuant to regulation 9(3)(b) (nursery classes) of the 2012 Regulations,
+v
+any amount included in respect of paragraph 8 (rates) of Schedule 3 of the 2012 Regulations, and
+vi
+any amount allocated to the school pursuant to paragraph 1 (single sum) of Schedule 3.
+e
+references to a redetermined adjusted budget share for the funding period include the effect of any alternative arrangements approved by the Secretary of State under regulation 25, but are reduced by the following —
+i
+any amount included pursuant to regulation 20 (sixth form funding),
+ii
+any amount allocated under regulation 14(2) (places in special schools and places reserved for children with special educational needs),
+iii
+any amount included in respect of paragraph 10 (rates) of Schedule 3,
+iv
+any amount allocated to the school pursuant to paragraph 1 (single sum) of Schedule 3,
+v
+any amounts allocated pursuant to regulation 10(1) (formula for determining budget shares) which would have been within a class or description of the expenditure listed in Schedule 2 to the 2012 Regulations that the authority deducted in the previous funding period, and
+vi
+any amount allocated to the school under regulation 10(3) (early years single funding formula);
+f
+for the purposes of this Schedule —
+i
+where a school opened during the previous funding period, its redetermined adjusted budget share for the previous funding period is the amount it would have been had the school opened on 1st April 2012,
+ii
+where a school opens during the funding period, its redetermined adjusted budget share for the funding period is the amount it would have been had the school opened on 1st April 2013,
+adjusted in accordance with sub-paragraph (d) or (e), whichever is applicable.
+2
+Where
+( A / B )
+is less than
+( C / D )
+then the guaranteed funding level is
+( C / D ) x B
+where —
+A is the redetermined adjusted budget share for the funding period,
+B is the relevant number of pupils in the funding period,
+C is the redetermined adjusted budget share for the previous funding period multiplied by 0.985, and
+D is the number of relevant pupils in the previous funding period.
+3
+Where a new school opens during the funding period and is a replacement for two or more schools being discontinued during the funding period its guaranteed funding level must be calculated in accordance with paragraph 2, subject to paragraph 4.
+4
+In calculating the guaranteed level of funding under paragraph 3 the relevant number of pupils in the previous funding period under paragraph 1(b) is the sum of the relevant number of pupils in the discontinued schools on 6th October 2011.
+SCHEDULE 5
+CONTENTS OF SCHEMES
+Regulation 26
+1
+The carrying forward from one funding period to another of surpluses and deficits arising in relation to schools’ budget shares.
+2
+Amounts which may be charged against schools’ budget shares.
+3
+Amounts received by schools which may be retained by their governing bodies and the purposes for which such amounts may be used.
+4
+The imposition, by or under the scheme, of conditions which must be complied with by schools in relation to the management of their delegated budgets and of sums made available to governing bodies by the authority which do not form part of delegated budgets, including conditions prescribing financial controls and procedures.
+5
+Terms on which services and facilities are provided by the authority for schools maintained by them.
+6
+The payment of interest by or to the authority.
+7
+The times at which amounts equal in total to the school’s budget share are to be made available to governing bodies and the proportion of the budget share to be made available at each such time.
+8
+The virement between budget heads within the delegated budget.
+9
+Circumstances in which a local authority may delegate to the governing body the power to spend any part of the authority’s non-schools education budget or schools budget in addition to those set out in section 49(4)(a) to (c) of the 1998 Act .
+10
+The use of delegated budgets and of sums made available to a governing body by the local authority which do not form part of delegated budgets.
+11
+Borrowing by governing bodies.
+12
+The banking arrangements that may be made by governing bodies.
+13
+A statement as to the personal liability of governors in respect of schools’ budget shares having regard to section 50(7) of the 1998 Act.
+14
+A statement as to the allowances payable to governors of a school which does not have a delegated budget in accordance with the scheme made by the authority for the purposes of section 519 of the 1996 Act .
+15
+The keeping of a register of any business interests of the governors and the head teacher.
+16
+The provision of information by and to the governing body.
+17
+The maintenance of inventories of assets.
+18
+Plans of a governing body’s expenditure.
+19
+A statement as to the taxation of sums paid or received by a governing body.
+20
+Insurance.
+21
+The use of delegated budgets by governing bodies so as to satisfy the authority’s duties imposed by or under the Health and Safety at Work etc Act 1974.
+22
+The provision of legal advice to a governing body.
+23
+Funding for child protection issues.
+24
+How complaints by persons working at a school or by school governors about financial management or financial propriety at the school will be dealt with and to whom such complaints should be made.
+25
+Expenditure incurred by a governing body in the exercise of the power conferred by section 27 of the 2002 Act.

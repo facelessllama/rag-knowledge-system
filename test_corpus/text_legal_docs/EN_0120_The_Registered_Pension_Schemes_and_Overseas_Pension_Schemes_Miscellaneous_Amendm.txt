@@ -1,0 +1,295 @@
+The Registered Pension Schemes and Overseas Pension Schemes (Miscellaneous Amendments) Regulations 2012
+The Commissioners for Her Majesty’s Revenue and Customs, in exercise of the powers conferred by sections 132 and 133(2) of the Finance Act 1999 , sections 135 and 136 of the Finance Act 2002 and sections 150(7) and (8), 169(4) and 251(1) and (4) of, and paragraph 5(2) of Schedule 33 and paragraph 51(4) of Schedule 36 to, the Finance Act 2004 and now exercisable by them , make the following Regulations:
+Citation, commencement and effect
+1
+1
+These Regulations may be cited as the Registered Pension Schemes and Overseas Pension Schemes (Miscellaneous Amendments) Regulations 2012 and shall come into force on 6th April 2012.
+2
+The amendments made by —
+a
+regulations 7 and 8(1) to (5), (7) and (8) have effect in respect of information relating to payments that are made, or are treated as made, on or after 6th April 2012; and
+b
+regulations 11 and 12 have effect in relation to recognised transfers which are requested by the member on or after 6th April 2012.
+Amendments to the Pension Schemes (Categories of Country and Requirements for Overseas Pension Schemes and Recognised Overseas Pension Schemes) Regulations 2006
+2
+The Pension Schemes (Categories of Country and Requirements for Overseas Pension Schemes and Recognised Overseas Pension Schemes) Regulations 2006 are amended as follows.
+3
+1
+Regulation 2 (requirements of an overseas pension scheme) is amended as follows.
+2
+In paragraph (3) —
+a
+for “primary conditions and also meets one of Conditions A and B” substitute “following conditions”;
+b
+for the italic cross headings “ Primary condition 1 ”, “ Primary condition 2 ” and “ Condition A ” substitute respectively the italic cross headings “ Condition 1 ”, “ Condition 2 ” and “ Condition 3 ”;
+c
+in condition 2 (as amended by sub-paragraph (b)) in sub-paragraph (ab) for “the Schedule” substitute “Schedule 1”; and
+d
+omit condition B.
+4
+In regulation 3 (recognised overseas pension schemes: prescribed countries or territories and prescribed conditions) —
+a
+in paragraph (1) for “the pension scheme must” to the end substitute —
+the pension scheme must satisfy —
+a
+the requirement in paragraph (6); and
+b
+one or more of the following requirements —
+i
+the requirement that the scheme must be established in a country or territory mentioned in paragraph (2),
+ii
+the requirement in paragraph (4),
+iii
+the requirement in paragraph (5).
+;
+b
+in paragraph (2) —
+i
+for “paragraph (1)(a)” substitute “paragraph (1)(b)(i)”;
+ii
+in sub-paragraph (c) after “any country or territory” insert “, other than New Zealand,”;
+c
+in paragraph (4) omit “The requirement is that,”; and
+d
+after paragraph (4) insert —
+5
+At the time of a transfer of sums or assets which would, subject to these Regulations, constitute a recognised transfer the scheme must be of a kind specified in Schedule 2 to these Regulations.
+6
+Where tax relief in respect of benefits paid from the scheme is available to a member of the scheme who is not resident in the country or territory in which the scheme is established, the same or substantially the same tax relief must —
+a
+also be available to members of the scheme who are resident in the country or territory; and
+b
+apply regardless of whether the member was resident in the country or territory —
+i
+when the member joined the scheme; or
+ii
+for any period of time when they were a member of the scheme.
+7
+For the purposes of paragraph (6) “tax relief” —
+a
+is any tax relief that is available under the system of taxation of personal income in the country or territory in which the scheme is established; and
+b
+includes the grant of an exemption from tax other than an exemption which applies by virtue of double taxation arrangements.
+8
+In paragraph (7)(b) “double taxation arrangements” means arrangements made between the country or territory in which the scheme is established and another country or territory with a view to affording relief from double taxation.
+.
+5
+In the Schedule (specified schemes), for the heading “Schedule” substitute the heading “Schedule 1”.
+6
+After Schedule 1 (as amended by regulation 5) insert —
+SCHEDULE 2
+Specified Schemes
+Regulation 3(5)
+A pension scheme which is a KiwiSaver scheme as defined in section 4(1) (interpretation) of the KiwiSaver Act 2006 of New Zealand.
+.
+Amendments to the Pension Schemes (Information Requirements - Qualifying Overseas Pension Schemes, Qualifying Recognised Overseas Pensions Schemes and Corresponding Relief) Regulations 2006
+7
+The Pension Schemes (Information Requirements – Qualifying Overseas Pension Schemes, Qualifying Recognised Overseas Pensions Schemes and Corresponding Relief) Regulations 2006 are amended as follows.
+8
+1
+Regulation 3 (information – qualifying recognised overseas pension schemes) is amended as follows.
+2
+In paragraph (2)(a) —
+a
+after “name and” insert “principal residential”; and
+b
+at the end omit “and”.
+3
+After paragraph (2)(a) insert —
+aa
+the relevant member’s national insurance number, if any; and
+.
+4
+In paragraph (3) for “the relevant member” to the end substitute —
+the following conditions are met —
+a
+at the date of the payment more than ten years has elapsed beginning with the date on which the relevant transfer fund in respect of the relevant member came into existence; and
+b
+the relevant member to whom the payment is made or treated as made is a person to whom the member payment provisions do not apply (see paragraph 2 of Schedule 34).
+.
+5
+In paragraph (5) for “provided by 31st January” to the end substitute —
+provided —
+a
+within 90 days beginning with the day on which the payment is made or is treated as made; or
+b
+by such other time as may be agreed between an officer of Revenue and Customs and the scheme manager.
+.
+6
+After paragraph (5) insert —
+5A
+Where the scheme manager is a company it must provide the names and addresses of the directors of the company to an officer of Revenue and Customs if required to do so in writing, and within such time as may be specified, by the officer.
+.
+7
+In paragraph (6) in the definition of “relevant member” omit from “within the meaning” to the end.
+8
+After paragraph (6) insert —
+7
+For the purposes of this regulation and regulation 3B “relevant transfer fund” has the meaning given in paragraph 4(2) of Schedule 34.
+.
+9
+After regulation 3 insert —
+Information - transfer of sums or assets to a qualifying recognised overseas pension scheme
+3A
+1
+For the purposes of section 169(4), where paragraph (2) applies a qualifying recognised overseas pension scheme (“the scheme”) mentioned in that paragraph must provide to an officer of Revenue and Customs such of the information specified in paragraph (3) as may be required in writing by the officer.
+2
+This paragraph applies where there is a transfer to a qualifying recognised overseas pension scheme of sums or assets which have at any time been held for the purposes of, or representing accrued rights under, a registered pension scheme from —
+a
+a registered pension scheme; or
+b
+another qualifying recognised overseas pension scheme.
+3
+The information is —
+a
+the date of the transfer;
+b
+the name and address of any bank and details of any bank account which the scheme has used in relation to the transfer;
+c
+details of the sums or assets transferred;
+d
+where information is required from a scheme which is a transferee, the way that the sums or assets have been applied by the scheme;
+e
+where the transfer is from a registered pension scheme, the name and address of that scheme;
+f
+the name, principal residential address, date of birth and, if any, the national insurance number of the member who is connected with the sums or assets;
+g
+where the member referred to in sub-paragraph (f) is a person to whom the member payment provisions do not apply by virtue of paragraph 2 of Schedule 34, the date that the member ceased to be resident in the United Kingdom;
+h
+the name and address of the body that regulates the scheme and the reference number, if any, issued to the scheme by the regulator;
+i
+the name and address of the tax authority that administers the scheme and the reference number, if any, issued to the scheme by the authority;
+j
+evidence to show that the scheme met at the time of the transfer and continues to meet the requirements specified in regulations 2 and 3 of the Pension Schemes (Categories of Country and Requirements for Overseas Pension Schemes and Recognised Overseas Pension Schemes) Regulations 2006; and
+k
+any other evidence relating to the transfer as may be required by the officer of Revenue and Customs.
+4
+Information required in accordance with paragraph (1) must be provided —
+a
+within 90 days beginning with the day on which the requirement is notified by the officer of Revenue and Customs; or
+b
+by such other time as may be agreed between the officer and the scheme manager.
+Information – cessation of qualifying recognised overseas pension scheme
+3B
+For the purposes of section 169(4), a pension scheme which ceases to be a qualifying recognised overseas pension scheme must within 30 days beginning with the day on which the cessation takes place (“the cessation date”) provide to an officer of Revenue and Customs —
+a
+the value at the cessation date of the relevant transferred sums or assets pertaining to each relevant transfer fund under the scheme; and
+b
+the name, principal residential address, date of birth and, if any, the national insurance number of each member in respect of whom there is a relevant transfer fund under the scheme at the cessation date.
+Information - changes, completion or correction
+3C
+For the purposes of section 169(4), if at any time after a pension scheme has provided an officer of Revenue and Customs with information in accordance with regulation 3, 3A or 3B it becomes apparent to the scheme that —
+a
+there is a material change affecting that information; or
+b
+the information is incomplete or contains a material inaccuracy,
+the scheme must provide to an officer of Revenue and Customs details of the change, the complete information or correction of the inaccuracy without undue delay.
+.
+10
+In regulation 4 (notice in cases of serious prejudice to proper assessment or collection of tax) —
+a
+in paragraph 1(a) for “these Regulations” substitute “regulation 2”; and
+b
+in paragraph (2) for “regulations 2 and 3” substitute “regulation 2”.
+Amendments to the Registered Pension Schemes (Provision of Information) Regulations 2006
+11
+The Registered Pension Schemes (Provision of Information) Regulations 2006 are amended as follows.
+12
+In regulation 3 (provision of information by scheme administrator to the Commissioners) —
+a
+in paragraph (1), in entry 9 in the table (transfers to qualifying recognised overseas pension schemes) —
+i
+in the first column after “qualifying recognised overseas pension scheme” insert “(“ QROPS ”)”;
+ii
+in the second column for entries (a) to (d) substitute —
+a
+the member’s principal residential address and, where that address is not in the United Kingdom, the member’s last principal residential address in the United Kingdom;
+b
+the member’s date of birth;
+c
+the member’s telephone number, if any, which the member has provided to the scheme administrator for use by the Commissioners in relation to the scheme;
+d
+the acknowledgement mentioned in regulation 11BA(2)(b);
+e
+the date of the recognised transfer;
+f
+in the case of a transfer of sums, the amount of the sums;
+g
+in the case of a transfer of assets, a description and valuation of each type of asset transferred including the value of any unquoted shares, quoted shares and real property;
+h
+the name and address of the QROPS to which the sums or assets have been transferred;
+i
+the country or territory under the law of which the QROPS is established and regulated; and
+j
+the name, address, business telephone number and, where available, the electronic mail address of the manager of the QROPS.
+.
+b
+in paragraph (6)(b) after “qualification in” insert “paragraph (7) and”; and
+c
+after paragraph (6) insert —
+7
+An event report in respect of reportable event 9 must be delivered within 60 days beginning with the day of the transfer to which it relates.
+.
+13
+After regulation 11B (information provided by members to scheme administrators: pension commencement lump sums) insert —
+Information provided by members to scheme administrators: recognised transfers
+11BA
+1
+Paragraph (2) applies where a member of a registered pension scheme makes a request to the scheme administrator to make a recognised transfer (“transfer request”) in respect of a qualifying recognised overseas pension scheme.
+2
+The member must provide to the scheme administrator —
+a
+the member’s —
+i
+name;
+ii
+date of birth;
+iii
+principal residential address and, where that address is not in the United Kingdom, the member’s last principal residential address in the United Kingdom;
+iv
+national insurance number or, where applicable, confirmation in writing that the member does not qualify for a national insurance number;
+v
+telephone number, if any, which the member provides for use by the scheme administrator or the Commissioners in relation to the scheme;
+vi
+the name and address of the qualifying recognised overseas pension scheme;
+vii
+the country or territory under the law of which the qualifying recognised overseas pension scheme is established and regulated; and
+b
+the member’s acknowledgement in writing that the member is aware that a transfer other than a recognised transfer to a qualifying recognised overseas pension scheme of sums or assets held for the purposes of, or representing accrued rights under, an arrangement under a registered pension scheme —
+i
+gives rise to a liability under section 208 (unauthorised payments charge); and
+ii
+may give rise to a liability under section 209 (unauthorised payments surcharge).
+3
+The information specified in paragraph (2) must be provided within 60 days beginning with the day of the transfer request.
+4
+The scheme administrator must send the member notification of the requirements specified in this regulation within 30 days beginning with the day of the transfer request.
+.
+14
+In regulation 11C(1) (information provided by individuals to scheme administrator: national insurance number) after “event report” insert “, other than an event report in respect of reportable event 9,”.
+Amendments to the Registered Pension Schemes and Overseas Pension Schemes (Electronic Communication of Returns and Information) Regulations 2006
+15
+1
+The Registered Pension Schemes and Overseas Pension Schemes (Electronic Communication of Returns and Information) Regulations 2006 are amended as follows.
+2
+In Schedule 1 (information which must be supplied to Revenue and Customs by an approved method of electronic communications) —
+a
+in the entry beginning with “A return under section 254”, after the words “that return” insert —
+, which does not relate to a currently-relieved non-UK pension scheme
+; and
+b
+for “An event report under” substitute “An event report in respect of a reportable event specified in entries 1 to 8A and 10 to 21 in the table in paragraph (1) of”.
+3
+In Schedule 2 (information which may be supplied either to or by Revenue and Customs by an approved method of electronic communications) —
+a
+after the entry beginning “A notice under section 250” insert —
+An amendment to a return under section 250 by the scheme administrator.
+; and
+b
+after the entry beginning “A certificate by Revenue and Customs under the ELA Regulations” insert —
+An amendment to an event report in respect of a reportable event specified in entries 1 to 8A and 10 to 21 in the table in paragraph (1) of regulation 3 of the Registered Pension Schemes (Provision of Information) Regulations 2006 (provision of information by scheme administrator to the Commissioners).
+.
+Stephen Banyard
+Simon Bowles
+Two of the Commissioners for Her Majesty’s Revenue and Customs
+20th March 2012

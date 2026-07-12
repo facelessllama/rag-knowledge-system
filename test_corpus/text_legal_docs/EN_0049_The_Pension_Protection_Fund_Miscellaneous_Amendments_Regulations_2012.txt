@@ -1,0 +1,584 @@
+The Pension Protection Fund (Miscellaneous Amendments) Regulations 2012
+By virtue of section 317(2) of the Pensions Act 2004, the Secretary of State is not required to consult any person before making these Regulations as this instrument contains only regulations which are consequential upon amendments made to that Act by paragraphs 1 to 16 of Schedule 4 to the Pensions Act 2011 , and is made before the end of the period of six months beginning with the coming into force of those amendments.
+Citation, commencement and interpretation
+1
+1
+These Regulations may be cited as the Pension Protection Fund (Miscellaneous Amendments) Regulations 2012.
+2
+They come into force on 23rd July 2012.
+3
+In these Regulations, “ the Act ” means the Pensions Act 2004.
+Amendment of the Pension Protection Fund (Multi-employer Schemes)(Modification) Regulations 2005
+2
+1
+The Pension Protection Fund (Multi-employer Schemes)(Modification) Regulations 2005 are amended as follows.
+2
+In regulation 6(1) (protected liabilities and assessment periods), in paragraph (b) of the substituted section 131(1) of the Act (protected liabilities), for the words “as calculated in the Board ’s valuation of the relevant section of the scheme under section 143” substitute “as determined by the Board or as calculated in the Board’s valuation of the relevant section of the scheme under section 143”.
+3
+In regulation 8 (valuation of assets) —
+a
+for paragraph (1), substitute–
+1
+Section 143 of the Act (Board’s obligation to obtain valuation of assets and protected liabilities) shall be modified in its application to a section of a segregated scheme to which regulation 2 applies so that it shall be read as if–
+a
+for the words “the scheme” in subsection (2)(b), there were substituted the words “the relevant section of the scheme”; and
+b
+after subsection (2A), there were inserted the following subsection–
+2B
+Where the trustees or managers of a segregated scheme receive a copy of a notice under subsection (2A), they must send a copy of that notice as soon as practicable to the trustees or managers of each section of the scheme (if different) and to all the employers in relation to the scheme.
+.
+; and
+b
+after paragraph (1), insert–
+1A
+Section 143A of the Act (determinations under section 143) shall be modified in its application to a section of a segregated scheme to which regulation 2 applies so that it shall be read as if–
+a
+after subsection (1), there were inserted the following subsection–
+1A
+Where the trustees or managers of a segregated scheme receive a copy of a determination under subsection (1), they must send a copy of that determination as soon as practicable to the trustees or managers of each section of the scheme (if different) and to all the employers in relation to the scheme.
+; and
+b
+for the words “a scheme” in subsection (3), there were substituted the words “the relevant section of a scheme”.
+.
+4
+In regulation 10(2)(a) ( reconsideration and duty to assume responsibility for a scheme following reconsideration), in paragraph (b) of the substituted section 152(2) of the Act (duty to assume responsibility following reconsideration), for the words “as calculated in the valuation of the relevant section of the scheme” substitute “as determined by the Board or calculated in the valuation of the relevant section of the scheme”.
+5
+In regulation 11 (closed schemes and requirement to wind up schemes with sufficient assets to meet protected liabilities) after paragraph (4), insert–
+5
+Section 158 of the Act (duty to assume responsibility for closed schemes) shall be modified in its application to a section of a segregated scheme to which regulation 2 applies so that it shall be read as if, after subsection (3A), there were inserted the following subsection–
+3B
+Where the trustees or managers of a section of a segregated scheme receive a notice from the Board under subsection (3A), they must send a copy of that notice as soon as practicable to the trustees or managers of each section of the scheme (if different) and to all the employers in relation to the scheme.
+.
+.
+6
+In regulation 23 (valuation of assets) —
+a
+for paragraph (1), substitute–
+1
+Section 143 of the Act (Board’s obligation to obtain valuation of assets and protected liabilities) shall be modified in its application to a section of a scheme to which regulation 14 applies so that it shall be read as if–
+a
+for the words “the scheme” in subsection (2)(b), there were substituted the words “the relevant section of the scheme”; and
+b
+after subsection (2A), there were inserted the following subsection–
+2B
+Where the trustees or managers of a multi-employer section of a segregated scheme receive a copy of a notice under subsection (2A), they must send a copy of that notice as soon as practicable to all the employers in relation to that section of the scheme and to the trustees or managers of each section of the scheme (if different).
+.
+; and
+b
+after paragraph (1), insert–
+1A
+Section 143A of the Act (determinations under section 143) shall be modified in its application to a section of a scheme to which regulation 14 applies so that it shall be read as if–
+a
+after subsection (1), there were inserted the following subsection–
+1A
+Where the trustees or managers of a multi-employer section of a segregated scheme receive a copy of a determination under subsection (1), they must send a copy of that determination as soon as practicable to all the employers in relation to that section of the scheme and to the trustees or managers of each section of the scheme (if different).
+; and
+b
+for the words “a scheme” in subsection (3), there were substituted the words “the relevant section of a scheme”.
+.
+7
+In regulation 25 (reconsideration, closed schemes and requirement to wind up schemes with sufficient assets to meet protected liabilities), after paragraph (6), insert —
+7
+Section 158 of the Act (duty to assume responsibility for closed schemes) shall be modified in its application to a section of a scheme to which regulation 14 applies so that it shall be read as if, after subsection (3A), there were inserted the following subsection–
+3B
+Where the trustees or managers of a multi-employer section of a segregated scheme receive a notice from the Board under subsection (3A), they must send a copy of that notice as soon as practicable to all the employers in relation to that section of the scheme and to the trustees or managers of each section of the scheme (if different).
+.
+.
+8
+In regulation 28(4)(b)(iv) (application and effect), after “administration of the section” insert —
+; and
+c
+Part 2 of the Act shall be read as if section 143A were omitted
+.
+9
+After regulation 37 (Board to act as creditor of the employer), insert —
+Ill health pensions
+37A
+1
+Section 141 of the Act (effect of a review) shall be modified in its application to a segregated part to which regulation 28 applies so that it shall be read as if–
+a
+in subsection (4) the words “a determination under section 143(2)(a) or” were omitted; and
+b
+in subsection (5)(a) the words “makes a determination under section 143(2)(a) or” were omitted.
+2
+Section 142(1) of the Act (sections 140 and 141: interpretation) shall be modified in its application to a segregated part to which regulation 28 applies so that it shall be read as if, for the words “143(2)(b)” in the definition of “scheme valuation” there were substituted the word “143”.
+.
+10
+In regulation 38 (valuation of assets) —
+a
+for paragraph (1)(b), substitute–
+b
+for subsection (2), there were substituted the following subsection–
+2
+For the purposes of determining whether the condition in subsection (2)(a) of the section in question is satisfied, the Board must, as soon as reasonably practicable, obtain an actuarial valuation of the section as a whole and of the segregated part as at the relevant time.
+;
+;
+b
+after paragraph (1)(b), insert–
+ba
+subsection (2A) were omitted;
+bb
+for the words “a determination made under subsection (2)(a) or an actuarial valuation obtained under subsection (2)(b)” in subsection (4), there were substituted the words “this section”;
+bc
+subsection (5C) were omitted;
+bd
+in subsection (6), the words “for the purposes of an actuarial valuation obtained under subsection (2)(b)” were omitted;
+;
+c
+in paragraph (1)(c), omit “and”;
+d
+after paragraph (1)(c), insert–
+ca
+in subsection (9)–
+i
+for the words “requires a determination to be made, or an”, there were substituted the words “requires the”, and
+ii
+the words “the determination or” were omitted;
+cb
+for the words “requires a determination to be made, or an” in subsection (10), there were substituted the words “requires the”;
+;
+e
+in paragraph (1)(d), after paragraph (i) insert–
+ia
+the words “makes a determination under subsection (2)(a) or” in paragraph (b)(ii) were omitted; and
+;
+f
+for paragraph (2)(a) substitute —
+a
+for the words “obtains a valuation in respect of a scheme under section 143(2)(b)” in subsection (1), there were substituted the words “obtains a valuation or a further valuation in respect of the section as a whole and of the segregated part under section 143”; and
+; and
+g
+for paragraph (3)(a), substitute–
+a
+for the words “a valuation obtained under section 143(2)(b) is not binding” in subsection (1), there were substituted the words “a valuation or a further valuation obtained under section 143 of the section as a whole and of the segregated part is not binding”;
+.
+11
+In regulation 40 (reconsideration) for paragraph (1), substitute —
+1
+Section 151 of the Act (application for reconsideration) shall be modified in its application to a segregated part to which regulation 28 applies, so that it shall be read as if —
+a
+for the words “the determination made by the Board or valuation obtained by the Board in respect of the scheme under section 143(2)” in subsections (2)(b) and (3)(b) there were substituted the words “the valuation obtained by the Board under section 143 in respect of the segregated part”;
+b
+the words “determination or” in paragraphs (a)(ii) and (b)(ii) of subsection (6) were omitted;
+c
+in the definition of “protected benefits quotation” in subsection (8), from the words “in relation to a scheme” to “the reconsideration time” there were substituted–
+in relation to a segregated part of a multi-employer section of a segregated scheme, means a quotation for one or more annuities from one or more insurers, being companies willing to accept payment in respect of the members of the segregated part from the trustees or managers of the scheme, which would provide in respect of each member of the segregated part from the reconsideration time
+; and
+d
+for the words “under section 143(2)(b)” in subsection (10), there were substituted the words “under that section”.
+.
+12
+In regulation 41 (closed schemes, requirement to wind up schemes with sufficient assets and applications and notifications where closed schemes have insufficient assets) —
+a
+after paragraph (2)(a), insert–
+aa
+the words “determination made by the Board or” in subsection (5)(b), were omitted;
+; and
+b
+after paragraph (5), insert–
+6
+Section 158 of the Act (duty to assume responsibility for closed schemes) shall be modified in its application to a segregated part to which regulation 28 applies so that it shall be read as if–
+a
+for subsection (3), there were substituted the following subsection–
+3
+For the purposes of determining whether the condition in subsection (1) is satisfied, the Board must, as soon as reasonably practicable, obtain an actuarial valuation (within the meaning of section 143) of the segregated part as at the relevant time.
+;
+b
+subsection (3A) were omitted;
+c
+in subsection (5)–
+i
+for the words “a determination made under subsection (3)(a) and a valuation obtained under subsection (3)(b)” there were substituted the words “a valuation obtained under subsection (3);
+ii
+for the words “a determination made under section 143(2)(a) and a valuation obtained under section 143(2)(b)” there were substituted the words “a valuation obtained under section 143”; and
+iii
+paragraph (aa) were omitted; and
+d
+in subsection (6)–
+i
+“, 143A” were omitted; and
+ii
+paragraph (aa) were omitted.
+.
+13
+In regulation 42 (transfer notices and assumption of responsibility for a scheme), after paragraph (1)(b) insert —
+ba
+for the words “determination made or valuation obtained under section 143(2)” in subsection (3), there were substituted the words “valuation obtained under section 143”;
+bb
+in subsection (4) the words “determination made or” were omitted;
+.
+14
+In regulation 45(4)(b)(iv) (application and effect), after “administration of the segregated part” insert —
+; and
+c
+Part 2 of the Act shall be read as if section 143A were omitted
+.
+15
+After regulation 53 (Board to act as creditor of the employer), insert —
+Ill health pensions
+53A
+1
+Section 141 of the Act (effect of a review) shall be modified in its application to a segregated part to which regulation 45 applies so that it shall be read as if–
+a
+in subsection (4) the words “a determination under section 143(2)(a) or” were omitted; and
+b
+in subsection (5)(a) the words “makes a determination under section 143(2)(a) or” were omitted.
+2
+Section 142(1) of the Act (section 140 and 141: interpretation) shall be modified in its application to a segregated part to which regulation 45 applies, so that it shall be read as if for the words “143(2)(b)” in the definition of “scheme valuation” there were substituted the word “143”.
+.
+16
+In regulation 54 (valuation of assets) —
+a
+for paragraph (1)(b), substitute–
+b
+for subsection (2) there were substituted the following subsection–
+2
+For the purposes of determining whether the condition in subsection (2)(a) of the section in question is satisfied, the Board must, as soon as reasonably practicable, obtain an actuarial valuation of the section as whole and of the segregated part as at the relevant time.
+;
+;
+b
+after paragraph (1)(b), insert —
+ba
+subsection (2A) were omitted;
+bb
+for the words “a determination made under subsection (2)(a) or an actuarial valuation obtained under subsection (2)(b)” in subsection (4), there were substituted the words “this section”;
+bc
+subsection (5C) were omitted;
+bd
+in subsection (6), the words “for the purposes of an actuarial valuation obtained under subsection (2)(b)” were omitted;
+;
+c
+in paragraph (1)(c), omit “and”;
+d
+after paragraph (1)(c), insert —
+ca
+in subsection (9)–
+i
+for the words “requires a determination to be made, or an”, there were substituted the words “requires the”; and
+ii
+the words “the determination or” were omitted;
+cb
+for the words “requires a determination to be made, or an” in subsection (10), there were substituted the words “requires the”;
+;
+e
+in paragraph (1)(d), after paragraph (i) insert–
+ia
+the words “makes a determination under subsection (2)(a) or” in paragraph (b)(ii) were omitted; and
+;
+f
+for paragraph (2)(a) substitute —
+a
+for the words “obtains a valuation in respect of a scheme under section 143(2)(b)” in subsection (1), there were substituted the words “obtains a valuation or a further valuation in respect of the section as a whole and of the segregated part under section 143”; and
+; and
+g
+for paragraph (3)(a), substitute–
+a
+for the words “a valuation obtained under section 143(2)(b) is not binding” in subsection (1), there were substituted the words “a valuation or a further valuation obtained under section 143 of the section as a whole and of the segregated part is not binding”;
+.
+17
+In regulation 56 (reconsideration), for paragraph (1) substitute —
+1
+Section 151 of the Act (application for reconsideration) shall be modified in its application to a segregated part to which regulation 45 applies so that it shall be read as if —
+a
+for the words “the determination made by the Board or the valuation obtained by the Board in respect of the scheme under section 143(2)” in subsections (2)(b) and (3)(b), there were substituted the words “the valuation obtained by the Board under section 143 in respect of the segregated part”;
+b
+the words “determination or” in paragraphs (a)(ii) and (b)(ii) of subsection (6) were omitted;
+c
+in the definition of “protected benefits quotation” in subsection (8), from the words “in relation to a scheme” to “the reconsideration time” there were substituted–
+in relation to a segregated part of a non-segregated scheme, means a quotation for one or more annuities from one or more insurers, being companies willing to accept payment in respect of members of the segregated part from the trustees or managers of the scheme, which would provide in respect of each member of the segregated part from the reconsideration time
+; and
+d
+for the words “under section 143(2)(b)” in subsection (10), there were substituted “under that section”.
+.
+18
+In regulation 57 (closed schemes, requirement to wind up schemes with sufficient assets and applications and notifications where closed schemes have insufficient assets) —
+a
+after paragraph (2)(a), insert–
+aa
+the words “determination made by the Board or” in subsection (5)(b), were omitted;
+; and
+b
+after paragraph (5), insert —
+6
+Section 158 of the Act (duty to assume responsibility for closed schemes) shall be modified in its application to a segregated part to which regulation 45 applies so that it shall be read as if–
+a
+for subsection (3), there were inserted the following subsection–
+3
+For the purposes of determining whether the condition in subsection (1) is satisfied the Board must, as soon as reasonably practicable, obtain an actuarial valuation (within the meaning of section 143) of the segregated part as at the relevant time.
+;
+b
+subsection (3A) were omitted;
+c
+in subsection (5)–
+i
+for the words “a determination made under subsection (3)(a) and a valuation obtained under subsection (3)(b)” there were substituted the words “a valuation obtained under subsection (3);
+ii
+for the words “a determination made under section 143(2)(a) and a valuation obtained under section 143(2)(b)” there were substituted the words “a valuation obtained under section 143”; and
+iii
+paragraph (aa) were omitted; and
+d
+in subsection (6)–
+i
+“, 143A” were omitted; and
+ii
+paragraph (aa) were omitted.
+.
+19
+In regulation 58 (transfer notices and assumption of responsibility for a scheme), after paragraph (1)(b) insert —
+ba
+for the words “determination made or valuation obtained under section 143(2)” in subsection (3), there were substituted the words “valuation obtained under section 143”;
+bb
+in subsection (4) the words “determination made or” were omitted;
+.
+20
+In regulation 68 (valuation of assets) after “Sections” insert “143A(4)(c) (Determinations under section 143),”.
+Amendment of the Pension Protection Fund (Entry Rules) Regulations 2005
+3
+1
+Regulation 24 of the Pension Protection Fund (Entry Rules) Regulations 2005 is amended as follows.
+2
+For paragraph (1)(a) substitute —
+a
+either–
+i
+a protected benefits quotation in relation to the scheme, or
+ii
+written evidence which shows that the trustees or managers of the scheme have taken all reasonable steps to obtain a protected benefits quotation but were unable to do so, and
+.
+3
+In paragraph (2) —
+a
+in sub-paragraph (f), after “binding valuation notice” insert “under section 145(3) or a binding determination notice under section 143A(4)”; and
+b
+in sub-paragraphs (h) and (i), insert at the beginning “where the application is accompanied by a protected benefits quotation,”.
+Amendment of the Pension Protection Fund (Review and Reconsideration of Reviewable Matters) Regulations 2005
+4
+1
+The Pension Protection Fund (Review and Reconsideration of Reviewable Matters) Regulations 2005 are amended as follows.
+2
+In regulation 3 (time for making an application for a review decision) —
+a
+in paragraph (1)(a)–
+i
+after “an application concerning”, insert “the issue of a determination under section 143(2)(a) or”, and
+ii
+after “trustees or managers of the scheme provide”, insert “a summary of the determination or”;
+b
+after paragraph (3)(d), insert–
+da
+the issue of–
+i
+a determination under section 143(2)(a) (whether condition in section 127(2)(a) or 128(2)(a) satisfied); or
+ii
+a notice under section 143(2A) (whether Board will make a determination or obtain an actuarial valuation);
+;
+c
+in paragraph (3)(j), omit “or”; and
+d
+after paragraph (3)(j), insert–
+ja
+the issue of–
+i
+a determination under section 158(3)(a) (whether condition in section 158(1) satisfied); or
+ii
+a notice under section 158(3A) (whether Board will make a determination or obtain an actuarial valuation); or
+.
+3
+In regulation 15(3) (time for making an application to reconsider) —
+a
+after sub-paragraph (d), insert–
+da
+the issue of–
+i
+a determination under section 143(2)(a) (whether condition in section 127(2)(a) or 128(2)(a) satisfied); or
+ii
+a notice under section 143(2A) (whether Board will make a determination or obtain an actuarial valuation);
+;
+b
+in sub-paragraph (i), omit “or”; and
+c
+in sub-paragraph (j) after “(closed schemes)”, insert–
+; or
+k
+the issue of–
+i
+a determination under section 158(3)(a) (whether condition in section 158(1) satisfied); or
+ii
+a notice under section 158(3A) (whether Board will make a determination or obtain an actuarial valuation).
+.
+4
+In the table in the Schedule (interested person) —
+a
+after paragraph 7A, insert–
+7B Paragraphs 7B and 7C 7B The trustees or managers of the scheme. 7C Paragraph 7D 7C(a) the trustees or managers of the scheme; and
+(b) the members of that scheme or, where a member has died, any person entitled to present payment of a pension by reason of rights under the scheme in respect of a deceased member.
+;
+b
+omit paragraph 8; and
+c
+after paragraph 12, insert–
+12A Paragraphs 14A, 14B and 14C 12A The trustees or managers of the scheme.
+.
+Amendment of the Pension Protection Fund (Valuation) Regulations 2005
+5
+1
+The Pension Protection Fund (Valuation) Regulations 2005 are amended as follows.
+2
+In regulation 1(2) (commencement, citation and interpretation) —
+a
+in the definition of “appropriate person”, after “section 143(11)(a)(ii) of the Act” insert “, in the case of a section 143 determination, means the Board”;
+b
+after the definition of “restricted information”, insert —
+“section 143 determination” means a determination by the Board under section 143(2)(a) of the Act;
+;
+c
+for the definition of “section 143 valuation”, substitute —
+“section 143 valuation” means an actuarial valuation under section 143(2)(b) of the Act;
+; and
+d
+after the definition of “section 143 valuation”, insert —
+“section 152 determination” means a determination by the Board for the purposes of section 152(2B) of the Act;
+“section 152(10A) valuation” means a valuation under section 152(10A) of the Act;
+“section 158 determination” means a determination by the Board under section 158(3)(a) of the Act;
+.
+3
+After regulation 2 (provision of actuarial valuation to determine scheme underfunding), insert —
+Section 143 determinations
+2A
+1
+This regulation applies where the Board is making a section 143 determination in respect of an eligible scheme.
+2
+The Board must determine the value of the assets and protected liabilities of that scheme —
+a
+by using the information contained in the most recent section 179 valuation or an appropriate alternative actuarial valuation;
+b
+by updating that information in accordance with the statement issued by the Board under section 143(5C) of the Act; and
+c
+in accordance with regulations 3(a) and (c), 4, 6(1)(a) and (2), and 7(1) to (4)(c).
+3
+In this regulation —
+“an appropriate alternative actuarial valuation” means a written valuation of the scheme’s assets and liabilities prepared and signed by the actuary; and
+“the actuary” means–
+the actuary appointed under section 47(1)(b) of the Pensions Act 1995 (professional advisers) in relation to the scheme, or
+a person who is a Fellow of the Institute and Faculty of Actuaries.
+.
+4
+In regulations 3(a) and (c) (excluded assets) and 6(1)(a) (valuation of protected liabilities), after “section 143” insert “determination or section 143”.
+5
+In regulation 4 (contribution notices, financial support directions and restoration orders) after “prior to the date that” insert “the determination is made or”.
+6
+In regulation 7 (alternative valuation of assets and protected liabilities in specific cases) —
+a
+in paragraphs (1) and (2), after “section 143” insert “determination or a section 143”;
+b
+in paragraph (4) omit “a section 143 valuation”;
+c
+in paragraphs (4)(a), (b) and (c) insert at the beginning “a section 143 determination or a section 143 valuation,”;
+d
+in paragraph (4)(a) after “in accordance with” insert “the statement issued by the Board under section 143(5C) of the Act or”;
+e
+in paragraph (4)(b)–
+i
+after “the date” insert “the determination is made under section 143(2)(a) of the Act or the date”; and
+ii
+in paragraph (ii) after “section 143” insert “determination or section 143”;
+f
+in paragraph (4)(c)(ii), after “in accordance with” insert “a statement issued by the Board under section 143(5C) of the Act or”; and
+g
+in paragraphs (4)(d) and (e) insert at the beginning “a section 143 valuation,”.
+7
+After regulation 7 (alternative valuation of assets and protected liabilities in specific areas), insert —
+Application of these regulations to applications for reconsideration and by closed schemes
+7A
+1
+Regulations 2A, 3(a) and (c), 4, 6(1)(a) and (2), and 7(1) to (4)(c) apply in relation to a section 152 determination and a section 158 determination as they apply in relation to a section 143 determination.
+2
+In the application of regulation 2A to section 152 determinations and section 158 determinations, the reference in paragraph (2)(a) to the most recent section 179 valuation is to be read as a reference to the most recent section 143 or section 179 valuation.
+3
+Regulations 3 to 7 apply in relation to a section 152(10A) valuation as they apply in relation to a section 143 valuation.
+4
+In the application of regulations 5 and 7 to section 152(10A) valuations —
+a
+the references to “relevant accounts” are to be read as references to “audited scheme accounts as defined in section 151(8) of the Act”; and
+b
+the references to “appropriate person” are to be read as references to “person who is a Fellow of the Institute and Faculty of Actuaries”.
+.
+8
+After regulation 9 (form and content of section 143 valuation and notice), insert —
+Form and content of section 143A notice of determination
+9A
+Where a section 143 determination becomes binding, the notice which the Board must issue under section 143A(4) shall be in writing and shall contain the following information —
+a
+the name or type of notice issued;
+b
+the date on which the notice is issued;
+c
+the name, address and pension scheme registration number of the scheme in respect of which the notice is issued;
+d
+a statement that the section 143 determination has become binding;
+e
+the name of the employer in relation to the scheme in respect of which the notice is issued; and
+f
+whether the notice issued by the Board contains any restricted information and, if so, the nature of the restriction.
+.
+Amendment of the Pension Protection Fund (Provision of Information) Regulations 2005
+6
+1
+Schedule 2 to the Pension Protection Fund (Provision of Information) Regulations 2005 (Information to be Provided by Trustees or Managers) is amended as follows.
+2
+In paragraph 1(1) —
+a
+before the definition of “hybrid scheme”, insert —
+“determination” means a determination made by the Board under section 143(2)(a);
+“determination summary” means, in relation to each member of the scheme, a summary of the determination which contains–
+a summary of the overall assets and liabilities of the scheme;
+details of how that member’s entitlement to compensation would be calculated if the Board assumed responsibility for the scheme;
+details of any information the Board holds on that member’s pensionable service and accrued rights;
+where there is a pension in payment to that member at the assessment date, the annual amount of that pension; and
+a statement describing how an application may be made to the Board for the review of the determination, how it will be considered and the Board’s powers on making a review decision;
+; and
+b
+in the definition of “valuation”, for “143” substitute “143(2)(b)”.
+3
+In the table in paragraph 1(2), after the fourteenth row insert–
+Where the scheme is not a hybrid scheme, a multi-employer scheme or a partially guaranteed scheme, all members. A copy of the determination summary. The period of 28 days beginning on the day on which the trustees or managers receive a copy of the determination. Where the scheme is a hybrid scheme, all members other than those who receive only money purchase benefits. A copy of the determination summary. The period of 28 days beginning on the day on which the trustees or managers receive a copy of the determination. Where the scheme is a multi-employer scheme, all members who are in the section of the scheme to which the determination relates. A copy of the determination summary. The period of 28 days beginning on the day on which the trustees or managers receive a copy of the determination. Where the scheme is a partially guaranteed scheme, all members who are in the unsecured part of the scheme. A copy of the determination summary. The period of 28 days beginning on the day on which the trustees or managers receive a copy of the determination.
+.
+Amendment of the Pension Protection Fund (Reference of Reviewable Matters to the PPF Ombudsman) Regulations 2005
+7
+In regulation 3(2) of the Pension Protection Fund (Reference of Reviewable Matters to the PPF Ombudsman) Regulations 2005 (time for making a reference) —
+a
+after sub-paragraph (e), insert–
+ea
+the issue of–
+i
+a notice under section 143(2A) of the Act (whether Board will make a determination or obtain an actuarial valuation); or
+ii
+a determination under section 143(2)(a) of the Act (whether condition in section 127(2)(a) or 128(2)(a) satisfied);
+;
+b
+in sub-paragraph (l), after “(closed schemes)”, insert —
+; or
+m
+the issue of–
+i
+a notice under section 158(3A) of the Act (whether Board will make a determination or obtain an actuarial valuation); or
+ii
+a determination under section 158(3)(a) of the Act (whether condition in section 158(1) satisfied).
+.
+Amendment of the Occupational Pension Schemes (Fraud Compensation Payments and Miscellaneous Amendments) Regulations 2005
+8
+In regulation 1(3) of the Occupational Pension Schemes (Fraud Compensation Payments and Miscellaneous Amendments) Regulations 2005 (citation, commencement and interpretation) , for the definition of “PPF valuation” substitute —
+“PPF valuation” means an actuarial valuation obtained under section 143(2)(b) (valuation of assets and protected liabilities);
+.
+Amendment of the Pension Protection Fund (Closed Schemes) Regulations 2007
+9
+In regulation 3(1) of the Pension Protection Fund (Closed Schemes) Regulations 2007 (obtaining of actuarial valuations of closed schemes) —
+a
+in the definition of “the relevant period”, for “actuarial valuation of the scheme under section 143” substitute “Board’s determination under section 143(2)(a) or actuarial valuation of the scheme under section 143(2)(b)”; and
+b
+omit the definition of “section 143 valuation”.
+Signed by authority of the Secretary of State for Work and Pensions.
+Steve Webb
+Minister of State,
+Department for Work and Pensions
+28th June 2012

@@ -1,0 +1,272 @@
+The Data-gathering Powers (Relevant Data) Regulations 2012
+Accordingly the Treasury make the following Regulations in exercise of the power conferred by paragraph 1(3) of Schedule 23 to the Finance Act 2011.
+Citation, commencement and interpretation
+1
+These Regulations may be cited as the Data-gathering Powers (Relevant Data) Regulations 2012 and come into force on 1st April 2012.
+2
+In these Regulations “Schedule 23” means Schedule 23 to the Finance Act 2011.
+Salaries, fees, commission etc
+3
+1
+The relevant data for a data-holder of the type described in paragraph 9(1)(a) of Schedule 23 are information relating to all payments made by the employer that relate to the employment (referred to in this regulation as “employment related payments”).
+2
+The relevant data for a data-holder of the type described in paragraph 9(1)(b) are information relating to payments by any other person who has made employment related payments to the employer’s employees or to the employees of another person.
+3
+Information relating to apportioned expenses incurred partly in respect of employment related payments and partly in, or in connection with, other matters are relevant data for the purposes of paragraph 9(1)(a) and 9(1)(b).
+4
+The relevant data for a data-holder of the type described in paragraph 9(1)(c) are information and documents relating to the donations made under Part 12 of the Income Tax (Earnings and Pensions) Act 2003 (payroll giving) .
+5
+For the purposes of paragraph 9(1)(d) and, where relevant, paragraph 9(4) —
+a
+the relevant data are information relating to relevant payments made in connection with a business, or a part of a business;
+b
+particulars of the following payments are not relevant data —
+i
+payments from which income tax is deductible; and
+ii
+payments made to any one person where the total of those payments, particulars of which would otherwise fall to be provided, does not exceed £500.
+4
+The relevant data for a data-holder of the type described in paragraph 11 of Schedule 23 are the data described in paragraph 11(2)(b).
+Interest etc
+5
+1
+The relevant data for a data-holder of the type described in paragraph 12 of Schedule 23 are information and documents relating to accounts or sums on which relevant interest is payable, including but not limited to the data in regulations 8, 9 and 10.
+2
+“Relevant interest” means interest paid or credited —
+a
+on money received or retained in the United Kingdom; and
+b
+either without deduction of income tax or after deduction of income tax.
+6
+Information relating to the following payments is not relevant data for the purposes of a data-holder of the type described in paragraph 12 —
+a
+a payment in respect of a certificate of deposit within the meaning given by section 1019 of the Income Tax Act 2007 ;
+b
+a payment in respect of an investment or a deposit held by a branch of a person to whom a data-holder notice is issued, where the branch is situated in a territory other than the United Kingdom;
+c
+a payment falling within regulation 9(c) or 10(d) if the name and address of the person to whom the interest was paid or credited is not the person beneficially entitled to the interest;
+d
+a payment in respect of an investment under a plan provided for by regulations made under Chapter 3 of Part 6 of the Income Tax (Trading and Other Income) Act 2005 ;
+e
+a payment to or a receipt for a person other than an individual (in whatever capacity the individual is acting), except where the case falls within regulation 9(c) or 10(d);
+f
+any other payment not falling within any of paragraphs (a) to (e) which is specified in the data-holder notice as being a payment in respect of which information is not required.
+7
+1
+Information is not relevant data for the purposes of a data-holder of the type described in paragraph 12 if it is in respect of a relevant dormant account before the balance of the account is paid out to the account-holder following a repayment claim (such payment being referred to in this regulation as the repayment claim being “settled”).
+2
+Where a repayment claim to the balance of a dormant account is settled, all interest paid, credited or included in the balance of the account, during and at the end of the relevant dormant period, is relevant data for the purposes of paragraph 12 and shall be treated —
+a
+as paid at the time the repayment claim is settled; and
+b
+as if the bank or building society in question had retained the balance of the account, in the ordinary course of the operations of its trade or business.
+3
+If the data-holder notice specifies the year of assessment in which the relevant dormant period for any account ends, the notice shall (unless it states otherwise) be deemed to require as relevant data the inclusion of information for all relevant dormant accounts, in respect of which repayment claims were settled in that year.
+4
+Information in respect of a relevant dormant account which, at the time it first became a relevant dormant account, was a plan provided for by regulations made under Chapter 3 of Part 6 of the Income Tax (Trading and Other Income) Act 2005 (individual investment plans) is not relevant data for the purpose of paragraph 12.
+5
+In this regulation —
+“relevant dormant account” has the meaning in section 39(2) of the Finance Act 2008 ;
+“relevant dormant period” means the period between the time when a dormant account becomes a relevant dormant account and the time at which a repayment claim is settled; and
+“repayment claim” means a repayment claim mentioned in section 5(6) of the Dormant Bank and Building Society Accounts Act 2008 (“the Dormant Accounts Act”).
+Other terms used have the same meaning as in the Dormant Accounts Act.
+8
+If a payment is made in circumstances in which a certificate has been supplied under regulation 4 of the Income Tax (Deposit-takers and Building Societies) (Interest Payments) Regulations 2008 , that the person beneficially entitled to the payment is unlikely to be liable to pay any amount by way of income tax for the tax year in which the payment was made, the relevant data are —
+a
+the name and address of the person or persons by or on behalf of whom a certificate has been given in connection with the payment (“the beneficiary”) if other than the person or persons to whom the payment was made;
+b
+the date of birth of the beneficiary;
+c
+the national insurance number or tax identification number of the beneficiary (or confirmation that a national insurance number or tax identification number is not held) for any account in respect of which the payment was made opened on or after 6th April 2013, and for any account opened earlier if such number is provided to the deposit-taker or building society;
+d
+notification of the fact that the account in respect of which the payment was made is or was one in connection with which a certificate or certificates had been given which had not ceased to be valid at the 5th April in the year in which the payment was made or at the date of closure of the account, if earlier in that year;
+e
+the reference number of the account referred to in paragraph (d) and, where necessary for identifying the account, the branch of the payer where the account is held;
+f
+where the payment was made to two or more account-holders each of whom was beneficially entitled to the payment, notification of that fact and, if known, the number of such persons;
+g
+the national insurance numbers or tax identification numbers of persons referred to in paragraph (f) other than the beneficiary referred to in paragraphs (b) and (c) (or confirmation that a national insurance number or tax identification number is not held) for any account opened on or after 6th April 2013, and for any account opened earlier if such number is provided to the deposit-taker or building society;
+h
+where a certificate was given by or on behalf of one, or more, but not all, of the persons referred to in paragraph (f) and had not ceased to be valid at the 5th April in the year in which the payment was made or at the date of closure of the account, if earlier in that year, notification of those facts;
+i
+where the payment was the first payment made in respect of an account, notification of that fact;
+j
+where the payment was in a currency other than sterling and the amount of the payment is recorded in that currency in the data provided under a data-holder notice notification of the fact that the amount is so recorded and the specification of the currency concerned.
+9
+In cases to which regulation 8 does not apply, the relevant data relating to payments in respect of deposits are —
+a
+the reference number of the account in respect of which a payment was made and, where necessary for identifying the account, the branch of the payer where the account is held;
+b
+where a payment was made to two or more account holders, notification of that fact and, if known, the number of such persons;
+c
+where the payment was made without deduction of tax by virtue of a declaration made after 5th April 2001 under section 858, 859, 860 or 861 of the Income Tax Act 2007 —
+i
+the name and principal residential address of the individual beneficially entitled to the payment or, if more than one, of each individual entitled to the payment; or
+ii
+where the person beneficially entitled to the payment is a Scottish partnership, all the partners in which are individuals, the name and principal residential address of each of the partners;
+d
+in a case falling within paragraph (c) notification of the fact that the account in respect of which the payment was made was one in respect of which a declaration had been made as mentioned in that paragraph;
+e
+the national insurance number or tax identification number (or confirmation that a national insurance number or tax identification number is not held) of the person or, where paragraph (b) applies, each person to whom a payment was made for any account opened on or after 6th April 2013, and for any account opened earlier if such number is provided to the deposit-taker or building society;
+f
+where a payment made in the course of the year was the first payment in respect of an account, notification of that fact;
+g
+where a payment was in a currency other than sterling and the amount of the payment is recorded in that currency in the data provided under a data-holder notice notification of the fact that the amount is so recorded and the specification of the currency concerned.
+10
+In cases to which regulation 8 does not apply, the relevant data relating to payments and receipts of interest other than payments in respect of deposits are —
+a
+identification of the security or investment in respect of which the payment was made or received;
+b
+where a payment or receipt was in a currency other than sterling and the amount of the payment is recorded in that currency in the data provided under a data-holder notice notification of the fact that the amount is so recorded and the specification of the currency concerned;
+c
+where a payment was made to, or the receipt was for, two or more persons, notification of that fact and, if known, the number of such persons;
+d
+where a payment was made without deduction of tax by virtue of a declaration made under regulation 31 of the Authorised Investment Funds (Tax) Regulations 2006 , the name and principal residential address of the person beneficially entitled to the payment, or if more than one, of each person beneficially entitled to the payment;
+e
+in a case falling within paragraph (d), notification of the fact that the account in respect of which the payment was made was one in respect of which the declaration had been made.
+Income, assets etc belonging to others
+11
+The relevant data for a data-holder of the type described in paragraph 13 of Schedule 23 are —
+a
+information relating to the money or value received; and
+b
+the name and address of the beneficial owner of the money or value.
+Payments derived from securities
+12
+The relevant data for a data-holder of the type described in paragraph 14 of Schedule 23 are —
+a
+whether the relevant data-holder is the beneficial owner (or sole beneficial owner) of the securities or payment in question;
+b
+if not —
+i
+details of the beneficial owner (or other beneficial owners); and
+ii
+if those details are not known or if different, details of the person for whom the securities are held or to whom the payment is or may be paid on; and
+c
+if there is more than one beneficial owner or more than one person of the kind mentioned in paragraph (b)(ii), their respective interests in the securities or payment.
+13
+The relevant data for a data-holder of the type described in paragraph 15 of Schedule 23 are details of the amounts paid that were received from or paid on behalf of another person including the name and address of each such person.
+Grants and subsidies out of public funds
+14
+The relevant data for a data-holder of the type described in paragraph 16 of Schedule 23 are —
+a
+the name and address of the person to whom the payment has been made or on whose behalf the payment has been received;
+b
+the amount of the payment so made or received; and
+c
+the address of any property in respect of which the payment has been made.
+Licences, approvals etc
+15
+The relevant data for a data-holder of the type described in paragraph 17 of Schedule 23 are —
+a
+the name and address of anyone who is or has been the holder of a licence or approval or to whom an entry in the register relates or related;
+b
+particulars of the licence, approval or entry;
+c
+information relating to any application for such a licence or approval or for entry on that register.
+Rent and other payments arising from land
+16
+1
+The relevant data for a data-holder of the type described in paragraph 18 of Schedule 23 are —
+a
+information relating to the terms applying to the lease, occupation or use of land;
+b
+information relating to any consideration given for the grant or assignment of the tenancy;
+c
+information relating to any person on whose behalf the land is managed or the payments received, including particulars of payments arising from the land.
+2
+In this regulation —
+a
+“lease” includes an agreement for a lease, and any tenancy, but does not include a mortgage or heritable security;
+b
+“lessee” includes a successor in title of a lease; and
+c
+in relation to Scotland, “assignment” means an assignation.
+Dealing etc in securities
+17
+1
+The relevant data for a data-holder of the type described in paragraph 19 of Schedule 23 are —
+a
+information and documents relating to securities transactions in respect of which that person is a relevant data-holder; and
+b
+in relation to a person who carries on a business of effecting public issues or placings or otherwise effects public issues or placings, information relating to the issue, allotment or placing of the public issues or placings.
+2
+In this regulation —
+a
+“placing” means a placing of shares or securities in a company; and
+b
+“public issue” means a public issue of shares or securities in a company.
+Dealing in other property
+18
+The relevant data for a data-holder of the type described in paragraph 20 of Schedule 23 are —
+a
+particulars of any transactions effected through a clearing house;
+b
+particulars of any transaction which meets the following conditions —
+i
+the transaction is effected by or through that person;
+ii
+in the transaction, an asset which is tangible moveable property is disposed of; and
+iii
+the amount or value of the consideration for the disposal exceeds, in the hands of the recipient, £6,000.
+Lloyd’s
+19
+The relevant data for a data-holder of the type described in paragraph 21 of Schedule 23 are information and documents relating to, and to the activities of, the syndicate of underwriting members of Lloyd’s.
+Investment plans etc
+20
+The relevant data for a data-holder of the type described in paragraph 22 of Schedule 23 are —
+a
+information and documents relating to the plan, including investments which are or have been held under the plan;
+b
+information and documents relating to the child trust fund including investments which are or have been held under the fund.
+Petroleum activities
+21
+The relevant data for a data-holder of the type described in paragraph 23 of Schedule 23 are —
+a
+particulars of transactions in connection with any activities authorised by a petroleum licence as a result of which any person is or might be liable to tax by virtue of section 276 of the Taxation of Chargeable Gains Act 1992 , section 1313 of the Corporation Tax Act 2009 or section 874 of the Income Tax (Trading and Other Income) Act 2005 ;
+b
+particulars of earnings or money treated as earnings, which constitute employment income (see section 7(2)(a) or (b) of the Income Tax (Earnings and Pensions) Act 2003 ) or other payments paid or payable in respect of duties or services performed in an area in which those activities may be carried on under the petroleum licence;
+c
+particulars of the persons to whom such earnings, money or other payments were paid and are payable;
+d
+information and documents relating to the oil field.
+Insurance activities
+22
+The relevant data for a data-holder of the type described in paragraph 24 of Schedule 23 are —
+a
+information and documents relating to contracts of insurance entered into in the course of an insurance business;
+b
+if paragraph 24(b) or (c) applies, information and documents relating to the contracts of insurance.
+Environmental activities
+23
+The relevant data for a data-holder of the type described in paragraph 25 of Schedule 23 are —
+a
+information and documents relating to aggregates levy matters in which the person is or has been involved;
+b
+information and documents relating to climate change levy matters in which the person is or has been involved;
+c
+information and documents relating to any landfill disposal.
+Settlements
+24
+The relevant data for a data-holder of the type described in paragraph 26 of Schedule 23 are information and documents relating to the settlement in question and to income or gains arising to the settlement.
+Charities
+25
+The relevant data for a data-holder of the type described in paragraph 27 of Schedule 23 are information relating to donations to the charity that are eligible for tax relief under any of the following provisions —
+a
+section 257 of the Taxation of Chargeable Gains Act 1992 (gifts to charities etc) ;
+b
+section 63(2)(a) or (aa) of the Capital Allowances Act 2001(cases in which disposal value is nil) ;
+c
+Part 12 of the Income Tax (Earnings and Pensions) Act 2003 (payroll giving) ;
+d
+section 108 of the Income Tax (Trading and Other Income) Act 2005 (gifts of trading stock to charities etc) ;
+e
+Chapter 2 or 3 of Part 8 of the Income Tax Act 2007 (gift aid, gifts of shares, securities and real property to charities etc) ;
+f
+section 105 of the Corporation Tax Act 2009 (gifts of trading stock to charities etc) ; and
+g
+Part 6 of the Corporation Tax Act 2010 (charitable donations relief) .
+Michael Fabricant
+James Duddridge
+Two of the Lords Commissioners of Her Majesty’s Treasury
+14th March 2012

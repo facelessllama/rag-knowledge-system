@@ -1,0 +1,508 @@
+The Jobseeker’s Allowance (Sanctions) (Amendment) Regulations 2012
+This instrument contains only regulations made by virtue of, or consequential on, sections 45 and 46 of, and Schedule 7 to, the Welfare Reform Act 2012 and is made before the end of the period of 6 months beginning with the coming into force of those provisions .
+Citation, commencement and interpretation
+1
+1
+These Regulations may be cited as the Jobseeker’s Allowance (Sanctions) (Amendment) Regulations 2012 and shall come into force on 22nd October 2012.
+2
+In these Regulations —
+“ the Act ” means the Jobseekers Act 1995;
+“the JSA Regulations ” means the Jobseeker’s Allowance Regulations 1996 .
+Amendment of Part V of the JSA Regulations (Sanctions)
+2
+1
+Part V of the JSA Regulations (sanctions) is amended as follows.
+2
+For regulation 69 (prescribed period for purposes of section 19(2)) substitute —
+The period of a reduction under section 19: higher-level sanctions
+69
+1
+Subject to paragraphs (3) and (4), a reduction under section 19 (higher level sanctions) is to have effect for —
+a
+13 weeks, where there has been no previous sanctionable failure by the claimant that falls within paragraph (2);
+b
+26 weeks, where there has been only one previous sanctionable failure by the claimant that falls within paragraph (2);
+c
+156 weeks, where there have been two or more previous sanctionable failures by the claimant that fall within paragraph (2)(a) and, if applicable, (b) and the most recent of those failures —
+i
+falls within paragraph (2)(c), and
+ii
+resulted in a reduction that has effect for 26 weeks under sub-paragraph (b) or 156 weeks under this sub-paragraph, or would have done but for paragraph (4).
+2
+A previous sanctionable failure referred to in paragraph (1) falls within this paragraph if —
+a
+the failure resulted in a decision to reduce the claimant’s award in accordance with section 19;
+b
+in the case of a joint-claim couple, the failure was by the same claimant; and
+c
+the date of the failure is within 52 weeks but not within 2 weeks of the date of the claimant’s current sanctionable failure.
+3
+Where a claimant’s award has been reduced in relation to a sanctionable failure which is specified in section 19(2)(a), (b) or (d) and which occurred before the date of claim for a jobseeker’s allowance, any such failure must not be counted for the purpose of determining the period of a reduction for a subsequent sanctionable failure under section 19.
+4
+Where a sanctionable failure which is specified in section 19(2)(a), (b) or (d) occurs on or before the date on which a claim for a jobseeker’s allowance is made —
+a
+except where sub-paragraph (b) applies, the reduction relating to that failure is to have effect for the period set out in paragraph (1) that applies in the claimant’s case (the “applicable sanction period”) minus the period beginning with the day after the date of the sanctionable failure and ending with the day before the date of claim;
+b
+if —
+i
+the failure was in relation to employment which was due to last for a limited period,
+ii
+the limited period ends on or before the end of the applicable sanction period, and
+iii
+the date of claim is on or before the last day of the limited period,
+the reduction relating to that failure is to have effect for the period beginning with the day after the date of the sanctionable failure and ending with the last day of the limited period minus the period beginning with the day after the date of the sanctionable failure and ending with the day before the date of claim.
+5
+In paragraph (4)(b), “limited period” means a specific term which is fixed, or which can be ascertained, before it begins, by reference to some relevant circumstance.
+6
+The period of a reduction under section 19 begins —
+a
+on the first day of the benefit week in which the sanctionable failure occurred where, on the date of the determination to reduce the award, the claimant has not been paid a jobseeker’s allowance since the sanctionable failure occurred; or
+b
+in any other case, on the first day of the benefit week after the end of the benefit week in respect of which the claimant was last paid a jobseeker’s allowance.
+The period of a reduction under section 19A: Other sanctions
+69A
+1
+A reduction under section 19A (other sanctions) is to have effect for —
+a
+4 weeks, where there has been no previous sanctionable failure by the claimant that falls within paragraph (2); or
+b
+13 weeks, where there has been —
+i
+only one previous sanctionable failure by the claimant that falls within paragraph (2), or
+ii
+more than one previous sanctionable failure and the most recent of those failures falls within paragraph (2).
+2
+A previous sanctionable failure falls within this paragraph if —
+a
+the failure resulted in a decision to reduce the claimant’s award in accordance with section 19A;
+b
+in the case of a joint-claim couple, the failure was by the same claimant; and
+c
+the date of the failure is within 52 weeks but not within 2 weeks of the date of the claimant’s current sanctionable failure.
+3
+The period of a reduction under section 19A begins —
+a
+on the first day of the benefit week in which the sanctionable failure occurred where, on the date of the determination to reduce the award, the claimant has not been paid a jobseeker’s allowance since the sanctionable failure occurred; or
+b
+in any other case, on the first day of the benefit week after the end of the benefit week in respect of which the claimant was last paid a jobseeker’s allowance.
+The period of a reduction under section 19B: Claimants ceasing to be available for employment etc.
+69B
+1
+Subject to paragraph (5), the amount of an award of a jobseeker’s allowance, other than a joint-claim jobseeeker’s allowance, is to be reduced in accordance with this regulation and regulation 70 (amount of a reduction) if the claimant —
+a
+was previously entitled to a jobseeker’s allowance, or was a member of a couple entitled to a joint-claim jobseeker’s allowance; and
+b
+ceased to be so entitled by failing to comply with the condition in section 1(2)(a) or (c) (availability for employment and actively seeking employment).
+2
+Subject to paragraph (5), the amount of an award of a joint-claim jobseeker’s allowance is to be reduced in accordance with this regulation and regulation 70 (amount of a reduction) if the case falls within either paragraph (3) or (4).
+3
+A case falls within this paragraph if —
+a
+one of the claimants was previously entitled to a jobseeker’s allowance, other than a joint-claim jobseeker’s allowance; and
+b
+ceased to be so entitled by failing to comply with the condition in section 1(2)(a) .
+4
+A case falls within this paragraph if —
+a
+the couple were previously entitled to a joint-claim jobseeker’s allowance but ceased to be so entitled by either or both of them failing to comply with the condition in section 1(2)(a) or (c); or
+b
+either member of the couple was a member of another couple previously entitled to such an allowance and that couple ceased to be so entitled by that person failing to comply with the condition in section 1(2)(a) or (c).
+5
+This regulation does not apply where —
+a
+the claimant had been treated as available for work under regulation 14 (circumstances in which a person is to be treated as available) , or as actively seeking employment under regulation 19 (circumstances in which a person is to be treated as actively seeking employment) ;
+b
+the claimant ceased to be so treated due to no longer falling within regulation 14 or 19;
+c
+as a result of (b), the claimant’s award was terminated for failing to comply with the conditions in section 1(2)(a) or (c) (availability for employment and actively seeking employment); and
+d
+the Secretary of State considers that a reduction is not appropriate in the claimant’s circumstances.
+6
+Subject to paragraph (7), a reduction under this regulation is to have effect for a period of —
+a
+4 weeks, where there has been only one occasion on which the claimant’s previous entitlement ceased; or
+b
+13 weeks, where there have been two or more occasions on which the claimant’s previous entitlement ceased and the date of the most recent occasion was within 52 weeks but not within 2 weeks of the last previous occasion.
+7
+The period specified in paragraph (6) is to be reduced by the period beginning with the first day of the benefit week following the benefit week in which the claimant was last paid an award of jobseeker’s allowance and ending with the day before the date of claim.
+8
+The period of a reduction under this regulation begins on the date of claim.
+.
+3
+For regulation 70 (sanctions of discretionary length) substitute —
+The amount of a reduction under section 19 and 19A and regulation 69B
+70
+1
+Subject to paragraph (2), the amount of a reduction under section 19 or 19A or regulation 69B is —
+a
+100% of the allowance payable to the claimant; or
+b
+in the case of a joint-claim couple —
+i
+100% of the allowance payable to the couple, where the reduction relates to a sanctionable failure by each member of the couple, or
+ii
+an amount calculated in accordance with paragraph (3), where the reduction relates to a sanctionable failure by only one member of the couple.
+2
+In a case where the following circumstances apply —
+a
+a claimant’s award is already reduced in accordance with section 19 or 19A or regulation 69B; or
+b
+in the case of a joint-claim couple, an award of a joint-claim jobseeker’s allowance is already reduced in accordance with section 19 or 19A or regulation 69B as a result of a sanctionable failure by one or each member of the couple and the current sanctionable failure is by the same claimant,
+no reduction is to be made for any days when those circumstances apply.
+3
+The amount referred to in paragraph (1)(b)(ii) is such amount which, after its deduction from the full amount of the award of a joint-claim jobseeker’s allowance, leaves the following amount —
+a
+in any case in which the member of the couple, who is not the member whose sanctionable failure led to the reduction, satisfies the conditions set out in section 2 of the Act (contribution based conditions), a rate equal to the amount calculated in accordance with section 4(1) (amount payable by way of a jobseeker’s allowance);
+b
+in any case where the couple are a couple in hardship for the purposes of Part IXA , a rate equal to the amount calculated in accordance with regulation 146G (applicable amount in hardship cases for joint-claim couples);
+c
+in any other case, a rate calculated in accordance with section 4(3A) (amount payable by way of a joint-claim jobseeker’s allowance) save that the applicable amount shall be the amount determined by reference to paragraph 1(1) of Schedule 1 which would have been the applicable amount had the member of the couple who is not subject to sanctions been a single claimant.
+.
+4
+After regulation 70 insert —
+Cases in which no reduction is to be made under section 19 or 19A
+70A
+1
+No reduction is to be made under section 19 (higher-level sanctions) where —
+a
+the sanctionable failure is listed in section 19(2)(a), (b), or (d);
+b
+the sanctionable failure occurs before a claim to a jobseeker’s allowance is made; and
+c
+the period of the reduction as calculated under sub-paragraph (a) or (b) of regulation 69(4) is the same as, or shorter than, the period between the date of the sanctionable failure and the date of claim.
+2
+No reduction is to be made under section 19A (other sanctions) where the sanctionable failure is specified in section 19A(2)(a) (failure to comply with regulations under section 8(1) or (1A)) and —
+a
+is a failure to comply with regulation 24 (provision of information and evidence); or
+b
+unless paragraph (3) or (4) applies, is a failure to comply with regulation 23 (attendance) or 23A (attendance by members of a joint-claim couple) .
+3
+This paragraph applies where the claimant —
+a
+fails to attend on the day specified in a relevant notification;
+b
+makes contact with an employment officer in the manner set out in a relevant notification before the end of the period of five working days beginning with the first working day after the day on which the claimant failed to attend on the day specified; and
+c
+fails to show a good reason for that failure to attend.
+4
+This paragraph applies where —
+a
+the claimant attends on the day specified in a relevant notification, but fails to attend at the time specified in that notification;
+b
+the Secretary of State has informed the claimant in writing that a failure to attend, on the next occasion on which the claimant is required to attend, at the time specified in a relevant notification, may result in the claimant’s entitlement to a jobseeker’s allowance or a joint-claim jobseeker’s allowance ceasing or the award being subject to a reduction;
+c
+the claimant fails to attend at the time specified in a relevant notification on the next occasion;
+d
+the claimant makes contact with an employment officer in the manner set out in a relevant notification before the end of the period of five working days after the day on which the claimant failed to attend at the time specified; and
+e
+the claimant fails to show a good reason for that failure to attend.
+5
+In this regulation, “relevant notification” has the meaning given in regulation 25.
+Sanctionable failures under section 19: schemes under section 17A(1)
+70B
+1
+Mandatory Work Activity is a prescribed scheme for the purposes of section 19(2)(e) (higher level sanctions).
+2
+In paragraph (1) “Mandatory Work Activity” means a scheme under section 17A(1) (schemes for assisting persons to obtain employment; “work for your benefit” schemes etc ) designed to provide work or work-related activity for up to 30 hours per week over a period of four consecutive weeks with a view to assisting claimants to improve their prospects of obtaining employment.
+Application of a reduction to a new award
+70C
+1
+Subject to paragraph (4), this regulation applies where —
+a
+the amount of an award is reduced in accordance with section 19 or 19A or regulation 69B;
+b
+that award (“the previous award”) is terminated;
+c
+the reduction period had either not yet begun or not ended when the previous award was terminated;
+d
+a new award is made to the claimant who had been entitled to the previous award; and
+e
+in the case of an award of a joint-claim jobseeker’s allowance, the reduction to the previous award was made in relation to a sanctionable failure by the claimant who is entitled to the new award.
+2
+Where this regulation applies, the reduction period that would have applied to the previous award but for the award having terminated applies to the new award from the first day of the benefit week in which the claim for the new award is made for the outstanding period.
+3
+In this regulation —
+“outstanding period” means the period determined under regulation 69, 69A or 69B in relation to the previous award minus —
+the benefit weeks in respect of which the previous award was reduced; and
+the period beginning with the first day of the benefit week after the benefit week in which the previous award was terminated and ending with the first day of the benefit week in which entitlement to the new award begins;
+“reduction period” means the period determined under regulation 69, 69A or 69B in relation to the previous award.
+4
+This regulation does not apply where the Secretary of State is satisfied that, since the date of the most recent sanctionable failure, the claimant has been in employment for a period of, or more than one period where the total of those periods amounts to, at least 26 weeks.
+.
+5
+For regulation 72 (good cause for the purposes of section 19(5)(a) and (6)(c) and (d)) substitute —
+Good reason for the purpose of section 19(2)(c) and (d) and 19A(2)(c)
+72
+A person is not to be regarded as having a good reason for any act or omission for the purposes of section 19(2)(c) and (d) and section 19A(2)(c) if, and to the extent that, the reason for that act or omission relates to the time it took, or would normally take, for the person to travel from his home to the place of the employment, or a place mentioned in the jobseeker’s direction, and back to his home where that time was or is normally less than —
+a
+during the first 13 weeks of entitlement to a jobseeker’s allowance, one hour either way; and
+b
+in all other cases, one hour and thirty minutes either way,
+by a route and means appropriate to his circumstances and to the employment, or to the carrying out of the jobseeker’s direction, unless, in view of the health of the person or any caring responsibilities of his, that time was or is unreasonable.
+.
+6
+Regulations 73 (good cause for the purposes of section 19(5)(b)) and 73A (just cause for the purposes of section 19(6)(b) and 20A(2)(e)) are revoked.
+7
+Regulation 74 (person of prescribed description for the purpose of section 20(3)) is amended as follows —
+a
+in paragraph (1) —
+i
+omit “and section 20B(3)” and “ or section 20A(2)(e) or (g)”, and
+ii
+for “section 19(6)(b) or (d)” substitute “section 19(2)(b) or (d)”;
+b
+in paragraph (4) omit “and section 20B(3)”.
+8
+Regulation 74B (reduced allowance where one member of a joint-claim couple is subject to a sanction) is revoked.
+9
+Regulation 75 (interpretation) is amended as follows —
+a
+in paragraph (1) —
+i
+for “section 19, section 20A” substitute “section 19A”,
+ii
+for sub-paragraph (a) substitute —
+a
+“an employment programme” means a programme or scheme which is designed to assist a claimant to prepare for or move into work;
+,
+iii
+for sub-paragraph (b) substitute —
+b
+“a training scheme” means a scheme or course which is designed to assist a claimant to gain the skills, knowledge or experience that will make it more likely, in the opinion of the Secretary of State, that the claimant will obtain work or be able to do so.
+;
+b
+omit paragraph (2);
+c
+for paragraph (3) substitute —
+3
+In section 19A and in this Part, “week” means any period of 7 consecutive days.
+;
+d
+in paragraph (4) for the words from the beginning to “section 20A”, substitute “In sections 19 and 19A”;
+e
+in paragraph (5) —
+i
+for “In section 19(9)” substitute “In this Part”,
+ii
+before the definition of “employment”, insert —
+current sanctionable failure” means a failure which is sanctionable under section 19 (higher-level sanctions), 19A (other sanctions) or 19B (claimants ceasing to be available for employment etc) in relation to which the Secretary of State has not yet determined whether the amount of an award is to be reduced in accordance with section 19 or 19A or regulation 69B;
+,
+iii
+after the definition of “employment” insert —
+“sanctionable failure” means a failure which is sanctionable under section 19 (higher-level sanctions), 19A (other sanctions) or 19B (claimants ceasing to be available for employment etc).
+.
+Amendment of Part IX of the JSA Regulations (Hardship)
+3
+1
+Part IX of the JSA Regulations (hardship) is amended as follows.
+2
+Regulation 140 (meaning of “person in hardship”) is amended as follows —
+a
+in sub-paragraph (f)(i) of paragraph (1), omit “either” and for the words from “or because” to the end of the sub-paragraph, substitute “or the award is reduced in accordance with section 19 or 19A or regulation 69B”;
+b
+in paragraph (2), omit “, (4A), (4B) or (4C)”; and
+c
+omit paragraphs (4A), (4B) and 4(C).
+3
+Regulation 140A (period when a person is not a person in hardship) is revoked.
+4
+In paragraph (6) of regulation 141 (circumstances in which an income-based jobseeker’s allowance is payable to a person in hardship) for the words from “regulations” to “to him”, substitute “his award of jobseeker’s allowance has been reduced in accordance with section 19 or 19A or regulation 69B”.
+5
+In paragraph (5) of regulation 142 (further circumstances in which an income-based jobseeker’s allowance is payable to a person in hardship) —
+a
+for the words from “section 19” to “to him”, substitute “his award of jobseeker’s allowance has been reduced in accordance with section 19 or 19A or regulation 69B”; and
+b
+in sub-paragraph (a), for “section 19” substitute “the reduction”.
+Amendment of Part IXA of the JSA Regulations (Hardship for joint-claim couples)
+4
+1
+Part IXA of the JSA Regulations (hardship for joint-claim couples) is amended as follows.
+2
+Regulation 146A (meaning of “couple in hardship”) is amended as follows —
+a
+in sub-paragraph (c)(i) of paragraph (1), omit “either” and for the words from “or because” to “case”, substitute “or the award is reduced in accordance with section 19 or 19A or regulation 69B”;
+b
+in paragraph (2), omit “, (5), (5A) or (5B)”; and
+c
+omit paragraphs (5), (5A) and (5B).
+3
+Regulation 146B (period when a joint-claim couple is not in hardship) is revoked.
+4
+In paragraph (6) of regulation 146C (circumstances in which a joint-claim jobseeker’s allowance is payable where a joint-claim couple is a couple in hardship) for the words from “regulations” to “payable to the couple”, substitute “the award of joint-claim jobseeker’s allowance has been reduced in accordance with section 19 or 19A or regulation 69B”.
+5
+Paragraph (5) of regulation 146D (further circumstances in which a joint-claim jobseeker’s allowance is payable to a couple in hardship) is amended as follows —
+a
+for the words from “section 20A(5)(a)” to “payable to them”, substitute “the award of joint-claim jobseeker’s allowance has been reduced in accordance with section 19 or 19A or regulation 69B”; and
+b
+in sub-paragraph (a), for “section 20A”, substitute “the reduction”.
+Further consequential amendments of the JSA Regulations
+5
+1
+The JSA Regulations are further amended as follows.
+2
+In regulation 4 (interpretation of Parts II, IV and V) omit the definition of “employment officer”.
+3
+In regulation 17A (further circumstances in which a person is to be treated as available: full-time students participating in a qualifying course) in paragraph (6) for “good cause”, substitute “a good reason” and for “19(5)(b)”, substitute ”19A(2)(d), (e) or (f)”.
+4
+In regulations 23 (attendance) and 23A (attendance by members of a joint-claim couple) , for “attend at such place and at such time”, in each place where it appears, substitute “participate in an interview in such manner, time and place”.
+5
+Regulation 24 (provision of information and evidence) is amended as follows —
+a
+in paragraph (8) , for “when he attends” substitute “at the time he is required to participate in an interview”;
+b
+in paragraph (10) , for “on the day on which he is required to attend” substitute “at the time he is required to participate in an interview”.
+6
+In regulation 27 (where entitlement is not to cease under regulation 25(1)(c)) for “good cause” substitute “a good reason”.
+7
+Regulations 27A to 30 are revoked.
+8
+In regulation 47 (jobseeking period) in paragraph (4)(b)(ii), for “regulation 27A or regulations made under section 17A or by virtue of section 19” and “regulation 27A or section 20A” substitute, in both places, “section 19 or 19A or regulation 69B”.
+9
+In regulation 52 (persons treated as engaged in remunerative work) in paragraph (1) for “good cause” substitute “a good reason”.
+10
+In regulation 55 (short periods of sickness) in paragraph (1)(a) omit from “or is a person whose” to “section 17A”.
+11
+In regulation 55A (periods of sickness and persons receiving treatment outside Great Britain) in paragraph (1)(a) omit from “or is a person whose” to “section 17A”.
+12
+In regulation 61 (other young persons in prescribed circumstances) paragraph (1)(f) is amended as follows —
+a
+for “section 19(5)(b) or (c) or section 19(6)(c) or (d) or section 20A(2)(b), (c), (f) or (g)”, substitute “section 19(2)(c) or (d) or section 19A(2)(d), (e), (f) or (g)”;
+b
+for “rendered not payable in accordance with section 19(6)(a) or (b)”, substitute “reduced in accordance with section 19(2)(a) or (b)”.
+13
+Regulation 63 (reduced payments under section 17) is amended as follows —
+a
+in paragraphs (1)(b)(i) and (ii), (c)(i), (d)(i) and (4), for “good cause”, in all places where those words appear, substitute “a good reason”;
+b
+in paragraph (1)(b) for the words from “section 19(5)(b)” to “Part V”, substitute “section 19(2)(a) or (b) or section 19A(2)(c) to (g)”;
+c
+in paragraph (1)(c)(i) —
+i
+for “section 19(5)(b)(i), (ii) or (iv)”, in both places where this reference appears, substitute “section 19A(2)(d) or (e) or failed to attend a training scheme or employment programme”, and
+ii
+omit “or section 20A(2)(b)(i), (ii) or (iv)”, in both places where this reference appears;
+d
+in paragraph (1)(d)(i) —
+i
+for “done an act or omission falling within section 19(5)(b)(iii)”, in both places where those words appear, substitute “given up a place on a training scheme or employment programme”, and
+ii
+omit “or section 20A (2)(b)(iii)”, in both places where this reference appears;
+e
+in paragraph (4) —
+i
+for “done an act or omission falling within section 19(5)(b)(iii)” substitute “given up a place on a training scheme or employment programme”,
+ii
+omit “or section 20A(2)(b)(iii)”,
+iii
+for “ section 19(5)(c)” substitute “section 19A(2)(g)”, and
+iv
+omit “or section 20A(2)(c)”.
+14
+In regulation 64 (availability for employment) , in paragraph (2), for the words from “section 19(5)(b)” to “section 20A(2)(d) or (e)” substitute “section 19A(2)(d), (e), (f) or (g) or section 19(2)(c) or (d) or in accordance with section 19(2)(a) or (b)”.
+15
+In regulation 65 (active seeking) , in paragraph (5) —
+a
+omit “whose jobseeker’s allowance is not payable by virtue of regulation 27A, or”; and
+b
+for the words from “section 19(5)(b)” to “section 20A(2)(d) or (e)”substitute “section 19A(2)(a), (d), (e), (f) or (g) or section 19(2)(c) or (d) or in accordance with section 19(2)(a) or (b)”.
+16
+Regulation 66 (the jobseeker’s agreement) , in paragraph (1) for the words from “may be rendered” to “20B” substitute “section 19(2)(a), (b), (c) or (d) or section 19A(2)(a), (c), (d), (e), (f) or (g)”.
+17
+Regulation 67 (sanctions) is amended as follows —
+a
+for “good cause”, in all places where those words appear, substitute “a good reason”;
+b
+in paragraph (1) —
+i
+for “section 19(5)(b) or section 20A(2)(b)”, in all places where those references appear, substitute “section 19A(2)(d), (e) or (f)”,
+ii
+in sub-paragraph (b), for “section 19(5)(b)(i), (ii), or (iv) or section 20A(2)(b)(i), (ii) or (iv)” substitute “section 19A(2)(d) or (e) or failed to attend a training scheme or employment programme” and for “ in the case of an act or omission falling within section 19(5)(b) (iii) or section 20A(2)(b)(iii)” substitute “in the case where he has given up a place on a training scheme or employment programme”;
+c
+in paragraph (2) —
+i
+for “section 19(6)(c) or (d) or section 20A(2)(f) or (g)”, in all places where those references appear, substitute “section 19A(2)(c) or (d)”,
+ii
+for “section 19(5)(b) or (c) or section 20A(2)(b) or (c)”, substitute “section 19A(2)(d), (e), (f) or (g)”, and
+iii
+for “or rendered not payable in accordance with section 19(6)(a) or (b) or section 20A(2)(d) or (e)” substitute “section 19(2)(a) or (b)”;
+d
+in paragraph (3) —
+i
+for “done an act or omission falling within section 19(5)(b)(iii) or section 20A(2)(b)(iii)” substitute “given up a place on a training scheme or employment programme”, and
+ii
+for “section 19(5)(c) or section 20A(2)(c)” substitute “section 19A(2)(g)”.
+18
+Regulation 68 (reduced amount of allowance) is amended as follows —
+a
+in paragraph (1) —
+i
+omit from “satisfies” to “27A or”, and
+ii
+for the words from “section 19(5)” to “(f) or (g)” substitute “section 19(2)(c) or (d) or section 19A(2)(a), (c), (d), (e), (f) or (g)”;
+b
+in paragraph (2) —
+i
+omit from “satisfies” to “27A or”, and
+ii
+for the words from “section 19(5)” to “(f) or (g)” substitute “section 19(2)(c) or (d) or section 19A(2)(a), (c), (d), (e), (f) or (g)”.
+19
+In regulation 87 (transitional supplement to income-based jobseeker’s allowance) , paragraph (7)(b) is amended as follows —
+a
+in sub-paragraph (a) of the inserted paragraph (2A), for “section 19(6)(a) or (b)” substitute “section 19(2)(a) or (b)”; and
+b
+in the inserted paragraph (2B), for “section 19(6)(b)” substitute “section 19(2)(b)”.
+20
+In regulation 152 (relevant week) , in paragraph (1)(c), for the words from “is not payable” to “(circumstances in which a jobseeker’s allowance is not payable)”, substitute “is reduced for any period in accordance with regulations 69, 69A or 69B”.
+21
+In regulation 161 (additional conditions for payment of a jobseeker’s allowance) in paragraph (3)(d), for “ good cause” substitute “a good reason”.
+Amendment of the Social Security and Child Support (Decisions and Appeals) Regulations 1999
+6
+1
+The Social Security and Child Support (Decisions and Appeals) Regulations 1999 are amended as follows.
+2
+In regulation 3 (revision of decisions) for paragraph (6) substitute —
+6
+A decision of the Secretary of State under section 8 or 10 that a jobseeker’s allowance is reduced in accordance with section 19 or 19A of the Jobseeker’s Act or regulation 69B of the Jobseeker’s Allowance Regulations may be revised at anytime by the Secretary of State.
+.
+3
+In paragraph (2) of regulation 6 (supersession of decisions) for sub-paragraphs (f) and (fa) substitute —
+f
+is a decision that a jobseeker’s allowance is payable at the full rate to which the claimant would be entitled in the absence of any reduction where the award is reduced under section 19 of the Jobseekers Act;
+fa
+is a decision that a jobseeker’s allowance is payable at the full rate to which the claimant would be entitled in the absence of any reduction where the award is reduced under section 19A of the Jobseekers Act;
+.
+4
+In regulation 7 (date from which a decision superseded under section 10 takes effect) —
+a
+for paragraph (8) substitute —
+8
+A decision to which regulation 6(2)(f) applies shall take effect from the beginning of the period specified in regulation 69(6) of the Jobseeker’s Allowance Regulations.
+;
+b
+for paragraph (8ZA) substitute —
+8ZA
+A decision to which regulation 6(2)(fa) applies shall take effect from the beginning of the period specified in regulation 69A(3) of the Jobseeker’s Allowance Regulations.
+;
+c
+omit paragraph (8ZB).
+Amendment of the Jobseeker’s Allowance (Employment, Skills and Enterprise Scheme) Regulations 2011
+7
+The following provisions of the Jobseeker’s Allowance (Employment, Skills and Enterprise Scheme) Regulations 2011 are revoked —
+a
+regulations 7 (good cause), 8 (consequences of failure to participate in the scheme), 9 (hardship), 10 (hardship for joint-claim couples) and 17 (consequential amendments relating to decisions and appeals);
+b
+sub-paragraph (c) of regulation 18(2) (contracting out certain functions of the scheme) and the “and” which precedes it.
+Amendment of the Jobseeker’s Allowance (Mandatory Work Activity Scheme) Regulations 2011
+8
+Regulations 7 (good cause) and 8 (consequences of failure to participate in the scheme) of the Jobseeker’s Allowance (Mandatory Work Activity Scheme) Regulations 2011 are revoked.
+Amendment of the Social Security (Credits) Regulations 1975
+9
+In paragraph (5) of regulation 8A of the Social Security (Credits) Regulations 1975 for sub-paragraphs (ba), (c) and (cc) substitute —
+c
+a week in respect of which, in relation to the person concerned, a jobseeker’s allowance was reduced in accordance with section 19 or 19A, or regulations made under section 19B, of the Jobseekers Act 1995 ; or
+.
+Signed by authority of the Secretary of State for Work and Pensions
+Steve Webb
+Minister of State
+Department for Work and Pensions
+10th October 2012

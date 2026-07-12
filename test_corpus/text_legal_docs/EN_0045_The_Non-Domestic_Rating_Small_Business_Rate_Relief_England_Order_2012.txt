@@ -1,0 +1,80 @@
+The Non-Domestic Rating (Small Business Rate Relief) (England) Order 2012
+The Secretary of State, in exercise of the powers conferred by sections 43(4B)(a), 44(9)(a) and 143(1) and (2) of the Local Government Finance Act 1988 , makes the following Order:
+Citation, application, commencement and interpretation
+1
+1
+This Order, which applies in relation England only, may be cited as the Non-Domestic Rating (Small Business Rate Relief) (England) Order 2012 and shall come into force on 25th February 2012.
+2
+This Order applies for the purposes of —
+a
+determining whether section 43(4B) of the Act applies as regards a ratepayer and a hereditament, and
+b
+calculating the chargeable amount for a chargeable day under section 43(4A)(a) of the Act,
+in respect of chargeable days falling on or after 1st April 2012.
+3
+In this Order, “the Act” means the Local Government Finance Act 1988.
+Conditions for relief
+2
+For the purposes of section 43(4B)(a)(ii) of the Act, the condition to be satisfied is that the rateable value of the hereditament as shown in the local non-domestic rating list for the chargeable day is not more than —
+a
+for a hereditament situated in Greater London, £25,499;
+b
+for a hereditament situated outside Greater London, £17,999.
+Amount of E
+3
+1
+Except where article 4 applies, the amount of E prescribed for the purposes of subsection 44(9) of the Act shall be found in accordance with paragraphs (2) to (6).
+2
+Where the ratepayer occupies only one hereditament in England and the rateable value of that hereditament shown in the local non-domestic rating list for the chargeable day concerned is not more than £6,000, E shall be 2.
+3
+Where the ratepayer occupies only one hereditament in England and the rateable value of that hereditament shown in the local non-domestic rating list for the chargeable day concerned is more than £6,000 and not more than £12,000, E shall be, subject to paragraph (5), the amount derived from dividing 12,000 by the rateable value of the hereditament shown in the local non-domestic rating list for that day.
+4
+In any case not falling within paragraph (2) or (3), E shall be 1.
+5
+Amounts calculated under paragraph (3), shall be calculated to three decimal places only —
+a
+adding one thousandth where (apart from this sub-paragraph) there would be more than five ten-thousandths; and
+b
+ignoring the ten-thousandths where (apart from this sub-paragraph) there would be five, or less than five, ten-thousandths.
+6
+In determining, for the purposes of paragraphs (2) or (3), whether the ratepayer occupies only one hereditament in England (“hereditament A”), the ratepayer’s occupation of any other hereditament in England (“hereditament B”) shall be disregarded where —
+a
+the rateable value of hereditament B shown in the local non-domestic rating list for the chargeable day concerned is not more than £2,599;
+b
+the aggregate rateable value on the chargeable day concerned of all the hereditaments the ratepayer occupies in England is not more than the amount prescribed in article 2 in relation to hereditament A; and
+c
+the amount of E for the chargeable day concerned in relation to hereditament B is not determined in accordance with paragraph (2) of this article.
+Amount of E for the financial year beginning on 1st April 2012
+4
+1
+This article applies where the chargeable day falls in the financial year beginning on 1st April 2012.
+2
+Where this article applies, the amount of E prescribed for the purposes of subsection 44(9) of the Act shall be found in accordance with paragraphs (3) to (7).
+3
+Where the ratepayer occupies only one hereditament in England and the rateable value of that hereditament shown in the local non-domestic rating list for the chargeable day concerned is not more than £6,000, E shall be 5,000,000.
+4
+Where the ratepayer occupies only one hereditament in England and the rateable value of that hereditament shown in the local non-domestic rating list for the chargeable day concerned is more than £6,000 and not more than £12,000, E shall be (subject to paragraph (6)) the amount derived from dividing 6000 by the figure reached by subtracting 6000 from the rateable value of the hereditament shown in the local non-domestic rating list for that day.
+5
+In any case not falling within paragraph (3) or (4), E shall be 1.
+6
+Amounts calculated under paragraph (4), shall be calculated to three decimal places only —
+a
+adding one thousandth where (apart from this sub-paragraph) there would be more than five ten-thousandths; and
+b
+ignoring the ten-thousandths where (apart from this sub-paragraph) there would be five, or less than five, ten-thousandths.
+7
+In determining, for the purposes of paragraphs (3) or (4), whether the ratepayer occupies only one hereditament in England (“hereditament A”), the ratepayer’s occupation of any other hereditament in England (“hereditament B”) shall be disregarded where —
+a
+the rateable value of hereditament B shown in the local non-domestic rating list for the chargeable day concerned is not more than £2,599;
+b
+the aggregate rateable value on the chargeable day concerned day of all the hereditaments the ratepayer occupies in England is not more than the amount prescribed in article 2 in relation to hereditament A; and
+c
+the amount of E for the chargeable day concerned in relation to hereditament B is not determined in accordance with paragraph (3) of this article.
+Revocations
+5
+The Non-Domestic Rating (Small Business Rate Relief) (England) Order 2004 is revoked in respect of chargeable days falling after 31st March 2012.
+Signed by authority of the Secretary of State for Communities and Local Government
+Bob Neill
+Parliamentary Under Secretary of State
+Department for Communities and Local Government
+23rd January 2012

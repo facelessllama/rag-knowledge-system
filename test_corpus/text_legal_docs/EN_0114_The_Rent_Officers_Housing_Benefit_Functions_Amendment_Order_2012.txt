@@ -1,0 +1,138 @@
+The Rent Officers (Housing Benefit Functions) (Amendment) Order 2012
+The Secretary of State for Work and Pensions makes the following Order in exercise of the powers conferred by section 122(1) and (6) of the Housing Act 1996 .
+Citation and commencement
+1
+This Order may be cited as the Rent Officers (Housing Benefit Functions) (Amendment) Order 2012 and comes into force on 2nd April 2012.
+Amendment of the Rent Officers (Housing Benefit Functions) Order 1997
+2
+1
+The Rent Officers (Housing Benefit Functions) Order 1997 is amended as follows.
+2
+In article 2(1) (interpretation) before the definition of “assured tenancy” insert —
+“applicable consumer prices index” in relation to any year means the consumer prices index of annual inflation as at September of that year published by the Office of National Statistics ;
+.
+3
+In article 4B (broad rental market area determinations and local housing allowance determinations) —
+a
+in paragraph (1A) for “On 20th March 2008 and so often thereafter as a rent officer considers appropriate, a rent officer shall” substitute “At such times as a rent officer considers appropriate, a rent officer shall, if the Secretary of State agrees”;
+b
+for paragraph (2A) substitute —
+2A
+In 2012, and in each subsequent year, no more than 20 working days after the applicable consumer prices index is published, a rent officer shall —
+a
+for each broad rental market area determine, in accordance with Schedule 3B, a local housing allowance for each of the categories of dwelling set out in paragraph 1 of Schedule 3B; and
+b
+notify each local authority of the local housing allowance determination made in accordance with sub-paragraph (a) for each broad rental market area falling within, in whole or in part, the area of that authority.
+; and
+c
+for paragraph (3A) substitute —
+3A
+Any broad rental market area determination made in accordance with paragraph (1A) shall take effect —
+a
+on the day the determination is made for the purpose of enabling a rent officer to determine a local housing allowance for that area; and
+b
+for all other purposes on the next 1st April following the day on which the determination is made.
+3B
+Any local housing allowance determination made in accordance with paragraph (2A) shall take effect on the next 1st April following the day on which the determination is made.
+.
+4
+In Schedule 3B (broad rental market area determinations and local housing allowance determinations) —
+a
+in paragraph 1(1) (categories of dwelling) for “article 4B(2A)(a)(i)” substitute “article 4B(2A)(a)”; and
+b
+in paragraph 2 (local housing allowance for category of dwelling in paragraph 1) —
+i
+after sub-paragraph (1) insert —
+1A
+Subject to sub-paragraph (12), the local housing allowance for a category of dwelling is —
+a
+the rent at the 30th percentile determined in accordance with sub-paragraphs (2) to (10) where that does not exceed the amount determined in accordance with sub-paragraph (11); or
+b
+in any other case, the amount determined in accordance with sub-paragraph (11).
+;
+ii
+omit sub-paragraph (9); and
+iii
+for sub-paragraphs (11) and (12) substitute —
+11
+The amount to be determined by the rent officer for the purposes of sub-paragraph (1A) is as follows —
+a
+where the applicable consumer prices index is a positive number, the local housing allowance last determined for that category of dwelling multiplied by the factor “M”; or
+b
+where the applicable consumer prices index is a negative number or zero, the local housing allowance last determined for that category of dwelling.
+12
+Where the local housing allowance would otherwise not be a whole number of pence, it must be rounded to the nearest whole penny by disregarding any amount less than half a penny and treating any amount of half a penny or more as a whole penny.
+13
+In this paragraph the factor “M” is determined as follows —
+M  =  1  + ​  (CPI/100)
+where “ CPI ” is the applicable consumer prices index in relation to the year in which the determination is made.
+.
+Amendment of the Rent Officers (Housing Benefit Functions) (Scotland) Order 1997
+3
+1
+The Rent Officers (Housing Benefit Functions) (Scotland) Order 1997 is amended as follows.
+2
+In article 2(1) (interpretation) before the definition of “assured tenancy” insert —
+“applicable consumer prices index” in relation to any year means the consumer prices index of annual inflation as at September of that year published by the Office of National Statistics;
+.
+3
+In article 4B (broad rental market area determinations and local housing allowance determinations) —
+a
+in paragraph (1A) for “On 20th March 2008 and so often thereafter as a rent officer considers appropriate, a rent officer shall” substitute “At such times as a rent officer considers appropriate, a rent officer shall, if the Secretary of State agrees”; and
+b
+for paragraph (2A) substitute —
+2A
+In 2012, and in each subsequent year, no more than 20 working days after the applicable consumer prices index is published, a rent officer shall —
+a
+for each broad rental market area determine, in accordance with Schedule 3B, a local housing allowance for each of the categories of dwelling set out in paragraph 1 of Schedule 3B; and
+b
+notify each local authority of the local housing allowance determination made in accordance with sub-paragraph (a) for each broad rental market area falling within, in whole or in part, the area of that authority.
+; and
+c
+for paragraph (3A) substitute —
+3A
+Any broad rental market area determination made in accordance with paragraph (1A) shall take effect —
+a
+on the day the determination is made for the purpose of enabling a rent officer to determine a local housing allowance for that area; and
+b
+for all other purposes on the next 1st April following the day on which the determination is made.
+3B
+Any local housing allowance determination made in accordance with paragraph (2A) shall take effect on the next 1st April following the day on which the determination is made.
+.
+4
+In Schedule 3B (broad rental market area determinations and local housing allowance determinations) —
+a
+in paragraph 1(1) (categories of dwelling) for “article 4B(2A)(a)(i)” substitute “article 4B(2A)(a)”;
+b
+in paragraph 2 (local housing allowance for category of dwelling in paragraph 1) —
+i
+after sub-paragraph (1) insert —
+1A
+Subject to sub-paragraph (12), the local housing allowance for a category of dwelling is —
+a
+the rent at the 30th percentile determined in accordance with sub-paragraphs (2) to (10) where that does not exceed the amount determined in accordance with sub-paragraph (11); or
+b
+in any other case, the amount determined in accordance with sub-paragraph (11).
+;
+ii
+omit sub-paragraph (9); and
+iii
+for sub-paragraphs (11) and (12) substitute —
+11
+The amount to be determined by the rent officer for the purposes of sub-paragraph (1A) is as follows —
+a
+where the applicable consumer prices index is a positive number, the local housing allowance last determined for that category of dwelling multiplied by the factor “M”; or
+b
+where the applicable consumer prices index is a negative number or zero, the local housing allowance last determined for that category of dwelling.
+12
+Where the local housing allowance would otherwise not be a whole number of pence, it must be rounded to the nearest whole penny by disregarding any amount less than half a penny and treating any amount of half a penny or more as a whole penny.
+13
+In this paragraph the factor “M” is determined as follows —
+M  =  1  + ​  (CPI/100)
+where “CPI” is the applicable consumer prices index in relation to the year in which the determination is made.
+.
+Signed by authority of the Secretary of State for Work and Pensions.
+Freud
+Parliamentary Under-Secretary of State,
+Department for Work and Pensions
+29th February 2012

@@ -1,0 +1,257 @@
+The Industrial Training Levy (Engineering Construction Industry Training Board) Order 2012
+Accordingly the Secretary of State makes the following Order:
+Citation and commencement
+1
+This Order may be cited as the Industrial Training Levy (Engineering Construction Industry Training Board) Order 2012 and comes into force on the day after the day on which it is made.
+Interpretation
+2
+1
+In this Order —
+a
+“assessment” means an assessment of an employer to the levy;
+b
+“the base period” means the period of twelve months commencing on 6th April 2011;
+c
+“the Board” means the Engineering Construction Industry Training Board;
+d
+“emoluments” means —
+i
+all salaries, fees and wages;
+ii
+any gratuity or other profit or incidental benefit of any kind obtained by an employee, if it is money or money’s worth, other than pensions contributions;
+iii
+anything else that constitutes, or is intended to constitute, earnings of the relevant employment;
+e
+“employer” has the meaning given in article 3;
+f
+“the engineering construction industry” means —
+i
+the activities of the engineering construction industry as defined by Schedule 1 to the industrial training order; or
+ii
+activities —
+aa
+which fall within the description of activities in article 2(1) of the Employment Protection (Offshore Employment) Order 1976 (excluding the activities described in article 2(2) of that Order); and
+bb
+which would fall within the activities of the engineering industry as defined by that Schedule if they were carried out in Great Britain.
+g
+“the industrial training order” means the Industrial Training (Engineering Board) Order 1964 ;
+h
+“labour-only agreement” means any agreement or arrangement (other than contracts of service or apprenticeship) between an employer and any other person, the purpose of which is wholly or mainly the provision of services (including any incidental use of tools) of such a person or any other person to the employer in his trade or business;
+i
+“leviable establishment” has the meaning given in article 4;
+j
+“the levy” means the levy imposed by the Board in respect of the levy period;
+k
+“the levy period” means the period commencing on the day on which this Order comes into force and ending on 31st December 2012;
+l
+“off site employee” means an employee (including a person engaged under a labour-only agreement) other than a site employee;
+m
+“site employee” means an employee (including a person engaged under a labour-only agreement) the activities of whose employment take place wholly or mainly at a site where activities falling under paragraph 1(a)(i), (iii) or (iv) of Schedule 1 to the industrial training order are carried on.
+2
+In this Order, references to a leviable establishment starting or ceasing to carry on business do not include instances where —
+a
+a leviable establishment starts carrying on business after, or ceases carrying on business because of, a suspension of activities of a temporary or seasonal nature; or
+b
+the location of a leviable establishment changes but the establishment continues its business at or from the new location.
+Imposition of the levy
+3
+1
+A levy shall be imposed on employers in the engineering construction industry in respect of the levy period.
+2
+Subject to article 8, a person is liable to pay an amount by way of levy in respect of the levy period if that person is an employer in the engineering construction industry at any time in that period.
+3
+In this Order (other than in this article), references to an “employer” are references to a person who is an employer in the engineering construction industry.
+Leviable establishments to be assessed
+4
+1
+The Board must assess the amount of levy to be paid in respect of each leviable establishment of an employer.
+2
+In this Order, “leviable establishment” means an establishment engaged wholly or mainly in the engineering construction industry during the necessary period.
+3
+In this article “the necessary period” means —
+a
+a period (which need not be continuous) consisting of a total of 27 or more weeks falling within the base period; or
+b
+in the case of a leviable establishment which started carrying on business during the base period, a period (which need not be continuous) —
+i
+falling within the base period; and
+ii
+consisting of a total number of weeks exceeding one half of the number of weeks in the part of the base period starting on the day on which the leviable establishment started carrying on business and ending on the last day of the base period.
+4
+The employer who on the last day of the levy period owns or otherwise has responsibility for a leviable establishment is to be treated as the employer of all persons employed at or from that establishment during the base period.
+Treatment of leviable establishments as one establishment
+5
+The Board and an employer may agree that two or more leviable establishments of that employer be treated as one leviable establishment for the purposes of assessment of the amount of levy payable.
+Assessment of amount of levy
+6
+1
+The amount of levy to be assessed in respect of site employees for each leviable establishment is —
+1.5 per cent of (A + B – C)
+where
+A is the total emoluments of all persons who are site employees employed by the employer at or from the leviable establishment under a contract of service or apprenticeship during the base period;
+B is the sum of all payments (including payments for the incidental use of tools) made by the employer during the base period under labour-only agreements for services rendered to the employer by site employees;
+C is the sum of all payments (including payments for the incidental use of tools) received by the employer during the base period from any other employers in the engineering construction industry under labour-only agreements for services rendered by the employer, or on his behalf, by site employees.
+2
+The amount of levy to be assessed in respect of off site employees for each leviable establishment is —
+0.18 per cent of (D + E – F)
+where
+D is the total emoluments of all persons who are off site employees employed by the employer at or from the establishment under a contract of service or apprenticeship during the base period;
+E is the sum of all payments (including payments for the incidental use of tools) made by the employer during the base period under labour-only agreements for services rendered to the employer by off site employees;
+F is the sum of all payments (including payments for the incidental use of tools) received by the employer during the base period from any other employers in the engineering construction industry under labour-only agreements for services rendered by the employer, or on his behalf, by off site employees.
+3
+In paragraphs (1) and (2) the following are to be excluded from all calculations —
+a
+all company directors remunerated solely by fees;
+b
+all payments under labour-only agreements to the extent that any payment is —
+i
+in respect of the provision of materials;
+ii
+otherwise not in respect of the provision of services.
+4
+If an amount calculated as a result of either paragraph (1) or (2) is negative, that amount should be treated as zero for the purposes of paragraph (5).
+5
+The amount of levy to be assessed in respect of each leviable establishment is the aggregate of the amounts calculated as a result of paragraphs (1) and (2).
+6
+Where a leviable establishment ceases to carry on business in the levy period, the amount of levy imposed in respect of the leviable establishment is to be in the same proportion to the amount that would otherwise be due under this article as the number of days between the commencement of the levy period and the date of the cessation of business (both dates inclusive) bears to the number of days in the levy period.
+Total amount of levy
+7
+The total amount of levy to be paid by an employer is the aggregate amount of levy for all leviable establishments of the employer.
+Exemptions
+8
+1
+An employer in whose case the aggregate of —
+a
+all emoluments of all persons who are site employees employed at or from the leviable establishments under a contract of service or apprenticeship in the base period; and
+b
+all sums (including payments for the incidental use of tools) paid in the base period by the employer to any person under labour-only agreements for services rendered to the employer by site employees;
+is less than £275,000 shall be exempt from payment of all amounts of levy calculated in respect of site employees under article 6(1).
+2
+An employer in whose case the aggregate of —
+a
+all emoluments of all persons who are off site employees employed at or from the leviable establishments under a contract of service or apprenticeship in the base period; and
+b
+all sums (including payments for the incidental use of tools) paid in the base period by the employer to any person under labour-only agreements for services rendered to the employer by off site employees;
+is less than £1,000,000 shall be exempt from payment of all amounts of levy calculated in respect of off site employees under article 6(2).
+3
+The persons and payments listed in article 6(3) as those to be excluded from all calculations in paragraphs (1) and (2) of article 6 are also to be excluded from all calculations in paragraphs (1) and (2) of this article.
+4
+Any body of persons or trust established for charitable purposes only is exempt from the levy.
+Assessment notices
+9
+1
+The Board must serve an assessment notice on every employer assessed to the levy.
+2
+An assessment notice may comprise two or more assessments.
+3
+An assessment notice must state —
+a
+the total amount of levy payable by the employer under the assessment notice;
+b
+where the assessment notice comprises two or more assessments, the total amount of levy payable by the employer in respect of each assessment;
+c
+whether each assessment is based on —
+i
+information submitted by the employer to the Board; or
+ii
+a reasonable estimate by the Board of the employer’s liability to levy;
+d
+the methods of payment of the levy which the Board will accept; and
+e
+the Board’s address for service of a notice of appeal and an application for an extension of time for appealing.
+4
+The Board may —
+a
+withdraw any assessment contained in an assessment notice in accordance with article 10; or
+b
+amend any assessment contained in an assessment notice in accordance with article 11.
+Withdrawal of assessments
+10
+1
+In order to withdraw an assessment the Board must serve a withdrawal notice on the relevant employer.
+2
+The withdrawal notice referred to in paragraph (1) must make clear which assessment is withdrawn.
+3
+Where an assessment has been withdrawn the assessment notice shall have effect as if the assessment withdrawn by the Board had not been included in that notice.
+Amendment of assessments
+11
+1
+In order to amend an assessment the Board must serve an amended assessment notice on the relevant employer.
+2
+The amended assessment notice referred to in paragraph (1) must —
+a
+comply with the requirements for an assessment notice specified in article 9(3); and
+b
+make clear which assessment is amended.
+Service of notices
+12
+Notices under articles 9, 10 and 11 must be in writing and served on an employer assessed to the levy by —
+a
+delivering the notice to the employer personally; or
+b
+delivering the notice to the employer’s last known address, place of business or registered office; or
+c
+sending the notice by post to the employer’s last known address, place of business or registered office; or
+d
+where the employer has notified the Board of an e-mail address at which the employer is content to accept service, sending an electronic copy of the notice to that e-mail address.
+Time at which payment becomes due and recoverable
+13
+1
+The amount of levy payable under an assessment notice is due and payable by the employer one month after the date of service of the assessment notice, unless paragraph (2) or (3) applies.
+2
+Where the Board has withdrawn an assessment under article 10, the amount of levy in respect of that assessment is no longer due and payable.
+3
+Where the Board has amended an assessment in accordance with article 11 —
+a
+if the amount of levy in respect of that assessment has been increased —
+i
+the amount of the assessment prior to amendment remains due and payable one month after the date of service of the assessment notice; and
+ii
+the additional amount of the assessment is due and payable one month after the date of service of the amended assessment notice;
+b
+if the assessment has been reduced, the amended amount of the assessment is due and payable one month after the date of service of the assessment notice.
+4
+Any amount payable by an employer by way of the levy —
+a
+is not recoverable by the Board during any period in which that employer has pending either —
+i
+an appeal against the levy; or
+ii
+a request to allow more time to appeal;
+b
+is otherwise recoverable once it becomes due.
+Time to appeal
+14
+For the purposes of section 12(4) of the Industrial Training Act 1982 , the period of time within which an employer assessed to the levy may appeal to an employment tribunal against the assessment is —
+a
+one month commencing with the date of service of the assessment notice; or
+b
+where the Board has served an amended assessment notice under article 11, one month commencing with the date of service of the amended assessment notice; or
+c
+such further time as the Board may allow; or
+d
+such further time as an employment tribunal may allow where the Board has not allowed an extension of time for appealing.
+Certificate of payment
+15
+1
+An employer may request a certificate as evidence that the employer has paid all sums due under —
+a
+an assessment notice; or
+b
+an amended assessment notice.
+2
+The Board must issue a certificate to an employer when —
+a
+the Board has received a request for a certificate from an employer; and
+b
+all sums due under the relevant notice have been paid by that employer.
+3
+The certificate must state —
+a
+the total amount of levy paid by the employer; and
+b
+that no further sums are due from the employer in respect of the relevant notice.
+John Hayes
+Minister of State for Further Education, Skills and Lifelong Learning
+Department for Business, Innovation and Skills
+27th March 2012

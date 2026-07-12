@@ -1,0 +1,188 @@
+The Police Act 1997 (Criminal Records) (Jersey) (Amendment) Order 2012
+Her Majesty, in exercise of the powers conferred upon Her by section 168 of the Serious Organised Crime and Police Act 2005 , section 66(4) of the Safeguarding Vulnerable Groups Act 2006 and section 118 of the Protection of Freedoms Act 2012 , is pleased, by and with the advice of Her Privy Council, to make the following Order:
+Citation and commencement
+1
+1
+This Order may be cited as the Police Act 1997 (Criminal Records) (Jersey) (Amendment) Order 2012.
+2
+This Order comes into force on the day after the day on which it is registered by the Royal Court of Jersey .
+3
+Notwithstanding paragraph (2) —
+a
+any provision extended as specified in paragraph (2) of article 4 and any provision in any Part extended as specified in paragraphs (3) to (6) of article 4 (subject to the modifications specified in Schedules 1 to 5 of this Order) does not have effect in Jersey until the day that provision comes into force in England and Wales;
+b
+paragraph (4) of Schedule 1 shall have effect in Jersey when the extensions and modifications specified in paragraphs (3) to (6) of article 4 have effect in Jersey.
+Interpretation
+2
+1
+In this Order —
+“the 2010 Order ” means the Police Act 1997 (Criminal Records) (Jersey) Order 2010 ;
+“the 2012 Act ” means the Protection of Freedoms Act 2012;
+“Jersey” means the Bailiwick of Jersey and its adjacent territorial sea.
+2
+The Interpretation (Jersey) Law 1954 shall apply to this Order as if this Order were an enactment for the purposes of that Law.
+Amendment of the 2010 Order
+3
+1
+The 2010 Order is amended as follows.
+2
+In article 1(4), for “upon the ending of the second transitional period” substitute “on such day as the Minister for Home Affairs for Jersey may by Order appoint”.
+3
+In article 2(1), the definitions of “the first transitional period” and “the second transitional period” are omitted.
+4
+Articles 6, 7 and 8 are revoked.
+5
+In paragraph 17(a)(i) of Schedule 1, for “in England and Wales, Northern Ireland, Guernsey or the Isle of Man” substitute “in England and Wales, Northern Ireland, the Isle of Man, Guernsey or Jersey”.
+6
+Schedule 3 is revoked.
+Extension of Part 5 of, and Schedules 9 and 10 to, the Protection of Freedoms Act 2012 to Jersey
+4
+1
+The following provisions of Part 5 (Safeguarding of vulnerable groups, criminal records, etc. ) of the 2012 Act extend to Jersey subject to the modifications specified in Schedule 1.
+2
+The provisions are —
+a
+section 79 (restriction on information provided to certain persons);
+b
+section 80 (minimum age for applicants for certificates or to be registered);
+c
+section 82 (enhanced criminal record certificates: additional safeguards);
+d
+section 83 (up-dating certificates);
+e
+section 84 (criminal conviction certificates: conditional cautions);
+f
+section 87 (formation and constitution of DBS );
+g
+section 88 (transfer of functions to DBS and dissolution of ISA);
+h
+section 89 (orders under section 88).
+3
+Part 6 of Schedule 9 (Safeguarding of vulnerable groups) to the 2012 Act extends to Jersey subject to the modifications specified in Schedule 2.
+4
+Part 7 of Schedule 9 (Criminal records) to the 2012 Act extends to Jersey subject to the modifications specified in Schedule 3.
+5
+Part 5 of Schedule 10 (Safeguarding of vulnerable groups) to the 2012 Act extends to Jersey subject to the modifications specified in Schedule 4.
+6
+Part 6 of Schedule 10 (Criminal records) to the 2012 Act extends to Jersey subject to the modifications specified in Schedule 5.
+Subordinate legislation made under extended provisions
+5
+Any order or regulations made by the Secretary of State under the provisions extended to Jersey by this Order shall not have effect in Jersey until the order or regulations, having been communicated to the Bailiff of Jersey for registration by the Royal Court, have been so registered; and they shall come into force on the day following registration or the day of coming into force specified in the order or regulations, whichever is the later.
+Richard Tilbrook
+Clerk of the Privy Council
+SCHEDULE 1
+Modifications to provisions of Part 5 of the 2012 Act
+Article 4(1)
+1
+In section 79 (restriction on information provided to certain persons) —
+a
+omit subsection (1);
+b
+in subsection (3) for “120AB” substitute “120ZA”.
+2
+In section 80 (minimum age for applicants for certificates or to be registered) —
+a
+in the heading omit “or to be registered”;
+b
+omit subsection (2).
+3
+In section 82 (enhanced criminal record certificates: additional safeguards), in subsection (3)(a) at the end of the inserted definition of “relevant chief officer” add “and the Chief Officer of the States of Jersey Police Force”.
+4
+After section 84 insert the following section —
+Consequential amendments, repeals and revocations
+84A
+1
+Schedule 9 (consequential amendments) has effect.
+2
+The provisions listed in Schedule 10 are repealed or (as the case may be) revoked to the extent specified.
+.
+5
+In section 87 (formation and constitution of DBS), omit subsection (3).
+6
+In section 88 (transfer of functions to DBS and dissolution of ISA), for subsection (2) substitute —
+2
+The Secretary of State may by order transfer to DBS any function of the Secretary of State under, or in connection with, Part 5 of the Police Act 1997 (criminal records).
+.
+7
+In section 89 (orders under section 88) —
+a
+omit subsections (2) to (4);
+b
+for subsection (5), substitute —
+5
+In this section ‘enactment’ does not include an enactment within the meaning of Article 1 of the Interpretation (Jersey) Law 1954.
+.
+SCHEDULE 2
+Modifications to Part 6 of Schedule 9 to the 2012 Act
+Article 4(3)
+1
+Omit paragraphs 36 and 37.
+2
+Omit paragraphs 40 to 42.
+3
+Omit paragraphs 43 to 103.
+SCHEDULE 3
+Modifications to Part 7 of Schedule 9 to the 2012 Act
+Article 4(4)
+1
+For paragraph 107 substitute —
+107
+In section 116, for subsection (3) substitute —
+3
+Sections 113B(3) to (11), 113BA to 113BC, 120AC and 120AD shall apply in relation to this section with any necessary modifications.
+.
+2
+In paragraph 109 —
+a
+in subparagraph (2)(b) for “, 117A” substitute “or 117A”;
+b
+in subparagraph (3), in the inserted subsection (3A) —
+i
+for the first reference to the “Secretary of State” substitute “Minister for Home Affairs”;
+ii
+after “fingerprints” insert “for transmission to the Secretary of State”.
+3
+In paragraph 110 —
+a
+for subparagraph (2), substitute —
+2
+In subsection (1A), after ‘certificate’ insert ‘, or the provision of up-date information under section 116A’.
+;
+b
+for subparagraph (5), substitute —
+5
+In subsection (4) after ‘certificate’ insert ‘, or the provision of up-date information under section 116A’.
+;
+c
+for subparagraph (6), substitute —
+6
+In subsection (8), after ‘certificate’ insert ‘, or the provision of up-date information under section 116A’.
+.
+4
+For paragraph 112 substitute —
+112
+1
+Section 120 (registered persons), is amended as follows.
+2
+In subsection (2), after paragraph (a) insert ‘and’.
+.
+5
+Omit paragraphs 113 and 114.
+6
+Omit paragraphs 119 to 129.
+SCHEDULE 4
+Modifications to Part 5 of Schedule 10 to the 2012 Act
+Article 4(5)
+For Part 5 substitute —
+PART 5 SAFEGUARDING OF VULNERABLE GROUPS
+Short title Extent of repeal or revocation
+Police Act 1997 Section 113BA(2)(b) to (d) Section 113BB(2)(b) to (d)
+.
+SCHEDULE 5
+Modifications to Part 6 of Schedule 10 to the 2012 Act
+Article 4(6)
+For Part 6 substitute —
+PART 6 CRIMINAL RECORDS
+Short title Extent of repeal
+Police Act 1997 Section 113A(4). In section 113B — (a) in subsection (4), the words “, in the chief officer’s opinion”, (b) subsections (5) and (6), and (c) in subsection (9), the definition of “relevant police force”. In section 119B — (a) subsection (5)(a), and (b) in subsection (5)(c), the words from “or disclosed” to the end. In section 124 — (a) in subsection (4)(b), the words “(5) or”, and (b) subsection (5). In section 124A(1)(c), the words “or registered person”. Safeguarding Vulnerable Groups Act 2006 In Schedule 9, paragraph 14(5) and (6).
+.

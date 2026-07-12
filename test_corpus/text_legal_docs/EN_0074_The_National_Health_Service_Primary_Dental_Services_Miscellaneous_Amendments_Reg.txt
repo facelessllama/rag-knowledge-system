@@ -1,0 +1,91 @@
+The National Health Service (Primary Dental Services) (Miscellaneous Amendments) Regulations 2012
+The Secretary of State for Health makes the following Regulations in exercise of the powers conferred by sections 14(2)(b), 19(2)(b), 104, 109, 176 and 272(7) and (8) of the National Health Service Act 2006 .
+Citation and commencement
+1
+These Regulations may be cited as the National Health Service (Primary Dental Services) (Miscellaneous Amendments) Regulations 2012 and come into force on 1st April 2012.
+Amendment of the National Health Service (General Dental Services Contracts) Regulations 2005
+2
+1
+The National Health Service (General Dental Services Contracts) Regulations 2005 are amended as follows.
+2
+In regulation 2 (interpretation), after —
+a
+the definition of “Capitation and Quality Scheme Agreement”, insert —
+“Care Quality Commission” means the body established by section 1 of the Health and Social Care Act 2008 (The Care Quality Commission);
+; and
+b
+the definition of “sedation services”, insert —
+“service provider” has the same meaning as in regulation 2 of the Care Quality Commission (Registration) Regulations 2009 (interpretation);
+.
+3
+In regulation 14 (mandatory services) —
+a
+at the beginning of paragraph (1), insert “Subject to paragraph (1A),”; and
+b
+after paragraph (1), insert —
+1A
+The services described in paragraphs (2) to (4) are not required to be provided by the contractor during any period in respect of which the Care Quality Commission has suspended the contractor as a service provider under section 18 of the Health and Social Care Act 2008 (suspension of registration).
+.
+4
+In Schedule 3 (other contractual terms), in paragraph 65(2) (termination on the death of an individual dental practitioner), for “three month period”, substitute “6 month period”.
+Amendment of the National Health Service (Personal Dental Services Agreements) Regulations 2005
+3
+In the National Health Service (Personal Dental Services Agreements) Regulations 2005 , in Schedule 3 (other contractual terms), in paragraph 63(2) (termination on the death of an individual), for “three month period”, substitute “6 month period”.
+Amendment of the National Health Service (Dental Charges) Regulations 2005
+4
+1
+The National Health Service (Dental Charges) Regulations 2005 are amended as follows.
+2
+In regulation 4 (calculation of charges) —
+a
+in paragraph (1), for “£17.00” substitute “£17.50”;
+b
+in paragraph (2), for “£47.00” substitute “£48.00”;
+c
+in paragraph (3), for “£204.00” substitute “£209.00”;
+d
+in paragraph (4), for “£204.00” substitute “£209.00”; and
+e
+in paragraph (5), for “£17.00” substitute “£17.50”.
+Amendment of the Functions of Primary Care Trusts and Strategic Health Authorities and the NHS Business Services Authority (Awdurdod Gwasanaethau Busnes y GIG) (Primary Dental Services) (England) Regulations 2006
+5
+1
+The Functions of Primary Care Trusts and Strategic Health Authorities and the NHS Business Services Authority (Awdurdod Gwasanaethau Busnes y GIG) (Primary Dental Services) (England) Regulations 2006 are amended as follows.
+2
+In the Schedule (functions of Primary Care Trusts and Strategic Health Authorities exercisable by the Authority) —
+a
+where provision number 26 (National Health Service Pension Scheme Regulations 1995) appears in column 1 —
+i
+for the corresponding entry in column 2 (function) for paragraph (e), substitute —
+e
+The functions of the employing authority of —
+i
+giving and receiving notices referred to in paragraph 23(4) to (7) (accounts and actuarial reports) of Schedule 2 (medical and dental practitioners), including agreeing such other period for the reception of such notices as permitted, accepting replacement notices where a material particular has changed and estimating and recording pensionable earnings in respect of invalid reconciliation notices, and
+ii
+the provision to the Secretary of State of the statements referred to in paragraph 23(12) and (13) of Schedule 2 that the employing authority is required to provide.
+, and
+ii
+for the corresponding entry in column 3 (ancillary, related or supplemental functions) —
+aa
+in paragraph (a) for “under paragraph 5A” substitute “pursuant to paragraph 23 (accounts and actuarial reports)”; and
+bb
+after paragraph (b), insert “(c) The determination of such other period as may be permitted in accordance with paragraph 23 for the issue and return of the notices referred to in sub-paragraphs (5) to (7) of that paragraph.”; and
+b
+immediately below provision number 27 and the corresponding columns relating to that provision, insert —
+“National Health Service Pension Scheme Regulations 2008 27A Chapter 3.C (contributions)
+The making of deductions of member’s contributions of practitioners from payments made under a GDS Contract or PDS Agreement.
+The paying of those member’s contributions that the employing authority has deducted to the Secretary of State.
+The receiving of member’s contributions of vocational trainees from the holder of a GDS Contract or PDS Agreement, and the paying of those member’s contributions to the Secretary of State.
+The making of the contributions (including additional contributions) to the scheme that the employing authority must make, which relate to those member’s contributions of practitioners and vocational trainees, and the paying of those employing authority contributions to the Secretary of State.
+Providing timely reports to the Secretary of State or, where appropriate, the employing authority, in respect of any information which it discovers in the course of or as a consequence of performing functions under the Regulations, including regulation 3.J.14(14) (employing authority and certain member record keeping and contribution estimates) (or as a result of ancillary, related or supplemental functions), and which it considers might be evidence of a breach of contract, an unlawful activity or an irregularity or which is otherwise unusual.
+27B Regulation 3.J.14 (employing authority and certain member record keeping and contribution estimates)
+Giving and receiving notices referred to in regulation 3.J.14 including agreeing such other period for the reception of such notices as permitted, accepting replacement notices where a material particular has changed and estimating and recording pensionable earnings in respect of invalid reconciliation notices.
+The provision to the Secretary of State of the statements referred to in paragraphs (11) and (12) of regulation 3.J.14 the employing authority is required to provide.
+The keeping of records in respect of contributions deducted and made, and the provision of a statement to the Secretary of State in respect of those matters.
+The making of a determination of whether or not a notice under regulation 3.J.14 is invalid.
+The determination of such other period as may be permitted in accordance with regulation 3.J.14 for the issue and return of the notices referred to in paragraphs (4) to (6) of that regulation.”
+Signed by authority of the Secretary of State for Health.
+Earl Howe
+Parliamentary Under Secretary of State,
+Department of Health
+23rd February 2012

@@ -1,0 +1,117 @@
+Domestic Violence, Crime and Victims (Amendment) Act 2012
+Causing or allowing child or vulnerable adult to suffer serious physical harm
+1
+1
+Section 5 of the Domestic Violence, Crime and Victims Act 2004 (offence of causing or allowing the death of a child or vulnerable adult) is amended as follows.
+2
+In subsection (1) —
+a
+in paragraph (a), after “dies” insert “or suffers serious physical harm”;
+b
+in paragraph (d), for “V’s death” substitute “the death or serious physical harm”.
+3
+In subsection (3)(a), for “V’s death” substitute “the death or serious physical harm”.
+4
+In subsection (4)(b), for “V’s death” substitute “the death or serious physical harm”.
+5
+In subsection (7), after “this section” insert “of causing or allowing a person’s death”.
+6
+After that subsection insert —
+8
+A person guilty of an offence under this section of causing or allowing a person to suffer serious physical harm is liable on conviction on indictment to imprisonment for a term not exceeding 10 years or to a fine, or to both.
+7
+The italic heading before section 5 becomes “ Causing or allowing a child or vulnerable adult to die or suffer serious physical harm ”.
+8
+The amendments made by this section do not apply in relation to any harm resulting from an act that occurs, or so much of an act as occurs, before the commencement of this section.
+Evidence and procedure in cases of serious physical harm
+2
+After section 6 of the Domestic Violence, Crime and Victims Act 2004 insert —
+Evidence and procedure in cases of serious physical harm: England and Wales
+6A
+1
+Subsections (3) to (5) apply where a person (“the defendant”) is charged in the same proceedings with a relevant offence and with an offence under section 5 in respect of the same harm (“the section 5 offence”).
+2
+In this section “relevant offence” means —
+a
+an offence under section 18 or 20 of the Offences against the Person Act 1861 (grievous bodily harm etc );
+b
+an offence under section 1 of the Criminal Attempts Act 1981 of attempting to commit murder.
+3
+Where by virtue of section 35(3) of the Criminal Justice and Public Order Act 1994 a court or jury is permitted, in relation to the section 5 offence, to draw such inferences as appear proper from the defendant’s failure to give evidence or refusal to answer a question, the court or jury may also draw such inferences in determining whether the defendant is guilty of a relevant offence, even if there would otherwise be no case for the defendant to answer in relation to that offence.
+4
+The charge of the relevant offence is not to be dismissed under paragraph 2 of Schedule 3 to the Crime and Disorder Act 1998 (unless the section 5 offence is dismissed).
+5
+At the defendant’s trial the question whether there is a case for the defendant to answer on the charge of the relevant offence is not to be considered before the close of all the evidence (or, if at some earlier time the defendant ceases to be charged with the section 5 offence, before that earlier time).
+Consequential amendments
+3
+The Schedule contains consequential amendments.
+Short title, commencement and extent
+4
+1
+This Act may be cited as the Domestic Violence, Crime and Victims (Amendment) Act 2012.
+2
+This Act comes into force on such day as the Secretary of State may by order made by statutory instrument appoint.
+3
+Subject to subsection (4) , this Act extends to England and Wales.
+4
+The amendments made by paragraphs 9 to 11 of the Schedule have the same extent as the provisions to which they relate.
+SCHEDULE
+Consequential amendments
+Section 3
+Criminal Justice Act 1982
+1
+In Schedule 1 to the Criminal Justice Act 1982 (offences excluded from early release provisions), in Part 2, in the entry relating to section 5 of the Domestic Violence, Crime and Victims Act 2004, for “the death of a child or vulnerable adult” substitute “a child or vulnerable adult to die or suffer serious physical harm”.
+Coroners Act 1988
+2
+1
+The Coroners Act 1988 is amended as follows.
+2
+In section 16 (adjournment of inquest in event of criminal proceedings), in subsection (1)(a)(iv), for “(causing or allowing the death of a child or vulnerable adult)” substitute “of causing or allowing the death of a child or vulnerable adult”.
+3
+In section 17 (provisions supplementary to section 16), in subsections (1)(d) and (2)(d), for “(causing or allowing the death of a child or vulnerable adult)” substitute “of causing or allowing the death of a child or vulnerable adult”.
+4
+The amendments made by this paragraph cease to have effect when the repeal of that Act by Schedule 23 to the Coroners and Justice Act 2009 has effect for all purposes.
+Law Reform (Year and a Day Rule) Act 1996
+3
+In section 2 of the Law Reform (Year and a Day Rule) Act 1996 (restriction on institution of proceedings for fatal offence), in subsection (3)(c), for “(causing or allowing the death of a child or vulnerable adult)” substitute “of causing or allowing the death of a child or vulnerable adult”.
+Criminal Justice and Court Services Act 2000
+4
+1
+In Schedule 4 to the Criminal Justice and Court Services Act 2000 (meaning of “offence against a child” for purposes of disqualification orders), in paragraph 3(sb), for “the death of a child or vulnerable adult” substitute “a child or vulnerable adult to die or suffer serious physical harm”.
+2
+The amendment made by sub-paragraph (1) ceases to have effect when the repeal of that Schedule by Schedule 10 to the Safeguarding Vulnerable Groups Act 2006 has effect for all purposes.
+Sexual Offences Act 2003
+5
+In Schedule 5 to the Sexual Offences Act 2003 (offences for purposes of making sexual offences prevention orders), in paragraph 63A, for “the death of a child or vulnerable adult” substitute “a child or vulnerable adult to die or suffer serious physical harm”.
+Criminal Justice Act 2003
+6
+In Part 1 of Schedule 15 to the Criminal Justice Act 2003 (specified violent offences for purposes of Chapter 5 of Part 12 of that Act), in paragraph 63A, for “the death of a child or vulnerable adult” substitute “a child or vulnerable adult to die or suffer serious physical harm”.
+Domestic Violence, Crime and Victims Act 2004
+7
+The Domestic Violence, Crime and Victims Act 2004 is amended as follows.
+8
+1
+In section 6 (evidence and procedure: England and Wales), in subsection (5), after “section 5” insert “of causing or allowing a person’s death”.
+2
+The heading of that section becomes “ Evidence and procedure in cases of death: England and Wales ”.
+9
+In section 8 (evidence and procedure: the Court Martial), after subsection (3) insert —
+4
+Section 6A(1), (3) and (5) has effect in relation to proceedings before the Court Martial with the following adaptations.
+5
+A reference to an offence —
+a
+listed in section 6A(2), or
+b
+under section 5,
+is to be read as a reference to an offence under section 42 of the Armed Forces Act 2006 as respects which the corresponding offence under the law of England and Wales (within the meaning given by that section) is that offence.
+6
+A reference to the court or jury is to be read as a reference to the court.
+10
+In section 62(4) (extent of section 8), after “section 6” insert “or 6A”.
+Armed Forces Act 2006
+11
+In section 51 of the Armed Forces Act 2006 (jurisdiction of Service Civilian Court), in subsection (5)(a), for “(causing or allowing death of child etc)” substitute “of causing or allowing the death of a child or vulnerable adult”.
+Coroners and Justice Act 2009
+12
+In paragraph 1 of Schedule 1 to the Coroners and Justice Act 2009 (suspension of investigations where certain criminal charges may be brought), in sub-paragraph (6), in paragraph (d) of the definition of “homicide offence”, for “(causing or allowing the death of a child or vulnerable adult)” substitute “of causing or allowing the death of a child or vulnerable adult”.
