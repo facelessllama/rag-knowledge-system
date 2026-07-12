@@ -14,9 +14,10 @@ class FakeEmbedder:
 
 
 class FakeVectorStore:
-    def __init__(self, results_by_query=None, neighbors_by_doc=None):
+    def __init__(self, results_by_query=None, neighbors_by_doc=None, full_docs_by_id=None):
         self.results_by_query = results_by_query or {}
         self.neighbors_by_doc = neighbors_by_doc or {}
+        self.full_docs_by_id = full_docs_by_id or {}  # doc_id -> list[chunk] | None (None = "too long")
 
     def hybrid_search(self, query_vector, query_text, top_k=5, doc_filter=None, folder_filter=None):
         return [dict(r) for r in self.results_by_query.get(query_text, [])]
@@ -24,6 +25,14 @@ class FakeVectorStore:
     def neighbor_chunks(self, document_id, chunk_indices):
         candidates = self.neighbors_by_doc.get(document_id, [])
         return [dict(n) for n in candidates if n["chunk_index"] in chunk_indices]
+
+    def all_chunks_for_document(self, document_id, limit):
+        if document_id not in self.full_docs_by_id:
+            return None
+        chunks = self.full_docs_by_id[document_id]
+        if chunks is None or len(chunks) > limit:
+            return None
+        return [dict(c) for c in chunks]
 
 
 def _chunk(chunk_id, doc_id, idx, score, text="text"):
@@ -83,6 +92,56 @@ async def test_retrieve_expands_top_candidates_with_neighbors():
     assert by_id["n4"]["source"] == "neighbor"
     assert by_id["n4"]["score"] == pytest.approx(0.8 * 0.6)
     assert by_id["anchor"]["source"] == "hybrid"
+
+
+@pytest.mark.asyncio
+async def test_retrieve_pulls_in_whole_short_document_not_just_index_window():
+    """A generic query might only match a short document's caption chunk
+    (index 0) and miss its substantive chunk (index 3) — for documents at or
+    under SHORT_DOC_CHUNK_LIMIT, the whole document should be pulled in
+    rather than just a +/-1 index window around the hit."""
+    anchor = _chunk("caption", "d1", 0, 0.8)
+    substantive = {"chunk_id": "ruling", "document_id": "d1", "chunk_index": 3,
+                    "text": "the actual ruling", "page_num": 2, "filename": "f.pdf", "folder": ""}
+    vs = FakeVectorStore(
+        results_by_query={"q": [anchor]},
+        full_docs_by_id={"d1": [
+            {"chunk_id": "caption", "document_id": "d1", "chunk_index": 0, "text": "caption",
+             "page_num": 1, "filename": "f.pdf", "folder": ""},
+            substantive,
+        ]},
+    )
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    results = await retriever.retrieve("q", top_k=5)
+
+    by_id = {r["chunk_id"]: r for r in results}
+    assert "ruling" in by_id
+    assert by_id["ruling"]["source"] == "neighbor"
+    assert by_id["ruling"]["score"] == pytest.approx(0.8 * 0.6)
+
+
+@pytest.mark.asyncio
+async def test_retrieve_falls_back_to_index_window_for_long_documents():
+    """all_chunks_for_document returning None (too many chunks) must fall
+    back to the existing +/-1 neighbor-window behavior, not silently drop
+    expansion entirely."""
+    anchor = _chunk("anchor", "d1", 5, 0.8)
+    vs = FakeVectorStore(
+        results_by_query={"the query": [anchor]},
+        neighbors_by_doc={"d1": [
+            {"chunk_id": "n4", "document_id": "d1", "chunk_index": 4, "text": "neighbor",
+             "page_num": 1, "filename": "f.pdf", "folder": ""},
+        ]},
+        full_docs_by_id={"d1": None},  # too long to fully expand
+    )
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    results = await retriever.retrieve("the query", top_k=5)
+
+    by_id = {r["chunk_id"]: r for r in results}
+    assert "n4" in by_id
+    assert by_id["n4"]["source"] == "neighbor"
 
 
 @pytest.mark.asyncio

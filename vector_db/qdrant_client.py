@@ -159,6 +159,38 @@ class VectorStore:
             })
         return out
 
+    def all_chunks_for_document(self, document_id: str, limit: int) -> list[dict] | None:
+        """Return every chunk of a document if it has <= limit total chunks,
+        else None (too long — caller should fall back to windowed neighbor
+        expansion instead of pulling in the whole thing)."""
+        search_filter = Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=document_id))])
+        results, _ = self.client.scroll(
+            collection_name=self.collection,
+            scroll_filter=search_filter,
+            limit=limit + 1,
+            with_payload=True,
+            with_vectors=False,
+        )
+        if len(results) > limit:
+            return None
+        out = []
+        for r in results:
+            p = r.payload or {}
+            if not p.get("text") or not p.get("document_id"):
+                continue
+            out.append({
+                "text": p["text"],
+                "page_num": p.get("page_num"),
+                "document_id": p["document_id"],
+                "chunk_id": p.get("chunk_id"),
+                "filename": p.get("filename", ""),
+                "folder": p.get("folder", ""),
+                "chunk_index": p.get("chunk_index", 0),
+                "char_start": p.get("char_start"),
+                "char_end": p.get("char_end"),
+            })
+        return out
+
     def _build_filter(self, doc_filter: str = None, folder_filter: str = None) -> Filter | None:
         must_conditions = []
         if doc_filter:

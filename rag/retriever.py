@@ -18,6 +18,11 @@ logger = logging.getLogger(__name__)
 
 
 class HybridRetriever:
+    # Documents at or under this many total chunks get pulled in whole once
+    # any one chunk of theirs scores well enough to be a top candidate — see
+    # _expand_with_neighbors.
+    SHORT_DOC_CHUNK_LIMIT = 10
+
     def __init__(
         self,
         embedding_service: EmbeddingService,
@@ -109,6 +114,28 @@ class HybridRetriever:
             by_doc.setdefault(doc_id, {})[chunk_index] = chunk
 
         for doc_id, index_map in by_doc.items():
+            # Short documents (e.g. a 2-page bail order — caption + parties on
+            # one chunk, the actual ruling on another): a ±1 index window can
+            # miss the substantive chunk entirely if only the caption chunk
+            # scored well on a generic query, leaving the LLM with just names
+            # and a case number. Pull in the whole document instead when it's
+            # cheap to (<= SHORT_DOC_CHUNK_LIMIT chunks total) rather than
+            # gambling on index adjacency.
+            full_doc = await asyncio.to_thread(
+                self.vector_store.all_chunks_for_document, doc_id, self.SHORT_DOC_CHUNK_LIMIT
+            )
+            if full_doc is not None:
+                best_score = max(c["score"] for c in index_map.values())
+                for chunk in full_doc:
+                    key = chunk.get("chunk_id", chunk["text"][:50])
+                    if key in expanded:
+                        continue
+                    chunk = chunk.copy()
+                    chunk["score"] = best_score * 0.6
+                    chunk["source"] = "neighbor"
+                    expanded[key] = chunk
+                continue
+
             wanted_indices = set()
             for chunk_index in index_map:
                 for offset in (-1, 1):
