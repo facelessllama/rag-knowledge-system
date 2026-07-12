@@ -15,12 +15,6 @@ def test_tokenize_strips_stopwords_and_punctuation():
     assert "15" in tokens
 
 
-def test_tokenize_handles_russian_without_stemming():
-    tokens = tokenize("Статья 15.1 пункт 3 договора")
-    assert "статья" in tokens
-    assert "договора" in tokens  # not stemmed — Russian tokens pass through unstemmed
-
-
 def test_tokenize_stems_english_only():
     tokens = tokenize("processing documents quickly")
     # "processing" -> "process" (strips "ing"), "documents" -> "document" (strips "s")
@@ -29,7 +23,7 @@ def test_tokenize_stems_english_only():
 
 
 def test_tokenize_drops_single_char_and_stopwords():
-    tokens = tokenize("a I to и в на")
+    tokens = tokenize("a I to the of")
     assert tokens == []
 
 
@@ -51,8 +45,8 @@ def test_build_sparse_vector_term_frequency():
 def test_build_sparse_vector_is_stable_across_calls():
     """Indices must be stable across process restarts — built on hashlib, not
     Python's randomized builtin hash()."""
-    a = build_sparse_vector("Статья 15.1 пункт 3 about the Contract")
-    b = build_sparse_vector("Статья 15.1 пункт 3 about the Contract")
+    a = build_sparse_vector("Article 15.1 clause 3 about the Contract")
+    b = build_sparse_vector("Article 15.1 clause 3 about the Contract")
     assert a.indices == b.indices
     assert a.values == b.values
 

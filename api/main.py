@@ -76,7 +76,7 @@ RELEVANCE_THRESHOLD = float(os.getenv("RELEVANCE_THRESHOLD", "0.30"))
 MAX_CONCURRENT_QUERIES = int(os.getenv("MAX_CONCURRENT_QUERIES", "3"))
 _query_semaphore = asyncio.Semaphore(MAX_CONCURRENT_QUERIES)
 
-parser = PDFParser(ocr_language=os.getenv("PDF_OCR_LANGUAGE", "rus+eng"))
+parser = PDFParser(ocr_language=os.getenv("PDF_OCR_LANGUAGE", "eng"))
 txt_parser = TxtParser()
 PARSERS_BY_EXT = {"pdf": (parser, "pdf"), "txt": (txt_parser, "txt")}
 
@@ -287,7 +287,6 @@ class QueryRequest(BaseModel):
     model: Optional[str] = None
     rerank: Optional[bool] = True
     folder: Optional[str] = None
-    language: Optional[str] = None  # "en" | "ru" | None (auto)
     channel: Optional[str] = None   # "telegram" | None (web)
 
 class QueryResponse(BaseModel):
@@ -501,7 +500,6 @@ async def _do_query(request: QueryRequest):
 
     messages = prompt_builder.build(query=request.question, chunks=top_chunks,
                                    chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [],
-                                   language=request.language or None,
                                    channel=request.channel)
 
     t1 = time.time()
@@ -648,7 +646,6 @@ async def query_stream(request: QueryRequest):
 
             messages = prompt_builder.build(query=request.question, chunks=top_chunks,
                                             chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [],
-                                            language=request.language or None,
                                             channel=request.channel)
 
             t2 = time.time()

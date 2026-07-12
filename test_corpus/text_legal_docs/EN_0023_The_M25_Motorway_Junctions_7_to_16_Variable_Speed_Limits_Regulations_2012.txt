@@ -1,0 +1,118 @@
+The M25 Motorway (Junctions 7 to 16) (Variable Speed Limits) Regulations 2012
+Representative organisations have been consulted in accordance with section 134(2) of that Act.
+Citation and commencement
+1
+These Regulations may be cited as the M25 Motorway (Junctions 7 to 16) (Variable Speed Limits) Regulations 2012 and they come into force on 17th September 2012.
+Interpretation
+2
+1
+In these Regulations —
+“the 1982 Regulations ” means the Motorways Traffic (England and Wales) Regulations 1982 ;
+“the 2002 Regulations ” means the Traffic Signs Regulations 2002 ; and
+“carriageway”, “hard shoulder”, “motorway” and “verge” have the same meanings as in the 1982 Regulations.
+Variable speed limits
+3
+1
+No person shall drive a vehicle on a section of a road which is subject to a variable speed limit at a speed exceeding that indicated by a speed limit sign.
+2
+A section of a road is subject to a variable speed limit in relation to a vehicle being driven along it if —
+a
+the road is specified in the Schedule;
+b
+the vehicle has passed a speed limit sign; and
+c
+the vehicle has not subsequently passed —
+i
+another speed limit sign indicating a different speed limit; or
+ii
+a traffic sign which indicates that the national speed limit is in force.
+3
+In relation to a vehicle, the speed limit indicated by a speed limit sign is the speed shown at the time the vehicle passes the sign, or, if higher, the speed limit shown by the sign ten seconds before the vehicle passed the sign.
+4
+For the purpose of this regulation, a speed limit sign is to be taken as not indicating any speed limit if, ten seconds before the vehicle passed it, the sign had indicated no speed limit or that the national speed limit was in force.
+5
+In this regulation —
+a
+“national speed limit” has the meaning given by regulation 5(2) of the 2002 Regulations;
+“road” includes the adjacent hard shoulder and verge; and
+“speed limit sign”, in relation to a vehicle, means a traffic sign of the type shown in diagram 670 in Schedule 2 to the 2002 Regulations which is —
+situated on or near any part of a road specified in the Schedule; and
+directed at traffic on the carriageway on which the vehicle is being driven.
+Revocation
+4
+The M25 Motorway (Junctions 10 to 16) (Variable Speed Limits) Regulations 2001 are revoked.
+Signed by authority of the Secretary of State for Transport
+Mike Penning
+Parliamentary Under Secretary of State
+Department for Transport
+15th August 2012
+SCHEDULE
+SPECIFIED ROADS
+Regulation 3(2)(a)
+1
+The specified roads are —
+a
+the clockwise carriageway of the M25 from marker post 45/7 to marker post 102/8;
+b
+the carriageways of the clockwise slip roads;
+c
+the anti-clockwise carriageway of the M25 from marker post 102/8 to marker post 45/7; and
+d
+the carriageways of the anti-clockwise slip roads.
+2
+Any reference in this Schedule to —
+a
+the letter “M” followed by a number is a reference to the motorway known by that name;
+b
+the letter “A” followed by a number is a reference to the road known by that name; and
+c
+a junction followed by a number is a reference to the junction of the M25 of that number.
+3
+In this Schedule —
+“on-slip road” means a slip road intended for the use of traffic entering the M25.
+4
+1
+The clockwise slip roads referred to in paragraph 1 of this Schedule are the on-slip roads which connect the clockwise carriageway of the M25 with–
+i
+the M23 at junction 7;
+ii
+the A217 at junction 8;
+iii
+the A243 and the A245 at junction 9;
+iv
+the motorway service area between junction 9 and junction 10;
+v
+the A3 at junction 10;
+vi
+the A317 and the A320 at junction 11;
+vii
+the M3 at junction 12;
+viii
+the A30 at junction 13;
+ix
+the A3113 at junction 14; and
+x
+the M4 at junction 15.
+5
+1
+The anti-clockwise slip roads referred to in paragraph 1 of this Schedule are the on-slip roads which connect the anti-clockwise carriageway of the M25 with–
+i
+the A217 at junction 8;
+ii
+the A243 and the A244 at junction 9;
+iii
+the motorway service area between junction 9 and junction 10;
+iv
+the A3 at junction 10;
+v
+the A317 and the A320 at junction 11;
+vi
+the M3 at junction 12;
+vii
+the A30 at junction 13;
+viii
+the A3113 at junction 14;
+ix
+the M4 at junction 15; and
+x
+the M40 at junction 16.

@@ -1,0 +1,187 @@
+The Employment and Support Allowance (Amendment of Linking Rules) Regulations 2012
+In respect of the provisions in these Regulations relating to housing benefit and council tax benefit, the Secretary of State has consulted with organisations appearing to the Secretary of State to be representative of the authorities concerned .
+Citation and commencement
+1
+1
+These Regulations may be cited as the Employment and Support Allowance (Amendment of Linking Rules) Regulations 2012.
+2
+These Regulations come into force on 1st May 2012 immediately after the commencement of the Employment and Support Allowance (Duration of Contributory Allowance) (Consequential Amendments) Regulations 2012 .
+Amendment to the Social Security and Child Support (Decisions and Appeals) Regulations 1999
+2
+In regulation 3(5F)(a) of the Social Security and Child Support (Decisions and Appeals) Regulations 1999 (revision of decisions) omit “and (2)”.
+Amendments to the Housing Benefit Regulations 2006
+3
+In Schedule 3 to the Housing Benefit Regulations 2006 (applicable amounts) —
+a
+in paragraph 28(1)(b) for “104” substitute “12”;
+b
+insert “and” at the end of paragraph 28(1)(c);
+c
+omit paragraph 28(1)(d); and
+d
+for paragraph 29(1)(c) substitute–
+c
+at the date on which the relevant person again becomes entitled to an employment and support allowance which is not income-related, regulation 145(1) of the Employment and Support Allowance Regulations applies to the relevant person; and
+.
+Amendments to the Council Tax Benefit Regulations 2006
+4
+In Schedule 1 to the Council Tax Benefit Regulations 2006 (applicable amounts) —
+a
+in paragraph 28(1)(b) for “104” substitute “12”;
+b
+insert “and” at the end of paragraph 28(1)(c);
+c
+omit paragraph 28(1)(d); and
+d
+for paragraph 29(1)(c) substitute–
+c
+at the date on which the relevant person again becomes entitled to an employment and support allowance which is not income-related, regulation 145(1) of the Employment and Support Allowance Regulations applies to the relevant person; and
+.
+Amendments to the Employment and Support Allowance Regulations 2008
+5
+1
+The Employment and Support Allowance Regulations 2008 are amended as follows.
+2
+In regulation 2(1) (interpretation) omit the definition of “work or training beneficiary”.
+3
+In regulation 5 (the assessment phase – previous claimants) —
+a
+in paragraph (2)(a)(i) omit “or (2)”; and
+b
+for paragraph (2)(b) substitute–
+b
+i
+the claimant’s current period of limited capability for work is to be treated as a continuation of an earlier period of limited capability for work under regulation 145(1),
+ii
+the claimant was entitled to an employment and support allowance in the earlier period of limited capability for work,
+iii
+the previous period of limited capability for work was terminated by virtue of a determination that the claimant did not have limited capability for work,
+iv
+the period for which the claimant was previously entitled was no more than 13 weeks, and
+v
+a determination is made in relation to the current period of limited capability for work that the claimant has or is treated as having limited capability for work, other than under regulation 30; or
+c
+i
+the claimant’s current period of limited capability for work is to be treated as a continuation of an earlier period of limited capability for work under regulation 145(1),
+ii
+the claimant was entitled to an employment and support allowance in the earlier period of limited capability for work,
+iii
+in relation to the previous award of an employment and support allowance, a determination was made that the claimant had limited capability for work or was treated as having limited capability for work, other than under regulation 30, and
+iv
+the period for which the claimant was previously entitled was no more than 13 weeks.
+.
+4
+In regulation 7 (circumstances where the condition that the assessment phase has ended before entitlement to the support component or the work-related activity component arises does not apply) —
+a
+for paragraph (1)(b) substitute–
+b
+the case is a relevant linked case;
+; and
+b
+after paragraph (1) insert–
+1A
+For the purposes of paragraph (1)(b) a relevant linked case is a case mentioned in paragraph (1B) where a period of limited capability for work is to be treated as a continuation of an earlier period of limited capability for work under regulation 145(1).
+1B
+Paragraph (1A) applies to the following cases —
+a
+case 1 is where–
+i
+the claimant was entitled to an employment and support allowance (including entitlement to a component under sections 2(2), 2(3), 4(4) or 4(5) of the Act) in the earlier period of limited capability for work, and
+ii
+the previous period for which the claimant was entitled to an employment and support allowance was terminated other than by virtue of a determination that the claimant did not have limited capability for work;
+b
+case 2 is where–
+i
+the claimant was entitled to an employment and support allowance in the earlier period of limited capability for work,
+ii
+the previous period for which the claimant was entitled to an employment and support allowance was 13 weeks or longer,
+iii
+the previous period for which the claimant was entitled to an employment and support allowance was terminated by virtue of a determination that the claimant did not have, or was treated as not having, limited capability for work, and
+iv
+it is determined in relation to the current period of limited capability for work that the claimant has limited capability for work or is treated as having limited capability for work, other than under regulation 30;
+c
+case 3 is where–
+i
+the claimant was entitled to an employment and support allowance in the earlier period of limited capability for work,
+ii
+the previous period for which the claimant was entitled to an employment and support allowance was 13 weeks or longer,
+iii
+the previous period for which the claimant was entitled to an employment and support allowance was terminated before it could be determined whether the claimant had limited capability for work or was treated as having limited capability for work, other than under regulation 30, and
+iv
+it is determined in relation to the current period of limited capability for work that the claimant has limited capability for work or is treated as having limited capability for work, other than under regulation 30; and
+d
+case 4 is where–
+i
+the claimant was entitled to an employment and support allowance (including entitlement to a component under sections 2(2), 2(3), 4(4) or 4(5) of the Act) in the earlier period of limited capability for work,
+ii
+the previous period for which the claimant was entitled to an employment and support allowance was terminated because it was determined that the claimant did not have limited capability for work or was treated as not having limited capability for work, and
+iii
+it is determined in relation to the current period of limited capability for work that the claimant has limited capability for work or is treated as having limited capability for work, other than under regulation 30.
+.
+5
+After regulation 35 (certain claimants to be treated as having limited capability for work-related activity) insert —
+Relevant linked cases – limited capability for work-related activity
+35A
+A claimant is to be treated as having limited capability for work-related activity where–
+a
+they fall within case 1, as defined in regulation 7(1B)(a); and
+b
+in respect of the earlier period of limited capability for work referred to in regulation 7(1B)(a)(i), they had been entitled to a support component under sections 2(2) or 4(4) of the Act.
+.
+6
+In regulation 145 (linking rules) omit paragraphs (2) to (5).
+7
+Omit regulations —
+a
+148 (work or training beneficiaries);
+b
+149 (linking rules – limited capability for work); and
+c
+150 (linking rules – limited capability for work-related activity).
+8
+After paragraph 1(3) of Schedule 6 (housing costs) insert —
+3A
+For the purposes of this Schedule a claimant is a “work or training beneficiary” on any day in a linking term where the claimant —
+a
+had limited capability for work–
+i
+for more than 13 weeks in the most recent past period of limited capability for work; or
+ii
+for 13 weeks or less in the most recent past period of limited capability for work where the claimant became entitled to an award of an employment and support allowance by virtue of a conversion decision which took effect from the commencement of the most recent past period of limited capability for work;
+b
+ceased to be entitled to an allowance or advantage at the end of that most recent past period of limited capability for work; and
+c
+became engaged in work or training within one month of so ceasing to be entitled.
+3B
+A claimant is not a work or training beneficiary if–
+a
+the most recent past period of limited capability for work was ended by a determination that the claimant did not have limited capability for work; and
+b
+that determination was on the basis of a limited capability for work assessment.
+3C
+In sub-paragraphs (3A) and (3B) —
+“allowance or advantage” means any allowance or advantage under the Act or the Contributions and Benefits Act for which entitlement is dependent on limited capability for work;
+“conversion decision” has the meaning given in regulation 5(2)(a) of the Employment and Support Allowance (Transitional Provisions, Housing Benefit and Council Tax Benefit) (Existing Awards) ( No. 2) Regulations 2010 ;
+“linking term” means a period of 104 weeks from the first day immediately following the last day in a period of limited capability for work;
+“most recent past period of limited capability for work” means the period of limited capability for work which most recently precedes the period in respect of which the current claim is made, including any period of which that previous period is treated as a continuation by virtue of regulation 145(1) (linking rules); and
+“work” means work, other than work under regulation 45 (exempt work), for which payment is made or which is done in expectation of payment.
+.
+Amendments to the Employment and Support Allowance (Transitional Provisions, Housing Benefit and Council Tax Benefit) (Existing Awards) (No. 2) Regulations 2010
+6
+In regulation 21(5) of the Employment and Support Allowance (Transitional Provisions, Housing Benefit and Council Tax Benefit) (Existing Awards) (No. 2) Regulations 2010 (termination of transitional addition) —
+a
+in sub-paragraph (a) omit “or (2)”; and
+b
+for sub-paragraph (c) substitute–
+c
+in respect of that earlier period, it was terminated–
+i
+other than by virtue of a determination that T did not have, or was treated as not having, limited capability for work, or
+ii
+by virtue of a determination that the claimant did not have, or was treated as not having, limited capability for work, and, in respect of that subsequent claim, it is determined that T has, or is treated as having, limited capability for work, other than under regulation 30 of the 2008 Regulations.
+.
+Signed by authority of the Secretary of State for Work and Pensions.
+Freud
+Parliamentary Under-Secretary of State,
+Department for Work and Pensions
+21st March 2012

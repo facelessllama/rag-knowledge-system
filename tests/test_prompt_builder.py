@@ -27,10 +27,10 @@ def test_build_multi_doc_switches_to_compare_prompt():
     assert "[b.pdf | Page 1]" in messages[-1]["content"]
 
 
-def test_build_language_rule_forces_russian():
+def test_build_always_forces_english_response():
     pb = PromptBuilder()
-    messages = pb.build(query="q", chunks=[_chunk("x")], language="ru")
-    assert "Russian" in messages[0]["content"]
+    messages = pb.build(query="q", chunks=[_chunk("x")])
+    assert "Always respond in English" in messages[0]["content"]
 
 
 def test_build_telegram_channel_uses_brief_prompt():

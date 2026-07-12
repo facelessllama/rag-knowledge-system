@@ -3,6 +3,7 @@ Reranker Module
 Re-scores retrieved chunks using a cross-encoder model.
 """
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -12,8 +13,8 @@ class CrossEncoderReranker:
         self.model = CrossEncoder(model_name)
         logger.info(f"CrossEncoderReranker loaded: {model_name}")
 
-    # If ALL cross-encoder scores are below this, the model can't handle the language
-    # (ms-marco is English-only; Russian text scores cluster around -10 to -12)
+    # If ALL cross-encoder scores are below this, the model can't handle the
+    # input (ms-marco is English-only) — keep vector score order instead.
     LANGUAGE_FALLBACK_THRESHOLD = -5.0
 
     def rerank(self, query: str, chunks: list[dict], top_k: int = 3) -> list[dict]:

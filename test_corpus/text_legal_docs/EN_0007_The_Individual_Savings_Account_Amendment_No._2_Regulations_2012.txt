@@ -1,0 +1,544 @@
+The Individual Savings Account (Amendment) (No. 2) Regulations 2012
+Citation and commencement
+1
+These Regulations may be cited as the Individual Savings Account (Amendment) (No. 2) Regulations 2012 and come into force on 8th August 2012
+2
+The amendments to the Individual Savings Account Regulations 1998 made by regulations 5(a) and 13 of these Regulations have effect from 1st November 2011.
+3
+The amendments to the Individual Savings Account Regulations 1998 made by regulations 6, 16(b), (c) and (d), 18(a) and (b) and 19 of these Regulations and the amendments made by regulation 5(b) to (d) so far as they relate to those amendments, have effect from 9th November 2011.
+Amendments to the Individual Savings Account Regulations 1998
+4
+The Individual Savings Account Regulations 1998 are amended as follows.
+5
+In regulation 2(1)(a) (interpretation) —
+a
+after the definition of “child”, insert —
+“child trust fund” has the meaning given by section 1 of the Child Trust Funds Act 2004 ;
+;
+b
+in paragraph (iv) of the definition of “company”, for “51 per cent.” substitute “51%”;
+c
+after the definition of “credit union”, insert —
+“ CTA 2010 ” means the Corporation Tax Act 2010 ;
+;
+d
+for the definitions of “51 per cent. subsidiary” and “75 per cent. subsidiary”, substitute —
+“51% subsidiary” and “75% subsidiary” have the same meanings as they do in section 1154 of CTA 2010;
+;
+e
+after the definition of “junior ISA account”, insert —
+“Looked After Child” has the meaning given in regulation 2F (special provision in respect of Looked After Children);
+.
+6
+After regulation 2(1) (interpretation), insert —
+1A
+In these Regulations —
+a
+a “bulk transfer of accounts” occurs where two or more accounts are transferred by an account manager (“the transferor”) to another account manager (“the transferee”) —
+i
+pursuant to an agreement made between the transferor and transferee, and
+ii
+the transfers are not made pursuant to requests made by persons who are the account investor or registered contact in relation to the accounts transferred;
+b
+a “group transfer of accounts” occurs where a bulk transfer of accounts is made between account managers that are members of the same group of companies when the transfer occurs;
+c
+two companies are members of the same group of companies if —
+i
+one is a 75% subsidiary of the other, or
+ii
+both are 75% subsidiaries of a third company.
+.
+7
+In regulation 2A(4) (meaning of account investor), after “regulations 5C,”, insert “5D to 5DC, 5DF,”.
+8
+In regulation 2D (regulations that do not apply to junior ISA accounts), after “5B,” insert “5DI to 5DM,”.
+9
+After regulation 2E (contracts entered into by or on behalf of a child who is 16 or over), insert —
+Special provision in respect of Looked After Children
+2F
+1
+A child is a Looked After Child where, after 2nd January 2011, there is a continuous period of at least 12 months during which paragraph (2) applies in relation to the child.
+2
+This paragraph applies in relation to a child where the child is —
+a
+looked after by a local authority within the meaning of section 22(1) of the Children Act 1989 (general duty of local authority in relation to children looked after by them) ;
+b
+provided with accommodation by an authority by virtue of article 21 of the Children (Northern Ireland) Order 1995 (provision of accommodation for children: general) ;
+c
+the subject of an order made under article 50(1)(a) of the Children (Northern Ireland) Order 1995 (care orders and supervision orders);
+d
+provided with accommodation by a local authority by virtue of section 25 of the Children (Scotland) Act 1995 (provision of accommodation for children, etc. ) ;
+e
+the subject of a supervision requirement made under section 70(1) of the Children (Scotland) Act 1995 (disposal of referral by children’s hearing: supervision requirements, including residence in secure accommodation);
+f
+the subject of a permanence order made under section 80 of the Adoption and Children (Scotland) Act 2007 (permanence orders); or
+g
+treated as if the child were subject to an order described in sub-paragraph (f) by virtue of article 13(1) of the Adoption and Children (Scotland) Act 2007 (Commencement No. 4, Transitional and Savings) Order 2009 .
+3
+In relation to a Looked After Child, regulations 2C(4)(b) (meaning of “registered contact” etc.) and 12A(4)(b)(i) (conditions for application to open an account that is a junior ISA account) must be construed as if the Share Foundation has parental responsibility in respect of that child.
+4
+In relation to an application to assume responsibility for the management of a junior ISA account by the Share Foundation, regulation 2C(7)(c) must be construed as requiring a declaration that —
+a
+the applicant is the Share Foundation;
+b
+the application is in relation to a Looked After Child; and
+c
+the Share Foundation is to be the registered contact for the account.
+5
+Where an application to assume responsibility for the management of a junior ISA account is made in relation to which the registered contact is the Share Foundation, regulation 2C(9)(a) must be construed as referring only to sub-paragraphs (e) and (g) of paragraph (10).
+6
+Where the registered contact in relation to a junior ISA account is the Share Foundation, any reference in these Regulations to the residence of the registered contact must be construed as meaning a reference to the registered offices of the Share Foundation.
+7
+In this regulation “the Share Foundation” means the company limited by guarantee (number 4500923) and charity registered with the Charity Commission of England and Wales (number 1108068) as “The Share Foundation”.
+.
+10
+Omit regulation 5B.
+11
+After regulation 5C (treatment of certain sums held in dormant accounts), insert —
+Subscriptions disregarded for the purposes of the subscription limits in regulations 4ZA and 4ZB
+5D
+1
+A subscription to an account made in accordance with this regulation must be disregarded for the purposes of the subscription limits in regulations 4ZA (subscriptions to an account other than a junior ISA account) and 4ZB (subscriptions to a junior ISA account).
+2
+A subscription to an account held by an account investor is made in accordance with this regulation if —
+a
+the subscription is —
+i
+a defaulted cash account subscription;
+ii
+a defaulted investment subscription; or
+iii
+permitted in accordance with regulation 5DE; and
+b
+the account manager of the account to which the subscription is made is provided with the information specified in regulation 5DF as relevant to the subscription.
+Defaulted cash account subscription
+5DA
+A subscription is a defaulted cash account subscription if —
+a
+it is made to an account (which may be a stocks and shares account or a cash account) held by an account investor who held a cash account (“defaulted cash account”) in respect of which a default event occurred no more than 180 days before the subscription is made; and
+b
+it does not exceed the amount held in the defaulted cash account immediately before the default event occurred (including interest accrued but not paid at that time).
+Defaulted investment subscription
+5DB
+A subscription is a defaulted investment subscription if —
+a
+it is made to a stocks and shares account held by the account investor who held the account in respect of which a defaulted investment payment has been made no more than 180 days before the subscription is made; and
+b
+it does not exceed the amount of the defaulted investment payment.
+Default event in respect of cash account
+5DC
+A default event in respect of a cash account held by an account investor occurs where the account manager of that account is determined to be unable or likely to be unable to satisfy claims against the account manager in accordance with the rules of the scheme for compensation established pursuant to section 213 of the Financial Services and Markets Act 2000 .
+Defaulted investment payment
+5DD
+A defaulted investment payment occurs where a payment is made (otherwise than by accretion to a stocks and shares account) by way of compensation in respect of the poor performance, loss, depreciation or risk of depreciation of an investment described in regulation 7 (“defaulted investment”) held in a stocks and shares account (whether or not the defaulted investment continues to be held in the account at the time of the payment).
+Additional permitted subscription to a junior ISA account
+5DE
+A subscription is permitted by this regulation if it is made to a junior ISA account that is a cash account but would have been a defaulted investment subscription if it had been made to a stocks and shares account.
+Information required by regulation 5D
+5DF
+1
+The information specified by this regulation is —
+a
+in relation to a defaulted cash account subscription —
+i
+the amount held in the defaulted cash account to which the subscription relates immediately before the default event occurred (including interest accrued but not paid at that time);
+ii
+the current year’s subscription made to that account; and
+iii
+the date on which the first subscription (if any) was made to that account, in the year in which the defaulted cash subscription is made;
+b
+in relation to a defaulted investment subscription or a subscription permitted by regulation 5DE —
+i
+evidence of the amount of the defaulted investment payment to which the subscription relates and the date it was paid;
+ii
+details of the defaulted investment in respect of which the defaulted investment payment was made;
+iii
+the full name and address (including postcode) of the account manager of the stocks and shares account in which the defaulted investment was held;
+iv
+the full name and address (including postcode) of the maker of the defaulted investment payment.
+2
+In this regulation —
+“current year’s subscription” in relation to a defaulted cash account means —
+subscriptions made to the account in the year in which the defaulted cash account subscription is made, but before the default event; and
+subscriptions made to any other account held by the account investor in the year in which the defaulted cash account subscription is made and transferred to the account before the subscription is made.
+Single regulation 5D subscription
+5DG
+Only one defaulted cash account subscription, defaulted investment subscription or subscription permitted by regulation 5DE may be made in respect of a defaulted cash account or a defaulted investment payment as the case may be even if the subscription made is an amount less than that which could have been made by way of such subscription in accordance with regulation 5D.
+Default event or default investment payment occurring in the period beginning on 6th April 2011 and ending on 7th August 2012
+5DH
+Anything occurring in the period commencing on 6th April 2011 and ending on 7th August 2012 that, if it had occurred after that period, would have been —
+i
+a default event in respect of a cash account within regulation 5DC, or
+ii
+a defaulted investment payment within regulation 5DD,
+shall be treated as occurring on 8th August 2012 for the purposes of regulations 5D to 5DG.
+Special provision in respect of Lehman Brothers investments and Keydata investments
+5DI
+1
+Regulations 5DJ to 5DM make special provision in respect of an investment that is a Lehman Brothers investment or a Keydata investment.
+2
+An investment is a Lehman Brothers investment if —
+a
+the investment was a qualifying investment held by an account investor in a stocks and shares account on 15th September 2008;
+b
+Lehman Brothers Holdings Inc. acted as the sole counterparty underwriting the investment on that day; and
+c
+the investment was not sold or otherwise disposed of on that day so as to cause it to cease to be a qualifying investment of the account on that day or any other day.
+3
+An investment is a Keydata investment if —
+a
+the investment was a qualifying investment held by an account investor in a stocks and shares account on 8th June 2009;
+b
+Keydata Investment Services Limited (Keydata) on that day —
+i
+was the account manager of the account, or
+ii
+administered the account for another account manager; and
+c
+the investment was not sold or otherwise disposed of on that day so as to cause it to cease to be a qualifying investment of the account on that day or any other day.
+Special application of regulations 5DB, 5DD, 5DF and 5DH in respect of a Lehman Brothers investment
+5DJ
+In respect of a Lehman Brothers investment —
+a
+regulation 5D shall apply as if after paragraph (2) there is added —
+3
+No defaulted investment subscription may be made in respect of a defaulted investment payment made or treated as made on 8th August 2012 other than a single defaulted investment payment treated as made by virtue of regulation 5DL(2).
+;
+b
+regulation 5DB shall apply as if paragraph (b) provided that a defaulted investment subscription must not exceed the amount of the defaulted investment payment determined in accordance with regulation 5DL;
+c
+regulation 5DD is subject to regulation 5DL(2);
+d
+regulation 5DF(1)(b) shall apply as if the information specified by it is —
+i
+the information specified in paragraphs (i)-(iv) of that regulation;
+ii
+the value of the defaulted investment at the opening of trading on the London Stock Exchange on 15th September 2008;
+iii
+the date and amount of any earlier defaulted investment subscriptions in respect of the Lehman Brothers investment in question made before the making of the defaulted investment subscription;
+iv
+the name and address (including postcode) of the account manager to whom any subscription referred to in sub-paragraph (iii) of this paragraph was made;
+e
+regulation 5DH —
+i
+shall apply as if the period mentioned in that regulation were the period commencing on 16th September 2008 and ending on 7th August 2012;
+ii
+is subject to regulation 5DL(2).
+Deemed defaulted investment payment in respect of a Lehman Brothers investment
+5DK
+A defaulted investment payment shall be treated as made on 8th August 2012 in respect of a Lehman Brothers investment to the account investor who held it.
+Specified amount for the purposes of a defaulted investment subscription in respect of a Lehman Brothers investment
+5DL
+1
+This regulation determines the amount which a defaulted investment subscription must not exceed for the purposes of regulation 5DB(b) in relation to a defaulted investment payment made or treated as made in respect of a Lehman Brothers investment.
+2
+Where one or more defaulted investment payments in respect of a Lehman Brothers investment are made on 8th August 2012 or are treated as made on that day by virtue of regulations 5DH or 5DK, they shall be treated as if they comprised a single defaulted investment payment made on that day of an amount which is the greater of —
+a
+the value of the investment at the opening of trading on the London Stock Exchange on 15th September 2008; or
+b
+the total of the payments made or treated as made by virtue of regulation 5DH on 8th August 2012.
+3
+Where a defaulted investment payment in respect of a Lehman Brothers investment is made after 8th August 2012, its amount for the purposes of regulation 5DB(b) is the greater of —
+a
+the amount determined by the formula
+A − B
+where —
+i
+“A” is the total of the single defaulted investment payment treated as made on 8th August 2012 in respect of the investment by virtue of paragraph (2) and all defaulted investment payments made in respect of it in the period commencing immediately after that day and ending immediately after the defaulted investment payment in question;
+ii
+“B” is the total of all defaulted investment subscriptions made in respect of the Lehman Brothers investment before the subscription in question; or
+b
+the amount determined by the formula
+C − D
+where —
+i
+“C” is the value of the investment at the opening of trading on the London Stock Exchange on 15th September 2008;
+ii
+“D” is the total of all defaulted investment subscriptions made in respect of the Lehman Brothers investment before the subscription in question.
+Special application of regulations 5DJ to 5DL in respect of a Keydata investment
+5DM
+In respect of a Keydata investment —
+a
+regulations 5DJ to 5DL shall apply as if —
+i
+a reference to a Lehman Brothers investment were a reference to a Keydata investment;
+ii
+the reference in regulation 5DJ(e)(i) to 16th September 2008 were a reference to 9th June 2009;
+b
+regulation 5DJ(d)(ii) shall apply as if the information it requires is the amount for which the Keydata investment in question was acquired;
+c
+regulation 5DL(2)(a) shall apply as if it referred to the amount of subscriptions made to the account (or any other account or personal equity plan) and other proceeds (including income) representing those subscriptions used to purchase the investment;
+d
+regulation 5DL(3)(a)(i) shall apply as if element “A” is the amount described in regulation 5DL(2)(a) as construed in accordance with paragraph (c) of this regulation;
+e
+regulation 5DL(3)(b)(i) shall apply as if element “C” is the total of the single defaulted investment payment treated as made on 8th August 2012 in respect of the investment by virtue of regulation 5DL(2) and all defaulted investment payments made in respect of it in the period commencing immediately after that day and ending immediately after the defaulted investment payment in question.
+.
+12
+In regulation 7 (qualifying investments for a stocks and shares component) —
+a
+in paragraph (5)(c), for “75 per cent.” substitute “75%”;
+b
+in paragraph (8), for “50 per cent.” substitute “50%”.
+13
+In regulation 8 (qualifying investments for a cash component), for paragraph (3) substitute —
+3
+A deposit account or share account which is a qualifying investment for a cash component falling within sub-paragraphs (a) or (b) of paragraph (2) respectively (“Account A”) must not be connected with any other account falling within the descriptions in those sub-paragraphs (“Account B”), held by the account investor or any other person.
+4
+For the purposes of paragraph (3), Account A is connected with Account B if all of the following circumstances apply —
+a
+either of the accounts was opened with reference to the other, or with a view to enabling the other to be opened on particular terms, or with a view to facilitating the opening of the other on particular terms,
+b
+the terms on which Account A was opened would have been significantly less favourable to the holder if Account B had not been opened, and
+c
+Account B is not a tax exempt account.
+5
+The following are tax exempt accounts for the purposes of paragraph (4) —
+a
+an account opened (or treated as opened) in accordance with regulation 12 or 12A;
+b
+a child trust fund.
+.
+14
+In regulation 12(1), omit “, subject to paragraph (5),”.
+15
+For regulation 19 and the heading preceding it (account manager ceasing to act), substitute —
+Account manager’s intention to make a bulk transfer of accounts or to cease to act as an account manager
+19
+1
+An account manager must give notice to the Board if the account manager —
+a
+intends to cease to act as an account manager; or
+b
+intends to make a bulk transfer of accounts.
+2
+An account manager must give notice to a person who is the account investor in relation to an account held with the account manager if the account manager —
+a
+intends to cease to act as an account manager; or
+b
+intends that the account will be one of the accounts transferred in a bulk transfer of accounts.
+3
+The notices described in paragraphs (1) and (2) must —
+a
+specify whether the account manager —
+i
+intends to cease to act as an account manager; or
+ii
+intends to make a bulk transfer of accounts;
+b
+where the notice specifies an intention to cease to act as an account manager, —
+i
+specify the day on or after which the account manager intends to cease to act as an account manager; and
+ii
+be given no less than 30 days before that day;
+c
+where the notice specifies an intention to make a bulk transfer of accounts, —
+i
+specify the day on or after which the account manager intends to make the first transfer in the bulk transfer of accounts;
+ii
+be given no less than 30 days before that day; and
+iii
+advise the name and address of the person to whom the account manager intends to transfer accounts.
+4
+The notice described in paragraph (2) must also —
+a
+identify the account to which it relates;
+b
+advise the account investor that the account may be transferred in accordance with regulation 21 or 21B otherwise than in a bulk transfer of accounts if sufficient instructions are provided to enable the account manager to do so;
+c
+advise the day by which the account manager must receive sufficient instructions for the account to be transferred otherwise than in a bulk transfer of accounts.
+5
+Where an account manager intends to make a bulk transfer of accounts in consequence of an intention to cease to act as an account manager, such intention may be specified in the same notice to the Board or an account investor (as appropriate) provided the requirements of paragraphs (3) and (4) are met.
+.
+16
+In regulation 21 (transfers relating to accounts other than junior ISA accounts) —
+a
+in paragraph (4B)(b), for “regulation 4(3)” substitute “regulation 4ZA”;
+b
+after paragraph (4C), insert —
+4CA
+Regulation 12(1) does not prevent the current year’s subscriptions and the previous years’ subscriptions being transferred to an account that was held immediately before the transfer but to which no subscription has been made in the year in which the transfer occurs or the year immediately before that year.
+;
+c
+after “shall” in paragraph (4D), insert “, subject to paragraph (4DA),”;
+d
+after paragraph (4D), insert —
+4DA
+Paragraph (4D) does not apply where —
+a
+an account is transferred in a bulk transfer of accounts;
+b
+a cash account (whether or not in a bulk transfer of accounts) is transferred to a cash account held with the transferee immediately before the time when the transfer is made;
+c
+a stocks and shares account (whether or not in a bulk transfer of accounts) is transferred to a stocks and shares account held with the transferee immediately before the time when the transfer is made; or
+d
+a cash account is transferred (otherwise than in a bulk transfer of accounts) to a stocks and shares account held with the transferee immediately before the time when the transfer is made.
+4DB
+Where an account is transferred in a bulk transfer of accounts that is not also a transfer described in paragraph (4DA)(b) or (c), a subscription to the account after the transfer may only be made if —
+a
+the subscription is made after the account investor has, during the period of time determined in accordance with paragraph (4DC), made an application to the transferee in relation to the account in accordance with regulation 12 (with any necessary modifications where appropriate to reflect that the account has been transferred in a bulk transfer of accounts);
+b
+the subscription is made in the year immediately following a year in which a subscription has been made to the account other than a subscription permitted by virtue of paragraph (4DE); or
+c
+the subscription is permitted by virtue of paragraph (4DE).
+4DC
+The period of time referred to in paragraph (4DB)(a) is the period —
+a
+starting at the beginning of the year immediately preceding the year in which the subscription is made, and
+b
+ending immediately before the subscription is made.
+4DD
+For the purposes of paragraphs (4DB) and (4DE), the current year’s subscriptions and the previous years’ subscriptions transferred are not subscriptions to the account.
+4DE
+A subscription to an account is permitted by this paragraph if —
+a
+the account has been transferred to the transferee in a group transfer of accounts;
+b
+the most recent application in accordance with regulation 12 relating to the transferred account made before its transfer is available to the transferee; and
+c
+the subscription is made —
+i
+in the year in which the account is transferred (provided a subscription has been made to the account in that year before the account was transferred); or
+ii
+in a year immediately following a year in which a subscription has been made to the transferred account (including a subscription made before the transfer).
+4DF
+For the purposes of paragraph (4DE)(b), an application in accordance with regulation 12 as described in that paragraph is available to a transferee if —
+a
+paragraph (4DG) or (4DH) applies; and
+b
+the transferor has advised the transferee whether a subscription has been made to the transferred account in the year immediately preceding the year in which the transfer takes place.
+4DG
+This paragraph applies where the application described in paragraph (4DE)(b) (or a copy of it) is held by the transferee.
+4DH
+This paragraph applies where —
+a
+the application described in paragraph (4DE)(b) (or a copy of it) is held by the transferor; and
+b
+the transferee can require the transferor to make it available to the transferee for any purpose necessary to ensure the transferee’s compliance with these regulations.
+4DI
+An account transferred in accordance with this regulation in a bulk transfer of accounts is an account opened in accordance with regulation 12 for the purposes of these Regulations whether or not an application in accordance with regulation 12 as described in paragraph (4DB)(a) is made.
+;
+e
+for paragraph (5), substitute —
+5
+Where an account is transferred, the transferor must, subject to paragraph (5B), give to the transferee a notice containing the information specified in paragraph (6) before the relevant time specified in paragraph (5A).
+5A
+The relevant time specified in this paragraph is —
+a
+in the case of an account transferred in a bulk transfer of accounts, the time of the transfer;
+b
+in any other case, the expiry of 30 days after the day of the transfer.
+5B
+Paragraph (5) does not apply where a transferor provides information to a transferee in accordance with regulation 21A(2)(b)(ii).
+.
+17
+In regulation 21A (further requirements relating to transfers between cash accounts) —
+a
+for paragraph (3)(b)(iii), substitute —
+iii
+in relation to the transfer of an account that is not a junior ISA account, the date on which the first subscription (if any) was made to the account in the year in which the transfer takes place,
+iiia
+in relation to the transfer of an account that is a junior ISA account, the date on which the subscription described in paragraph (3A) was made (if appropriate), and
+;
+b
+after paragraph (3), insert —
+3A
+The subscription referred to in paragraph (3)(b)(iiia) is the first subscription to the account provided the subscription is made in the same year as the transfer.
+.
+18
+In regulation 21B (transfers relating to junior ISA accounts) —
+a
+in paragraph (8), after “shall” insert “, subject to paragraph (8A),”;
+b
+after paragraph (8), insert —
+8A
+Paragraph (8) does not apply where an account is transferred in a bulk transfer of accounts.
+8B
+Where an account is transferred in a bulk transfer of accounts, a subscription to the account after the transfer may only be made if —
+a
+an application to the transferee in relation to the account in accordance with regulation 12A (with any necessary modifications where appropriate to reflect that the account has been transferred in a bulk transfer of accounts) has been made; or
+b
+the subscription is permitted by virtue of paragraph (8D).
+8C
+For the purposes of paragraphs (8B) and (8E), the current year’s subscriptions and the previous years’ subscriptions transferred are not subscriptions to the account.
+8D
+A subscription to an account is permitted by this paragraph where —
+a
+the account has been transferred to the transferee in a group transfer of accounts; and
+b
+the most recent application in accordance with regulation 12A relating to the transferred account made before its transfer is available to the transferee.
+8E
+For the purposes of paragraph (8D)(b), an application in accordance with regulation 12A as described in that paragraph is available to a transferee if —
+a
+paragraph (8F) or (8G) applies; and
+b
+the transferor has advised the transferee whether a subscription has been made to the transferred account in the year immediately preceding the year in which the transfer takes place.
+8F
+This paragraph applies where the application described in paragraph (8D)(b) (or a copy of it) is held by the transferee.
+8G
+This paragraph applies where —
+a
+the application described in paragraph (8D)(b) (or a copy of it) is held by the transferor; and
+b
+the transferee can require the transferor to make it available to the transferee for any purpose necessary to ensure the transferee’s compliance with these regulations.
+8H
+An account transferred in accordance with this regulation in a bulk transfer of accounts is a junior ISA account opened pursuant to an application in accordance with regulation 12A for the purposes of these Regulations whether or not an application in accordance with regulation 12A as described in paragraph (8B)(a) is made.
+;
+c
+for paragraph (10), substitute —
+10
+Where an account is transferred, the transferor must, subject to paragraph (10B), give to the transferee a notice containing the information specified in paragraph (11) before the relevant time specified in paragraph (10A).
+10A
+The relevant time specified in this paragraph is —
+a
+in the case of an account transferred in a bulk transfer of accounts, the time of the transfer;
+b
+in any other case, the expiry of 30 days after the day of the transfer.
+10B
+Paragraph (10) does not apply where a transferor provides information to a transferee in accordance with regulation 21A(2)(b)(ii).
+;
+d
+for paragraph (11)(b)(iv), substitute —
+iv
+the date on which the subscription described in paragraph (12) was made (if appropriate), and
+;
+e
+after paragraph (11), insert —
+12
+The subscription referred to in paragraph (11)(b)(iv) is the first subscription to the account provided the subscription is made in the same year as the transfer.
+.
+19
+In regulation 29 (records to be kept by account manager) —
+a
+renumber the existing provision as paragraph (1) of regulation 29;
+b
+after that paragraph, insert —
+2
+Where an account is transferred by an account manager (“the transferor”) to another account manager (“the transferee”) in a group transfer of accounts, any records (or copies of records) kept by the transferor in respect of the account at the time when it is transferred shall be treated for the purposes of this regulation as kept by the transferee for so long as sub-paragraphs (a), (b) and (c) of paragraph (3) apply.
+3
+For the purposes of paragraph (2) —
+a
+this sub-paragraph applies if the records described in paragraph (2) are kept by the transferor;
+b
+this sub-paragraph applies if the transferor and transferee are members of the same group of companies; and
+c
+this sub-paragraph applies if the transferee can require the transferor to make the records available to the transferee for any purpose necessary to ensure the transferee’s compliance with these regulations.
+.
+20
+In regulation 31 (returns of information by account manager) —
+a
+in paragraph (3)(c)(ii), for “paragraph (3A)” insert “paragraphs (3A) and (3AB)(a)”;
+b
+in paragraph (3)(c)(iii), for “paragraph (3B) insert “paragraphs (3AB)(b) and (3B)”; and
+c
+after paragraph (3A), insert —
+3AB
+Where a defaulted cash account subscription in accordance with regulation 5D (subscriptions disregarded for the purposes of the subscription limits in regulations 4ZA and 4ZB) is made to an account in the year or part of the year for which a return required by this regulation is made —
+a
+the amount of subscriptions reported to an account manager in accordance with regulation 5DF(1)(a)(ii) (current year’s subscriptions made to the defaulted cash account) must be included as part of the total amount of cash subscribed to the account required by paragraph (3)(c)(ii);
+b
+paragraph (3)(c)(iii) must be construed as requiring (in addition to the information specified in that paragraph) the date reported to the account manager in accordance with regulation 5DF(1)(a)(iii).
+.
+Jeremy Wright
+Angela Watkinson
+Two of the Lords Commissioners of Her Majesty’s Treasury
+16th July 2012

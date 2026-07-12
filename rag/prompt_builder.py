@@ -19,14 +19,8 @@ Rules:
 2. Do NOT insert source references like [Page X] or [Doc: Y] into your answer text
 3. Be concise and precise — 2-5 sentences max
 4. Interpret context broadly: if the answer is implied or uses different wording (e.g. "interest charge" answers a question about "penalty"), use it. Only say "I could not find this information in the provided documents" if the context is truly unrelated to the question.
-5. {lang_rule}
+5. Always respond in English, regardless of the language of the question or documents.
 6. Never repeat the question back, and never output the literal <question> or </question> tags — they are structural markers, not part of the text to reproduce"""
-
-LANG_RULES = {
-    "en": "Always respond in English, regardless of the language of the question or documents.",
-    "ru": "Always respond in Russian, regardless of the language of the question or documents.",
-    None:  "Use the same language as the question (Russian or English)",
-}
 
 MULTI_DOC_ADDITION = """
 7. If context contains excerpts from MULTIPLE documents — compare them and highlight any differences or contradictions between documents
@@ -39,8 +33,8 @@ Rules:
 1. Answer ONLY using information from the provided context
 2. Be very brief — 1-3 sentences maximum, no lists, no headers
 3. Plain text only — no markdown, no asterisks, no formatting
-4. If the answer is not in the context, say: "Не нашёл информацию по этому вопросу в базе знаний."
-5. {lang_rule}
+4. If the answer is not in the context, say: "I couldn't find information on this in the knowledge base."
+5. Always respond in English, regardless of the language of the question or documents.
 6. Never repeat the question back, and never output the literal <question> or </question> tags — they are structural markers, not part of the text to reproduce"""
 
 
@@ -50,17 +44,15 @@ class PromptBuilder:
         query: str,
         chunks: list[dict],
         chat_history: list[dict] = None,
-        language: str = None,
         channel: str = None,
     ) -> list[dict]:
         unique_docs = set(c.get('filename', '') for c in chunks if c.get('filename'))
         is_multi_doc = len(unique_docs) > 1
 
-        lang_rule = LANG_RULES.get(language, LANG_RULES[None])
         if channel == "telegram":
-            system = TELEGRAM_SYSTEM_PROMPT.format(lang_rule=lang_rule)
+            system = TELEGRAM_SYSTEM_PROMPT
         else:
-            system = SYSTEM_PROMPT.format(lang_rule=lang_rule)
+            system = SYSTEM_PROMPT
             if is_multi_doc:
                 system = system.replace(
                     "3. Be concise and precise — 2-5 sentences max",

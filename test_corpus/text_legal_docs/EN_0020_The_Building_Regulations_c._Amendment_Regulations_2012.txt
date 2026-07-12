@@ -1,0 +1,784 @@
+The Building Regulations &c. (Amendment) Regulations 2012
+The Secretary of State makes the following Regulations in exercise of the powers conferred by sections 1, 2A, 16(9) and (10), 17(1) and (6), 34, 47(1) to (5), 49(5), 50(1), (4) and (6), 51(1) and (2), 51A(2), (3) and (6) and 56(1) and (2) of and paragraphs 1, 2, 4, 4A, 6, 7, 8, 9 and 10 of Schedule 1 to the Building Act 1984:
+Citation, extent, application, and commencement
+1
+1
+These Regulations may be cited as The Building Regulations &c. (Amendment) Regulations 2012.
+2
+These Regulations extend to England and Wales.
+3
+Subject to paragraph (4), these Regulations do not apply in relation to any building in Wales, other than an excepted energy building.
+4
+Regulations 14, 15, 16, 17, 18, 19, 22 and 23 apply in relation to —
+a
+educational buildings and buildings of statutory undertakers in Wales;
+b
+Crown buildings in Wales; and
+c
+building work carried out or proposed to be carried out by Crown authorities in Wales.
+5
+Each provision of these Regulations mentioned in the second column of the Table in Schedule 1 shall come into force on the date mentioned in the first column of that Table, for the purpose mentioned in the third column.
+6
+In this regulation —
+“excepted energy building” has the same meaning as in the Schedule to the Welsh Ministers (Transfer of Functions)(Order No.2) Order 2009 ;
+“Crown authority” means the Crown Estate Commissioners, a Minister of the Crown, a government department, any other person or body whose functions are performed on behalf of the Crown (not being a person or body whose functions are performed on behalf of Her Majesty in her private capacity), or a person acting in right of the Duchy of Lancaster or the Duchy of Cornwall;
+“Crown building” means a building in which there is a Crown interest or Duchy interest;
+“Crown interest” means an interest belonging to Her Majesty in right of the Crown, or belonging to a government department, or held in trust for Her Majesty for the purposes of a government department;
+“Duchy interest” means an interest belonging to Her Majesty in right of the Duchy of Lancaster, or belonging to the Duchy of Cornwall; and
+“educational buildings and buildings of statutory undertakers” means buildings that fall within section 4(1)(a), (b) or (c) of the Building Act 1984.
+PART 1 The Building Regulations 2010
+Amendment of the Building Regulations 2010
+2
+The Building Regulations 2010 (“the 2010 Regulations ”) are amended as set out in regulations 3 to 32.
+Interpretation
+3
+In regulation 2(1) —
+a
+in the definition of “energy efficiency requirements”, after “23”, insert “25A, 25B”;
+b
+after the definition of “energy efficiency requirements” insert —
+“energy performance certificate” means a certificate which complies with the requirements of regulation 29 of these Regulations;
+c
+for the definition of “fixed building services” substitute —
+“fixed building services” means any part of, or any controls associated with —
+fixed internal or external lighting systems (but not including emergency escape lighting or specialist process lighting);
+fixed systems for heating, hot water, air conditioning or mechanical ventilation; or
+any combination of systems of the kinds referred to in paragraph (a) or (b);
+.
+Limitation on requirements
+4
+In regulation 8, omit “N”.
+Exempt buildings and work
+5
+In regulation 9(3)(a), after “greenhouse” insert “used for domestic purposes”.
+Giving of building notice or deposit of plans
+6
+In regulation 12 —
+a
+after paragraph (6) insert —
+6A
+A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or deposit full plans where the work consists of —
+a
+the installation of a new circuit;
+b
+the replacement of a consumer unit; or
+c
+any addition or alteration to existing circuits in a special location.
+; and
+b
+in paragraph (9) —
+i
+after the definition of “fronting”, omit “and”; and
+ii
+after the definition of “private street”, omit “.” and insert —
+; and
+“special location” means —
+within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends —
+vertically from the finished floor level to —
+a height of 2.25 metres; or
+the position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; and
+horizontally —
+where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; or
+where there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; or
+a room containing a swimming pool or sauna heater.
+.
+Full Plans
+7
+In regulation 14, omit paragraph (5).
+Consultation with sewerage undertaker
+8
+In regulation 15(2)(b), for “pursuant to a request under regulation 14(5)” substitute “or 17A”.
+Notice of commencement and completion of certain stages of work
+9
+Regulation 16 is amended as follows —
+a
+omit paragraphs (2) and (3), and substitute —
+2
+Subject to paragraph (8), a person carrying out building work must notify the local authority as required by the authority in accordance with paragraph (3).
+3
+Subject to the conditions in paragraphs (3A) and (3B), where a local authority receives notice of intention to commence building work under paragraph (1) they may give the person carrying out the work a notice in writing which —
+a
+requires that person to notify the authority that a specified stage of the work (other than a stage specified in paragraphs (4) and (5)) has been reached; and
+b
+may specify one or more periods of time, applying to each such required notification, which may be either or both of the following —
+i
+a period before or after the work has been carried out within which the notification must be made; and
+ii
+a period during which the work concerned must not be covered up.
+3A
+A local authority may only specify a stage of the building work in accordance with paragraph (3)(a) if at the time they do so they intend to carry out an inspection of that stage.
+3B
+For the purposes of paragraph (3A) the local authority’s intention to carry out an inspection of a stage of building work must be based on their assessment of the risk of breach of these Regulations if they do not inspect the work..
+;
+b
+in paragraph (5), after the words “where a building is being erected”, add “to which the Regulatory Reform (Fire Safety) Order 2005 applies, or will apply after the completion of the work”; and
+c
+in paragraph (6), for “to (3)” substitute “or (2)”.
+Completion certificates
+10
+Regulation 17 is amended as follows —
+a
+for paragraphs (1) to (3) substitute —
+1
+A local authority shall within the specified period give a completion certificate in all cases (including a case where a certificate has already been given under regulation 17A) where they are satisfied, after taking all reasonable steps, that, following completion of building work carried out on it, a building complies with the relevant provisions.
+2
+The specified period referred to in paragraph (1) is eight weeks starting from the date on which the person carrying out the building work notifies the local authority that the work has been completed.
+2A
+The relevant provisions referred to in paragraph (1) are any applicable requirements of the following provisions —
+a
+regulation 25A (high-efficiency alternative systems for new buildings),
+b
+regulation 26 (target CO² emission rates for new buildings),
+c
+regulation 29 (energy performance certificates),
+d
+regulation 36 (water efficiency of new dwellings),
+e
+regulation 38 (fire safety information), and
+f
+Schedule 1.
+; and
+b
+after paragraph (4), insert —
+5
+The certificate must include a statement describing its evidentiary effect, in terms substantially the same as paragraph(4).
+11
+After the end of regulation 17, insert —
+Certificate for building occupied before work is completed
+17A
+1
+A local authority shall within the specified period give a completion certificate in respect of part or all of a building where building work is being carried out and where all of the following circumstances apply —
+a
+part or all of the building is to be occupied before the work is completed;
+b
+the building is subject to the Regulatory Reform (Fire Safety) Order 2005; and
+c
+the authority is satisfied, after taking all reasonable steps, that, regardless of completion of the current building work, those parts of the building which are to be occupied before completion of the work currently comply with regulation 38 and Part B of Schedule 1.
+2
+The specified period referred to in paragraph (1) is four weeks starting from the date that notice is received by the local authority in accordance with regulation 16(5).
+3
+A certificate given in accordance with this regulation shall be evidence (but not conclusive evidence) that the requirements specified in the certificate have been complied with, and the certificate shall contain this wording.
+4
+The certificate must include a statement describing its evidentiary effect, in terms substantially the same as paragraph (3)
+.
+Supervision of building work otherwise than by local authorities
+12
+In regulation 19(1), after “17 (completion certificates)” insert “17A (Certificate for building occupied before work is completed)”.
+Provisions applicable to self-certification schemes
+13
+Regulation 20 is amended as follows —
+a
+after the end of paragraph (3)(b)(ii) insert —
+3A
+A local authority shall store in a retrievable form copies of the notices and certificates given to it in accordance with paragraph (3)(b).
+3B
+If the whole or part of the work was paid for using a green deal plan, the person carrying out the work must include —
+a
+in the certificate referred to in paragraph (2); and
+b
+in the notice given to the local authority referred to in paragraph (3)(b)(i),
+a statement to that effect.
+3C
+Such a statement that relates to a part of the work must specify which part was paid for using the green deal plan.
+3D
+In this regulation, “green deal plan” has the meaning given in section 1 of the Energy Act 2011.
+b
+after the end of paragraph (4) insert —
+5
+A certificate given in accordance with this regulation shall be evidence (but not conclusive evidence) that the requirements specified in the certificate have been complied with, and the certificate shall contain this wording.
+6
+The certificate must include a statement describing its evidentiary effect, in terms substantially the same as paragraph (5).
+.
+Application of energy efficiency requirements
+14
+In regulation 21(5) for “European Parliament and Council Directive 2002/91/ EC of 16 December 2002 on the energy performance of buildings” substitute “European Parliament and Council Directive 2010/31/ EU of 19 May 2010 on the energy performance of buildings (recast)”.
+Requirements relating to thermal elements
+15
+For regulation 23 (and the heading before it) substitute —
+Requirements for the renovation or replacement of thermal elements
+23
+1
+Where the renovation of an individual thermal element —
+a
+constitutes a major renovation; or
+b
+amounts to the renovation of more than 50% of the element’s surface area;
+the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.
+2
+Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement —
+a
+constitutes a major renovation; or
+b
+(in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;
+the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.
+.
+Minimum energy performance requirements for new buildings
+16
+In regulation 25 for “based upon” substitute “set in accordance with”.
+Consideration of high-efficiency alternative systems for new buildings (new regulation 25A) and nearly zero-energy requirements for new buildings (new regulation 25B)
+17
+After regulation 25 ((minimum energy performance requirements for new buildings), insert —
+Consideration of high-efficiency alternative systems for new buildings
+25A
+1
+Before construction of a new building starts, the person who is to carry out the work must analyse and take into account the technical, environmental and economic feasibility of using high-efficiency alternative systems (such as the following systems) in the construction, if available —
+a
+decentralised energy supply systems based on energy from renewable sources;
+b
+cogeneration;
+c
+district or block heating or cooling, particularly where it is based entirely or partially on energy from renewable sources; and
+d
+heat pumps.
+2
+The person carrying out the work must —
+a
+not later than the beginning of the day before the day on which the work starts, give the local authority a notice which states that the analysis referred to in paragraph (1) —
+i
+has been undertaken;
+ii
+is documented; and
+iii
+the documentation is available to the authority for verification purposes; and
+b
+ensure that a copy of the analysis is available for inspection at all reasonable times upon request by an officer of the local authority.
+3
+An authorised officer of the local authority may require production of the documentation in order to verify that this regulation has been complied with.
+4
+The analysis referred to in paragraph (1) —
+a
+may be carried out for individual buildings or for groups of similar buildings or for common typologies of buildings in the same area; and
+b
+in so far as it relates to collective heating and cooling systems, may be carried out for all buildings connected to the system in the same area.
+5
+In this regulation —
+a
+“cogeneration” means simultaneous generation in one process of thermal energy and one or both of the following —
+i
+electrical energy;
+ii
+mechanical energy;
+b
+“district or block heating or cooling” means the distribution of thermal energy in the form of steam, hot water or chilled liquids, from a central source of production through a network of multiple buildings or sites, for the use of space or process heating or cooling;
+c
+“energy from renewable sources” means energy from renewable non-fossil sources, namely wind, solar, aerothermal, geothermal, hydrothermal and ocean energy, hydropower, biomass, landfill gas, sewage treatment plant gas and biogases; and
+d
+“heat pump” means a machine, a device or installation that transfers heat from natural surroundings such as air, water or ground to buildings or industrial applications by reversing the natural flow of heat such that it flows from a lower to a higher temperature. (For reversible heat pumps, it may also move heat from the building to the natural surroundings.)
+Nearly zero-energy requirements for new buildings
+25B
+Where a building is erected, it must be a nearly zero-energy building.
+.
+Energy performance certificates
+18
+In regulation 29 —
+a
+in paragraph 4(c), for “that category of building”, substitute “the category of building to which the certificate relates”;
+b
+at the end of paragraph (4)(c) —
+i
+omit “and”; and
+ii
+insert —
+cc
+include a recommendation report unless there is no reasonable potential for energy performance improvements (in terms of the applicable energy efficiency requirements);
+cd
+be valid in accordance with paragraph (9); and
+;
+c
+for paragraph (4)(d)(i), substitute —
+the reference number under which the set of data from which the certificate may be produced has been entered onto the register in accordance with regulation 30(4);
+;
+d
+omit paragraph (5); and
+e
+after paragraph (7) insert —
+8
+Certification for a building which consists of a single dwelling may be based on the assessment of another representative building of similar design and size with a similar actual energy performance quality, provided such correspondence is guaranteed by the energy assessor issuing the energy performance certificate.
+9
+An energy performance certificate is only valid if —
+a
+it was entered on the register no more than 10 years before the date on which it is made available; and
+b
+no other energy performance certificate for the building has since been entered on the register.
+10
+An energy performance certificate must not contain any information or data (except for the address of the building) from which a living individual (other than the energy assessor or his employer) can be identified.
+.
+Recommendation reports (new regulation 29A)
+19
+After regulation 29 (energy performance certificates) insert —
+Recommendation reports
+29A
+1
+In these Regulations a “recommendation report” means recommendations made by an energy assessor for the cost-effective improvement of the energy performance of a building.
+2
+A recommendation report must include —
+a
+recommended cost-effective measures that could be carried out in connection with a major renovation of the building envelope or fixed building services;
+b
+recommended cost-effective measures for individual building elements that could be carried out without the necessity for a major renovation of the building envelope or fixed building services;
+c
+an indication as to how the owner or tenant can obtain more detailed information about improving the energy efficiency of the building, including more detailed information about the cost-effectiveness of the recommendations; and
+d
+information on the steps to be taken to implement the recommendations.
+3
+Any cost-effective measure which the energy assessor recommends must be technically feasible for the building to which the recommendation report relates.
+4
+In this regulation “building element” means a controlled service or fitting or a thermal element of the building envelope.
+.
+Energy assessors
+20
+In regulation 30 —
+a
+for paragraph (3)(g), substitute —
+for requiring the sets of data from which may be produced energy performance certificates and recommendation reports prepared by members of the scheme to be entered onto the relevant register referred to in paragraph (4);
+and
+b
+in paragraph (4) for “regulation 31 of the Energy Performance of Buildings (Certificates and Inspections)(England and Wales) Regulations 2007 ” substitute “regulation 27 of the Energy Performance of Buildings (England and Wales) Regulations 2012 ”.
+Right to copy documents
+21
+In regulation 33 for “the Energy Performance of Buildings (Certificates and Inspections) (England and Wales) Regulations 2007” substitute “the Energy Performance of Buildings (England and Wales) Regulations 2012”.
+Application of building regulations to educational buildings, buildings of statutory undertakers and Crown buildings
+22
+For regulation 34 (and the preceding heading), substitute —
+Application of building regulations to educational buildings, buildings of statutory undertakers and Crown buildings
+34
+1
+Regulations 23(1)(a), 25A, 25B, 26, 29 (apart from regulation 29(10)), 29A apply (in so far as applicable by virtue of regulation 21) to —
+a
+educational buildings and buildings of statutory undertakers (notwithstanding section 4(1) of the Act);
+b
+Crown buildings; and
+c
+building work carried out or proposed to be carried out by Crown authorities.
+2
+In this regulation, a reference to “educational buildings and buildings of statutory undertakers” means buildings which fall within paragraphs (a), (b) or (c) of section 4(1) of the Act.
+.
+Interpretation of Part 6
+23
+In regulation 35(1) —
+a
+after the definition of “building” insert —
+“building envelope” in relation to a building means the walls, floor, roof, windows, doors, roof windows and roof-lights;
+“Crown authority” means the Crown Estate Commissioners, a Minister of the Crown, a government department, any other person or body whose functions are performed on behalf of the Crown (not being a person whose functions are performed on behalf of Her Majesty in her private capacity), or a person acting in right of the Duchy of Lancaster or the Duchy of Cornwall;
+“Crown interest” means an interest belonging to Her Majesty in right of the Crown, or belonging to a Government Department, or held in trust for Her Majesty for the purposes of a government department;
+“Crown building” means a building in which there is a Crown interest or a Duchy interest;
+“Duchy interest” means an interest belonging to her Majesty in right of the Duchy of Lancaster, or belonging to the Duchy of Cornwall;
+;
+b
+after the definition of “energy assessor” —
+i
+omit “and”; and
+ii
+insert —
+“major renovation” means the renovation of a building where more than 25% of the surface area of the building envelope undergoes renovation; and
+“nearly zero-energy building” means a building that has a very high energy performance, as determined in accordance with a methodology approved under regulation 24, where the nearly zero or very low amount of energy required should be covered to a very significant extent by energy from renewable sources, including energy from renewable sources produced on-site or nearby.
+; and
+c
+omit the definition of “recommendation report”.
+Pressure testing
+24
+In regulation 43(4), after “British Institute of Non-destructive Testing” insert “or the Air Tightness Testing and Measurement Association” .
+Contravention of certain regulations not to be an offence
+25
+For regulation 47 substitute —
+47
+The following regulations are designated as provisions to which section 35 of the Act (penalty for contravening building regulations) does not apply —
+a
+regulations 17, 17A, 25A, 27, 29, 37, 41, 42, 43 and 44; and
+b
+regulations 23, 25B and 26, in so far as these Regulations apply to Crown buildings or to building work carried out or proposed to be carried out by Crown authorities.
+.
+Electronic service of documents
+26
+In regulation 48(1) —
+a
+in sub-paragraph (d) after “regulation 17” insert “or regulation 17A”;
+b
+after sub-paragraph (g) insert —
+ga
+a notice under regulation 25A;
+.
+Schedule 1 to the 2010 Regulations - Requirements
+27
+In Schedule 1 to the 2010 Regulations —
+a
+for Part K (protection from falling, collision and impact), substitute Part K set out in Schedule 2 to these Regulations; and
+b
+omit Part N (Glazing-safety in relation to impact, opening and cleaning).
+Schedule 2 to the 2010 Regulations – Exempt buildings and works
+28
+In Class 7, for “Part N” substitute “Part K4, K5.1, K5.2, K5.3, and K5.4”.
+Schedule 3 to the 2010 Regulations – Self-certification schemes
+29
+1
+In column 1 of Schedule 3 —
+a
+in paragraphs 1, 3 and 4, add “(This paragraph does not apply to the provision of a masonry chimney.)”.
+b
+in paragraph 10, after “electrical controls” insert “in buildings other than dwellings”;
+c
+in paragraph 11, after “installations” insert “in dwellings”; and
+d
+in paragraph 12, after “installations” insert “in dwellings”.
+2
+In column 2 of Schedule 3 —
+a
+for “Ascertiva Group Limited” or “ECA Certification Limited” (whichever occurring), substitute “Certsure LLP (in respect of work carried out in England and excepted energy buildings in Wales)”, provided that, where the substitution results in a duplicate reference in the same paragraph of the table, the second reference is to be omitted;
+b
+in paragraph 3 —
+i
+after “Benchmark Certification Limited ” omit “(other than in respect of work carried out in England and or in relation to excepted energy buildings in Wales);
+ii
+for “or” substitute “,”; and
+iii
+before “in respect of that type of work” insert “or Stroma Certification Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales)”;
+c
+in paragraph 5, after Benchmark Certification Limited omit “(other than in respect of work carried out in England or in relation to excepted energy buildings in Wales)”;
+d
+in paragraph 8 —
+i
+for “or” substitute “,”; and
+ii
+before “in respect of that type of work” insert “ECA Certification Limited , NAPIT Registration Limited (in respect of work carried out in England and excepted energy buildings in Wales) or Stroma Certification Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales).”;
+e
+in paragraph 9 —
+i
+after “Building Engineering Services Competence Assessment Limited (in respect of work carried out in England and excepted energy buildings in Wales)”, insert “ECA Certification Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales)”;
+ii
+for “or” where it first occurs, substitute “,”; and
+iii
+before “in respect of that type of work”, insert “or Stroma Certification Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales)”;
+f
+in paragraph 10, after “Ascertiva Group Limited” insert “Benchmark Certification Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales)”;
+g
+in paragraph 13 —
+i
+after “BM Trada Certification Limited” insert “Benchmark Certification Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales)”;
+ii
+after “CERTASS Limited” insert “NAPIT Registration Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales);
+iii
+for “or” where it occurs a second time, substitute “,”; and
+iv
+after “Network VEKA Limited” insert “ or Stroma Certification Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales)”
+h
+in paragraph 14 —
+i
+after “Building Engineering Services Competence Assessment Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales)”, insert “, ECA Certification Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales), HETAS Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales)”;
+ii
+for “or” where it occurs a second time, substitute “,”; and
+iii
+after “NAPIT registration Limited” insert “or Stroma Certification Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales)”;
+i
+in paragraph 15, after “Building Engineering Services Competence Assessment Limited (in respect of work carried out in England and excepted energy buildings in Wales)”, insert “ECA Certification Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales), HETAS Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales)”;
+j
+in paragraph 16 —
+i
+after “Building Engineering Services Competence Assessment Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales)”, insert “ECA Certification Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales), HETAS Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales)”;
+ii
+for “or” where it occurs a second time, substitute “,”; and
+iii
+after “NAPIT registration Limited” insert “or Stroma Certification Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales)”;
+k
+in paragraph 18, after “Cavity Insulation Guarantee Agency Limited” insert “Ascertiva Group Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales), Benchmark Certification Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales), NAPIT Registration Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales) or Stroma Certification Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales)”;
+l
+in paragraph 19, after “registered by” insert NAPIT Registration Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales) or”; and
+m
+in paragraph 21, after “BM Trada Certification Limited” insert “CERTASS Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales), Stroma Certification Limited (in respect of work carried out in England or in relation to excepted energy buildings in Wales)”.
+30
+Omit paragraph 20 of Schedule 3.
+31
+After paragraph 21 of Schedule 3, add the following paragraphs —
+22. Installation of insulating material to the internal walls of a building. In respect of work carried out in England or in relation to excepted energy buildings in Wales, a person registered by Ascertiva Group Limited, Benchmark Certification Limited, CERTASS Limited, NAPIT Registration Limited or Stroma Certification Limited in respect of that type of work. 23 . Installation of insulating material to the external walls of a building, not including insulation of demountable-clad buildings. In respect of work carried out in England or in relation to excepted energy buildings in Wales, a person registered by Ascertiva Group Limited, Benchmark Certification Limited, CERTASS Limited, NAPIT Registration Limited or Stroma Certification Limited in respect of that type of work. 24 . Installation of insulation material to both external and internal walls of a building (“hybrid insulation”), not including insulation of demountable-clad buildings. In respect of work carried out in England or in relation to excepted energy buildings in Wales, a person registered by Ascertiva Group Limited, Benchmark Certification Limited or NAPIT Registration Limited in respect of that type of work.
+.
+Schedule 4 to the 2010 Regulations – Descriptions of work where no building notice or deposit of full plans required
+32
+In Schedule 4 —
+a
+omit —
+i
+paragraph 1(a) to (e);
+ii
+paragraph 2;
+iii
+paragraph 3; and
+iv
+the definitions of “kitchen”, “special installation” and “special location” in paragraph 4; and
+b
+after paragraph 3 insert —
+3A
+Installation of thermal insulation to suspended timber floors where the work —
+a
+consists of the installation of such insulation only; and
+b
+the work is not carried out in order to comply with any requirements of these Regulations.
+.
+PART 2 The Building (Local Authority Charges) Regulations 2010
+Amendment of the Building (Local Authority Charges) Regulations 2010
+33
+After the definition of “chargeable function” in regulation 2 of the Building (Local Authority Charges) Regulations 2010 , insert —
+“officer” includes a person contracted by the local authority or a person employed by such a contractor, to perform a chargeable function or provide chargeable advice but does not include a consultant of the kind referred to in regulation 7(3);
+.
+PART 3 The Building (Approved Inspectors etc. ) Regulations 2010
+Amendment of the Building (Approved Inspectors etc.) Regulations 2010
+34
+The Building (Approved Inspectors etc.) Regulations 2010 (“the Approved Inspectors Regulations 2010”) are amended as set out in regulations 35 to 44.
+Approved inspector’s insurance (new regulation 5A)
+35
+After the end of regulation 5, insert —
+Approved inspector’s insurance
+5A
+1
+Subject to paragraph (2), an approved inspector who gives a notice or certificate specified in paragraph (2) to a local authority must ensure that, before or on the date of the notice or certificate, the person who approved that inspector (the Secretary of State or a body designated under regulation 3 as the case may be) is in possession of a declaration of insurance in respect of the work to which the notice or certificate relates.
+2
+Paragraph (1) applies to a notice or certificate given on or after 6th April 2013 which is —
+a
+an initial notice;
+b
+an amendment notice;
+c
+a plans certificate;
+d
+a combined initial notice and plans certificate; or
+e
+a final certificate.
+3
+In this regulation a “declaration of insurance” means a declaration of insurance signed by the insurer that a named scheme of insurance approved by the Secretary of State applies to the approved inspector in relation to the building work to which the notice or certificate relates.
+Lists of approvals and designations
+36
+Regulation 7 is amended as follows —
+a
+in paragraph (1) —
+i
+omit “maintain”;
+ii
+at the beginning of sub-paragraph (a) insert “maintain”;
+iii
+at the end of sub-paragraph (a) omit “and”;
+iv
+at the beginning of sub-paragraph (b) insert “maintain”;
+v
+after “Secretary of State” in sub-paragraph (b), insert —
+, and
+c
+in respect of each approved inspector listed, keep a copy of —
+i
+the approval certificate, and
+ii
+the declaration of insurance referred to in regulation 5A;
+; and
+b
+in paragraph (3), at the end of sub-paragraph (a) —
+i
+omit “and”; and
+ii
+insert —
+aa
+in respect of each approved inspector listed, keep a copy of —
+i
+the approval certificate, and
+ii
+the declaration of insurance referred to in regulation 5A; and
+.
+Functions of approved inspectors
+37
+In regulation 8(1) —
+a
+in sub-paragraph (a), after “23 (requirements relating to thermal elements),” insert “25A (consideration of high-efficiency alternative systems for new buildings),”; and
+b
+in sub-paragraph (b), after “regulations 20,” insert “25A,”.
+Form, grounds and period for rejecting final certificate
+38
+In regulation 16, after the end of paragraph (2) insert —
+3
+A final certificate given by an approved inspector to a local authority in accordance with these Regulations shall be evidence (but not conclusive evidence) that the requirements specified in the certificate have been complied with.
+.
+Application of regulations 20, 27, 29, 37, 41, 42, 43 and 44 of the 2010 Regulations
+39
+For regulation 20(1) and the preceding heading, substitute —
+Application of regulations, 20, 25A, 27, 29, 37, 41, 42, 43 and 44 of the Principal Regulations
+20
+1
+Regulations 20 (provisions applicable to self-certification schemes), 25A (consideration of high-efficiency alternative systems for new buildings), 27 (CO² emission rate calculations), 29 (energy performance certificates), 37 (wholesome water consumption calculation), 41 (sound insulation testing), 42 (mechanical ventilation air flow rate testing), 43 (pressure testing) and 44 (commissioning) of the Principal Regulations apply in relation to building work which is the subject of an initial notice as if references to the local authority were references to the approved inspector.
+.
+Register of notices and certificates
+40
+In regulation 30, omit paragraph (2)(c).
+Schedule 1 to the Approved Inspectors Regulations 2010
+41
+1
+The numbered forms specified in Schedule 1 are amended as specified in paragraphs 2 to 7.
+2
+In Form 1 (initial notice) —
+a
+omit sub-paragraphs (a) and (b) of paragraph 4;
+b
+after the end of paragraph 11 insert —
+12
+I (7) am an approved inspector for the purposes of Part 2 of the Act and the above work is [the whole]/[part] of the work described in this initial notice given by me and dated: (12)
+13
+Copies of the notice of approval and of a declaration of insurance relevant to the work described in this notice are on the register kept by the body designated under regulation 3 of the 2010 Regulations.
+; and
+c
+after Note (11) insert —
+12
+Insert date.
+.
+3
+In Form 2 (amendment notice) —
+a
+omit sub-paragraphs (b) and (d) of paragraph 3;
+b
+after the end of paragraph 11 insert —
+12
+I (6) am an approved inspector for the purposes of Part 2 of the Act and the above work is [the whole]/[part] of the work described in an initial notice given by me and dated: (11)
+13
+Copies of the notice of approval and of a declaration of insurance relevant to the work described in this notice are on the register kept by the body designated under regulation 3 of the 2010 Regulations.
+; and
+c
+after Note (10) insert —
+11
+Insert date.
+.
+4
+In Form 3 (plans certificate), omit paragraph 3 and in its place insert —
+3
+Copies of the notice of approval and of a declaration of insurance relevant to the work described in this notice are on the register kept by the body designated under regulation 3 of the 2010 Regulations.
+.
+5
+In Form 4 (combined initial notice and plans certificate) —
+a
+omit sub-paragraphs (a) and (b) of paragraph 4;
+b
+after the end of paragraph 15 insert —
+16
+I (7) am an approved inspector for the purposes of Part 2 of the Act and the above work is [the whole]/[part] of the work described in an initial notice given by me and dated: (13)
+17
+Copies of the notice of approval and of a declaration of insurance relevant to the work described in this notice are on the register kept by the body designated under regulation 3 of the 2010 Regulations.
+; and
+c
+after Note (12) insert —
+13
+Insert date.
+.
+6
+In Form 5 (final certificate) —
+a
+omit paragraph (6) and in its place insert —
+6
+Copies of the notice of approval and of a declaration of insurance relevant to the work described in this notice are on the register kept by the body designated under regulation 3 of the 2010 Regulations.
+; and
+b
+after paragraph 8 insert —
+9
+This certificate is evidence (but not conclusive evidence) that the requirements specified in the certificate have been complied with.
+.
+7
+In Form 12 (public body’s final certificate), after paragraph 6 insert —
+7
+This certificate is evidence (but not conclusive evidence) that the requirements specified in the certificate have been complied with.
+.
+Schedule 2 to the Approved Inspectors Regulations 2010
+42
+In Schedule 2 —
+a
+omit paragraph 5; and
+b
+for paragraph 6 substitute —
+6
+In the case of a notice dated on or after 6th April 2013, having taken all reasonable steps to establish whether there is a named scheme of insurance approved by the Secretary of State in relation to the work described in the notice, the local authority believe that this is not the case.
+.
+Schedule 3 to the Approved Inspectors Regulations 2010
+43
+In Schedule 3, for paragraph 6 substitute —
+6
+In the case of a certificate dated on or after 6th April 2013, having taken all reasonable steps to establish whether there is a named scheme of insurance approved by the Secretary of State in relation to the work described in the notice, the local authority believe that this is not the case.
+.
+Schedule 4 to the Approved Inspectors Regulations 2010
+44
+In Schedule 4, for paragraph 5 substitute —
+5
+In the case of a certificate dated on or after 6th April 2013, having taken all reasonable steps to establish whether there is a named scheme of insurance approved by the Secretary of State in relation to the work to which the certificate relates, the local authority believe that this is not the case.
+.
+PART 4 Transitional Provisions
+Transitional provisions: interpretation
+45
+In regulations 46 and 47 —
+“relevant notification provision” means regulation 12(2) of the Building Regulations 2010 and sections 47(1), 50, 51A(2) and 54 of the Building Act 1984; and
+“relevant regulations” means regulations 9, 15 or 17 of these Regulations.
+Work already started before certain regulations take effect
+46
+An amendment made by a relevant regulation does not apply in any case where at the time the amendment takes effect, building work has been started in accordance with any relevant notification provision applicable in relation to the work.
+Notice given or plans deposited before those regulations take effect
+47
+An amendment made by a relevant regulation does not apply in any case where —
+a
+at the time the amendment takes effect a relevant notification provision has been complied with in relation to proposed building work; and
+b
+the building work is started within the period of twelve months beginning on the day the relevant regulation takes effect.
+Signed by the authority of the Secretary of State for Communities and Local Government
+Don Foster
+Parliamentary Under Secretary of State
+Department for Communities and Local Government
+17th December 2012
+SCHEDULE 1
+Regulation 1
+Coming into force date Provision Purpose for which the provision comes into force
+9th January 2013 Regulations 1, 2, 3, 7, 8, 10, 11, 12, 14, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 29(1), 29(2)(b)-(m), 30, 31, 32(b), 33, 34, 38, 39, 45 to 47 and Schedule 1 All purposes 9th January 2013 Regulation 15 In respect of buildings occupied by public authorities 9th January 2013 Regulation 17 (for the purpose of new regulation 25A) In respect of new buildings occupied by public authorities 28th January 2013 Regulation 13(a) (in so far as it inserts paragraphs (3B), (3C) and (3D) into regulation 20) and (b) All purposes 6th April 2013 Regulation 4, 5, 6, 9, 27, 28, 29(2)(a), 32(a), 35, 36, 38, 40 to 44 and Schedule 2 All purposes 9th July 2013 Regulation 15 In respect of all buildings 9th July 2013 Regulation 17 (for the purpose of new regulation 25A) In respect of all new buildings 1st October 2013 Regulation 13(a) (so far as not otherwise commenced) All purposes 1st January 2019 Regulation 17 (for the purpose of new regulation 25B) In respect of new buildings occupied by public authorities 31 st December 2020 Regulation 17 (for the purpose of new regulation 25B) In respect of all new buildings
+SCHEDULE 2
+Regulation 27
+PART K PROTECTION FROM FALLING, COLLISION AND IMPACT
+Stairs, ladders and ramps
+K1
+Stairs, ladders and ramps shall be so designed, constructed and installed as to be safe for people moving between different levels in or about the building.
+Requirement K1 applies only to stairs, ladders and ramps which form part of the building. Protection from falling
+K2
+The following shall be provided with barriers where it is necessary to protect people in or about the building from falling —
+a
+any stairs, ramps, floors and balconies and any roof to which people have access, and
+b
+any light well, basement area or similar sunken area connected to a building.
+Requirement K2(a) applies only to stairs and ramps which form part of the building. Vehicle barriers and loading bays
+K3
+1
+Vehicle ramps and any levels in a building to which vehicles have access, shall be provided with barriers where it is necessary to protect people in or about the building.
+2
+Vehicle loading bays shall be constructed in such a way, or to be provided with such features, as may be necessary to protect people in them from collision with vehicles.
+Protection against impact with glazing
+K4
+Glazing, with which people are likely to come into contact while moving in or about the building, shall —
+a
+if broken on impact, break in a way which is unlikely to cause injury; or
+b
+resist impact without breaking; or
+c
+be shielded or protected from impact.
+Protection from collision with open windows etc.
+K5.1
+Provision shall be made to prevent people from moving in or about the building from colliding with open windows, skylights or ventilators.
+Requirement K5.1 does not apply to dwellings. Manifestation of glazing
+K5.2
+Transparent glazing with which people are likely to come into contact while moving in and about the building, shall incorporate features which make it apparent.
+Requirement K5.2 does not apply to dwellings. Safe opening and closing of windows etc.
+K5.3
+Windows, skylights and ventilators which can be opened by people in or about the building shall be so constructed or equipped that they may be opened, closed or adjusted safely.
+Requirement K5.3 does not apply to dwellings. Safe access for cleaning windows etc.
+K5.4
+Provision shall be made for any windows, skylights or translucent walls, ceilings or roofs to be safely accessible for cleaning.
+Requirement K5(4) does not apply to —
+dwellings, or
+any door or gate which is part of a lift.
+Protection against impact from trapping by doors
+K6
+1
+Provision shall be made to prevent any door or gate —
+a
+which slides or opens upwards, from falling onto any person; and
+b
+which is powered, from trapping any person.
+2
+Provision shall be made for powered doors and gates to be opened in the event of a power failure.
+3
+Provision shall be made to ensure a clear view of the space on either side of a swing door or gate.
+Requirement K5(4) does not apply to —
+dwellings, or
+any door or gate which is part of a lift.

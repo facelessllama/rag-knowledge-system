@@ -11,10 +11,8 @@ from collections import Counter
 
 from qdrant_client.models import SparseVector
 
-_CYRILLIC_RE = re.compile(r"[а-яё]")
-
 # Words that carry no search signal
-STOP_WORDS_EN = {
+STOP_WORDS = {
     "a", "an", "the", "and", "or", "but", "in", "on", "at", "to", "for",
     "of", "with", "by", "from", "is", "are", "was", "were", "be", "been",
     "being", "have", "has", "had", "do", "does", "did", "will", "would",
@@ -22,29 +20,6 @@ STOP_WORDS_EN = {
     "these", "those", "it", "its", "as", "if", "not", "no", "nor",
     "so", "yet", "both", "either", "each", "any", "all", "some",
 }
-
-STOP_WORDS_RU = {
-    "и", "в", "во", "не", "что", "он", "на", "я", "с", "со", "как", "а",
-    "то", "все", "она", "так", "его", "но", "да", "ты", "к", "у", "же",
-    "вы", "за", "бы", "по", "только", "ее", "мне", "было", "вот", "от",
-    "меня", "еще", "нет", "о", "из", "ему", "теперь", "когда", "даже",
-    "ну", "вдруг", "ли", "если", "уже", "или", "ни", "быть", "был",
-    "него", "до", "вас", "нибудь", "опять", "уж", "вам", "ведь", "там",
-    "потом", "себя", "ничего", "ей", "может", "они", "тут", "где", "есть",
-    "надо", "ней", "для", "мы", "тебя", "их", "чем", "была", "сам",
-    "чтоб", "без", "будто", "чего", "раз", "тоже", "себе", "под",
-    "будет", "ж", "тогда", "кто", "этот", "того", "потому", "этого",
-    "какой", "совсем", "ним", "здесь", "этом", "один", "почти", "мой",
-    "тем", "чтобы", "нее", "были", "куда", "зачем", "всех", "никогда",
-    "можно", "при", "наконец", "два", "об", "другой", "хоть", "после",
-    "над", "больше", "тот", "через", "эти", "нас", "про", "всего",
-    "него", "какая", "много", "разве", "три", "эту", "моя", "впрочем",
-    "хорошо", "свою", "этой", "перед", "иногда", "лучше", "чуть",
-    "том", "нельзя", "такой", "им", "более", "всегда", "конечно",
-    "всю", "между",
-}
-
-STOP_WORDS = STOP_WORDS_EN | STOP_WORDS_RU
 
 # Feature-hashing bucket count for sparse vector indices. Large enough that
 # collisions are rare for a corpus vocabulary of a few hundred thousand terms.
@@ -59,16 +34,10 @@ def _stem(token: str) -> str:
 
 
 def tokenize(text: str) -> list[str]:
-    """Lowercase, strip punctuation, remove stop words. Stems English tokens only."""
+    """Lowercase, strip punctuation, remove stop words, stem."""
     lowered = text.lower()
-    tokens = re.sub(r"[^a-zа-яё0-9\s]", " ", lowered).split()
-    result = []
-    for t in tokens:
-        if len(t) <= 1 or t in STOP_WORDS:
-            continue
-        # Stem only ASCII (English) tokens; Russian morphology is too complex for a suffix stripper
-        result.append(t if _CYRILLIC_RE.search(t) else _stem(t))
-    return result
+    tokens = re.sub(r"[^a-z0-9\s]", " ", lowered).split()
+    return [_stem(t) for t in tokens if len(t) > 1 and t not in STOP_WORDS]
 
 
 def _stable_token_index(token: str) -> int:

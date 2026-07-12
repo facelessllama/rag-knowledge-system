@@ -1,0 +1,525 @@
+The Assets of Community Value (England) Regulations 2012
+The Secretary of State, in exercise of the powers conferred by sections 87(5), 88(3), 89(4), 89(5), 91(2)(d), 92(5), 95(5)(e) and (j), 95(6), 99(1) and 101(1) of the Localism Act 2011, makes the following Regulations:
+Citation, commencement, application and interpretation
+1
+1
+These Regulations may be cited as the Assets of Community Value (England) Regulations 2012 and shall come into force on the day after they are made.
+2
+These Regulations apply in relation to England only.
+3
+In these Regulations —
+“ the Act ” means the Localism Act 2011;
+“compensation review” means a review requested in accordance with regulation 16;
+“the list”, in relation to a local authority, means the list maintained by the authority of land in that authority’s area that is land of community value, and “listed” and “listing” are to be interpreted accordingly;
+“listing review” means a review under section 92(2) of the Act (review of local authority’s decision to include land in its list);
+“neighbouring authority”: a local authority in England is a neighbouring authority in relation to any land if any part of the boundary of that authority’s area is also part of the boundary of the area of the responsible authority;
+“registrar”, “register” (other than in regulation 4(3)) and “registered estate” have the meaning given in section 132(1) of the Land Registration Act 2002 ;
+“responsible authority” in relation to any land means the local authority in whose area the land is situated;
+“a statutory compulsory purchase” in relation to any land, means a a purchase of the land by a purchaser authorised by or under an Act to acquire the land compulsorily (whether or not a purchase pursuant to the authorisation).
+4
+For the purposes of these Regulations, land is owned by a single owner if —
+a
+the land is owned by the same person; or
+b
+in a case not within sub-paragraph (a), the land is held on trusts and was settled on those trusts by the same settlor.
+List of assets of community value
+2
+A local authority must as soon as practicable after receiving information that enables it to do so make the following amendments to an entry on the list —
+a
+add to the entry —
+i
+the information that, during the six weeks beginning with the date of receipt of a notice under section 95(2) of the Act in respect of any of the land to which the entry applies, it has received a request from a community interest group with a local connection to be treated as a potential bidder in relation to land to which the notice relates;
+ii
+the name of that community interest group; and
+iii
+that restrictions on entering into a relevant disposal of the land to which the notice relates continue to apply during the six months beginning with the date the notice was received, but at the end of that six months will then not apply for a further twelve months;
+b
+amend or, as the case may be, remove the entry so as to exclude any of the land that has since it was included in the list been the subject of a relevant disposal other than one referred to in section 95(5) of the Act; and
+c
+remove the entry if —
+i
+an appeal against listing is successful, or
+ii
+the authority for any reason no longer considers the land to be land of community value.
+Land which may not be listed
+3
+A building or other land within a description specified in Schedule 1 is not land of community value (and therefore may not be listed).
+Definition of local connection
+4
+1
+For the purposes of these regulations and section 89(2)(b)(iii) of the Act, a body other than a parish council has a local connection with land in a local authority’s area if —
+a
+the body’s activities are wholly or partly concerned —
+i
+with the local authority’s area, or
+ii
+with a neighbouring authority’s area;
+b
+in the case of a body within regulation 5(1)(c), (e) or (f), any surplus it makes is wholly or partly applied —
+i
+for the benefit of the local authority’s area, or
+ii
+for the benefit of a neighbouring authority’s area; and
+c
+in the case of a body within regulation 5(1)(c) it has at least 21 local members.
+2
+For the purposes of these regulations and section 89(2)(b)(iii) of the Act —
+a
+a parish council has a local connection with land in another parish council’s area if any part of the boundary of the first council’s area is also part of the boundary of the other council’s area; and
+b
+a parish council has a local connection with land that is in a local authority’s area but is not in any parish council’s area if —
+i
+the council’s area is within the local authority’s area, or
+ii
+any part of the boundary of the council’s area is also part of the boundary of the local authority’s area.
+3
+In paragraph (1)(c), “local member” means a member who is registered, at an address in the local authority’s area or in a neighbouring authority’s area, as a local government elector in the register of local government electors kept in accordance with the provisions of the Representation of the People Acts .
+Voluntary or community bodies
+5
+1
+For the purposes of section 89(2)(b)(iii) of the Act, but subject to paragraph (2), “a voluntary or community body” means —
+a
+a body designated as a neighbourhood forum pursuant to section 61F of the Town and Country Planning Act 1990 ;
+b
+a parish council;
+c
+an unincorporated body —
+i
+whose members include at least 21 individuals, and
+ii
+which does not distribute any surplus it makes to its members;
+d
+a charity;
+e
+a company limited by guarantee which does not distribute any surplus it makes to its members;
+f
+an industrial and provident society which does not distribute any surplus it makes to its members; or
+g
+a community interest company .
+2
+A public or local authority may not be a voluntary or community body, but this does not apply to a parish council.
+3
+In this regulation “industrial and provident society” means a body registered or deemed to be registered under the Industrial and Provident Societies Act 1965 which meets one of the conditions in section 1 of that Act
+Contents of community nominations
+6
+A community nomination must include the following matters —
+a
+a description of the nominated land including its proposed boundaries;
+b
+a statement of all the information which the nominator has with regard to —
+i
+the names of current occupants of the land, and
+ii
+the names and current or last-known addresses of all those holding a freehold or leasehold estate in the land;
+c
+the nominator’s reasons for thinking that the responsible authority should conclude that the land is of community value; and
+d
+evidence that the nominator is eligible to make a community nomination.
+Procedure when considering whether to list land
+7
+The responsible authority must decide whether land nominated by a community nomination should be included in the list within eight weeks of receiving the nomination.
+8
+A local authority which is considering whether land nominated by a community nomination should be included in the list must take all practicable steps to give the information that it is considering listing the land to —
+a
+a parish council if any of the land is in the council’s area;
+b
+the owner of the land;
+c
+where the owner is not the freeholder —
+i
+the holder of the freehold estate in the land; and
+ii
+the holder of any leasehold estate in the land other than the owner; and
+d
+any lawful occupant of the land.
+Notice of inclusion or removal
+9
+A local authority which gives notice under section 91 of the Act must, in addition to the persons specified in that section, give it to —
+a
+where they are not the owner, the holder of the freehold estate in the land and the holder of any leasehold estate in the land, and
+b
+a parish council if any of the land is in the council’s area.
+Procedure to be followed for listing review
+10
+Where an owner of listed land asks the responsible authority to carry out a listing review, the review is to be carried out in accordance with the procedure set out in Schedule 2.
+Appeal against listing review decision
+11
+1
+An owner of listed land may appeal to the First-Tier Tribunal against the local authority’s decision on a listing review in respect of the land.
+2
+The owner referred to in paragraph (1) may be either the owner who requested the review, or a subsequent owner of part or the whole of the land.
+Community interest groups
+12
+For the purposes of these regulations and section 95(3)(a) of the Act —
+a
+a parish council is a community interest group in relation to land to which a notice under section 95(2) of the Act relates if any of the land is in the council’s area; and
+b
+a body is a community interest group in relation to any land if the body —
+i
+is within one or more of sub-paragraphs (d) to (g) of regulation 5(1); and
+ii
+has a local connection with the land.
+Moratorium
+13
+1
+Where the responsible authority receives notice under section 95(2) of the Act in relation to any listed land, an owner of the land may enter into a relevant disposal of any of that land to a community interest group at any time in the eighteen months beginning with the date of receipt of the notice.
+2
+Section 95(1) of the Act does not apply to a relevant disposal of listed land in the cases set out in Schedule 3.
+Compensation
+14
+1
+An owner or former owner of listed land or of previously listed land, other than an owner or former owner specified in regulation 15, is entitled to compensation from the responsible authority of such amount as the authority may determine where the circumstances in paragraph (2) apply.
+2
+The circumstances mentioned in paragraph (1) are that the person making the claim has, at a time when the person was the owner of the land and the land was listed, incurred loss or expense in relation to the land which would be likely not to have been incurred if the land had not been listed.
+3
+For the avoidance of doubt, and without prejudice to other types of claim which may be made, the following types of claim may be made —
+a
+a claim arising from any period of delay in entering into a binding agreement to sell the land which is wholly caused —
+i
+by relevant disposals of the land being prohibited by section 95(1) of the Act during any part of the relevant six weeks that is on or after the date on which the responsible authority receives notification under section 95(2) of the Act in relation to the land, or
+ii
+in a case where the prohibition continues during the six months beginning with that date, by relevant disposals of the land being prohibited during any part of the relevant six months that is on or after that date; and
+b
+a claim for reasonable legal expenses incurred in a successful appeal to the First-Tier Tribunal against the responsible authority’s decision —
+i
+to list the land,
+ii
+to refuse to pay compensation, or
+iii
+with regard to the amount of compensation offered or paid.
+4
+In paragraph (3)(a) “the relevant six weeks” means the six weeks, and “the relevant six months” means the six months, beginning with —
+a
+the date on which the responsible authority receives notification under section 95(2) of the Act in relation to the land, or
+b
+if earlier, the earliest date on which it would have been reasonable for that notification to have been given by the owner who gave it.
+5
+A claim for compensation must —
+a
+be made in writing to the responsible authority;
+b
+be made before the end of thirteen weeks after the loss or expense was incurred or (as the case may be) finished being incurred;
+c
+state the amount of compensation sought for each part of the claim; and
+d
+be accompanied by supporting evidence for each part of the claim.
+6
+The responsible authority must give the claimant written reasons for its decisions with respect to a request for compensation.
+15
+The following are not entitled to compensation under regulation 14 —
+a
+an authority or other body in respect of loss or expense incurred at a time when it has accounts which are required by section 2 of the Audit Commission Act 1998 to be audited in accordance with that Act;
+b
+a department, authority or other body in respect of loss or expense incurred at a time when section 6 of the National Audit Act 1983 (“the 1983 Act ”) applies to it; and
+c
+an authority or body in respect of loss or expense incurred in any of its financial years if its use of resources in that year is examinable under section 7 of the 1983 Act.
+Review by local authority of compensation decision
+16
+1
+A person who has under regulation 14 made a claim for compensation may ask the responsible authority concerned to review either or both of its decisions, made in response to that claim, as to —
+a
+whether compensation should be paid to that person, and
+b
+if compensation is to be paid, the amount of that compensation.
+2
+If a request for a compensation review is made in accordance with the provisions of paragraph 2 of Schedule 2, the authority must in accordance with the procedure in Schedule 2 review the decision or decisions of which review is requested.
+3
+Where an authority carries out a compensation review, the authority must give written notification to the person who asked for the review of —
+a
+the decision on the review, and
+b
+the reasons for the decision.
+Appeal against compensation review decision
+17
+Where a local authority has carried out a compensation review, the person who requested the review may appeal to the First-Tier Tribunal against any decision of the authority on the review.
+Duty of local authority regarding restriction entered in the register in respect of listed land
+18
+Where a local authority which has caused a restriction in Form QQ to be entered in respect of a registered estate subsequently removes the land to which the registered estate relates from the list, the authority must as soon after doing so as is practicable apply to the registrar for cancellation of the restriction.
+Duties of owners and mortgagees in respect of listed land
+19
+1
+Where listed land is entered in the register on an application for first registration of the land made to the registrar —
+a
+by an owner of the land, or
+b
+under rule 21 of the Land Registration Rules 2003 , by a mortgagee in the name of the owner,
+the applicant must, as soon as is practicable after the land is entered in the register, inform the responsible authority of that.
+2
+A person who as a result of a disposal has become the owner of listed land must as soon as practicable after becoming the owner give the responsible authority —
+a
+information that the disposal has taken place; and
+b
+full details of —
+i
+the name of the person who has become the owner including, where that person is a body corporate subject to registration, its place of registration and registered number; and
+ii
+the address of that person.
+3
+In this regulation —
+a
+“owner” includes a person who would be an owner as defined in section 107 of the Act —
+i
+but for the effect of section 7(1) and (2) of the Land Registration Act 2002 ; or
+ii
+if the disposition to that person had been completed by registration in accordance with section 27(1) of that Act; and
+b
+“disposal” means a transfer of a freehold estate or a grant or assignment of a leasehold estate in land, including —
+i
+a relevant disposal, and
+ii
+a binding agreement to make a disposal.
+Amendments to Land Registration Rules
+20
+The Land Registration Rules 2003 are amended as set out in Schedule 4.
+Consequences of non-compliant disposal
+21
+1
+Subject to paragraph (2), a disposal of listed land is ineffective if it is a disposal that contravenes section 95(1) of the Act.
+2
+Paragraph (1) does not apply if the person making the disposal, having made all reasonable efforts to find out if the land to be disposed of is listed, does not know that it is listed at the time the disposal is entered into.
+Signed by the authority of the Secretary of State for the Department for Communities and Local Government
+Don Foster
+Parliamentary Under Secretary of State
+Department for Communities and Local Government
+20th September 2012
+SCHEDULE 1
+Land which is not of community value (and therefore may not be listed)
+Regulation 3
+1
+1
+Subject to sub-paragraph (5) and paragraph 2, a residence together with land connected with that residence.
+2
+In this paragraph, subject to sub-paragraphs (3) and (4), land is connected with a residence if —
+a
+the land, and the residence, are owned by a single owner; and
+b
+every part of the land can be reached from the residence without having to cross land which is not owned by that single owner.
+3
+Sub-paragraph (2)(b) is satisfied where a part of the land cannot be reached from the residence by reason only of intervening land in other ownership on which there is a road, railway, river or canal, provided that the additional requirement in sub-paragraph (4) is met.
+4
+The additional requirement referred to in sub-paragraph (3) is that it is reasonable to think that sub-paragraph (2)(b) would be satisfied if the intervening land were to be removed leaving no gap.
+5
+Land which falls within sub-paragraph (1) may be listed if —
+a
+the residence is a building that is only partly used as a residence; and
+b
+but for that residential use of the building, the land would be eligible for listing.
+2
+For the purposes of paragraph 1 and this paragraph —
+a
+“residence” means a building used or partly used as a residence;
+b
+a building is a residence if —
+i
+it is normally used or partly used as a residence, but for any reason so much of it as is normally used as a residence is temporarily unoccupied;
+ii
+it is let or partly let for use as a holiday dwelling;
+iii
+it, or part of it, is a hotel or is otherwise principally used for letting or licensing accommodation to paying occupants; or
+iv
+it is a house in multiple occupation as defined in section 77 of the Housing Act 2004 ; and
+c
+a building or other land is not a residence if —
+i
+it is land on which currently there are no residences but for which planning permission or development consent has been granted for the construction of residences;
+ii
+it is a building undergoing construction where there is planning permission or development consent for the completed building to be used as a residence, but construction is not yet complete; or
+iii
+it was previously used as a residence but is in future to be used for a different purpose and planning permission or development consent for a change of use to that purpose has been granted.
+3
+Land in respect of which a site licence is required under Part 1 of the Caravan Sites and Control of Development Act 1960 , or would be so required if paragraphs 1, 4, 5 and 10 to 11A of Schedule 1 to that Act were omitted.
+4
+Operational land as defined in section 263 of the Town and Country Planning Act 1990 .
+SCHEDULE 2
+Procedure for listing review and compensation review
+Regulation 10 and regulation 16
+Time for requesting a listing review
+1
+1
+Except as specified in sub-paragraph (2), a request for a listing review must be made in writing before the end of a period of eight weeks beginning with the day on which written notice of inclusion of the land in the list was given by the responsible authority under section 91(2) of the Act, or such longer period as the authority may in writing allow.
+2
+Where the authority takes reasonable alternative steps to bring the notice to the attention of the owner in accordance with section 91(2), a request for a listing review must be made before the end of a period of eight weeks beginning with the day on which the authority completes the taking of those steps.
+Time for requesting a compensation review
+2
+A request for a compensation review must be made in writing before the end of a period of eight weeks beginning with the date on which the responsible authority provides the owner with written notification of its reasons in accordance with regulation 14(6), or such longer period as the authority may in writing allow.
+Procedure for reviews
+3
+In the following provisions of this Schedule, “the review” means a listing review or a compensation review.
+4
+An officer of the authority of appropriate seniority who did not take any part in making the decision to be reviewed (“the reviewer”) shall carry out the review and make the review decision.
+5
+1
+The owner may appoint any representative (whether legally qualified or not) to act on his or her behalf in connection with the review.
+2
+The local authority must provide to the representative any document which is required to be sent to the owner, and need not provide that document separately to the owner.
+6
+As soon as is practicable following the written request for the review, the authority shall notify the owner of the procedure to be followed in connection with the review.
+7
+1
+An oral hearing must be held at the owner’s written request.
+2
+Where no written request for an oral hearing is made by the owner, the authority may decide whether or not to include an oral hearing in the review process.
+8
+Both the owner and the owner’s representative may make representations to the reviewer orally or in writing or both orally and in writing.
+9
+The authority must complete the review by the end of the period of eight weeks beginning with the date the authority receives the written request for the review, or such longer period as is agreed with the owner in writing.
+SCHEDULE 3
+Relevant disposals to which section 95(1) of the Act does not apply
+Regulation 13
+1
+A disposal pursuant to an order made by a court or by a tribunal established by or under an Act.
+2
+1
+A disposal made pursuant to a separation agreement made between spouses or civil partners.
+2
+A disposal made pursuant to an agreement —
+a
+made between spouses or civil partners in connection with their separation, or between former spouses or former civil partners, and
+b
+relating to the care of a child dependent on a party to the agreement.
+3
+1
+Any disposal made under, or for the purposes of, any statutory provision relating to incapacity.
+2
+In this paragraph —
+a
+“incapacity” includes any of the following (whether temporary or permanent) —
+i
+physical impairment,
+ii
+mental impairment, and
+iii
+lack of, or impairment to, capacity to deal with financial and property matters; and
+b
+“statutory provision” means any provision contained in an Act or in an instrument made under an Act.
+4
+1
+Subject to sub-paragraph (2), a disposal —
+a
+to a particular person in pursuance of a requirement that it should be made to that person under a planning obligation entered into in accordance with section 106 of the Town and Country Planning Act 1990; or
+b
+made in pursuance of the exercise of a legally enforceable —
+i
+option to buy,
+ii
+nomination right,
+iii
+right of pre-emption, or
+iv
+right of first refusal.
+2
+A disposal is not within sub-paragraph (1)(a) if it is of land that was listed when the obligation was entered into; and a disposal is not within sub-paragraph (1)(b) if it is of land that was listed when the option or right was granted.
+5
+1
+A disposal by a transferor, “T”, to a former owner, where both the conditions in paragraph (2) are satisfied.
+2
+The conditions referred to in paragraph (1) are that —
+a
+the land was acquired by T or by a predecessor in title of T by a purchase that was a statutory compulsory purchase (“the original purchase”); and
+b
+T has made a first offer of the land to the former owner, in accordance with an obligation to offer back the land to the former owner before disposing of the land on the open market.
+3
+In this paragraph —
+a
+“former owner” means —
+i
+the person, “P”, from whom the land was acquired under the original purchase; or
+ii
+a successor to P; and
+b
+“successor” means the person on whom the land, had it not been acquired by T or a predecessor of T, would clearly have devolved under P’s will or intestacy, and includes a person who has succeeded, otherwise than by purchase, to adjoining land from which the land was severed by the original purchase.
+6
+1
+Disposal in exercise of a power of sale of the land by a person who has that power by way of security for a debt.
+2
+The reference in sub-paragraph (1) to a power of sale includes in particular a power implied by virtue of section 101(1)(i) of the Law of Property Act 1925 .
+7
+A disposal pursuant to insolvency proceedings as defined by Rule 13.7 of the Insolvency Rules 1986 .
+8
+A disposal of land to a person whose acquisition of the land is a statutory compulsory purchase.
+9
+A grant of a tenancy of the land pursuant to the provisions of Part 4 of the Agricultural Holdings Act 1986 .
+10
+1
+A disposal by one body corporate to another, where the second one is a group undertaking in relation to the first.
+2
+In this paragraph, “group undertaking” has the meaning given by section 1161(5) of the Companies Act 2006 .
+11
+1
+A part-listed disposal as specified in section 95(5)(e) of the Act where, subject to sub-paragraphs (2) and (3), the following conditions are satisfied with regard to the land which is being disposed of —
+a
+the land is owned by a single owner; and
+b
+every part of the land can be reached from every other part without having to cross land which is not owned by that single owner.
+2
+Sub-paragraph (1)(b) is satisfied where a part of the land cannot be reached from every other part of the land by reason only of intervening land in other ownership on which there is a road, railway, river or canal, provided that the additional requirement in sub-paragraph (3) is met.
+3
+The additional requirement referred to in sub-paragraph (2) is that it would be reasonable to think that sub-paragraph (1)(b) would be satisfied if the intervening land were to be removed leaving no gap.
+12
+A disposal of a church, together with any land annexed or belonging to it, pursuant to a scheme under Part 6 of the Mission and Pastoral Measure 2011 .
+13
+1
+A disposal by any person for the purpose of enabling health service provision to continue to be provided on the land.
+2
+In this paragraph, “health service provision” means services provided as part of the health service continued under section 1(1) of the National Health Service Act 2006 .
+14
+1
+A disposal of land to be held for the purposes of —
+a
+subject to sub-paragraph (2), a school as defined in section 4 of the Education Act 1996 ;
+b
+a 16 to 19 Academy ; or
+c
+an institution within the further education sector as defined in section 91(3) of the Further and Higher Education Act 1992 .
+2
+For the purposes of sub-paragraph (1)(a), “school” does not include an independent school other than one in respect of which Academy arrangements have been entered into by the Secretary of State under section 1 of the Academies Act 2010.
+3
+For the purposes of sub-paragraph (2), “independent school” has the meaning given in section 463 of the Education Act 1996.
+15
+A disposal which is subject to a statutory requirement regarding the making of the disposal, where that requirement could not be observed if the requirements of section 95(1) of the Act were complied with.
+SCHEDULE 4
+Amendments to Land Registration Rules
+Regulation 20
+1
+The Land Registration Rules 2003 are amended as follows.
+2
+After rule 27, insert —
+First registration – where land is or was listed as land of community value
+27A
+1
+An owner of listed land who applies for first registration of that land, or where rule 21 applies a mortgagee who makes such an application in the name of the owner, must at the same time apply for entry of a restriction in Form QQ in respect of that land.
+2
+Where a person applies for first registration of land and any of the deeds and documents accompanying the application (in accordance with rule 24(1)(c)) includes a conveyance or lease to the applicant or to a predecessor in title made at any time when the land was listed land, the applicant must in respect of each such conveyance or lease provide a certificate by a conveyancer that the conveyance or lease did not contravene section 95(1) of the Localism Act 2011.
+3
+In this rule —
+a
+“listed land” means land entered in a local authority’s list of assets of community value maintained under section 87(1) of the Localism Act 2011, and
+b
+“owner” has the same meaning as in section 107 of the Localism Act 2011, except that it includes a person who would be such an owner but for the effect of section 7(1) and (2) of the Act.
+.
+3
+In rule 93 —
+a
+in paragraph (w), omit the final “and”, and
+b
+after paragraph (x) add —
+y
+a local authority where it has entered land, the title to which is registered, in its list of assets of community value which it maintains in accordance with section 87(1) of the Localism Act 2011, and is applying for a restriction in form QQ to be entered in the register for that land, and
+z
+a mortgagee under a mortgage falling within section 4(1)(g) of the Act who makes an application for first registration under rule 21, where the estate charged relates to land entered in a local authority’s list of assets of community value maintained under section 87(1) of the Localism Act 2011, and is applying for a restriction in Form QQ to be entered in the register of that estate.
+.
+4
+In rule 94 , after the end of paragraph (10) add —
+11
+Where a local authority has entered land in its list of assets of community value which it maintains in accordance with section 87(1) of the Localism Act 2011, an application for a restriction in Form QQ must be made —
+a
+if that land includes a registered estate the proprietor of which is an owner as defined in section 107 of that Act, as soon as practicable by the local authority in respect of that registered estate unless there is an existing restriction in Form QQ in respect of that estate, or
+b
+if the title to the land is unregistered, where required by rule 27A(1).
+.
+5
+In rule 217(3) , for “ PP ” substitute “QQ”.
+6
+In Schedule 4 , at the end (after the end of the provision regarding Form PP) add —
+Form QQ (Land included in a list of assets of community value maintained under section 87(1) of the Localism Act 2011)
+No transfer or lease is to be registered without a certificate signed by a conveyancer that the transfer or lease did not contravene section 95(1) of the Localism Act 2011.

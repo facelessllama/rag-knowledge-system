@@ -5,30 +5,6 @@ let availableModels = [];
 let activeFolderName = '';
 const openFolders = new Set();
 let chatHistory = [];
-let currentLang = 'ru';
-
-const LANGS = {
-  ru: { flag: '🇷🇺', label: 'RU' },
-  en: { flag: '🇬🇧', label: 'EN' },
-};
-
-function toggleLangDropdown() {
-  var dd = document.getElementById('langDropdown');
-  var btn = document.getElementById('langBtn');
-  var show = !dd.classList.contains('show');
-  dd.classList.toggle('show', show);
-  btn.classList.toggle('open', show);
-}
-
-function selectLang(lang) {
-  currentLang = lang;
-  document.getElementById('langBtnFlag').textContent = LANGS[lang].flag;
-  document.getElementById('langBtnLabel').textContent = LANGS[lang].label;
-  document.getElementById('langOptRu').classList.toggle('active', lang === 'ru');
-  document.getElementById('langOptEn').classList.toggle('active', lang === 'en');
-  document.getElementById('langDropdown').classList.remove('show');
-  document.getElementById('langBtn').classList.remove('open');
-}
 
 function esc(text) {
   const d = document.createElement('div');
@@ -113,12 +89,6 @@ function closeModelDropdown() {
 document.addEventListener('click', function(e) {
   // Model dropdown close
   if (!document.getElementById('modelSelector').contains(e.target)) closeModelDropdown();
-
-  // Lang dropdown close
-  if (!document.getElementById('langSelector').contains(e.target)) {
-    document.getElementById('langDropdown').classList.remove('show');
-    document.getElementById('langBtn').classList.remove('open');
-  }
 
   // Source card click
   var srcEl = e.target.closest('[data-src]');
@@ -710,7 +680,7 @@ function sendMessage(topK) {
   }
 
   var folderFilter = _folderFilterValue || null;
-  apiQueryStream(text, topK, currentModel, chatHistory, folderFilter, currentLang,
+  apiQueryStream(text, topK, currentModel, chatHistory, folderFilter,
     function onToken(token) {
       // Strip CJK characters that leak from qwen model
       var clean = token.replace(/[\u3000-\u9fff\uf900-\ufaff\ufe30-\ufe4f\uff00-\uffef]/g, '');

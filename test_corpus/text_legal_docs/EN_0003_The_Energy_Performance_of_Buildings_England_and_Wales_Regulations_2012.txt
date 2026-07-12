@@ -1,0 +1,1065 @@
+The Energy Performance of Buildings (England and Wales) Regulations 2012
+The Secretary of State makes the following Regulations in exercise of the powers conferred by section 2(2) of the European Communities Act 1972 and by section 74 of the Energy Act 2011 .
+PART 1 Introductory
+Citation, application, extent and commencement
+1
+1
+These Regulations may be cited as the Energy Performance of Buildings (England and Wales) Regulations 2012.
+2
+Subject to regulation 5 and any other exemptions in these Regulations, and notwithstanding section 4 of the Building Act 1984 , these Regulations apply to all buildings including buildings which are exempt from building regulations by virtue of that section.
+3
+These Regulations extend to England and Wales.
+4
+These Regulations shall come into force on 9th January 2013.
+Interpretation
+2
+1
+In these Regulations —
+“accreditation scheme” means a scheme approved by the Secretary of State in accordance with —
+regulation 22; or
+regulation 30 of the Building Regulations 2010 ;
+“air-conditioning system” means a combination of all the components required to provide a form of air treatment in which the temperature is controlled or can be lowered, and includes systems which combine such air treatment with the control of ventilation, humidity and air cleanliness;
+“asset rating” means a numerical indicator of the amount of energy estimated to meet the different needs associated with a standardised use of a building, calculated according to the methodology approved by the Secretary of State pursuant to regulation 24 of the Building Regulations 2010;
+“authorised recipient” means —
+either House of Parliament (or a member or officer thereof);
+a government department;
+a person or body (other than a government department or the Welsh Ministers) to which section 6 of the National Audit Act 1983 applies;
+the Welsh Ministers;
+the National Assembly for Wales;
+the Scottish Parliament, the Scottish Executive, an office-holder in the Scottish Administration or a Scottish Public Authority;
+the Northern Ireland Assembly or a Northern Ireland Department;
+a county council, district council or parish council in England;
+a London borough council;
+the Common Council of the City of London;
+the Greater London Authority;
+a local authority within the meaning of section 61 of the Local Government in Scotland Act 2003 ;
+a local authority within the meaning of section 175 of the Local Government (Wales) Measure 2011 ;
+a council of a district or borough within the meaning of the Local Government Act (Northern Ireland) 1972 ;
+a university, including a university college (or any institution in the nature of a college in a university) or a school or hall of a university;
+a provider of higher education as defined in section 579(1) of the Education Act 1996 (“the 1996 Act ”) (other than one mentioned in paragraph (o) above);
+a provider of further education as defined in section 2(3) to (5) of the 1996 Act ;
+a charity whose purposes include —
+the conduct of research into the earth’s climate or environment or research into the construction, design or use of buildings, or
+the promotion of energy efficiency in buildings;
+a registered provider of social housing;
+a person who operates an accreditation scheme approved by the Secretary of State under regulation 22;
+a green deal relevant person;
+the holder of a licence under section 6(1)(c) or (d) of the Electricity Act 1989 (distribution and supply licences) which has been modified by the Secretary of State under section 41(1) of the Energy Act 2008 (power to amend licence conditions etc : feed-in tariffs); and
+a person (other than a natural person) who is certificated under the scheme known as the “Microgeneration Certification Scheme” ;
+“building” means a roofed construction having walls, for which energy is used to condition the indoor climate;
+“building envelope” means the integrated elements of a building which separate its interior from the outdoor environment;
+“building unit” means a section, floor or apartment within a building which is designed or altered to be used separately;
+“bulk access data” means any data entered onto a register as required by regulation 27(2);
+“display energy certificate” means a certificate which complies with regulation 15;
+“dwelling” means a building or part of a building occupied or intended to be occupied as a separate dwelling;
+“energy assessor” means an individual who is a member of an accreditation scheme;
+“energy from renewable sources” means energy from renewable non-fossil sources, namely wind, solar, aerothermal, geothermal, hydrothermal and ocean energy, hydropower, biomass, landfill gas, sewage treatment plant gas and biogases;
+“energy performance certificate” means a certificate which —
+in the case of a certificate entered on the register before 9th January 2013 complied with the requirements of regulation 11(1) of the Energy Performance of Buildings (Certificates and Inspections) (England and Wales) Regulations 2007 ;
+in the case of a certificate entered on the register on or after 9th January 2013 complies with the requirements of regulation 9(1) of these Regulations; or
+complies with the requirements of regulation 29 of the Building Regulations 2010;
+“general access data” means information that is required by these Regulations to be included in an energy performance certificate, a display energy certificate, an inspection report, or a recommendation report;
+“green deal plan” means an energy plan which is a green deal plan in accordance with section 1(3) of the Energy Act 2011;
+“green deal relevant person” means a person who, after the coming into force of framework regulations made under section 3(1) of the Energy Act 2011 —
+is authorised by the Secretary of State to act as a green deal provider pursuant to those regulations,
+is a body specified or authorised for the purposes of subsection (1)(a) of that section, or
+operates a scheme for the purpose of assessing whether persons are qualified to act as advisors in relation to green deal plans;
+“inspection report” means a report issued by an energy assessor in accordance with regulation 19(1);
+“keeper of the register” means the Secretary of State, or the person keeping a register on the Secretary of State’s behalf;
+“nominated date”, in relation to a display energy certificate, means a date no later than three months after the end of the period over which the operational rating is calculated, which is nominated by the energy assessor who issued the certificate;
+“operational rating” means a numeric indicator of the amount of energy consumed during the occupation of the building over a period of 12 months ending no earlier than three months before the nominated date, calculated according to the methodology approved by the Secretary of State for the purposes of regulation 24 of the Building Regulations 2010;
+“penalty charge notice” means a notice given pursuant to regulation 36;
+“personal data” has the meaning given in section 1(1) of the Data Protection Act 1998 ;
+“register” means a register required to be maintained under regulation 27;
+“relevant person” (other than in the phrase “green deal relevant person”) means —
+in relation to a building which is to be sold, the seller;
+in relation to a building which is to be rented out, the prospective landlord;
+in relation to an air-conditioning system, the person who has control of the operation of the system; and
+in relation to a building which is constructed, the person who carries out the construction;
+“report reference number” means the unique number assigned by the keeper of the register to each energy performance certificate or display energy certificate;
+“total useful floor area” means the gross floor area as measured in accordance with the guidance issued from time to time by the Royal Institution of Chartered Surveyors or by any body replacing that Institution.
+Meaning of “prospective buyer or tenant”
+3
+A person becomes a prospective buyer or tenant in relation to a building when he or she —
+a
+requests any information about the building from the relevant person or the relevant person’s agent for the purpose of deciding whether to buy or rent the building;
+b
+makes a request to view the building for the purpose of deciding whether to buy or rent the building; or
+c
+makes an offer, whether oral or written, to buy or rent the building.
+Recommendation reports
+4
+1
+In these Regulations, a “recommendation report” means recommendations made by an energy assessor for the cost-effective improvement of the energy performance of a building or building unit.
+2
+A recommendation report made on or after 9th January 2013 must include —
+a
+recommended cost-effective measures that could be carried out in connection with a major renovation of the building envelope or technical building systems;
+b
+recommended cost-effective measures for individual building elements that could be carried out without the necessity for a major renovation of the building envelope or technical building systems;
+c
+an indication as to how the owner or tenant can obtain more detailed information about improving the energy efficiency of the building, including more detailed information about the cost-effectiveness of the recommendations; and
+d
+information on the steps to be taken to implement the recommendations.
+3
+Any cost-effective measure which the energy assessor recommends must be technically feasible for the building to which the recommendation report relates.
+4
+A recommendation report made on or after 9th January 2013 ceases to be valid at the end of the following periods —
+a
+for a report which is included in an energy performance certificate, ten years from the date of that certificate;
+b
+for a report which is required to be held in respect of the building under regulation 14(3)(a) —
+i
+where the nominated date applying to the report is before 9th January 2013, seven years, or
+ii
+where the nominated date applying to the report is on or after 9th January 2013, ten years.
+5
+In this regulation —
+a
+“building envelope” has the meaning given in regulation 29A(4) of the Building Regulations 2010 .
+b
+“major renovation” means the renovation of a building where more than 25% of the surface area of the building envelope undergoes renovation; and
+c
+“technical building systems” means technical equipment for the heating, cooling, ventilation, hot water, lighting (or for any combination thereof) of a building or building unit.
+PART 2 Duties relating to Energy Performance Certificates
+Application of Part 2
+5
+1
+This Part does not apply to —
+a
+buildings officially protected as part of a designated environment or because of their special architectural or historical merit, in so far as compliance with certain minimum energy performance requirements would unacceptably alter their character or appearance;
+b
+buildings used as places of worship and for religious activities;
+c
+temporary buildings with a time of use of two years or less;
+d
+industrial sites, workshops and non-residential agricultural buildings with low energy demand;
+e
+non-residential agricultural buildings which are in use by a sector covered by a national sectoral agreement on energy performance;
+f
+residential buildings which are used or intended to be used —
+i
+for less than four months of the year, or
+ii
+for a limited annual time of use and with an expected energy consumption of less than 25% of what would be the result of all-year use; and
+g
+stand-alone buildings with a total useful floor area of less than 50m².
+2
+Nothing in this Part requires an energy performance certificate to be given or made available to a prospective buyer or tenant at any time before the construction of the building has been completed.
+Energy performance certificates on sale and rent
+6
+1
+Subject to regulation 8, this regulation applies where a building is to be sold or rented out.
+2
+The relevant person shall make available free of charge a valid energy performance certificate to any prospective buyer or tenant —
+a
+at the earliest opportunity; and
+b
+in any event no later than whichever is the earlier of —
+i
+in the case of a person who requests information about the building, the time at which the relevant person first makes available any information in writing about the building to the person; or
+ii
+in the case of a person who makes a request to view the building, the time at which the person views the building.
+3
+Paragraph (2) does not apply if the relevant person believes on reasonable grounds that the prospective buyer or tenant —
+a
+is unlikely to have sufficient means to buy or rent the building;
+b
+is not genuinely interested in buying or renting a building of a general description which applies to the building; or
+c
+is not a person to whom the relevant person is likely to be prepared to sell or rent out the building.
+4
+Nothing in paragraph (3) authorises the doing of anything which constitutes an unlawful act of discrimination.
+5
+The relevant person must ensure that a valid energy performance certificate has been given free of charge to the person who ultimately becomes the buyer or tenant.
+Energy performance certificates on marketing
+7
+1
+Subject to regulation 8, this regulation applies where —
+a
+a building is to be sold or rented out; and
+b
+no valid energy performance certificate is available for that building.
+2
+Before the building is put on the market, the relevant person must secure that an energy performance certificate is commissioned for the building.
+3
+Before marketing the building, a person acting on behalf of the relevant person must be satisfied that an energy performance certificate has been commissioned for the building.
+4
+The relevant person and a person acting on behalf of the relevant person must use all reasonable efforts to secure that a valid energy performance certificate is obtained for the building before the end of a period of 7 days starting with the day on which the building was first put on the market.
+5
+Where any person subject to the duty in paragraph (4) is unable, despite using all reasonable efforts, to secure that a valid energy performance certificate is obtained for the building before the end of the 7 day period specified in that paragraph, the person shall secure that the certificate is obtained before the end of the period of 21 days immediately following the 7 day period.
+6
+In this regulation —
+a
+“the market” means the property market in England and Wales;
+b
+a building is put on the market when the fact that it is or may become available for sale or rent is, with the intention of marketing the building, first made public in England and Wales by or on behalf of the relevant person;
+c
+a fact is made public when it is advertised or otherwise communicated (in whatever form and by whatever means) to the public or to a section of the public;
+d
+an energy performance certificate is commissioned when a request is made —
+i
+which is properly addressed to an energy assessor who is accredited to produce energy performance certificates for the category of building in question, and
+ii
+which is in such form, contains all such information and is accompanied by such payment or undertaking to make such payment as is usually necessary to obtain a certificate.
+Buildings to be demolished
+8
+1
+Regulations 6 and 7 do not apply in relation to a dwelling which is to be sold or rented out where the relevant person can demonstrate that —
+a
+the dwelling is suitable for demolition;
+b
+the resulting site is suitable for redevelopment;
+c
+all the relevant planning permissions, listed building consents and conservation area consents exist in relation to the demolition; and
+d
+in relation to the redevelopment —
+i
+either outline planning permission or planning permission exists, or both; and
+ii
+where relevant, listed building consent exists.
+2
+Regulation 6 does not apply in relation to any prospective buyer or tenant of a building other than a dwelling which is to be sold or rented out where —
+a
+the relevant person can demonstrate that —
+i
+the building is to be sold or rented out with vacant possession;
+ii
+the building is suitable for demolition; and
+iii
+the resulting site is suitable for redevelopment; and
+b
+the relevant person believes on reasonable grounds that the prospective buyer or tenant intends to demolish the building.
+3
+Regulation 7 does not apply in relation to a building other than a dwelling which is to be sold or rented out where the relevant person can demonstrate that —
+a
+the building is to be sold or rented out with vacant possession;
+b
+the building is suitable for demolition;
+c
+the resulting site is suitable for redevelopment;
+d
+all the relevant planning permissions, listed building consents and conservation area consents exist in relation to the demolition; and
+e
+in relation to the development —
+i
+either outline planning permission or planning permission exists, or both; and
+ii
+where relevant, listed building consent exists.
+Energy performance certificates
+9
+1
+An energy performance certificate entered on the register on or after 9th January 2013 must —
+a
+express the asset rating of the building in a way approved by the Secretary of State under regulation 24 of the Building Regulations 2010 ;
+b
+include a reference value such as a current legal standard or benchmark;
+c
+be issued by an energy assessor who is accredited to produce energy performance certificates for the category of building to which the certificate relates;
+d
+include a recommendation report unless there is no reasonable potential for energy performance improvements compared to the energy performance requirements in force;
+e
+include the following information —
+i
+the reference number under which the set of data from which the certificate may be produced has been entered onto the register in accordance with regulation 27;
+ii
+the address of the building;
+iii
+an estimate of the total useful floor area of the building; and
+iv
+the date on which it was issued; and
+f
+be valid in accordance with paragraph (2).
+2
+An energy performance certificate is only valid for the purposes of this Part if —
+a
+it was entered on the register no more than 10 years before the date on which it is made available; and
+b
+no other energy performance certificate for the building has since been entered on the register.
+3
+An energy performance certificate must not contain any information or data (except for the address of the building) from which a living individual (other than the energy assessor or his employer) can be identified.
+4
+Certification for building units on or after 9th January 2013 may be based —
+a
+for a non-residential building, on a common certification of the whole building for blocks with a common heating system; or
+b
+on the assessment of another representative apartment or unit in the same block..
+5
+Certification on or after 9th January 2013 for a building which consists of a single dwelling may be based on the assessment of another representative building of similar design and size with a similar actual energy performance quality if such correspondence is guaranteed by the energy assessor issuing the energy performance certificate.
+Display of energy performance certificates
+10
+1
+This regulation applies to a building, other than a dwelling, which satisfies all the following requirements —
+a
+it has a total useful floor area of more than 500m²;
+b
+it is frequently visited by the public; and
+c
+an energy performance certificate has been made available in accordance with —
+i
+regulation 6, or
+ii
+regulation 29(2) of the Building Regulations 2010.
+2
+In a building to which this regulation applies, the energy performance certificate must be valid, and must be displayed in a prominent place clearly visible to members of the public who visit the building.
+Statement of energy performance indicator
+11
+1
+This regulation applies to —
+a
+a building having a valid energy performance certificate
+b
+a building unit in such a building, and
+c
+a building unit having a valid energy performance certificate.
+2
+Where a building or building unit to which this regulation applies is offered for sale or rent on or after 9th January 2013, the asset rating of the building expressed in the energy performance certificate must be stated in any advertisement of the sale or rental in commercial media.
+Production of copies of energy performance certificates
+12
+Where this Part requires a relevant person to give or make available a valid energy performance certificate to any person, it is sufficient for the relevant person to give or make available a copy of a valid certificate.
+Electronic production of energy performance certificates
+13
+Where regulation 6(2) or 6(5) requires a valid energy performance certificate to be given or made available to any person, the certificate may be given or made available electronically if the intended recipient consents to receiving the certificate electronically.
+PART 3 Display Energy Certificates
+Duties relating to display energy certificates and recommendation reports
+14
+1
+This regulation applies on and after the specified date to buildings occupied by public authorities and frequently visited by the public.
+2
+In this regulation the specified date is —
+a
+for buildings with a total useful floor area of over 500m², 9th January 2013; and
+b
+for buildings with a total useful floor area of between 250m² and less than 500m², 9th July 2015.
+3
+Every occupier of a building to which this regulation applies must —
+a
+have in its possession or control at all times a valid recommendation report relating to the building unless there is no reasonable potential for energy performance improvements compared to the energy performance requirements in force; and
+b
+display at all times a valid display energy certificate in a prominent place clearly visible to members of the public who visit the building.
+4
+A display energy certificate for a building to which this regulation applies is valid for the following period —
+a
+12 months beginning with the nominated date where the total useful floor area of the building is over 1,000m²; or
+b
+10 years beginning with the nominated date in the case of any other building.
+Display energy certificates
+15
+A display energy certificate must —
+a
+subject to regulation 16, express the operational rating of the building in a way approved by the Secretary of State under regulation 24 of the Building Regulations 2010;
+b
+show the operational ratings for the building which were expressed in any certificates displayed by the occupier during the two years before the nominated date;
+c
+include a reference value such as a current legal standard or benchmark;
+d
+be issued by an energy assessor who is accredited to produce display energy certificates for that category of building;
+e
+include the following information —
+i
+the reference number under which the set of data from which the certificate may be produced has been entered onto the register in accordance with regulation 27;
+ii
+the address of the building;
+iii
+the total useful floor area of the building;
+iv
+the name of the energy assessor who issued it;
+v
+the name and address of the energy assessor’s employer, or, if he is self-employed, the name under which he trades and his address;
+vi
+the date on which it was issued;
+vii
+the nominated date; and
+viii
+the name of the approved accreditation scheme of which the energy assessor is a member.
+Change of occupier
+16
+Regulation 15(a) does not apply in relation to a display energy certificate which is displayed by an occupier of a building at any time before that occupier has been in occupation of the building for 15 months.
+PART 4 Inspection of Air-conditioning systems
+Application and interpretation of Part 4
+17
+1
+This Part applies to air-conditioning systems with an effective rated output of more than 12 kW .
+2
+Where the relevant person has the power to control the temperature of more than one individual air-conditioning unit in a building, each unit shall be considered to be a component of a single air-conditioning system for the purposes of paragraph (1).
+3
+In this Part, “effective rated output” means the maximum calorific output specified and guaranteed by the manufacturer of the system as being deliverable during continuous operation while complying with the useful efficiency indicated by the manufacturer.
+Inspections of air-conditioning systems
+18
+1
+It is the duty of the relevant person in relation to an air-conditioning system to which this Part applies to ensure that the system is inspected by an energy assessor at regular intervals not exceeding five years.
+2
+The first inspection of the system must take place before the relevant date.
+3
+In this regulation, “the relevant date” —
+a
+where the system is first put into service on or after 1st January 2008, means the last day of the period of five years beginning with the date on which the system is first put into service; and
+b
+where paragraph (a) does not apply —
+i
+in the case of a system with an effective rated output of more than 250kW, means 4th January 2009; or
+ii
+in the case of a system with an effective rated output of more than 12kW, means 4th January 2011.
+Reports
+19
+1
+Where an energy assessor undertakes an inspection of the system he must make a written report of the inspection and give it to the relevant person as soon as practicable after completing the inspection.
+2
+The inspection report must include an assessment of the air-conditioning efficiency and the sizing of the system compared to the cooling requirements of the building, and contain appropriate advice on possible improvements to the system, replacement of the system and alternative solutions.
+3
+The inspection report must be in a form including the following information —
+a
+the reference number under which the set of data from which the report may be produced has been entered onto the register in accordance with regulation 27;
+b
+the address of the building in which the system is located;
+c
+the name of the energy assessor;
+d
+the name and address of the energy assessor’s employer, or, if such a person is self-employed, the name under which that person trades and their address;
+e
+the date on which the inspection occurred; and
+f
+the name of the approved accreditation scheme of which the energy assessor is a member.
+Keeping of records etc
+20
+1
+The relevant person must keep the most recent inspection report made by an energy assessor pursuant to regulation19.
+2
+Where the relevant person changes, the previous relevant person must give to the new relevant person any inspection report kept by him under this regulation.
+Changes of relevant person
+21
+Where —
+a
+the relevant person changes; and
+b
+the new relevant person is not given any inspection report,
+the new relevant person must ensure that the system is inspected within three months of the day on which he becomes the relevantperson.
+PART 5 Energy Assessors
+Accreditation schemes
+22
+1
+An energy assessor must be a member of an accreditation scheme approved by the Secretary of State.
+2
+The terms of approval of any accreditation scheme may be limited in relation to —
+a
+the categories of building for which members may produce certificates; and
+b
+the types of air-conditioning systems members may inspect.
+3
+Before approving an accreditation scheme the Secretary of State must be satisfied that the scheme contains adequate provision —
+a
+for ensuring that members of the scheme carry out consistent and accurate energy assessments in an independent manner;
+b
+for ensuring that members of the scheme are fit and proper persons who are qualified (by their education, training and experience) to carry out energy assessments;
+c
+for requiring members of the scheme to prepare energy performance certificates, display energy certificates, recommendation reports and inspection reports using a standard form for each type of document;
+d
+for ensuring that a code is produced and published as regards the conduct required of its members;
+e
+for indemnity arrangements in relation to relevant persons and prospective or actual buyers or tenants;
+f
+for facilitating the resolution of complaints against members of the scheme;
+g
+for requiring the sets of data from which may be produced energy performance certificates, display energy certificates, recommendation reports and inspection reports prepared by members of the scheme to be entered onto the relevant register maintained by the Secretary of State pursuant to regulation 27; and
+h
+for the keeping of a register of the members of the scheme.
+Related party disclosures
+23
+An energy assessor must include in an energy performance certificate or inspection report a declaration of any personal or business relationship (other than in relation to producing the certificate or inspection report) that he has with —
+a
+the person who commissioned the certificate or inspection report;
+b
+any person on whose behalf the certificate or inspection report was commissioned; and
+c
+any person who he believes —
+i
+has or may have a personal or business relationship with a person referred to in paragraph (a) or (b); or
+ii
+has or may have an interest in the building.
+Duty of care
+24
+1
+Energy assessors must carry out energy assessments with reasonable care and skill.
+2
+The duty imposed by paragraph (1) shall be enforceable by the following persons —
+a
+the relevant person;
+b
+in the case of an energy performance certificate, any prospective or actual buyer or tenant during the period of validity of the certificate; and
+c
+in the case of a display energy certificate, the occupier of the building.
+3
+Any cause of action arising in relation to the duty imposed by paragraph (1) is deemed not to be an action founded on tort for the purposes of the Limitation Act 1980 .
+Right to copy documents
+25
+Any person may, for the purpose of complying with any duty imposed by these Regulations, copy or issue a copy of any document produced by an energy assessor.
+Meaning of energy assessment
+26
+In this Part, a reference to “energy assessment” includes a reference to —
+a
+the preparation and issuing of energy performance certificates;
+b
+the preparation and issuing of display energy certificates;
+c
+the preparation and issuing of recommendation reports;
+d
+the preparation and issuing of inspection reports;
+e
+the carrying out of any inspections undertaken for the purposes of preparing any of the documents referred to in paragraphs (a) to (d).
+PART 6 Registration and Disclosure of Data Relating to Certificates and Reports
+Registration of certificates etc
+27
+1
+The Secretary of State shall maintain one or more registers of data from which the following documents may be produced —
+a
+energy performance certificates;
+b
+display energy certificates; and
+c
+inspection reports.
+2
+An energy assessor who issues a document referred to in paragraph (1)(a) or (b) must ensure that the data which, in accordance with the methodology of calculation of the energy performance of buildings approved by the Secretary of State under regulation 24 of the Building Regulations 2010 , was used to calculate any asset rating or operational rating, and to produce the document, is entered onto the relevant register before the assessor gives the document to the person who requested that it be issued.
+3
+An energy assessor who issues an inspection report must ensure that the data required by regulation 19(3) to be included in the report is entered onto the relevant register before the assessor gives the document to the relevant person.
+4
+Each set of data entered onto the register from which a particular document may be produced —
+a
+shall be registered under a unique reference number; and
+b
+shall not be altered once registered.
+5
+Any data entered on the register must be kept on the register for a period of at least 20 years beginning on the date on which it is entered onto the register.
+Fees for entering data onto register
+28
+The keeper of the register may charge the following fees for entering data onto the register on or after 9th January 2013 —
+a
+for entering data from which an energy performance certificate which relates to a dwelling may be produced, a fee of £1.15;
+b
+for entering data from which —
+i
+an energy performance certificate which relates to a building other than a dwelling,
+ii
+a display energy certificate, or
+iii
+an inspection report,
+may be produced, a fee of £5.36.
+Disclosure of data: general
+29
+1
+A person keeping a register on the Secretary of State’s behalf must not disclose data that has been entered onto a register to any other person unless the disclosure is in accordance with regulation 30, 31 or 32.
+2
+It is an offence for a person to disclose, or permit the disclosure of, data otherwise than in accordance with paragraph (1).
+3
+A person guilty of an offence under paragraph (2) is liable on summary conviction to a fine not exceeding level 5 on the standard scale.
+Disclosure of general access data
+30
+1
+The keeper of the register may disclose general access data to any person if the conditions in paragraph (2) are met.
+2
+The conditions are that —
+a
+a request for disclosure of the data to the person has been made by means of a website operated by the keeper;
+b
+the request includes at least one of the following —
+i
+the full postcode of that building;
+ii
+the name of the road or street on which, and the name of the city, town, village or parish in which that building is located; or
+iii
+the report reference number of the valid energy performance certificate that relates to the building.
+c
+where the request is for data other than data required to be included in a display energy certificate, there is no opt-out in effect in respect of the data; and
+d
+the particular building to which the data relates is not an excluded building.
+3
+In this regulation —
+a
+an opt-out is in effect in respect of data where —
+i
+the owner or occupier of the building to which the data relates has notified the keeper that the data is not to be disclosed,
+ii
+the notice was given in writing, or by electronic communication sent to an address or location specified by the keeper for the purpose of the receipt of such notices, and
+iii
+the notice has not been withdrawn by the owner or occupier (by the means referred to in this sub-paragraph); and
+b
+“excluded building” means a building owned, occupied or used from time to time by or for the purposes of —
+i
+the Security Service, the Secret Intelligence Service or the Government Communications Headquarters;
+ii
+any of the armed forces;
+iii
+the Royal Family;
+iv
+a prison;
+v
+a contracted out prison within the meaning of the Criminal Justice Act 1991 ; or
+vi
+a young offender institution.
+Disclosure of bulk access data
+31
+1
+The keeper of the register may disclose —
+a
+bulk access data which relates solely to a display energy certificate to any person if the condition in paragraph (2)(c) is met;
+b
+other bulk access data to an authorised recipient if all of the conditions in paragraph (2) are met.
+2
+The conditions are that —
+a
+the authorised recipient has made a request for one or more specific descriptions of data to the keeper;
+b
+the request was made in writing, or by electronic communication sent to an address or location specified by the keeper for the purpose of the receipt of such requests;
+c
+the authorised recipient (other than one falling within paragraph (a), (b), (d), (e), (f) or (g) of the definition of that term in regulation 2 has paid a fee to the keeper, in the amount determined in accordance with regulation 33;
+d
+the data is disclosed in summary form and does not include any information revealing the location of an excluded building (or any information from which the location of such a building can be deduced), or revealing the address or postcode of an identifiable person where an opt-out has effect under regulation 30;
+e
+the disclosure is made subject to the condition that the data is to be used by the recipient solely for one or more of the purposes described in Part 1 of Schedule 1; and
+f
+the disclosure is made subject to the conditions set out in Part 2 of that Schedule.
+3
+The keeper of the register may refuse to disclose information under paragraph (1)(b) where the person who requests the disclosure has previously failed to comply with a condition of the kind referred to in paragraph (2)(e) or (f).
+4
+In this regulation, “excluded building” has the same meaning as in regulation 30.
+Disclosure by keeper of register
+32
+1
+The keeper of the register may disclose general access data or bulk access data —
+a
+to an enforcement authority for the purposes of their duty under regulation 34(2);
+b
+to a local authority for the purposes of their duty under section 91 of the Building Act 1984 ;
+c
+to an approved inspector for the purposes of the inspector’s functions under Part 2 of the Building Act 1984; or
+d
+for the purpose of —
+i
+the prevention or detection of crime;
+ii
+the apprehension or prosecution of alleged offenders;
+iii
+any proceedings in a court or tribunal; or
+iv
+complying with an order or a court or tribunal.
+2
+A person keeping a register on the Secretary of State’s behalf may disclose general access data or bulk access data to the Secretary of State for the purpose of enabling the Secretary of State to carry out any function under or in connection with these Regulations, or for statistical or research purposes.
+Fee for disclosure of bulk access data
+33
+1
+The amount of the fee referred to in regulation 31(2)(c) is the sum of —
+a
+the number of small data packs requested multiplied by one penny (1p);
+b
+the number of medium data packs requested multiplied by five pence (5p); and
+c
+the number of large data packs requested multiplied by ten pence (10p).
+2
+In this regulation, “small data pack”, “medium data pack” and “large data pack” have the meanings given in Schedule 2.
+PART 7 Enforcement
+Enforcement authorities
+34
+1
+Every local weights and measures authority is an enforcement authority for the purpose of this Part.
+2
+It is the duty of each enforcement authority to enforce in their area the duties under regulations 6(2), 6(5), 7(2), 7(3), 7(4), 7(5), 14(3), 18(1), 20, 21 and 35(5), and the EPC construction duty.
+3
+In this regulation, “the EPC construction duty” means the duty specified in paragraph (4) applying to a building specified in paragraph (5).
+4
+The duty is the requirement in accordance with the provisions of regulation 29 of the Building Regulations 2010 that a relevant person must, no later than five days after construction work has been completed on a building, give to the owner of the building an energy performance certificate for the building.
+5
+The buildings to which the duty in paragraph (4) applies are those specified in regulation 34(1)(a) and (b) of the Building Regulations 2010 .
+Power to require production of documents
+35
+1
+An authorised officer of an enforcement authority may require a person who appears to him to be or to have been subject to any of the duties under regulation 6, 14(3), 18(1) or 20, or the EPC construction duty, to produce for inspection a copy of —
+a
+a valid energy performance certificate;
+b
+a recommendation report; or
+c
+an inspection report.
+2
+An authorised officer of an enforcement authority may require a person who appears to him to have been subject to the duty under regulation 7(3) to produce for inspection a copy of any request made in accordance with regulation 7(6)(d).
+3
+The powers conferred by paragraphs (1) and (2) include power to take copies of any document produced for inspection.
+4
+A requirement under this regulation may not be imposed more than six months after the last day on which the person concerned was subject to such a duty in relation to the building.
+5
+It is the duty of a person subject to such a requirement to comply with it within the period of seven days beginning with the day after that on which it is imposed.
+6
+A person is not required to comply with such a requirement if he has a reasonable excuse for not complying with the requirement.
+7
+In this regulation, “the EPC construction duty” means the duty specified in paragraph (8) applying to a building specified in paragraph (9).
+8
+The duty is the requirement in accordance with the provisions of regulation 29 of the Building Regulations 2010 that a relevant person must, no later than five days after construction work has been completed on a building, give to the owner of the building an energy performance certificate for the building.
+9
+The buildings to which the duty in paragraph (4) applies are those specified in regulation 34(1)(a) and (b) of the Building Regulations 2010.
+Penalty charge notices
+36
+1
+An authorised officer of an enforcement authority may, if he believes that a person has committed a breach of any duty under regulation 6(2), 6(5), 7(2), 7(3), 7(4), 7(5), 14(3), 18(1), 20, 21, or 35(5), or the EPC construction duty, give a penalty charge notice to that person.
+2
+A penalty charge notice may not be given after the end of the period of six months beginning with the day (or in the case of a continuing breach the last day) on which the breach of duty was committed.
+3
+A penalty charge notice must —
+a
+state the officer’s belief that the person has committed a breach of duty;
+b
+give such particulars of the circumstances as may be necessary to give reasonable notice of the breach of duty;
+c
+require that person, within a period specified in the notice —
+i
+to pay a penalty charge specified in the notice; or
+ii
+to give notice to the enforcement authority that he wishes the authority to review the notice;
+d
+state the effect of regulation 41;
+e
+specify the person to whom and the address at which the penalty charge may be paid and the method or methods by which payment may be made; and
+f
+specify the person to whom and the address at which a notice requesting a review may be sent (and to which any representations relating to the review may be addressed).
+4
+The period specified under paragraph (3)(c) must not be less than 28 days beginning with the day after that on which the penalty charge notice was given.
+5
+The enforcement authority may extend the period for complying in any particular case if they consider it appropriate to do so.
+6
+The enforcement authority may, if they consider that the penalty charge notice ought not to have been given, give the recipient a notice withdrawing the penalty charge notice.
+7
+The enforcement authority must withdraw a penalty charge notice where the recipient can demonstrate that —
+a
+he took all reasonable steps and exercised all due diligence to avoid breaching the duty; or
+b
+regulation 37 (defence) applies.
+8
+In this regulation, “the EPC construction duty” means the duty specified in paragraph (9) applying to a building specified in paragraph (10).
+9
+The duty is the requirement in accordance with the provisions of regulation 29 of the Building Regulations 2010 that a relevant person must, no later than five days after construction work has been completed on a building, give to the owner of the building an energy performance certificate for the building.
+10
+The buildings to which the duty in paragraph (4) applies are those specified in regulation 34(1)(a) and (b) of the Building Regulations 2010.
+Defence when energy performance certificate unobtainable
+37
+1
+A relevant person shall not be liable to a penalty charge notice for a breach of the duty imposed by regulation 6 where he can demonstrate that —
+a
+he is not a person to whom the duty under regulation 7(2) previously applied and he made a request for an energy performance certificate as soon as possible after he became subject to the duty, and, despite all reasonable efforts and enquiries by the relevant person, he did not have in his possession or control a valid energy performance certificate at the relevant time; or
+b
+in the case of a failure to make available an energy performance certificate to a prospective tenant —
+i
+the prospective tenant was seeking to rent the building due to an emergency which required the tenant’s urgent relocation;
+ii
+at the relevant time the relevant person did not have in his possession or control a valid energy performance certificate;
+iii
+there was insufficient time in which the relevant person could reasonably have been expected to obtain a certificate before renting out the building to the prospective tenant; and
+iv
+the relevant person has given a valid energy performance certificate to the tenant as soon as reasonably practicable after renting out the building.
+2
+A relevant person shall not be liable to a penalty charge notice for a breach of the duty imposed by regulation 6 where he can demonstrate that —
+a
+he is a person to whom the duty under regulation 7(2) applies;
+b
+he complied with that duty; and
+c
+despite all reasonable efforts and enquiries by the relevant person he did not have in his possession or control a valid energy performance certificate at the relevant time.
+3
+In paragraph (1)(a) the reference to a request is to a request properly addressed to a person who usually provides or is likely to provide an energy performance certificate for the category of building in question and which includes such payment or an undertaking to make such payment as is usually necessary to obtain an energy performance certificate.
+4
+In this regulation, “relevant time” means the point in time by which the relevant person is required to have made an energy performance certificate available to a prospective buyer or tenant by virtue of regulation 6(2).
+Penalty amount
+38
+1
+The penalty charge specified in the notice shall be —
+a
+in relation to a breach of a duty under regulation 6(2), 6(5), 7(2), 7(3), 7(4), or 7(5), or of the EPC construction duty —
+i
+where the building is a dwelling, £200;
+ii
+where the building is not a dwelling, calculated in accordance with the formula in paragraph (2);
+b
+in relation to a breach of a duty under regulation 14(3)(a), £1000;
+c
+in relation to a breach of a duty under regulation 14(3)(b), £500;
+d
+in relation to a breach of a duty under regulation 18(1), 20(1), 20(2) or 21, £300; and
+e
+in relation to a breach of a duty under regulation 35(5), £200.
+2
+Subject to the minimum and maximum penalty charges prescribed by paragraph (3), the penalty charge for the purposes of paragraph (1)(a)(ii) shall be —
+a
+where the building constitutes a hereditament, 12.5% of the rateable value of the hereditament;
+b
+where no other building (other than a building which is exempt from Part 2 by virtue of —
+i
+regulation 5(1)(a), (b), (d) or (e), or
+ii
+for a building which is not a dwelling, regulation 5(1)(c) or (g)),
+forms a part of the same hereditament, 12.5% of the rateable value of the hereditament of which the building forms a part;
+c
+where the building comprises more than one hereditament, 12.5% of the sum of the rateable values of each hereditament that comprise the building; and
+d
+where —
+i
+one or more buildings (other than a building which is exempt from Part 2 by virtue of —
+aa
+regulation 5(1)(a), (b), (d) or (e), or
+bb
+for a building which is not a dwelling, regulation 5(1)(c) or (g))
+form part of the same hereditament; or
+ii
+the building is not, or does not form part of, a hereditament which appears on a local non-domestic rating list at the relevant time,
+£750.
+3
+The minimum and maximum penalty charges for the purposes of paragraph (2) are £500 and £5000 respectively.
+4
+In this regulation —
+a
+“the EPC construction duty” means the duty specified in sub-paragraph (b) applying to a building specified in sub-paragraph (c);
+b
+the duty is the requirement in accordance with the provisions of regulation 29 of the Building Regulations 2010 that a relevant person must, no later than five days after construction work has been completed on a building, give to the owner of the building an energy performance certificate for the building; and
+c
+the buildings to which the duty in paragraph (4) applies are those specified in regulation 34(1)(a) and (b) of the Building Regulations 2010 .
+5
+In this regulation the following definitions also apply —
+“hereditament” means a hereditament which, pursuant to section 42 of the Local Government Finance Act 1988 , is shown on a local non-domestic rating list in force at the relevant time;
+“local non-domestic rating list” means a local non-domestic rating list maintained in accordance with section 41 of the Local Government Finance Act 1988;
+“rateable value” means the rateable value shown for a hereditament on a local non-domestic rating list at the relevant time; and
+“relevant time” means the time at which the penalty charge notice is given.
+Reviews
+39
+1
+If, within the period specified under regulation 36(3)(c) (or that period as extended under regulation 36(5)), the recipient of the penalty charge notice gives notice to the enforcement authority requesting a review, the authority shall —
+a
+consider any representations made by the recipient and all other circumstances of the case;
+b
+decide whether to confirm or withdraw the notice; and
+c
+give notice of their decision to the recipient.
+2
+A notice confirming the penalty charge notice must also state the effect of regulations 40 and 41.
+3
+If the authority are not satisfied that —
+a
+the recipient committed the breach of duty specified in the notice;
+b
+the notice was given within the time allowed by regulation 36(2) and complies with the other requirements imposed by these Regulations; and
+c
+in the circumstances of the case it was appropriate for a penalty charge notice to be given to the recipient,
+they shall withdraw the penalty charge notice.
+Appeal to the county court
+40
+1
+If, after a review, the penalty charge notice is confirmed by the enforcement authority, the recipient may, within the period of 28 days beginning with the day after that on which the notice under regulation 39(1)(c) is given, appeal to the county court against the penalty charge notice.
+2
+The county court may extend the period for appealing against the notice.
+3
+Such an appeal must be on one (or more) of the following grounds —
+a
+that the recipient did not commit the breach of duty specified in the penalty charge notice;
+b
+that the notice was not given within the time allowed by regulation 36(2) or does not comply with any other requirement imposed by these Regulations; or
+c
+that in the circumstances of the case it was inappropriate for the notice to be given to the recipient.
+4
+An appeal against a penalty charge notice shall be by way of a rehearing; and the court shall either uphold the notice or quash it.
+5
+If the penalty charge notice is withdrawn or quashed, the authority shall repay any amount previously paid as a penalty charge in pursuance of the notice.
+Recovery of penalty charges
+41
+1
+The amount of the penalty charge is recoverable from the recipient of the penalty charge notice as a debt owed to the authority unless —
+a
+the notice has been withdrawn or quashed; or
+b
+the charge has been paid.
+2
+Proceedings for the recovery of the penalty charge may not be commenced before the end of the period mentioned in regulation 39(1).
+3
+If within that period the recipient of the penalty charge notice gives notice to the authority that he wishes the authority to review the penalty charge notice, such proceedings may not be commenced —
+a
+before the end of the period mentioned in regulation 40(1); and
+b
+where the recipient appeals against the penalty charge notice, before the end of the period of 28 days beginning with the day on which the appeal is withdrawn or determined.
+4
+In proceedings for the recovery of the penalty charge, a certificate which —
+a
+purports to be signed by or on behalf of the person having responsibility for the financial affairs of the enforcement authority; and
+b
+states that payment of the penalty charge was or was not received by a date specified in the certificate,
+is evidence of the facts stated.
+Service of documents
+42
+1
+A penalty charge notice and any other notice mentioned in this Part may be given by post.
+2
+Any such notice may be given —
+a
+in the case of a body corporate, to the secretary or clerk of that body; and
+b
+in the case of a partnership, to any partner or to a person having control or management of the partnership business.
+Offences relating to enforcement officers
+43
+1
+A person who obstructs an officer of an enforcement authority acting in pursuance of regulation 35 is guilty of an offence.
+2
+A person who, not being an authorised officer of an enforcement authority, purports to act as such in pursuance of this Part is guilty of an offence.
+3
+A person guilty of an offence under this regulation is liable on summary conviction to a fine not exceeding level 5 on the standard scale.
+PART 8 Miscellaneous
+Application to the Crown
+44
+1
+Subject to paragraph (2), these Regulations, other than regulation 45(2)(a), bind the Crown.
+2
+No act or omission by or on behalf of the Crown shall constitute an offence or make the Crown liable to a penalty charge notice under these Regulations, but the High Court may, on the application of an enforcement authority, declare unlawful any act or omission of the Crown which constitutes a contravention of these Regulations.
+Duty to cooperate
+45
+1
+This regulation applies where these Regulations impose a duty on a person to —
+a
+make available, give or display an energy performance certificate or a display energy certificate in relation to a building; or
+b
+ensure an air-conditioning system is inspected.
+2
+It shall be the duty of every person with an interest in, or in occupation of, the building to —
+a
+allow such access to any energy assessor appointed by the person referred to in paragraph (1) (“the responsible person”) as is reasonably necessary to inspect the building for the purposes of —
+i
+preparing an energy performance certificate;
+ii
+preparing a display energy certificate;
+iii
+preparing a recommendation report; or
+iv
+inspecting an air-conditioning system; and
+b
+cooperate with the responsible person so far as is reasonably necessary to enable him to comply with the duty referred to in paragraph (1).
+Revocations
+46
+The Regulations specified in the first column of the table in Schedule 3 are revoked to the extent specified in relation to each in the third column of that table.
+Review
+47
+1
+Before the end of each review period, the Secretary of State must —
+a
+carry out a review of these Regulations;
+b
+set out the conclusions of the review in a report; and
+c
+publish the report.
+2
+In carrying out the review the Secretary of State must, so far as is reasonable, have regard to how Directive 2010/31/ EU of the European Parliament and of the Council on the energy performance of buildings of 19th May 2010 (recast) is implemented in other member States.
+3
+The report must in particular —
+a
+set out the objectives intended to be achieved by these Regulations;
+b
+assess the extent to which those objectives are achieved; and
+c
+assess whether those objectives remain appropriate and, if so, the extent to which they could be achieved with a system that imposes less regulation.
+4
+“Review period” means —
+a
+the period of five years beginning with the day on which these Regulations come into force; and
+b
+subject to paragraph (5), each successive period of five years.
+5
+If a report under this regulation is published before the last day of the review period to which it relates, the following review period is to begin with the day on which that report is published.
+Signed by the authority of the Secretary of State for the Department for Communities and Local Government
+Don Foster
+Parliamentary Under Secretary of State
+Department for Communities and Local Government
+17th December 2012
+SCHEDULE 1
+Regulation 31
+PART 1 The purposes are —
+1
+Promoting energy efficiency improvements (as defined in section 2 of the Energy Act 2011 ) (“energy efficiency improvements”) in relation to buildings.
+2
+Conducting research into, or developing or analysing policy (or policy proposals) in relation to, the energy efficiency of buildings.
+3
+Conducting research into the effectiveness or impact of energy efficiency improvements.
+4
+Identifying geographic areas where the energy efficiency of buildings is low relative to other areas, or conducting research into the extent, causes or consequences of such lower levels of efficiency.
+5
+Promoting and marketing energy efficiency improvements that may be made pursuant to a green deal plan.
+6
+Identifying and analysing the impact of carbon emissions on the environment resulting from buildings with low levels of energy efficiency.
+7
+Determining whether energy efficiency improvements that may be made pursuant to a green deal plan have or have not been made in respect of a particular building or buildings.
+PART 2 The conditions are —
+1
+The authorised recipient is, until the data is deleted from the authorised recipient’s records and systems (so that the personal data is no longer accessible by any means by the authorised recipient), a data controller within the meaning of section 1(1) of the Data Protection Act 1998 in relation to the information disclosed.
+2
+The authorised recipient must not —
+a
+disclose any personal data contained in or derived from data disclosed to it under regulation 31 to any other person without the consent of the person who is the subject of the data;
+b
+use such personal data in order to contact an individual for the purpose of marketing or promoting products or services which do not relate to energy efficiency.
+3
+The authorised recipient must not make contact with any person (“the subject”) whose identity or contact details (or both) have become known to the authorised recipient from data disclosed to the authorised recipient under regulation 31 unless —
+a
+the authorised recipient advises the subject, at the time contact is first made, that —
+i
+their identity or contact details (or both) have been obtained from the keeper of the register under that regulation, and
+ii
+the subject is entitled to refuse to receive any further communications from the authorised recipient; and
+b
+the first contact with the subject is made by means of written communication (including electronic communication) only.
+4
+The authorised recipient must not make further contact with a person if the person has informed the authorised recipient that they do not wish to receive any further communications from the authorised recipient.
+5
+In paragraphs 6 and 7, “the subject” means a person whose identity or contact details (or both) have become known to the authorised recipient from data disclosed to it under regulation 31.
+6
+If the authorised recipient has on three separate occasions made contact with the subject and received no response from the subject within fourteen days of the third contact, the authorised recipient —
+a
+must not attempt to contact the subject again; and
+b
+must, as soon as reasonably practicable (and in any event within fourteen days of the receipt of a request made by or on behalf of the subject to do so), delete any personal data contained in or derived from data disclosed to the authorised recipient under regulation 31 from its records and systems (so that the personal data is no longer accessible by any means to the authorised recipient).
+7
+The authorised recipient must, as soon as reasonably practicable (and in any event within fourteen days of the receipt of a request made by or on behalf of the subject), delete any personal data contained in or derived from data disclosed to the authorised recipient under regulation 31 from its records and systems (so that the personal data is no longer accessible by any means by the authorised recipient) if the subject requests the authorised recipient to do so.
+8
+The authorised recipient must ensure that its officers and employees comply with the conditions in paragraphs 1 to 7 of this Part.
+SCHEDULE 2
+Meanings of small, medium and large data packs
+Regulation 33
+PART 1 Energy Performance Certificates
+1
+In this Part, “residential property” means premises in England and Wales consisting of a single dwelling, including ancillary land.
+2
+For data from which an energy performance certificate for a residential property may be produced —
+a
+a small data pack means a set of data containing the following information concerning the property: the address (including the postcode), the energy rating, the potential energy rating, the energy efficiency, the potential energy efficiency, the property type, the inspection date, the region, local authority area, constituency and county where it is located and the date the data was entered onto the register;
+b
+a medium data pack means a set of data containing the data described in paragraph 2(a), together with the following additional information concerning the property: the transaction type, the current environment impact, the potential environment impact, the current energy consumption, the potential energy consumption, the current Co2 emissions, the current Co2 emissions per floor area, the potential Co2 emissions, the current lighting cost, the potential lighting cost, the current heating cost, the potential heating cost, the current hot water cost, the potential hot water cost, the total floor area, the energy tariff, whether the property is connected to the gas network, the floor level, whether the property is on the top floor (for flats), if the property is a flat not on the top floor the story count for the property, the overall dimensions and size of the building, the type of heating controls, the proportion of windows which are multi-glazed, the types of glazing and the area glazed, the number of extensions to the property, the number of habitable rooms, the number of heated rooms, the proportion of low energy light and the number of open fireplaces; and
+c
+a large data pack means a set of data containing the data described in paragraphs 2(a) and (b), together with any additional data entered onto the register pursuant to regulation 27 from which an energy performance certificate (or any information contained within such a certificate) may be produced in relation to the property.
+3
+For data from which an energy performance certificate for a property other than a residential property may be produced —
+a
+a small data pack means a set of data containing the following information concerning the property: the address (including the postcode), the energy rating, the property type, the inspection date, the region, local authority area, constituency and county where it is located and the date the data was entered onto the register;
+b
+a medium data pack means a set of data containing the data described in paragraph 3(a), together with the following additional information concerning the property: the transaction type, the benchmark against other new build or existing properties as appropriate, whether the property is a level 3, 4 or 5 building, the main heating fuel, the other fuel description, whether the property is air-conditioned, whether the property has specialised energy requirements, the energy from renewable sources (if any) used by the property and the floor area; and
+c
+a large data pack means a set of data containing the data described in paragraphs 3(a) and (b), together with any additional data entered onto the register pursuant to regulation 27 from which an energy performance certificate (or any information contained within such a certificate) may be produced in relation to the property.
+PART 2 Display Energy Certificates
+4
+For data from which a display energy certificate may be produced —
+a
+a small data pack means a set of data containing the following information concerning the property in question: the address (including the postcode), the energy rating, the proportion of Co2 emissions attributable to electricity used in the property, the proportion of Co2 emissions from energy used to heat the property, the proportion of Co2 emissions from energy from renewable sources (if any) used in the property, the property type, the inspection date, the region, local authority area, constituency and county where it is located and the date the data was entered onto the register;
+b
+a medium data pack means a set of data containing the data described in paragraph 4(a), together with the following additional information concerning the property: the benchmark against other new build or existing properties as appropriate, whether the property is a level 3, 4 or 5 building, the main heating fuel, the other fuel description, whether the building is air-conditioned, whether the building has specialised energy requirements, the energy from renewable sources (if any) used in the property, the floor area and the building level; and
+c
+a large data pack means a set of data containing the data described in paragraphs 4(a) and (b) together with any additional data entered onto the register pursuant to regulation 27 from which a display energy certificate (or any information contained within such a certificate) may be produced in relation to the property in question.
+PART 3 Air-conditioning Inspection Reports
+5
+For data from which an inspection report may be produced —
+a
+a small data pack means a set of data containing the following information concerning the property in question: the address (including the postcode), the property type, the inspection date, the region, local authority area, constituency and county where it is located and the date the data was entered onto the register;
+b
+a medium data pack means a set of data containing the data described in paragraph 5(a), together with the following additional information: the name of the equipment owner, their telephone number, the name of their organisation, the equipment owner’s address, (including the town, city or parish and postcode), the person responsible for the operation of the air-conditioning equipment, the operator’s employer, the operator’s address (including the town, city or parish and postcode) and the name of the building; and
+c
+a large data pack means a set of data containing the data described in paragraphs 5(a) and (b), together with any additional data entered onto the register pursuant to regulation 27 from which the inspection report (or any information contained within the report) may be produced.
+SCHEDULE 3
+Revocation of Regulations
+regulation 46
+Regulations revoked References Extent of revocation
+The Energy Performance of Buildings (Certificates and Inspections) (England and Wales) Regulations 2007 SI 2007/991 The whole Regulations. The Energy Performance of Buildings (Certificates and Inspections) (England and Wales) (Amendment) Regulations 2007 SI 2007/1669 The whole Regulations. The Energy Performance of Buildings (Certificates and Inspections) (England and Wales) (Amendment No. 2) Regulations 2007 SI 2007/3302 The whole Regulations. The Energy Performance of Buildings (Certificates and Inspections) (England and Wales) (Amendment) Regulations 2008 SI 2008/647 The whole Regulations. The Energy Performance of Buildings (Certificates and Inspections) (England and Wales) (Amendment No. 2) Regulations 2008 SI 2008/2363 The whole Regulations. The Energy Performance of Buildings (Certificates and Inspections) (England and Wales) (Amendment) Regulations 2009 SI 2009/1900 The whole Regulations. The Energy Performance of Buildings (Certificates and Inspections) (England and Wales) (Amendment) Regulations 2010 SI 2010/1456 The whole Regulations. The Building Regulations 2010 SI 2010/2214 Regulation 54(1) and Schedule 5, insofar as they relate to the Energy Performance of Buildings (Certificates and Inspections) (England and Wales) Regulations 2007, and regulation 54(2) insofar as it relates to paragraph 2 of Schedule 6 to the Building Regulations 2010. The Building (Amendment) Regulations 2011 SI 2011/1515 Regulation 2. The Energy Performance of Buildings (Certificates and Inspections) (England and Wales) (Amendment) Regulations 2011 SI 2011/2452 The whole regulations. The Energy Performance of Buildings (Certificates and Inspections) (England and Wales) (Amendment) Regulations 2012 SI 2012/809 The whole regulations.
