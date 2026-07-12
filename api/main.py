@@ -70,9 +70,18 @@ app.mount("/app", StaticFiles(directory="frontend", html=True), name="frontend")
 UPLOAD_DIR = Path("uploads")
 UPLOAD_DIR.mkdir(exist_ok=True)
 
-# Minimum retrieval score to attempt an answer (0–1 cosine similarity scale).
-# Below this threshold the knowledge base is considered to have no relevant content.
-RELEVANCE_THRESHOLD = float(os.getenv("RELEVANCE_THRESHOLD", "0.30"))
+# Minimum cross-encoder rerank score (raw logit, NOT 0-1 cosine similarity —
+# ms-marco-MiniLM-L-6-v2 outputs unbounded relevance logits) to attempt an
+# answer. Below this, the knowledge base is considered to have no relevant
+# content. Checked AFTER reranking, not on the raw hybrid/RRF retrieval
+# score — RRF is a rank-fusion formula (Qdrant docs: reciprocal-rank sum,
+# not a similarity measure) and gets further boosted by retriever.py's
+# multi-query merge logic, so it was never on an interpretable 0-1 scale to
+# begin with. Calibrated on eval/golden_dataset.json: should-refuse cases
+# scored <=0.9, should-answer cases scored >=4.6 at the 10th percentile —
+# 1.5 sits with margin in that gap. Re-run eval/run_eval.py after changing
+# chunk_size, the reranker model, or the dataset composition.
+RELEVANCE_THRESHOLD = float(os.getenv("RELEVANCE_THRESHOLD", "1.5"))
 MAX_CONCURRENT_QUERIES = int(os.getenv("MAX_CONCURRENT_QUERIES", "3"))
 _query_semaphore = asyncio.Semaphore(MAX_CONCURRENT_QUERIES)
 
@@ -490,13 +499,15 @@ async def _do_query(request: QueryRequest):
         return QueryResponse(answer="No relevant information found in the knowledge base.",
                            sources=[], model=generator.model, tokens_used=0)
 
-    best_score = max(c.get("score", 0) for c in chunks)
-    if best_score < RELEVANCE_THRESHOLD:
-        logger.info(f"Best score {best_score:.3f} below threshold {RELEVANCE_THRESHOLD} — not answering")
-        return QueryResponse(answer="I couldn't find relevant information in the knowledge base to answer this question.",
-                           sources=[], model=generator.model, tokens_used=0)
-
     top_chunks = await run_on_gpu(reranker.rerank, request.question, chunks, top_k=request.top_k)
+
+    best_score = max((c.get("rerank_score", 0) for c in top_chunks), default=0)
+    if best_score < RELEVANCE_THRESHOLD:
+        logger.info(f"Best rerank score {best_score:.3f} below threshold {RELEVANCE_THRESHOLD} — not answering")
+        return QueryResponse(answer="I couldn't find relevant information in the knowledge base to answer this question.",
+                           sources=[], model=generator.model, tokens_used=0,
+                           debug={"best_rerank_score": round(best_score, 4), "threshold": RELEVANCE_THRESHOLD,
+                                  "chunks_retrieved": len(chunks), "chunks_after_rerank": len(top_chunks)})
 
     messages = prompt_builder.build(query=request.question, chunks=top_chunks,
                                    chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [],
@@ -623,26 +634,27 @@ async def query_stream(request: QueryRequest):
                 yield f"data: {json.dumps({'type': 'done'})}\n\n"
                 return
 
-            best_score = retrieval_best
-            if best_score < RELEVANCE_THRESHOLD:
-                logger.info(f"Best score {best_score:.3f} below threshold {RELEVANCE_THRESHOLD} — not answering")
-                msg = "I couldn't find relevant information in the knowledge base to answer this question."
-                yield f"data: {json.dumps({'type': 'token', 'content': msg})}\n\n"
-                yield f"data: {json.dumps({'type': 'done'})}\n\n"
-                return
-
             t2 = time.time()
             top_chunks = await run_on_gpu(reranker.rerank, request.question, chunks, top_k=request.top_k)
             rerank_ms = int((time.time() - t2) * 1000)
             reranker_type = type(reranker).__name__
 
             rerank_scores = [c.get("rerank_score", c.get("score", 0)) for c in top_chunks]
+            best_score = max(rerank_scores) if rerank_scores else 0
             score_meta = {
-                "best": round(max(rerank_scores), 3) if rerank_scores else 0,
+                "best": round(best_score, 3),
                 "avg": round(sum(rerank_scores) / len(rerank_scores), 3) if rerank_scores else 0,
                 "chunks_found": len(chunks),
                 "queries_expanded": len(expanded_queries),
             }
+
+            if best_score < RELEVANCE_THRESHOLD:
+                logger.info(f"Best rerank score {best_score:.3f} below threshold {RELEVANCE_THRESHOLD} — not answering")
+                msg = "I couldn't find relevant information in the knowledge base to answer this question."
+                yield f"data: {json.dumps({'type': 'token', 'content': msg})}\n\n"
+                yield f"data: {json.dumps({'type': 'sources', 'sources': [], 'debug': {**score_meta, 'threshold': RELEVANCE_THRESHOLD}})}\n\n"
+                yield f"data: {json.dumps({'type': 'done'})}\n\n"
+                return
 
             messages = prompt_builder.build(query=request.question, chunks=top_chunks,
                                             chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [],
