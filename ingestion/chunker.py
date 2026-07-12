@@ -157,4 +157,33 @@ class SmartChunker:
             pos = sep_end
         if pos < len(normalized):
             spans.append((pos, len(normalized), normalized[pos:]))
-        return spans
+        return self._hard_wrap_oversized_spans(normalized, spans)
+
+    def _hard_wrap_oversized_spans(
+        self, normalized: str, spans: list[tuple[int, int, str]]
+    ) -> list[tuple[int, int, str]]:
+        """Fallback for run-on prose with no '.'/'!'/'?' for thousands of chars
+        (semicolon-separated clause lists are routine in Russian statutes) —
+        without this, such a stretch is one atomic "sentence" span many times
+        chunk_size, emitted as a single oversized chunk downstream. That's both
+        far slower to embed (attention cost grows faster than linearly with
+        sequence length) and semantically diluted for retrieval. Any span over
+        2x chunk_size gets hard-wrapped at whitespace boundaries instead."""
+        limit = self.chunk_size * 2
+        result = []
+        for start, end, text in spans:
+            if end - start <= limit:
+                result.append((start, end, text))
+                continue
+            piece_start = start
+            while piece_start < end:
+                piece_end = min(piece_start + self.chunk_size, end)
+                if piece_end < end:
+                    ws = normalized.rfind(' ', piece_start, piece_end)
+                    if ws > piece_start:
+                        piece_end = ws
+                result.append((piece_start, piece_end, normalized[piece_start:piece_end]))
+                piece_start = piece_end
+                while piece_start < end and normalized[piece_start] == ' ':
+                    piece_start += 1
+        return result

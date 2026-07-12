@@ -81,6 +81,19 @@ def test_char_offsets_slice_back_to_exact_chunk_text():
         assert normalized[c.char_start:c.char_end] == c.text
 
 
+def test_chunk_document_hard_wraps_run_on_text_with_no_sentence_punctuation():
+    """Russian statutes routinely list clauses separated by semicolons/commas
+    with no '.', '!', '?' for thousands of chars. Without a fallback, that
+    whole stretch becomes one oversized atomic chunk, which is both slow to
+    embed and semantically diluted."""
+    chunker = SmartChunker(chunk_size=100, chunk_overlap=10, min_chunk_size=10)
+    run_on = " ".join(f"пункт{i} слово{i}" for i in range(200))  # no . ! ? at all
+    chunks = chunker.chunk_document(_pages(run_on), doc_id="doc1")
+    assert len(chunks) >= 2
+    for c in chunks:
+        assert c.char_count <= 200  # <= 2x chunk_size safety margin, no pathological outliers
+
+
 def test_char_offsets_are_page_relative_not_document_relative():
     chunker = SmartChunker(chunk_size=20, chunk_overlap=5, min_chunk_size=5)
     page1 = "First page sentence one. First page sentence two here."
