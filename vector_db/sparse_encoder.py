@@ -1,9 +1,10 @@
 """
 Sparse (BM25-style) vector encoding for Qdrant hybrid search.
 
-Term frequency only — Qdrant applies IDF weighting server-side at query time
-via the collection's sparse vector Modifier.IDF, using corpus-wide stats it
-maintains incrementally. No client-side global index or rebuild needed.
+Term frequency (BM25-saturated) only — Qdrant applies IDF weighting
+server-side at query time via the collection's sparse vector Modifier.IDF,
+using corpus-wide stats it maintains incrementally. No client-side global
+index or rebuild needed.
 """
 import hashlib
 import re
@@ -24,6 +25,15 @@ STOP_WORDS = {
 # Feature-hashing bucket count for sparse vector indices. Large enough that
 # collisions are rare for a corpus vocabulary of a few hundred thousand terms.
 _HASH_BUCKETS = 2 ** 31 - 1
+
+# Standard BM25 term-frequency saturation constant. Without this, raw term
+# counts are unbounded — a query that accidentally (or deliberately) repeats
+# common words many times inflates their weight linearly (e.g. 20 repeats of
+# "discount" -> value 20), which can outweigh a genuinely relevant document's
+# rarer, more specific terms in RRF fusion and pull in unrelated documents
+# that merely share the same common words. Saturation caps each term's
+# contribution at (k1+1) regardless of how many times it repeats.
+_BM25_K1 = 1.2
 
 
 def _stem(token: str) -> str:
@@ -49,9 +59,10 @@ def _stable_token_index(token: str) -> int:
 
 
 def build_sparse_vector(text: str) -> SparseVector:
-    """Raw term-frequency sparse vector. IDF weighting applied by Qdrant at query time."""
+    """BM25-saturated term-frequency sparse vector. IDF weighting applied by Qdrant at query time."""
     tokens = tokenize(text)
     if not tokens:
         return SparseVector(indices=[], values=[])
     counts = Counter(_stable_token_index(t) for t in tokens)
-    return SparseVector(indices=list(counts.keys()), values=[float(v) for v in counts.values()])
+    values = [(_BM25_K1 + 1) * tf / (_BM25_K1 + tf) for tf in counts.values()]
+    return SparseVector(indices=list(counts.keys()), values=values)
