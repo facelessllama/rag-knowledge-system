@@ -17,9 +17,24 @@ class CrossEncoderReranker:
     # input (ms-marco is English-only) — keep vector score order instead.
     LANGUAGE_FALLBACK_THRESHOLD = -5.0
 
+    # ms-marco-MiniLM-L-6-v2's tokenizer caps a (query, passage) pair at 512
+    # tokens combined. The caller passes the raw user question — normally a
+    # few dozen tokens, but an abnormally long or repeated question (e.g.
+    # accidental copy-paste duplication) can consume most or all of that
+    # budget by itself, truncating the passage away and leaving the model
+    # scoring near-nothing against near-nothing. Observed effect: a 3080-char
+    # repeated question pushed the correct chunk from rank 1 (pre-rerank) to
+    # rank 3, with two unrelated chunks scoring higher. Capping the query
+    # (not the passage — chunks are already bounded by chunk_size) avoids
+    # this regardless of caller.
+    MAX_QUERY_CHARS = 300
+
     def rerank(self, query: str, chunks: list[dict], top_k: int = 3) -> list[dict]:
         if not chunks:
             return []
+
+        if len(query) > self.MAX_QUERY_CHARS:
+            query = query[: self.MAX_QUERY_CHARS]
 
         pairs = [(query, c["text"]) for c in chunks]
         scores = self.model.predict(pairs)

@@ -59,3 +59,29 @@ def test_rerank_returns_empty_for_no_chunks():
     reranker, mock_model = _reranker_with_mock_model()
     assert reranker.rerank("query", [], top_k=5) == []
     mock_model.predict.assert_not_called()
+
+
+def test_rerank_truncates_abnormally_long_query_before_scoring():
+    """An accidentally-repeated/padded question must not consume the
+    cross-encoder's whole 512-token budget and starve the passage side —
+    see MAX_QUERY_CHARS docstring for the observed real-world failure."""
+    reranker, mock_model = _reranker_with_mock_model()
+    mock_model.predict.return_value = [1.0]
+    huge_query = "What is the discount? " * 50  # well over MAX_QUERY_CHARS
+    assert len(huge_query) > reranker.MAX_QUERY_CHARS
+
+    reranker.rerank(huge_query, [_chunk("passage", 0.5)], top_k=1)
+
+    called_query = mock_model.predict.call_args[0][0][0][0]
+    assert len(called_query) <= reranker.MAX_QUERY_CHARS
+
+
+def test_rerank_leaves_short_query_unchanged():
+    reranker, mock_model = _reranker_with_mock_model()
+    mock_model.predict.return_value = [1.0]
+    short_query = "What is the maximum discount?"
+
+    reranker.rerank(short_query, [_chunk("passage", 0.5)], top_k=1)
+
+    called_query = mock_model.predict.call_args[0][0][0][0]
+    assert called_query == short_query
