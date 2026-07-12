@@ -18,3 +18,4 @@ patch_*.py
 .env.save
 backups/
 eval/last_run_scores*.json
+eval/deepseek_accuracy_results.json
