@@ -5,7 +5,7 @@ result guarantee, and neighbor expansion. Embedding and Qdrant are faked
 """
 import pytest
 
-from rag.retriever import HybridRetriever
+from rag.retriever import HybridRetriever, extract_case_numbers, promote_case_number_matches
 
 
 class FakeEmbedder:
@@ -159,3 +159,113 @@ async def test_retrieve_does_not_duplicate_neighbor_already_in_results():
 
     assert len([r for r in results if r["chunk_id"] == "b"]) == 1
     assert next(r for r in results if r["chunk_id"] == "b")["source"] == "hybrid"
+
+
+# ── extract_case_numbers ─────────────────────────────────────────────────────
+
+def test_extract_case_numbers_matches_various_type_prefixes():
+    assert extract_case_numbers("C.R.M. 10691 of 2020") == {("10691", "2020")}
+    assert extract_case_numbers("WPA 12091 of 2019") == {("12091", "2019")}
+    assert extract_case_numbers("F.A.O. No.293 of 2019") == {("293", "2019")}
+    assert extract_case_numbers("ABLAPL 1380 of 2020") == {("1380", "2020")}
+
+
+def test_extract_case_numbers_returns_empty_for_no_match():
+    assert extract_case_numbers("This document has no case number in it.") == set()
+
+
+def test_extract_case_numbers_finds_multiple():
+    text = "Related to CRM 100 of 2019 and also WPA 200 of 2020."
+    assert extract_case_numbers(text) == {("100", "2019"), ("200", "2020")}
+
+
+# ── case-number exact-match guarantee ────────────────────────────────────────
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_guarantees_case_number_match_even_with_low_score():
+    """These short, heavily-templated interlocutory orders (case caption +
+    1-2 sentence order, near-identical boilerplate across different cases)
+    are exactly where semantic/BM25 scoring is least reliable — an exact
+    case-number match in the query must survive even if its score alone
+    wouldn't make top_k."""
+    matching_low_score = _chunk("match", "d_target", 0, 0.01,
+                                 text="C.R.M. 10691 of 2020 In the matter of Mohan Viswakarma")
+    distractor_high_score = _chunk("distractor", "d_other", 0, 0.9,
+                                    text="CRR 1374 of 2020 Mainak Ranjan Bakshi")
+    vs = FakeVectorStore(results_by_query={
+        "What is the case CRM 10691 of 2020 about?": [distractor_high_score, matching_low_score],
+    })
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=1)  # top_k=1 would normally cut the low scorer
+
+    results = await retriever.retrieve_expanded(["What is the case CRM 10691 of 2020 about?"], top_k=1)
+
+    chunk_ids = {r["chunk_id"] for r in results}
+    assert "match" in chunk_ids
+    matched = next(r for r in results if r["chunk_id"] == "match")
+    assert matched["case_number_match"] is True
+
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_no_case_number_in_query_is_a_no_op():
+    chunk1 = _chunk("c1", "d1", 0, 0.5, text="some ordinary text")
+    vs = FakeVectorStore(results_by_query={"a generic question": [chunk1]})
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    results = await retriever.retrieve_expanded(["a generic question"], top_k=5)
+
+    assert "case_number_match" not in results[0]
+
+
+# ── promote_case_number_matches ──────────────────────────────────────────────
+
+def _rr_chunk(chunk_id, rerank_score=None, case_number_match=False):
+    c = {"chunk_id": chunk_id, "text": "text"}
+    if rerank_score is not None:
+        c["rerank_score"] = rerank_score
+    if case_number_match:
+        c["case_number_match"] = True
+    return c
+
+
+def test_promote_case_number_matches_is_a_no_op_without_a_match():
+    chunks = [_rr_chunk("a")]
+    top_chunks = [_rr_chunk("a", rerank_score=0.5)]
+    assert promote_case_number_matches(chunks, top_chunks, relevance_threshold=1.5) == top_chunks
+
+
+def test_promote_case_number_matches_adds_missing_match_above_threshold():
+    matched = _rr_chunk("match", case_number_match=True)  # not yet reranked, no score
+    chunks = [matched, _rr_chunk("other", case_number_match=False)]
+    top_chunks = [_rr_chunk("other", rerank_score=3.0)]  # reranker's own top pick, no match
+
+    result = promote_case_number_matches(chunks, top_chunks, relevance_threshold=1.5)
+
+    ids = {c["chunk_id"] for c in result}
+    assert "match" in ids
+    promoted = next(c for c in result if c["chunk_id"] == "match")
+    assert promoted["rerank_score"] > 1.5
+
+
+def test_promote_case_number_matches_boosts_already_included_low_score():
+    """If the reranker DID include the match but scored it below threshold,
+    raise its score rather than add a duplicate."""
+    matched = _rr_chunk("match", case_number_match=True)
+    chunks = [matched]
+    top_chunks = [_rr_chunk("match", rerank_score=0.1)]  # reranker scored it too low
+
+    result = promote_case_number_matches(chunks, top_chunks, relevance_threshold=1.5)
+
+    assert len(result) == 1
+    assert result[0]["rerank_score"] > 1.5
+
+
+def test_promote_case_number_matches_does_not_drop_the_match_even_over_top_k():
+    matched = _rr_chunk("match", case_number_match=True)
+    chunks = [matched]
+    top_chunks = [_rr_chunk("a", rerank_score=5.0), _rr_chunk("b", rerank_score=4.0)]
+
+    result = promote_case_number_matches(chunks, top_chunks, relevance_threshold=1.5)
+
+    ids = {c["chunk_id"] for c in result}
+    assert "match" in ids
+    assert len(result) == 3  # exceeds top_k=2 rather than drop the match

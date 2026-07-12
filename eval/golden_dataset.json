@@ -656,7 +656,7 @@
     "type": "fact_date"
   },
   {
-    "id": "case_AB_1852_2020_JINTU_DAS_vs_THE_STATE_OF_A",
+    "id": "case_summary_AB_1852_2020_JINTU_DAS_vs_THE_STATE_OF_A",
     "question": "What is the case JINTU DAS vs THE STATE OF ASSAM about?",
     "expect_answer": true,
     "expected_doc_filename": "AB_1852_2020_JINTU_DAS_vs_THE_STATE_OF_ASSAM.pdf",
@@ -664,15 +664,15 @@
     "type": "case_summary"
   },
   {
-    "id": "case_AB_2520_2020_RATAN_SHIL_vs_THE_STATE_OF_",
-    "question": "What is the case RATAN SHIL vs THE STATE OF ASSAM about?",
+    "id": "case_lookup_by_number_AB_2520_2020_RATAN_SHIL_vs_THE_STATE_OF_",
+    "question": "What is case AB 2520 of 2020 (RATAN SHIL vs THE STATE OF ASSAM) about?",
     "expect_answer": true,
     "expected_doc_filename": "AB_2520_2020_RATAN_SHIL_vs_THE_STATE_OF_ASSAM.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_AB_2880_2020_HUSSAIN_ALI_AND_2_ORS_vs_TH",
+    "id": "case_summary_AB_2880_2020_HUSSAIN_ALI_AND_2_ORS_vs_TH",
     "question": "What is the case HUSSAIN ALI AND 2 ORS vs THE STATE OF ASSAM about?",
     "expect_answer": true,
     "expected_doc_filename": "AB_2880_2020_HUSSAIN_ALI_AND_2_ORS_vs_THE_STATE_OF_ASSAM.pdf",
@@ -680,15 +680,15 @@
     "type": "case_summary"
   },
   {
-    "id": "case_AB_819_2020_JASIM_UDDIN_LASKAR_vs_THE_ST",
-    "question": "What is the case JASIM UDDIN LASKAR vs THE STATE OF ASSAM about?",
+    "id": "case_lookup_by_number_AB_819_2020_JASIM_UDDIN_LASKAR_vs_THE_ST",
+    "question": "What is case AB 819 of 2020 (JASIM UDDIN LASKAR vs THE STATE OF ASSAM) about?",
     "expect_answer": true,
     "expected_doc_filename": "AB_819_2020_JASIM_UDDIN_LASKAR_vs_THE_STATE_OF_ASSAM.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_Arb.P._2_2020_Chhabil_Dass_Agarwal_vs_St",
+    "id": "case_summary_Arb.P._2_2020_Chhabil_Dass_Agarwal_vs_St",
     "question": "What is the case Chhabil Dass Agarwal vs State of Sikkim and Ors about?",
     "expect_answer": true,
     "expected_doc_filename": "Arb.P._2_2020_Chhabil_Dass_Agarwal_vs_State_of_Sikkim_and_Ors.pdf",
@@ -696,79 +696,79 @@
     "type": "case_summary"
   },
   {
-    "id": "case_BAIL_APPLN._13_2020_Anthony_Rai_vs_State",
-    "question": "What is the case 2020 Anthony Rai vs State of Sikkim about?",
+    "id": "case_lookup_by_number_BAIL_APPLN._13_2020_Anthony_Rai_vs_State",
+    "question": "What is case BAIL_APPLN. 13 of 2020 (Anthony Rai vs State of Sikkim) about?",
     "expect_answer": true,
     "expected_doc_filename": "BAIL_APPLN._13_2020_Anthony_Rai_vs_State_of_Sikkim.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_BAIL_APPLN._1_2020_Sayan_Ghosh_and_Anr._",
-    "question": "What is the case 2020 Sayan Ghosh and Anr. vs State of Sikkim about?",
+    "id": "case_summary_BAIL_APPLN._1_2020_Sayan_Ghosh_and_Anr._",
+    "question": "What is the case Sayan Ghosh and Anr. vs State of Sikkim about?",
     "expect_answer": true,
     "expected_doc_filename": "BAIL_APPLN._1_2020_Sayan_Ghosh_and_Anr._vs_State_of_Sikkim.pdf",
     "expected_substring": null,
     "type": "case_summary"
   },
   {
-    "id": "case_BAIL_APPLN._2_2020_Rupa_Gurung_vs_State_",
-    "question": "What is the case 2020 Rupa Gurung vs State of Sikkim about?",
+    "id": "case_lookup_by_number_BAIL_APPLN._2_2020_Rupa_Gurung_vs_State_",
+    "question": "What is case BAIL_APPLN. 2 of 2020 (Rupa Gurung vs State of Sikkim) about?",
     "expect_answer": true,
     "expected_doc_filename": "BAIL_APPLN._2_2020_Rupa_Gurung_vs_State_of_Sikkim.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_BAIL_APPLN._9_2020_Shri_Tshering_Ganjay_",
-    "question": "What is the case 2020 Shri Tshering Ganjay Lachunpa vs State Of Sikkim about?",
+    "id": "case_summary_BAIL_APPLN._9_2020_Shri_Tshering_Ganjay_",
+    "question": "What is the case Shri Tshering Ganjay Lachunpa vs State Of Sikkim about?",
     "expect_answer": true,
     "expected_doc_filename": "BAIL_APPLN._9_2020_Shri_Tshering_Ganjay_Lachunpa_vs_State_Of_Sikkim.pdf",
     "expected_substring": null,
     "type": "case_summary"
   },
   {
-    "id": "case_BA_10_2020_MINTU_DEBNATH_vs_STATE_OF_MEG",
-    "question": "What is the case MINTU DEBNATH vs STATE OF MEGHALAYA about?",
+    "id": "case_lookup_by_number_BA_10_2020_MINTU_DEBNATH_vs_STATE_OF_MEG",
+    "question": "What is case BA 10 of 2020 (MINTU DEBNATH vs STATE OF MEGHALAYA) about?",
     "expect_answer": true,
     "expected_doc_filename": "BA_10_2020_MINTU_DEBNATH_vs_STATE_OF_MEGHALAYA.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_Bail_App_211_2020_AMAN_SAGOTRA_vs_UNION_",
-    "question": "What is the case 2020 AMAN SAGOTRA vs UNION TERRITORY OF JAMMU AND KASHMIR TH OFFICE IN CHAR about?",
+    "id": "case_summary_Bail_App_211_2020_AMAN_SAGOTRA_vs_UNION_",
+    "question": "What is the case AMAN SAGOTRA vs UNION TERRITORY OF JAMMU AND KASHMIR TH OFFICE IN CHAR about?",
     "expect_answer": true,
     "expected_doc_filename": "Bail_App_211_2020_AMAN_SAGOTRA_vs_UNION_TERRITORY_OF_JAMMU_AND_KASHMIR_TH_OFFICE_IN_CHAR.pdf",
     "expected_substring": null,
     "type": "case_summary"
   },
   {
-    "id": "case_Bail_Appln._370_2020_UJJAL_BORO_vs_THE_S",
-    "question": "What is the case 2020 UJJAL BORO vs THE STATE OF ASSAM about?",
+    "id": "case_lookup_by_number_Bail_Appln._370_2020_UJJAL_BORO_vs_THE_S",
+    "question": "What is case Bail_Appln. 370 of 2020 (UJJAL BORO vs THE STATE OF ASSAM) about?",
     "expect_answer": true,
     "expected_doc_filename": "Bail_Appln._370_2020_UJJAL_BORO_vs_THE_STATE_OF_ASSAM.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_Bail_Appln._62_2020_MD_KUTUB_ALI_vs_THE_",
-    "question": "What is the case 2020 MD KUTUB ALI vs THE STATE OF ASSAM about?",
+    "id": "case_summary_Bail_Appln._62_2020_MD_KUTUB_ALI_vs_THE_",
+    "question": "What is the case MD KUTUB ALI vs THE STATE OF ASSAM about?",
     "expect_answer": true,
     "expected_doc_filename": "Bail_Appln._62_2020_MD_KUTUB_ALI_vs_THE_STATE_OF_ASSAM.pdf",
     "expected_substring": null,
     "type": "case_summary"
   },
   {
-    "id": "case_Bail_Appln._834_2020_AKHIL_GOGOI_vs_THE_",
-    "question": "What is the case 2020 AKHIL GOGOI vs THE STATE OF ASSAM about?",
+    "id": "case_lookup_by_number_Bail_Appln._834_2020_AKHIL_GOGOI_vs_THE_",
+    "question": "What is case Bail_Appln. 834 of 2020 (AKHIL GOGOI vs THE STATE OF ASSAM) about?",
     "expect_answer": true,
     "expected_doc_filename": "Bail_Appln._834_2020_AKHIL_GOGOI_vs_THE_STATE_OF_ASSAM.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_CONAA_5_2015_ABDUL_QAYOOM_NIZAMI_vs_M.D.",
+    "id": "case_summary_CONAA_5_2015_ABDUL_QAYOOM_NIZAMI_vs_M.D.",
     "question": "What is the case ABDUL QAYOOM NIZAMI vs M.D.JKSFC.AND ANR about?",
     "expect_answer": true,
     "expected_doc_filename": "CONAA_5_2015_ABDUL_QAYOOM_NIZAMI_vs_M.D.JKSFC.AND_ANR.pdf",
@@ -776,15 +776,15 @@
     "type": "case_summary"
   },
   {
-    "id": "case_CPOWP_100_2010_DHARMINDER_KOHLI_AND_ORS_",
-    "question": "What is the case DHARMINDER KOHLI AND ORS vs B.S.BALICHIEF EXCUTIVE OFFICER AND ORS about?",
+    "id": "case_lookup_by_number_CPOWP_100_2010_DHARMINDER_KOHLI_AND_ORS_",
+    "question": "What is case CPOWP 100 of 2010 (DHARMINDER KOHLI AND ORS vs B.S.BALICHIEF EXCUTIVE OFFICER AND ORS) about?",
     "expect_answer": true,
     "expected_doc_filename": "CPOWP_100_2010_DHARMINDER_KOHLI_AND_ORS_vs_B.S.BALICHIEF_EXCUTIVE_OFFICER_AND_ORS.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_CPSW_510_2011_NIGHAT_PARVEEN_vs_MR._FARO",
+    "id": "case_summary_CPSW_510_2011_NIGHAT_PARVEEN_vs_MR._FARO",
     "question": "What is the case NIGHAT PARVEEN vs MR. FAROOQ AHMAD FAKHTOO about?",
     "expect_answer": true,
     "expected_doc_filename": "CPSW_510_2011_NIGHAT_PARVEEN_vs_MR._FAROOQ_AHMAD_FAKHTOO.pdf",
@@ -792,127 +792,127 @@
     "type": "case_summary"
   },
   {
-    "id": "case_CR._MISC._10251_2020_MD._MOHASIN_MD._MOH",
-    "question": "What is the case 2020 MD. MOHASIN MD. MOHSHIN vs THE STATE OF BIHAR about?",
+    "id": "case_lookup_by_number_CR._MISC._10251_2020_MD._MOHASIN_MD._MOH",
+    "question": "What is case CR._MISC. 10251 of 2020 (MD. MOHASIN MD. MOHSHIN vs THE STATE OF BIHAR) about?",
     "expect_answer": true,
     "expected_doc_filename": "CR._MISC._10251_2020_MD._MOHASIN_MD._MOHSHIN_vs_THE_STATE_OF_BIHAR.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_CR._MISC._11115_2020_BARUN_KUMAR_THAKUR_",
-    "question": "What is the case 2020 BARUN KUMAR THAKUR VARUN KUMAR THAKUR BARUN THAKUR vs THE STATE OF BIH about?",
+    "id": "case_summary_CR._MISC._11115_2020_BARUN_KUMAR_THAKUR_",
+    "question": "What is the case BARUN KUMAR THAKUR VARUN KUMAR THAKUR BARUN THAKUR vs THE STATE OF BIH about?",
     "expect_answer": true,
     "expected_doc_filename": "CR._MISC._11115_2020_BARUN_KUMAR_THAKUR_VARUN_KUMAR_THAKUR_BARUN_THAKUR_vs_THE_STATE_OF_BIH.pdf",
     "expected_substring": null,
     "type": "case_summary"
   },
   {
-    "id": "case_CR._MISC._1505_2020_HARI_OM_KUMAR_vs_The",
-    "question": "What is the case 2020 HARI OM KUMAR vs The State of Bihar about?",
+    "id": "case_lookup_by_number_CR._MISC._1505_2020_HARI_OM_KUMAR_vs_The",
+    "question": "What is case CR._MISC. 1505 of 2020 (HARI OM KUMAR vs The State of Bihar) about?",
     "expect_answer": true,
     "expected_doc_filename": "CR._MISC._1505_2020_HARI_OM_KUMAR_vs_The_State_of_Bihar.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_CR._MISC._3024_2020_CHANDAN_KUMAR_vs_THE",
-    "question": "What is the case 2020 CHANDAN KUMAR vs THE STATE OF BIHAR about?",
+    "id": "case_summary_CR._MISC._3024_2020_CHANDAN_KUMAR_vs_THE",
+    "question": "What is the case CHANDAN KUMAR vs THE STATE OF BIHAR about?",
     "expect_answer": true,
     "expected_doc_filename": "CR._MISC._3024_2020_CHANDAN_KUMAR_vs_THE_STATE_OF_BIHAR.pdf",
     "expected_substring": null,
     "type": "case_summary"
   },
   {
-    "id": "case_CR._MISC._3739_2020_RANJIT_MANJHI_RANJEE",
-    "question": "What is the case 2020 RANJIT MANJHI RANJEET MANJHI vs The State of Bihar about?",
+    "id": "case_lookup_by_number_CR._MISC._3739_2020_RANJIT_MANJHI_RANJEE",
+    "question": "What is case CR._MISC. 3739 of 2020 (RANJIT MANJHI RANJEET MANJHI vs The State of Bihar) about?",
     "expect_answer": true,
     "expected_doc_filename": "CR._MISC._3739_2020_RANJIT_MANJHI_RANJEET_MANJHI_vs_The_State_of_Bihar.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_CR._MISC._4749_2020_PRABHAT_KUMAR_MAHTO_",
-    "question": "What is the case 2020 PRABHAT KUMAR MAHTO PINTU MAHTO vs The State of Bihar about?",
+    "id": "case_summary_CR._MISC._4749_2020_PRABHAT_KUMAR_MAHTO_",
+    "question": "What is the case PRABHAT KUMAR MAHTO PINTU MAHTO vs The State of Bihar about?",
     "expect_answer": true,
     "expected_doc_filename": "CR._MISC._4749_2020_PRABHAT_KUMAR_MAHTO_PINTU_MAHTO_vs_The_State_of_Bihar.pdf",
     "expected_substring": null,
     "type": "case_summary"
   },
   {
-    "id": "case_CR._MISC._4828_2020_Rambabu_Prasad_vs_Th",
-    "question": "What is the case 2020 Rambabu Prasad vs The State of Bihar about?",
+    "id": "case_lookup_by_number_CR._MISC._4828_2020_Rambabu_Prasad_vs_Th",
+    "question": "What is case CR._MISC. 4828 of 2020 (Rambabu Prasad vs The State of Bihar) about?",
     "expect_answer": true,
     "expected_doc_filename": "CR._MISC._4828_2020_Rambabu_Prasad_vs_The_State_of_Bihar.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_CR._MISC._5617_2020_RANJIT_RANJEET_SINGH",
-    "question": "What is the case 2020 RANJIT RANJEET SINGH vs The State of Bihar about?",
+    "id": "case_summary_CR._MISC._5617_2020_RANJIT_RANJEET_SINGH",
+    "question": "What is the case RANJIT RANJEET SINGH vs The State of Bihar about?",
     "expect_answer": true,
     "expected_doc_filename": "CR._MISC._5617_2020_RANJIT_RANJEET_SINGH_vs_The_State_of_Bihar.pdf",
     "expected_substring": null,
     "type": "case_summary"
   },
   {
-    "id": "case_CR._MISC._6649_2020_SUMIT_YADAV_vs_The_S",
-    "question": "What is the case 2020 SUMIT YADAV vs The State of Bihar about?",
+    "id": "case_lookup_by_number_CR._MISC._6649_2020_SUMIT_YADAV_vs_The_S",
+    "question": "What is case CR._MISC. 6649 of 2020 (SUMIT YADAV vs The State of Bihar) about?",
     "expect_answer": true,
     "expected_doc_filename": "CR._MISC._6649_2020_SUMIT_YADAV_vs_The_State_of_Bihar.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_CR._MISC._6705_2020_RADHEY_SHYAM_YADAV_R",
-    "question": "What is the case 2020 RADHEY SHYAM YADAV RADHEY SHYAM vs The State of Bihar about?",
+    "id": "case_summary_CR._MISC._6705_2020_RADHEY_SHYAM_YADAV_R",
+    "question": "What is the case RADHEY SHYAM YADAV RADHEY SHYAM vs The State of Bihar about?",
     "expect_answer": true,
     "expected_doc_filename": "CR._MISC._6705_2020_RADHEY_SHYAM_YADAV_RADHEY_SHYAM_vs_The_State_of_Bihar.pdf",
     "expected_substring": null,
     "type": "case_summary"
   },
   {
-    "id": "case_CR._MISC._817_2020_KUNDAN_KUMAR_vs_The_S",
-    "question": "What is the case 2020 KUNDAN KUMAR vs The State of Bihar about?",
+    "id": "case_lookup_by_number_CR._MISC._817_2020_KUNDAN_KUMAR_vs_The_S",
+    "question": "What is case CR._MISC. 817 of 2020 (KUNDAN KUMAR vs The State of Bihar) about?",
     "expect_answer": true,
     "expected_doc_filename": "CR._MISC._817_2020_KUNDAN_KUMAR_vs_The_State_of_Bihar.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_CR._MISC._8546_2020_PAWAN_KUMAR_vs_THE_S",
-    "question": "What is the case 2020 PAWAN KUMAR vs THE STATE OF BIHAR about?",
+    "id": "case_summary_CR._MISC._8546_2020_PAWAN_KUMAR_vs_THE_S",
+    "question": "What is the case PAWAN KUMAR vs THE STATE OF BIHAR about?",
     "expect_answer": true,
     "expected_doc_filename": "CR._MISC._8546_2020_PAWAN_KUMAR_vs_THE_STATE_OF_BIHAR.pdf",
     "expected_substring": null,
     "type": "case_summary"
   },
   {
-    "id": "case_CR._MISC._9247_2020_RAHUL_KUMAR_vs_The_S",
-    "question": "What is the case 2020 RAHUL KUMAR vs The State of Bihar about?",
+    "id": "case_lookup_by_number_CR._MISC._9247_2020_RAHUL_KUMAR_vs_The_S",
+    "question": "What is case CR._MISC. 9247 of 2020 (RAHUL KUMAR vs The State of Bihar) about?",
     "expect_answer": true,
     "expected_doc_filename": "CR._MISC._9247_2020_RAHUL_KUMAR_vs_The_State_of_Bihar.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_CR._WJC_871_2017_Ajeet_Kumar_vs_The_Stat",
-    "question": "What is the case 2017 Ajeet Kumar vs The State Of Bihar Through The Director General Of Poli about?",
+    "id": "case_summary_CR._WJC_871_2017_Ajeet_Kumar_vs_The_Stat",
+    "question": "What is the case Ajeet Kumar vs The State Of Bihar Through The Director General Of Poli about?",
     "expect_answer": true,
     "expected_doc_filename": "CR._WJC_871_2017_Ajeet_Kumar_vs_The_State_Of_Bihar_Through_The_Director_General_Of_Poli.pdf",
     "expected_substring": null,
     "type": "case_summary"
   },
   {
-    "id": "case_CRIL._PETN._28_2020_JANGPAO_HAOKIP_vs_ST",
-    "question": "What is the case 2020 JANGPAO HAOKIP vs STATE OF MANIPUR AND ORS about?",
+    "id": "case_lookup_by_number_CRIL._PETN._28_2020_JANGPAO_HAOKIP_vs_ST",
+    "question": "What is case CRIL._PETN. 28 of 2020 (JANGPAO HAOKIP vs STATE OF MANIPUR AND ORS) about?",
     "expect_answer": true,
     "expected_doc_filename": "CRIL._PETN._28_2020_JANGPAO_HAOKIP_vs_STATE_OF_MANIPUR_AND_ORS.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_CRL.L.P_1_2018_State_of_Sikkim_vs_Vinay_",
+    "id": "case_summary_CRL.L.P_1_2018_State_of_Sikkim_vs_Vinay_",
     "question": "What is the case State of Sikkim vs Vinay Rai about?",
     "expect_answer": true,
     "expected_doc_filename": "CRL.L.P_1_2018_State_of_Sikkim_vs_Vinay_Rai.pdf",
@@ -920,15 +920,15 @@
     "type": "case_summary"
   },
   {
-    "id": "case_CRL._REV._P_3_2019_Binod_Tamang_vs_State",
-    "question": "What is the case 3 2019 Binod Tamang vs State Of Sikkim about?",
+    "id": "case_lookup_by_number_CRL._REV._P_3_2019_Binod_Tamang_vs_State",
+    "question": "What is case CRL._REV._P 3 of 2019 (Binod Tamang vs State Of Sikkim) about?",
     "expect_answer": true,
     "expected_doc_filename": "CRL._REV._P_3_2019_Binod_Tamang_vs_State_Of_Sikkim.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_CRM_4369_2020_PADMA_BHAKAT_ANR_vs_STATE_",
+    "id": "case_summary_CRM_4369_2020_PADMA_BHAKAT_ANR_vs_STATE_",
     "question": "What is the case PADMA BHAKAT ANR vs STATE OF WEST BENGAL about?",
     "expect_answer": true,
     "expected_doc_filename": "CRM_4369_2020_PADMA_BHAKAT_ANR_vs_STATE_OF_WEST_BENGAL.pdf",
@@ -936,15 +936,15 @@
     "type": "case_summary"
   },
   {
-    "id": "case_CRM_5758_2020_GOLAM_KIBRIA_TITAN_TITAN_S",
-    "question": "What is the case GOLAM KIBRIA TITAN TITAN SK ORS vs STATE OF WEST BENGAL about?",
+    "id": "case_lookup_by_number_CRM_5758_2020_GOLAM_KIBRIA_TITAN_TITAN_S",
+    "question": "What is case CRM 5758 of 2020 (GOLAM KIBRIA TITAN TITAN SK ORS vs STATE OF WEST BENGAL) about?",
     "expect_answer": true,
     "expected_doc_filename": "CRM_5758_2020_GOLAM_KIBRIA_TITAN_TITAN_SK_ORS_vs_STATE_OF_WEST_BENGAL.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_CRM_6559_2020_SADIQUL_ISLAM_vs_State_of_",
+    "id": "case_summary_CRM_6559_2020_SADIQUL_ISLAM_vs_State_of_",
     "question": "What is the case SADIQUL ISLAM vs State of West Bengal about?",
     "expect_answer": true,
     "expected_doc_filename": "CRM_6559_2020_SADIQUL_ISLAM_vs_State_of_West_Bengal.pdf",
@@ -952,28 +952,28 @@
     "type": "case_summary"
   },
   {
-    "id": "case_CRM_8976_2020_RIYAJUL_GOLDER_vs_State_of",
-    "question": "What is the case RIYAJUL GOLDER vs State of West Bengal about?",
+    "id": "case_lookup_by_number_CRM_8976_2020_RIYAJUL_GOLDER_vs_State_of",
+    "question": "What is case CRM 8976 of 2020 (RIYAJUL GOLDER vs State of West Bengal) about?",
     "expect_answer": true,
     "expected_doc_filename": "CRM_8976_2020_RIYAJUL_GOLDER_vs_State_of_West_Bengal.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
-    "id": "case_CRPI_-_O_239_2018_BABU_BISWAS_vs_TUSHAR_",
-    "question": "What is the case 239 2018 BABU BISWAS vs TUSHAR KR. DAS AND 2 ORS about?",
+    "id": "case_summary_CRPI_-_O_239_2018_BABU_BISWAS_vs_TUSHAR_",
+    "question": "What is the case BABU BISWAS vs TUSHAR KR. DAS AND 2 ORS about?",
     "expect_answer": true,
     "expected_doc_filename": "CRPI_-_O_239_2018_BABU_BISWAS_vs_TUSHAR_KR._DAS_AND_2_ORS.pdf",
     "expected_substring": null,
     "type": "case_summary"
   },
   {
-    "id": "case_CRP_35_2020_LORINA_JYRWA_NONGSIEJ_vs_ROB",
-    "question": "What is the case LORINA JYRWA NONGSIEJ vs ROBERT FELLER KHARBUKI about?",
+    "id": "case_lookup_by_number_CRP_35_2020_LORINA_JYRWA_NONGSIEJ_vs_ROB",
+    "question": "What is case CRP 35 of 2020 (LORINA JYRWA NONGSIEJ vs ROBERT FELLER KHARBUKI) about?",
     "expect_answer": true,
     "expected_doc_filename": "CRP_35_2020_LORINA_JYRWA_NONGSIEJ_vs_ROBERT_FELLER_KHARBUKI.pdf",
     "expected_substring": null,
-    "type": "case_summary"
+    "type": "case_lookup_by_number"
   },
   {
     "id": "adv_capital_france",

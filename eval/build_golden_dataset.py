@@ -74,23 +74,47 @@ def build_answerable_from_txt(txt_dir=TXT_DIR):
     return cases
 
 
+# Filenames are "<TYPE>_<NUM>_<YEAR>_<parties>.pdf" (see
+# eval prep scripts) — e.g. "ABLAPL_3648_2020_LIPU_PRADHAN_vs_STATE_OF_ODISHA.pdf".
+# Type prefix itself may contain underscores (e.g. "CR._MISC."), so match it
+# non-greedily up to the first "_<digits>_<4-digit year>_" run instead of
+# constraining its character set.
+_PDF_NAME_RE = re.compile(r"^(.+?)_(\d+)_(\d{4})_(.+?)_vs_(.+)$")
+
+
 def build_answerable_from_pdf(pdf_dir=PDF_DIR, limit=40):
+    """Generates two question styles per document, split evenly:
+    - case_summary: party names only ("What is the case X vs Y about?") —
+      how you'd search if you don't remember the case number.
+    - case_lookup_by_number: includes the case number ("What is case CRM
+      10691 of 2020 ... about?") — how you'd search from a docket/cause
+      list, where the number is what you actually have on hand.
+    Both are realistic; testing only the party-only style (as this used to)
+    silently never exercises case-number-based retrieval at all.
+    """
     cases = []
     files = sorted(pdf_dir.glob("*.pdf"))[:limit]
-    for f in files:
-        m = re.match(r"(.+?)_vs_(.+)", f.stem)
+    for i, f in enumerate(files):
+        m = _PDF_NAME_RE.match(f.stem)
         if not m:
             continue
-        p1 = m.group(1).split("_", 3)[-1].replace("_", " ")
-        p2 = m.group(2).replace("_", " ")
-        party = f"{p1} vs {p2}"
+        case_type, num, year, p1, p2 = m.groups()
+        party = f"{p1.replace('_', ' ')} vs {p2.replace('_', ' ')}"
+
+        if i % 2 == 0:
+            question = f"What is the case {party} about?"
+            case_type_suffix = "case_summary"
+        else:
+            question = f"What is case {case_type} {num} of {year} ({party}) about?"
+            case_type_suffix = "case_lookup_by_number"
+
         cases.append({
-            "id": f"case_{f.stem[:40]}",
-            "question": f"What is the case {party} about?",
+            "id": f"{case_type_suffix}_{f.stem[:40]}",
+            "question": question,
             "expect_answer": True,
             "expected_doc_filename": f.name,
             "expected_substring": None,  # court rulings are free-form — Recall@K only, no substring check
-            "type": "case_summary",
+            "type": case_type_suffix,
         })
     return cases
 

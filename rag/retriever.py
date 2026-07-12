@@ -9,12 +9,68 @@ All embedding (GPU) and Qdrant (I/O) calls run off the event loop thread
 """
 import asyncio
 import logging
+import re
 
 from embeddings.embedding_service import EmbeddingService
 from rag.executors import run_on_gpu
 from vector_db.qdrant_client import VectorStore
 
 logger = logging.getLogger(__name__)
+
+# Case numbers in this corpus follow a near-universal "<N> of <YYYY>"
+# convention (CRM 10691 of 2020, WPA 12091 of 2019, F.A.O. No.293 of 2019,
+# ABLAPL 1380 of 2020, ...) regardless of the type-prefix abbreviation,
+# which varies too much (dots, spaces, "No.") to normalize reliably. An
+# exact (number, year) match is a much stronger identity signal than
+# embedding/BM25 similarity for this corpus's short, heavily-templated
+# interlocutory orders — many differ from each other in almost nothing
+# else but this number (item date, "Heard learned counsel for...",
+# signature block are near-identical across cases) — see retrieve_expanded.
+_CASE_NUMBER_RE = re.compile(r'\b(\d{1,6})\s+of\s+(\d{4})\b')
+
+
+def extract_case_numbers(text: str) -> set[tuple[str, str]]:
+    return set(_CASE_NUMBER_RE.findall(text))
+
+
+def promote_case_number_matches(
+    chunks: list[dict], top_chunks: list[dict], relevance_threshold: float
+) -> list[dict]:
+    """retrieve_expanded() guarantees a chunk with an exact case-number match
+    survives into the pool handed to the reranker — but the cross-encoder
+    scores it independently and can still rank it low (these short,
+    near-duplicate interlocutory orders are exactly where the reranker is
+    least reliable), which would then have the caller's relevance-threshold
+    gate reject it anyway. An exact (case number, year) match is a far more
+    reliable identity signal than the cross-encoder's opinion for this
+    corpus, so force it in with a score that clears the gate rather than
+    trust reranking here."""
+    matches = [c for c in chunks if c.get("case_number_match")]
+    if not matches:
+        return top_chunks
+
+    # top_chunks is already top_k-sized from reranking; only append matches
+    # not already present (matches are rare — usually 0 or 1 per query) so
+    # the result stays close to top_k without needing to re-sort-and-slice,
+    # which would risk cutting a just-boosted match back out if other
+    # chunks scored even higher (sorting by score before slicing defeats
+    # the guarantee this function exists to make).
+    promoted = list(top_chunks)
+    included_ids = {c.get("chunk_id") for c in promoted}
+    floor_score = relevance_threshold + 1.0
+
+    for c in matches:
+        if c.get("chunk_id") in included_ids:
+            for tc in promoted:
+                if tc.get("chunk_id") == c.get("chunk_id"):
+                    tc["rerank_score"] = max(tc.get("rerank_score", 0), floor_score)
+            continue
+        c = c.copy()
+        c["rerank_score"] = floor_score
+        promoted.append(c)
+        included_ids.add(c.get("chunk_id"))
+
+    return promoted
 
 
 class HybridRetriever:
@@ -57,6 +113,9 @@ class HybridRetriever:
         # Bring a large pool of candidates to the reranker
         pool = max(30, k * 5)
         all_chunks = {}
+        # queries[0] is always the original (unexpanded) user question — see
+        # query_expander.expand().
+        query_case_numbers = extract_case_numbers(queries[0]) if queries else set()
 
         for i, query in enumerate(queries):
             query_vector = await run_on_gpu(self.embedder.embed_text, query)
@@ -83,6 +142,12 @@ class HybridRetriever:
         # Sort and expand with neighbors only for top candidates
         sorted_chunks = sorted(all_chunks.values(), key=lambda x: x["score"], reverse=True)
         expanded = await self._expand_with_neighbors(sorted_chunks, max_base=pool)
+
+        if query_case_numbers:
+            for c in expanded:
+                if extract_case_numbers(c["text"]) & query_case_numbers:
+                    c["case_number_match"] = True
+
         expanded.sort(key=lambda x: x["score"], reverse=True)
 
         # Ensure at least 1 chunk per unique document in the result
@@ -93,6 +158,18 @@ class HybridRetriever:
             if doc_id and doc_id not in docs_in_top:
                 top_k_chunks.append(c)
                 docs_in_top.add(doc_id)
+
+        # An exact case-number match is a far stronger identity signal than
+        # any embedding/BM25 score — guarantee it survives even if its
+        # semantic score alone wouldn't have made the cut (these short,
+        # near-duplicate interlocutory orders are exactly where semantic
+        # scoring is least reliable; see extract_case_numbers).
+        included_keys = {c.get("chunk_id", c["text"][:50]) for c in top_k_chunks}
+        for c in expanded:
+            key = c.get("chunk_id", c["text"][:50])
+            if c.get("case_number_match") and key not in included_keys:
+                top_k_chunks.append(c)
+                included_keys.add(key)
 
         logger.info(f"Expanded retrieval: {len(queries)} queries → {len(expanded)} candidates → top {len(top_k_chunks)}")
         return top_k_chunks
