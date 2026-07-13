@@ -299,3 +299,119 @@ spend budget on a bigger/better generation model for this problem.
    Next natural step, if pursuing it, is the corpus-scale question raised
    earlier (expanding well beyond the current ~400 documents) rather than
    further accuracy chasing on this corpus.
+
+## Scale test: EU legislation corpus (IN PROGRESS — paused at 16,280/57,000)
+
+Separate track from everything above: does accuracy degrade as the corpus
+scales (1k → 5k → 15k → 30k → 57k), how consistent is a *repeated*
+identical question, and does asking different questions about the *same*
+document reveal partial degradation an aggregate metric would hide? Uses
+a real, unrelated 57,000-document corpus (EURLEX57K — EU legislation,
+`31958D1127(01) - EEC Council Rules of the Transport Committee.pdf`-style
+filenames, CELEX ID + description) instead of synthetic/small-scale data,
+so findings aren't an artifact of the existing 400-doc corpus's specific
+shape. This becomes the reference "golden test" for scale-driven work, the
+same role golden_dataset.json/heldout_dataset.json play above.
+
+**Isolation**: a second API process on port 8001, separate Qdrant
+collection (`eu_scale_test`) and separate Postgres database
+(`ragdb_eu_scale_test`) — the main instance (port 8000, this file's
+existing 400-doc corpus) is untouched throughout; confirmed via spot-check
+after every shared-code change.
+
+**New infrastructure** (generic, not corpus-specific — reusable for any
+future scale test):
+- `scripts/bulk_ingest_pdfs.py` — resumable bulk ingestion with a fixed,
+  seeded shuffle order persisted to `eval/eu_manifest.json`, so
+  `--up-to 5000` always means "the same first 5000 files" regardless of
+  which run it's called from — each checkpoint is a strict superset of the
+  previous one.
+- `eval/build_eu_golden_dataset.py` — golden/heldout/cross-question dataset
+  builder for this corpus (facts extracted from PDF text via regex, not
+  hand-transcribed, same discipline as `build_golden_dataset.py`).
+- `eval/consistency_test.py` — repeats a representative question sample
+  N times against a live instance, recording both answer correctness and
+  *which document was actually retrieved* each time (separates retrieval
+  flakiness from generation flakiness).
+- `eval/run_eval.py` fixed: crashed with `ZeroDivisionError` on any
+  dataset with zero adversarial (`expect_answer: False`) cases — the
+  cross-question dataset has none by design. Now reports `n/a` instead.
+
+**Two bugs found on this corpus and fixed** (mirroring the case-number/
+party-name work above, same architecture, corpus-specific extraction
+logic):
+1. **CELEX ID exact match** (`ingestion/chunker.py::extract_celex_id`,
+   `vector_db/qdrant_client.py::chunks_by_celex_id`, wired into
+   `rag/retriever.py`) — more load-bearing here than case numbers are for
+   the court-case corpus: a CELEX ID *never* appears in its own document's
+   body text at all (EU legislation cites itself in a different format,
+   e.g. filename `31997R0955` vs. body text `1997/955/EC`), so hybrid
+   search had no literal string to find without a structured index.
+2. **`cross_reference_fact` question wording** — the original phrasing
+   ("what does X reference?") made the model consistently self-report X's
+   *own* number in 19/19 inspected failures. Rewritten to extract the verb
+   immediately preceding the citation ("amending"/"repealing"/"Having
+   regard to"/...) and build a question that can't be answered with the
+   document's own identity ("What earlier regulation is X amending?" /
+   "does X cite (excluding its own number)?").
+
+Impact of both fixes together, pilot (400 docs): golden Recall@5 88.7% →
+**100%**, abstention accuracy 89.4% → **100%**, answer correctness 67.2% →
+**100%**; heldout 86.7%/88.1%/58.2% → **100%/99.4%/90.3%**. Residual
+heldout `cross_reference_fact` misses (5/9) are a *dataset* ambiguity, not
+a retrieval/generation defect — many EU documents cite multiple earlier
+regulations ("Having regard to X... and Y..."), and the regex-extracted
+"expected" one isn't always the one the model surfaces, even though both
+are legitimately present in the text. Backfilled the already-ingested 400
+docs' `celex_id` via `scripts/backfill_case_metadata.py` (extended to
+handle both identity conventions; scrolls existing points, no re-parse/
+re-embed needed).
+
+**Scale ladder results so far** (golden / heldout, `eval/scale_results/`):
+
+| corpus size | Recall@5 | Abstention acc. | Answer correctness | MRR (golden / heldout) |
+|---|---|---|---|---|
+| 400 (post-fix pilot) | 100% / 100% | 100% / 99.4% | 100% / 90.3% | 0.815 / 0.833 |
+| 1,000 | 100% / 100% | 100% / 99.4% | 100% / 91.9% | 0.706 / 0.722 |
+| 5,000 | 100% / 100% | 100% / 99.4% | 100% / 91.9% | 0.599 / 0.608 |
+| 15,000 | 100% / 100% | 100% / 100% | 100% / 96.8% | 0.539 / 0.535 |
+
+**Reading so far — real, but not (yet) where the original worry pointed.**
+Recall@5, abstention accuracy, and answer correctness are flat/perfect
+from 1k through 15k — no hallucination-under-scale observed on either
+independent dataset. But **MRR is declining monotonically and in lockstep
+across both datasets** (0.815→0.706→0.599→0.539 golden; 0.833→0.722→
+0.608→0.535 heldout) — the correct document still always makes top-5, but
+increasingly lands at rank 2-4 instead of 1, because this corpus has an
+unusually high density of near-duplicate documents (the same boilerplate
+regulation type — e.g. "fixing export refunds on cereals" — reissued
+weekly/monthly for decades). Whether this trend flattens into a plateau or
+eventually pushes the correct document out of the top-5 window at higher
+volumes is **not yet known** — the ladder was paused (user-requested) at
+16,280/57,000 to consult on approach before spending more ingestion/eval
+time. Resuming is a single `scripts/bulk_ingest_pdfs.py --up-to N` call
+(manifest + progress are on disk, fully resumable).
+
+**Consistency test @ 1,000** (15 questions × 20 repeats = 300 calls,
+`eval/consistency_results_at_1000.json`): **300/300 correct, retrieval
+100% stable** (same top document on every repeat, for every question).
+Directly answers the original "ask the same question 50 times, does it
+get 45 wrong" worry — at this checkpoint, no, not observed at all.
+Not yet re-run at a higher checkpoint (planned for whichever size the
+ladder ends at).
+
+**Cross-question-per-document test @ 1,000** (30 documents × up to 4
+question types, `eval/scale_results/cross_question_at_1000.json`): 27/30
+documents fully correct across every question type asked about them; 3/30
+have exactly one failing type each (same residual `cross_reference_fact`/
+`date_fact` ambiguity class already described above) — no document fails
+across the board, no sign of a document being "half indexed."
+
+**Not yet done** (paused here, resume when picking this back up):
+- Checkpoints 30,000 and 57,000 (golden + heldout).
+- Consistency test + cross-question test re-run at the final checkpoint.
+- A verdict on the MRR trend — needs the higher checkpoints to distinguish
+  "plateaus" from "eventually breaks Recall@5."
+- A capstone write-up tying this together with the court-case corpus
+  results above into a single cross-domain validation case, once the
+  ladder has an endpoint to report.

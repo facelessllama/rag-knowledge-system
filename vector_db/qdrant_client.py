@@ -18,7 +18,7 @@ from qdrant_client.models import (
     PayloadSchemaType,
 )
 
-from ingestion.chunker import chunk_context_text, extract_case_metadata
+from ingestion.chunker import chunk_context_text, extract_case_metadata, extract_celex_id
 from vector_db.sparse_encoder import build_sparse_vector
 
 logger = logging.getLogger(__name__)
@@ -36,6 +36,9 @@ _PAYLOAD_INDEXES = (
     # corpus grows.
     ("case_number", PayloadSchemaType.KEYWORD),
     ("case_year", PayloadSchemaType.KEYWORD),
+    # Backs chunks_by_celex_id() the same way — see ingestion/chunker.py::
+    # extract_celex_id (EU-legislation corpus identity).
+    ("celex_id", PayloadSchemaType.KEYWORD),
 )
 
 
@@ -70,7 +73,9 @@ class VectorStore:
     def upsert_chunks(self, chunks: list, vectors: list[list[float]]):
         points = []
         for chunk, vector in zip(chunks, vectors):
-            case_meta = extract_case_metadata(getattr(chunk, "filename", "") or "")
+            filename = getattr(chunk, "filename", "") or ""
+            case_meta = extract_case_metadata(filename)
+            celex_id = extract_celex_id(filename)
             points.append(PointStruct(
                 id=str(uuid.uuid4()),
                 vector={
@@ -93,6 +98,7 @@ class VectorStore:
                     "case_number": case_meta.get("case_number", ""),
                     "case_year": case_meta.get("case_year", ""),
                     "parties": case_meta.get("parties", []),
+                    "celex_id": celex_id or "",
                 }
             ))
         self.client.upsert(collection_name=self.collection, points=points)
@@ -193,6 +199,27 @@ class VectorStore:
         )
         return self._points_to_chunk_dicts(results)
 
+    def chunks_by_celex_id(self, celex_id: str, limit: int = 10) -> list[dict]:
+        """Direct payload-indexed lookup for an exact CELEX ID identity —
+        see _PAYLOAD_INDEXES and ingestion/chunker.py::extract_celex_id.
+        Same role as chunks_by_case_number() plays for the court-case
+        corpus, but more load-bearing here: a CELEX ID never appears in the
+        document's own body text (EU legislation cites itself in a
+        different format, e.g. "1997/955/EC" for filename "31997R0955"),
+        so hybrid search's dense/BM25 matching has no literal string to
+        find at all without this — see rag/retriever.py's use of it."""
+        if not celex_id:
+            return []
+        search_filter = Filter(must=[FieldCondition(key="celex_id", match=MatchValue(value=celex_id))])
+        results, _ = self.client.scroll(
+            collection_name=self.collection,
+            scroll_filter=search_filter,
+            limit=limit,
+            with_payload=True,
+            with_vectors=False,
+        )
+        return self._points_to_chunk_dicts(results)
+
     def _points_to_chunk_dicts(self, points) -> list[dict]:
         out = []
         for r in points:
@@ -212,6 +239,7 @@ class VectorStore:
                 "case_number": p.get("case_number", ""),
                 "case_year": p.get("case_year", ""),
                 "parties": p.get("parties", []),
+                "celex_id": p.get("celex_id", ""),
             })
         return out
 
@@ -244,6 +272,7 @@ class VectorStore:
                 "case_number": p.get("case_number", ""),
                 "case_year": p.get("case_year", ""),
                 "parties": p.get("parties", []),
+                "celex_id": p.get("celex_id", ""),
             })
         return out
 

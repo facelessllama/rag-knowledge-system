@@ -19,3 +19,4 @@ patch_*.py
 backups/
 eval/last_run_scores*.json
 eval/deepseek_accuracy_results.json
+eval/eu_ingest_progress.json

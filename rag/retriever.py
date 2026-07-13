@@ -29,6 +29,18 @@ logger = logging.getLogger(__name__)
 _CASE_NUMBER_RE = re.compile(r'\b(\d{1,6})\s+of\s+(\d{4})\b')
 
 
+# EU-legislation CELEX IDs (see ingestion/chunker.py::extract_celex_id) —
+# sector digit(1) + year(4) + type letter(1) + number(4), optional "(NN)"
+# suffix. Applied to free query text, same role _CASE_NUMBER_RE plays for
+# case numbers: a user typing "31997R0955" into a question needs this
+# parsed out to drive the exact-identity lookup below.
+_CELEX_ID_QUERY_RE = re.compile(r'\b(\d{5}[A-Z]\d{4}(?:\(\d+\))?)(?!\w)')
+
+
+def extract_celex_ids(text: str) -> set[str]:
+    return set(_CELEX_ID_QUERY_RE.findall(text))
+
+
 def extract_case_numbers(text: str) -> set[tuple[str, str]]:
     """Parses (number, year) pairs out of free text — used on the *query*,
     which has no fixed structure to key off. For chunks, prefer the
@@ -172,6 +184,7 @@ class HybridRetriever:
         # queries[0] is always the original (unexpanded) user question — see
         # query_expander.expand().
         query_case_numbers = extract_case_numbers(queries[0]) if queries else set()
+        query_celex_ids = extract_celex_ids(queries[0]) if queries else set()
 
         for i, query in enumerate(queries):
             query_vector = await run_on_gpu(self.embedder.embed_text, query)
@@ -214,6 +227,22 @@ class HybridRetriever:
                     r["source"] = "case_number_index"
                     all_chunks[key] = r
 
+        # Same guarantee for CELEX IDs (see vector_db/qdrant_client.py::
+        # chunks_by_celex_id) — more load-bearing here than case numbers
+        # are for the court-case corpus, since a CELEX ID never appears in
+        # its own document's body text at all (EU legislation cites itself
+        # in a different format), so hybrid search has no literal string to
+        # find without this index.
+        for celex_id in query_celex_ids:
+            indexed = await asyncio.to_thread(self.vector_store.chunks_by_celex_id, celex_id)
+            for r in indexed:
+                key = r.get("chunk_id", r["text"][:50])
+                if key not in all_chunks:
+                    r = r.copy()
+                    r["score"] = 1.0
+                    r["source"] = "celex_id_index"
+                    all_chunks[key] = r
+
         # Sort and expand with neighbors only for top candidates
         sorted_chunks = sorted(all_chunks.values(), key=lambda x: x["score"], reverse=True)
         expanded = await self._expand_with_neighbors(sorted_chunks, max_base=pool)
@@ -227,6 +256,8 @@ class HybridRetriever:
         query_text = queries[0] if queries else ""
         for c in expanded:
             if c.get("case_number") and (c["case_number"], c.get("case_year")) in query_case_numbers:
+                c["identity_match"] = True
+            elif c.get("celex_id") and c["celex_id"] in query_celex_ids:
                 c["identity_match"] = True
             elif extract_party_match(query_text, c.get("parties")):
                 c["identity_match"] = True

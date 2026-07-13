@@ -1,0 +1,1262 @@
+[
+  {
+    "id": "ho_eu_32010R0554_summary",
+    "question": "What is 32010R0554 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32010R0554 - Council Regulation (EU) No 554 2010 of 24 June 2010 amending Regulation (EC) No 2488 2000 maintaining a freeze of funds in relation to Mr Milosevic and those perso.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_31998D0438_lookup",
+    "question": "What does Decision 31998D0438 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31998D0438 - 98 438 EC, ECSC, Euratom Commission Decision of 30 June 1998 adjusting the weightings applicable from 1 August, 1 September, 1 October, 1 November and 1 December 1.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31991R1303_date",
+    "question": "On what date was 31991R1303 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31991R1303 - Commission Regulation (EEC) No 1303 91 of 17 May 1991 fixing Community producer prices for carnations and roses for the application of the import arrangements for.pdf",
+    "expected_substring": "17 May 1991",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31976R2951_summary",
+    "question": "What is 31976R2951 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31976R2951 - Commission Regulation (EEC) No 2951 76 of 3 December 1976 amending for the second time Regulation (EEC) No 2115 76 laying down general rules for the import of wine.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_31984R3406_summary",
+    "question": "What is 31984R3406 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31984R3406 - Commission Regulation (EEC) No 3406 84 of 4 December 1984 authorizing the use in the production of sparkling wines, aerated sparkling and aerated semi-sparkling wi.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32011D0052_date",
+    "question": "On what date was 32011D0052 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011D0052 - 2011 52 EU Council Decision of 18 January 2011 on the signing, on behalf of the European Union, of the Agreement between the European Union, the Swiss Confederatio.pdf",
+    "expected_substring": "18 January 2011",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32006R1135_summary",
+    "question": "What is 32006R1135 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R1135 - Commission Regulation (EC) No 1135 2006 of 25 July 2006 amending the import duties in the cereals sector applicable from 26 July 2006.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32002R1995_lookup",
+    "question": "What does Regulation 32002R1995 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R1995 - Commission Regulation (EC) No 1995 2002 of 8 November 2002 fixing the maximum export refund on wholly milled long grain B rice to certain third countries in connec.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32014R0221_date",
+    "question": "On what date was 32014R0221 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32014R0221 - Commission Implementing Regulation (EU) No 221 2014 of 7 March 2014 amending Regulation (EC) No 288 2009 in respect of fixing the indicative allocation of the aid.pdf",
+    "expected_substring": "7 March 2014",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32006R1235_lookup",
+    "question": "What does Regulation 32006R1235 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R1235 - Commission Regulation (EC) No 1235 2006 of 16 August 2006 setting, for the 2006 2007 marketing year, the amount of aid for the cultivation of grapes intended for t.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31992R1165_lookup",
+    "question": "What does Regulation 31992R1165 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31992R1165 - Commission Regulation (EEC) No 1165 92 of 5 May 1992 re- establishing the levying of customs duties on products categories 1, 9 and 32 (order No 40.0010, 40.0090 a.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32007R0515_date",
+    "question": "On what date was 32007R0515 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32007R0515 - Commission Regulation (EC) Νo 515 2007 of 10 May 2007 fixing the export refunds on products processed from cereals and rice.pdf",
+    "expected_substring": "10 May 2007",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32004R2187_summary",
+    "question": "What is 32004R2187 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004R2187 - Commission Regulation (EC) No 2187 2004 of 20 December 2004 amending Regulation (EC) No 1615 2000 derogating from Regulation (EEC) No 2454 93 in respect of the def.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_31991R0904_lookup",
+    "question": "What does Regulation 31991R0904 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31991R0904 - Commission Regulation (EEC) No 904 91 of 9 April 1991 ending the charges against the tariff ceilings opened, in the framework of generalized tariff preferences, by.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32014D0332_date",
+    "question": "On what date was 32014D0332 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32014D0332 - 2014 332 EU Commission Implementing Decision of 4 June 2014 amending the Annexes to Decisions 92 260 EEC, 93 197 EEC and 2004 211 EC with regard to the animal heal.pdf",
+    "expected_substring": "4 June 2014",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31997D0059_summary",
+    "question": "What is 31997D0059 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31997D0059 - Commission Decision of 27 November 1996 approving the programme for the eradication of bovine tuberculosis for 1997 presented by Spain and fixing the level of the.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32003R1272_lookup",
+    "question": "What does Regulation 32003R1272 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R1272 - Commission Regulation (EC) No 1272 2003 of 17 July 2003 fixing the maximum export refund for white sugar to certain third countries for the 37th partial invitation.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32013D0643_date",
+    "question": "On what date was 32013D0643 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32013D0643 - 2013 643 EU Commission Implementing Decision of 7 November 2013 establishing the financial contribution by the Union to the expenditure incurred in the context of.pdf",
+    "expected_substring": "7 November 2013",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32003R2216_date",
+    "question": "On what date was 32003R2216 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R2216 - Commission Regulation (EC) No 2216 2003 of 18 December 2003 determining the quantity of certain products in the milk and milk products sector available for the per.pdf",
+    "expected_substring": "18 December 2003",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32003R1898_lookup",
+    "question": "What does Regulation 32003R1898 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R1898 - Commission Regulation (EC) No 1898 2003 of 28 October 2003 amending the import duties in the cereals sector.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31995R2253_date",
+    "question": "On what date was 31995R2253 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31995R2253 - Commission Regulation (EC) No 2253 95 of 26 September 1995 amending Regulation (EEC) No 1596 79 on preventive withdrawals of apples and pears.pdf",
+    "expected_substring": "26 September 1995",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31996D0344_summary",
+    "question": "What is 31996D0344 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31996D0344 - 96 344 EC Commission Decision of 21 May 1996 amending Decision 94 278 EC drawing up a list of third countries from which Member States authorize imports of certain.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_31987R1916_date",
+    "question": "On what date was 31987R1916 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31987R1916 - Council Regulation (EEC) No 1916 87 of 2 July 1987 fixing the production target price, the production aid and the intervention price for olive oil for the 1987 88.pdf",
+    "expected_substring": "2 July 1987",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32009D0753_date",
+    "question": "On what date was 32009D0753 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32009D0753 - 2009 753 EC Commission Decision of 12 October 2009 amending Decision 2006 1013 EC granting a derogation requested by Germany pursuant to Council Directive 91 676 E.pdf",
+    "expected_substring": "12 October 2009",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32006R1830_summary",
+    "question": "What is 32006R1830 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R1830 - Commission Regulation (EC) No 1830 2006 of 13 December 2006 amending Regulation (EC) No 2092 2004 laying down detailed rules for the application of an import tarif.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32009R0553_lookup",
+    "question": "What does Regulation 32009R0553 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32009R0553 - Commission Regulation (EC) No 553 2009 of 25 June 2009 opening a specific invitation to tender for the resale on the Community market of maize from harvests prior.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31988R0685_date",
+    "question": "On what date was 31988R0685 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31988R0685 - Commission Regulation (EEC) No 685 88 of 15 March 1988 amending Regulation (EEC) No 1726 84 as regards the time limit for the entry into storage of butter sold und.pdf",
+    "expected_substring": "15 March 1988",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31996R1300_summary",
+    "question": "What is 31996R1300 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31996R1300 - Commission Regulation (EC) No 1300 96 of 5 July 1996 amending Regulation (EC) No 1098 94 laying down the regional base areas applicable under the arable support sy.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32003R1935_lookup",
+    "question": "What does Regulation 32003R1935 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R1935 - Commission Regulation (EC) No 1935 2003 of 31 October 2003 amending Regulation (EC) No 571 97 establishing detailed rules for the application in the pigmeat sector.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31980D0126_date",
+    "question": "On what date was 31980D0126 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31980D0126 - 80 126 EEC Commission Decision of 28 December 1979 authorizing the Federal Republic of Germany to restrict the marketing of seed of certain varieties of agricultur.pdf",
+    "expected_substring": "28 December 1979",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32006R0697_date",
+    "question": "On what date was 32006R0697 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R0697 - Commission Regulation (EC) No 697 2006 of 5 May 2006 amending Regulation (EC) No 343 2006 opening the buying-in of butter in certain Member States for the period 1.pdf",
+    "expected_substring": "5 May 2006",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32006R0383_xref",
+    "question": "What earlier regulation, directive, or decision is 32006R0383 implementing?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R0383 - Commission Regulation (EC) No 383 2006 of 3 March 2006 fixing the maximum aid for cream, butter and concentrated butter for the 4th individual invitation to tender.pdf",
+    "expected_substring": "1255/99",
+    "type": "cross_reference_fact"
+  },
+  {
+    "id": "ho_eu_32003R0252_date",
+    "question": "On what date was 32003R0252 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R0252 - Commission Regulation (EC) No 252 2003 of 10 February 2003 determining the world market price for unginned cotton.pdf",
+    "expected_substring": "10 February 2003",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32002R0688_summary",
+    "question": "What is 32002R0688 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R0688 - Commission Regulation (EC) No 688 2002 of 22 April 2002 supplementing the Annex to Regulation (EC) No 2301 97 on the entry of certain names in the register of cert.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_31992D0500_lookup",
+    "question": "What does Decision 31992D0500 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31992D0500 - 92 500 EEC Commission Decision of 7 October 1992 imposing a fine pursuant to Article 15 (1) of Council Regulation No 17 on CSM NV (Case IV 33.791 - CSM - ex IV 33.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32005R0644_xref",
+    "question": "What earlier regulation, directive, or decision is 32005R0644 repealing?",
+    "expect_answer": true,
+    "expected_doc_filename": "32005R0644 - Commission Regulation (EC) No 644 2005 of 27 April 2005 authorising a special identification system for bovine animals kept for cultural and historical purposes on.pdf",
+    "expected_substring": "820/97",
+    "type": "cross_reference_fact"
+  },
+  {
+    "id": "ho_eu_32008D0831_summary",
+    "question": "What is 32008D0831 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32008D0831 - 2008 831 EC Commission Decision of 31 October 2008 setting a new deadline for the submission of dossiers for certain substances to be examined under the 10-year wo.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32012L0021_lookup",
+    "question": "What does Directive 32012L0021 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32012L0021 - Commission Implementing Directive 2012 21 EU of 2 August 2012 amending, for the purpose of adaptation to technical progress, Annexes II and III to Council Directiv.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32007R0837_date",
+    "question": "On what date was 32007R0837 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32007R0837 - Commission Regulation (EC) No 837 2007 of 17 July 2007 establishing the standard import values for determining the entry price of certain fruit and vegetables.pdf",
+    "expected_substring": "17 July 2007",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31996R1821_summary",
+    "question": "What is 31996R1821 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31996R1821 - Council Regulation (EC) No 1821 96 of 16 September 1996 amending for the sixth time Regulation (EEC) No 1866 86 laying down certain technical measures for the cons.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32005D0155_lookup",
+    "question": "What does Decision 32005D0155 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32005D0155 - 2005 155 EC Commission Decision of 18 February 2005 amending Decision 97 102 EC laying down special conditions governing imports of fishery and aquaculture product.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32012R0020_lookup",
+    "question": "What does Regulation 32012R0020 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32012R0020 - Commission Implementing Regulation (EU) No 20 2012 of 11 January 2012 fixing the allocation coefficient to be applied to applications for import licences lodged fr.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32003R0496_summary",
+    "question": "What is 32003R0496 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R0496 - Commission Regulation (EC) No 496 2003 of 19 March 2003 temporarily derogating from Regulation (EC) No 1445 95 on rules of application for import and export licenc.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32002R0268_lookup",
+    "question": "What does Regulation 32002R0268 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R0268 - Council Regulation (EC) No 268 2002 of 12 February 2002 terminating the anti-dumping proceeding concerning imports of polysulphide polymers originating in the Unit.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31995R2946_summary",
+    "question": "What is 31995R2946 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31995R2946 - Commission Regulation (EC) No 2946 95 of 18 December 1995 amending Regulation (EEC) No 2814 90 laying down detailed rules for the definition of lambs fattened as h.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_31994R1771_summary",
+    "question": "What is 31994R1771 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31994R1771 - Commission Regulation (EC) No 1771 94 of 19 July 1994 laying down provisions on the introduction into the Community of pelts and manufactured goods of certain wild.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_31986R0501_lookup",
+    "question": "What does Regulation 31986R0501 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31986R0501 - Council Regulation (EEC) No 501 86 of 25 February 1986 fixing, for 1986, the initial quota which may be applied by the Portuguese Republic for certain fruit and ve.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31998R0386_date",
+    "question": "On what date was 31998R0386 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31998R0386 - Commission Regulation (EC) No 386 98 of 18 February 1998 fixing the minimum selling prices for beef put up for sale under the invitation to tender referred to in R.pdf",
+    "expected_substring": "18 February 1998",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32003D0243_summary",
+    "question": "What is 32003D0243 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003D0243 - 2003 243 EC Commission Decision of 3 March 2003 amending for the 13th time Decision 2000 284 EC establishing the list of approved semen collection centres for impo.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32014R1132_lookup",
+    "question": "What does Regulation 32014R1132 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32014R1132 - Commission Implementing Regulation (EU) No 1132 2014 of 24 October 2014 establishing the standard import values for determining the entry price of certain fruit an.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32009D0395_date",
+    "question": "On what date was 32009D0395 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32009D0395 - 2009 395 EC Commission Decision of 14 May 2009 concerning the placing on the market for essential use of biocidal products containing temephos in the French overse.pdf",
+    "expected_substring": "14 May 2009",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32009R0754_summary",
+    "question": "What is 32009R0754 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32009R0754 - Council Regulation (EC) No 754 2009 of 27 July 2009 excluding certain groups of vessels from the fishing effort regime laid down in Chapter III of Regulation (EC).pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_31999R0951_lookup",
+    "question": "What does Regulation 31999R0951 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31999R0951 - Commission Regulation (EC) No 951 1999 of 5 May 1999 on periodical sales by tender of beef held by certain intervention agencies for export and repealing Regulatio.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32012R0566_date",
+    "question": "On what date was 32012R0566 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32012R0566 - Council Regulation (EU) No 566 2012 of 18 June 2012 amending Regulation (EC) No 975 98 on denominations and technical specifications of euro coins intended for cir.pdf",
+    "expected_substring": "18 June 2012",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32015R0404_date",
+    "question": "On what date was 32015R0404 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32015R0404 - Commission Implementing Regulation (EU) 2015 404 of 11 March 2015 amending Implementing Regulation (EU) No 540 2011 as regards the extension of the approval period.pdf",
+    "expected_substring": "11 March 2015",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32010R0692_lookup",
+    "question": "What does Regulation 32010R0692 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32010R0692 - Commission Regulation (EU) No 692 2010 of 30 July 2010 concerning the classification of certain goods in the Combined Nomenclature.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32001R1602_date",
+    "question": "On what date was 32001R1602 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32001R1602 - Commission Regulation (EC) No 1602 2001 of 3 August 2001 establishing the standard import values for determining the entry price of certain fruit and vegetables.pdf",
+    "expected_substring": "3 August 2001",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31986R1059_summary",
+    "question": "What is 31986R1059 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31986R1059 - Council Regulation (EEC) No 1059 86 of 8 April 1986 amending Regulation (EEC) No 1900 85 introducing Community export and import declaration forms.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_31996R1596_lookup",
+    "question": "What does Regulation 31996R1596 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31996R1596 - Council Regulation (EC) No 1596 96 of 30 July 1996 amending Regulation (EEC) No 2392 86 establishing a Community vineyard register.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32008R0108_date",
+    "question": "On what date was 32008R0108 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32008R0108 - Regulation (EC) No 108 2008 of the European Parliament and of the Council of 15 January 2008 amending Regulation (EC) No 1925 2006 on the addition of vitamins and.pdf",
+    "expected_substring": "15 January\n2008",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32008R1025_summary",
+    "question": "What is 32008R1025 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32008R1025 - Commission Regulation (EC) No 1025 2008 of 17 October 2008 entering a name in the register of protected designations of origin and protected geographical indicatio.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_31985R3118_lookup",
+    "question": "What does Regulation 31985R3118 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31985R3118 - Council Regulation (EEC) No 3118 85 of 4 November 1985 amending Regulation (EEC) No 104 76 laying down common marketing standards for shrimps of the genus Crangon.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32009R0417_date",
+    "question": "On what date was 32009R0417 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32009R0417 - Commission Regulation (EC) No 417 2009 of 20 May 2009 entering a designation in the register of protected designations of origin and protected geographical indicat.pdf",
+    "expected_substring": "20 May 2009",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31987R3715_xref",
+    "question": "What earlier regulation, directive, or decision does 31987R3715 cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "31987R3715 - Commission Regulation (EEC) No 3715 87 of 11 December 1987 suspending Regulation (EEC) No 2793 77 on detailed rules of application for granting special aid for ski.pdf",
+    "expected_substring": "804/68",
+    "type": "cross_reference_fact"
+  },
+  {
+    "id": "ho_eu_31977R1659_lookup",
+    "question": "What does Regulation 31977R1659 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31977R1659 - Council Regulation (EEC) No 1659 77 of 18 July 1977 on the safeguard measures provided for in the Cooperation Agreement and the Interim Agreement between the Europ.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31996D0639_date",
+    "question": "On what date was 31996D0639 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31996D0639 - 96 639 EC Commission Decision of 28 October 1996 on financial aid from the Community for the operation of the Community Reference Laboratory for Classical Swine Fe.pdf",
+    "expected_substring": "28 October 1996",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31998R2782_date",
+    "question": "On what date was 31998R2782 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31998R2782 - Commission Regulation (EC) No 2782 98 of 22 December 1998 establishing the forecast supply balances for cereal products and dried fodder for the smaller Aegean isl.pdf",
+    "expected_substring": "22 December 1998",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32007R1090_xref",
+    "question": "What earlier regulation, directive, or decision does 32007R1090 cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32007R1090 - Commission Regulation (EC) No 1090 2007 of 20 September 2007 on the issuing of import licences for applications lodged during the first seven days of September 200.pdf",
+    "expected_substring": "2759/75",
+    "type": "cross_reference_fact"
+  },
+  {
+    "id": "ho_eu_31987R2024_date",
+    "question": "On what date was 31987R2024 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31987R2024 - Commission Regulation (EEC) No 2024 87 of 8 July 1987 re-establishing the levying of customs duties on jerseys, pullovers, etc., products of category 5 (code 40.00.pdf",
+    "expected_substring": "8 July 1987",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31981L1015_summary",
+    "question": "What is 31981L1015 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31981L1015 - Council Directive 81 1015 EEC of 15 December 1981 amending Directive 76 625 EEC concerning the statistical surveys to be carried out by the Member States in order.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32012D0734_lookup",
+    "question": "What does Decision 32012D0734 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32012D0734 - 2012 734 Council Decision of 25 June 2012 on the signing, on behalf of the European Union, of the Agreement establishing an Association between the European Union.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31999D0713_date",
+    "question": "On what date was 31999D0713 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31999D0713 - 1999 713 EC Commission Decision of 21 October 1999 amending Decision 98 653 EC concerning emergency measures made necessary by the occurrence of bovine spongiform.pdf",
+    "expected_substring": "21 October 1999",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31972R0225_summary",
+    "question": "What is 31972R0225 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31972R0225 - Regulation (EEC) No 225 72 of the Council of 31 January 1972 supplementing Regulation (EEC) No 206 68 laying down outline provisions for contracts and inter-trade.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32010R0530_lookup",
+    "question": "What does Regulation 32010R0530 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32010R0530 - Commission Regulation (EU) No 530 2010 of 18 June 2010 entering a name in the register of protected designations of origin and protected geographical indications (.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32011R1345_date",
+    "question": "On what date was 32011R1345 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011R1345 - Council Implementing Regulation (EU) No 1345 2011 of 19 December 2011 implementing Regulation (EC) No 194 2008 renewing and strengthening the restrictive measures.pdf",
+    "expected_substring": "19 December 2011",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31994R2862_summary",
+    "question": "What is 31994R2862 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31994R2862 - Commission Regulation (EC) No 2862 94 of 25 November 1994 fixing the coefficients applicable to cereals exported in the form of Scotch whisky for the period 1994 9.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_31988D0558_lookup",
+    "question": "What does Decision 31988D0558 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31988D0558 - 88 558 ECSC Commission Decision of 14 October 1988 approving aid from Portugal to the coal industry during 1988 (Only the Portuguese text is authentic).pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31993R2353_date",
+    "question": "On what date was 31993R2353 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31993R2353 - COMMISSION REGULATION (EEC) No 2353 93 of 24 August 1993 establishing unit values for the determination of the customs value of certain perishable goods.pdf",
+    "expected_substring": "24 August 1993",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31982R1772_summary",
+    "question": "What is 31982R1772 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31982R1772 - Council Regulation (EEC) No 1772 82 of 29 June 1982 laying down general rules concerning the extension of certain rules adopted by producers' organizations in the.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32007D0714(01)_lookup",
+    "question": "What does Decision 32007D0714(01) concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32007D0714(01) - 2007 714 EC Council Decision of 30 October 2007 appointing an Italian member and an Italian alternate member to the Committee of the Regions.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32014D0850_date",
+    "question": "On what date was 32014D0850 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32014D0850 - 2014 850 EU, Euratom Commission Implementing Decision of 26 November 2014 amending Decision 2010 5 EU, Euratom authorising Ireland to use certain approximate estim.pdf",
+    "expected_substring": "26 November 2014",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31979D0979_summary",
+    "question": "What is 31979D0979 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31979D0979 - 79 979 EEC Commission Decision of 31 October 1979 refusing to accept the scientific character of the apparatus described as 'Bison automatic signal enhancement sei.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32002L0074_lookup",
+    "question": "What does Directive 32002L0074 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002L0074 - Directive 2002 74 EC of the European Parliament and of the Council of 23 September 2002 amending Council Directive 80 987 EEC on the approximation of the laws of t.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31989D0339_date",
+    "question": "On what date was 31989D0339 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31989D0339 - 89 339 EEC Council Decision of 3 May 1989 accepting on behalf of the Community the recommendation of 5 June 1962 of the Customs Cooperation Council concerning the.pdf",
+    "expected_substring": "3 May 1989",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31997D0377_summary",
+    "question": "What is 31997D0377 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31997D0377 - 97 377 EC Commission Decision of 4 June 1997 amending, as regards Germany, the United Kingdom, Ireland, Greece and Sweden, Decision 96 295 EC identifying and listi.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32003R0052_lookup",
+    "question": "What does Regulation 32003R0052 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R0052 - Commission Regulation (EC) No 52 2003 of 10 January 2003 fixing the maximum export refund on wholly milled long grain B rice to certain third countries in connecti.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32003R1979_date",
+    "question": "On what date was 32003R1979 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R1979 - Commission Regulation (EC) No 1979 2003 of 11 November 2003 supplementing the Annex to Regulation (EC) No 2400 96 (Westlandse druif, Alcachofa de Benicarló or Carx.pdf",
+    "expected_substring": "11 November 2003",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31996L0052_summary",
+    "question": "What is 31996L0052 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31996L0052 - Council Directive 96 52 EC of 23 July 1996 amending Directive 85 350 EEC with regard to the Community list of less-favoured farming areas within the meaning of Dir.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_31978R1883_lookup",
+    "question": "What does Regulation 31978R1883 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31978R1883 - Council Regulation (EEC) No 1883 78 of 2 August 1978 laying down general rules for the financing of interventions by the European Agricultural Guidance and Guarant.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32004R0089_date",
+    "question": "On what date was 32004R0089 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004R0089 - Commission Regulation (EC) No 89 2004 of 20 January 2004 establishing the standard import values for determining the entry price of certain fruit and vegetables.pdf",
+    "expected_substring": "20 January 2004",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31990R1772_summary",
+    "question": "What is 31990R1772 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31990R1772 - Council Regulation (EEC) No 1772 90 of 26 June 1990 amending Regulation (EEC) No 2390 89 laying down general rules for the import of wines, grape juice and grape m.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32007R1210_xref",
+    "question": "What earlier regulation, directive, or decision does 32007R1210 cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32007R1210 - Commission Regulation (EC) No 1210 2007 of 17 October 2007 opening an invitation to tender for the allocation of A3 export licences for fruit and vegetables (tomat.pdf",
+    "expected_substring": "2200/96",
+    "type": "cross_reference_fact"
+  },
+  {
+    "id": "ho_eu_31985R2055_date",
+    "question": "On what date was 31985R2055 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31985R2055 - Commission Regulation (EEC) No 2055 85 of 24 July 1985 altering one corrective factor to be used for calculation of the monetary compensatory amounts applicable on.pdf",
+    "expected_substring": "24 July 1985",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32002R0409_summary",
+    "question": "What is 32002R0409 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R0409 - Commission Regulation (EC) No 409 2002 of 4 March 2002 establishing the standard import values for determining the entry price of certain fruit and vegetables.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32002R1903_lookup",
+    "question": "What does Regulation 32002R1903 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R1903 - Commission Regulation (EC) No 1903 2002 of 24 October 2002 altering the export refunds on white sugar and raw sugar exported in the natural state.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32001R1217_date",
+    "question": "On what date was 32001R1217 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32001R1217 - Commission Regulation (EC) No 1217 2001 of 20 June 2001 fixing the import duties in the rice sector.pdf",
+    "expected_substring": "20 June 2001",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31997R2521_summary",
+    "question": "What is 31997R2521 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31997R2521 - Commission Regulation (EC) No 2521 97 of 15 December 1997 amending Regulation (EEC) No 388 92 laying down detailed rules for implementation of the specific arrange.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32014R0295_lookup",
+    "question": "What does Regulation 32014R0295 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32014R0295 - Commission Implementing Regulation (EU) No 295 2014 of 20 March 2014 approving non-minor amendments to the specification for a name entered in the register of prot.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32004D0763_date",
+    "question": "On what date was 32004D0763 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004D0763 - Decision 2004 763 CFSP of the European Council of 5 November 2004 amending Common Strategy 2000 458 CFSP on the Mediterranean region in order to extend the period.pdf",
+    "expected_substring": "5 November 2004",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32004R1667_summary",
+    "question": "What is 32004R1667 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004R1667 - Commission Regulation (EC) No 1667 2004 of 23 September 2004 fixing the maximum export refund for white sugar to certain third countries for the 6th partial invita.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32006R1751_lookup",
+    "question": "What does Regulation 32006R1751 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R1751 - Commission Regulation (EC) No 1751 2006 of 28 November 2006 establishing the standard import values for determining the entry price of certain fruit and vegetables.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31995R0390_date",
+    "question": "On what date was 31995R0390 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31995R0390 - COMMISSION REGULATION (EC) No 390 95 of 24 February 1995 amending Regulation (EEC) No 3846 87 establishing an agricultural products nomenclature for export refunds.pdf",
+    "expected_substring": "24 February 1995",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31992D0618_summary",
+    "question": "What is 31992D0618 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31992D0618 - 92 618 EEC Council Decision of 21 December 1992 authorizing the Italian Republic to apply a particular measure in accordance with Article 22 (12) (a) of Directive.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32007R0312_xref",
+    "question": "What earlier regulation, directive, or decision does 32007R0312 cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32007R0312 - Commission Regulation (EC) No 312 2007 of 22 March 2007 amending Regulation (EC) No 195 2007 opening the buying-in of butter in certain Member States for the perio.pdf",
+    "expected_substring": "1255/1999",
+    "type": "cross_reference_fact"
+  },
+  {
+    "id": "ho_eu_32007R0189_date",
+    "question": "On what date was 32007R0189 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32007R0189 - Commission Regulation (EC) No 189 2007 of 23 February 2007 suspending the application of import duties on certain quantities of industrial sugar for the 2006 2007.pdf",
+    "expected_substring": "23 February 2007",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31995R1803_lookup",
+    "question": "What does Regulation 31995R1803 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31995R1803 - Commission Regulation (EC) No 1803 95 of 25 July 1995 amending Regulation (EEC) No 2253 92 laying down detailed rules for implementing the specific arrangements fo.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32004R0032_lookup",
+    "question": "What does Regulation 32004R0032 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004R0032 - Commission Regulation (EC) No 32 2004 of 8 January 2004 fixing the rates of the refunds applicable to certain cereal and rice-products exported in the form of good.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32005R2056_date",
+    "question": "On what date was 32005R2056 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32005R2056 - Commission Regulation (EC) No 2056 2005 of 15 December 2005 fixing the maximum export refund on barley in connection with the invitation to tender issued in Regula.pdf",
+    "expected_substring": "15 December 2005",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31993R2931_summary",
+    "question": "What is 31993R2931 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31993R2931 - COMMISSION REGULATION (EEC) No 2931 93 of 25 October 1993 fixing for the 1993 94 marketing year the reference prices for artichokes.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_31987R0913_lookup",
+    "question": "What does Regulation 31987R0913 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31987R0913 - Council Regulation (EEC) No 913 87 of 31 March 1987 on the rules for calculating the monetary compensatory amounts applicable in the eggs and poultrymeat sectors a.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31995R0750_date",
+    "question": "On what date was 31995R0750 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31995R0750 - Council Regulation (EC) No 750 95 of 31 March 1995 amending Regulation (EC) No 3364 94 laying down, for 1995, certain measures for the conservation and management.pdf",
+    "expected_substring": "31 March 1995",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32011R1079_summary",
+    "question": "What is 32011R1079 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011R1079 - Commission Implementing Regulation (EU) No 1079 2011 of 25 October 2011 establishing the standard import values for determining the entry price of certain fruit an.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32004R0921_summary",
+    "question": "What is 32004R0921 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004R0921 - Commission Regulation (EC) No 921 2004 of 29 April 2004 amending Regulations (EEC) No 2191 81, (EEC) No 429 90 and (EC) No 2571 97 to take account of the requireme.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32011R0668_date",
+    "question": "On what date was 32011R0668 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011R0668 - Council Regulation (EU) No 668 2011 of 12 July 2011 amending Regulation (EC) No 174 2005 imposing restrictions on the supply of assistance related to military acti.pdf",
+    "expected_substring": "12 July 2011",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32003L0095_summary",
+    "question": "What is 32003L0095 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003L0095 - Commission Directive 2003 95 EC of 27 October 2003 amending Directive 96 77 EC laying down specific purity criteria on food additives other than colours and sweete.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32001R2448_lookup",
+    "question": "What does Regulation 32001R2448 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32001R2448 - Commission Regulation (EC) No 2448 2001 of 13 December 2001 amending Regulation (EC) No 2993 94 fixing the aid for the supply of milk products to the Canary Island.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31983R3575_date",
+    "question": "On what date was 31983R3575 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31983R3575 - Council Regulation (EEC) No 3575 83 of 14 December 1983 amending Regulation (EEC) No 104 76 laying down common marketing standards for shrimps of the genus 'Crango.pdf",
+    "expected_substring": "14 December 1983",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32012R1086_summary",
+    "question": "What is 32012R1086 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32012R1086 - Commission Implementing Regulation (EU) No 1086 2012 of 20 November 2012 establishing the standard import values for determining the entry price of certain fruit a.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32012R0363_lookup",
+    "question": "What does Regulation 32012R0363 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32012R0363 - Commission Delegated Regulation (EU) No 363 2012 of 23 February 2012 on the procedural rules for the recognition and withdrawal of recognition of monitoring organi.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31999D0701_date",
+    "question": "On what date was 31999D0701 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31999D0701 - 1999 701 EC Commission Decision of 14 October 1999 on the list of programmes for the eradication and monitoring of animal diseases qualifying for a financial contr.pdf",
+    "expected_substring": "14 October 1999",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32007D0380_summary",
+    "question": "What is 32007D0380 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32007D0380 - 2007 380 EC Commission Decision of 30 May 2007 recognising in principle the completeness of the dossiers submitted for detailed examination in view of the possible.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32008R1293_lookup",
+    "question": "What does Regulation 32008R1293 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32008R1293 - Commission Regulation (EC) No 1293 2008 of 18 December 2008 concerning the authorisation of a new use of Saccharomyces cerevisiae CNCM I-1077 (Levucell SC20 and Le.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32012R0706_date",
+    "question": "On what date was 32012R0706 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32012R0706 - Commission Implementing Regulation (EU) No 706 2012 of 1 August 2012 amending for the 175th time Council Regulation (EC) No 881 2002 imposing certain specific rest.pdf",
+    "expected_substring": "1 August 2012",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32013R0661_xref",
+    "question": "What earlier regulation, directive, or decision does 32013R0661 cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32013R0661 - Commission Regulation (EU) No 661 2013 of 8 July 2013 establishing a prohibition of fishing for greater forkbeard in EU and international waters of V, VI and VII b.pdf",
+    "expected_substring": "1224/2009",
+    "type": "cross_reference_fact"
+  },
+  {
+    "id": "ho_eu_31995R1771_lookup",
+    "question": "What does Regulation 31995R1771 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31995R1771 - Commission Regulation (EC) No 1771 95 of 24 July 1995 amending for the sixth time Regulation (EC) No 3146 94 adopting exceptional support measures for the market i.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31988D0200_date",
+    "question": "On what date was 31988D0200 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31988D0200 - 88 200 EEC Commission Decision of 18 February 1988 approving the plan relating to the examination for hormone residues submitted by Belgium (Only the French and Du.pdf",
+    "expected_substring": "18 February 1988",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32012R1134_date",
+    "question": "On what date was 32012R1134 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32012R1134 - Commission Regulation (EU) No 1134 2012 of 28 November 2012 establishing a prohibition of fishing for mackerel in VIIIc, IX and X; EU waters of CECAF 34.1.1 by ves.pdf",
+    "expected_substring": "28 November 2012",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31988R0575_xref",
+    "question": "What earlier regulation, directive, or decision does 31988R0575 cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "31988R0575 - Commission Regulation (EEC) No 575 88 of 1 March 1988 amending for the third time Regulation (EEC) No 2707 86 laying down detailed rules for the description and pr.pdf",
+    "expected_substring": "822/87",
+    "type": "cross_reference_fact"
+  },
+  {
+    "id": "ho_eu_31983R3349_date",
+    "question": "On what date was 31983R3349 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31983R3349 - Council Regulation (EEC) No 3349 83 of 14 November 1983 on the application in the Community of Decision No 1 83 of the EEC-Austria Joint Committee - Community tran.pdf",
+    "expected_substring": "14 November 1983",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32005D0321_summary",
+    "question": "What is 32005D0321 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32005D0321 - 2005 321 EC Council Decision of 14 April 2005 concluding consultations with the Republic of Guinea under Article 96 of the Cotonou Agreement.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32002R1030_lookup",
+    "question": "What does Regulation 32002R1030 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R1030 - Council Regulation (EC) No 1030 2002 of 13 June 2002 laying down a uniform format for residence permits for third-country nationals.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32004R0218_date",
+    "question": "On what date was 32004R0218 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004R0218 - Commission Regulation (EC) No 218 2004 of 6 February 2004 fixing the maximum subsidy on exports of husked long grain rice B to Réunion pursuant to the invitation t.pdf",
+    "expected_substring": "6 February 2004",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32006R1349_summary",
+    "question": "What is 32006R1349 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R1349 - Commission Regulation (EC) No 1349 2006 of 13 September 2006 amending Regulation (EC) No 990 2006 as regards the quantities covered by standing invitations to tend.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32001R2006_lookup",
+    "question": "What does Regulation 32001R2006 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32001R2006 - Commission Regulation (EC) No 2006 2001 of 12 October 2001 fixing the maximum buying-in price and the quantities of beef to be bought in under the 276th partial in.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32004R1007_date",
+    "question": "On what date was 32004R1007 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004R1007 - Commission Regulation (EC) No 1007 2004 of 19 May 2004 amending the import duties in the rice sector.pdf",
+    "expected_substring": "19 May 2004",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32002R2258_xref",
+    "question": "What earlier regulation, directive, or decision does 32002R2258 cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R2258 - Commission Regulation (EC) No 2258 2002 of 18 December 2002 amending Regulations (EC) No 1868 2002 and (EC) No 1870 2002 as regards import licence applications for.pdf",
+    "expected_substring": "2200/96",
+    "type": "cross_reference_fact"
+  },
+  {
+    "id": "ho_eu_31993R3415_lookup",
+    "question": "What does Regulation 31993R3415 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31993R3415 - COMMISSION REGULATION (EC) No 3415 93 of 13 December 1993 amending for the first time Regulation (EC) No 3337 93 adopting exceptional support measures for the mark.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32007R0056_lookup",
+    "question": "What does Regulation 32007R0056 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32007R0056 - Commission Regulation (EC) No 56 2007 of 24 January 2007 determining the extent to which the applications for import licences lodged during the first 15 days of Ja.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31985D0621_date",
+    "question": "On what date was 31985D0621 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31985D0621 - 85 621 EEC Commission Decision of 13 December 1985 amending, because of the accession of Spain and Portugal, Decision 80 765 EEC laying down a code and standard ru.pdf",
+    "expected_substring": "13 December 1985",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31993D0510_lookup",
+    "question": "What does Decision 31993D0510 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31993D0510 - 93 510 EEC Commission Decision of 21 September 1993 amending Commission Decision 93 197 EEC on animal health conditions and veterinary certification for imports of.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31999R1595_date",
+    "question": "On what date was 31999R1595 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31999R1595 - Commission Regulation (EC) No 1595 1999 of 20 July 1999 setting for the 1999 2000 marketing year the amount of aid for the cultivation of grapes for the production.pdf",
+    "expected_substring": "20 July 1999",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32008D0296_summary",
+    "question": "What is 32008D0296 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32008D0296 - 2008 296 EC Commission Decision of 4 April 2008 concerning the non-inclusion of azocyclotin, cyhexatin and thidiazuron in Annex I to Council Directive 91 414 EEC a.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_31978R2237_lookup",
+    "question": "What does Regulation 31978R2237 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31978R2237 - Council Regulation (EEC) No 2237 78 of 26 September 1978 concerning the conclusion of the Financial Protocol and the Additional Protocol to the Agreement between t.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32001D2455_date",
+    "question": "On what date was 32001D2455 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32001D2455 - Decision No 2455 2001 EC of the European Parliament and of the Council of 20 November 2001 establishing the list of priority substances in the field of water polic.pdf",
+    "expected_substring": "20 November\n2001",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_32002R1896_summary",
+    "question": "What is 32002R1896 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R1896 - Commission Regulation (EC) No 1896 2002 of 24 October 2002 opening an invitation to tender for the refund on export of wholly milled round-grain rice to certain th.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_32004R1691_lookup",
+    "question": "What does Regulation 32004R1691 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004R1691 - Council Regulation (EC) No 1691 2004 of 24 September 2004 amending Regulation (EC) No 2287 2003 as concerns fishing opportunities in Greenland waters.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_31995R2317_date",
+    "question": "On what date was 31995R2317 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31995R2317 - Council Regulation (EC) No 2317 95 of 25 September 1995 determining the third countries whose nationals must be in possession of visas when crossing the external b.pdf",
+    "expected_substring": "25 September 1995",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_31992L0067_summary",
+    "question": "What is 31992L0067 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31992L0067 - Council Directive 92 67 EEC of 14 July 1992 amending Directive 89 662 EEC concerning veterinary checks in intra- Community trade with a view to the completion of t.pdf",
+    "expected_substring": null,
+    "type": "celex_summary"
+  },
+  {
+    "id": "ho_eu_31994R2510_lookup",
+    "question": "What does Regulation 31994R2510 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31994R2510 - Commission Regulation (EC) No 2510 94 of 17 October 1994 on the issuing of import licences for certain processed mushroom products originating in China.pdf",
+    "expected_substring": null,
+    "type": "celex_lookup"
+  },
+  {
+    "id": "ho_eu_32005D0489_date",
+    "question": "On what date was 32005D0489 adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32005D0489 - 2005 489 EC Commission Decision of 6 July 2005 granting derogations to certain Member States concerning the first transmission of quarterly data pursuant to Counci.pdf",
+    "expected_substring": "6 July 2005",
+    "type": "date_fact"
+  },
+  {
+    "id": "ho_eu_adv_capital_egypt",
+    "question": "What is the capital of Egypt?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "ho_eu_adv_crypto",
+    "question": "What is the current price of Bitcoin?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "ho_eu_adv_recipe2",
+    "question": "What ingredients go into a Greek salad?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "ho_eu_adv_weather2",
+    "question": "Is it snowing in Oslo right now?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "ho_eu_adv_philosophy",
+    "question": "What did Kant say about the categorical imperative?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "ho_eu_adv_canada_law",
+    "question": "What does the Canadian Charter of Rights guarantee?",
+    "expect_answer": false,
+    "type": "adjacent_wrong_jurisdiction"
+  },
+  {
+    "id": "ho_eu_adv_india_law",
+    "question": "What does the Indian Penal Code say about bail?",
+    "expect_answer": false,
+    "type": "adjacent_wrong_jurisdiction"
+  },
+  {
+    "id": "ho_eu_adv_hipaa",
+    "question": "What are the requirements for HIPAA compliance?",
+    "expect_answer": false,
+    "type": "adjacent_wrong_topic"
+  },
+  {
+    "id": "ho_eu_adv_nonsense2",
+    "question": "purple triangle seventeen quantum banana treaty",
+    "expect_answer": false,
+    "type": "nonsense"
+  },
+  {
+    "id": "ho_eu_adv_fake_celex2",
+    "question": "What does Directive 88888/ZZ about lunar mining say?",
+    "expect_answer": false,
+    "type": "plausible_but_fake"
+  }
+]

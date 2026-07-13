@@ -3,7 +3,9 @@ Tests for ingestion/chunker.py — sentence/paragraph-aware chunking.
 """
 from types import SimpleNamespace
 
-from ingestion.chunker import SmartChunker, normalize_whitespace, chunk_context_text, extract_case_metadata
+from ingestion.chunker import (
+    SmartChunker, normalize_whitespace, chunk_context_text, extract_case_metadata, extract_celex_id,
+)
 
 
 def _pages(*texts):
@@ -169,3 +171,19 @@ def test_extract_case_metadata_returns_empty_for_non_case_filenames():
     """Plain-text UK statutory instruments have no case number/parties."""
     assert extract_case_metadata("The_Localism_Act_2011.txt") == {}
     assert extract_case_metadata("") == {}
+
+
+# ── extract_celex_id ─────────────────────────────────────────────────────────
+
+def test_extract_celex_id_parses_plain_id():
+    assert extract_celex_id("31997R0955 - Commission Regulation (EC) No 955 97.pdf") == "31997R0955"
+
+
+def test_extract_celex_id_parses_id_with_suffix():
+    assert extract_celex_id("31958D1127(01) - EEC Council Rules of the Transport Committee.pdf") == "31958D1127(01)"
+
+
+def test_extract_celex_id_returns_none_for_non_celex_filenames():
+    assert extract_celex_id("ABLAPL_3648_2020_LIPU_PRADHAN_vs_STATE_OF_ODISHA.pdf") is None
+    assert extract_celex_id("The_Localism_Act_2011.txt") is None
+    assert extract_celex_id("") is None

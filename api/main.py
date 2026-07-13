@@ -108,7 +108,10 @@ chunker = SmartChunker(
     chunk_overlap=int(os.getenv("CHUNK_OVERLAP", "50"))
 )
 embedder = EmbeddingService(model_name=os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3"))
-vector_store = VectorStore()
+vector_store = VectorStore(
+    url=os.getenv("QDRANT_URL", "http://localhost:6333"),
+    collection=os.getenv("QDRANT_COLLECTION", "knowledge_base"),
+)
 retriever = HybridRetriever(embedder, vector_store)
 try:
     reranker = CrossEncoderReranker(model_name=os.getenv("RERANKER_MODEL", "cross-encoder/ms-marco-MiniLM-L-6-v2"))

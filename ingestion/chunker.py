@@ -75,6 +75,28 @@ def extract_case_metadata(filename: str) -> dict:
     }
 
 
+# EU legislation (EURLEX57K-style corpus) filenames are "<CELEX_ID> -
+# <description>.pdf" — e.g. "31958D1127(01) - EEC Council Rules of the
+# Transport Committee.pdf". A CELEX ID is sector digit(1) + year(4) + type
+# letter(1) + number(4), optional "(NN)" suffix — e.g. "31997R0955",
+# "32011D0126". Unlike the court-case corpus's case number, the CELEX ID
+# itself never appears in the document's own body text (documents cite
+# themselves as "1997/955/EC"-style, a different format entirely) — see
+# rag/retriever.py's use of this for why that makes it retrieval-hard
+# without structured metadata.
+_CELEX_ID_RE = re.compile(r'^(\d{5}[A-Z]\d{4}(?:\(\d+\))?)\s*-\s*')
+
+
+def extract_celex_id(filename: str) -> str | None:
+    """Parses the CELEX ID prefix from an EU-legislation filename at
+    ingestion time, for storage on every chunk of the document (see
+    vector_db/qdrant_client.py) — same role as extract_case_metadata()
+    plays for the court-case corpus. Returns None for filenames that don't
+    match this convention."""
+    m = _CELEX_ID_RE.match(Path(filename).stem)
+    return m.group(1) if m else None
+
+
 @dataclass
 class TextChunk:
     """A single chunk of text with metadata"""

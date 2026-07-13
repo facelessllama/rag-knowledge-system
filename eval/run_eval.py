@@ -144,15 +144,18 @@ async def main():
     recall_hits = sum(1 for r in recall_cases if r["recall_hit"])
     mrr = sum(r["reciprocal_rank"] for r in recall_cases) / len(recall_cases) if recall_cases else 0
 
+    def pct(numerator, denominator):
+        return f"{100*numerator/denominator:.1f}%" if denominator else "n/a"
+
     print(f"\n{'='*60}")
     print(f"GOLDEN DATASET EVAL — {n} cases")
     print(f"{'='*60}")
-    print(f"Recall@{args.top_k}: {recall_hits}/{len(recall_cases)} ({100*recall_hits/len(recall_cases):.1f}%)")
+    print(f"Recall@{args.top_k}: {recall_hits}/{len(recall_cases)} ({pct(recall_hits, len(recall_cases))})")
     print(f"MRR: {mrr:.3f}")
-    print(f"Overall abstention accuracy: {abstention_correct}/{n} ({100*abstention_correct/n:.1f}%)")
-    print(f"  - Answered when should ({len(should_answer)} cases):  {answered_when_should}/{len(should_answer)} ({100*answered_when_should/len(should_answer):.1f}%)")
-    print(f"  - Refused when should ({len(should_refuse)} cases):   {refused_when_should}/{len(should_refuse)} ({100*refused_when_should/len(should_refuse):.1f}%)")
-    print(f"Answer correctness (substring match, {len(checkable)} checkable cases): {correct_answers}/{len(checkable)} ({100*correct_answers/len(checkable):.1f}%)")
+    print(f"Overall abstention accuracy: {abstention_correct}/{n} ({pct(abstention_correct, n)})")
+    print(f"  - Answered when should ({len(should_answer)} cases):  {answered_when_should}/{len(should_answer)} ({pct(answered_when_should, len(should_answer))})")
+    print(f"  - Refused when should ({len(should_refuse)} cases):   {refused_when_should}/{len(should_refuse)} ({pct(refused_when_should, len(should_refuse))})")
+    print(f"Answer correctness (substring match, {len(checkable)} checkable cases): {correct_answers}/{len(checkable)} ({pct(correct_answers, len(checkable))})")
 
     errors = [r for r in results if "error" in r]
     if errors:
