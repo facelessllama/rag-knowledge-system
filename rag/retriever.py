@@ -30,22 +30,44 @@ _CASE_NUMBER_RE = re.compile(r'\b(\d{1,6})\s+of\s+(\d{4})\b')
 
 
 def extract_case_numbers(text: str) -> set[tuple[str, str]]:
+    """Parses (number, year) pairs out of free text — used on the *query*,
+    which has no fixed structure to key off. For chunks, prefer the
+    structured case_number/case_year payload fields (see
+    ingestion/chunker.py::extract_case_metadata) instead of re-running this
+    against chunk text — a chunk deep in a ruling's body won't always repeat
+    the caption's case number even though it's unambiguously part of that
+    case."""
     return set(_CASE_NUMBER_RE.findall(text))
 
 
-def promote_case_number_matches(
+def extract_party_match(query: str, parties: list[str] | None) -> bool:
+    """True if every party name from a chunk's structured case metadata
+    (ingestion/chunker.py::extract_case_metadata) appears in the query text.
+    case_summary questions are literally built from these two names ("What
+    is the case X vs Y about?"), so this is as strong an identity signal as
+    an exact case-number match — but only when *all* parties match, not
+    just one: many filenames in this corpus share a common party (e.g. "...
+    vs STATE OF ODISHA"), so a single-name match would over-promote every
+    case involving that party instead of the one actually asked about."""
+    if not parties:
+        return False
+    query_lower = query.lower()
+    return all(p.lower() in query_lower for p in parties)
+
+
+def promote_identity_matches(
     chunks: list[dict], top_chunks: list[dict], relevance_threshold: float
 ) -> list[dict]:
-    """retrieve_expanded() guarantees a chunk with an exact case-number match
-    survives into the pool handed to the reranker — but the cross-encoder
-    scores it independently and can still rank it low (these short,
-    near-duplicate interlocutory orders are exactly where the reranker is
-    least reliable), which would then have the caller's relevance-threshold
-    gate reject it anyway. An exact (case number, year) match is a far more
-    reliable identity signal than the cross-encoder's opinion for this
+    """retrieve_expanded() guarantees a chunk with an exact case-number or
+    full-party-name match survives into the pool handed to the reranker —
+    but the cross-encoder scores it independently and can still rank it low
+    (these short, near-duplicate interlocutory orders are exactly where the
+    reranker is least reliable), which would then have the caller's
+    relevance-threshold gate reject it anyway. An exact identity match is a
+    far more reliable signal than the cross-encoder's opinion for this
     corpus, so force it in with a score that clears the gate rather than
     trust reranking here."""
-    matches = [c for c in chunks if c.get("case_number_match")]
+    matches = [c for c in chunks if c.get("identity_match")]
     if not matches:
         return top_chunks
 
@@ -139,14 +161,41 @@ class HybridRetriever:
                     r["source"] = "hybrid"
                     all_chunks[key] = r
 
+        # An exact (case number, year) match is a far stronger identity
+        # signal than any embedding/BM25 score can provide — fetch its
+        # chunks directly via Qdrant's case_number/case_year payload index
+        # (see vector_db/qdrant_client.py::chunks_by_case_number) instead of
+        # hoping hybrid search's top-`pool` candidates happen to include
+        # them, a bet that gets worse as the corpus grows and more documents
+        # compete for the same pool slots. Scored at the cap so these
+        # survive both the neighbor-expansion cutoff below and the final
+        # top_k slice.
+        for num, year in query_case_numbers:
+            indexed = await asyncio.to_thread(self.vector_store.chunks_by_case_number, num, year)
+            for r in indexed:
+                key = r.get("chunk_id", r["text"][:50])
+                if key not in all_chunks:
+                    r = r.copy()
+                    r["score"] = 1.0
+                    r["source"] = "case_number_index"
+                    all_chunks[key] = r
+
         # Sort and expand with neighbors only for top candidates
         sorted_chunks = sorted(all_chunks.values(), key=lambda x: x["score"], reverse=True)
         expanded = await self._expand_with_neighbors(sorted_chunks, max_base=pool)
 
-        if query_case_numbers:
-            for c in expanded:
-                if extract_case_numbers(c["text"]) & query_case_numbers:
-                    c["case_number_match"] = True
+        # Mark exact-identity matches from each chunk's own structured case
+        # metadata (extracted from its filename at ingestion — see
+        # ingestion/chunker.py::extract_case_metadata), not by regexing the
+        # chunk's own text: the number/parties are a property of the
+        # *document*, and a chunk deep in a ruling's body won't always
+        # repeat them even though it's unambiguously part of that case.
+        query_text = queries[0] if queries else ""
+        for c in expanded:
+            if c.get("case_number") and (c["case_number"], c.get("case_year")) in query_case_numbers:
+                c["identity_match"] = True
+            elif extract_party_match(query_text, c.get("parties")):
+                c["identity_match"] = True
 
         expanded.sort(key=lambda x: x["score"], reverse=True)
 
@@ -159,15 +208,15 @@ class HybridRetriever:
                 top_k_chunks.append(c)
                 docs_in_top.add(doc_id)
 
-        # An exact case-number match is a far stronger identity signal than
-        # any embedding/BM25 score — guarantee it survives even if its
-        # semantic score alone wouldn't have made the cut (these short,
-        # near-duplicate interlocutory orders are exactly where semantic
-        # scoring is least reliable; see extract_case_numbers).
+        # An exact case-number or full-party-name match is a far stronger
+        # identity signal than any embedding/BM25 score — guarantee it
+        # survives even if its semantic score alone wouldn't have made the
+        # cut (these short, near-duplicate interlocutory orders are exactly
+        # where semantic scoring is least reliable).
         included_keys = {c.get("chunk_id", c["text"][:50]) for c in top_k_chunks}
         for c in expanded:
             key = c.get("chunk_id", c["text"][:50])
-            if c.get("case_number_match") and key not in included_keys:
+            if c.get("identity_match") and key not in included_keys:
                 top_k_chunks.append(c)
                 included_keys.add(key)
 

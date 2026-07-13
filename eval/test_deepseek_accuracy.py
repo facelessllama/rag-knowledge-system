@@ -28,13 +28,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from embeddings.embedding_service import EmbeddingService
 from vector_db.qdrant_client import VectorStore
-from rag.retriever import HybridRetriever, promote_case_number_matches
+from rag.retriever import HybridRetriever, promote_identity_matches
 from rag.reranker import CrossEncoderReranker
 from rag.prompt_builder import PromptBuilder
 from rag.query_expander import QueryExpander
 from rag.generator import LLMGenerator, DeepSeekGenerator
 
-RELEVANCE_THRESHOLD = float(os.getenv("RELEVANCE_THRESHOLD", "1.5"))
+RELEVANCE_THRESHOLD = float(os.getenv("RELEVANCE_THRESHOLD", "3.0"))
 
 
 def normalize(s: str) -> str:
@@ -128,7 +128,7 @@ async def main():
             continue
 
         top_chunks = reranker.rerank(q, chunks, top_k=5)
-        top_chunks = promote_case_number_matches(chunks, top_chunks, RELEVANCE_THRESHOLD)
+        top_chunks = promote_identity_matches(chunks, top_chunks, RELEVANCE_THRESHOLD)
         messages = prompt_builder.build(query=q, chunks=top_chunks)
 
         local_result = await local_gen.generate(messages)

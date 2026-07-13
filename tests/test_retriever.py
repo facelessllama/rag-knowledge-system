@@ -5,7 +5,9 @@ result guarantee, and neighbor expansion. Embedding and Qdrant are faked
 """
 import pytest
 
-from rag.retriever import HybridRetriever, extract_case_numbers, promote_case_number_matches
+from rag.retriever import (
+    HybridRetriever, extract_case_numbers, extract_party_match, promote_identity_matches,
+)
 
 
 class FakeEmbedder:
@@ -14,10 +16,12 @@ class FakeEmbedder:
 
 
 class FakeVectorStore:
-    def __init__(self, results_by_query=None, neighbors_by_doc=None, full_docs_by_id=None):
+    def __init__(self, results_by_query=None, neighbors_by_doc=None, full_docs_by_id=None,
+                 case_number_index=None):
         self.results_by_query = results_by_query or {}
         self.neighbors_by_doc = neighbors_by_doc or {}
         self.full_docs_by_id = full_docs_by_id or {}  # doc_id -> list[chunk] | None (None = "too long")
+        self.case_number_index = case_number_index or {}  # (num, year) -> list[chunk]
 
     def hybrid_search(self, query_vector, query_text, top_k=5, doc_filter=None, folder_filter=None):
         return [dict(r) for r in self.results_by_query.get(query_text, [])]
@@ -33,6 +37,9 @@ class FakeVectorStore:
         if chunks is None or len(chunks) > limit:
             return None
         return [dict(c) for c in chunks]
+
+    def chunks_by_case_number(self, case_number, case_year):
+        return [dict(c) for c in self.case_number_index.get((case_number, case_year), [])]
 
 
 def _chunk(chunk_id, doc_id, idx, score, text="text"):
@@ -179,7 +186,33 @@ def test_extract_case_numbers_finds_multiple():
     assert extract_case_numbers(text) == {("100", "2019"), ("200", "2020")}
 
 
-# ── case-number exact-match guarantee ────────────────────────────────────────
+# ── extract_party_match ───────────────────────────────────────────────────────
+
+def test_extract_party_match_requires_all_parties_present():
+    assert extract_party_match(
+        "What is the case LIPU PRADHAN vs STATE OF ODISHA about?",
+        ["LIPU PRADHAN", "STATE OF ODISHA"],
+    ) is True
+
+
+def test_extract_party_match_is_case_insensitive():
+    assert extract_party_match("what is lipu pradhan vs state of odisha about", ["LIPU PRADHAN", "STATE OF ODISHA"]) is True
+
+
+def test_extract_party_match_false_when_only_one_party_present():
+    """Many filenames share a common party (e.g. '... vs STATE OF ODISHA') —
+    matching on just one would over-promote every case involving it."""
+    assert extract_party_match(
+        "What is the case about STATE OF ODISHA?", ["LIPU PRADHAN", "STATE OF ODISHA"]
+    ) is False
+
+
+def test_extract_party_match_false_for_no_parties():
+    assert extract_party_match("any query", []) is False
+    assert extract_party_match("any query", None) is False
+
+
+# ── identity-match guarantee (case number + party name) ────────────────────────
 
 @pytest.mark.asyncio
 async def test_retrieve_expanded_guarantees_case_number_match_even_with_low_score():
@@ -187,9 +220,13 @@ async def test_retrieve_expanded_guarantees_case_number_match_even_with_low_scor
     1-2 sentence order, near-identical boilerplate across different cases)
     are exactly where semantic/BM25 scoring is least reliable — an exact
     case-number match in the query must survive even if its score alone
-    wouldn't make top_k."""
+    wouldn't make top_k. Matching is via each chunk's own structured
+    case_number/case_year metadata (see ingestion/chunker.py::
+    extract_case_metadata), not by regexing its text."""
     matching_low_score = _chunk("match", "d_target", 0, 0.01,
-                                 text="C.R.M. 10691 of 2020 In the matter of Mohan Viswakarma")
+                                 text="In the matter of Mohan Viswakarma")
+    matching_low_score["case_number"] = "10691"
+    matching_low_score["case_year"] = "2020"
     distractor_high_score = _chunk("distractor", "d_other", 0, 0.9,
                                     text="CRR 1374 of 2020 Mainak Ranjan Bakshi")
     vs = FakeVectorStore(results_by_query={
@@ -202,43 +239,85 @@ async def test_retrieve_expanded_guarantees_case_number_match_even_with_low_scor
     chunk_ids = {r["chunk_id"] for r in results}
     assert "match" in chunk_ids
     matched = next(r for r in results if r["chunk_id"] == "match")
-    assert matched["case_number_match"] is True
+    assert matched["identity_match"] is True
 
 
 @pytest.mark.asyncio
-async def test_retrieve_expanded_no_case_number_in_query_is_a_no_op():
+async def test_retrieve_expanded_fetches_case_number_chunk_via_index_even_if_absent_from_hybrid_search():
+    """The whole point of chunks_by_case_number: a document with a low/zero
+    semantic score for this query mustn't be invisible just because hybrid
+    search's top-`pool` candidates didn't include it — the direct payload
+    index lookup must surface it independently."""
+    indexed_chunk = _chunk("indexed", "d_target", 0, 0.0, text="the actual ruling text")
+    indexed_chunk["case_number"] = "10691"
+    indexed_chunk["case_year"] = "2020"
+    vs = FakeVectorStore(
+        results_by_query={"What is the case CRM 10691 of 2020 about?": []},  # nothing from hybrid search
+        case_number_index={("10691", "2020"): [indexed_chunk]},
+    )
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    results = await retriever.retrieve_expanded(["What is the case CRM 10691 of 2020 about?"], top_k=5)
+
+    chunk_ids = {r["chunk_id"] for r in results}
+    assert "indexed" in chunk_ids
+    matched = next(r for r in results if r["chunk_id"] == "indexed")
+    assert matched["identity_match"] is True
+    assert matched["source"] == "case_number_index"
+
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_guarantees_party_name_match_even_with_low_score():
+    matching_low_score = _chunk("match", "d_target", 0, 0.01, text="Heard learned counsel.")
+    matching_low_score["parties"] = ["LIPU PRADHAN", "STATE OF ODISHA"]
+    distractor_high_score = _chunk("distractor", "d_other", 0, 0.9, text="an unrelated ruling")
+    distractor_high_score["parties"] = ["SOMEONE ELSE", "STATE OF ODISHA"]
+    query = "What is the case LIPU PRADHAN vs STATE OF ODISHA about?"
+    vs = FakeVectorStore(results_by_query={query: [distractor_high_score, matching_low_score]})
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=1)
+
+    results = await retriever.retrieve_expanded([query], top_k=1)
+
+    chunk_ids = {r["chunk_id"] for r in results}
+    assert "match" in chunk_ids
+    matched = next(r for r in results if r["chunk_id"] == "match")
+    assert matched["identity_match"] is True
+
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_no_identity_signal_in_query_is_a_no_op():
     chunk1 = _chunk("c1", "d1", 0, 0.5, text="some ordinary text")
     vs = FakeVectorStore(results_by_query={"a generic question": [chunk1]})
     retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
 
     results = await retriever.retrieve_expanded(["a generic question"], top_k=5)
 
-    assert "case_number_match" not in results[0]
+    assert "identity_match" not in results[0]
 
 
-# ── promote_case_number_matches ──────────────────────────────────────────────
+# ── promote_identity_matches ─────────────────────────────────────────────────
 
-def _rr_chunk(chunk_id, rerank_score=None, case_number_match=False):
+def _rr_chunk(chunk_id, rerank_score=None, identity_match=False):
     c = {"chunk_id": chunk_id, "text": "text"}
     if rerank_score is not None:
         c["rerank_score"] = rerank_score
-    if case_number_match:
-        c["case_number_match"] = True
+    if identity_match:
+        c["identity_match"] = True
     return c
 
 
-def test_promote_case_number_matches_is_a_no_op_without_a_match():
+def test_promote_identity_matches_is_a_no_op_without_a_match():
     chunks = [_rr_chunk("a")]
     top_chunks = [_rr_chunk("a", rerank_score=0.5)]
-    assert promote_case_number_matches(chunks, top_chunks, relevance_threshold=1.5) == top_chunks
+    assert promote_identity_matches(chunks, top_chunks, relevance_threshold=1.5) == top_chunks
 
 
-def test_promote_case_number_matches_adds_missing_match_above_threshold():
-    matched = _rr_chunk("match", case_number_match=True)  # not yet reranked, no score
-    chunks = [matched, _rr_chunk("other", case_number_match=False)]
+def test_promote_identity_matches_adds_missing_match_above_threshold():
+    matched = _rr_chunk("match", identity_match=True)  # not yet reranked, no score
+    chunks = [matched, _rr_chunk("other", identity_match=False)]
     top_chunks = [_rr_chunk("other", rerank_score=3.0)]  # reranker's own top pick, no match
 
-    result = promote_case_number_matches(chunks, top_chunks, relevance_threshold=1.5)
+    result = promote_identity_matches(chunks, top_chunks, relevance_threshold=1.5)
 
     ids = {c["chunk_id"] for c in result}
     assert "match" in ids
@@ -246,25 +325,25 @@ def test_promote_case_number_matches_adds_missing_match_above_threshold():
     assert promoted["rerank_score"] > 1.5
 
 
-def test_promote_case_number_matches_boosts_already_included_low_score():
+def test_promote_identity_matches_boosts_already_included_low_score():
     """If the reranker DID include the match but scored it below threshold,
     raise its score rather than add a duplicate."""
-    matched = _rr_chunk("match", case_number_match=True)
+    matched = _rr_chunk("match", identity_match=True)
     chunks = [matched]
     top_chunks = [_rr_chunk("match", rerank_score=0.1)]  # reranker scored it too low
 
-    result = promote_case_number_matches(chunks, top_chunks, relevance_threshold=1.5)
+    result = promote_identity_matches(chunks, top_chunks, relevance_threshold=1.5)
 
     assert len(result) == 1
     assert result[0]["rerank_score"] > 1.5
 
 
-def test_promote_case_number_matches_does_not_drop_the_match_even_over_top_k():
-    matched = _rr_chunk("match", case_number_match=True)
+def test_promote_identity_matches_does_not_drop_the_match_even_over_top_k():
+    matched = _rr_chunk("match", identity_match=True)
     chunks = [matched]
     top_chunks = [_rr_chunk("a", rerank_score=5.0), _rr_chunk("b", rerank_score=4.0)]
 
-    result = promote_case_number_matches(chunks, top_chunks, relevance_threshold=1.5)
+    result = promote_identity_matches(chunks, top_chunks, relevance_threshold=1.5)
 
     ids = {c["chunk_id"] for c in result}
     assert "match" in ids

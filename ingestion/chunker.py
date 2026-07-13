@@ -43,6 +43,38 @@ def chunk_context_text(chunk) -> str:
     return f"{title}: {text}" if title else text
 
 
+# This corpus's court-case PDFs follow "<TYPE>_<NUM>_<YEAR>_<PARTY1>_vs_
+# <PARTY2>.pdf" (see generate_legal_docs.py) — e.g. "ABLAPL_3648_2020_
+# LIPU_PRADHAN_vs_STATE_OF_ODISHA.pdf". Same convention eval/
+# build_golden_dataset.py parses to generate case_lookup_by_number/
+# case_summary questions. Type prefix itself may contain underscores (e.g.
+# "CR._MISC."), so match it non-greedily up to the first "_<digits>_
+# <4-digit year>_" run instead of constraining its character set.
+_CASE_FILENAME_RE = re.compile(r'^(.+?)_(\d+)_(\d{4})_(.+?)_vs_(.+)$')
+
+
+def extract_case_metadata(filename: str) -> dict:
+    """Parses a case-file's structured identity (case number, year, party
+    names) from its filename at ingestion time, for storage on every chunk
+    of the document (see vector_db/qdrant_client.py). This lets query-time
+    matching (rag/retriever.py) compare against a stable per-document
+    identity instead of re-deriving it by regex-scanning each candidate
+    chunk's own text — which misses whenever the number/parties don't
+    happen to land in that particular chunk (a chunk deep in a ruling's
+    body won't always repeat the caption). Returns {} for filenames that
+    don't match this convention (e.g. the plain-text UK statutory
+    instruments, which have no case number)."""
+    m = _CASE_FILENAME_RE.match(Path(filename).stem)
+    if not m:
+        return {}
+    _case_type, num, year, p1, p2 = m.groups()
+    return {
+        "case_number": num,
+        "case_year": year,
+        "parties": [p1.replace("_", " "), p2.replace("_", " ")],
+    }
+
+
 @dataclass
 class TextChunk:
     """A single chunk of text with metadata"""

@@ -3,7 +3,7 @@ Tests for ingestion/chunker.py — sentence/paragraph-aware chunking.
 """
 from types import SimpleNamespace
 
-from ingestion.chunker import SmartChunker, normalize_whitespace, chunk_context_text
+from ingestion.chunker import SmartChunker, normalize_whitespace, chunk_context_text, extract_case_metadata
 
 
 def _pages(*texts):
@@ -143,3 +143,29 @@ def test_chunk_context_text_accepts_dict_with_filename():
 def test_chunk_context_text_accepts_dict_without_filename():
     assert chunk_context_text({"text": "some chunk text"}) == "some chunk text"
     assert chunk_context_text({"filename": "", "text": "some chunk text"}) == "some chunk text"
+
+
+# ── extract_case_metadata ─────────────────────────────────────────────────────
+
+def test_extract_case_metadata_parses_number_year_and_parties():
+    result = extract_case_metadata("ABLAPL_3648_2020_LIPU_PRADHAN_vs_STATE_OF_ODISHA.pdf")
+    assert result == {
+        "case_number": "3648",
+        "case_year": "2020",
+        "parties": ["LIPU PRADHAN", "STATE OF ODISHA"],
+    }
+
+
+def test_extract_case_metadata_handles_multi_underscore_type_prefix():
+    """Type prefix (e.g. 'CR. MISC.') may itself contain underscores — the
+    non-greedy match must not eat into the number/year."""
+    result = extract_case_metadata("CR._MISC._100_2019_A_B_vs_C_D.pdf")
+    assert result["case_number"] == "100"
+    assert result["case_year"] == "2019"
+    assert result["parties"] == ["A B", "C D"]
+
+
+def test_extract_case_metadata_returns_empty_for_non_case_filenames():
+    """Plain-text UK statutory instruments have no case number/parties."""
+    assert extract_case_metadata("The_Localism_Act_2011.txt") == {}
+    assert extract_case_metadata("") == {}

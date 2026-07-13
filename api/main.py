@@ -32,7 +32,7 @@ from ingestion.chunker import SmartChunker, normalize_whitespace, chunk_context_
 from embeddings.embedding_service import EmbeddingService
 from vector_db.qdrant_client import VectorStore
 from qdrant_client.models import Filter, FieldCondition, MatchValue
-from rag.retriever import HybridRetriever, promote_case_number_matches
+from rag.retriever import HybridRetriever, promote_identity_matches
 from rag.executors import run_on_gpu
 from rag.reranker import CrossEncoderReranker, SimpleReranker
 from rag.prompt_builder import PromptBuilder
@@ -507,7 +507,7 @@ async def _do_query(request: QueryRequest):
                            sources=[], model=generator.model, tokens_used=0)
 
     top_chunks = await run_on_gpu(reranker.rerank, request.question, chunks, top_k=request.top_k)
-    top_chunks = promote_case_number_matches(chunks, top_chunks, RELEVANCE_THRESHOLD)
+    top_chunks = promote_identity_matches(chunks, top_chunks, RELEVANCE_THRESHOLD)
 
     best_score = max((c.get("rerank_score", 0) for c in top_chunks), default=0)
     if best_score < RELEVANCE_THRESHOLD:
@@ -644,7 +644,7 @@ async def query_stream(request: QueryRequest):
 
             t2 = time.time()
             top_chunks = await run_on_gpu(reranker.rerank, request.question, chunks, top_k=request.top_k)
-            top_chunks = promote_case_number_matches(chunks, top_chunks, RELEVANCE_THRESHOLD)
+            top_chunks = promote_identity_matches(chunks, top_chunks, RELEVANCE_THRESHOLD)
             rerank_ms = int((time.time() - t2) * 1000)
             reranker_type = type(reranker).__name__
 

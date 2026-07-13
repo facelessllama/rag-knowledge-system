@@ -18,7 +18,7 @@ from qdrant_client.models import (
     PayloadSchemaType,
 )
 
-from ingestion.chunker import chunk_context_text
+from ingestion.chunker import chunk_context_text, extract_case_metadata
 from vector_db.sparse_encoder import build_sparse_vector
 
 logger = logging.getLogger(__name__)
@@ -30,6 +30,12 @@ _PAYLOAD_INDEXES = (
     ("document_id", PayloadSchemaType.KEYWORD),
     ("folder", PayloadSchemaType.KEYWORD),
     ("chunk_index", PayloadSchemaType.INTEGER),
+    # Back the direct case-number lookup in chunks_by_case_number() — see
+    # rag/retriever.py's use of it — with a real index rather than an
+    # unindexed filter scan, since that lookup needs to stay fast as the
+    # corpus grows.
+    ("case_number", PayloadSchemaType.KEYWORD),
+    ("case_year", PayloadSchemaType.KEYWORD),
 )
 
 
@@ -64,6 +70,7 @@ class VectorStore:
     def upsert_chunks(self, chunks: list, vectors: list[list[float]]):
         points = []
         for chunk, vector in zip(chunks, vectors):
+            case_meta = extract_case_metadata(getattr(chunk, "filename", "") or "")
             points.append(PointStruct(
                 id=str(uuid.uuid4()),
                 vector={
@@ -83,6 +90,9 @@ class VectorStore:
                     "folder": getattr(chunk, "folder", ""),
                     "char_start": getattr(chunk, "char_start", None),
                     "char_end": getattr(chunk, "char_end", None),
+                    "case_number": case_meta.get("case_number", ""),
+                    "case_year": case_meta.get("case_year", ""),
+                    "parties": case_meta.get("parties", []),
                 }
             ))
         self.client.upsert(collection_name=self.collection, points=points)
@@ -142,23 +152,7 @@ class VectorStore:
             with_payload=True,
             with_vectors=False,
         )
-        out = []
-        for r in results:
-            p = r.payload or {}
-            if not p.get("text") or not p.get("document_id"):
-                continue
-            out.append({
-                "text": p["text"],
-                "page_num": p.get("page_num"),
-                "document_id": p["document_id"],
-                "chunk_id": p.get("chunk_id"),
-                "filename": p.get("filename", ""),
-                "folder": p.get("folder", ""),
-                "chunk_index": p.get("chunk_index", 0),
-                "char_start": p.get("char_start"),
-                "char_end": p.get("char_end"),
-            })
-        return out
+        return self._points_to_chunk_dicts(results)
 
     def all_chunks_for_document(self, document_id: str, limit: int) -> list[dict] | None:
         """Return every chunk of a document if it has <= limit total chunks,
@@ -174,8 +168,34 @@ class VectorStore:
         )
         if len(results) > limit:
             return None
+        return self._points_to_chunk_dicts(results)
+
+    def chunks_by_case_number(self, case_number: str, case_year: str, limit: int = 10) -> list[dict]:
+        """Direct payload-indexed lookup for an exact (case_number, case_year)
+        identity — see _PAYLOAD_INDEXES and ingestion/chunker.py::
+        extract_case_metadata. Used by rag/retriever.py to guarantee a
+        case's chunks are retrievable by number even when semantic/BM25
+        relevance alone wouldn't have surfaced them into the hybrid-search
+        candidate pool — a bet that gets worse as the corpus grows and more
+        documents compete for the same pool slots."""
+        if not case_number or not case_year:
+            return []
+        search_filter = Filter(must=[
+            FieldCondition(key="case_number", match=MatchValue(value=case_number)),
+            FieldCondition(key="case_year", match=MatchValue(value=case_year)),
+        ])
+        results, _ = self.client.scroll(
+            collection_name=self.collection,
+            scroll_filter=search_filter,
+            limit=limit,
+            with_payload=True,
+            with_vectors=False,
+        )
+        return self._points_to_chunk_dicts(results)
+
+    def _points_to_chunk_dicts(self, points) -> list[dict]:
         out = []
-        for r in results:
+        for r in points:
             p = r.payload or {}
             if not p.get("text") or not p.get("document_id"):
                 continue
@@ -189,6 +209,9 @@ class VectorStore:
                 "chunk_index": p.get("chunk_index", 0),
                 "char_start": p.get("char_start"),
                 "char_end": p.get("char_end"),
+                "case_number": p.get("case_number", ""),
+                "case_year": p.get("case_year", ""),
+                "parties": p.get("parties", []),
             })
         return out
 
@@ -218,6 +241,9 @@ class VectorStore:
                 "chunk_index": p.get("chunk_index", 0),
                 "char_start": p.get("char_start"),
                 "char_end": p.get("char_end"),
+                "case_number": p.get("case_number", ""),
+                "case_year": p.get("case_year", ""),
+                "parties": p.get("parties", []),
             })
         return out
 
