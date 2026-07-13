@@ -4,6 +4,8 @@ Re-scores retrieved chunks using a cross-encoder model.
 """
 import logging
 
+from ingestion.chunker import chunk_context_text
+
 logger = logging.getLogger(__name__)
 
 
@@ -36,7 +38,7 @@ class CrossEncoderReranker:
         if len(query) > self.MAX_QUERY_CHARS:
             query = query[: self.MAX_QUERY_CHARS]
 
-        pairs = [(query, c["text"]) for c in chunks]
+        pairs = [(query, chunk_context_text(c)) for c in chunks]
         scores = self.model.predict(pairs)
 
         if max(scores) < self.LANGUAGE_FALLBACK_THRESHOLD:

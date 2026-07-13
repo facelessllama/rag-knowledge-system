@@ -131,3 +131,15 @@ def test_chunk_context_text_does_not_mutate_original_text():
     chunk = SimpleNamespace(filename="doc.txt", text="original")
     chunk_context_text(chunk)
     assert chunk.text == "original"
+
+
+def test_chunk_context_text_accepts_dict_with_filename():
+    chunk = {"filename": "ABLAPL_3648_2020_LIPU_PRADHAN_vs_STATE_OF_ODISHA.pdf",
+              "text": "Heard learned counsel for the petitioner."}
+    result = chunk_context_text(chunk)
+    assert result == "ABLAPL 3648 2020 LIPU PRADHAN vs STATE OF ODISHA: Heard learned counsel for the petitioner."
+
+
+def test_chunk_context_text_accepts_dict_without_filename():
+    assert chunk_context_text({"text": "some chunk text"}) == "some chunk text"
+    assert chunk_context_text({"filename": "", "text": "some chunk text"}) == "some chunk text"

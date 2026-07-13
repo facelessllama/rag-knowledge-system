@@ -85,3 +85,20 @@ def test_rerank_leaves_short_query_unchanged():
 
     called_query = mock_model.predict.call_args[0][0][0][0]
     assert called_query == short_query
+
+
+def test_rerank_scores_context_prefixed_text_not_bare_chunk_text():
+    """The cross-encoder must see the same document-title context that
+    already helps embedding/retrieval (see ingestion/chunker.py::
+    chunk_context_text) — otherwise near-identical boilerplate chunks from
+    different documents are indistinguishable to it."""
+    reranker, mock_model = _reranker_with_mock_model()
+    mock_model.predict.return_value = [1.0]
+    chunk = {"filename": "SOME_CASE_vs_STATE.pdf", "text": "Heard learned counsel.", "score": 0.5}
+
+    reranker.rerank("query", [chunk], top_k=1)
+
+    called_passage = mock_model.predict.call_args[0][0][0][1]
+    assert called_passage == "SOME CASE vs STATE: Heard learned counsel."
+    # chunk.text itself (used for display/highlighting) must stay untouched
+    assert chunk["text"] == "Heard learned counsel."

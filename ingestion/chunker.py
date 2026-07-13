@@ -26,12 +26,21 @@ def chunk_context_text(chunk) -> str:
     boilerplate ("Heard learned counsel for the petitioner...", near-
     identical across many different case documents), carry almost no
     signal on their own distinguishing which document they came from. Use
-    this for what gets embedded/indexed, never for what gets stored/shown —
-    chunk.text itself stays untouched so char_start/char_end offsets and
-    displayed excerpts remain exact."""
-    filename = getattr(chunk, "filename", "") or ""
+    this for what gets embedded/indexed/reranked, never for what gets
+    stored/shown — chunk.text itself stays untouched so char_start/char_end
+    offsets and displayed excerpts remain exact.
+
+    Accepts both TextChunk-like objects (ingestion) and the plain dicts
+    retrieval/reranking pass around (Qdrant hits carry "filename"/"text"
+    keys, not attributes)."""
+    if isinstance(chunk, dict):
+        filename = chunk.get("filename", "") or ""
+        text = chunk["text"]
+    else:
+        filename = getattr(chunk, "filename", "") or ""
+        text = chunk.text
     title = Path(filename).stem.replace("_", " ") if filename else ""
-    return f"{title}: {chunk.text}" if title else chunk.text
+    return f"{title}: {text}" if title else text
 
 
 @dataclass
