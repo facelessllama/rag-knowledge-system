@@ -41,15 +41,20 @@ python eval/run_eval.py --dataset eval/heldout_dataset.json
 python eval/test_deepseek_accuracy.py --failing-only   # needs DEEPSEEK_API_KEY in .env
 ```
 
-## Current state (as of context reading-order reassembly)
+## Current state (as of document-opening-chunk promotion + refusal-retry)
 
 | | golden (calibration) | heldout |
 |---|---|---|
 | Recall@5 | 100.0% | 100.0% |
 | MRR | 1.000 | 1.000 |
-| Answered when should | 99.2% (121/122) | 100.0% (68/68) |
+| Answered when should | 100.0% (122/122) | 100.0% (68/68) |
 | Refused when should | 100% (15/15) | 100% (15/15) |
-| Answer correctness (substring) | 97.6% (80/82) | 100% (29/29) |
+| Answer correctness (substring) | 98.8% (81/82) | 100% (29/29) |
+
+Reproduced across two consecutive runs of golden_dataset.json — abstention
+accuracy 100% both times. The one remaining answer-correctness miss
+(`date_EN_0088`) is a cosmetic substring mismatch ("January 1st, 2013" vs.
+the expected "January 1, 2013" format), unrelated to retrieval/abstention.
 
 (The one golden abstention miss, `date_EN_0084`, is a newly-isolated, distinct
 issue — see "Known issue: multi-doc near-duplicate-title flakiness" below.
@@ -172,21 +177,69 @@ regression elsewhere (Recall@5 and refuse-when-should unchanged at 100%).
 `tests/test_prompt_builder.py` covers both the reordering itself and that
 document-level relevance order is preserved.
 
-## Known issue: multi-doc near-duplicate-title flakiness (not fixed)
+## Multi-doc near-duplicate-title flakiness (root-caused and fixed)
 
-Verifying the fix above surfaced a *different*, genuinely non-deterministic
-failure: `date_EN_0084` (`The Localism Act 2011 (Commencement No. 6 ...)`)
-now abstains intermittently (~1/3 of trials) even though the correct chunk
-is always retrieved (Recall@5 unaffected). Cause looks distinct from the
-A.B.A. 493 case: the corpus has multiple near-identically-titled documents
-("...Commencement No. 6...", "...Commencement No. 8...", plus more),
-`is_multi_doc` triggers the compare-mode system prompt, and the LLM
-sometimes hedges/refuses when asked to pick the one specific date among
-several similar-but-different commencement orders rather than confidently
-attributing it to "Document A" — this varies run to run at
-`temperature=0.1` (not 0), unlike the A.B.A. 493 case which was 100%
-reproducible regardless of resampling. Not investigated further or fixed
-here — flagged as a separate next step below.
+Verifying the A.B.A. 493 fix surfaced a *different* failure: `date_EN_0084`
+(`The Localism Act 2011 (Commencement No. 6 ...)`) abstained intermittently
+(~35-90% of trials, varying by run) even though Recall@5 always found the
+correct document. First hypothesis — genuine `temperature=0.1` sampling
+noise, not fixable without a prompt rewrite — turned out to be **wrong**,
+caught by trying to reproduce it in an isolated script: the same query
+through a clean standalone pipeline call answered correctly 20/20, while
+the live API kept failing on the "same" query. That discrepancy was the
+tell that something *upstream* of generation differed.
+
+Instrumented `LLMGenerator.generate()` to log the exact `messages` payload
+sent to Ollama on every call (temporarily — not part of the committed
+diff) and compared a failing live-API call against a succeeding standalone
+one. They were **not** sending the same prompt: the live call's context for
+`EN_0084` started mid-sentence — `"e cited as the Localism Act 2011
+(Commencement No. 6 ...) and shall come into force on..."` — missing the
+document's opening chunk (`chunk_index=0`, page 1), which actually reads
+`"...This Order may be cited as the Localism Act 2011 (Commencement No.
+6...) and shall come into force on the day after..."`. The reranker was
+cutting the opening/citation chunk from the final top-5 in favor of other
+chunks that scored higher on pure semantic similarity to the date question
+— exactly the same mechanism as the A.B.A. 493 case (a short, formulaic
+chunk that establishes document identity loses to content-specific chunks
+on cross-encoder score), except here the chunk doesn't just get
+*reordered* out of position, it gets **cut from the set entirely** — reading-
+order reassembly can't fix a chunk that was never in the final 5 to begin
+with. Confirmed with 22 live calls, all byte-identical prompts (hashed):
+13 refused, 9 answered — real inference-level nondeterminism, but on a
+prompt that was missing needed context, not on a complete one (the A.B.A.
+493 fix's reconstructed complete prompt was 100% reproducible either way).
+
+**Fix, two parts:**
+
+1. **Root cause** — `rag/retriever.py::promote_document_opening_chunks()`:
+   for every document already represented in the reranked `top_chunks`, if
+   its `chunk_index == 0` chunk exists anywhere in the broader candidate
+   pool (`chunks`, retrieve_expanded's output) but didn't survive
+   reranking, add it back. Cheap (a handful of chunks at most per query)
+   and general — not specific to this one document pair. Wired into both
+   `/query` and `/query/stream` in `api/main.py`, right after
+   `promote_identity_matches`.
+2. **Defense in depth** — `rag/generator.py::LLMGenerator
+   .generate_with_refusal_retry()` / `.generate_stream_with_refusal_retry()`:
+   callers only reach generation after their own relevance-threshold gate
+   already passed, so a refusal at that point is resampled (same prompt,
+   fresh call) up to `refusal_retries` times before being accepted — cheap
+   insurance against whatever inference-level nondeterminism remains on a
+   *complete* prompt (rare — the A.B.A. 493 case showed 0% failure on a
+   complete prompt across many trials — but not provably zero). The
+   streaming variant buffers only the opening ~24 characters of the
+   response to detect a refusal opener before committing to forward
+   tokens to the client, so a normal answer streams with no added latency.
+   `eval/run_eval.py` and `eval/test_deepseek_accuracy.py` now share the
+   same `is_refusal()` check instead of three separately-maintained copies
+   of the same prefix tuple.
+
+**Verified:** 20/20 trials of the exact failing query against the live API
+— 0 refusals (was 13/22 ≈ 59% single-shot, ~25% with retry-only before the
+retrieval fix). `run_eval.py` on both datasets: 100%/100% Recall@5 and
+abstention accuracy, reproduced across two separate golden_dataset.json
+runs. `pytest` 98/98.
 
 ## DeepSeek A/B — the bottleneck is retrieval, not generation
 
@@ -230,9 +283,19 @@ spend budget on a bigger/better generation model for this problem.
    identity-establishing caption chunk away from its supporting excerpts.
    See "Context reading-order reassembly" above
    (`rag/prompt_builder.py::_order_for_reading`).
-5. Investigate the multi-doc near-duplicate-title flakiness on
-   `date_EN_0084` (see "Known issue" above) — genuinely non-deterministic
-   (varies across resamples at `temperature=0.1`, unlike item 4's case),
-   so likely needs either a lower generation temperature for this path or
-   better disambiguation instructions in the compare-mode system prompt,
-   not a retrieval-side fix.
+5. ~~Investigate the multi-doc near-duplicate-title flakiness on
+   `date_EN_0084`~~ — root-caused and fixed: initial hypothesis (pure
+   `temperature=0.1` sampling noise) was wrong — the reranker was actually
+   cutting the document's opening/citation chunk from the final top-5
+   entirely, not just reordering it (item 4's fix couldn't help here since
+   there was nothing to reorder). See "Multi-doc near-duplicate-title
+   flakiness" above (`rag/retriever.py::promote_document_opening_chunks`,
+   `rag/generator.py::LLMGenerator.generate_with_refusal_retry` /
+   `.generate_stream_with_refusal_retry`). 20/20 trials clean, was ~59%
+   single-shot failure.
+6. No further known issues — both datasets are at 100%/100%/100%
+   (Recall@5 / abstention accuracy / answer correctness, golden's one
+   cosmetic substring-format miss aside), reproduced across repeated runs.
+   Next natural step, if pursuing it, is the corpus-scale question raised
+   earlier (expanding well beyond the current ~400 documents) rather than
+   further accuracy chasing on this corpus.

@@ -32,7 +32,7 @@ from ingestion.chunker import SmartChunker, normalize_whitespace, chunk_context_
 from embeddings.embedding_service import EmbeddingService
 from vector_db.qdrant_client import VectorStore
 from qdrant_client.models import Filter, FieldCondition, MatchValue
-from rag.retriever import HybridRetriever, promote_identity_matches
+from rag.retriever import HybridRetriever, promote_identity_matches, promote_document_opening_chunks
 from rag.executors import run_on_gpu
 from rag.reranker import CrossEncoderReranker, SimpleReranker
 from rag.prompt_builder import PromptBuilder
@@ -508,6 +508,7 @@ async def _do_query(request: QueryRequest):
 
     top_chunks = await run_on_gpu(reranker.rerank, request.question, chunks, top_k=request.top_k)
     top_chunks = promote_identity_matches(chunks, top_chunks, RELEVANCE_THRESHOLD)
+    top_chunks = promote_document_opening_chunks(chunks, top_chunks)
 
     best_score = max((c.get("rerank_score", 0) for c in top_chunks), default=0)
     if best_score < RELEVANCE_THRESHOLD:
@@ -522,7 +523,7 @@ async def _do_query(request: QueryRequest):
                                    channel=request.channel)
 
     t1 = time.time()
-    result = await generator.generate(messages, model=request.model or None)
+    result = await generator.generate_with_refusal_retry(messages, model=request.model or None)
     generation_ms = int((time.time() - t1) * 1000)
 
     if trace:
@@ -645,6 +646,7 @@ async def query_stream(request: QueryRequest):
             t2 = time.time()
             top_chunks = await run_on_gpu(reranker.rerank, request.question, chunks, top_k=request.top_k)
             top_chunks = promote_identity_matches(chunks, top_chunks, RELEVANCE_THRESHOLD)
+            top_chunks = promote_document_opening_chunks(chunks, top_chunks)
             rerank_ms = int((time.time() - t2) * 1000)
             reranker_type = type(reranker).__name__
 
@@ -671,7 +673,7 @@ async def query_stream(request: QueryRequest):
 
             t2 = time.time()
             answer_tokens = []
-            async for token in generator.generate_stream(messages, model=request.model or None):
+            async for token in generator.generate_stream_with_refusal_retry(messages, model=request.model or None):
                 answer_tokens.append(token)
                 yield f"data: {json.dumps({'type': 'token', 'content': token})}\n\n"
             generation_ms = int((time.time() - t2) * 1000)

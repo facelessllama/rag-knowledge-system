@@ -95,6 +95,40 @@ def promote_identity_matches(
     return promoted
 
 
+def promote_document_opening_chunks(chunks: list[dict], top_chunks: list[dict]) -> list[dict]:
+    """A document's opening chunk (chunk_index 0) usually carries its title/
+    citation sentence — e.g. "This Order may be cited as the Localism Act
+    2011 (Commencement No. 6 ...) and shall come into force on...". A later
+    chunk that continues that same sentence ("...ame day on which it is
+    made") reads as a fragment without it, even though the reranker often
+    scores the opening chunk lower than surrounding content-specific chunks
+    (it's short and formulaic) and cuts it from the final top_k. Root-caused
+    directly: the identical retrieved+reranked chunk set, missing only this
+    opening chunk, made a 7B model refuse to answer a plainly-answerable
+    question in the majority of trials — see eval/README.md, "Known issue:
+    multi-doc near-duplicate-title flakiness". If a document is already
+    represented in top_chunks and its opening chunk exists somewhere in the
+    broader candidate pool, include it too — cheap, and it's exactly the
+    "citation context" a reader would otherwise get for free from a
+    document's own layout."""
+    doc_ids_in_top = {c.get("document_id") for c in top_chunks}
+    included_keys = {c.get("chunk_id", c["text"][:50]) for c in top_chunks}
+
+    opening_chunks = {}
+    for c in chunks:
+        if c.get("document_id") in doc_ids_in_top and c.get("chunk_index") == 0:
+            opening_chunks.setdefault(c["document_id"], c)
+
+    promoted = list(top_chunks)
+    for doc_id, opening in opening_chunks.items():
+        key = opening.get("chunk_id", opening["text"][:50])
+        if key not in included_keys:
+            promoted.append(opening.copy())
+            included_keys.add(key)
+
+    return promoted
+
+
 class HybridRetriever:
     # Documents at or under this many total chunks get pulled in whole once
     # any one chunk of theirs scores well enough to be a top candidate — see

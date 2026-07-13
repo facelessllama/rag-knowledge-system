@@ -32,7 +32,7 @@ from rag.retriever import HybridRetriever, promote_identity_matches
 from rag.reranker import CrossEncoderReranker
 from rag.prompt_builder import PromptBuilder
 from rag.query_expander import QueryExpander
-from rag.generator import LLMGenerator, DeepSeekGenerator
+from rag.generator import LLMGenerator, DeepSeekGenerator, is_refusal
 
 RELEVANCE_THRESHOLD = float(os.getenv("RELEVANCE_THRESHOLD", "3.0"))
 
@@ -136,7 +136,7 @@ async def main():
         deepseek_total_tokens += deepseek_result["total_tokens"]
 
         def grade(answer):
-            refused = answer.strip().lower().startswith(("i could not find", "i couldn't find", "no relevant"))
+            refused = is_refusal(answer)
             if not case["expect_answer"]:
                 return "correct_refusal" if refused else "WRONG_should_refuse"
             if refused:

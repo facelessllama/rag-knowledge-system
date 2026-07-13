@@ -25,6 +25,7 @@ import argparse
 import asyncio
 import json
 import re
+import sys
 from pathlib import Path
 
 import httpx
@@ -32,6 +33,9 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from rag.generator import is_refusal
 
 EVAL_DIR = Path(__file__).resolve().parent
 
@@ -53,8 +57,7 @@ async def run_case(client, base_url, headers, case, top_k, doc_id_by_filename):
     top_chunks = debug.get("top_chunks", [])
     best_score = max((c.get("score", 0) for c in top_chunks), default=debug.get("best_rerank_score", 0))
 
-    refused = answer.strip().lower().startswith(("i could not find", "i couldn't find", "no relevant information"))
-    answered = not refused
+    answered = not is_refusal(answer)
 
     result = {
         "id": case["id"],

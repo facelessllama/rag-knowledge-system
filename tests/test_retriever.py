@@ -7,6 +7,7 @@ import pytest
 
 from rag.retriever import (
     HybridRetriever, extract_case_numbers, extract_party_match, promote_identity_matches,
+    promote_document_opening_chunks,
 )
 
 
@@ -348,3 +349,69 @@ def test_promote_identity_matches_does_not_drop_the_match_even_over_top_k():
     ids = {c["chunk_id"] for c in result}
     assert "match" in ids
     assert len(result) == 3  # exceeds top_k=2 rather than drop the match
+
+
+# ── promote_document_opening_chunks ─────────────────────────────────────────────
+
+def test_promote_document_opening_chunks_adds_missing_opening_chunk():
+    """The reranker often scores a document's title/citation chunk (index 0)
+    lower than surrounding content-specific chunks, cutting it from the
+    final top_k even though a later chunk continuing its sentence reads as
+    a fragment without it — see eval/README.md, "Known issue: multi-doc
+    near-duplicate-title flakiness", root-caused via this exact scenario."""
+    opening = _chunk("c0", "d1", 0, 0.5, text="This Order may be cited as X and shall come into force on...")
+    content = _chunk("c2", "d1", 2, 0.9, text="...the day after the day on which it is made.")
+    chunks = [opening, content]
+    top_chunks = [content]  # reranker kept only the fragment, dropped the opening
+
+    result = promote_document_opening_chunks(chunks, top_chunks)
+
+    ids = {c["chunk_id"] for c in result}
+    assert ids == {"c0", "c2"}
+
+
+def test_promote_document_opening_chunks_is_a_no_op_when_opening_already_present():
+    opening = _chunk("c0", "d1", 0, 0.9, text="Opening.")
+    chunks = [opening]
+    top_chunks = [opening]
+
+    result = promote_document_opening_chunks(chunks, top_chunks)
+
+    assert result == top_chunks
+
+
+def test_promote_document_opening_chunks_is_a_no_op_when_opening_not_in_pool():
+    content = _chunk("c2", "d1", 2, 0.9, text="Fragment.")
+    chunks = [content]  # opening chunk never made it into the candidate pool at all
+    top_chunks = [content]
+
+    result = promote_document_opening_chunks(chunks, top_chunks)
+
+    assert result == top_chunks
+
+
+def test_promote_document_opening_chunks_ignores_documents_not_in_top_chunks():
+    """A document's opening chunk sitting in the broader candidate pool
+    shouldn't be pulled in just because it exists — only documents already
+    represented in top_chunks get their opening chunk added."""
+    other_doc_opening = _chunk("c0", "d2", 0, 0.9, text="Unrelated document's opening.")
+    chunks = [other_doc_opening]
+    top_chunks = [_chunk("c5", "d1", 5, 0.8, text="d1 content, not d2")]
+
+    result = promote_document_opening_chunks(chunks, top_chunks)
+
+    assert result == top_chunks
+
+
+def test_promote_document_opening_chunks_handles_multiple_documents():
+    d1_opening = _chunk("d1c0", "d1", 0, 0.5, text="d1 opening")
+    d1_content = _chunk("d1c3", "d1", 3, 0.9, text="d1 content")
+    d2_opening = _chunk("d2c0", "d2", 0, 0.5, text="d2 opening")
+    d2_content = _chunk("d2c1", "d2", 1, 0.8, text="d2 content")
+    chunks = [d1_opening, d1_content, d2_opening, d2_content]
+    top_chunks = [d1_content, d2_content]
+
+    result = promote_document_opening_chunks(chunks, top_chunks)
+
+    ids = {c["chunk_id"] for c in result}
+    assert ids == {"d1c0", "d1c3", "d2c0", "d2c1"}
