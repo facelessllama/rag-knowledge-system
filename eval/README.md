@@ -41,15 +41,20 @@ python eval/run_eval.py --dataset eval/heldout_dataset.json
 python eval/test_deepseek_accuracy.py --failing-only   # needs DEEPSEEK_API_KEY in .env
 ```
 
-## Current state (as of structured case metadata at ingestion)
+## Current state (as of context reading-order reassembly)
 
 | | golden (calibration) | heldout |
 |---|---|---|
 | Recall@5 | 100.0% | 100.0% |
 | MRR | 1.000 | 1.000 |
-| Answered when should | 100.0% (122/122) | 98.5% (67/68) |
+| Answered when should | 99.2% (121/122) | 100.0% (68/68) |
 | Refused when should | 100% (15/15) | 100% (15/15) |
 | Answer correctness (substring) | 97.6% (80/82) | 100% (29/29) |
+
+(The one golden abstention miss, `date_EN_0084`, is a newly-isolated, distinct
+issue — see "Known issue: multi-doc near-duplicate-title flakiness" below.
+Not the same root cause as the A.B.A. 493 case fixed below, and not fixed
+here.)
 
 (Answer correctness moves a point run-to-run — `date_EN_0084`/`_0088` are
 generation-level substring misses on the LLM's exact wording, at temperature
@@ -129,16 +134,59 @@ relevant context, and reproduces after a full API process restart (not
 random-seed noise). This is a generation-stage issue, not a retrieval
 regression from this change — flagged below as a new, separate follow-up.
 
-## New, unrelated observation: a deterministic generation refusal
+## Context reading-order reassembly (the A.B.A. 493 refusal, root-caused)
 
-`ho_case_lookup_by_number_A.B.A._493_2020_RAJKUMAR_YADAV_vs_THE_ST` — the
-model (qwen2.5:7b) answers "I could not find this information..." given
-retrieved context that unambiguously contains the case caption, party
-names, and case number, and reproduces the same refusal after a fresh
-server restart. Worth investigating (prompt_builder's instructions,
-whether the retrieved chunks lack a clear "what happened" summary for this
-specific bail-order document vs. others that succeed), but out of scope for
-retrieval/ingestion work — not counted as a retrieval failure above.
+Investigated the deterministic refusal flagged above
+(`ho_case_lookup_by_number_A.B.A._493_2020_RAJKUMAR_YADAV_vs_THE_ST`) by
+reconstructing the exact prompt sent to the LLM and bisecting which chunks/
+ordering triggered it. Root cause confirmed: `rag/prompt_builder.py`
+presented chunks to the LLM in **rerank-score order**, not document reading
+order. For this document, the chunk that establishes case identity (page 1,
+chunk 0 — "IN THE HIGH COURT OF JHARKHAND AT RANCHI A.B.A. No. 493 of 2020
+... Rajkumar Yadav ...") scored *lowest* of the top-5 reranked chunks
+(names/formatting-heavy text reads as less semantically "relevant" to a
+cross-encoder than the procedural prose around it) and landed 5th in the
+context, preceded by four procedural excerpts that repeatedly cite a
+*different* number — "Pratappur P.S. Case No.133 of 2019" (the underlying
+police FIR, not the court application). qwen2.5:7b, given the off-topic-
+looking number first and the actual case caption buried later, concluded the
+context didn't cover "case A.B.A. 493 of 2020" and refused — reproducibly,
+even after a full server restart (verified by replaying the exact 8-chunk
+context directly against the generator, isolated from retrieval).
+
+Bisection (`/tmp/.../probe_refusal.py`, not checked in) confirmed it's pure
+ordering, not content: the identical 8 chunks reordered with the caption
+chunk moved first answered correctly on every trial; dropping either of the
+two "wrong number" procedural chunks (rather than reordering) also fixed it;
+the original rerank-score order failed 3/3.
+
+**Fix:** `rag/prompt_builder.py::_order_for_reading()` — chunks are now
+re-sorted into `(document, page_num, chunk_index)` order before being
+formatted into the prompt, so each document's excerpts read the way the
+document itself reads, caption first. Documents themselves stay in their
+original relevance order (multi-doc mode still shows the most relevant
+document's excerpts before a less relevant one's) — only the chunks *within*
+a document get reordered. Verified: the A.B.A. 493 query now answers
+correctly 4/4 on the live API; `run_eval.py` on both datasets shows no
+regression elsewhere (Recall@5 and refuse-when-should unchanged at 100%).
+`tests/test_prompt_builder.py` covers both the reordering itself and that
+document-level relevance order is preserved.
+
+## Known issue: multi-doc near-duplicate-title flakiness (not fixed)
+
+Verifying the fix above surfaced a *different*, genuinely non-deterministic
+failure: `date_EN_0084` (`The Localism Act 2011 (Commencement No. 6 ...)`)
+now abstains intermittently (~1/3 of trials) even though the correct chunk
+is always retrieved (Recall@5 unaffected). Cause looks distinct from the
+A.B.A. 493 case: the corpus has multiple near-identically-titled documents
+("...Commencement No. 6...", "...Commencement No. 8...", plus more),
+`is_multi_doc` triggers the compare-mode system prompt, and the LLM
+sometimes hedges/refuses when asked to pick the one specific date among
+several similar-but-different commencement orders rather than confidently
+attributing it to "Document A" — this varies run to run at
+`temperature=0.1` (not 0), unlike the A.B.A. 493 case which was 100%
+reproducible regardless of resampling. Not investigated further or fixed
+here — flagged as a separate next step below.
 
 ## DeepSeek A/B — the bottleneck is retrieval, not generation
 
@@ -176,7 +224,15 @@ spend budget on a bigger/better generation model for this problem.
    `vector_db/qdrant_client.py::chunks_by_case_number`,
    `rag/retriever.py::extract_party_match`). See "Structured case metadata
    at ingestion" above.
-4. Investigate the deterministic generation refusal on
-   `ho_case_lookup_by_number_A.B.A._493_2020_...` (see "New, unrelated
-   observation" above) — retrieval is confirmed correct, so this is a
-   prompt_builder/generator question, not a retrieval one.
+4. ~~Investigate the deterministic generation refusal on
+   `ho_case_lookup_by_number_A.B.A._493_2020_...`~~ — root-caused and fixed:
+   chunks were presented in rerank-score order, scattering a document's
+   identity-establishing caption chunk away from its supporting excerpts.
+   See "Context reading-order reassembly" above
+   (`rag/prompt_builder.py::_order_for_reading`).
+5. Investigate the multi-doc near-duplicate-title flakiness on
+   `date_EN_0084` (see "Known issue" above) — genuinely non-deterministic
+   (varies across resamples at `temperature=0.1`, unlike item 4's case),
+   so likely needs either a lower generation temperature for this path or
+   better disambiguation instructions in the compare-mode system prompt,
+   not a retrieval-side fix.

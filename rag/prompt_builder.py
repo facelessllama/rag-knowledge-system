@@ -95,10 +95,39 @@ Answer the question inside <question> tags based solely on the context above.{mu
             logger.info(f"History trimmed: dropped 2 turns ({sum(len(t.get('content','')) for t in dropped)} chars), {total} chars remaining")
         return recent
 
+    def _order_for_reading(self, chunks: list[dict]) -> list[dict]:
+        """Chunks arrive sorted by rerank score, which can scatter a single
+        document's chunks out of reading order — e.g. the caption chunk that
+        establishes "this is case X" can rank below several identity-free
+        procedural chunks and end up presented several excerpts later.
+        Observed directly causing a wrong refusal: a 7B model given
+        procedural bail-order text first, mentioning an unrelated police
+        case number, and only then the actual case caption (party names,
+        "A.B.A. No. 493 of 2020") several excerpts later, answered "I could
+        not find this information" — reordering the exact same chunks into
+        reading order made it answer correctly every time (see
+        eval/README.md). Keep documents themselves in their original
+        (relevance) order — only their chunks get re-sorted into
+        page_num/chunk_index order within each document."""
+        doc_order = []
+        seen_docs = set()
+        for c in chunks:
+            doc_id = c.get('document_id')
+            if doc_id not in seen_docs:
+                seen_docs.add(doc_id)
+                doc_order.append(doc_id)
+        doc_rank = {doc_id: i for i, doc_id in enumerate(doc_order)}
+        return sorted(chunks, key=lambda c: (
+            doc_rank.get(c.get('document_id'), len(doc_order)),
+            c.get('page_num') or 0,
+            c.get('chunk_index') or 0,
+        ))
+
     def _format_context(self, chunks: list[dict], is_multi_doc: bool = False) -> str:
         if not chunks:
             return "No relevant context found."
 
+        chunks = self._order_for_reading(chunks)
         formatted = []
         total_chars = 0
         for i, chunk in enumerate(chunks, 1):
