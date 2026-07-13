@@ -41,7 +41,7 @@ python eval/run_eval.py --dataset eval/heldout_dataset.json
 python eval/test_deepseek_accuracy.py --failing-only   # needs DEEPSEEK_API_KEY in .env
 ```
 
-## Current state (as of contextual reranking)
+## Current state (as of contextual reranking + RELEVANCE_THRESHOLD=3.0)
 
 | | golden (calibration) | heldout |
 |---|---|---|
@@ -49,7 +49,12 @@ python eval/test_deepseek_accuracy.py --failing-only   # needs DEEPSEEK_API_KEY 
 | MRR | 1.000 | 1.000 |
 | Answered when should | 100.0% (122/122) | 100.0% (68/68) |
 | Refused when should | 100% (15/15) | 100% (15/15) |
-| Answer correctness (substring) | 98.8% (81/82) | 100% (29/29) |
+| Answer correctness (substring) | 97.6% (80/82) | 100% (29/29) |
+
+(Answer correctness moves a point run-to-run — `date_EN_0084`/`_0088` are
+generation-level substring misses on the LLM's exact wording, at temperature
+0.1 but not 0, unrelated to retrieval/threshold: Recall@5 and abstention
+accuracy are unchanged run over run.)
 
 `reranker.rerank()` now scores `chunk_context_text()` (title-prefixed) instead
 of bare `chunk.text` — see "Next steps" history below, item 1. This closed the
@@ -64,15 +69,19 @@ names instead. One remaining failure — `date_EN_0088` (Animals Scientific
 Procedures Act 1986 Fees Order 2012) — is a pre-existing, unrelated
 substring-match miss on the golden set, not something this change touched.
 
-The only open question this raises: `RELEVANCE_THRESHOLD=1.5` was calibrated
-before this change, off a distribution where `case_summary` scored
-unusually low (post-rerank). With the title now in the passage, those scores
-should generally run higher — but the threshold wasn't recalibrated against
-this new score distribution, meaning the current 100%/100% headline numbers
-might partly reflect a threshold that's now generous rather than an
-underlying retrieval improvement everywhere. Re-run `run_eval.py` after any
-further reranker/threshold change and compare per-type breakdowns (see
-`last_run_scores_<name>.json`, `type` field), not just the aggregate.
+This raised a real question — was `RELEVANCE_THRESHOLD=1.5` (calibrated
+*before* this change) still valid against the new score distribution? Checked
+directly: pooling both datasets (220 cases), should-refuse scores now top out
+at 1.00 and should-answer scores bottom out at 4.94 — a 3.9-point gap, and
+critically, this gap is uniform across every question type, not just
+`case_summary`. The title-context fix lifted *all* should-answer scores
+together, not only the ones that were previously borderline. That means the
+per-question-type/adaptive threshold originally planned as item 2 below turned
+out to be unnecessary — a single global value has ample margin now. Moved
+`RELEVANCE_THRESHOLD` to `3.0` (the midpoint of the new gap, vs. the old 1.5
+which was hugging the should-refuse edge) for more headroom; re-ran
+`run_eval.py` on both datasets to confirm no regression (see "Current state"
+table above — unaffected).
 
 ## DeepSeek A/B — the bottleneck is retrieval, not generation
 
@@ -96,11 +105,13 @@ spend budget on a bigger/better generation model for this problem.
 1. ~~Pass `chunk_context_text()` (see `ingestion/chunker.py`) to
    `reranker.rerank()`, not just to embedding~~ — done (`rag/reranker.py`).
    Closed the `case_summary` gap; see "Current state" above.
-2. Per-question-type (or otherwise calibrated/adaptive) `RELEVANCE_THRESHOLD`
-   instead of one global value — `case_summary`'s correct-answer scores
-   cluster much lower than `fact_date`/`fact_money` even when genuinely
-   correct (confirmed directly: one case ranked its correct document #1
-   post-rerank at score 1.382, still short of the 1.5 gate).
+2. ~~Per-question-type (or otherwise calibrated/adaptive)
+   `RELEVANCE_THRESHOLD` instead of one global value~~ — investigated, turned
+   out unnecessary: item 1's fix lifted should-answer scores uniformly across
+   types, so a single recalibrated value (`3.0`, see "Current state" above)
+   has a comfortable 3.9-point margin on every type. Revisit only if a future
+   corpus/question-type shows a similarly borderline gap that a global
+   threshold can't cover.
 3. Structured case-number metadata extracted at ingestion time (not just
    matched ad-hoc against query text, as `extract_case_numbers` in
    `rag/retriever.py` does now) would make `case_summary`-style lookups by

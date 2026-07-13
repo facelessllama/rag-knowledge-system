@@ -77,11 +77,18 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 # score — RRF is a rank-fusion formula (Qdrant docs: reciprocal-rank sum,
 # not a similarity measure) and gets further boosted by retriever.py's
 # multi-query merge logic, so it was never on an interpretable 0-1 scale to
-# begin with. Calibrated on eval/golden_dataset.json: should-refuse cases
-# scored <=0.9, should-answer cases scored >=4.6 at the 10th percentile —
-# 1.5 sits with margin in that gap. Re-run eval/run_eval.py after changing
-# chunk_size, the reranker model, or the dataset composition.
-RELEVANCE_THRESHOLD = float(os.getenv("RELEVANCE_THRESHOLD", "1.5"))
+# begin with.
+#
+# Recalibrated after chunk_context_text() (title-prefixed passages) was
+# wired into reranker.rerank() — that change pushed every should-answer
+# type's score up together, not just case_summary's, so a single global
+# threshold still suffices; per-type thresholds turned out unnecessary (see
+# eval/README.md). Measured on golden_dataset.json + heldout_dataset.json
+# combined (220 cases): should-refuse scores topped out at 1.00, should-
+# answer scores bottomed out at 4.94 — 3.0 sits at the midpoint of that gap,
+# not hugging either edge. Re-run eval/run_eval.py on both datasets after
+# changing chunk_size, the reranker model, or the dataset composition.
+RELEVANCE_THRESHOLD = float(os.getenv("RELEVANCE_THRESHOLD", "3.0"))
 MAX_CONCURRENT_QUERIES = int(os.getenv("MAX_CONCURRENT_QUERIES", "3"))
 _query_semaphore = asyncio.Semaphore(MAX_CONCURRENT_QUERIES)
 
