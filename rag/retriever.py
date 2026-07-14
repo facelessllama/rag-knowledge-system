@@ -41,6 +41,30 @@ def extract_celex_ids(text: str) -> set[str]:
     return set(_CELEX_ID_QUERY_RE.findall(text))
 
 
+# Natural short-citation form as a user actually types it in a query —
+# "No 480/86", "No. 780/2007", "Regulation No 1021/2008" — distinct from
+# the CELEX ID a real user is unlikely to know (see ingestion/chunker.py::
+# extract_citation_number, which stores the ingestion-time counterpart of
+# this on every chunk). Requires the slash so this can't collide with
+# _CASE_NUMBER_RE's "<N> of <YYYY>" shape.
+_CITATION_NUMBER_QUERY_RE = re.compile(r'\bNo\.?\s*(\d+)\s*/\s*(\d{2,4})\b')
+
+
+def extract_citation_numbers(text: str) -> set[tuple[str, str]]:
+    """Parses (number, year) short-citation pairs out of free query text —
+    e.g. "Regulation (EC) No 480/86" -> {("480", "1986")}. 2-digit years
+    are expanded the same way a reader conventionally resolves an EU
+    short-citation (encountering "No 480/86" reads as 1986, not 2086),
+    matching the full 4-digit year chunker.py::extract_citation_number
+    stores at ingestion time, so both sides of the lookup agree."""
+    out = set()
+    for num, year in _CITATION_NUMBER_QUERY_RE.findall(text):
+        if len(year) == 2:
+            year = ("19" if int(year) >= 30 else "20") + year
+        out.add((num, year))
+    return out
+
+
 def extract_case_numbers(text: str) -> set[tuple[str, str]]:
     """Parses (number, year) pairs out of free text — used on the *query*,
     which has no fixed structure to key off. For chunks, prefer the
@@ -185,6 +209,7 @@ class HybridRetriever:
         # query_expander.expand().
         query_case_numbers = extract_case_numbers(queries[0]) if queries else set()
         query_celex_ids = extract_celex_ids(queries[0]) if queries else set()
+        query_citation_numbers = extract_citation_numbers(queries[0]) if queries else set()
 
         for i, query in enumerate(queries):
             query_vector = await run_on_gpu(self.embedder.embed_text, query)
@@ -243,6 +268,25 @@ class HybridRetriever:
                     r["source"] = "celex_id_index"
                     all_chunks[key] = r
 
+        # Same guarantee for the natural short-citation form ("No 480/86")
+        # — see ingestion/chunker.py::extract_citation_number and
+        # eval/README.md, "ID-free spot-check @ 57,000": this is the path
+        # a real user actually relies on (unlike the CELEX ID above, which
+        # they're unlikely to know), and it was the one measurably weak
+        # spot found once CELEX-ID-shortcut queries were excluded from
+        # testing — the short number alone collides across different
+        # years and gets cited in passing by *other* documents, so hybrid
+        # search alone isn't reliable for it without this index.
+        for num, year in query_citation_numbers:
+            indexed = await asyncio.to_thread(self.vector_store.chunks_by_citation_number, num, year)
+            for r in indexed:
+                key = r.get("chunk_id", r["text"][:50])
+                if key not in all_chunks:
+                    r = r.copy()
+                    r["score"] = 1.0
+                    r["source"] = "citation_number_index"
+                    all_chunks[key] = r
+
         # Sort and expand with neighbors only for top candidates
         sorted_chunks = sorted(all_chunks.values(), key=lambda x: x["score"], reverse=True)
         expanded = await self._expand_with_neighbors(sorted_chunks, max_base=pool)
@@ -258,6 +302,8 @@ class HybridRetriever:
             if c.get("case_number") and (c["case_number"], c.get("case_year")) in query_case_numbers:
                 c["identity_match"] = True
             elif c.get("celex_id") and c["celex_id"] in query_celex_ids:
+                c["identity_match"] = True
+            elif (c.get("citation_number"), c.get("citation_year")) in query_citation_numbers:
                 c["identity_match"] = True
             elif extract_party_match(query_text, c.get("parties")):
                 c["identity_match"] = True

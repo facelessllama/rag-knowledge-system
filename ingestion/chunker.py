@@ -97,6 +97,39 @@ def extract_celex_id(filename: str) -> str | None:
     return m.group(1) if m else None
 
 
+# EU legislation is much more often cited in natural prose by its short
+# form ("Regulation (EC) No 780/2007") than by its CELEX ID
+# ("32007R0780") — a real user is unlikely to know or type the latter.
+# Unlike the CELEX ID, this short number is not unique on its own: it
+# recurs across different years, and other documents' body text routinely
+# cites it in passing without being it. See eval/README.md, "ID-free
+# spot-check @ 57,000" — natural_lookup_by_number was the one retrieval
+# path that measurably underperformed (75% vs. 90-100% everywhere else
+# ID-free), root-caused to exactly this kind of number/year collision
+# with no structured index to disambiguate against, unlike celex_id/
+# case_number. Parsed from the same "No <N> <YY[YY]> of <full date>"
+# preamble EURLEX57K filenames' descriptive text consistently carries —
+# the trailing full date's 4-digit year is used (not the possibly
+# 2-digit "No <N> <YY>" year) so it's unambiguous by construction.
+_CITATION_PREAMBLE_RE = re.compile(
+    r'\bNo\s+(\d+)\s+\d{2,4}\s+of\s+\d{1,2}\s+[A-Z][a-z]+\s+(\d{4})\b'
+)
+
+
+def extract_citation_number(filename: str) -> dict:
+    """Parses the natural short-citation (number, year) out of an
+    EU-legislation filename's descriptive text — e.g. "...No 780 2007 of 3
+    July 2007..." -> {"citation_number": "780", "citation_year": "2007"}.
+    Returns {} if the filename doesn't carry this preamble (e.g. non-EU
+    documents, or the minority of EU filenames using an older "<N> <YY>
+    EEC" convention instead of "No <N> <YYYY>")."""
+    m = _CITATION_PREAMBLE_RE.search(Path(filename).stem)
+    if not m:
+        return {}
+    num, full_year = m.groups()
+    return {"citation_number": num, "citation_year": full_year}
+
+
 @dataclass
 class TextChunk:
     """A single chunk of text with metadata"""

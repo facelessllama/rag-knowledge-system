@@ -18,7 +18,9 @@ from qdrant_client.models import (
     PayloadSchemaType,
 )
 
-from ingestion.chunker import chunk_context_text, extract_case_metadata, extract_celex_id
+from ingestion.chunker import (
+    chunk_context_text, extract_case_metadata, extract_celex_id, extract_citation_number,
+)
 from vector_db.sparse_encoder import build_sparse_vector
 
 logger = logging.getLogger(__name__)
@@ -39,6 +41,12 @@ _PAYLOAD_INDEXES = (
     # Backs chunks_by_celex_id() the same way — see ingestion/chunker.py::
     # extract_celex_id (EU-legislation corpus identity).
     ("celex_id", PayloadSchemaType.KEYWORD),
+    # Backs chunks_by_citation_number() — see ingestion/chunker.py::
+    # extract_citation_number and eval/README.md, "ID-free spot-check @
+    # 57,000" (the gap this closes: natural short-citation lookup, e.g.
+    # "Regulation No 780/2007", had no structured index before this).
+    ("citation_number", PayloadSchemaType.KEYWORD),
+    ("citation_year", PayloadSchemaType.KEYWORD),
 )
 
 
@@ -76,6 +84,7 @@ class VectorStore:
             filename = getattr(chunk, "filename", "") or ""
             case_meta = extract_case_metadata(filename)
             celex_id = extract_celex_id(filename)
+            citation_meta = extract_citation_number(filename)
             points.append(PointStruct(
                 id=str(uuid.uuid4()),
                 vector={
@@ -99,6 +108,8 @@ class VectorStore:
                     "case_year": case_meta.get("case_year", ""),
                     "parties": case_meta.get("parties", []),
                     "celex_id": celex_id or "",
+                    "citation_number": citation_meta.get("citation_number", ""),
+                    "citation_year": citation_meta.get("citation_year", ""),
                 }
             ))
         self.client.upsert(collection_name=self.collection, points=points)
@@ -220,6 +231,32 @@ class VectorStore:
         )
         return self._points_to_chunk_dicts(results)
 
+    def chunks_by_citation_number(self, citation_number: str, citation_year: str, limit: int = 10) -> list[dict]:
+        """Direct payload-indexed lookup for an exact natural short-citation
+        (number, year) identity — see _PAYLOAD_INDEXES and ingestion/
+        chunker.py::extract_citation_number. Same role as
+        chunks_by_celex_id() plays for the raw CELEX ID, but for the form a
+        real user is actually likely to type ("Regulation No 780/2007"):
+        see eval/README.md, "ID-free spot-check @ 57,000" — this was the
+        one retrieval path measurably underperforming (75% Recall@5)
+        without a structured index, because the short number alone
+        collides across different years and gets cited in passing by
+        *other* documents' body text."""
+        if not citation_number or not citation_year:
+            return []
+        search_filter = Filter(must=[
+            FieldCondition(key="citation_number", match=MatchValue(value=citation_number)),
+            FieldCondition(key="citation_year", match=MatchValue(value=citation_year)),
+        ])
+        results, _ = self.client.scroll(
+            collection_name=self.collection,
+            scroll_filter=search_filter,
+            limit=limit,
+            with_payload=True,
+            with_vectors=False,
+        )
+        return self._points_to_chunk_dicts(results)
+
     def _points_to_chunk_dicts(self, points) -> list[dict]:
         out = []
         for r in points:
@@ -240,6 +277,8 @@ class VectorStore:
                 "case_year": p.get("case_year", ""),
                 "parties": p.get("parties", []),
                 "celex_id": p.get("celex_id", ""),
+                "citation_number": p.get("citation_number", ""),
+                "citation_year": p.get("citation_year", ""),
             })
         return out
 
@@ -273,6 +312,8 @@ class VectorStore:
                 "case_year": p.get("case_year", ""),
                 "parties": p.get("parties", []),
                 "celex_id": p.get("celex_id", ""),
+                "citation_number": p.get("citation_number", ""),
+                "citation_year": p.get("citation_year", ""),
             })
         return out
 

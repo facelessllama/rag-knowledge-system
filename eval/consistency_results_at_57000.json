@@ -1,0 +1,1799 @@
+{
+  "eu_adv_capital_brazil": {
+    "question": "What is the capital of Brazil?",
+    "type": "out_of_domain",
+    "expect_answer": false,
+    "correct_rate": "20/20",
+    "retrieval_stable": true,
+    "retrieved_docs_seen": [
+      null
+    ],
+    "expected_doc_id": null,
+    "runs": [
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      }
+    ]
+  },
+  "eu_adv_stock_price": {
+    "question": "What is the current share price of Apple Inc.?",
+    "type": "out_of_domain",
+    "expect_answer": false,
+    "correct_rate": "20/20",
+    "retrieval_stable": true,
+    "retrieved_docs_seen": [
+      null
+    ],
+    "expected_doc_id": null,
+    "runs": [
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      }
+    ]
+  },
+  "eu_adv_recipe": {
+    "question": "How do I make lasagna?",
+    "type": "out_of_domain",
+    "expect_answer": false,
+    "correct_rate": "20/20",
+    "retrieval_stable": true,
+    "retrieved_docs_seen": [
+      null
+    ],
+    "expected_doc_id": null,
+    "runs": [
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      },
+      {
+        "answered": false,
+        "abstention_correct": true,
+        "retrieved_doc": null
+      }
+    ]
+  },
+  "eu_32011D0126_summary": {
+    "question": "What is 32011D0126 about?",
+    "type": "celex_summary",
+    "expect_answer": true,
+    "correct_rate": "20/20",
+    "retrieval_stable": true,
+    "retrieved_docs_seen": [
+      "0237f09f"
+    ],
+    "expected_doc_id": "e0d607ef",
+    "runs": [
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0237f09f"
+      }
+    ]
+  },
+  "eu_32006D0476_lookup": {
+    "question": "What does Decision 32006D0476 concern?",
+    "type": "celex_lookup",
+    "expect_answer": true,
+    "correct_rate": "20/20",
+    "retrieval_stable": true,
+    "retrieved_docs_seen": [
+      "a37f8eb8"
+    ],
+    "expected_doc_id": "d3bf6a0c",
+    "runs": [
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "a37f8eb8"
+      }
+    ]
+  },
+  "eu_32004R2113_date": {
+    "question": "On what date was 32004R2113 adopted?",
+    "type": "date_fact",
+    "expect_answer": true,
+    "correct_rate": "20/20",
+    "retrieval_stable": true,
+    "retrieved_docs_seen": [
+      "5ef9c71c"
+    ],
+    "expected_doc_id": "214fb18e",
+    "runs": [
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      }
+    ]
+  },
+  "eu_32002R2293_xref": {
+    "question": "What earlier regulation, directive, or decision does 32002R2293 cite (excluding its own number)?",
+    "type": "cross_reference_fact",
+    "expect_answer": true,
+    "correct_rate": "20/20",
+    "retrieval_stable": true,
+    "retrieved_docs_seen": [
+      "5213831e"
+    ],
+    "expected_doc_id": "5213831e",
+    "runs": [
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5213831e",
+        "substring_correct": true
+      }
+    ]
+  },
+  "eu_32007R0780_summary": {
+    "question": "What is 32007R0780 about?",
+    "type": "celex_summary",
+    "expect_answer": true,
+    "correct_rate": "20/20",
+    "retrieval_stable": true,
+    "retrieved_docs_seen": [
+      "e1293586"
+    ],
+    "expected_doc_id": "645bb47e",
+    "runs": [
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "e1293586"
+      }
+    ]
+  },
+  "eu_32001R1515_lookup": {
+    "question": "What does Regulation 32001R1515 concern?",
+    "type": "celex_lookup",
+    "expect_answer": true,
+    "correct_rate": "20/20",
+    "retrieval_stable": true,
+    "retrieved_docs_seen": [
+      "4a97b482"
+    ],
+    "expected_doc_id": "4a97b482",
+    "runs": [
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "4a97b482"
+      }
+    ]
+  },
+  "eu_32002R0431_date": {
+    "question": "On what date was 32002R0431 adopted?",
+    "type": "date_fact",
+    "expect_answer": true,
+    "correct_rate": "20/20",
+    "retrieval_stable": true,
+    "retrieved_docs_seen": [
+      "5ef9c71c"
+    ],
+    "expected_doc_id": "79fbd048",
+    "runs": [
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "5ef9c71c",
+        "substring_correct": true
+      }
+    ]
+  },
+  "eu_31997D0251_xref": {
+    "question": "What earlier regulation, directive, or decision does 31997D0251 cite (excluding its own number)?",
+    "type": "cross_reference_fact",
+    "expect_answer": true,
+    "correct_rate": "20/20",
+    "retrieval_stable": true,
+    "retrieved_docs_seen": [
+      "1ee2846a"
+    ],
+    "expected_doc_id": "1ee2846a",
+    "runs": [
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1ee2846a",
+        "substring_correct": true
+      }
+    ]
+  },
+  "eu_32008R1021_summary": {
+    "question": "What is 32008R1021 about?",
+    "type": "celex_summary",
+    "expect_answer": true,
+    "correct_rate": "20/20",
+    "retrieval_stable": true,
+    "retrieved_docs_seen": [
+      "d02e2908"
+    ],
+    "expected_doc_id": "74d9c681",
+    "runs": [
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "d02e2908"
+      }
+    ]
+  },
+  "eu_32002R0634_lookup": {
+    "question": "What does Regulation 32002R0634 concern?",
+    "type": "celex_lookup",
+    "expect_answer": true,
+    "correct_rate": "20/20",
+    "retrieval_stable": false,
+    "retrieved_docs_seen": [
+      "59390dde",
+      "cd71fb84",
+      "0be89ba6"
+    ],
+    "expected_doc_id": "cd71fb84",
+    "runs": [
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "cd71fb84"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0be89ba6"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "cd71fb84"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "cd71fb84"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "cd71fb84"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0be89ba6"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0be89ba6"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "cd71fb84"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "cd71fb84"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0be89ba6"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0be89ba6"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "cd71fb84"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0be89ba6"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0be89ba6"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "cd71fb84"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "59390dde"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0be89ba6"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0be89ba6"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0be89ba6"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "0be89ba6"
+      }
+    ]
+  },
+  "eu_32006R1590_date": {
+    "question": "On what date was 32006R1590 adopted?",
+    "type": "date_fact",
+    "expect_answer": true,
+    "correct_rate": "20/20",
+    "retrieval_stable": true,
+    "retrieved_docs_seen": [
+      "31223288"
+    ],
+    "expected_doc_id": "8a652e98",
+    "runs": [
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "31223288",
+        "substring_correct": true
+      }
+    ]
+  },
+  "eu_31996R1190_summary": {
+    "question": "What is 31996R1190 about?",
+    "type": "celex_summary",
+    "expect_answer": true,
+    "correct_rate": "20/20",
+    "retrieval_stable": true,
+    "retrieved_docs_seen": [
+      "1f4c9273"
+    ],
+    "expected_doc_id": "1f4c9273",
+    "runs": [
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      },
+      {
+        "answered": true,
+        "abstention_correct": true,
+        "retrieved_doc": "1f4c9273"
+      }
+    ]
+  }
+}

@@ -1,0 +1,972 @@
+[
+  {
+    "id": "idf_natlookup_32008R1021",
+    "question": "What does Regulation (EC) No 1021/2008 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32008R1021 - Commission Regulation (EC) No 1021 2008 of 17 October 2008 amending Annexes I, II and III to Regulation (EC) No 854 2004 of the European Parliament and of the Coun.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_31996R1190",
+    "question": "What EU document deals with fixing the basic prices and buying-in prices applicable in the fruit and vegetables sector for the 1996 97 marke, issued around 1996?",
+    "expect_answer": true,
+    "expected_doc_filename": "31996R1190 - Council Regulation (EC) No 1190 96 of 26 June 1996 fixing the basic prices and buying-in prices applicable in the fruit and vegetables sector for the 1996 97 marke.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_32006R1590",
+    "question": "What does Regulation (EC) No 1590/2006 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R1590 - Commission Regulation (EC) No 1590 2006 of 24 October 2006 determining the extent to which the applications for import licences lodged from 16 to 18 October 2006 f.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_32005R0151",
+    "question": "What EU document deals with concerning the 11th individual invitation to tender issued under the standing invitation to tender referr, issued around 2005?",
+    "expect_answer": true,
+    "expected_doc_filename": "32005R0151 - Commission Regulation (EC) No 151 2005 of 28 January 2005 concerning the 11th individual invitation to tender issued under the standing invitation to tender referr.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_31988R3833",
+    "question": "What does Regulation (EC) No 3833/88 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31988R3833 - Commission Regulation (EEC) No 3833 88 of 8 December 1988 amending Regulation (EEC) No 2096 86 laying down detailed rules for the application of a direct aid schem.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_32006R0728",
+    "question": "What EU document deals with repealing regulation (ec) no 2193 2003 establishing additional customs duties on im, issued around 2006?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R0728 - Council Regulation (EC) No 728 2006 of 15 May 2006 suspending and conditionally repealing Regulation (EC) No 2193 2003 establishing additional customs duties on im.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_31993R0478",
+    "question": "What does Regulation (EC) No 478/93 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31993R0478 - Council Regulation (EEC) No 478 93 of 25 February 1993 establishing ceilings and Community surveillance for imports of certain products originating in the Republic.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_32011R0122",
+    "question": "What EU document deals with fixing the union withdrawal and selling prices for the fishery products listed in annex i to council reg, issued around 2011?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011R0122 - Commission Regulation (EU) No 122 2011 of 11 February 2011 fixing the Union withdrawal and selling prices for the fishery products listed in Annex I to Council Reg.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_31980R0632",
+    "question": "What does Regulation (EC) No 632/80 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31980R0632 - Commission Regulation (EEC) No 632 80 of 14 March 1980 laying down detailed rules for the addition of sucrose in aqueous solution in the case of specified wine pro.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_31992R0831",
+    "question": "What EU document deals with amending regulation (eec) no 3659 90 on products subject to the supplementary trade mechanism during the second, issued around 1992?",
+    "expect_answer": true,
+    "expected_doc_filename": "31992R0831 - Council Regulation (EEC) No 831 92 of 30 March 1992 amending Regulation (EEC) No 3659 90 on products subject to the supplementary trade mechanism during the second.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_32011R0490",
+    "question": "What does Regulation (EC) No 490/2011 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011R0490 - Commission Implementing Regulation (EU) No 490 2011 of 19 May 2011 not fixing a minimum selling price in response to the twenty-first individual invitation to tend.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_31985R0027",
+    "question": "What EU document deals with laying down detailed rules for the application of regulation (eec) no 2262 84 laying down special measures i, issued around 1985?",
+    "expect_answer": true,
+    "expected_doc_filename": "31985R0027 - Commission Regulation (EEC) No 27 85 of 4 January 1985 laying down detailed rules for the application of Regulation (EEC) No 2262 84 laying down special measures i.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_31986R1634",
+    "question": "What does Regulation (EC) No 1634/86 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31986R1634 - Commission Regulation (EEC) No 1634 86 of 28 May 1986 laying down detailed rules for the application of the supplementary trade mechanism to olive oil and oil-cake.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_31989R3773",
+    "question": "What EU document deals with laying down transitional measures relating to spirituous beverages, issued around 1989?",
+    "expect_answer": true,
+    "expected_doc_filename": "31989R3773 - Commission Regulation (EEC) No 3773 89 of 14 December 1989 laying down transitional measures relating to spirituous beverages.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_32004R1153",
+    "question": "What does Regulation (EC) No 1153/2004 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004R1153 - Commission Regulation (EC) No 1153 2004 of 23 June 2004 fixing the A1 and B export refunds for fruit and vegetables (tomatoes, oranges, table grapes, apples and pe.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_32009R0037",
+    "question": "What EU document deals with amending regulation (ec) no 1798 2003 on administrative cooperation in the field of value added tax, in orde, issued around 2008?",
+    "expect_answer": true,
+    "expected_doc_filename": "32009R0037 - Council Regulation (EC) No 37 2009 of 16 December 2008 amending Regulation (EC) No 1798 2003 on administrative cooperation in the field of value added tax, in orde.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_31989R0231",
+    "question": "What does Regulation (EC) No 231/89 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31989R0231 - Commission Regulation (EEC) No 231 89 of 30 January 1989 amending Regulation (EEC) No 3143 85 on the sale at reduced prices of intervention butter intended for dir.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_31996R2067",
+    "question": "What EU document deals with amending regulation (ec) no 1000 96 as regards certain marketing standards for poultrymeat, issued around 1996?",
+    "expect_answer": true,
+    "expected_doc_filename": "31996R2067 - Commission Regulation (EC) No 2067 96 of 29 October 1996 amending Regulation (EC) No 1000 96 as regards certain marketing standards for poultrymeat.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_31981R0038",
+    "question": "What does Regulation (EC) No 38/81 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31981R0038 - Council Regulation (EEC) No 38 81 of 1 January 1981 amending Regulation (EEC) No 591 79 laying down general rules concerning the production refund for olive oils u.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_32001R1271",
+    "question": "What EU document deals with amending regulation (ec) no 1443 98 establishing the supply balance for the canary islands in rice sector p, issued around 2001?",
+    "expect_answer": true,
+    "expected_doc_filename": "32001R1271 - Commission Regulation (EC) No 1271 2001 of 27 June 2001 amending Regulation (EC) No 1443 98 establishing the supply balance for the Canary Islands in rice sector p.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_31986R0480",
+    "question": "What does Regulation (EC) No 480/86 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31986R0480 - Council Regulation (EEC) No 480 86 of 25 February 1986 laying down general rules of application of the regulatory amounts applicable to trade in certain wine secto.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_32004R1289",
+    "question": "What EU document deals with concerning the authorisation for 10 years of the additive deccox® in feedingstuffs, belonging to the group, issued around 2004?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004R1289 - Commission Regulation (EC) No 1289 2004 of 14 July 2004 concerning the authorisation for 10 years of the additive Deccox® in feedingstuffs, belonging to the group.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_31993R1383",
+    "question": "What does Regulation (EC) No 1383/93 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31993R1383 - COMMISSION REGULATION (EEC) No 1383 93 of 4 June 1993 amending Regulation (EEC) No 1226 92 on communication by the Member States to the Commission of information o.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_31987R2336",
+    "question": "What EU document deals with establishing the levying of customs duties on urea containing more than 45 % by weight of nitrogen on the, issued around 1987?",
+    "expect_answer": true,
+    "expected_doc_filename": "31987R2336 - Commission Regulation (EEC) No 2336 87 of 30 July 1987 re-establishing the levying of customs duties on urea containing more than 45 % by weight of nitrogen on the.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_32010R0554",
+    "question": "What does Regulation (EC) No 554/2010 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32010R0554 - Council Regulation (EU) No 554 2010 of 24 June 2010 amending Regulation (EC) No 2488 2000 maintaining a freeze of funds in relation to Mr Milosevic and those perso.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_31976R2951",
+    "question": "What EU document deals with amending for the second time regulation (eec) no 2115 76 laying down general rules for the import of wine, issued around 1976?",
+    "expect_answer": true,
+    "expected_doc_filename": "31976R2951 - Commission Regulation (EEC) No 2951 76 of 3 December 1976 amending for the second time Regulation (EEC) No 2115 76 laying down general rules for the import of wine.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_32014R0221",
+    "question": "What does Regulation (EC) No 221/2014 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32014R0221 - Commission Implementing Regulation (EU) No 221 2014 of 7 March 2014 amending Regulation (EC) No 288 2009 in respect of fixing the indicative allocation of the aid.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_31992R1165",
+    "question": "What EU document deals with establishing the levying of customs duties on products categories 1, 9 and 32 (order no 40.0010, 40.0090 a, issued around 1992?",
+    "expect_answer": true,
+    "expected_doc_filename": "31992R1165 - Commission Regulation (EEC) No 1165 92 of 5 May 1992 re- establishing the levying of customs duties on products categories 1, 9 and 32 (order No 40.0010, 40.0090 a.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_32003R2216",
+    "question": "What does Regulation (EC) No 2216/2003 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R2216 - Commission Regulation (EC) No 2216 2003 of 18 December 2003 determining the quantity of certain products in the milk and milk products sector available for the per.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_31996R1300",
+    "question": "What EU document deals with amending regulation (ec) no 1098 94 laying down the regional base areas applicable under the arable support sy, issued around 1996?",
+    "expect_answer": true,
+    "expected_doc_filename": "31996R1300 - Commission Regulation (EC) No 1300 96 of 5 July 1996 amending Regulation (EC) No 1098 94 laying down the regional base areas applicable under the arable support sy.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_32006R0697",
+    "question": "What does Regulation (EC) No 697/2006 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R0697 - Commission Regulation (EC) No 697 2006 of 5 May 2006 amending Regulation (EC) No 343 2006 opening the buying-in of butter in certain Member States for the period 1.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_31996R1821",
+    "question": "What EU document deals with amending for the sixth time regulation (eec) no 1866 86 laying down certain technical measures for the cons, issued around 1996?",
+    "expect_answer": true,
+    "expected_doc_filename": "31996R1821 - Council Regulation (EC) No 1821 96 of 16 September 1996 amending for the sixth time Regulation (EEC) No 1866 86 laying down certain technical measures for the cons.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_32002R0268",
+    "question": "What does Regulation (EC) No 268/2002 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R0268 - Council Regulation (EC) No 268 2002 of 12 February 2002 terminating the anti-dumping proceeding concerning imports of polysulphide polymers originating in the Unit.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_31994R1771",
+    "question": "What EU document deals with laying down provisions on the introduction into the community of pelts and manufactured goods of certain wild, issued around 1994?",
+    "expect_answer": true,
+    "expected_doc_filename": "31994R1771 - Commission Regulation (EC) No 1771 94 of 19 July 1994 laying down provisions on the introduction into the Community of pelts and manufactured goods of certain wild.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_31986R0501",
+    "question": "What does Regulation (EC) No 501/86 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31986R0501 - Council Regulation (EEC) No 501 86 of 25 February 1986 fixing, for 1986, the initial quota which may be applied by the Portuguese Republic for certain fruit and ve.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_31999R0951",
+    "question": "What EU document deals with repealing regulatio, issued around 1999?",
+    "expect_answer": true,
+    "expected_doc_filename": "31999R0951 - Commission Regulation (EC) No 951 1999 of 5 May 1999 on periodical sales by tender of beef held by certain intervention agencies for export and repealing Regulatio.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_32012R0566",
+    "question": "What does Regulation (EC) No 566/2012 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32012R0566 - Council Regulation (EU) No 566 2012 of 18 June 2012 amending Regulation (EC) No 975 98 on denominations and technical specifications of euro coins intended for cir.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_31986R1059",
+    "question": "What EU document deals with amending regulation (eec) no 1900 85 introducing community export and import declaration forms, issued around 1986?",
+    "expect_answer": true,
+    "expected_doc_filename": "31986R1059 - Council Regulation (EEC) No 1059 86 of 8 April 1986 amending Regulation (EEC) No 1900 85 introducing Community export and import declaration forms.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_natlookup_31985R3118",
+    "question": "What does Regulation (EC) No 3118/85 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31985R3118 - Council Regulation (EEC) No 3118 85 of 4 November 1985 amending Regulation (EEC) No 104 76 laying down common marketing standards for shrimps of the genus Crangon.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_number"
+  },
+  {
+    "id": "idf_natlookup_31987R2024",
+    "question": "What EU document deals with establishing the levying of customs duties on jerseys, pullovers, etc., products of category 5 (code 40.00, issued around 1987?",
+    "expect_answer": true,
+    "expected_doc_filename": "31987R2024 - Commission Regulation (EEC) No 2024 87 of 8 July 1987 re-establishing the levying of customs duties on jerseys, pullovers, etc., products of category 5 (code 40.00.pdf",
+    "expected_substring": null,
+    "type": "natural_lookup_by_subject"
+  },
+  {
+    "id": "idf_semfact_32011R1345_date",
+    "question": "When was the regulation implementing regulation (ec) no 194 2008 renewing and strengthening the restrictive measures adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011R1345 - Council Implementing Regulation (EU) No 1345 2011 of 19 December 2011 implementing Regulation (EC) No 194 2008 renewing and strengthening the restrictive measures.pdf",
+    "expected_substring": "19 December 2011",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_32004R0921_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation amending regulations (eec) no 2191 81, (eec) no 429 90 and (ec) no 2571 97 to take account of the requireme cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004R0921 - Commission Regulation (EC) No 921 2004 of 29 April 2004 amending Regulations (EEC) No 2191 81, (EEC) No 429 90 and (EC) No 2571 97 to take account of the requireme.pdf",
+    "expected_substring": "1255/1999",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_32011R0668_date",
+    "question": "When was the regulation amending regulation (ec) no 174 2005 imposing restrictions on the supply of assistance related to military acti adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011R0668 - Council Regulation (EU) No 668 2011 of 12 July 2011 amending Regulation (EC) No 174 2005 imposing restrictions on the supply of assistance related to military acti.pdf",
+    "expected_substring": "12 July 2011",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_32008R1293_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation concerning the authorisation of a new use of saccharomyces cerevisiae cncm i-1077 (levucell sc20 and le cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32008R1293 - Commission Regulation (EC) No 1293 2008 of 18 December 2008 concerning the authorisation of a new use of Saccharomyces cerevisiae CNCM I-1077 (Levucell SC20 and Le.pdf",
+    "expected_substring": "1831/2003",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_32013R0661_date",
+    "question": "When was the regulation establishing a prohibition of fishing for greater forkbeard in eu and international waters of v, vi and vii b adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32013R0661 - Commission Regulation (EU) No 661 2013 of 8 July 2013 establishing a prohibition of fishing for greater forkbeard in EU and international waters of V, VI and VII b.pdf",
+    "expected_substring": "8 July 2013",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_31988R0575_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation amending for the third time regulation (eec) no 2707 86 laying down detailed rules for the description and pr cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "31988R0575 - Commission Regulation (EEC) No 575 88 of 1 March 1988 amending for the third time Regulation (EEC) No 2707 86 laying down detailed rules for the description and pr.pdf",
+    "expected_substring": "822/87",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_32002R1030_date",
+    "question": "When was the regulation laying down a uniform format for residence permits for third-country nationals adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R1030 - Council Regulation (EC) No 1030 2002 of 13 June 2002 laying down a uniform format for residence permits for third-country nationals.pdf",
+    "expected_substring": "13 June 2002",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_32006R1349_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation amending regulation (ec) no 990 2006 as regards the quantities covered by standing invitations to tend cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R1349 - Commission Regulation (EC) No 1349 2006 of 13 September 2006 amending Regulation (EC) No 990 2006 as regards the quantities covered by standing invitations to tend.pdf",
+    "expected_substring": "1784/2003",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_32002R2258_date",
+    "question": "When was the regulation amending regulations (ec) no 1868 2002 and (ec) no 1870 2002 as regards import licence applications for adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R2258 - Commission Regulation (EC) No 2258 2002 of 18 December 2002 amending Regulations (EC) No 1868 2002 and (EC) No 1870 2002 as regards import licence applications for.pdf",
+    "expected_substring": "18 December 2002",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_31994R1831_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation concerning irregularities and the recovery of sums wrongly paid in connection with the financing of the cohes cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "31994R1831 - Commission Regulation (EC) No 1831 94 of 26 July 1994 concerning irregularities and the recovery of sums wrongly paid in connection with the financing of the Cohes.pdf",
+    "expected_substring": "1164/94",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_31986R2381_date",
+    "question": "When was the regulation fixing for the first six months of 1986 the representative yields applying to soya beans in the french overs adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31986R2381 - Commission Regulation (EEC) No 2381 86 of 29 July 1986 fixing for the first six months of 1986 the representative yields applying to soya beans in the French overs.pdf",
+    "expected_substring": "29 July 1986",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_32009R0575_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation fixing an acceptance percentage for the issuing of export licences, rejecting export-licence applications and cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32009R0575 - Commission Regulation (EC) No 575 2009 of 1 July 2009 fixing an acceptance percentage for the issuing of export licences, rejecting export-licence applications and.pdf",
+    "expected_substring": "1234/2007",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_32008R0759_date",
+    "question": "When was the regulation amending regulation (ec) no 712 2008 fixing the export refunds on syrup and certain other sugar products exp adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32008R0759 - Commission Regulation (EC) No 759 2008 of 31 July 2008 amending Regulation (EC) No 712 2008 fixing the export refunds on syrup and certain other sugar products exp.pdf",
+    "expected_substring": "31 July 2008",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_31989R3858_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation laying down detailed implementing rules for the import arrangements applicable to products falling withi cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "31989R3858 - Commission Regulation (EEC) No 3858 89 of 20 December 1989 laying down detailed implementing rules for the import arrangements applicable to products falling withi.pdf",
+    "expected_substring": "430/87",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_31984R0953_date",
+    "question": "When was the regulation concerning the stopping of fishing for northern deepwater prawn by vessels flying the flag of denmark adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31984R0953 - Commission Regulation (EEC) No 953 84 of 6 April 1984 concerning the stopping of fishing for northern deepwater prawn by vessels flying the flag of Denmark.pdf",
+    "expected_substring": "6 April 1984",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_32014R1236_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation concerning the authorisation of l-valine produced by corynebacterium glutamicum (dsm 25202 cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32014R1236 - Commission Implementing Regulation (EU) No 1236 2014 of 18 November 2014 concerning the authorisation of L-valine produced by Corynebacterium glutamicum (DSM 25202.pdf",
+    "expected_substring": "1831/2003",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_31984R1631_date",
+    "question": "When was the regulation fixing the marketing years of certain vegetables adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31984R1631 - Commission Regulation (EEC) No 1631 84 of 8 June 1984 fixing the marketing years of certain vegetables.pdf",
+    "expected_substring": "8 June 1984",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_31987R0753_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation amending regulation (eec) no 1365 82 laying down standard rates for the financing, by the european agricultu cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "31987R0753 - Commission Regulation (EEC) No 753 87 of 17 March 1987 amending Regulation (EEC) No 1365 82 laying down standard rates for the financing, by the European Agricultu.pdf",
+    "expected_substring": "3247/81",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_31990R3919_date",
+    "question": "When was the regulation laying down general rules for the application of regulation (eec) no 1198 90 establishing a community regis adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31990R3919 - Council Regulation (EEC) No 3919 90 of 21 December 1990 laying down general rules for the application of Regulation (EEC) No 1198 90 establishing a Community regis.pdf",
+    "expected_substring": "21 December 1990",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_31982R0019_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation laying down detailed rules for applying regulation (eec) no 2641 80 with regard to imports of sheepmeat and cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "31982R0019 - Commission Regulation (EEC) No 19 82 of 6 January 1982 laying down detailed rules for applying Regulation (EEC) No 2641 80 with regard to imports of sheepmeat and.pdf",
+    "expected_substring": "1837/80",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_31976R2014_date",
+    "question": "When was the regulation concerning uranium prospecting programmes within the territories of the membe adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31976R2014 - Commission Regulation (Euratom) No 2014 76 of 23 July 1976 on the support of projects concerning uranium prospecting programmes within the territories of the Membe.pdf",
+    "expected_substring": "23 July 1976",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_32000R1592_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation amending regulation (ec) no 584 96 with regard to the imposition of anti-dumping measures applicable to certai cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32000R1592 - Council Regulation (EC) No 1592 2000 of 17 July 2000 amending Regulation (EC) No 584 96 with regard to the imposition of anti-dumping measures applicable to certai.pdf",
+    "expected_substring": "384/96",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_32008R0628_date",
+    "question": "When was the regulation amending regulation (ec) no 1898 2006 laying down detailed rules of implementation of council regulation (ec) adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32008R0628 - Commission Regulation (EC) No 628 2008 of 2 July 2008 amending Regulation (EC) No 1898 2006 laying down detailed rules of implementation of Council Regulation (EC).pdf",
+    "expected_substring": "2 July 2008",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_31998R2064_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation amending regulation (ec) no 2533 97 laying down detailed rules for the application of the specific measu cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "31998R2064 - Commission Regulation (EC) No 2064 98 of 28 September 1998 amending Regulation (EC) No 2533 97 laying down detailed rules for the application of the specific measu.pdf",
+    "expected_substring": "2019/93",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_32006R1493_date",
+    "question": "When was the regulation establishing a prohibition of fishing for herring in ec, norwegian and international waters of ices zones adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R1493 - Commission Regulation (EC) No 1493 2006 of 9 October 2006 establishing a prohibition of fishing for herring in EC, Norwegian and international waters of ICES zones.pdf",
+    "expected_substring": "9 October 2006",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_32001R1441_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation amending regulation (ec) no 2848 98 in the raw tobacco sector as regards the amount to be paid to producers cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32001R1441 - Commission Regulation (EC) No 1441 2001 of 16 July 2001 amending Regulation (EC) No 2848 98 in the raw tobacco sector as regards the amount to be paid to producers.pdf",
+    "expected_substring": "2075/92",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_32007R0873_date",
+    "question": "When was the regulation amending and correcting regulation (ec) no 1913 2006 laying down detailed rules for the application of the a adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32007R0873 - Commission Regulation (EC) No 873 2007 of 24 July 2007 amending and correcting Regulation (EC) No 1913 2006 laying down detailed rules for the application of the a.pdf",
+    "expected_substring": "24 July 2007",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_32005R2119_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation amending regulation (ec) no 3175 94 laying down detailed rules of application for the specific arrangem cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32005R2119 - Commission Regulation (EC) No 2119 2005 of 22 December 2005 amending Regulation (EC) No 3175 94 laying down detailed rules of application for the specific arrangem.pdf",
+    "expected_substring": "2019/93",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_32006R1234_date",
+    "question": "When was the regulation amending regulation (eec) no 2973 79 laying down detailed rules for the application of granting of assist adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R1234 - Commission Regulation (EC) No 1234 2006 of 16 August 2006 amending Regulation (EEC) No 2973 79 laying down detailed rules for the application of granting of assist.pdf",
+    "expected_substring": "16 August 2006",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_32006R0515_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation establishing a transitional measure for the 2005 06 marketing year on funding the storage of cereals offere cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R0515 - Commission Regulation (EC) No 515 2006 of 30 March 2006 establishing a transitional measure for the 2005 06 marketing year on funding the storage of cereals offere.pdf",
+    "expected_substring": "1784/2003",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_31984R3330_date",
+    "question": "When was the regulation amending regulation (eec) no 2468 72 determining collection, processing and storage centres for interven adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31984R3330 - Commission Regulation (EEC) No 3330 84 of 28 November 1984 amending Regulation (EEC) No 2468 72 determining collection, processing and storage centres for interven.pdf",
+    "expected_substring": "28 November 1984",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_32007R1382_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation laying down detailed rules for the application of council regulation (ec) no 774 94 concerning the impo cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32007R1382 - Commission Regulation (EC) No 1382 2007 of 26 November 2007 laying down detailed rules for the application of Council Regulation (EC) No 774 94 concerning the impo.pdf",
+    "expected_substring": "2759/75",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_32013R0281_date",
+    "question": "When was the regulation laying down exceptional measures as regards the release of out-of-quota sugar and isoglucose o adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32013R0281 - Commission Implementing Regulation (EU) No 281 2013 of 22 March 2013 laying down exceptional measures as regards the release of out-of-quota sugar and isoglucose o.pdf",
+    "expected_substring": "22 March 2013",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_31996R2479_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation laying down detailed rules for the application of the minimum import price system for certain soft fruit cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "31996R2479 - Commission Regulation (EC) No 2479 96 of 18 December 1996 laying down detailed rules for the application of the minimum import price system for certain soft fruit.pdf",
+    "expected_substring": "1926/96",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_31989R3946_date",
+    "question": "When was the regulation fixing certain additional detailed rules for the application of the supplementary trade mechanism to fru adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "31989R3946 - Commission Regulation (EEC) No 3946 89 of 20 December 1989 fixing certain additional detailed rules for the application of the supplementary trade mechanism to fru.pdf",
+    "expected_substring": "20 December 1989",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_32002R1486_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation amending regulation (ec) no 1591 2001 laying down detailed rules for applying the cotton aid scheme cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R1486 - Commission Regulation (EC) No 1486 2002 of 19 August 2002 amending Regulation (EC) No 1591 2001 laying down detailed rules for applying the cotton aid scheme.pdf",
+    "expected_substring": "1051/2001",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_32006R1091_date",
+    "question": "When was the regulation establishing a prohibition of fishing for sandeel in ices zone iia (ec waters), iiia, iv (ec waters) by ves adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R1091 - Commission Regulation (EC) No 1091 2006 of 13 July 2006 establishing a prohibition of fishing for sandeel in ICES zone IIa (EC waters), IIIa, IV (EC waters) by ves.pdf",
+    "expected_substring": "13 July 2006",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_32011R0373_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation concerning the authorisation of the preparation of clostridium butyricum ferm-bp 2789 as a fee cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011R0373 - Commission Implementing Regulation (EU) No 373 2011 of 15 April 2011 concerning the authorisation of the preparation of Clostridium butyricum FERM-BP 2789 as a fee.pdf",
+    "expected_substring": "1831/2003",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_semfact_32006R1868_date",
+    "question": "When was the regulation amending regulation (ec) no 2247 2003 laying down detailed rules for the application in the beef and ve adopted?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R1868 - Commission Regulation (EC) No 1868 2006 of 15 December 2006 amending Regulation (EC) No 2247 2003 laying down detailed rules for the application in the beef and ve.pdf",
+    "expected_substring": "15 December 2006",
+    "type": "semantic_date_fact"
+  },
+  {
+    "id": "idf_semfact_31992R0115_xref",
+    "question": "What earlier regulation, directive, or decision does the regulation amending regulation ( eec ) no 1481 86 on the determination of prices of fresh or chilled sheep carcases cite (excluding its own number)?",
+    "expect_answer": true,
+    "expected_doc_filename": "31992R0115 - Commission Regulation ( EEC ) No 115 92 of 17 January 1992 amending Regulation ( EEC ) No 1481 86 on the determination of prices of fresh or chilled sheep carcases.pdf",
+    "expected_substring": "3013/89",
+    "type": "semantic_cross_reference"
+  },
+  {
+    "id": "idf_hardneg_32007R0780",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit and vegetables, adopted on 3 July 2007?",
+    "expect_answer": true,
+    "expected_doc_filename": "32007R0780 - Commission Regulation (EC) No 780 2007 of 3 July 2007 establishing the standard import values for determining the entry price of certain fruit and vegetables.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 2304
+  },
+  {
+    "id": "idf_hardneg_32002R0431",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit and vegetables, adopted on 8 March 2002?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R0431 - Commission Regulation (EC) No 431 2002 of 8 March 2002 establishing the standard import values for determining the entry price of certain fruit and vegetables.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 2304
+  },
+  {
+    "id": "idf_hardneg_31995R2458",
+    "question": "What was the regulation concerning the classification of certain goods in the combined nomenclature, adopted on 19 October 1995?",
+    "expect_answer": true,
+    "expected_doc_filename": "31995R2458 - Commission Regulation (EC) No 2458 95 of 19 October 1995 concerning the classification of certain goods in the combined nomenclature.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 509
+  },
+  {
+    "id": "idf_hardneg_32011R0112",
+    "question": "What was the regulation concerning the classification of certain goods in the combined nomenclature, adopted on 7 February 2011?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011R0112 - Commission Regulation (EU) No 112 2011 of 7 February 2011 concerning the classification of certain goods in the Combined Nomenclature.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 509
+  },
+  {
+    "id": "idf_hardneg_32002R0071",
+    "question": "What was the regulation establishing unit values for the determination of the customs value of certain perishable goods, adopted on 15 January 2002?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R0071 - Commission Regulation (EC) No 71 2002 of 15 January 2002 establishing unit values for the determination of the customs value of certain perishable goods.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 284
+  },
+  {
+    "id": "idf_hardneg_31993R2353",
+    "question": "What was the regulation establishing unit values for the determination of the customs value of certain perishable goods, adopted on 24 August 1993?",
+    "expect_answer": true,
+    "expected_doc_filename": "31993R2353 - COMMISSION REGULATION (EEC) No 2353 93 of 24 August 1993 establishing unit values for the determination of the customs value of certain perishable goods.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 284
+  },
+  {
+    "id": "idf_hardneg_32004R1490",
+    "question": "What was the regulation determining the world market price for unginned cotton, adopted on 20 August 2004?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004R1490 - Commission Regulation (EC) No 1490 2004 of 20 August 2004 determining the world market price for unginned cotton.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 188
+  },
+  {
+    "id": "idf_hardneg_32003R0252",
+    "question": "What was the regulation determining the world market price for unginned cotton, adopted on 10 February 2003?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R0252 - Commission Regulation (EC) No 252 2003 of 10 February 2003 determining the world market price for unginned cotton.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 188
+  },
+  {
+    "id": "idf_hardneg_32011R0223",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit and ve, adopted on 4 March 2011?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011R0223 - Commission Implementing Regulation (EU) No 223 2011 of 4 March 2011 establishing the standard import values for determining the entry price of certain fruit and ve.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 177
+  },
+  {
+    "id": "idf_hardneg_32014R0789",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit and ve, adopted on 18 July 2014?",
+    "expect_answer": true,
+    "expected_doc_filename": "32014R0789 - Commission Implementing Regulation (EU) No 789 2014 of 18 July 2014 establishing the standard import values for determining the entry price of certain fruit and ve.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 177
+  },
+  {
+    "id": "idf_hardneg_32014R0872",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit and, adopted on 11 August 2014?",
+    "expect_answer": true,
+    "expected_doc_filename": "32014R0872 - Commission Implementing Regulation (EU) No 872 2014 of 11 August 2014 establishing the standard import values for determining the entry price of certain fruit and.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 170
+  },
+  {
+    "id": "idf_hardneg_32014R0886",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit and, adopted on 13 August 2014?",
+    "expect_answer": true,
+    "expected_doc_filename": "32014R0886 - Commission Implementing Regulation (EU) No 886 2014 of 13 August 2014 establishing the standard import values for determining the entry price of certain fruit and.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 170
+  },
+  {
+    "id": "idf_hardneg_32012R1143",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit an, adopted on 3 December 2012?",
+    "expect_answer": true,
+    "expected_doc_filename": "32012R1143 - Commission Implementing Regulation (EU) No 1143 2012 of 3 December 2012 establishing the standard import values for determining the entry price of certain fruit an.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 157
+  },
+  {
+    "id": "idf_hardneg_32013R0177",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit an, adopted on 28 February 2013?",
+    "expect_answer": true,
+    "expected_doc_filename": "32013R0177 - Commission Implementing Regulation (EU) No 177 2013 of 28 February 2013 establishing the standard import values for determining the entry price of certain fruit an.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 157
+  },
+  {
+    "id": "idf_hardneg_32011R1221",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit a, adopted on 25 November 2011?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011R1221 - Commission Implementing Regulation (EU) No 1221 2011 of 25 November 2011 establishing the standard import values for determining the entry price of certain fruit a.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 153
+  },
+  {
+    "id": "idf_hardneg_32012R1086",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit a, adopted on 20 November 2012?",
+    "expect_answer": true,
+    "expected_doc_filename": "32012R1086 - Commission Implementing Regulation (EU) No 1086 2012 of 20 November 2012 establishing the standard import values for determining the entry price of certain fruit a.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 153
+  },
+  {
+    "id": "idf_hardneg_32011R0421",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit and v, adopted on 29 April 2011?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011R0421 - Commission Implementing Regulation (EU) No 421 2011 of 29 April 2011 establishing the standard import values for determining the entry price of certain fruit and v.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 146
+  },
+  {
+    "id": "idf_hardneg_32014R0306",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit and v, adopted on 25 March 2014?",
+    "expect_answer": true,
+    "expected_doc_filename": "32014R0306 - Commission Implementing Regulation (EU) No 306 2014 of 25 March 2014 establishing the standard import values for determining the entry price of certain fruit and v.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 146
+  },
+  {
+    "id": "idf_hardneg_32006R0093",
+    "question": "What was the regulation fixing the export refunds on white sugar and raw sugar exported in its unaltered state, adopted on 19 January 2006?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R0093 - Commission Regulation (EC) No 93 2006 of 19 January 2006 fixing the export refunds on white sugar and raw sugar exported in its unaltered state.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 125
+  },
+  {
+    "id": "idf_hardneg_32001R0954",
+    "question": "What was the regulation fixing the export refunds on white sugar and raw sugar exported in its unaltered state, adopted on 16 May 2001?",
+    "expect_answer": true,
+    "expected_doc_filename": "32001R0954 - Commission Regulation (EC) No 954 2001 of 16 May 2001 fixing the export refunds on white sugar and raw sugar exported in its unaltered state.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 125
+  },
+  {
+    "id": "idf_hardneg_32003R0272",
+    "question": "What was the regulation fixing the representative prices and the additional import duties for molasses in the sugar sector, adopted on 13 February 2003?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R0272 - Commission Regulation (EC) No 272 2003 of 13 February 2003 fixing the representative prices and the additional import duties for molasses in the sugar sector.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 119
+  },
+  {
+    "id": "idf_hardneg_32003R2163",
+    "question": "What was the regulation fixing the representative prices and the additional import duties for molasses in the sugar sector, adopted on 11 December 2003?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R2163 - Commission Regulation (EC) No 2163 2003 of 11 December 2003 fixing the representative prices and the additional import duties for molasses in the sugar sector.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 119
+  },
+  {
+    "id": "idf_hardneg_32004R0927",
+    "question": "What was the regulation fixing the export refunds on cereals and on wheat or rye flour, groats and meal, adopted on 29 April 2004?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004R0927 - Commission Regulation (EC) No 927 2004 of 29 April 2004 fixing the export refunds on cereals and on wheat or rye flour, groats and meal.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 113
+  },
+  {
+    "id": "idf_hardneg_32002R2117",
+    "question": "What was the regulation fixing the export refunds on cereals and on wheat or rye flour, groats and meal, adopted on 28 November 2002?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R2117 - Commission Regulation (EC) No 2117 2002 of 28 November 2002 fixing the export refunds on cereals and on wheat or rye flour, groats and meal.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 113
+  },
+  {
+    "id": "idf_hardneg_32001R1217",
+    "question": "What was the regulation fixing the import duties in the rice sector, adopted on 20 June 2001?",
+    "expect_answer": true,
+    "expected_doc_filename": "32001R1217 - Commission Regulation (EC) No 1217 2001 of 20 June 2001 fixing the import duties in the rice sector.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 106
+  },
+  {
+    "id": "idf_hardneg_32002R0853",
+    "question": "What was the regulation fixing the import duties in the rice sector, adopted on 22 May 2002?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R0853 - Commission Regulation (EC) No 853 2002 of 22 May 2002 fixing the import duties in the rice sector.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 106
+  },
+  {
+    "id": "idf_hardneg_32001R1795",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit and vegetable, adopted on 13 September 2001?",
+    "expect_answer": true,
+    "expected_doc_filename": "32001R1795 - Commission Regulation (EC) No 1795 2001 of 13 September 2001 establishing the standard import values for determining the entry price of certain fruit and vegetable.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 105
+  },
+  {
+    "id": "idf_hardneg_32003R1728",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit and vegetable, adopted on 30 September 2003?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R1728 - Commission Regulation (EC) No 1728 2003 of 30 September 2003 establishing the standard import values for determining the entry price of certain fruit and vegetable.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 105
+  },
+  {
+    "id": "idf_hardneg_32013R0446",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit and veg, adopted on 14 May 2013?",
+    "expect_answer": true,
+    "expected_doc_filename": "32013R0446 - Commission Implementing Regulation (EU) No 446 2013 of 14 May 2013 establishing the standard import values for determining the entry price of certain fruit and veg.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 103
+  },
+  {
+    "id": "idf_hardneg_32011R0556",
+    "question": "What was the regulation establishing the standard import values for determining the entry price of certain fruit and veg, adopted on 8 June 2011?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011R0556 - Commission Implementing Regulation (EU) No 556 2011 of 8 June 2011 establishing the standard import values for determining the entry price of certain fruit and veg.pdf",
+    "expected_substring": null,
+    "type": "hard_negative_date",
+    "cluster_size": 103
+  },
+  {
+    "id": "eu_adv_capital_brazil",
+    "question": "What is the capital of Brazil?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "eu_adv_stock_price",
+    "question": "What is the current share price of Apple Inc.?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "eu_adv_recipe",
+    "question": "How do I make lasagna?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "eu_adv_weather",
+    "question": "Will it rain in Berlin tomorrow?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "eu_adv_meaning_of_life",
+    "question": "What is the meaning of life according to these documents?",
+    "expect_answer": false,
+    "type": "out_of_domain"
+  },
+  {
+    "id": "eu_adv_us_law",
+    "question": "What does the US Constitution say about free speech?",
+    "expect_answer": false,
+    "type": "adjacent_wrong_jurisdiction"
+  },
+  {
+    "id": "eu_adv_uk_law",
+    "question": "What does UK company law require for annual filings?",
+    "expect_answer": false,
+    "type": "adjacent_wrong_jurisdiction"
+  },
+  {
+    "id": "eu_adv_gdpr_specific",
+    "question": "What are the penalties under the California Consumer Privacy Act?",
+    "expect_answer": false,
+    "type": "adjacent_wrong_topic"
+  },
+  {
+    "id": "eu_adv_nonsense",
+    "question": "asdkfj qpwoe zzz what banana regulation seventeen",
+    "expect_answer": false,
+    "type": "nonsense"
+  },
+  {
+    "id": "eu_adv_fake_celex",
+    "question": "What does Regulation 99999999 about intergalactic trade say?",
+    "expect_answer": false,
+    "type": "plausible_but_fake"
+  }
+]

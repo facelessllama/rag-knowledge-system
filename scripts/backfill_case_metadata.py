@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-One-off backfill: adds case_number/case_year/parties/celex_id payload
-fields (see ingestion/chunker.py::extract_case_metadata/extract_celex_id,
+One-off backfill: adds case_number/case_year/parties/celex_id/
+citation_number/citation_year payload fields (see ingestion/chunker.py::
+extract_case_metadata/extract_celex_id/extract_citation_number,
 vector_db/qdrant_client.py) to points ingested before those fields
 existed.
 
@@ -12,6 +13,12 @@ ingestion (vector_db/qdrant_client.py::upsert_chunks) already writes them
 going forward; this only catches up documents ingested before that.
 Targets whichever collection QDRANT_COLLECTION points at (see .env / the
 second API instance used for the EU scale test).
+
+citation_number/citation_year is backfilled independently of case_number/
+celex_id (a point can already have celex_id set from an earlier backfill
+pass and still be missing citation_number — it was added later, see
+eval/README.md "ID-free spot-check @ 57,000") — don't gate one on the
+other's presence.
 
 Usage:
     source venv/bin/activate
@@ -38,7 +45,7 @@ SCROLL_BATCH = 500
 def main():
     from qdrant_client import QdrantClient
 
-    from ingestion.chunker import extract_case_metadata, extract_celex_id
+    from ingestion.chunker import extract_case_metadata, extract_celex_id, extract_citation_number
     from vector_db.qdrant_client import VectorStore
 
     qdrant_url = os.getenv("QDRANT_URL", "http://localhost:6333")
@@ -63,22 +70,28 @@ def main():
 
         by_case_metadata: dict[tuple, list[str]] = {}
         by_celex_id: dict[str, list[str]] = {}
+        by_citation: dict[tuple, list[str]] = {}
         for point in points:
             payload = point.payload or {}
             filename = payload.get("filename", "")
-            already_case = payload.get("case_number") or payload.get("celex_id")
-            if already_case:
-                continue  # already backfilled (or ingested post-feature)
 
-            case_meta = extract_case_metadata(filename)
-            celex_id = extract_celex_id(filename)
-            if case_meta:
-                key = (case_meta["case_number"], case_meta["case_year"], tuple(case_meta["parties"]))
-                by_case_metadata.setdefault(key, []).append(point.id)
-            elif celex_id:
-                by_celex_id.setdefault(celex_id, []).append(point.id)
-            else:
-                skipped_no_match += 1
+            already_case = payload.get("case_number") or payload.get("celex_id")
+            if not already_case:
+                case_meta = extract_case_metadata(filename)
+                celex_id = extract_celex_id(filename)
+                if case_meta:
+                    key = (case_meta["case_number"], case_meta["case_year"], tuple(case_meta["parties"]))
+                    by_case_metadata.setdefault(key, []).append(point.id)
+                elif celex_id:
+                    by_celex_id.setdefault(celex_id, []).append(point.id)
+                else:
+                    skipped_no_match += 1
+
+            if not payload.get("citation_number"):
+                citation_meta = extract_citation_number(filename)
+                if citation_meta:
+                    key = (citation_meta["citation_number"], citation_meta["citation_year"])
+                    by_citation.setdefault(key, []).append(point.id)
 
         for (num, year, parties), ids in by_case_metadata.items():
             client.set_payload(
@@ -92,6 +105,14 @@ def main():
             client.set_payload(
                 collection_name=collection,
                 payload={"celex_id": celex_id},
+                points=ids,
+            )
+            updated += len(ids)
+
+        for (num, year), ids in by_citation.items():
+            client.set_payload(
+                collection_name=collection,
+                payload={"citation_number": num, "citation_year": year},
                 points=ids,
             )
             updated += len(ids)
