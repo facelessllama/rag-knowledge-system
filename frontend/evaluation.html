@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluation · Knowledge Base</title>
+<link rel="stylesheet" href="vendor/fonts/fonts.css">
+<link rel="stylesheet" href="styles.css?v=1784130335">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-mark" id="brandMark"></div>
+    <span class="brand-name">Knowledge Base</span>
+  </div>
+  <div class="topbar-divider"></div>
+  <div class="workspace-label">
+    <span class="workspace-name">Evaluation</span>
+    <span class="workspace-meta">57,000-document scale test</span>
+  </div>
+  <div class="topbar-right">
+    <a class="topbar-link" href="index.html" id="backLink"></a>
+  </div>
+</div>
+
+<div class="eval-page">
+  <div class="eval-inner">
+
+    <div class="eval-hero">
+      <div class="eval-kicker" id="kickerBadge"><span>Retrieval evaluation</span></div>
+      <div class="eval-h1">How this system was actually checked</div>
+      <div class="eval-lede">Not a screenshot of one good answer — a chain of tests designed to catch the
+        system, and the test suite itself, overstating its own accuracy. Loaded with 57,000 real EU legislation
+        documents (unrelated to the ~400-document production corpus), deliberately chosen for an unusually high
+        density of near-duplicate filings — about the hardest condition for a retrieval system to stay accurate
+        under.</div>
+    </div>
+
+    <div class="eval-stat-row">
+      <div class="eval-stat"><div class="eval-stat-value">57,000</div><div class="eval-stat-label">documents in the scale-test corpus, real EU legislation</div></div>
+      <div class="eval-stat"><div class="eval-stat-value" id="statRecallValue">—</div><div class="eval-stat-label" id="statRecallLabel">loading…</div></div>
+      <div class="eval-stat"><div class="eval-stat-value">4</div><div class="eval-stat-label">complementary evaluation suites: calibration, held-out, ID-free, disjoint citation</div></div>
+      <div class="eval-stat"><div class="eval-stat-value">3</div><div class="eval-stat-label">critical defects uncovered — across retrieval, ground truth, and evaluation itself</div></div>
+    </div>
+
+    <div class="eval-section">
+      <div class="eval-section-label" id="chartSectionLabel">Retrieval quality vs. corpus size</div>
+      <div class="eval-h2">Recall and ranking quality both decline as the corpus grows</div>
+      <div class="eval-p">Golden-set results across the full scale ladder — 1,000 to 57,000 documents. Recall@5 (does the
+        correct document land in the top 5?) and MRR (how high does it rank when found?) both plotted on the same
+        0–1 axis, since both are already fractions. The <code>&le;5</code> definition is strict: a document force-included
+        by the structured ID lookup at position 6 does <em>not</em> count — see the note below on why that distinction mattered.</div>
+      <div class="chart-card">
+        <div class="chart-legend">
+          <div class="chart-legend-item"><span class="chart-legend-dot" style="background:#199e70"></span>Recall@5</div>
+          <div class="chart-legend-item"><span class="chart-legend-dot" style="background:#3987e5"></span>MRR</div>
+        </div>
+        <div class="chart-svg-wrap" id="chartWrap"></div>
+        <div class="chart-caption">Held-out set (never touched during calibration) moves in lockstep — never diverges by more than ~0.02 at any checkpoint.</div>
+      </div>
+    </div>
+
+    <div class="eval-section">
+      <div class="eval-section-label" id="datasetsLabel">Evaluation datasets</div>
+      <div class="eval-h2">Four complementary tests, each closing a gap the previous one couldn't see</div>
+      <div class="dataset-grid" id="datasetGrid"></div>
+    </div>
+
+    <div class="eval-section">
+      <div class="eval-section-label" id="findingsLabel">What was found, in order</div>
+      <div class="eval-h2">Three real problems, found by trying to break the system</div>
+      <div id="findingsList"></div>
+    </div>
+
+    <div class="eval-section">
+      <div class="limitations-card">
+        <div class="eval-h2" id="limitationsTitle">Known limitations</div>
+        <div class="eval-p" style="margin-bottom:14px">Stated as plainly as what works — an open gap that was found by testing is more credible than a clean report with no gaps at all.</div>
+        <ul class="limitations-list" id="limitationsList"></ul>
+      </div>
+    </div>
+
+    <div class="eval-section">
+      <div class="eval-section-label" id="linksLabel">Full detail</div>
+      <div class="eval-links">
+        <div class="eval-link-card"><span id="linkIcon1"></span>Full methodology &amp; every case-by-case number: <code>eval/README.md</code></div>
+        <div class="eval-link-card"><span id="linkIcon2"></span>Plain-language summary of what backs this up: <code>VALIDATION.md</code></div>
+        <div class="eval-link-card"><span id="linkIcon3"></span>Regenerate every table on this page from raw data: <code>eval/generate_summary_tables.py</code></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="icons.js?v=1784130335"></script>
+<script src="evaluation.js?v=1784130335"></script>
+</body>
+</html>

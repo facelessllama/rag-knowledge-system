@@ -120,7 +120,7 @@ class VectorStore:
         query_vector: list[float],
         query_text: str,
         top_k: int = 5,
-        doc_filter: str = None,
+        doc_filter: str | list[str] = None,
         folder_filter: str = None,
     ) -> list[dict]:
         """Single server-side call: dense + sparse candidates fused via RRF."""
@@ -141,7 +141,7 @@ class VectorStore:
         ).points
         return self._to_result_dicts(results)
 
-    def search(self, query_vector: list[float], top_k: int = 5, doc_filter: str = None, folder_filter: str = None) -> list[dict]:
+    def search(self, query_vector: list[float], top_k: int = 5, doc_filter: str | list[str] = None, folder_filter: str = None) -> list[dict]:
         """Dense-only search — kept for callers without query text (e.g. pure similarity lookups)."""
         search_filter = self._build_filter(doc_filter, folder_filter)
         results = self.client.query_points(
@@ -282,10 +282,13 @@ class VectorStore:
             })
         return out
 
-    def _build_filter(self, doc_filter: str = None, folder_filter: str = None) -> Filter | None:
+    def _build_filter(self, doc_filter: str | list[str] = None, folder_filter: str = None) -> Filter | None:
         must_conditions = []
         if doc_filter:
-            must_conditions.append(FieldCondition(key="document_id", match=MatchValue(value=doc_filter)))
+            if isinstance(doc_filter, (list, set, tuple)):
+                must_conditions.append(FieldCondition(key="document_id", match=MatchAny(any=list(doc_filter))))
+            else:
+                must_conditions.append(FieldCondition(key="document_id", match=MatchValue(value=doc_filter)))
         if folder_filter:
             must_conditions.append(FieldCondition(key="folder", match=MatchValue(value=folder_filter)))
         return Filter(must=must_conditions) if must_conditions else None

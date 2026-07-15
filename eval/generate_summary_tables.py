@@ -21,6 +21,7 @@ from pathlib import Path
 
 EVAL_DIR = Path(__file__).resolve().parent
 SCALE_DIR = EVAL_DIR / "scale_results"
+FRONTEND_DATA_PATH = EVAL_DIR.parent / "frontend" / "evaluation-data.json"
 TOP_K = 5
 
 _FILENAME_RE = re.compile(r"^(\S+)\s*-\s*(.+)$")
@@ -91,6 +92,51 @@ def print_id_free_table():
         print()
 
 
+def _claims(question: str):
+    inst = "Council" if "Council" in question else ("Commission" if "Commission" in question else None)
+    bracket = None
+    for b in ("EEC", "EC", "EU"):
+        if f"({b})" in question:
+            bracket = b
+            break
+    return inst, bracket
+
+
+# citation_fmt_two_digit_year makes no institution/bracket claim either, so a
+# naive "no claim -> matched bucket" rule would silently lump it in with
+# citation_fmt_bare_no — but two_digit_year independently underperforms
+# (5/10) for an unrelated reason (the query's literal "No N/YY" text has
+# less overlap with the document's own always-4-digit-year header than a
+# 4-digit-year query does, even though the year is resolved correctly at the
+# lookup level — see
+# tests/test_retriever.py::test_extract_citation_numbers_expands_two_digit_year).
+# Folding it in would inflate the "matched" bucket's score with a confound
+# this split isn't measuring, so it's excluded here the same way bare_no's
+# "no claim, always worked" cases don't test this split.
+EXCLUDED_FROM_ISSUER_SPLIT = {"citation_fmt_bare_no", "citation_fmt_two_digit_year"}
+
+
+def compute_issuer_bracket_split(dataset: dict, results: list[dict]) -> tuple[list, list]:
+    """Returns (matched_ranks, mismatched_ranks) — see EXCLUDED_FROM_ISSUER_SPLIT
+    above for why 2 of the 5 citation formats are excluded from this split."""
+    matched, mismatched = [], []
+    for r in results:
+        if r["type"] in EXCLUDED_FROM_ISSUER_SPLIT:
+            continue
+        case = dataset.get(r["id"])
+        if not case:
+            continue
+        m = _FILENAME_RE.match(Path(case["expected_doc_filename"]).stem)
+        actual = _ISSUER_RE.search(m.group(2)) if m else None
+        if not actual:
+            continue
+        actual_inst, actual_bracket = actual.group(1), actual.group(3)
+        q_inst, q_bracket = _claims(case["question"])
+        mismatch = (q_inst and q_inst != actual_inst) or (q_bracket and q_bracket != actual_bracket)
+        (mismatched if mismatch else matched).append(r.get("rank"))
+    return matched, mismatched
+
+
 def print_citation_heldout_table():
     print("## Citation-number generalization test @ 57,000 (strict Recall@5)\n")
     dataset = {c["id"]: c for c in json.loads((EVAL_DIR / "eu_citation_heldout_dataset.json").read_text())}
@@ -112,43 +158,7 @@ def print_citation_heldout_table():
           f"({pct(overall['loose'], overall['n'])}) | |")
     print()
 
-    def claims(question: str):
-        inst = "Council" if "Council" in question else ("Commission" if "Commission" in question else None)
-        bracket = None
-        for b in ("EEC", "EC", "EU"):
-            if f"({b})" in question:
-                bracket = b
-                break
-        return inst, bracket
-
-    # citation_fmt_two_digit_year makes no institution/bracket claim either,
-    # so a naive "no claim -> matched bucket" rule would silently lump it in
-    # with citation_fmt_bare_no — but two_digit_year independently
-    # underperforms (5/10, see table above) for an unrelated reason (the
-    # query's literal "No N/YY" text has less overlap with the document's
-    # own always-4-digit-year header than a 4-digit-year query does, even
-    # though the year is resolved correctly at the lookup level — see
-    # tests/test_retriever.py::test_extract_citation_numbers_expands_two_digit_year).
-    # Folding it in would inflate the "matched" bucket's score with a
-    # confound this split isn't measuring, so it's excluded here the same
-    # way bare_no's "no claim, always worked" cases don't test this split.
-    EXCLUDED_FROM_ISSUER_SPLIT = {"citation_fmt_bare_no", "citation_fmt_two_digit_year"}
-
-    matched, mismatched = [], []
-    for r in results:
-        if r["type"] in EXCLUDED_FROM_ISSUER_SPLIT:
-            continue
-        case = dataset.get(r["id"])
-        if not case:
-            continue
-        m = _FILENAME_RE.match(Path(case["expected_doc_filename"]).stem)
-        actual = _ISSUER_RE.search(m.group(2)) if m else None
-        if not actual:
-            continue
-        actual_inst, actual_bracket = actual.group(1), actual.group(3)
-        q_inst, q_bracket = claims(case["question"])
-        mismatch = (q_inst and q_inst != actual_inst) or (q_bracket and q_bracket != actual_bracket)
-        (mismatched if mismatch else matched).append(r.get("rank"))
+    matched, mismatched = compute_issuer_bracket_split(dataset, results)
 
     def strict_n(ranks):
         return sum(1 for r in ranks if r is not None and r <= TOP_K)
@@ -166,7 +176,77 @@ def print_citation_heldout_table():
     print()
 
 
+def build_frontend_data() -> dict:
+    """Everything frontend/evaluation.js needs to render the Evaluation page,
+    computed from the same raw eval/scale_results/*.json this whole script
+    reads — so the page's numbers can never drift from these files the way
+    evaluation.js's original hand-typed literals eventually did from
+    VALIDATION.md/eval/README.md. Re-run this script (not a hand edit to the
+    frontend) whenever the underlying results change."""
+    ladder = []
+    for size in (1000, 5000, 15000, 30000, 57000):
+        g, h = load(f"golden_at_{size}.json"), load(f"heldout_at_{size}.json")
+        gr, hr = recall_stats(g), recall_stats(h)
+        ga, gn = abstention_stats(g)
+        ha, hn = abstention_stats(h)
+        ladder.append({
+            "corpus_size": size,
+            "golden_recall_frac": gr["strict"] / gr["n"] if gr["n"] else 0,
+            "heldout_recall_frac": hr["strict"] / hr["n"] if hr["n"] else 0,
+            "golden_mrr": gr["mrr"], "heldout_mrr": hr["mrr"],
+            "golden_abstention_pct": pct(ga, gn), "heldout_abstention_pct": pct(ha, hn),
+        })
+
+    id_free_before = load("id_free_at_57000.json")
+    id_free_after = load("id_free_at_57000_post_citation_index.json")
+
+    def by_type_table(cases):
+        by_type: dict[str, list[dict]] = {}
+        for r in cases:
+            by_type.setdefault(r["type"], []).append(r)
+        out = {}
+        for t, rs in by_type.items():
+            stats = recall_stats(rs)
+            checkable = [r for r in rs if r.get("substring_correct") is not None]
+            correct = sum(1 for r in checkable if r["substring_correct"])
+            out[t] = {
+                "n": stats["n"], "strict": stats["strict"], "mrr": round(stats["mrr"], 3),
+                "substring_correct": correct if checkable else None,
+                "substring_total": len(checkable) if checkable else None,
+            }
+        return out
+
+    citation_dataset = {c["id"]: c for c in json.loads((EVAL_DIR / "eu_citation_heldout_dataset.json").read_text())}
+    citation_results = load("citation_heldout_at_57000.json")
+    citation_overall = recall_stats(citation_results)
+    matched, mismatched = compute_issuer_bracket_split(citation_dataset, citation_results)
+
+    def strict_n(ranks):
+        return sum(1 for r in ranks if r is not None and r <= TOP_K)
+
+    return {
+        "ladder": ladder,
+        "id_free_before": by_type_table(id_free_before),
+        "id_free_after": by_type_table(id_free_after),
+        "id_free_before_overall": {**recall_stats(id_free_before)},
+        "id_free_after_overall": {**recall_stats(id_free_after)},
+        "citation_heldout": {
+            "by_format": by_type_table(citation_results),
+            "overall": {"n": citation_overall["n"], "strict": citation_overall["strict"],
+                        "loose": citation_overall["loose"], "mrr": round(citation_overall["mrr"], 3)},
+            "issuer_bracket_split": {
+                "matched_n": len(matched), "matched_strict": strict_n(matched),
+                "mismatched_n": len(mismatched), "mismatched_strict": strict_n(mismatched),
+            },
+        },
+    }
+
+
 if __name__ == "__main__":
     print_ladder_table()
     print_id_free_table()
     print_citation_heldout_table()
+
+    data = build_frontend_data()
+    FRONTEND_DATA_PATH.write_text(json.dumps(data, indent=2))
+    print(f"Wrote frontend data -> {FRONTEND_DATA_PATH}")

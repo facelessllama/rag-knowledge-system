@@ -3,138 +3,170 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Knowledge Base</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf_viewer.min.css">
+<title>Legal documents · Knowledge Base</title>
+<link rel="stylesheet" href="vendor/fonts/fonts.css">
+<link rel="stylesheet" href="styles.css?v=1784133511">
+<link rel="stylesheet" href="vendor/pdfjs/pdf_viewer.min.css">
 </head>
 <body>
 
-<div class="header">
-  <div class="logo">
-    <div class="logo-mark">&#128269;</div>
-    <span class="logo-text">Knowledge Base</span>
+<div class="topbar">
+  <button class="topbar-iconbtn mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()" title="Documents"></button>
+  <div class="brand">
+    <div class="brand-mark" id="brandMark"></div>
+    <span class="brand-name">Knowledge Base</span>
   </div>
-  <div class="header-divider"></div>
-  <div class="model-selector" id="modelSelector">
-    <button class="model-btn" id="modelBtn" onclick="toggleModelDropdown()">
-      <span class="model-dot"></span>
-      <span id="modelBtnLabel">loading...</span>
-      <span class="chevron">&#9660;</span>
-    </button>
-    <div class="model-dropdown" id="modelDropdown">
-      <div class="model-dropdown-header">Available Models</div>
-      <div id="modelList"><div class="model-loading">Loading...</div></div>
-    </div>
+  <div class="topbar-divider"></div>
+  <div class="workspace-label">
+    <span class="workspace-name">Legal documents</span>
+    <span class="workspace-meta" id="workspaceMeta">Loading…</span>
   </div>
-  <div class="header-right">
-    <span class="header-stats" id="headerStats"></span>
-    <button class="key-btn" onclick="openKeyModal()" title="API Key">&#128273;</button>
-    <div class="status-pill">
-      <div class="status-dot" id="statusDot"></div>
-      <span id="statusText">connecting...</span>
-    </div>
-  </div>
-</div>
 
-<div class="key-overlay" id="keyOverlay">
-  <div class="key-modal">
-    <div class="key-modal-title">API Key</div>
-    <div class="key-modal-hint">Enter the API key to access the knowledge base (see API_KEY in .env).</div>
-    <input type="password" id="keyInput" class="key-input" placeholder="API key" autocomplete="off"
-           onkeydown="if(event.key==='Enter') saveApiKey()">
-    <button class="key-save-btn" onclick="saveApiKey()">Save</button>
-  </div>
-</div>
-
-<div class="main">
-  <div class="sidebar">
-    <div class="sidebar-top">
-      <div class="section-label">Documents</div>
-      <div class="upload-btns">
-        <div class="upload-btn">
-          <input type="file" accept=".pdf" id="fileInput" multiple onchange="uploadFiles(this)">
-          &#128196; Upload PDFs
+  <div class="topbar-right">
+    <a class="topbar-link" href="evaluation.html" id="evalLink"></a>
+    <div class="settings-wrap" id="settingsWrap">
+      <button class="topbar-iconbtn" id="settingsBtn" onclick="toggleSettings()" title="Settings"></button>
+      <div class="settings-panel" id="settingsPanel">
+        <div class="settings-section">
+          <div class="settings-label">Model</div>
+          <div id="modelList"><div class="model-loading">Loading…</div></div>
         </div>
-        <div class="upload-btn">
-          <input type="file" id="folderFileInput" webkitdirectory multiple onchange="uploadFolder(this)">
-          &#128193; Upload folder
+        <div class="settings-section">
+          <div class="settings-toggle">
+            <span class="settings-toggle-label">Retrieval details</span>
+            <div class="switch" id="retrievalSwitch" onclick="toggleRetrievalPanel()"></div>
+          </div>
+        </div>
+        <div class="settings-section">
+          <button class="settings-row-btn" id="apiKeyRow" onclick="openKeyModal()"></button>
         </div>
       </div>
-      <div class="active-folder-badge" id="activeFolderBadge">
-        <span>&#128193;</span>
-        <span id="activeFolderLabel"></span>
-        <button onclick="clearActiveFolder()" title="Clear">&#10005;</button>
+    </div>
+    <div class="status-pill">
+      <div class="status-dot" id="statusDot"></div>
+      <span id="statusText">connecting…</span>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="keyOverlay">
+  <div class="modal">
+    <div class="modal-title">API Key</div>
+    <div class="modal-hint">Enter the API key to access the knowledge base (see API_KEY in .env).</div>
+    <input type="password" id="keyInput" class="modal-input" placeholder="API key" autocomplete="off"
+           onkeydown="if(event.key==='Enter') saveApiKey()">
+    <button class="btn-primary" onclick="saveApiKey()">Save</button>
+  </div>
+</div>
+
+<div class="mobile-sidebar-overlay" id="mobileSidebarOverlay" onclick="toggleMobileSidebar(false)"></div>
+<div class="main">
+  <div class="sidebar" id="sidebarEl">
+    <div class="sidebar-top">
+      <div class="search-box" id="docSearchBox">
+        <input type="text" id="docSearchInput" placeholder="Search documents" oninput="filterDocTree(this.value)">
+      </div>
+      <div class="add-docs-wrap" id="addDocsWrap">
+        <button class="add-docs-btn" id="addDocsBtn" onclick="toggleAddDocsMenu(event)"></button>
+        <div class="add-docs-menu" id="addDocsMenu">
+          <div class="add-docs-item" id="addDocsFilesItem">
+            <input type="file" accept=".pdf,.txt" id="fileInput" multiple onchange="uploadFiles(this)">
+          </div>
+          <div class="add-docs-item" id="addDocsFolderItem">
+            <input type="file" id="folderFileInput" webkitdirectory multiple onchange="uploadFolder(this)">
+          </div>
+        </div>
       </div>
       <div class="upload-progress" id="uploadProgress">
         <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-        <div class="progress-text" id="progressText">Uploading...</div>
+        <div class="progress-text" id="progressText">Uploading…</div>
       </div>
     </div>
+    <div class="sidebar-section-label">Folders</div>
     <div class="sidebar-docs">
-      <button class="compare-btn" id="compareBtn" onclick="compareDocuments()">&#9889; Compare all</button>
-      <div id="docsList"><div class="empty-docs">No documents yet<br><span style="font-size:10px">Create a folder to start</span></div></div>
+      <div id="docsList"><div class="empty-docs">No documents yet<br><span style="font-size:11px">Add documents to start</span></div></div>
     </div>
   </div>
 
-  <div class="chat-area">
-    <div class="messages" id="messages">
-      <div class="empty-state" id="emptyState">
-        <div class="empty-glyph">&#128269;</div>
-        <div class="empty-title">Ask your documents</div>
-        <div class="empty-sub">Create folders, upload PDFs, and start asking questions.</div>
-        <div class="chips">
-          <div class="chip" onclick="useSuggestion(this)">How does this work?</div>
-          <div class="chip" onclick="useSuggestion(this)">What are the main topics?</div>
-          <div class="chip" onclick="useSuggestion(this)">Summarize key points</div>
+  <div class="content">
+
+    <div class="welcome" id="welcomeScreen">
+      <div class="welcome-inner">
+        <div class="collection-badge"><span class="dot"></span><span id="collectionStats">Loading collection…</span></div>
+        <div class="welcome-title">Ask your documents</div>
+        <div class="welcome-sub">Search across your legal documents — every answer comes with source excerpts that open on the exact page.</div>
+
+        <div class="scope-wrap" id="welcomeScopeWrap">
+          <button class="search-scope-btn" id="welcomeScopeBtn" onclick="toggleScopeDropdown(event, 'welcomeScopeDropdown')">
+            <span class="search-scope-text">Searching across: <strong id="searchScopeWelcomeValue">All legal documents</strong></span>
+            <span class="chevron"></span>
+          </button>
+          <div class="scope-dropdown" id="welcomeScopeDropdown"></div>
+        </div>
+        <div class="welcome-input-wrap">
+          <input class="welcome-input" id="welcomeInput" type="text"
+            placeholder="Ask a question about these documents…"
+            onkeydown="if(event.key==='Enter') sendFromWelcome()">
+          <button class="send-btn" onclick="sendFromWelcome()" id="welcomeSendBtn"></button>
+        </div>
+
+        <div class="suggestions-label">Suggested questions</div>
+        <div class="suggestion-grid" id="suggestionGrid"></div>
+
+        <div class="recent-wrap" id="recentWrap" style="display:none">
+          <div class="suggestions-label" style="margin-top:0">Recent in this session</div>
+          <div class="recent-list" id="recentList"></div>
         </div>
       </div>
     </div>
-    <div class="input-bar">
-      <div class="folder-filter-wrap" id="folderFilterWrap">
-        <button class="folder-filter-btn" id="folderFilterBtn" onclick="toggleFolderFilter(event)">
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-bar" id="inputBar">
+      <div class="folder-filter-wrap scope-wrap" id="folderFilterWrap">
+        <button class="folder-filter-btn" id="folderFilterBtn" onclick="toggleScopeDropdown(event, 'folderFilterDropdown')">
           <span class="ff-dot"></span>
           <span id="folderFilterLabel">All folders</span>
-          <span class="chevron">&#9660;</span>
+          <span class="chevron"></span>
         </button>
-        <div class="folder-filter-dropdown" id="folderFilterDropdown"></div>
+        <div class="scope-dropdown" id="folderFilterDropdown"></div>
       </div>
-      <input class="chat-input" id="chatInput" type="text"
-        placeholder="Ask a question about your documents..."
-        onkeydown="if(event.key==='Enter') sendMessage()">
-      <button class="send-btn" onclick="sendMessage()">
-        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
-      </button>
+      <div class="chat-input-wrap">
+        <input class="chat-input" id="chatInput" type="text"
+          placeholder="Ask a follow-up…"
+          onkeydown="if(event.key==='Enter') sendMessage()">
+        <button class="send-btn" onclick="sendMessage()" id="chatSendBtn"></button>
+      </div>
     </div>
+
   </div>
 </div>
 
-<button class="debug-toggle" id="debugToggle" onclick="toggleDebug()" title="Debug">&#9889;</button>
+<button class="retrieval-toggle" id="retrievalToggle" onclick="toggleRetrievalPanel()"></button>
 
-<div class="debug-panel" id="debugPanel">
-  <div class="debug-header">
-    <span class="debug-title">Retrieval Debug</span>
-    <div class="debug-metric">expand <span id="dbgExpansion">&#8212;</span>ms</div>
-    <div class="debug-metric">retrieval <span id="dbgRetrieval">&#8212;</span>ms</div>
-    <div class="debug-metric">rerank <span id="dbgRerank">&#8212;</span>ms</div>
-    <div class="debug-metric">generation <span id="dbgGeneration">&#8212;</span>ms</div>
-    <div class="debug-metric">total <span id="dbgTotal">&#8212;</span>ms</div>
-    <div class="debug-metric">chunks <span id="dbgChunks">&#8212;</span></div>
-    <div class="debug-metric">score <span id="dbgScore">&#8212;</span></div>
-    <div class="debug-metric">reranker <span id="dbgReranker" style="font-size:9px">&#8212;</span></div>
-    <div style="margin-left:auto;font-size:10px;color:var(--text-muted)" id="dbgModel"></div>
-    <button onclick="toggleDebug()" style="width:22px;height:22px;border-radius:4px;background:transparent;border:1px solid var(--border);color:var(--text-muted);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;margin-left:8px">&#10005;</button>
+<div class="retrieval-panel" id="retrievalPanel">
+  <div class="retrieval-header">
+    <span class="retrieval-title" id="retrievalTitleIcon">Retrieval details</span>
+    <div class="retrieval-metric">expand <span id="dbgExpansion">—</span>ms</div>
+    <div class="retrieval-metric">retrieval <span id="dbgRetrieval">—</span>ms</div>
+    <div class="retrieval-metric">rerank <span id="dbgRerank">—</span>ms</div>
+    <div class="retrieval-metric">generation <span id="dbgGeneration">—</span>ms</div>
+    <div class="retrieval-metric">total <span id="dbgTotal">—</span>ms</div>
+    <div class="retrieval-metric">chunks <span id="dbgChunks">—</span></div>
+    <div class="retrieval-metric">score <span id="dbgScore">—</span></div>
+    <div class="retrieval-metric" id="dbgModel" style="color:var(--text-muted)"></div>
+    <button class="retrieval-close" onclick="toggleRetrievalPanel()" id="retrievalCloseBtn"></button>
   </div>
-  <div class="debug-body">
-    <div class="debug-section">
-      <div class="debug-section-title">Expanded queries</div>
-      <div class="debug-queries" id="dbgQueries">
-        <div class="debug-query-item" style="color:var(--text-muted)">Ask a question...</div>
+  <div class="retrieval-body">
+    <div>
+      <div class="retrieval-section-title">Expanded queries</div>
+      <div class="dbg-queries" id="dbgQueries">
+        <div class="dbg-query-item" style="color:var(--text-muted)">Ask a question…</div>
       </div>
     </div>
-    <div class="debug-section">
-      <div class="debug-section-title">Top chunks after rerank</div>
-      <div class="debug-chunks" id="dbgChunksList"></div>
+    <div>
+      <div class="retrieval-section-title">Top chunks after rerank</div>
+      <div class="dbg-chunks" id="dbgChunksList"></div>
     </div>
   </div>
 </div>
@@ -142,22 +174,22 @@
 <div class="pdf-overlay" id="pdfOverlay" onclick="closePdfPanel(); closeTxtPanel();"></div>
 <div class="pdf-panel" id="pdfPanel">
   <div class="pdf-panel-header">
-    <span>&#128196;</span>
+    <span id="pdfPanelIcon"></span>
     <span class="pdf-panel-title" id="pdfPanelTitle">Document</span>
-    <button class="pdf-panel-close" onclick="closePdfPanel()">&#10005;</button>
+    <button class="pdf-panel-close" onclick="closePdfPanel()" id="pdfPanelCloseBtn"></button>
   </div>
   <div class="pdf-page-controls">
-    <button class="pdf-page-btn" onclick="changePage(-1)">&#8249;</button>
+    <button class="pdf-page-btn" onclick="changePage(-1)" id="pdfPrevBtn"></button>
     <span class="pdf-page-info" id="pdfPageInfo">Page 1 of 1</span>
-    <button class="pdf-page-btn" onclick="changePage(1)">&#8250;</button>
+    <button class="pdf-page-btn" onclick="changePage(1)" id="pdfNextBtn"></button>
   </div>
   <div class="pdf-citation" id="pdfCitation" style="display:none">
-    <span class="pdf-citation-icon">&#8220;</span>
+    <span id="pdfCitationIcon"></span>
     <span class="pdf-citation-text" id="pdfCitationText"></span>
   </div>
   <div class="pdf-canvas-container" id="pdfCanvasContainer">
     <div class="pdf-loading" id="pdfLoading">
-      <div style="font-size:22px">&#128196;</div>
+      <span id="pdfLoadingIcon"></span>
       <div>Click a source to view</div>
     </div>
     <div id="pdfPageWrapper" style="display:none; position:relative;">
@@ -169,15 +201,16 @@
 
 <div class="txt-panel" id="txtPanel">
   <div class="txt-panel-header">
-    <span>&#128196;</span>
+    <span id="txtPanelIcon"></span>
     <span class="txt-panel-title" id="txtPanelTitle">Document</span>
-    <button class="txt-panel-close" onclick="closeTxtPanel()">&#10005;</button>
+    <button class="txt-panel-close" onclick="closeTxtPanel()" id="txtPanelCloseBtn"></button>
   </div>
-  <div class="txt-panel-body" id="txtPanelBody">Loading...</div>
+  <div class="txt-panel-body" id="txtPanelBody">Loading…</div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="api.js"></script>
-<script src="app.js"></script>
+<script src="vendor/pdfjs/pdf.min.js"></script>
+<script src="icons.js?v=1784130335"></script>
+<script src="api.js?v=1784131348"></script>
+<script src="app.js?v=1784133511"></script>
 </body>
 </html>

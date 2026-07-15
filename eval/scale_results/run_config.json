@@ -41,7 +41,7 @@
       ],
       "commit": "4b50529f27f4cd1ef27ec70f42b7f27d913ab93a",
       "date": "2026-07-15",
-      "notes": "these 4 files at the 57000 checkpoint were re-run live (not just recomputed) against the same corpus/config above after the dataset and script fixes; results matched the offline recomputation from the original run within normal run-to-run LLM variance (+/-1 case out of 150)."
+      "notes": "these 4 files at the 57000 checkpoint were re-run live (not just recomputed) against the same corpus/config above after the dataset and script fixes; results matched the offline recomputation from the original run within normal run-to-run LLM variance (+/-1 case out of 150). Superseded the original scale-ladder files at this one checkpoint (2026-07-15, during the frontend reproducibility pass) after generate_summary_tables.py's output was found to disagree with the numbers already published in eval/README.md/VALIDATION.md by exactly that +/-1-case margin -- the live-rerun data (this entry) is what those docs actually cite, so it's the one kept."
     },
     {
       "label": "citation-number generalization test (new)",

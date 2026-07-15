@@ -60,11 +60,19 @@ async function apiQuery(question, topK, rerank, model) {
   return { ok: r.ok, data: r.ok ? await r.json() : null };
 }
 
-function apiQueryStream(question, topK, model, chatHistory, folder, onToken, onSources, onDone) {
+function apiQueryStream(question, topK, model, chatHistory, folder, documentIds, onToken, onSources, onDone) {
   fetch(API + '/query/stream', {
     method: 'POST',
     headers: authHeaders({ 'Content-Type': 'application/json' }),
-    body: JSON.stringify({ question: question, top_k: topK, model: model || undefined, chat_history: chatHistory || [], folder: folder || undefined })
+    body: JSON.stringify({
+      question: question, top_k: topK, model: model || undefined, chat_history: chatHistory || [],
+      folder: folder || undefined,
+      // Strict scope for "compare these specific documents" — see
+      // rag/retriever.py::retrieve_expanded's document_ids param. Distinct
+      // from `folder`, which only narrows the candidate pool, not restricts
+      // to an exact set.
+      document_ids: (documentIds && documentIds.length) ? documentIds : undefined,
+    })
   }).then(function(r) {
     if (!r.ok) { onDone(new Error('stream failed')); return; }
     var reader = r.body.getReader();
@@ -109,6 +117,12 @@ async function apiGetHighlights(docId, text, page) {
 }
 
 function getPdfUrl(docId) {
-  const key = localStorage.getItem('api_key') || '';
-  return API + '/pdf/' + docId + (key ? '?key=' + encodeURIComponent(key) : '');
+  return API + '/pdf/' + docId;
+}
+
+// PDF.js fetches via XHR/fetch, so the key can go in a header like every
+// other request instead of the URL — a ?key= query param lands in browser
+// history and server access logs, which a header doesn't.
+function getPdfLoadOptions(docId) {
+  return { url: getPdfUrl(docId), httpHeaders: authHeaders() };
 }

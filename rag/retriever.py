@@ -196,15 +196,28 @@ class HybridRetriever:
         logger.info(f"Query: '{query[:50]}' | hybrid={len(results)} expanded={len(expanded)}")
         return expanded[:k]
 
-    async def retrieve_expanded(self, queries: list[str], top_k: int = None, folder: str = None) -> list[dict]:
+    async def retrieve_expanded(self, queries: list[str], top_k: int = None, folder: str = None,
+                                 document_ids: list[str] | set[str] | None = None) -> list[dict]:
         """
         Multi-query retrieval — search for each query variant,
         merge all results, return top_k best unique chunks.
+
+        document_ids, when given, restricts retrieval to exactly that set —
+        the multi-doc "compare" flow used to only ever *hint* at this via
+        filenames spelled out in the question text plus a folder filter,
+        which meant hybrid search was still free to surface (and the
+        reranker free to keep) chunks from *other* documents in the same
+        folder. Passed straight through to hybrid_search's doc_filter
+        (Qdrant MatchAny) so out-of-scope chunks are never fetched in the
+        first place, and re-applied as a filter on the identity-index hits
+        below (case/CELEX/citation lookups don't take a doc filter
+        themselves) so no path around this method can reintroduce them.
         """
         k = top_k or self.top_k
         # Bring a large pool of candidates to the reranker
         pool = max(30, k * 5)
         all_chunks = {}
+        doc_scope = set(document_ids) if document_ids else None
         # queries[0] is always the original (unexpanded) user question — see
         # query_expander.expand().
         query_case_numbers = extract_case_numbers(queries[0]) if queries else set()
@@ -214,7 +227,8 @@ class HybridRetriever:
         for i, query in enumerate(queries):
             query_vector = await run_on_gpu(self.embedder.embed_text, query)
             results = await asyncio.to_thread(
-                self.vector_store.hybrid_search, query_vector, query, top_k=pool, folder_filter=folder or None
+                self.vector_store.hybrid_search, query_vector, query, top_k=pool,
+                doc_filter=list(doc_scope) if doc_scope else None, folder_filter=folder or None
             )
 
             # Slightly down-weight secondary query variants
@@ -286,6 +300,15 @@ class HybridRetriever:
                     r["score"] = 1.0
                     r["source"] = "citation_number_index"
                     all_chunks[key] = r
+
+        # The case/CELEX/citation-number index lookups above don't take a
+        # doc filter themselves (they're exact-key lookups, not searches) —
+        # enforce document_ids here too so a compare scoped to specific
+        # documents can't have an out-of-scope one slip back in via an
+        # identity match (e.g. two of the picked documents share a citation
+        # number with a third, unselected one).
+        if doc_scope:
+            all_chunks = {k: v for k, v in all_chunks.items() if v.get("document_id") in doc_scope}
 
         # Sort and expand with neighbors only for top candidates
         sorted_chunks = sorted(all_chunks.values(), key=lambda x: x["score"], reverse=True)

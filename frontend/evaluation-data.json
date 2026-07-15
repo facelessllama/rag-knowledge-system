@@ -1,0 +1,256 @@
+{
+  "ladder": [
+    {
+      "corpus_size": 1000,
+      "golden_recall_frac": 0.96,
+      "heldout_recall_frac": 0.9533333333333334,
+      "golden_mrr": 0.7057777777777777,
+      "heldout_mrr": 0.7217777777777777,
+      "golden_abstention_pct": "100.0%",
+      "heldout_abstention_pct": "99.4%"
+    },
+    {
+      "corpus_size": 5000,
+      "golden_recall_frac": 0.8666666666666667,
+      "heldout_recall_frac": 0.84,
+      "golden_mrr": 0.599111111111111,
+      "heldout_mrr": 0.608,
+      "golden_abstention_pct": "100.0%",
+      "heldout_abstention_pct": "99.4%"
+    },
+    {
+      "corpus_size": 15000,
+      "golden_recall_frac": 0.8066666666666666,
+      "heldout_recall_frac": 0.78,
+      "golden_mrr": 0.5389999999999999,
+      "heldout_mrr": 0.5346666666666667,
+      "golden_abstention_pct": "100.0%",
+      "heldout_abstention_pct": "100.0%"
+    },
+    {
+      "corpus_size": 30000,
+      "golden_recall_frac": 0.7533333333333333,
+      "heldout_recall_frac": 0.74,
+      "golden_mrr": 0.49622222222222223,
+      "heldout_mrr": 0.5035555555555555,
+      "golden_abstention_pct": "100.0%",
+      "heldout_abstention_pct": "100.0%"
+    },
+    {
+      "corpus_size": 57000,
+      "golden_recall_frac": 0.7266666666666667,
+      "heldout_recall_frac": 0.6933333333333334,
+      "golden_mrr": 0.4476666666666667,
+      "heldout_mrr": 0.4533333333333333,
+      "golden_abstention_pct": "99.4%",
+      "heldout_abstention_pct": "99.4%"
+    }
+  ],
+  "id_free_before": {
+    "natural_lookup_by_number": {
+      "n": 20,
+      "strict": 15,
+      "mrr": 0.535,
+      "substring_correct": null,
+      "substring_total": null
+    },
+    "natural_lookup_by_subject": {
+      "n": 20,
+      "strict": 20,
+      "mrr": 1.0,
+      "substring_correct": null,
+      "substring_total": null
+    },
+    "semantic_date_fact": {
+      "n": 20,
+      "strict": 20,
+      "mrr": 1.0,
+      "substring_correct": 20,
+      "substring_total": 20
+    },
+    "semantic_cross_reference": {
+      "n": 20,
+      "strict": 18,
+      "mrr": 0.825,
+      "substring_correct": 12,
+      "substring_total": 20
+    },
+    "hard_negative_date": {
+      "n": 30,
+      "strict": 30,
+      "mrr": 1.0,
+      "substring_correct": null,
+      "substring_total": null
+    },
+    "out_of_domain": {
+      "n": 0,
+      "strict": 0,
+      "mrr": 0.0,
+      "substring_correct": null,
+      "substring_total": null
+    },
+    "adjacent_wrong_jurisdiction": {
+      "n": 0,
+      "strict": 0,
+      "mrr": 0.0,
+      "substring_correct": null,
+      "substring_total": null
+    },
+    "adjacent_wrong_topic": {
+      "n": 0,
+      "strict": 0,
+      "mrr": 0.0,
+      "substring_correct": null,
+      "substring_total": null
+    },
+    "nonsense": {
+      "n": 0,
+      "strict": 0,
+      "mrr": 0.0,
+      "substring_correct": null,
+      "substring_total": null
+    },
+    "plausible_but_fake": {
+      "n": 0,
+      "strict": 0,
+      "mrr": 0.0,
+      "substring_correct": null,
+      "substring_total": null
+    }
+  },
+  "id_free_after": {
+    "natural_lookup_by_number": {
+      "n": 20,
+      "strict": 18,
+      "mrr": 0.631,
+      "substring_correct": null,
+      "substring_total": null
+    },
+    "natural_lookup_by_subject": {
+      "n": 20,
+      "strict": 20,
+      "mrr": 1.0,
+      "substring_correct": null,
+      "substring_total": null
+    },
+    "semantic_date_fact": {
+      "n": 20,
+      "strict": 20,
+      "mrr": 1.0,
+      "substring_correct": 20,
+      "substring_total": 20
+    },
+    "semantic_cross_reference": {
+      "n": 20,
+      "strict": 18,
+      "mrr": 0.825,
+      "substring_correct": 13,
+      "substring_total": 20
+    },
+    "hard_negative_date": {
+      "n": 30,
+      "strict": 30,
+      "mrr": 1.0,
+      "substring_correct": null,
+      "substring_total": null
+    },
+    "out_of_domain": {
+      "n": 0,
+      "strict": 0,
+      "mrr": 0.0,
+      "substring_correct": null,
+      "substring_total": null
+    },
+    "adjacent_wrong_jurisdiction": {
+      "n": 0,
+      "strict": 0,
+      "mrr": 0.0,
+      "substring_correct": null,
+      "substring_total": null
+    },
+    "adjacent_wrong_topic": {
+      "n": 0,
+      "strict": 0,
+      "mrr": 0.0,
+      "substring_correct": null,
+      "substring_total": null
+    },
+    "nonsense": {
+      "n": 0,
+      "strict": 0,
+      "mrr": 0.0,
+      "substring_correct": null,
+      "substring_total": null
+    },
+    "plausible_but_fake": {
+      "n": 0,
+      "strict": 0,
+      "mrr": 0.0,
+      "substring_correct": null,
+      "substring_total": null
+    }
+  },
+  "id_free_before_overall": {
+    "n": 110,
+    "strict": 103,
+    "loose": 103,
+    "mrr": 0.8836363636363637
+  },
+  "id_free_after_overall": {
+    "n": 110,
+    "strict": 106,
+    "loose": 108,
+    "mrr": 0.901060606060606
+  },
+  "citation_heldout": {
+    "by_format": {
+      "citation_fmt_bracket_eec": {
+        "n": 10,
+        "strict": 9,
+        "mrr": 0.667,
+        "substring_correct": null,
+        "substring_total": null
+      },
+      "citation_fmt_council_no_dot": {
+        "n": 10,
+        "strict": 3,
+        "mrr": 0.337,
+        "substring_correct": null,
+        "substring_total": null
+      },
+      "citation_fmt_commission_summarize": {
+        "n": 10,
+        "strict": 6,
+        "mrr": 0.42,
+        "substring_correct": null,
+        "substring_total": null
+      },
+      "citation_fmt_bare_no": {
+        "n": 10,
+        "strict": 10,
+        "mrr": 0.95,
+        "substring_correct": null,
+        "substring_total": null
+      },
+      "citation_fmt_two_digit_year": {
+        "n": 10,
+        "strict": 5,
+        "mrr": 0.373,
+        "substring_correct": null,
+        "substring_total": null
+      }
+    },
+    "overall": {
+      "n": 50,
+      "strict": 33,
+      "loose": 50,
+      "mrr": 0.549
+    },
+    "issuer_bracket_split": {
+      "matched_n": 6,
+      "matched_strict": 6,
+      "mismatched_n": 23,
+      "mismatched_strict": 12
+    }
+  }
+}

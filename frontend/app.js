@@ -5,29 +5,111 @@ let availableModels = [];
 let activeFolderName = '';
 const openFolders = new Set();
 let chatHistory = [];
+let conversationStarted = false;
+// Set by runCompare(), read by sendMessage()'s follow-ups, cleared on
+// backToWelcome() — without this, "Compare A and B" correctly scoped its
+// own answer to just those documents, but the very next follow-up
+// ("Which one has the later effective date?") went through the ordinary
+// sendMessage() path with no documentIds at all and searched the whole
+// active folder again, silently dropping the scope a user would
+// reasonably expect a comparison conversation to keep.
+let activeDocumentIds = null;
+let debugVisible = false;
+let docSearchQuery = '';
 
+// Comparing every document in a large folder used to list all N filenames in
+// the question text and set top_k = N*4 uncapped — for a 150-doc folder
+// that's top_k=600, which retrieve_expanded() turns into a ~3000-candidate
+// rerank pass (max(20, top_k*5)) despite the prompt only ever using the
+// first ~3000 tokens of context anyway (see MAX_CONTEXT_CHARS in
+// rag/prompt_builder.py). The API now hard-rejects top_k>20 regardless
+// (QueryRequest.top_k, api/main.py), but the real fix is not asking for it
+// in the first place: cap how many documents a single compare can name, and
+// make the user actually choose which ones above that cap.
+const MAX_COMPARE_DOCS = 5;
+var compareSelection = null; // { docs: [...], selected: Set<doc_id> } while picking
+
+// Real, verified questions against the actual corpus — not abstract
+// placeholders — so a first click reliably lands on a convincing answer
+// instead of a hedge. Each was spot-checked live against /query/stream
+// before being added here.
+const SUGGESTIONS = [
+  { icon: 'clock', text: 'When does the Energy Performance of Buildings (England and Wales) Regulations 2012 come into force?' },
+  { icon: 'file-text', text: 'What is the maximum discount limit under the Housing (Right to Buy) (Limit on Discount) (England) Order 2012?' },
+  { icon: 'search', text: 'What is the case Jintu Das vs The State of Assam about?' },
+  { icon: 'columns', text: 'Compare the Localism Act 2011 Commencement No. 6 and Commencement No. 8 orders — what changed?' },
+];
+
+// Escapes for BOTH text content and attribute-value interpolation. The old
+// implementation (a textContent -> innerHTML round-trip) only escaped
+// &/</> — safe for text nodes, but quotes aren't special there, so it left
+// '"' and "'" untouched. Every call site below embeds this inside a
+// double-quoted HTML attribute (data-fname="...", title="..."), so a folder
+// or document name containing either character broke the markup outright
+// — e.g. a folder named Client's docs closed an inline-JS string literal
+// early (see the folder-tree onclick rewrite below), and a name with a
+// literal '"' would have closed an attribute value early even after that.
 function esc(text) {
-  const d = document.createElement('div');
-  d.appendChild(document.createTextNode(String(text || '')));
-  return d.innerHTML;
+  return String(text == null ? '' : text)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 function scrollBottom() { const m = document.getElementById('messages'); m.scrollTop = m.scrollHeight; }
-function hideEmpty() { const e = document.getElementById('emptyState'); if (e) e.remove(); }
+
+// ── Icon injection (static, one-time) ───────────────────────────────────────
+
+function injectStaticIcons() {
+  document.getElementById('mobileSidebarToggle').innerHTML = svgIcon('menu', 18);
+  document.getElementById('brandMark').innerHTML = svgIcon('layers', 16);
+  document.getElementById('evalLink').innerHTML = svgIcon('bar-chart', 15) + '<span>Evaluation</span>';
+  document.getElementById('settingsBtn').innerHTML = svgIcon('settings', 17);
+  document.getElementById('apiKeyRow').innerHTML = svgIcon('key', 15) + '<span>API key</span>';
+  document.getElementById('addDocsBtn').innerHTML = svgIcon('upload', 14) + '<span>Add documents</span>';
+  document.getElementById('addDocsFilesItem').innerHTML = svgIcon('file', 14) + '<span>Upload documents</span>'
+    + '<input type="file" accept=".pdf,.txt" id="fileInput" multiple onchange="uploadFiles(this)">';
+  document.getElementById('addDocsFolderItem').innerHTML = svgIcon('folder', 14) + '<span>Upload folder</span>'
+    + '<input type="file" id="folderFileInput" webkitdirectory multiple onchange="uploadFolder(this)">';
+  document.getElementById('docSearchBox').insertAdjacentHTML('afterbegin', svgIcon('search', 14));
+  document.getElementById('welcomeSendBtn').innerHTML = svgIcon('send', 15);
+  document.getElementById('chatSendBtn').innerHTML = svgIcon('send', 15);
+  document.getElementById('retrievalToggle').innerHTML = svgIcon('activity', 13) + '<span>Retrieval details</span>';
+  document.getElementById('retrievalTitleIcon').innerHTML = svgIcon('activity', 12) + ' Retrieval details';
+  document.getElementById('retrievalCloseBtn').innerHTML = svgIcon('x', 13);
+  document.getElementById('folderFilterBtn').querySelector('.chevron').innerHTML = svgIcon('chevron-down', 11);
+  document.getElementById('welcomeScopeBtn').querySelector('.chevron').innerHTML = svgIcon('chevron-down', 11);
+  document.getElementById('pdfPanelIcon').innerHTML = svgIcon('file-text', 14);
+  document.getElementById('pdfPanelCloseBtn').innerHTML = svgIcon('x', 14);
+  document.getElementById('pdfPrevBtn').innerHTML = svgIcon('chevron-left', 14);
+  document.getElementById('pdfNextBtn').innerHTML = svgIcon('chevron-right', 14);
+  document.getElementById('pdfCitationIcon').innerHTML = svgIcon('file-text', 15);
+  document.getElementById('pdfLoadingIcon').innerHTML = svgIcon('file-text', 26);
+  document.getElementById('txtPanelIcon').innerHTML = svgIcon('file-text', 14);
+  document.getElementById('txtPanelCloseBtn').innerHTML = svgIcon('x', 14);
+
+  const grid = document.getElementById('suggestionGrid');
+  grid.innerHTML = SUGGESTIONS.map(function(s) {
+    return '<button class="suggestion-card" onclick="useSuggestion(this)">' + svgIcon(s.icon, 16)
+      + '<span class="suggestion-text">' + esc(s.text) + '</span></button>';
+  }).join('');
+}
 
 // ── Health ────────────────────────────────────────────────────────────────────
 
 async function checkHealth() {
   try {
     const ok = await apiHealth();
-    document.getElementById('statusDot').style.background = ok ? '#1D9E75' : '#ef4444';
+    document.getElementById('statusDot').classList.toggle('err', !ok);
     document.getElementById('statusText').textContent = ok ? 'online' : 'error';
   } catch(e) {
-    document.getElementById('statusDot').style.background = '#ef4444';
+    document.getElementById('statusDot').classList.add('err');
     document.getElementById('statusText').textContent = 'offline';
   }
 }
 
-// ── Models ────────────────────────────────────────────────────────────────────
+// ── Models (now inside the settings panel) ──────────────────────────────────
 
 async function loadModels() {
   try {
@@ -38,14 +120,13 @@ async function loadModels() {
     // backend has no persistent model-switch state, /models always reports
     // its .env default, which would otherwise silently revert the user's pick).
     if (currentModel === null) currentModel = data.current;
-    renderModelDropdown();
-    updateModelBtn();
+    renderModelList();
   } catch(e) {
-    document.getElementById('modelBtnLabel').textContent = 'model';
+    document.getElementById('modelList').innerHTML = '<div class="model-loading">Unavailable</div>';
   }
 }
 
-function renderModelDropdown() {
+function renderModelList() {
   const list = document.getElementById('modelList');
   if (!availableModels.length) {
     list.innerHTML = '<div class="model-loading">No models found</div>';
@@ -56,39 +137,55 @@ function renderModelDropdown() {
     html += '<div class="model-option ' + (m.name === currentModel ? 'active' : '') + '" onclick="selectModel(' + JSON.stringify(m.name).replace(/"/g, "'") + ')">';
     html += '<div class="model-option-name">' + esc(m.name) + '</div>';
     if (m.size_gb) html += '<div class="model-option-size">' + m.size_gb + 'GB</div>';
-    html += '<span class="model-option-check">&#10003;</span></div>';
+    html += '<span class="model-option-check">' + svgIcon('check', 13) + '</span></div>';
   });
   list.innerHTML = html;
 }
 
-function updateModelBtn() {
-  const label = currentModel ? currentModel.replace(':latest', '') : 'model';
-  document.getElementById('modelBtnLabel').textContent = label;
-}
-
 function selectModel(name) {
   currentModel = name;
-  renderModelDropdown();
-  updateModelBtn();
-  closeModelDropdown();
+  renderModelList();
 }
 
-function toggleModelDropdown() {
-  const dd = document.getElementById('modelDropdown');
-  const btn = document.getElementById('modelBtn');
-  const show = !dd.classList.contains('show');
-  dd.classList.toggle('show', show);
-  btn.classList.toggle('open', show);
+function toggleSettings() {
+  const p = document.getElementById('settingsPanel');
+  p.classList.toggle('show');
 }
 
-function closeModelDropdown() {
-  document.getElementById('modelDropdown').classList.remove('show');
-  document.getElementById('modelBtn').classList.remove('open');
+// Below 860px the sidebar (folders, upload, document search) has no other
+// entry point — the CSS just hid it outright with no way back in, which
+// meant uploading or picking a document was impossible on a phone/narrow
+// tablet. Slides it in as an overlay drawer instead.
+function toggleMobileSidebar(force) {
+  const sidebar = document.getElementById('sidebarEl');
+  const overlay = document.getElementById('mobileSidebarOverlay');
+  const open = force !== undefined ? force : !sidebar.classList.contains('mobile-open');
+  sidebar.classList.toggle('mobile-open', open);
+  overlay.classList.toggle('show', open);
 }
+
+document.getElementById('retrievalSwitch') && document.getElementById('retrievalSwitch').addEventListener('click', function(e){ e.stopPropagation(); });
+
+// Dynamically-rendered rows (folders, docs, sources, recent) use role="button"
+// on a <div> rather than a native <button> (they carry drag-and-drop and
+// data-* attributes a button complicates) — this is the one place that needs
+// to make Enter/Space activate them the way a real button gets for free.
+document.addEventListener('keydown', function(e) {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  var el = e.target.closest('[role="button"]');
+  if (!el) return;
+  e.preventDefault();
+  el.click();
+});
 
 document.addEventListener('click', function(e) {
-  // Model dropdown close
-  if (!document.getElementById('modelSelector').contains(e.target)) closeModelDropdown();
+  // Settings panel close
+  var sw = document.getElementById('settingsWrap');
+  if (sw && !sw.contains(e.target)) document.getElementById('settingsPanel').classList.remove('show');
+
+  // Add-docs menu close
+  var adw = document.getElementById('addDocsWrap');
+  if (adw && !adw.contains(e.target)) document.getElementById('addDocsMenu').classList.remove('show');
 
   // Source card click
   var srcEl = e.target.closest('[data-src]');
@@ -104,21 +201,31 @@ document.addEventListener('click', function(e) {
     }
   }
 
-  // Folder filter dropdown close / option select
-  var dd = document.getElementById('folderFilterDropdown');
-  var wrap = document.getElementById('folderFilterWrap');
-  if (dd && wrap && !wrap.contains(e.target)) {
-    dd.classList.remove('open');
-    var btn = document.getElementById('folderFilterBtn');
-    if (btn) btn.classList.toggle('active', !!_folderFilterValue);
-  }
+  // Scope dropdown close-on-outside-click / option select — shared by both
+  // the input-bar's folder-filter-btn and the welcome screen's own picker.
+  [{ dd: 'folderFilterDropdown', wrap: 'folderFilterWrap' }, { dd: 'welcomeScopeDropdown', wrap: 'welcomeScopeWrap' }].forEach(function(pair) {
+    var dd = document.getElementById(pair.dd);
+    var wrap = document.getElementById(pair.wrap);
+    if (dd && wrap && dd.classList.contains('open') && !wrap.contains(e.target)) {
+      dd.classList.remove('open');
+      updateFolderFilterSelect();
+    }
+  });
   var ffOpt = e.target.closest('[data-ff]');
-  if (ffOpt && ffOpt.closest('#folderFilterDropdown')) {
+  if (ffOpt && ffOpt.closest('.scope-dropdown')) {
     _folderFilterValue = ffOpt.dataset.ff;
-    dd.classList.remove('open');
+    activeFolderName = ffOpt.dataset.ff; // keep the sidebar highlight in sync with the actual search scope
+    activeDocumentIds = null; // explicitly picking a folder/all-folders overrides a sticky compare scope
+    ffOpt.closest('.scope-dropdown').classList.remove('open');
     updateFolderFilterSelect();
+    renderDocTree();
   }
 });
+
+function toggleAddDocsMenu(e) {
+  e.stopPropagation();
+  document.getElementById('addDocsMenu').classList.toggle('show');
+}
 
 // ── Folder tree ───────────────────────────────────────────────────────────────
 
@@ -130,7 +237,6 @@ function getFolderMap() {
     if (!map[f]) map[f] = [];
     if (!doc._placeholder) map[f].push(doc);
   });
-  // Add empty folders (placeholders)
   Object.values(docsData).forEach(function(doc) {
     if (doc._placeholder) {
       const f = doc.folder;
@@ -140,6 +246,11 @@ function getFolderMap() {
   return map;
 }
 
+function filterDocTree(q) {
+  docSearchQuery = (q || '').trim().toLowerCase();
+  renderDocTree();
+}
+
 function renderDocTree() {
   if (typeof updateFolderFilterSelect === 'function') updateFolderFilterSelect();
   const list = document.getElementById('docsList');
@@ -147,59 +258,97 @@ function renderDocTree() {
   const total = realDocs.length;
 
   if (Object.keys(docsData).length === 0) {
-    list.innerHTML = '<div class="empty-docs">No documents yet<br><span style="font-size:10px">Create a folder to start</span></div>';
-    document.getElementById('compareBtn').style.display = 'none';
-    document.getElementById('headerStats').innerHTML = '';
+    list.innerHTML = '<div class="empty-docs">No documents yet<br><span style="font-size:11px">Add documents to start</span></div>';
+    document.getElementById('workspaceMeta').textContent = 'No documents';
+    document.getElementById('collectionStats').textContent = 'No documents yet — add some to get started';
     return;
   }
 
   const map = getFolderMap();
-  const names = Object.keys(map).sort(function(a, b) {
+  let names = Object.keys(map).sort(function(a, b) {
     if (a === 'Uncategorized') return 1;
     if (b === 'Uncategorized') return -1;
     return a.localeCompare(b);
   });
 
+  if (docSearchQuery) {
+    const filteredMap = {};
+    names.forEach(function(fname) {
+      const matches = (map[fname] || []).filter(function(d) { return (d.filename || '').toLowerCase().indexOf(docSearchQuery) !== -1; });
+      if (matches.length || fname.toLowerCase().indexOf(docSearchQuery) !== -1) filteredMap[fname] = matches;
+    });
+    names = Object.keys(filteredMap);
+    if (!names.length) {
+      list.innerHTML = '<div class="empty-docs">No documents match &ldquo;' + esc(docSearchQuery) + '&rdquo;</div>';
+      return;
+    }
+  }
+
   let html = '';
   names.forEach(function(fname) {
-    const docs = map[fname] || [];
+    const docs = (docSearchQuery ? (map[fname] || []).filter(function(d){ return (d.filename||'').toLowerCase().indexOf(docSearchQuery) !== -1; }) : map[fname]) || [];
     const isActive = fname === activeFolderName;
-    const isOpen = openFolders.has(fname);
+    const isOpen = openFolders.has(fname) || !!docSearchQuery;
     const isUncategorized = fname === 'Uncategorized';
-    const fnameJson = JSON.stringify(fname);
 
     html += '<div class="folder-group' + (isActive ? ' active' : '') + '">';
 
-    html += '<div class="folder-header" onclick="toggleFolder(' + fnameJson.replace(/"/g, "'") + ')"'
-      + ' ondragover="event.preventDefault();this.parentElement.style.outline=\'1px solid var(--accent)\'"'
-      + ' ondragleave="this.parentElement.style.outline=\'\'"'
-      + ' ondrop="dropOnFolder(event,' + fnameJson.replace(/"/g, "'") + ')">';
-    html += '<span class="folder-arrow' + (isOpen ? ' open' : '') + '">&#9658;</span>';
-    html += '<span class="folder-icon">' + (isOpen ? '&#128194;' : (isUncategorized ? '&#128203;' : '&#128193;')) + '</span>';
-    html += '<span class="folder-name">' + esc(fname) + '</span>';
+    // data-fname (read via event delegation below) instead of building an
+    // onclick="fn('...')" string with the name spliced in — a name
+    // containing a quote character used to break the generated JS/HTML
+    // outright (see esc() comment above).
+    html += '<div class="folder-header" role="button" tabindex="0" data-fname="' + esc(fname) + '">';
+    html += '<span class="folder-arrow' + (isOpen ? ' open' : '') + '">' + svgIcon('chevron-right', 12) + '</span>';
+    html += '<span class="folder-icon">' + svgIcon(isOpen ? 'folder-open' : 'folder', 15) + '</span>';
+    html += '<span class="folder-name" title="' + esc(fname) + '">' + esc(fname) + '</span>';
     html += '<span class="folder-count">' + docs.length + '</span>';
     html += '<div class="folder-actions">';
-    html += '<button class="fld-btn upload-here" onclick="event.stopPropagation();uploadToFolder(' + fnameJson.replace(/"/g, "'") + ')" title="Upload PDFs here">&#8679;</button>';
+    if (docs.length >= 2) {
+      html += '<button class="fld-btn fld-compare" title="Compare documents in this folder">' + svgIcon('columns', 13) + '</button>';
+    }
+    html += '<button class="fld-btn fld-upload" title="Upload documents here">' + svgIcon('upload', 13) + '</button>';
     if (!isUncategorized) {
-      html += '<button class="fld-btn" onclick="event.stopPropagation();renameFolder(' + fnameJson.replace(/"/g, "'") + ')" title="Rename">&#9998;</button>';
-      html += '<button class="fld-btn del" id="del-btn-' + esc(fname) + '" onclick="event.stopPropagation();confirmDeleteFolder(event,' + fnameJson.replace(/"/g, "'") + ')" title="Delete">&#10005;</button>';
+      html += '<button class="fld-btn fld-rename" title="Rename">' + svgIcon('edit', 13) + '</button>';
+      html += '<button class="fld-btn del fld-delete" title="Delete">' + svgIcon('trash', 13) + '</button>';
     }
     html += '</div></div>';
 
     if (isOpen) {
       html += '<div class="folder-files">';
       if (docs.length === 0) {
-        html += '<div style="font-size:11px;color:var(--text-muted);padding:6px 8px;">Empty — upload PDFs here</div>';
+        html += '<div style="font-size:11.5px;color:var(--text-muted);padding:7px 8px;">Empty — upload documents here</div>';
       } else {
-        docs.forEach(function(doc) { html += renderDocItem(doc); });
+        docs.forEach(function(doc) {
+          var sel = (compareSelection && compareSelection.eligibleIds.has(doc.doc_id)) ? compareSelection : null;
+          html += renderDocItem(doc, sel);
+        });
       }
       html += '</div>';
     }
     html += '</div>';
   });
 
-  html += '<button class="new-folder-btn" onclick="createNewFolder()">&#65291; New folder</button>';
+  if (!docSearchQuery) html += '<button class="new-folder-btn">' + svgIcon('plus', 13) + ' New folder</button>';
   list.innerHTML = html;
+
+  var newFolderBtn = list.querySelector('.new-folder-btn');
+  if (newFolderBtn) newFolderBtn.addEventListener('click', createNewFolder);
+
+  list.querySelectorAll('.folder-header').forEach(function(header) {
+    var fname = header.dataset.fname; // decoded back to the raw name by the DOM, entities and all
+    header.addEventListener('click', function() { toggleFolder(fname); });
+    header.addEventListener('dragover', function(e) { e.preventDefault(); header.parentElement.style.outline = '1px solid var(--accent)'; });
+    header.addEventListener('dragleave', function() { header.parentElement.style.outline = ''; });
+    header.addEventListener('drop', function(e) { dropOnFolder(e, fname); });
+    var compareBtn = header.querySelector('.fld-compare');
+    if (compareBtn) compareBtn.addEventListener('click', function(e) { e.stopPropagation(); compareInFolder(fname); });
+    var uploadBtn = header.querySelector('.fld-upload');
+    if (uploadBtn) uploadBtn.addEventListener('click', function(e) { e.stopPropagation(); uploadToFolder(fname); });
+    var renameBtn = header.querySelector('.fld-rename');
+    if (renameBtn) renameBtn.addEventListener('click', function(e) { e.stopPropagation(); renameFolder(fname); });
+    var deleteBtn = header.querySelector('.fld-delete');
+    if (deleteBtn) deleteBtn.addEventListener('click', function(e) { confirmDeleteFolder(e, fname); });
+  });
 
   list.querySelectorAll('.doc-delete').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
@@ -212,6 +361,10 @@ function renderDocTree() {
     item.addEventListener('click', function() {
       const doc = docsData[item.dataset.docId];
       if (!doc) return;
+      if (compareSelection && compareSelection.eligibleIds.has(item.dataset.docId)) {
+        toggleCompareDoc(item.dataset.docId);
+        return;
+      }
       if (doc.format === 'txt') {
         openTextViewer(item.dataset.docId, null, null);
       } else {
@@ -220,28 +373,31 @@ function renderDocTree() {
     });
   });
 
-  var comparableDocs = activeFolderName
-    ? realDocs.filter(function(d){ return d.folder === activeFolderName; })
-    : realDocs;
-  document.getElementById('compareBtn').style.display = comparableDocs.length >= 2 ? 'block' : 'none';
   const totalChunks = realDocs.reduce(function(s, d){ return s + (d.chunks || d.chunks_created || 0); }, 0);
-  document.getElementById('headerStats').innerHTML = '<span>' + total + '</span> docs &middot; <span>' + totalChunks + '</span> chunks';
+  document.getElementById('workspaceMeta').innerHTML = total + ' document' + (total===1?'':'s') +
+    ' <span title="' + totalChunks + ' indexed passages">&middot; ' + totalChunks + ' passages</span>';
+  document.getElementById('collectionStats').textContent = total + ' document' + (total===1?'':'s') + ' · ' + totalChunks + ' passages';
+  renderCompareBar();
 }
 
-function renderDocItem(doc) {
+function renderDocItem(doc, selection) {
   const chunks = doc.chunks_created || doc.chunks || 0;
   const pages = doc.pages || 0;
-  return '<div class="doc-item" data-doc-id="' + doc.doc_id + '"'
-    + ' draggable="true"'
+  const inSelection = !!selection;
+  const checked = inSelection && selection.selected.has(doc.doc_id);
+  const leadIcon = inSelection
+    ? '<span class="doc-check' + (checked ? ' checked' : '') + '">' + (checked ? svgIcon('check', 12) : '') + '</span>'
+    : '<span class="doc-icon">' + svgIcon('file-text', 14) + '</span>';
+  return '<div class="doc-item' + (checked ? ' selected' : '') + '" data-doc-id="' + doc.doc_id + '" role="button" tabindex="0"'
+    + ' draggable="' + (!inSelection) + '"'
     + ' ondragstart="event.dataTransfer.setData(\'docId\',\'' + doc.doc_id + '\');this.style.opacity=\'0.4\'"'
     + ' ondragend="this.style.opacity=\'1\'">'
-    + '<span class="doc-icon">&#128203;</span>'
+    + leadIcon
     + '<div class="doc-info">'
     + '<div class="doc-name" title="' + esc(doc.filename) + '">' + esc(doc.filename) + '</div>'
     + '<div class="doc-meta">' + pages + 'p &middot; ' + chunks + ' chunks</div>'
     + '</div>'
-    + '<span class="doc-badge">ready</span>'
-    + '<button class="doc-delete" data-doc-id="' + doc.doc_id + '" title="Delete">&#10005;</button>'
+    + (inSelection ? '' : '<button class="doc-delete" data-doc-id="' + doc.doc_id + '" title="Delete">' + svgIcon('x', 13) + '</button>')
     + '</div>';
 }
 
@@ -252,7 +408,13 @@ function toggleFolder(fname) {
     openFolders.delete(fname);
   } else {
     openFolders.add(fname);
-    setActiveFolder(fname);
+    // "Uncategorized" isn't a real folder server-side (it's this frontend's
+    // label for documents with no folder at all), so there's no filter
+    // value to scope a search to it by — setActiveFolder() would highlight
+    // it as "selected" while _folderFilterValue silently stayed empty
+    // (searching everything), which looked like a real, working filter and
+    // wasn't. Expandable to browse, but not selectable as a search scope.
+    if (fname !== 'Uncategorized') setActiveFolder(fname);
   }
   renderDocTree();
 }
@@ -263,38 +425,65 @@ function uploadToFolder(fname) {
 }
 
 function setActiveFolder(fname) {
+  // A sticky compare scope (see activeDocumentIds's declaration comment)
+  // only gets cleared by backToWelcome() or explicitly picking a folder
+  // from the input-bar's own dropdown — clicking a folder directly in the
+  // sidebar went through this function instead and left activeDocumentIds
+  // untouched, so the next question could carry both a new folder *and*
+  // stale document_ids from an earlier compare, sometimes scoping to an
+  // intersection that's empty (a folder that doesn't contain those
+  // documents) and coming back with nothing.
+  activeDocumentIds = null;
   activeFolderName = fname;
-  const badge = document.getElementById('activeFolderBadge');
-  const label = document.getElementById('activeFolderLabel');
-  if (fname && fname !== 'Uncategorized') {
-    label.textContent = fname;
-    badge.classList.add('show');
-  } else {
-    badge.classList.remove('show');
-  }
+  // The sidebar selection IS the search scope by default — without this,
+  // picking a folder in the sidebar looked like it scoped the next question
+  // (folder-header highlights, "active" state) but silently didn't, since
+  // runQuery() actually reads _folderFilterValue, a separate variable only
+  // otherwise set via the input-bar's own folder-filter dropdown.
+  _folderFilterValue = (fname && fname !== 'Uncategorized') ? fname : '';
+  updateFolderFilterSelect();
   renderDocTree();
 }
 
 function clearActiveFolder() {
+  activeDocumentIds = null;
   activeFolderName = '';
-  document.getElementById('activeFolderBadge').classList.remove('show');
+  _folderFilterValue = '';
+  updateFolderFilterSelect();
   renderDocTree();
 }
 
-function createNewFolder() {
+async function createNewFolder() {
   const name = prompt('Folder name:');
   if (!name || !name.trim()) return;
   const fname = name.trim();
+  // Wait for server confirmation before touching local state — previously
+  // this added the placeholder and moved on immediately, so a failed
+  // request (name clash, connection drop) left a folder in the sidebar
+  // that never actually existed server-side.
+  try {
+    const r = await fetch(API + '/folders', { method: 'POST', headers: authHeaders({'Content-Type':'application/json'}), body: JSON.stringify({name: fname}) });
+    if (!r.ok) { alert('Could not create folder "' + fname + '".'); return; }
+  } catch (e) {
+    alert('Could not create folder — connection error.');
+    return;
+  }
   docsData['__ph__' + fname] = { doc_id: '__ph__' + fname, filename: '', folder: fname, _placeholder: true, pages: 0, chunks: 0 };
   openFolders.add(fname);
   setActiveFolder(fname);
-  fetch(API + '/folders', { method: 'POST', headers: authHeaders({'Content-Type':'application/json'}), body: JSON.stringify({name: fname}) });
 }
 
-function renameFolder(oldName) {
+async function renameFolder(oldName) {
   const newName = prompt('New name:', oldName);
   if (!newName || !newName.trim() || newName.trim() === oldName) return;
   const n = newName.trim();
+  try {
+    const r = await fetch(API + '/folders/' + encodeURIComponent(oldName), { method: 'PATCH', headers: authHeaders({'Content-Type':'application/json'}), body: JSON.stringify({name: n}) });
+    if (!r.ok) { alert('Could not rename folder.'); return; }
+  } catch (e) {
+    alert('Could not rename folder — connection error.');
+    return;
+  }
   Object.values(docsData).forEach(function(doc) {
     if (doc.folder === oldName) {
       doc.folder = n;
@@ -303,7 +492,6 @@ function renameFolder(oldName) {
   });
   if (openFolders.has(oldName)) { openFolders.delete(oldName); openFolders.add(n); }
   if (activeFolderName === oldName) setActiveFolder(n); else renderDocTree();
-  fetch(API + '/folders/' + encodeURIComponent(oldName), { method: 'PATCH', headers: authHeaders({'Content-Type':'application/json'}), body: JSON.stringify({name: n}) });
 }
 
 async function dropOnFolder(event, targetFolder) {
@@ -311,9 +499,23 @@ async function dropOnFolder(event, targetFolder) {
   event.currentTarget.parentElement.style.outline = '';
   const docId = event.dataTransfer.getData('docId');
   if (!docId || !docsData[docId]) return;
+  const previousFolder = docsData[docId].folder;
+  if (previousFolder === targetFolder) return;
   docsData[docId].folder = targetFolder;
   renderDocTree();
-  await apiUpdateFolder(docId, targetFolder);
+  let ok = false;
+  try {
+    ok = await apiUpdateFolder(docId, targetFolder);
+  } catch (e) { ok = false; }
+  if (!ok) {
+    // Roll back — the sidebar had already jumped the document to
+    // targetFolder optimistically, and previously just stayed there even
+    // if the server rejected the move (or the request failed outright),
+    // silently diverging from what's actually persisted.
+    if (docsData[docId]) docsData[docId].folder = previousFolder;
+    alert('Could not move the document — please try again.');
+    renderDocTree();
+  }
 }
 
 let _deletePending = null;
@@ -322,16 +524,13 @@ function confirmDeleteFolder(event, fname) {
   event.stopPropagation();
   const btn = event.currentTarget;
   if (_deletePending === fname) {
-    // Second click — confirmed
     _deletePending = null;
     deleteFolder(fname);
     return;
   }
-  // First click — show confirmation state
   _deletePending = fname;
   btn.textContent = 'Delete?';
   btn.classList.add('del-confirm');
-  // Auto-reset after 3s if no second click
   setTimeout(function() {
     if (_deletePending === fname) {
       _deletePending = null;
@@ -340,55 +539,115 @@ function confirmDeleteFolder(event, fname) {
   }, 3000);
 }
 
-function deleteFolder(fname) {
+async function deleteFolder(fname) {
   const docs = Object.values(docsData).filter(function(d){ return d.folder === fname && !d._placeholder; });
-  docs.forEach(function(doc) { deleteDocument(doc.doc_id, doc.filename, true); });
-  Object.keys(docsData).forEach(function(k) { if (docsData[k].folder === fname) delete docsData[k]; });
+  // Wait for every document delete to actually finish (each already removes
+  // itself from docsData on success — see deleteDocument()) before deciding
+  // the folder is empty. Firing these without awaiting and immediately
+  // wiping the folder's local entries meant a partial failure left the UI
+  // showing "folder gone" while the server still had some of its documents.
+  const results = await Promise.all(docs.map(function(doc) { return deleteDocument(doc.doc_id, doc.filename, true); }));
+  const failed = results.filter(function(ok) { return !ok; }).length;
+  if (failed > 0) {
+    alert(failed + ' of ' + docs.length + ' document(s) in "' + fname + '" could not be deleted. The folder was kept — please retry.');
+    renderDocTree();
+    return;
+  }
+  let folderDeleteOk = false;
+  try {
+    const r = await fetch(API + '/folders/' + encodeURIComponent(fname), { method: 'DELETE', headers: authHeaders() });
+    folderDeleteOk = r.ok;
+  } catch (e) {
+    folderDeleteOk = false;
+  }
+  if (!folderDeleteOk) {
+    // The folder registration still exists server-side even though every
+    // document in it is now gone — previously the code deleted the local
+    // placeholder and hid the folder regardless, so it looked removed
+    // until the next loadDocuments() (page reload, key change, ...)
+    // re-fetched it from the server and it reappeared, now empty, with no
+    // indication anything had gone wrong the first time.
+    alert('All documents were deleted, but the empty folder itself could not be removed — it will stay listed (now empty). Try deleting it again.');
+    docsData['__ph__' + fname] = { doc_id: '__ph__' + fname, filename: '', folder: fname, _placeholder: true, pages: 0, chunks: 0 };
+    renderDocTree();
+    return;
+  }
+  delete docsData['__ph__' + fname]; // an empty folder is represented locally only by this placeholder
   openFolders.delete(fname);
   if (activeFolderName === fname) clearActiveFolder(); else renderDocTree();
-  fetch(API + '/folders/' + encodeURIComponent(fname), { method: 'DELETE', headers: authHeaders() });
 }
 
 // ── Documents ─────────────────────────────────────────────────────────────────
 
 var _folderFilterValue = '';
 
+// Builds the same "All folders / <folder list>" option list for both scope
+// pickers — the persistent input-bar's folder-filter-btn (visible once a
+// conversation has started) and the welcome screen's own dropdown (added
+// so picking a folder doesn't require already knowing the sidebar does
+// this too — the welcome screen previously only showed the *result* of a
+// sidebar click as inert text, with no way to change it from there).
 function updateFolderFilterSelect() {
   var folders = Object.keys(getFolderMap()).filter(function(f){ return f !== 'Uncategorized'; }).sort();
-  var dd = document.getElementById('folderFilterDropdown');
-  if (!dd) return;
-  var html = '<div class="ff-dropdown-header">Search in</div>';
-  html += '<div class="ff-option' + (!_folderFilterValue ? ' selected' : '') + '" data-ff=""><span>All folders</span><span class="ff-check">✓</span></div>';
-  folders.forEach(function(f) {
-    html += '<div class="ff-option' + (_folderFilterValue === f ? ' selected' : '') + '" data-ff="' + esc(f) + '"><span>' + esc(f) + '</span><span class="ff-check">✓</span></div>';
-  });
-  dd.innerHTML = html;
-  // validate current selection
   if (_folderFilterValue && folders.indexOf(_folderFilterValue) === -1) {
     _folderFilterValue = '';
   }
-  document.getElementById('folderFilterLabel').textContent = _folderFilterValue || 'All folders';
-  var btn = document.getElementById('folderFilterBtn');
-  if (btn) btn.classList.toggle('active', !!_folderFilterValue || dd.classList.contains('open'));
+  var html = '<div class="ff-dropdown-header">Search in</div>';
+  html += '<div class="ff-option' + (!_folderFilterValue ? ' selected' : '') + '" data-ff=""><span>All folders</span><span class="ff-check">' + svgIcon('check', 12) + '</span></div>';
+  folders.forEach(function(f) {
+    html += '<div class="ff-option' + (_folderFilterValue === f ? ' selected' : '') + '" data-ff="' + esc(f) + '"><span>' + esc(f) + '</span><span class="ff-check">' + svgIcon('check', 12) + '</span></div>';
+  });
+  ['folderFilterDropdown', 'welcomeScopeDropdown'].forEach(function(id) {
+    var dd = document.getElementById(id);
+    if (dd) dd.innerHTML = html;
+  });
+
+  // While a compare scope is active, that's the real enforced filter
+  // (document_ids, strictly narrower than the folder) — show it instead of
+  // the folder name so a sticky scope the user didn't explicitly ask to
+  // keep isn't silently invisible on every follow-up.
+  var scopeText = activeDocumentIds ? 'Comparing ' + activeDocumentIds.length + ' docs' : (_folderFilterValue || 'All folders');
+
+  var ffLabel = document.getElementById('folderFilterLabel');
+  if (ffLabel) ffLabel.textContent = scopeText;
+  var ffBtn = document.getElementById('folderFilterBtn');
+  if (ffBtn) {
+    var ffOpen = document.getElementById('folderFilterDropdown').classList.contains('open');
+    ffBtn.classList.toggle('active', !!_folderFilterValue || !!activeDocumentIds || ffOpen);
+    var ffChev = ffBtn.querySelector('.chevron');
+    if (ffChev && !ffChev.innerHTML) ffChev.innerHTML = svgIcon('chevron-down', 11);
+  }
+
+  var welcomeVal = document.getElementById('searchScopeWelcomeValue');
+  if (welcomeVal) welcomeVal.textContent = activeDocumentIds ? scopeText : (_folderFilterValue || 'All legal documents');
+  var welcomeBtn = document.getElementById('welcomeScopeBtn');
+  if (welcomeBtn) {
+    var wOpen = document.getElementById('welcomeScopeDropdown').classList.contains('open');
+    welcomeBtn.classList.toggle('active', !!_folderFilterValue || !!activeDocumentIds || wOpen);
+    var wChev = welcomeBtn.querySelector('.chevron');
+    if (wChev && !wChev.innerHTML) wChev.innerHTML = svgIcon('chevron-down', 11);
+  }
 }
 
-function toggleFolderFilter(e) {
+// Shared by both scope pickers — dropdownId is whichever one this button
+// owns. Closes the other one first so at most one is ever open, same as
+// any other single-open-at-a-time menu on this page.
+function toggleScopeDropdown(e, dropdownId) {
   e.stopPropagation();
-  var dd = document.getElementById('folderFilterDropdown');
-  var btn = document.getElementById('folderFilterBtn');
+  var dd = document.getElementById(dropdownId);
   var opening = !dd.classList.contains('open');
+  ['folderFilterDropdown', 'welcomeScopeDropdown'].forEach(function(id) {
+    if (id !== dropdownId) { var other = document.getElementById(id); if (other) other.classList.remove('open'); }
+  });
   dd.classList.toggle('open', opening);
-  // chevron rotates when open OR when a folder is selected
-  btn.classList.toggle('active', opening || !!_folderFilterValue);
+  updateFolderFilterSelect();
 }
-
 
 async function loadDocuments() {
   try {
     const data = await apiGetDocuments();
     docsData = {};
     (data.documents || []).forEach(function(doc) { docsData[doc.doc_id] = doc; });
-    // Restore persisted empty folders as placeholders
     (data.folders || []).forEach(function(fname) {
       if (fname && !Object.values(docsData).some(function(d){ return d.folder === fname && !d._placeholder; })) {
         docsData['__ph__' + fname] = { doc_id: '__ph__' + fname, filename: '', folder: fname, _placeholder: true, pages: 0, chunks: 0 };
@@ -416,16 +675,26 @@ function setProg(pct, msg) {
 
 // ── Upload ────────────────────────────────────────────────────────────────────
 
+// Kept in one place — api/main.py's PARSERS_BY_EXT (pdf, txt) is the actual
+// source of truth for what the backend accepts; this just needs to stay in
+// sync with it so the upload picker doesn't silently drop a format the
+// server would otherwise happily ingest.
+function isSupportedDocFile(filename) {
+  var lower = filename.toLowerCase();
+  return lower.endsWith('.pdf') || lower.endsWith('.txt');
+}
+
 async function uploadFiles(input) {
-  const files = Array.from(input.files).filter(function(f){ return f.name.toLowerCase().endsWith('.pdf'); });
+  document.getElementById('addDocsMenu').classList.remove('show');
+  const files = Array.from(input.files).filter(function(f){ return isSupportedDocFile(f.name); });
   if (!files.length) return;
   const folder = (activeFolderName && activeFolderName !== 'Uncategorized') ? activeFolderName : '';
   showProg();
 
   if (files.length === 1) {
-    setProg(30, 'Uploading...');
+    setProg(30, 'Uploading…');
     try {
-      setProg(60, 'Processing...');
+      setProg(60, 'Processing…');
       const res = await apiUploadFile(files[0], folder);
       setProg(100, '');
       if (res.ok) {
@@ -437,16 +706,16 @@ async function uploadFiles(input) {
         renderDocTree();
       } else if (res.status === 409) {
         setProg(100, 'Already uploaded');
-        document.getElementById('progressFill').style.background = '#ca8a04';
+        document.getElementById('progressFill').style.background = 'var(--warning)';
       } else {
         setProg(100, 'Upload failed');
-        document.getElementById('progressFill').style.background = '#ef4444';
+        document.getElementById('progressFill').style.background = 'var(--danger)';
       }
-    } catch(e) { setProg(100, 'Error'); document.getElementById('progressFill').style.background = '#ef4444'; }
+    } catch(e) { setProg(100, 'Error'); document.getElementById('progressFill').style.background = 'var(--danger)'; }
   } else {
-    setProg(20, 'Uploading ' + files.length + ' files...');
+    setProg(20, 'Uploading ' + files.length + ' files…');
     try {
-      setProg(60, 'Processing...');
+      setProg(60, 'Processing…');
       const res = await apiUploadBatch(files, folder);
       if (res.ok) {
         const data = res.data;
@@ -456,20 +725,21 @@ async function uploadFiles(input) {
         if (folder) { const ph = '__ph__' + folder; if (docsData[ph]) delete docsData[ph]; }
         setProg(100, 'Done: ' + data.indexed + ' indexed' + (data.skipped ? ', ' + data.skipped + ' skipped' : ''));
         renderDocTree();
-      } else { setProg(100, 'Failed'); document.getElementById('progressFill').style.background = '#ef4444'; }
-    } catch(e) { setProg(100, 'Error'); document.getElementById('progressFill').style.background = '#ef4444'; }
+      } else { setProg(100, 'Failed'); document.getElementById('progressFill').style.background = 'var(--danger)'; }
+    } catch(e) { setProg(100, 'Error'); document.getElementById('progressFill').style.background = 'var(--danger)'; }
   }
   hideProg(2000);
   input.value = '';
 }
 
 async function uploadFolder(input) {
-  const pdfFiles = Array.from(input.files).filter(function(f){ return f.name.toLowerCase().endsWith('.pdf'); });
-  if (!pdfFiles.length) { alert('No PDF files found in folder'); input.value = ''; return; }
+  document.getElementById('addDocsMenu').classList.remove('show');
+  const docFiles = Array.from(input.files).filter(function(f){ return isSupportedDocFile(f.name); });
+  if (!docFiles.length) { alert('No supported documents (.pdf, .txt) found in folder'); input.value = ''; return; }
 
   showProg();
   const byFolder = {};
-  pdfFiles.forEach(function(f) {
+  docFiles.forEach(function(f) {
     const parts = f.webkitRelativePath.split('/');
     const fp = parts.length > 2 ? parts.slice(0, parts.length - 1).join(' / ') : parts[0];
     if (!byFolder[fp]) byFolder[fp] = [];
@@ -482,7 +752,7 @@ async function uploadFolder(input) {
   for (let i = 0; i < folderList.length; i++) {
     const fname = folderList[i];
     done++;
-    setProg(Math.round(done / folderList.length * 90) + 5, fname + ' (' + byFolder[fname].length + ')...');
+    setProg(Math.round(done / folderList.length * 90) + 5, fname + ' (' + byFolder[fname].length + ')…');
     try {
       const res = await apiUploadBatch(byFolder[fname], fname);
       if (res.ok) {
@@ -497,22 +767,30 @@ async function uploadFolder(input) {
     } catch(e) { console.error(e); }
   }
 
-  setProg(100, '&#10003; ' + indexed + ' indexed' + (skipped ? ', ' + skipped + ' skipped' : ''));
+  setProg(100, indexed + ' indexed' + (skipped ? ', ' + skipped + ' skipped' : ''));
   renderDocTree();
   hideProg(3000);
   input.value = '';
 }
 
 async function deleteDocument(doc_id, filename, silent) {
-  if (!silent && !confirm('Delete "' + filename + '"?')) return;
+  if (!silent && !confirm('Delete "' + filename + '"?')) return false;
   try {
     const ok = await apiDeleteDocument(doc_id);
     if (ok) { delete docsData[doc_id]; if (!silent) renderDocTree(); }
-  } catch(e) { if (!silent) alert('Connection error'); }
+    return ok;
+  } catch(e) {
+    if (!silent) alert('Connection error');
+    return false;
+  }
+}
+
+function compareInFolder(fname) {
+  setActiveFolder(fname);
+  compareDocuments();
 }
 
 function compareDocuments() {
-  // Scope to active folder if one is selected, otherwise all docs
   var allDocs = Object.values(docsData).filter(function(d){ return !d._placeholder && d.filename; });
   var scopedDocs = activeFolderName
     ? allDocs.filter(function(d){ return d.folder === activeFolderName; })
@@ -520,125 +798,264 @@ function compareDocuments() {
 
   if (scopedDocs.length < 2) return;
 
-  var names = scopedDocs.map(function(d){ return d.filename; }).join(', ');
+  if (scopedDocs.length > MAX_COMPARE_DOCS) {
+    startCompareSelection(scopedDocs);
+    return;
+  }
+  runCompare(scopedDocs);
+}
+
+function runCompare(docs) {
+  var names = docs.map(function(d){ return d.filename; }).join(', ');
   var folderCtx = activeFolderName ? ' (folder: ' + activeFolderName + ')' : '';
 
-  // Set folder filter to match comparison scope
   _folderFilterValue = activeFolderName || '';
   updateFolderFilterSelect();
 
-  document.getElementById('chatInput').value =
-    'Compare these documents in detail' + folderCtx + ': ' + names + '. ' +
+  var text = 'Compare these documents in detail' + folderCtx + ': ' + names + '. ' +
     'For each document provide: 1) main subject and key arguments, 2) parties or entities involved, 3) conclusions or outcomes. ' +
     'Then compare them: what are the key differences and similarities? Be thorough and specific.';
-  sendMessage(scopedDocs.length * 4);
+
+  // The filenames spelled out above are context for the LLM's answer, not
+  // the actual retrieval scope — without document_ids, hybrid search (and
+  // the reranker) stayed free to pull in *other* documents from the same
+  // folder, so "compare these 3" could silently answer about a 4th. See
+  // rag/retriever.py::retrieve_expanded's document_ids param.
+  var documentIds = docs.map(function(d){ return d.doc_id; });
+  activeDocumentIds = documentIds; // sticky for this conversation's follow-ups — see declaration comment
+
+  enterConversationMode();
+  runQuery(text, Math.min(docs.length * 4, 20), documentIds);
 }
 
-function useSuggestion(el) { document.getElementById('chatInput').value = el.textContent; sendMessage(); }
+// ── Compare-document picker (folders larger than MAX_COMPARE_DOCS) ─────────
+
+function startCompareSelection(docs) {
+  compareSelection = { docs: docs, eligibleIds: new Set(docs.map(function(d){ return d.doc_id; })), selected: new Set() };
+  if (activeFolderName) openFolders.add(activeFolderName);
+  renderDocTree();
+}
+
+function cancelCompareSelection() {
+  compareSelection = null;
+  renderDocTree();
+}
+
+function toggleCompareDoc(docId) {
+  if (!compareSelection || !compareSelection.eligibleIds.has(docId)) return;
+  if (compareSelection.selected.has(docId)) {
+    compareSelection.selected.delete(docId);
+  } else if (compareSelection.selected.size < MAX_COMPARE_DOCS) {
+    compareSelection.selected.add(docId);
+  }
+  renderDocTree();
+}
+
+function confirmCompareSelection() {
+  if (!compareSelection || compareSelection.selected.size < 2) return;
+  var chosen = compareSelection.docs.filter(function(d) { return compareSelection.selected.has(d.doc_id); });
+  compareSelection = null;
+  renderDocTree();
+  runCompare(chosen);
+}
+
+function renderCompareBar() {
+  var existing = document.getElementById('compareBar');
+  if (existing) existing.remove();
+  if (!compareSelection) return;
+  var n = compareSelection.selected.size;
+  var bar = document.createElement('div');
+  bar.id = 'compareBar';
+  bar.className = 'compare-bar';
+  bar.innerHTML =
+    '<span>' + svgIcon('columns', 14) + ' Pick 2–' + MAX_COMPARE_DOCS + ' documents to compare (' + n + ' selected)</span>' +
+    '<button class="compare-bar-btn" ' + (n < 2 ? 'disabled' : '') + ' onclick="confirmCompareSelection()">Compare ' + n + '</button>' +
+    '<button class="compare-bar-cancel" onclick="cancelCompareSelection()">Cancel</button>';
+  document.body.appendChild(bar);
+}
+
+function useSuggestion(el) {
+  var text = el.querySelector('.suggestion-text').textContent;
+  document.getElementById('welcomeInput').value = text;
+  sendFromWelcome();
+}
+
+// ── Welcome <-> conversation mode ────────────────────────────────────────────
+
+function enterConversationMode() {
+  if (conversationStarted) return;
+  conversationStarted = true;
+  document.getElementById('welcomeScreen').style.display = 'none';
+  document.getElementById('messages').classList.add('show');
+  document.getElementById('inputBar').classList.add('show');
+}
+
+function backToWelcome() {
+  conversationStarted = false;
+  chatHistory = [];
+  activeDocumentIds = null;
+  document.getElementById('messages').classList.remove('show');
+  document.getElementById('messages').innerHTML = '';
+  document.getElementById('inputBar').classList.remove('show');
+  document.getElementById('welcomeScreen').style.display = 'flex';
+}
+
+// ── Recent conversations (session-local — no backend persistence exists) ────
+
+const RECENT_KEY = 'kb_recent_questions';
+function loadRecent() {
+  try { return JSON.parse(sessionStorage.getItem(RECENT_KEY) || '[]'); } catch(e) { return []; }
+}
+function pushRecent(question) {
+  var list = loadRecent().filter(function(q) { return q !== question; });
+  list.unshift(question);
+  list = list.slice(0, 6);
+  sessionStorage.setItem(RECENT_KEY, JSON.stringify(list));
+  renderRecent();
+}
+function renderRecent() {
+  var list = loadRecent();
+  var wrap = document.getElementById('recentWrap');
+  // A single entry is almost always just the one suggestion card the user
+  // clicked — showing it back as "recent" reads as noise, not a real history.
+  if (list.length < 2) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+  document.getElementById('recentList').innerHTML = list.map(function(q) {
+    return '<div class="recent-item" role="button" tabindex="0" onclick="rerunRecent(this)">' + svgIcon('message-circle', 14)
+      + '<span class="recent-item-text">' + esc(q) + '</span></div>';
+  }).join('');
+}
+function rerunRecent(el) {
+  var text = el.querySelector('.recent-item-text').textContent;
+  document.getElementById('welcomeInput').value = text;
+  sendFromWelcome();
+}
+
+function sendFromWelcome() {
+  const input = document.getElementById('welcomeInput');
+  const text = input.value.trim();
+  if (!text || isTyping) return;
+  input.value = '';
+  enterConversationMode();
+  runQuery(text, 3);
+}
 
 // ── Messages ──────────────────────────────────────────────────────────────────
 
 function addUserMessage(text) {
-  hideEmpty();
   const c = document.getElementById('messages');
   const d = document.createElement('div');
-  d.className = 'message user';
-  d.innerHTML = '<div class="bubble">' + esc(text) + '</div>';
+  d.className = 'msg-user';
+  d.innerHTML = '<div class="msg-user-bubble">' + esc(text) + '</div>';
   c.appendChild(d); scrollBottom();
 }
 
 function showTyping() {
-  hideEmpty();
   const c = document.getElementById('messages');
   const d = document.createElement('div');
-  d.className = 'message bot'; d.id = 'typingIndicator';
+  d.className = 'typing-row'; d.id = 'typingIndicator';
   d.innerHTML = '<div class="typing-bubble"><span></span><span></span><span></span></div>';
   c.appendChild(d); scrollBottom();
 }
 
 function hideTyping() { const t = document.getElementById('typingIndicator'); if (t) t.remove(); }
 
-function addBotMessage(text, sources) {
-  const c = document.getElementById('messages');
-  const d = document.createElement('div');
-  d.className = 'message bot';
-  let html = '<div class="bubble">' + esc(text) + '</div>';
-  if (sources && sources.length > 0) {
-    html += '<div class="sources"><div class="sources-label">Sources</div><div class="sources-grid">';
-    sources.forEach(function(s) {
-      const score = s.relevance_score ? Math.round(s.relevance_score * 100) + '%' : '';
-      const doc = Object.values(docsData).find(function(x){ return x.doc_id === s.document; }) || {};
-      const fname = doc.filename ? doc.filename.replace(/\.pdf$/i, '') : (s.document || '?');
-      const short = fname.length > 22 ? fname.slice(0, 20) + '...' : fname;
-      const docIdSafe = JSON.stringify(s.document || '').replace(/"/g, "'");
-      const chunkSafe = JSON.stringify(s.chunk_text || s.excerpt || '').replace(/"/g, "'");
-      const page = s.page || 1;
-      html += '<div class="source-item" onclick="openPdfViewer(' + docIdSafe + ',' + page + ',' + chunkSafe + ')">';
-      html += '<div class="source-meta">';
-      html += '<span class="source-filename" title="' + esc(doc.filename || '') + '">' + esc(short) + '</span>';
-      html += '<span class="source-page">p. ' + (s.page || '?') + '</span>';
-      html += '</div>';
-      html += '<span class="source-text">' + esc(s.excerpt || '') + '</span>';
-      if (score) html += '<span class="source-score">' + score + '</span>';
-      html += '<span style="font-size:10px;color:var(--accent);flex-shrink:0">&#8599;</span>';
-      html += '</div>';
-    });
-    html += '</div></div>';
-  }
-  d.innerHTML = html; c.appendChild(d); scrollBottom();
-}
-
 function addErrorMessage(text) {
   const c = document.getElementById('messages');
   const d = document.createElement('div');
-  d.className = 'message bot';
-  d.innerHTML = '<div class="error-msg">' + esc(text) + '</div>';
+  d.innerHTML = '<div class="error-msg">' + svgIcon('alert-triangle', 15) + '<span>' + esc(text) + '</span></div>';
   c.appendChild(d); scrollBottom();
 }
 
 // ── Sources store (avoids inline-onclick escaping bugs) ───────────────────────
 var _sourcesStore = [];
 
-function buildSourcesHtml(sources) {
+function buildSourcesColumn(sources) {
   if (!sources || !sources.length) return '';
   const baseIdx = _sourcesStore.length;
   sources.forEach(function(s) { _sourcesStore.push(s); });
 
-  let html = '<div class="sources"><div class="sources-label">Sources</div><div class="sources-grid">';
+  let html = '<div class="sources-col"><div class="sources-col-label">Sources</div>';
   sources.forEach(function(s, i) {
     const idx = baseIdx + i;
-    const score = s.relevance_score ? Math.round(s.relevance_score * 100) + '%' : '';
     const doc = Object.values(docsData).find(function(x){ return x.doc_id === s.document; }) || {};
     const fname = doc.filename ? doc.filename.replace(/\.pdf$/i, '') : (s.document || '?');
-    const short = fname.length > 22 ? fname.slice(0, 20) + '...' : fname;
-    html += '<div class="source-item" data-src="' + idx + '">';
-    html += '<div class="source-meta">';
-    html += '<span class="source-filename" title="' + esc(doc.filename || '') + '">' + esc(short) + '</span>';
-    html += '<span class="source-page">p. ' + (s.page || '?') + '</span>';
-    html += '</div>';
-    html += '<span class="source-text">' + esc(s.excerpt || '') + '</span>';
-    if (score) html += '<span class="source-score">' + score + '</span>';
-    html += '<span style="font-size:10px;color:var(--accent);flex-shrink:0">&#8599;</span>';
-    html += '</div>';
+    html += '<div class="source-card" data-src="' + idx + '" role="button" tabindex="0">';
+    html += '<div class="source-num">' + (i + 1) + '</div>';
+    html += '<div class="source-body">';
+    html += '<div class="source-top"><span class="source-filename" title="' + esc(doc.filename || '') + '">' + esc(fname) + '</span>';
+    html += '<span class="source-page">p.' + (s.page || '?') + '</span></div>';
+    html += '<div class="source-excerpt">' + esc(s.excerpt || '') + '</div>';
+    html += '<div class="source-open">' + svgIcon('external-link', 11) + ' Open document</div>';
+    html += '</div></div>';
   });
-  html += '</div></div>';
+  html += '</div>';
   return html;
+}
+
+function buildAnswerBlock(sources) {
+  const hasSources = sources && sources.length > 0;
+  const d = document.createElement('div');
+  d.className = 'answer-block' + (hasSources ? '' : ' no-sources');
+  const answerCard = document.createElement('div');
+  answerCard.className = 'answer-card';
+  const answerText = document.createElement('div');
+  answerText.className = 'answer-text';
+  answerCard.appendChild(answerText);
+  d.appendChild(answerCard);
+  return { wrap: d, answerCard: answerCard, answerText: answerText };
+}
+
+function finishAnswerBlock(wrap, answerCard, sources, fullText) {
+  const actions = document.createElement('div');
+  actions.className = 'answer-actions';
+  actions.innerHTML =
+    '<button class="answer-action" onclick="copyAnswer(this)">' + svgIcon('file', 12) + ' Copy</button>' +
+    '<button class="answer-action" onclick="toggleRetrievalPanel()">' + svgIcon('activity', 12) + ' Retrieval details</button>';
+  answerCard.appendChild(actions);
+  answerCard.dataset.fullText = fullText;
+  if (sources && sources.length) {
+    // buildAnswerBlock() had to render single-column before sources were
+    // known (they only arrive after the stream's 'sources' event) — flip
+    // the wrapper into the two-column layout now that we actually have them.
+    wrap.classList.remove('no-sources');
+    wrap.insertAdjacentHTML('beforeend', buildSourcesColumn(sources));
+  }
+}
+
+function copyAnswer(btn) {
+  var card = btn.closest('.answer-card');
+  var text = card ? card.dataset.fullText : '';
+  if (!text) return;
+  navigator.clipboard.writeText(text).then(function() {
+    var original = btn.innerHTML;
+    btn.innerHTML = svgIcon('check', 12) + ' Copied';
+    btn.classList.add('copied');
+    setTimeout(function() { btn.innerHTML = original; btn.classList.remove('copied'); }, 1600);
+  });
 }
 
 // ── Send ──────────────────────────────────────────────────────────────────────
 
 function sendMessage(topK) {
-  if (isTyping) return;
   const input = document.getElementById('chatInput');
   const text = input.value.trim();
-  if (!text) return;
-  input.value = ''; isTyping = true;
+  if (!text || isTyping) return;
+  input.value = '';
+  runQuery(text, topK || 3, activeDocumentIds);
+}
+
+function runQuery(text, topK, documentIds) {
+  if (isTyping) return;
+  isTyping = true;
   topK = topK || 3;
   addUserMessage(text); showTyping();
+  pushRecent(text);
 
   var accum = '';
-  var msgEl = null;
-  var bubbleEl = null;
+  var blockWrap = null;
+  var answerCard = null;
+  var answerTextEl = null;
   var tokenQueue = [];
   var draining = false;
   var pendingSources = null;
@@ -647,12 +1064,9 @@ function sendMessage(topK) {
   function drainQueue() {
     if (!tokenQueue.length) {
       draining = false;
-      // queue emptied — now it's safe to append sources and save history
       if (pendingSources) {
-        if (msgEl) {
-          msgEl.insertAdjacentHTML('beforeend', buildSourcesHtml(pendingSources.sources));
-          scrollBottom();
-        }
+        finishAnswerBlock(blockWrap, answerCard, pendingSources.sources, accum);
+        scrollBottom();
         updateDebugPanel({ sources: pendingSources.sources, debug: pendingSources.debug });
         chatHistory.push({ role: 'user', content: text });
         chatHistory.push({ role: 'assistant', content: accum });
@@ -663,26 +1077,22 @@ function sendMessage(topK) {
     }
     draining = true;
     var token = tokenQueue.shift();
-    if (!msgEl) {
+    if (!blockWrap) {
       hideTyping();
       const c = document.getElementById('messages');
-      msgEl = document.createElement('div');
-      msgEl.className = 'message bot';
-      bubbleEl = document.createElement('div');
-      bubbleEl.className = 'bubble';
-      msgEl.appendChild(bubbleEl);
-      c.appendChild(msgEl);
+      const built = buildAnswerBlock(null);
+      blockWrap = built.wrap; answerCard = built.answerCard; answerTextEl = built.answerText;
+      c.appendChild(blockWrap);
     }
     accum += token;
-    bubbleEl.textContent = accum;
+    answerTextEl.textContent = accum;
     scrollBottom();
     setTimeout(drainQueue, 18);
   }
 
   var folderFilter = _folderFilterValue || null;
-  apiQueryStream(text, topK, currentModel, chatHistory, folderFilter,
+  apiQueryStream(text, topK, currentModel, chatHistory, folderFilter, documentIds,
     function onToken(token) {
-      // Strip CJK characters that leak from qwen model
       var clean = token.replace(/[\u3000-\u9fff\uf900-\ufaff\ufe30-\ufe4f\uff00-\uffef]/g, '');
       if (!clean) return;
       tokenQueue.push(clean);
@@ -690,17 +1100,14 @@ function sendMessage(topK) {
     },
     function onSources(sources, debug) {
       pendingSources = { sources: sources, debug: debug };
-      // The 'sources' SSE event can arrive after the token queue has already
-      // fully drained (draining stops rescheduling itself once empty), so
-      // nothing would ever re-check pendingSources without this nudge.
       if (!draining) drainQueue();
     },
     function onDone(err) {
       if (err) {
         hideTyping();
-        if (msgEl && bubbleEl) {
+        if (answerTextEl) {
           var hint = err.partial ? 'Ответ оборвался' : 'Ошибка соединения';
-          bubbleEl.textContent += '\n\n⚠ ' + hint;
+          answerTextEl.textContent += '\n\n⚠ ' + hint;
         } else {
           addErrorMessage(err.partial ? 'Ответ оборвался. Попробуйте ещё раз.' : 'Нет соединения с сервером.');
         }
@@ -713,13 +1120,14 @@ function sendMessage(topK) {
   );
 }
 
-// ── Debug ─────────────────────────────────────────────────────────────────────
+// ── Retrieval details (formerly "debug") ─────────────────────────────────────
 
-let debugVisible = false;
-function toggleDebug() {
+function toggleRetrievalPanel() {
   debugVisible = !debugVisible;
-  document.getElementById('debugPanel').classList.toggle('open', debugVisible);
-  document.getElementById('debugToggle').classList.toggle('active', debugVisible);
+  document.getElementById('retrievalPanel').classList.toggle('open', debugVisible);
+  document.getElementById('retrievalToggle').classList.toggle('active', debugVisible);
+  var sw = document.getElementById('retrievalSwitch');
+  if (sw) sw.classList.toggle('on', debugVisible);
 }
 function updateDebugPanel(data) {
   if (!data.debug) return;
@@ -731,19 +1139,18 @@ function updateDebugPanel(data) {
   document.getElementById('dbgTotal').textContent = d.total_ms || '—';
   document.getElementById('dbgChunks').textContent = (d.chunks_after_rerank || '?') + '/' + (d.chunks_retrieved || '?');
   document.getElementById('dbgScore').textContent = d.best_score != null ? d.best_score.toFixed(3) + ' / avg ' + (d.avg_score || 0).toFixed(3) : '—';
-  document.getElementById('dbgReranker').textContent = d.reranker || '—';
-  document.getElementById('dbgModel').textContent = data.model || '';
+  document.getElementById('dbgModel').textContent = d.model || currentModel || '';
   document.getElementById('dbgQueries').innerHTML = (d.expanded_queries || []).map(function(q, i) {
-    return '<div class="debug-query-item">' + (i === 0 ? '&#8594; ' : '&#8627; ') + esc(q) + '</div>';
+    return '<div class="dbg-query-item' + (i === 0 ? ' primary' : '') + '">' + esc(q) + '</div>';
   }).join('');
   document.getElementById('dbgChunksList').innerHTML = (d.top_chunks || []).map(function(c) {
     const pct = Math.min(100, c.score * 100).toFixed(0);
-    return '<div class="debug-chunk-item">'
-      + '<span class="debug-chunk-score">' + c.score.toFixed(3) + '</span>'
-      + '<div class="score-bar-wrap"><div class="score-bar" style="width:' + pct + '%"></div></div>'
-      + '<span class="debug-chunk-source ' + (c.source||'') + '">' + esc(c.source || 'vec') + '</span>'
-      + '<span class="debug-chunk-page">p.' + c.page_num + '</span>'
-      + '<span class="debug-chunk-text">' + esc(c.text_preview) + '</span>'
+    return '<div class="dbg-chunk-item">'
+      + '<span class="dbg-chunk-score">' + c.score.toFixed(3) + '</span>'
+      + '<div class="dbg-score-bar-wrap"><div class="dbg-score-bar" style="width:' + pct + '%"></div></div>'
+      + '<span class="dbg-chunk-source ' + (c.source||'') + '">' + esc(c.source || 'vec') + '</span>'
+      + '<span class="dbg-chunk-page">p.' + c.page_num + '</span>'
+      + '<span class="dbg-chunk-text">' + esc(c.text_preview) + '</span>'
       + '</div>';
   }).join('');
 }
@@ -751,10 +1158,28 @@ function updateDebugPanel(data) {
 // ── PDF viewer ────────────────────────────────────────────────────────────────
 
 if (typeof pdfjsLib !== 'undefined') {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdfjs/pdf.worker.min.js';
 }
 let pdfDoc = null, currentPage = 1, currentDocId = null, currentHighlightText = null, isRendering = false;
 let currentPdfPage = null, currentVp = null;
+// pendingPage previously stored only a bare page number — opening a
+// *different* document at the same page number it was already showing (a
+// coincidence, not an edge case: "page 1" is the common case) made
+// `next !== pageNum` false, so the queued render was silently dropped
+// instead of ever firing. renderGen is bumped on every render *request*
+// (open or page-change); any async step checks it against the current
+// value and bails if a newer request has since superseded it — this is
+// what actually distinguishes "same page, different document" rather than
+// page number ever could.
+let pendingRender = null; // { docId, pageNum, gen } queued while a render is in flight
+let renderGen = 0;
+
+function setPdfNavDisabled(disabled) {
+  const prev = document.getElementById('pdfPrevBtn');
+  const next = document.getElementById('pdfNextBtn');
+  if (prev) prev.disabled = disabled;
+  if (next) next.disabled = disabled;
+}
 
 async function openPdfViewer(docId, page, highlightText) {
   const doc = docsData[docId] || {};
@@ -763,51 +1188,137 @@ async function openPdfViewer(docId, page, highlightText) {
   document.getElementById('pdfOverlay').classList.add('show');
   currentHighlightText = highlightText;
   document.getElementById('pdfCitation').style.display = 'none';
+  const myGen = ++renderGen; // every open/page-change request gets its own token
   if (currentDocId !== docId) {
-    currentDocId = docId; pdfDoc = null;
+    currentDocId = docId; pdfDoc = null; pendingRender = null;
     document.getElementById('pdfPageWrapper').style.display = 'none';
     document.getElementById('pdfLoading').style.display = 'flex';
-    document.getElementById('pdfLoading').innerHTML = '<div style="font-size:22px">&#9203;</div><div>Loading...</div>';
+    document.getElementById('pdfLoading').innerHTML = svgIcon('file-text', 26) + '<div>Loading…</div>';
     try {
-      pdfDoc = await pdfjsLib.getDocument(getPdfUrl(docId)).promise;
+      const loaded = await pdfjsLib.getDocument(getPdfLoadOptions(docId)).promise;
+      if (myGen !== renderGen) return; // a newer open/page-change fired while this PDF was loading
+      pdfDoc = loaded;
       document.getElementById('pdfLoading').style.display = 'none';
       document.getElementById('pdfPageWrapper').style.display = 'inline-block';
     } catch(e) {
-      document.getElementById('pdfLoading').innerHTML = '<div style="font-size:22px">&#10060;</div><div>Failed to load PDF</div>';
+      if (myGen !== renderGen) return;
+      document.getElementById('pdfLoading').innerHTML = svgIcon('alert-triangle', 26) + '<div>Failed to load PDF</div>';
       return;
     }
   }
   currentPage = page || 1;
-  await renderPage(currentPage);
+  await renderPage(currentPage, docId, myGen);
 }
 
-async function renderPage(pageNum) {
-  if (!pdfDoc || isRendering) return;
+async function renderPage(pageNum, docId, gen) {
+  if (!pdfDoc || gen !== renderGen) return; // superseded before we even started
+  if (isRendering) {
+    // Don't drop the request — a fast double-click on "next" (or opening a
+    // different source while a render is in flight) used to just vanish
+    // silently. Remember the latest ask (which document, which page, which
+    // generation) and pick it up once the in-flight render finishes.
+    pendingRender = { docId, pageNum, gen };
+    return;
+  }
   isRendering = true;
-  const page = await pdfDoc.getPage(pageNum);
-  const canvas = document.getElementById('pdfCanvas');
-  const textLayerDiv = document.getElementById('pdfTextLayer');
-  const wrapper = document.getElementById('pdfPageWrapper');
-  const container = document.getElementById('pdfCanvasContainer');
-  const scale = (container.clientWidth - 28) / page.getViewport({ scale: 1 }).width;
-  const vp = page.getViewport({ scale });
+  setPdfNavDisabled(true);
+  try {
+    const page = await pdfDoc.getPage(pageNum);
+    if (gen !== renderGen) return; // superseded mid-fetch — don't touch the canvas for a stale request
+    const canvas = document.getElementById('pdfCanvas');
+    const wrapper = document.getElementById('pdfPageWrapper');
+    const container = document.getElementById('pdfCanvasContainer');
+    const scale = (container.clientWidth - 28) / page.getViewport({ scale: 1 }).width;
+    const vp = page.getViewport({ scale });
 
-  canvas.width = vp.width;
-  canvas.height = vp.height;
-  wrapper.style.width = vp.width + 'px';
-  wrapper.style.height = vp.height + 'px';
+    canvas.width = vp.width;
+    canvas.height = vp.height;
+    wrapper.style.width = vp.width + 'px';
+    wrapper.style.height = vp.height + 'px';
 
-  await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+    await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+    if (gen !== renderGen) return; // superseded while the canvas was painting
 
-document.getElementById('pdfPageInfo').textContent = 'Page ' + pageNum + ' of ' + pdfDoc.numPages;
-  currentPdfPage = page;
-  currentVp = vp;
-  if (currentHighlightText) doHighlight(currentHighlightText);
-  isRendering = false;
-  wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('pdfPageInfo').textContent = 'Page ' + pageNum + ' of ' + pdfDoc.numPages;
+    currentPdfPage = page;
+    currentVp = vp;
+    if (currentHighlightText) doHighlight(currentHighlightText, gen);
+    wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } catch (e) {
+    console.warn('PDF render failed:', e);
+  } finally {
+    // Always clears, even on a PDF.js render error — the old code only set
+    // this on the success path, so one failed render permanently wedged
+    // page navigation for the rest of the session (isRendering stuck true).
+    isRendering = false;
+    setPdfNavDisabled(false);
+    // Must live *inside* finally, not after the try/finally statement — a
+    // `return` in the try block (the "superseded" bail-outs above) runs
+    // finally and then exits the function immediately; code placed after
+    // the whole try/finally never executes on that path, so a render that
+    // got superseded never drained its own pendingRender. It looked fine
+    // whenever the try body ran to completion normally and only broke on
+    // exactly the case this exists to handle.
+    const next = pendingRender;
+    pendingRender = null;
+    if (next && next.gen === renderGen) {
+      void renderPage(next.pageNum, next.docId, next.gen);
+    }
+  }
 }
 
-async function doHighlight(searchText) {
+// The backend deliberately highlights the WHOLE retrieved chunk (the actual
+// evidence handed to the LLM), not a short quote — see
+// split_for_highlight_search() in ingestion/pdf_parser.py. It searches that
+// chunk in ~110-char word-bounded segments so formatting quirks in one
+// segment don't break the rest, which means a single chunk can come back as
+// many small rects: adjacent words on the same line as separate boxes, with
+// visible gaps between them. That's a rendering artifact, not a sign the
+// wrong text matched — merge same-line rects into continuous bands so a
+// highlighted line reads as one contiguous passage instead of confetti.
+function mergeHighlightRects(rects) {
+  // Group by vertical overlap, not exact y0/y1 match — adjacent segment
+  // matches on the same visual line routinely differ by a few px in height
+  // (different glyphs, bold vs. regular runs), so an exact-coordinate check
+  // under-merges. >=50% overlap of the shorter rect's height is "same line".
+  function yOverlapFrac(a, b) {
+    const inter = Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0);
+    const minH = Math.min(a.y1 - a.y0, b.y1 - b.y0);
+    return minH > 0 ? Math.max(0, inter) / minH : 0;
+  }
+  const sorted = rects.slice().sort(function(a, b) { return a.y0 - b.y0 || a.x0 - b.x0; });
+  const lines = [];
+  sorted.forEach(function(r) {
+    const line = lines.find(function(l) { return yOverlapFrac(l.bbox, r) >= 0.5; });
+    if (line) {
+      line.items.push(r);
+      line.bbox.y0 = Math.min(line.bbox.y0, r.y0);
+      line.bbox.y1 = Math.max(line.bbox.y1, r.y1);
+    } else {
+      lines.push({ bbox: { y0: r.y0, y1: r.y1 }, items: [r] });
+    }
+  });
+  const merged = [];
+  lines.forEach(function(line) {
+    const items = line.items.sort(function(a, b) { return a.x0 - b.x0; });
+    let cur = null;
+    items.forEach(function(r) {
+      // ~20px gap ≈ a word space at typical body-text scale — bridge it so
+      // "STATE OF ASSAM" merges into one band instead of three.
+      if (cur && r.x0 - cur.x1 < 20) {
+        cur.x1 = Math.max(cur.x1, r.x1);
+        cur.y0 = Math.min(cur.y0, r.y0);
+        cur.y1 = Math.max(cur.y1, r.y1);
+      } else {
+        cur = { x0: r.x0, y0: r.y0, x1: r.x1, y1: r.y1 };
+        merged.push(cur);
+      }
+    });
+  });
+  return merged;
+}
+
+async function doHighlight(searchText, gen) {
   document.querySelectorAll('.rag-highlight-box').forEach(el => el.remove());
   const citation = document.getElementById('pdfCitation');
   const citationText = document.getElementById('pdfCitationText');
@@ -818,8 +1329,14 @@ async function doHighlight(searchText) {
   citation.style.display = 'flex';
 
   if (!currentDocId || !currentPage) return;
+  const docId = currentDocId, page = currentPage; // snapshot — these globals can move on before the fetch below resolves
   try {
-    const data = await apiGetHighlights(currentDocId, searchText, currentPage);
+    const data = await apiGetHighlights(docId, searchText, page);
+    // A slow highlight fetch for a page/document the user has since
+    // navigated away from used to draw its boxes on top of whatever's on
+    // screen now regardless — gen (passed in from the renderPage() call
+    // this highlight belongs to) makes a stale response a no-op instead.
+    if (gen !== undefined && gen !== renderGen) return;
     if (!data || !data.rects || !data.rects.length || !data.page_width) return;
 
     const canvas = document.getElementById('pdfCanvas');
@@ -827,7 +1344,7 @@ async function doHighlight(searchText) {
     const scaleX = canvas.width / data.page_width;
     const scaleY = canvas.height / data.page_height;
 
-    data.rects.forEach(function(r) {
+    mergeHighlightRects(data.rects).forEach(function(r) {
       const box = document.createElement('div');
       box.className = 'rag-highlight-box';
       box.style.left   = (r.x0 * scaleX) + 'px';
@@ -849,7 +1366,8 @@ async function changePage(delta) {
   const np = currentPage + delta;
   if (np < 1 || np > pdfDoc.numPages) return;
   currentPage = np;
-  await renderPage(currentPage);
+  const myGen = ++renderGen;
+  await renderPage(currentPage, currentDocId, myGen);
 }
 
 function closePdfPanel() {
@@ -869,7 +1387,7 @@ async function openTextViewer(docId, charStart, charEnd) {
   document.getElementById('txtPanel').classList.add('open');
   document.getElementById('pdfOverlay').classList.add('show');
   const body = document.getElementById('txtPanelBody');
-  body.textContent = 'Loading...';
+  body.textContent = 'Loading…';
   try {
     const data = await apiGetDocumentContent(docId);
     const text = data.text || '';
@@ -897,6 +1415,7 @@ function closeTxtPanel() {
 // ── API Key ───────────────────────────────────────────────────────────────────
 
 function openKeyModal() {
+  document.getElementById('settingsPanel').classList.remove('show');
   document.getElementById('keyInput').value = localStorage.getItem('api_key') || '';
   document.getElementById('keyOverlay').classList.add('show');
   document.getElementById('keyInput').focus();
@@ -917,6 +1436,8 @@ function saveApiKey() {
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 
+injectStaticIcons();
+renderRecent();
 if (!localStorage.getItem('api_key')) {
   openKeyModal();
 }

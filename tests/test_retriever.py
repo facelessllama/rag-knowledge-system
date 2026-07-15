@@ -27,6 +27,7 @@ class FakeVectorStore:
         self.citation_number_index = citation_number_index or {}  # (num, year) -> list[chunk]
 
     def hybrid_search(self, query_vector, query_text, top_k=5, doc_filter=None, folder_filter=None):
+        self.last_doc_filter = doc_filter  # tests assert against this to confirm document_ids was forwarded
         return [dict(r) for r in self.results_by_query.get(query_text, [])]
 
     def neighbor_chunks(self, document_id, chunk_indices):
@@ -461,6 +462,79 @@ async def test_retrieve_expanded_no_identity_signal_in_query_is_a_no_op():
     results = await retriever.retrieve_expanded(["a generic question"], top_k=5)
 
     assert "identity_match" not in results[0]
+
+
+# ── document_ids scope (the "compare N specific documents" filter) ──────────
+# Previously "compare" only ever *hinted* at scope via filenames spelled out
+# in the question text plus a folder filter — hybrid search (and the
+# reranker) stayed free to pull in other documents from the same folder.
+
+async def test_retrieve_expanded_forwards_document_ids_to_hybrid_search_as_doc_filter():
+    vs = FakeVectorStore(results_by_query={"compare a and b": []})
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    await retriever.retrieve_expanded(["compare a and b"], top_k=5, document_ids=["d1", "d2"])
+
+    assert sorted(vs.last_doc_filter) == ["d1", "d2"]
+
+
+async def test_retrieve_expanded_no_document_ids_means_no_doc_filter():
+    vs = FakeVectorStore(results_by_query={"a generic question": []})
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    await retriever.retrieve_expanded(["a generic question"], top_k=5)
+
+    assert vs.last_doc_filter is None
+
+
+async def test_retrieve_expanded_document_ids_scopes_hybrid_search_results():
+    in_scope = _chunk("c1", "d1", 0, 0.5)
+    vs = FakeVectorStore(results_by_query={"q": [in_scope]})
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    results = await retriever.retrieve_expanded(["q"], top_k=5, document_ids=["d1", "d2"])
+
+    assert {r["document_id"] for r in results} == {"d1"}
+
+
+async def test_retrieve_expanded_document_ids_drops_out_of_scope_identity_index_hit():
+    """The case/CELEX/citation-number index lookups are exact-key fetches,
+    not searches — they don't take a doc filter themselves (see
+    vector_db/qdrant_client.py::chunks_by_celex_id and friends), so an
+    identity match for a document outside document_ids has to be caught
+    after the fact instead. Two documents sharing a CELEX ID doesn't happen
+    in practice, but the safety-net filter shouldn't care why an
+    out-of-scope hit showed up — it should be dropped either way."""
+    out_of_scope = _chunk("indexed", "d_other", 0, 0.0, text="the actual regulation text")
+    out_of_scope["celex_id"] = "31997R0955"
+    vs = FakeVectorStore(
+        results_by_query={"What is 31997R0955 about?": []},
+        celex_id_index={"31997R0955": [out_of_scope]},
+    )
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    results = await retriever.retrieve_expanded(
+        ["What is 31997R0955 about?"], top_k=5, document_ids=["d1", "d2"]
+    )
+
+    assert "indexed" not in {r["chunk_id"] for r in results}
+    assert "d_other" not in {r["document_id"] for r in results}
+
+
+async def test_retrieve_expanded_document_ids_keeps_in_scope_identity_index_hit():
+    in_scope = _chunk("indexed", "d1", 0, 0.0, text="the actual regulation text")
+    in_scope["celex_id"] = "31997R0955"
+    vs = FakeVectorStore(
+        results_by_query={"What is 31997R0955 about?": []},
+        celex_id_index={"31997R0955": [in_scope]},
+    )
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    results = await retriever.retrieve_expanded(
+        ["What is 31997R0955 about?"], top_k=5, document_ids=["d1", "d2"]
+    )
+
+    assert "indexed" in {r["chunk_id"] for r in results}
 
 
 # ── promote_identity_matches ─────────────────────────────────────────────────

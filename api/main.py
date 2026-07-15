@@ -12,12 +12,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from api.telegram import router as telegram_router
-from fastapi import FastAPI, APIRouter, UploadFile, File, Form, HTTPException, Security, Depends
+from fastapi import FastAPI, APIRouter, UploadFile, File, Form, HTTPException, Security, Depends, Header
 from fastapi.security import APIKeyHeader
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import StreamingResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import json
 import aiofiles
 import hashlib
@@ -300,8 +300,27 @@ class ChatTurn(BaseModel):
 
 class QueryRequest(BaseModel):
     question: str
-    top_k: Optional[int] = 5
+    # Hard cap regardless of caller — retrieve_expanded() sizes its candidate
+    # pool off this (max(20, top_k*5)), so an unbounded top_k (e.g. a
+    # frontend "compare all documents in a 150-doc folder" bug computing
+    # top_k = doc_count*4) turns into a multi-thousand-candidate rerank pass.
+    # MAX_CONTEXT_CHARS (prompt_builder.py) already truncates the prompt to
+    # ~3000 tokens regardless, so nothing above this cap could even reach
+    # the LLM — it would just be wasted retrieval/rerank work.
+    # Deliberately not Optional[int] — Optional[int] = Field(..., ge=1, le=20)
+    # only enforces ge/le when a value is actually given; an explicit
+    # "top_k": null in the request body still passes validation as None,
+    # and request.top_k * 5 downstream then throws a bare TypeError -> 500.
+    # A plain int with a default rejects null outright (422) instead.
+    top_k: int = Field(default=5, ge=1, le=20)
     document_id: Optional[str] = None
+    # Restricts retrieval to exactly these documents — used by the frontend's
+    # "compare N specific documents" flow. Previously that flow only ever
+    # *hinted* at scope via filenames spelled out in the question text plus
+    # a folder filter, which left hybrid search (and the reranker) free to
+    # pull in other documents from the same folder — see
+    # rag/retriever.py::retrieve_expanded's document_ids param.
+    document_ids: Optional[list[str]] = None
     chat_history: Optional[list[ChatTurn]] = []
     model: Optional[str] = None
     rerank: Optional[bool] = True
@@ -495,7 +514,7 @@ async def _do_query(request: QueryRequest):
 
     t0 = time.time()
     expanded_queries = await query_expander.expand(request.question)
-    chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None)
+    chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None, document_ids=request.document_ids or None)
     retrieval_ms = int((time.time() - t0) * 1000)
 
     if trace:
@@ -618,7 +637,7 @@ async def query_stream(request: QueryRequest):
             expansion_ms = int((time.time() - t0) * 1000)
 
             t1 = time.time()
-            chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None)
+            chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None, document_ids=request.document_ids or None)
             retrieval_ms = int((time.time() - t1) * 1000)
 
             retrieval_scores = [c.get("score", 0) for c in chunks] if chunks else []
@@ -733,10 +752,12 @@ async def query_stream(request: QueryRequest):
                 'best_score': float(score_meta['best']),
                 'avg_score': float(score_meta['avg']),
                 'reranker': reranker_type,
+                'model': request.model or generator.model,
                 'top_chunks': [
                     {
                         'chunk_id': str(c.get('chunk_id', '')),
                         'document_id': str(c.get('document_id', '')),
+                        'page_num': c.get('page_num'),
                         'score': float(c.get('rerank_score', c.get('score', 0))),
                         'source': str(c.get('source', '')),
                         'text_preview': str(c.get('text', ''))[:100],
@@ -948,10 +969,14 @@ async def get_pdf_highlights(doc_id: str, text: str = "", page: int = 1):
 
 
 @app.get("/pdf/{doc_id}")
-async def get_pdf(doc_id: str, key: Optional[str] = None):
-    """PDF открывается напрямую браузером/PDF.js — принимает ключ через query ?key="""
+async def get_pdf(doc_id: str, key: Optional[str] = None, x_api_key: Optional[str] = Header(default=None)):
+    """PDF.js fetches this via XHR/fetch (not a raw browser navigation), so it
+    can send X-API-Key like every other endpoint — prefer that over the
+    ?key= query param, which lands in browser history and server access
+    logs. The query param is kept only as a fallback for any caller that
+    can't set a header (e.g. a plain <a href> opened in a new tab)."""
     from fastapi.responses import FileResponse
-    if API_KEY and key != API_KEY:
+    if API_KEY and key != API_KEY and x_api_key != API_KEY:
         raise HTTPException(status_code=401, detail="Invalid or missing API key")
     if doc_id not in documents_registry:
         raise HTTPException(404, "Document not found")
