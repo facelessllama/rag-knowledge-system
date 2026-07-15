@@ -36,7 +36,7 @@
     "best_score": 6.512,
     "answer": "32004R2113 was adopted on 10 December 2004. This information is consistent across multiple documents related to this regulation, indicating that the adoption date is the same in all cases provided in the context.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -120,7 +120,7 @@
     "best_score": 6.8772,
     "answer": "32002R0431, Commission Regulation (EC) No 431 2002 of 8 March 2002, was adopted on 8 March 2002. This information is consistent across the provided documents for 32002R0431.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -162,7 +162,7 @@
     "best_score": 6.5013,
     "answer": "31991D0404 was adopted on 19 July 1991, as stated in the document: \"91/404/EEC: Commission Decision of 19 July 1991 reallocating the sixth European Development Fund (EDF) appropriations not yet committed from non-programmable resources for the overseas countries and territories\".",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -204,7 +204,7 @@
     "best_score": 6.4573,
     "answer": "Document 31993R3064 states that it was adopted on 5 November 1993. This information is consistent across all instances of this document in the provided context.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -246,7 +246,7 @@
     "best_score": 6.5287,
     "answer": "31998D0091, which is Commission Decision of 9 January 1998 amending Decision 80/804 EEC concerning animal health conditions and veterinary certification for the importation of fresh meat from Canada, was adopted on 9 January 1998.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -288,7 +288,7 @@
     "best_score": 6.4104,
     "answer": "32014D0613(01) was adopted on 12 June 2014. This information is explicitly stated in the provided context for Document 32014D0613(01).",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -316,7 +316,7 @@
     "best_score": 5.3257,
     "answer": "Regulation 32003R0592 concerns the amendment of the corrective amount applicable to the refund on cereals. Specifically, it states that the corrective amount was previously fixed by Commission Regulation (EC) No 420/2003. The current regulation proposes to alter this amount based on current and fore",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -330,7 +330,7 @@
     "best_score": 6.1925,
     "answer": "32004L0020, Commission Directive 2004/20/EC of 2 March 2004, was adopted on 2 March 2004.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -344,7 +344,7 @@
     "best_score": 4.8132,
     "answer": "32007D0418 is about setting up the High Level Group on the Competitiveness of the Chemicals Industry in the European Union. The decision outlines the primary task of the group, which is to conduct economic and statistical analysis of factors determining the rapid structural changes in the chemicals ",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -400,7 +400,7 @@
     "best_score": 5.2332,
     "answer": "Regulation 32003R1385, also known as Commission Regulation (EC) No 1385 2003 of 1 August 2003, concerns fixing quantities for importing bananas into the Community under the tariff quotas for the fourth quarter of 2003. This regulation takes into account the volume of tariff quotas provided for in Ar",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -414,7 +414,7 @@
     "best_score": 5.4362,
     "answer": "Document 31988R3833 - Commission Regulation (EEC) No 3833 88 of 8 December 1988 states that this regulation was adopted on 8 December 1988.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -442,7 +442,7 @@
     "best_score": 5.7505,
     "answer": "Regulation 32005R1285 concerns the amendment to Council Regulation (EC) No 2368/2002 implementing the Kimberley Process certification scheme for the international trade in rough diamonds. Specifically, it amends the list of participants in the Kimberley Process certification scheme by adding Indones",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -568,7 +568,7 @@
     "best_score": 6.6034,
     "answer": "Regulation 32012R1143, Commission Implementing Regulation (EU) No 1143 2012 of 3 December 2012, concerns the establishment of standard import values for determining the entry price of certain fruit and vegetables. This regulation is based on the Treaty on the Functioning of the European Union and Co",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -750,7 +750,7 @@
     "best_score": 6.449,
     "answer": "Document 31993R0478 - Council Regulation (EEC) No 478 93 of 25 February 1993 establishing ceilings and Community surveillance for imports of certain products originating in the Republics of Croatia, Bosnia-Herzegovina, Slovenia and in the territory of the former Yugoslavian Republic of Macedonia sta",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -778,7 +778,7 @@
     "best_score": 7.0796,
     "answer": "Directive 32005L0041, also known as Directive 2005/41/EC, concerns the approximation of the laws of the Member States relating to anchorages for motor-vehicle safety belts. Specifically, it amends Council Directive 76/115/EEC to include requirements for the compulsory fitting of safety belts and res",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -834,7 +834,7 @@
     "best_score": 5.4698,
     "answer": "32010D0129 was adopted on 1 March 2010, as stated in the document: \"Council Decision 2010/129/CFSP of 1 March 2010 amending Common Position 2008/109/CFSP concerning restrictive measures imposed against Liberia.\"",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -876,7 +876,7 @@
     "best_score": 6.0583,
     "answer": "32002R1312 was adopted on 19 July 2002. This information is consistent across multiple documents, including:\n- [32002R1312 - Commission Regulation (EC) No 1312 2002 of 19 July 2002 fixing export refunds on fruit and vegetables.pdf | Page 1]\n- [32002R1312 - Commission Regulation (EC) No 1312 2002 of ",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -988,7 +988,7 @@
     "best_score": 6.39,
     "answer": "32011R0490 was adopted on 19 May 2011. This information can be found in the context provided, specifically in the document titled \"Commission Implementing Regulation (EU) No 490 2011 of 19 May 2011 not fixing a minimum selling price in response to the twenty-first individual invitation to tender for",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1002,7 +1002,7 @@
     "best_score": 4.8967,
     "answer": "Document 31995R1164 - Commission Regulation (EC) No 1164 95 of 23 May 1995 states that this regulation was adopted on 23 May 1995.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1100,7 +1100,7 @@
     "best_score": 6.8433,
     "answer": "32010D0630, which is the EU Commission Decision of 5 October 2010, was adopted on 5 October 2010. This information is consistent across all the documents that reference this decision.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1114,7 +1114,7 @@
     "best_score": 6.4387,
     "answer": "Regulation 31989R3773 concerns transitional measures relating to spirituous beverages. Specifically, it lays down transitional measures to facilitate the switchover from national to Community rules on the definition and presentation of spirituous beverages.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1212,7 +1212,7 @@
     "best_score": 6.3906,
     "answer": "31999D0562 was adopted on 12 July 1999. This information is explicitly stated in the document: \"Commission Decision of 12 July 1999 on the exchange of letters concerning the certificate referred to in the second indent of point 6 of the Agreement between the European Community and the Republic of Hu",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1408,7 +1408,7 @@
     "best_score": 5.2797,
     "answer": "Document 32005D0125 (2005 125 EC Commission Decision) concerns the continuation in the year 2005 of Community comparative trials and tests on propagating and planting material of Prunus domestica under Council Directive 92/34/EEC. This decision is in accordance with the arrangements set out in Commi",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1422,7 +1422,7 @@
     "best_score": 6.3604,
     "answer": "Document 31993R3347 states that it was adopted on 6 December 1993.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1436,7 +1436,7 @@
     "best_score": 5.8199,
     "answer": "Commission Regulation (EEC) No 828/90 of 30 March 1990 was adopted according to the provided documents.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1492,7 +1492,7 @@
     "best_score": 5.2484,
     "answer": "Regulation 32002R0071, also known as Commission Regulation (EC) No 71/2002 of 15 January 2002, concerns the establishment of unit values for the determination of the customs value of certain perishable goods. This regulation is based on the Treaty establishing the European Community and Council Regu",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1534,7 +1534,7 @@
     "best_score": 5.4805,
     "answer": "Regulation 32013R0319 concerns the derogation, for the marketing year 2012/13, from Article 63(2)(a) of Council Regulation (EC) No 1234/2007. Specifically, it allows Member States to determine dates within larger time limits than those provided for in Article 63(2)(a) of Regulation (EC) No 1234/2007",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1548,7 +1548,7 @@
     "best_score": 5.7375,
     "answer": "Document 31999D0551 states that it is a Commission Decision of 6 August 1999 amending Decision 1999/449/EC on protective measures with regard to contamination by dioxins of certain products of animal origin intended for human or animal consumption. Therefore, the adoption date for 31999D0551 was 6 A",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1618,7 +1618,7 @@
     "best_score": 5.8081,
     "answer": "Regulation 32001R1271 concerns the supply balance for the Canary Islands in rice sector products. Specifically, it amends Regulation (EC) No 1443/98 to establish the supply balance for the Canary Islands in rice sector products for the period from 1 July to 31 December 2001. This regulation ensures ",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1674,7 +1674,7 @@
     "best_score": 5.144,
     "answer": "Document 31986R0480 states that it is a Council Regulation (EEC) No 480/86 adopted on 25 February 1986. This is the only document that provides a specific adoption date, which is 25 February 1986. The other documents do not specify the adoption date of 31986R0480.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1730,7 +1730,7 @@
     "best_score": 5.2775,
     "answer": "31994D0733 is about an EC Council Decision of 11 July 1994. This decision concerns the conclusion of an Agreement in the form of an Exchange of Letters concerning fish, amending the Interim Agreement on trade and trade-related matters between the European Economic Community and European Coal and Ste",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1758,7 +1758,7 @@
     "best_score": 5.7597,
     "answer": "The document 32006D0907 - 2006 907 EC Council Decision of 30 November 2006 appointing a Spanish member to the Committee of the Regions states that this decision was adopted on 30 November 2006.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1772,7 +1772,7 @@
     "best_score": 6.3368,
     "answer": "Document 31993R1383 - COMMISSION REGULATION (EEC) No 1383 93 of 4 June 1993 states that this regulation was adopted on 4 June 1993.\n\nThe other documents do not provide information about the adoption date of 31993R1383, so based on the given context, the answer to the question is 4 June 1993.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1800,7 +1800,7 @@
     "best_score": 5.0978,
     "answer": "Document 32002R1397 states that it was adopted on 31 July 2002.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1842,7 +1842,7 @@
     "best_score": 5.0538,
     "answer": "Document 32006D0387 - 2006 387 EC Council Decision of 15 May 2006 states that the decision was adopted on 15 May 2006.\n\nThe other documents do not provide a specific date for 32006D0387, only discussing related topics or decisions. Therefore, based on the provided context, 32006D0387 was adopted on ",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1926,7 +1926,7 @@
     "best_score": 6.0522,
     "answer": "Document [32013R0177 - Commission Implementing Regulation (EU) No 177 2013 of 28 February 2013 establishing the standard import values for determining the entry price of certain fruit and vegetables] states that this regulation was adopted on 28 February 2013.\n\nThe other documents do not provide a s",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1954,7 +1954,7 @@
     "best_score": 5.5975,
     "answer": "Decision 32004D0663 concerns the amendment of Commission Decision 97/464/EC on the procedure for attesting the conformity of construction products. Specifically, it addresses the simplification of the text by deleting unnecessary references and adds procedures for attesting the conformity in respect",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1968,7 +1968,7 @@
     "best_score": 6.1686,
     "answer": "Document 31994D0305 - 94 305 EC Commission Decision of 16 May 1994 states that this document was adopted on 16 May 1994.\n\nNo other document in the provided context mentions the adoption date of 31994D0305, so based on the given information, the adoption date of 31994D0305 is 16 May 1994.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1982,7 +1982,7 @@
     "best_score": 5.6706,
     "answer": "Decision 31989D0492 concerns financial contributions from the Community for the eradication of foot-and-mouth disease in the Federal Republic of Germany. The decision outlines the measures taken by the German authorities to address the outbreaks and the Community's financial support to help eradicat",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -2052,7 +2052,7 @@
     "best_score": 6.3808,
     "answer": "The document 31986D0008 - 86 8 EEC Council Decision of 20 January 1986 on the conclusion of an Agreement in the form of exchanges of letters between the European Economic Community and the Kingdom Norway concerning reciprocal trade in cheese states that the decision was adopted on 20 January 1986.\n\n",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true

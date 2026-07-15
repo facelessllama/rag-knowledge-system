@@ -1,0 +1,61 @@
+{
+  "_comment": "Shared run configuration for everything under eval/scale_results/. Kept as one sidecar (not per-file) because these values were constant across the whole scale-ladder session and the later re-verification pass -- see per-section notes below for what changed between them and when.",
+  "corpus": {
+    "name": "EURLEX57K",
+    "checkpoints_documents": [1000, 5000, 15000, 30000, 57000],
+    "qdrant_collection": "eu_scale_test",
+    "postgres_db": "ragdb_eu_scale_test",
+    "api_port": 8001
+  },
+  "models": {
+    "embedding_model": "BAAI/bge-m3",
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "llm_model": "qwen2.5:7b"
+  },
+  "retrieval_config": {
+    "top_k_results": 5,
+    "relevance_threshold": 3.0,
+    "max_concurrent_queries": 3
+  },
+  "gpu": "NVIDIA GeForce RTX 3080",
+  "runs": [
+    {
+      "label": "original scale ladder (1k-57k) + citation-index fix",
+      "files": [
+        "golden_at_1000.json", "golden_at_5000.json", "golden_at_15000.json",
+        "golden_at_30000.json", "golden_at_57000.json",
+        "heldout_at_1000.json", "heldout_at_5000.json", "heldout_at_15000.json",
+        "heldout_at_30000.json", "heldout_at_57000.json",
+        "cross_question_at_1000.json", "cross_question_at_57000.json",
+        "id_free_at_57000.json", "id_free_at_57000_post_citation_index.json"
+      ],
+      "commit_range": "5b7e3c5..36f9e33",
+      "date_range": "2026-07-13 .. 2026-07-14",
+      "notes": "recall_hit fields in these files were patched post-hoc on 2026-07-15 (commit 4b50529 and the commit that added this file) to the strict rank<=5 definition -- see 'Recall@5 counting bug' in VALIDATION.md. rank/reciprocal_rank per case were always correct; only the recall_hit boolean was stale."
+    },
+    {
+      "label": "re-verification pass: fixed run_eval.py, regenerated golden/heldout/cross_question (cross-reference multi-answer ground truth) and id_free (hard-negative date-uniqueness fix) datasets, re-run live end to end",
+      "files": [
+        "golden_at_57000.json", "heldout_at_57000.json", "cross_question_at_57000.json",
+        "id_free_at_57000_post_citation_index.json"
+      ],
+      "commit": "4b50529f27f4cd1ef27ec70f42b7f27d913ab93a",
+      "date": "2026-07-15",
+      "notes": "these 4 files at the 57000 checkpoint were re-run live (not just recomputed) against the same corpus/config above after the dataset and script fixes; results matched the offline recomputation from the original run within normal run-to-run LLM variance (+/-1 case out of 150)."
+    },
+    {
+      "label": "citation-number generalization test (new)",
+      "files": ["citation_heldout_at_57000.json"],
+      "commit": "4b50529f27f4cd1ef27ec70f42b7f27d913ab93a",
+      "date": "2026-07-15",
+      "notes": "new 50-case disjoint held-out set, built and run for the first time in this pass -- see eval/build_eu_citation_heldout_dataset.py and 'Citation-number generalization test' in eval/README.md."
+    }
+  ],
+  "concurrency_test": {
+    "command": "python scripts/concurrency_test.py --requests 10",
+    "date": "2026-07-15",
+    "port_8000_400_docs": {"speedup": 2.68, "sequential_avg_ms": 2271},
+    "port_8001_57000_docs": {"speedup": 1.18, "sequential_avg_ms": 6907},
+    "not_saved_to_json": "concurrency_test.py does not write a results file -- these numbers are transcribed directly from its stdout, quoted in VALIDATION.md and eval/README.md."
+  }
+}

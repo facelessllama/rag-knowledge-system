@@ -288,7 +288,7 @@
     "best_score": 5.341,
     "answer": "Regulation (EC) No 480/86 of 25 February 1986 concerns the general rules of application of the regulatory amounts applicable to trade in certain wine sector products between the Community as constituted on 31 December 1985 and Spain. The regulation aims to prevent market disturbances while maintaini",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -484,7 +484,7 @@
     "best_score": 5.7688,
     "answer": "Regulation (EC) No 501/86 concerns the fixing of an initial quota for the Portuguese Republic to apply for certain fruit and vegetables coming from the Community as constituted at 31 December 1985. Specifically, it outlines the criteria and process for determining the initial quota applicable in 198",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null

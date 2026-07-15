@@ -36,7 +36,7 @@
     "best_score": 5.9615,
     "answer": "31991R1303 was adopted on 17 May 1991, as stated in the document: \"Commission Regulation (EEC) No 1303/91 of 17 May 1991 fixing Community producer prices for carnations and roses for the application of the import arrangements for certain floricultural products originating in Cyprus, Israel, Jordan a",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -162,7 +162,7 @@
     "best_score": 6.6973,
     "answer": "Document 32007R0515 states that it was adopted on 10 May 2007.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -204,7 +204,7 @@
     "best_score": 5.996,
     "answer": "32014D0332, which is the EU Commission Implementing Decision of 4 June 2014, was adopted on 4 June 2014.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -260,7 +260,7 @@
     "best_score": 5.422,
     "answer": "Document 32003R2216 - Commission Regulation (EC) No 2216 2003 of 18 December 2003 states that this document was adopted on 18 December 2003.\n\nAll other documents do not provide a specific date for the adoption of 32003R2216, only referencing it in their own content. Therefore, based on the provided ",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -330,7 +330,7 @@
     "best_score": 4.9867,
     "answer": "32009D0753, which is the EC Commission Decision of 12 October 2009 amending Decision 2006/1013 EC, was adopted on 12 October 2009.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -358,7 +358,7 @@
     "best_score": 5.8099,
     "answer": "Regulation 32009R0553 concerns the opening of a specific invitation to tender for the resale on the Community market of maize from harvests prior to the 2007/08 marketing year, held by the Hungarian intervention agency. The regulation aims to ensure that old maize stocks are made available for use o",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -372,7 +372,7 @@
     "best_score": 6.035,
     "answer": "Document 31988R0685 states that it was adopted on 15 March 1988. This information is consistent across multiple documents related to this regulation, confirming the adoption date.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -386,7 +386,7 @@
     "best_score": 5.0754,
     "answer": "Document 31996R1300 is about amending Regulation (EC) No 1098/94 to lay down the regional base areas applicable under the arable support system for producers. Specifically, it mentions that new base areas should be fixed in accordance with Portugal's regionalization plan, without altering the releva",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -414,7 +414,7 @@
     "best_score": 5.296,
     "answer": "31980D0126, Commission Decision of 28 December 1979, was adopted on 28 December 1979.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -428,7 +428,7 @@
     "best_score": 5.2043,
     "answer": "Document 32006R0697 states that it was adopted on 5 May 2006.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -442,7 +442,7 @@
     "best_score": 5.4413,
     "answer": "Document 32006R0383 is implementing Commission Regulation (EC) No 1898/2005. This can be seen from the statement in the document: \"Commission Regulation (EC) No 1898/2005 of 9 November 2005 laying down detailed rules for implementing Council Regulation (EC) No 1255/99 as regards measures for the dis",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -456,7 +456,7 @@
     "best_score": 5.6861,
     "answer": "Document 32003R0252 - Commission Regulation (EC) No 252 2003 of 10 February 2003 determining the world market price for unginned cotton states that this regulation was adopted on 10 February 2003.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -498,7 +498,7 @@
     "best_score": 5.3394,
     "answer": "Document 32005R0644 - Commission Regulation (EC) No 644 2005 of 27 April 2005 authorising a special identification system for bovine animals kept for cultural and historical purposes on approved premises as provided for in Regulation (EC) No 1760/2000 of the European Parliament and of the Council, i",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -624,7 +624,7 @@
     "best_score": 5.74,
     "answer": "31995R2946 is about amending Regulation (EEC) No 2814/90 and Regulation (EEC) No 2700/93. Specifically, it aims to clarify conditions for fattening lambs as heavy carcases and to improve the management of the provisions governing the granting of a premium to ewes whose lambs are fattened as heavy ca",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -666,7 +666,7 @@
     "best_score": 6.5206,
     "answer": "Document 31998R0386 - Commission Regulation (EC) No 386 98 of 18 February 1998 fixing the minimum selling prices for beef put up for sale under the invitation to tender referred to in Regulation (EC) No 267/98 states that this regulation was adopted on 18 February 1998.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -694,7 +694,7 @@
     "best_score": 6.7924,
     "answer": "Regulation 32014R1132 concerns the establishment of standard import values for determining the entry price of certain fruit and vegetables. This regulation is part of the common organization of the markets in agricultural products and is based on the criteria laid down in Implementing Regulation (EU",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -792,7 +792,7 @@
     "best_score": 6.1124,
     "answer": "32001R1602 was adopted on 3 August 2001, as stated in the document: \"Commission Regulation (EC) No 1602/2001 of 3 August 2001 establishing the standard import values for determining the entry price of certain fruit and vegetables.\"",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -820,7 +820,7 @@
     "best_score": 5.9822,
     "answer": "Regulation 31996R1596, also known as Council Regulation (EC) No 1596/96, concerns amending Regulation (EEC) No 2392/86 to establish a Community vineyard register. Specifically, it extends the time limits laid down in Article 4 of Regulation (EEC) No 2392/86 due to technical difficulties faced by som",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -834,7 +834,7 @@
     "best_score": 6.0963,
     "answer": "32008R0108, Regulation (EC) No 108 2008 of the European Parliament and of the Council, was adopted on 15 January 2008.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -876,7 +876,7 @@
     "best_score": 5.3225,
     "answer": "Document [32009R0417 - Commission Regulation (EC) No 417 2009 of 20 May 2009 entering a designation in the register of protected designations of origin and protected geographical indications (Mariánskolázeňské oplatky (PGI))] states that this Regulation was adopted on 20 May 2009.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -918,7 +918,7 @@
     "best_score": 5.9506,
     "answer": "Document 31996D0639 - 96 639 EC Commission Decision of 28 October 1996 on financial aid from the Community for the operation of the Community Reference Laboratory for Classical Swine Fever states that this decision was adopted on 28 October 1996.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -932,7 +932,7 @@
     "best_score": 6.8162,
     "answer": "The document 31998R2782 - Commission Regulation (EC) No 2782 98 of 22 December 1998 establishes the forecast supply balances for cereal products and dried fodder for the smaller Aegean islands for 1999 and amends Regulation (EC) No 3175/94. Therefore, the adoption date for 31998R2782 was 22 December",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1002,7 +1002,7 @@
     "best_score": 6.9901,
     "answer": "31999D0713, which is the Commission Decision of 21 October 1999 amending Decision 98/653 EC concerning emergency measures made necessary by the occurrence of bovine spongiform encephalopathy in Portugal, was adopted on 21 October 1999.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1030,7 +1030,7 @@
     "best_score": 5.842,
     "answer": "Regulation 32010R0530 concerns entering a name in the register of protected designations of origin and protected geographical indications. Specifically, it deals with the registration of the names 'Gyulai kolbász' or 'Gyulai pároskolbász' as protected geographical indications (PGI) in the European U",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1044,7 +1044,7 @@
     "best_score": 5.9679,
     "answer": "32011R1345 was adopted on 19 December 2011, as stated in the document: \"COUNCIL IMPLEMENTING REGULATION (EU) No 1345/2011 of 19 December 2011 implementing Regulation (EC) No 194/2008 renewing and strengthening the restrictive measures in respect of Burma/Myanmar.\"",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1114,7 +1114,7 @@
     "best_score": 4.4844,
     "answer": "Decision 32007D0714(01) concerns the appointment of an Italian member and an Italian alternate member to the Committee of the Regions. This is stated in the document where it mentions \"Council Decision of 30 October 2007 appointing an Italian member and an Italian alternate member to the Committee o",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1128,7 +1128,7 @@
     "best_score": 6.1345,
     "answer": "32014D0850 was adopted on 26 November 2014. This information is explicitly stated in the document, which is titled \"EU, Euratom Commission Implementing Decision of 26 November 2014 amending Decision 2010 5 EU, Euratom authorising Ireland to use certain approximate estimates for the calculation of th",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1184,7 +1184,7 @@
     "best_score": 4.7591,
     "answer": "31997D0377 is about amending, as regards Germany, the United Kingdom, Ireland, Greece, and Sweden, Decision 96/295/EC identifying and listing the units in the Animo computer network. The decision involves amending the list of Animo units, particularly concerning local units and border inspection pos",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1198,7 +1198,7 @@
     "best_score": 5.5803,
     "answer": "Regulation 32003R0052 concerns the fixing of the maximum export refund on wholly milled long grain B rice to certain third countries. This regulation is connected to an invitation to tender issued in Regulation (EC) No 1898/2002. The criteria for fixing this maximum export refund are based on Articl",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1226,7 +1226,7 @@
     "best_score": 4.6934,
     "answer": "Document 31996L0052 is about amending Directive 85/350/EEC with regard to the Community list of less-favoured farming areas within the meaning of Directive 75/268/EEC. Specifically, it includes the new areas for inclusion on the list that satisfy the criteria laid down in the mentioned directives. T",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1254,7 +1254,7 @@
     "best_score": 6.4408,
     "answer": "Document 32004R0089 - Commission Regulation (EC) No 89 2004 of 20 January 2004 establishing the standard import values for determining the entry price of certain fruit and vegetables states that this regulation was adopted on 20 January 2004.\n\nThe other documents do not provide information about the",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1324,7 +1324,7 @@
     "best_score": 6.2311,
     "answer": "Regulation 32002R1903 concerns the alteration of export refunds on white sugar and raw sugar exported in the natural state. Specifically, it amends the export refunds that were previously set by Commission Regulation (EC) No 1860/2002, adjusting them to the amounts detailed in the Annex.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1338,7 +1338,7 @@
     "best_score": 5.0324,
     "answer": "32001R1217 was adopted on 20 June 2001. This information is explicitly stated in the context provided for this document.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1380,7 +1380,7 @@
     "best_score": 5.6679,
     "answer": "According to the context provided, Decision 2004 763 CFSP was adopted on 5 November 2004. This can be found in the document titled \"Decision 2004 763 CFSP of the European Council of 5 November 2004 amending Common Strategy 2000 458 CFSP on the Mediterranean region in order to extend the period\" on P",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1422,7 +1422,7 @@
     "best_score": 5.8701,
     "answer": "Document 31995R0390 states that it was adopted on 24 February 1995.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1464,7 +1464,7 @@
     "best_score": 6.2813,
     "answer": "32007R0189, adopted on 23 February 2007.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1548,7 +1548,7 @@
     "best_score": 6.4457,
     "answer": "Document 31995R0750 states that it was adopted on 31 March 1995. This information is consistent across the multiple pages of this document.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1576,7 +1576,7 @@
     "best_score": 5.8637,
     "answer": "32004R0921, Commission Regulation (EC) No 921/2004, amends Regulations (EEC) No 2191/81, (EEC) No 429/90, and (EC) No 2571/97 to take account of the requirements of Council Directive 92/46/EEC, which lays down the health rules for the production and placing on the market of raw milk, heat-treated mi",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1590,7 +1590,7 @@
     "best_score": 6.5401,
     "answer": "32011R0668, Council Regulation (EU) No 668/2011, was adopted on 12 July 2011. This date is explicitly mentioned in the context provided for this regulation.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1618,7 +1618,7 @@
     "best_score": 5.4358,
     "answer": "Document 32001R2448 concerns the amendment to Regulation (EC) No 2993/94, which fixes the aid for the supply of milk products to the Canary Islands. It also mentions that this regulation amends the export refunds on milk and milk products, ensuring that the aid and refunds are in line with the speci",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1632,7 +1632,7 @@
     "best_score": 5.786,
     "answer": "Document [31983R3575 - Council Regulation (EEC) No 3575 83 of 14 December 1983 amending Regulation (EEC) No 104 76 laying down common marketing standards for shrimps of the genus 'Crangon' spp] states that this regulation was adopted on 14 December 1983.\n\nThere is no other document that provides a d",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1674,7 +1674,7 @@
     "best_score": 6.1296,
     "answer": "31999D0701, which is a Commission Decision of 14 October 1999, was adopted on 14 October 1999. This information is consistent across the multiple pages and documents related to 31999D0701.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1716,7 +1716,7 @@
     "best_score": 5.4109,
     "answer": "32012R0706, which is Commission Implementing Regulation (EU) No 706/2012, was adopted on 1 August 2012 according to the context provided.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1758,7 +1758,7 @@
     "best_score": 5.6371,
     "answer": "The document 31988D0200 - 88 200 EEC Commission Decision of 18 February 1988 approving the plan relating to the examination for hormone residues submitted by Belgium indicates that this decision was adopted on 18 February 1988.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1842,7 +1842,7 @@
     "best_score": 6.4812,
     "answer": "32004R0218 was adopted on 6 February 2004, as stated in the document: \"Commission Regulation (EC) No 218/2004 of 6 February 2004 fixing the maximum subsidy on exports of husked long grain rice B to Réunion pursuant to the invitation to tender referred to in Regulation (EC) No 1878/2003\".",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1954,7 +1954,7 @@
     "best_score": 5.8685,
     "answer": "Document 31993D0510 concerns the amendment of Commission Decision 93/197/EEC regarding the animal health conditions and veterinary certification for imports of registered equidae and equidae for breeding and production. Specifically, it addresses the requirement that the entire specified period must",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null

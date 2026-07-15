@@ -36,7 +36,7 @@
     "best_score": 5.3988,
     "answer": "Document 32004R2113 - Commission Regulation (EC) No 2113 2004 of 10 December 2004 states that this regulation was adopted on 10 December 2004.\n\nThe other documents do not provide a specific date for the adoption of 32004R2113, so based on the information given, the adoption date for 32004R2113 is 10",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -148,7 +148,7 @@
     "best_score": 6.5662,
     "answer": "Document 32006R1590 - Commission Regulation (EC) No 1590 2006 of 24 October 2006 states that this regulation was adopted on 24 October 2006.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -162,7 +162,7 @@
     "best_score": 5.4871,
     "answer": "The document 31991D0404 - 91 404 EEC Commission Decision of 19 July 1991 states that it was adopted on 19 July 1991.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -246,7 +246,7 @@
     "best_score": 6.1134,
     "answer": "The document 31998D0091 - 98 91 EC Commission Decision of 9 January 1998 states that this decision was adopted on 9 January 1998.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -330,7 +330,7 @@
     "best_score": 6.1925,
     "answer": "Document 32004L0020 - Commission Directive 2004 20 EC of 2 March 2004 states that this directive was adopted on 2 March 2004.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -750,7 +750,7 @@
     "best_score": 6.7136,
     "answer": "Document 31993R0478 - Council Regulation (EEC) No 478 93 of 25 February 1993 establishing ceilings and Community surveillance for imports of certain products originating in the Republics of Croatia, Bosnia-Herzegovina, Slovenia and in the territory of the former Yugoslavian Republic of Macedonia was",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -876,7 +876,7 @@
     "best_score": 4.7872,
     "answer": "Document 32002R1312 - Commission Regulation (EC) No 1312 2002 of 19 July 2002 fixing export refunds on fruit and vegetables states that this regulation was adopted on 19 July 2002.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1114,7 +1114,7 @@
     "best_score": 6.3831,
     "answer": "Regulation 31989R3773, as stated in the document, concerns transitional measures relating to spirituous beverages. It provides for transitional provisions to facilitate the switch from national to Community rules on the definition and presentation of spirituous beverages.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1212,7 +1212,7 @@
     "best_score": 5.869,
     "answer": "The document 31999D0562 - 1999 562 EC Commission Decision of 12 July 1999 on the exchange of letters concerning the certificate referred to in the second indent of point 6 of the Agreement between the European Community and the Republic of Hungary on the reciprocal establishment of tariff quotas for",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1422,7 +1422,7 @@
     "best_score": 5.7071,
     "answer": "Document 31993R3347 states that it was adopted on 6 December 1993.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1436,7 +1436,7 @@
     "best_score": 5.8199,
     "answer": "Commission Regulation (EEC) No 828/90 of 30 March 1990 was adopted on 30 March 1990, as evident from the document title and the date mentioned in it.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1534,7 +1534,7 @@
     "best_score": 5.3726,
     "answer": "Regulation 32013R0319 concerns the derogation, for the marketing year 2012/13, from Article 63(2)(a) of Council Regulation (EC) No 1234/2007. Specifically, it allows Member States to determine dates within larger time limits than those provided for in Article 63(2)(a) for undertakings to inform the ",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1548,7 +1548,7 @@
     "best_score": 5.7776,
     "answer": "The document 31999D0551 - 1999 551 EC Commission Decision of 6 August 1999 states that this decision was adopted on 6 August 1999. The other documents do not provide this specific date.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1674,7 +1674,7 @@
     "best_score": 5.6069,
     "answer": "According to the context provided, Document 31986R0480 - Council Regulation (EEC) No 480 86 of 25 February 1986 was adopted on 25 February 1986. This information is consistent across the multiple pages of this document, as it is mentioned at the beginning of each page.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1772,7 +1772,7 @@
     "best_score": 5.9535,
     "answer": "The document 31993R1383 - COMMISSION REGULATION (EEC) No 1383 93 of 4 June 1993 amending Regulation (EEC) No 1226 92 on communication by the Member States to the Commission of information on imports of certain products processed from fruit and vegetables indicates that this regulation was adopted on",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1800,7 +1800,7 @@
     "best_score": 6.4989,
     "answer": "Document [32002R1397 - Commission Regulation (EC) No 1397 2002 of 31 July 2002 fixing the rates of refunds applicable to certain products from the sugar sector exported in the form of goods not covered by Annex I to the Treaty] states that this regulation was adopted on 31 July 2002.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1968,7 +1968,7 @@
     "best_score": 6.4571,
     "answer": "Document 31994D0305 - 94 305 EC Commission Decision of 16 May 1994 states that this decision was adopted on 16 May 1994.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1982,7 +1982,7 @@
     "best_score": 5.2031,
     "answer": "Decision 31989D0492 concerns financial contributions from the Community for the eradication of foot-and-mouth disease in the Federal Republic of Germany. The document outlines the measures taken by the German authorities to address the outbreaks and the Community's decision to provide financial assi",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -2010,7 +2010,7 @@
     "best_score": 5.2196,
     "answer": "32000D0338, which corresponds to Commission Decision of 13 April 2000 amending Decision 97/222/EC laying down the list of third countries from which the Member States authorise the importation of meat products, was adopted on 13 April 2000.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -2052,7 +2052,7 @@
     "best_score": 5.0958,
     "answer": "The document 31986D0008 - 86 8 EEC Council Decision of 20 January 1986 on the conclusion of an Agreement in the form of exchanges of letters between the European Economic Community and the Kingdom Norway concerning reciprocal trade in cheese states that this decision was adopted on 20 January 1986.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true

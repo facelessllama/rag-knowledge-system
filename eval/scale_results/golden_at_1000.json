@@ -36,7 +36,7 @@
     "best_score": 5.4295,
     "answer": "Document 32004R2113 - Commission Regulation (EC) No 2113 2004 of 10 December 2004 states that this Regulation was adopted on 10 December 2004.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -246,7 +246,7 @@
     "best_score": 5.3623,
     "answer": "The document 31998D0091 - 98 91 EC Commission Decision of 9 January 1998 amending Decision 80 804 EEC concerning animal health conditions and veterinary certification for the importation of fresh meat from Canada indicates that this decision was adopted on 9 January 1998.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -750,7 +750,7 @@
     "best_score": 5.2878,
     "answer": "Document 31993R0478 states that it was adopted on 25 February 1993.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -876,7 +876,7 @@
     "best_score": 4.7978,
     "answer": "Document [32002R1312 - Commission Regulation (EC) No 1312 2002 of 19 July 2002 fixing export refunds on fruit and vegetables] states that this regulation was adopted on 19 July 2002.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1114,7 +1114,7 @@
     "best_score": 5.2043,
     "answer": "Regulation 31989R3773, also known as Commission Regulation (EEC) No 3773/89 of 14 December 1989, concerns transitional measures relating to spirituous beverages. Specifically, it lays down transitional measures to facilitate the switchover from national to Community rules on the definition and prese",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1800,7 +1800,7 @@
     "best_score": 5.8981,
     "answer": "Document 32002R1397 states that it was adopted on 31 July 2002.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true

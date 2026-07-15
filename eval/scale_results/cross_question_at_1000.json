@@ -1114,7 +1114,7 @@
     "best_score": 5.5198,
     "answer": "Document 32003R0316 - Commission Regulation (EC) No 316 2003 of 19 February 2003 concerning the permanent authorisation of an additive in feedingstuffs and the provisional authorisation of a new use of an additive already authorised in feedingstuffs states that this regulation was adopted on 19 Febr",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1338,7 +1338,7 @@
     "best_score": 6.214,
     "answer": "31992D0279, which is Commission Decision of 5 May 1992 approving the plan concerning infectious haemopoietic necrosis and viral haemorrhagic septicaemia presented by Germany, was adopted on 5 May 1992.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true

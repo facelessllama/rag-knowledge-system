@@ -87,13 +87,13 @@ earlier test) and the phrasing (five different natural ways to cite a
 regulation by number). Result: the target document was force-included by
 the lookup index in all 50 cases without exception — the index itself
 never misses. But **whether it also landed in the top 5** depended
-heavily on phrasing: when the question got the issuing body right
-("Commission Regulation" vs. "Council Regulation") or made no claim about
-it, the document ranked in the top 5 in 16 out of 16 cases (100%). When
-the question named the *wrong* issuing body — a plausible real mistake,
-since regulations get referred to loosely in speech — rank fell to 12 out
-of 23 (52%), with the miss usually landing at exactly rank 6, just
-outside the window a user would naturally read. This is a real,
+heavily on phrasing: among the 30 questions that actually name an issuing
+body or bracket type, getting it right put the document in the top 5 in
+6 out of 6 cases with a checkable filename (100%). When the question
+named the *wrong* issuing body — a plausible real mistake, since
+regulations get referred to loosely in speech — rank fell to 12 out of 23
+(52%), with the miss usually landing at exactly rank 6, just outside the
+window a user would naturally read. This is a real,
 previously-undocumented gap: the structured index guarantees the document
 is *found*, but a wrong institution word in the query still measurably
 hurts where it *ranks*. Not fixed yet — see `eval/README.md` for the

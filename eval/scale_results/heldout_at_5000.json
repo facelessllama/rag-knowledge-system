@@ -36,7 +36,7 @@
     "best_score": 6.6486,
     "answer": "Document 31991R1303 was adopted on 17 May 1991, as stated in the context provided.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -106,7 +106,7 @@
     "best_score": 4.9196,
     "answer": "Regulation 32002R1995, also known as Commission Regulation (EC) No 1995/2002, concerns the fixing of the maximum export refund on wholly milled long grain B rice to certain third countries. This regulation is connected to an invitation to tender issued in Regulation (EC) No 1898/2002. The maximum ex",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -330,7 +330,7 @@
     "best_score": 6.2824,
     "answer": "32009D0753, which is the Commission Decision of 12 October 2009 amending Decision 2006/1013 EC, was adopted on 12 October 2009.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -372,7 +372,7 @@
     "best_score": 5.1191,
     "answer": "The document 31988R0685 - Commission Regulation (EEC) No 685 88 of 15 March 1988 amending Regulation (EEC) No 1726 84 as regards the time limit for the entry into storage of butter sold under Regulations (EEC) No 262/79 and (EEC) No 3143/85, was adopted on 15 March 1988.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -414,7 +414,7 @@
     "best_score": 5.5527,
     "answer": "According to the context provided, 31980D0126 was adopted on 28 December 1979. This information is explicitly stated in the documents related to this decision.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -428,7 +428,7 @@
     "best_score": 6.1924,
     "answer": "Document 32006R0697 states that it was adopted on 5 May 2006.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -456,7 +456,7 @@
     "best_score": 4.6736,
     "answer": "Document 32003R0252 - Commission Regulation (EC) No 252 2003 of 10 February 2003 determining the world market price for unginned cotton states that this regulation was adopted on 10 February 2003.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -582,7 +582,7 @@
     "best_score": 6.3768,
     "answer": "Regulation 32012R0020 concerns the fixing of the allocation coefficient to be applied to applications for import licences for barley. Specifically, it deals with the import tariff quota for 307,105 tonnes of barley and determines the allocation coefficient based on the applications received from Jan",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -666,7 +666,7 @@
     "best_score": 5.7395,
     "answer": "According to the provided documents, 31998R0386 - Commission Regulation (EC) No 386 98 of 18 February 1998 was adopted on 18 February 1998. This information is consistent across the multiple pages of the same document, which state \"Commission Regulation (EC) No 386/98 of 18 February 1998\".",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -918,7 +918,7 @@
     "best_score": 5.2426,
     "answer": "Document 31996D0639 - 96 621 EC Council Decision of 14 October 1996 on the conclusion of an Agreement in the form of an Exchange of Letters between the European Community and the Republic of states that it was adopted on 14 October 1996.\n\nDocument 31996D0639 - 96 639 EC Commission Decision of 28 Oct",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -932,7 +932,7 @@
     "best_score": 6.6681,
     "answer": "The document 31998R2782 - Commission Regulation (EC) No 2782 98 of 22 December 1998 establishes the forecast supply balances for cereal products and dried fodder for the smaller Aegean islands for 1999 and amends Regulation (EC) No 3175/94. Therefore, the adoption date for 31998R2782 is 22 December ",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1002,7 +1002,7 @@
     "best_score": 6.1762,
     "answer": "31999D0713, adopted on 21 October 1999, amends Decision 98/653/EC concerning emergency measures made necessary by the occurrence of bovine spongiform encephalopathy in Portugal.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1086,7 +1086,7 @@
     "best_score": 6.3766,
     "answer": "The document 31993R2353 - COMMISSION REGULATION (EEC) No 2353 93 of 24 August 1993 establishes the date of adoption as 24 August 1993. This information is consistent across the three identical pages provided.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1198,7 +1198,7 @@
     "best_score": 4.9204,
     "answer": "Regulation 32003R0052, also known as Commission Regulation (EC) No 52/2003, concerns fixing the maximum export refund on wholly milled long grain B rice to certain third countries. This regulation is connected to an invitation to tender issued in Regulation (EC) No 1898/2002. The criteria for fixing",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1254,7 +1254,7 @@
     "best_score": 7.0118,
     "answer": "Document [32004R0089 - Commission Regulation (EC) No 89 2004 of 20 January 2004 establishing the standard import values for determining the entry price of certain fruit and vegetables] states that this regulation was adopted on 20 January 2004.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1422,7 +1422,7 @@
     "best_score": 6.0984,
     "answer": "Document 31995R0390 - COMMISSION REGULATION (EC) No 390 95 of 24 February 1995 states that this regulation was adopted on 24 February 1995.\n\nThere is no other document in the provided context that mentions the adoption date of 31995R0390, so based on the given information, the adoption date is 24 Fe",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1464,7 +1464,7 @@
     "best_score": 6.0822,
     "answer": "Document 32007R0189 states that it was adopted on 23 February 2007.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1548,7 +1548,7 @@
     "best_score": 5.9996,
     "answer": "Document [31995R0750 - Council Regulation (EC) No 750 95 of 31 March 1995 amending Regulation (EC) No 3364 94 laying down, for 1995, certain measures for the conservation and management.pdf | Page 1] states that the regulation was adopted on 31 March 1995.\n\nThe other documents do not provide informa",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1632,7 +1632,7 @@
     "best_score": 5.3777,
     "answer": "The document [31983R3575 - Council Regulation (EEC) No 3575 83 of 14 December 1983 amending Regulation (EEC) No 104 76 laying down common marketing standards for shrimps of the genus 'Crangon' spp] states that the regulation was adopted on 14 December 1983.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1674,7 +1674,7 @@
     "best_score": 5.2594,
     "answer": "The document 31999D0701 - 1999 701 EC Commission Decision of 14 October 1999 on the list of programmes for the eradication and monitoring of animal diseases qualifying for a financial contribution from the Community in 2000 was adopted on 14 October 1999.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1758,7 +1758,7 @@
     "best_score": 4.6764,
     "answer": "The document 31988D0200 - 88 200 EEC Commission Decision of 18 February 1988 approving the plan relating to the examination for hormone residues submitted by Belgium indicates that it was adopted on 18 February 1988.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1842,7 +1842,7 @@
     "best_score": 6.1115,
     "answer": "Document [32004R0218 - Commission Regulation (EC) No 218 2004 of 6 February 2004 fixing the maximum subsidy on exports of husked long grain rice B to Réunion pursuant to the invitation t.pdf | Page 1] states that the regulation was adopted on 6 February 2004.\n\nThe other documents do not provide a sp",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1968,7 +1968,7 @@
     "best_score": 6.4407,
     "answer": "Document 31999R1595 states that it was adopted on 20 July 1999.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -2094,7 +2094,7 @@
     "best_score": 5.3237,
     "answer": "32005D0489, which is the Commission Decision of 6 July 2005 granting derogations to certain Member States concerning the first transmission of quarterly data pursuant to Council Regulation (EC) No 1222/2004, was adopted on 6 July 2005.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true

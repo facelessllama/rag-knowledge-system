@@ -36,7 +36,7 @@
     "best_score": 5.4217,
     "answer": "Document [31991R1303 - Commission Regulation (EEC) No 1303 91 of 17 May 1991 fixing Community producer prices for carnations and roses for the application of the import arrangements for] states that this document was adopted on 17 May 1991.\n\nThe other documents do not provide a specific date for the",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -820,7 +820,7 @@
     "best_score": 5.5068,
     "answer": "Regulation 31996R1596, also known as Council Regulation (EC) No 1596/96 of 30 July 1996, amends Regulation (EEC) No 2392/86 by establishing a Community vineyard register. The amendment is made to ensure that the measures provided for are flexible enough to adapt to changes in the common organization",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -932,7 +932,7 @@
     "best_score": 5.6273,
     "answer": "31998R2782, which is Commission Regulation (EC) No 2782 98, was adopted on 22 December 1998. This date is mentioned in the context provided for this regulation.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1002,7 +1002,7 @@
     "best_score": 5.3869,
     "answer": "The document 31999D0713 - 1999 713 EC Commission Decision of 21 October 1999 was adopted on 21 October 1999.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1422,7 +1422,7 @@
     "best_score": 5.3181,
     "answer": "31995R0390, which is COMMISSION REGULATION (EC) No 390/95 of 24 February 1995, was adopted on 24 February 1995. This information is consistent across the provided documents.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1548,7 +1548,7 @@
     "best_score": 5.0743,
     "answer": "31995R0750, which is Council Regulation (EC) No 750/95, was adopted on 31 March 1995. This information is consistent across the documents that mention this regulation.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1842,7 +1842,7 @@
     "best_score": 5.8261,
     "answer": "Document [32004R0218 - Commission Regulation (EC) No 218 2004 of 6 February 2004 fixing the maximum subsidy on exports of husked long grain rice B to Réunion pursuant to the invitation t.pdf | Page 1] states that this regulation was adopted on 6 February 2004.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true

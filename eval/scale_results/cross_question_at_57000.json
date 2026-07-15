@@ -36,7 +36,7 @@
     "best_score": 4.8337,
     "answer": "Document [32005R1983 - Commission Regulation (EC) No 1983 2005 of 5 December 2005] states that the regulation was adopted on 5 December 2005.\n\nDocument [32005R1983 - Commission Regulation (EC) No 1983 2005 of 5 December 2005 amending the rates of refunds applicable to certain products from the sugar",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -92,7 +92,7 @@
     "best_score": 6.3087,
     "answer": "Document 31983L0381 states that it was adopted on 28 July 1983.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -176,7 +176,7 @@
     "best_score": 5.6329,
     "answer": "Document 31998R0187 states that it was adopted on 23 January 1998.\n\nAll other documents in the provided context do not contain information about the adoption date of 31998R0187, so no comparison is necessary for this specific question.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -260,7 +260,7 @@
     "best_score": 5.9685,
     "answer": "Document 31997R1192 states that it is a Council Regulation (EC) No 1192/97 adopted on 25 June 1997.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -302,7 +302,7 @@
     "best_score": 5.6419,
     "answer": "31994R1831, also known as Commission Regulation (EC) No 1831 94, was adopted on 26 July 1994. This date is explicitly mentioned in the documents related to 31994R1831.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -330,7 +330,7 @@
     "best_score": 5.3892,
     "answer": "Document 31988R0349 (Commission Regulation (EEC) No 349 88 of 5 February 1988) is about derogating from the quality standards for cucumbers for the 1988 marketing year. The regulation acknowledges that certain sizes of cucumbers, which are in demand, are not permitted under the existing quality stan",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -344,7 +344,7 @@
     "best_score": 6.2722,
     "answer": "Regulation 31988R0349, Commission Regulation (EEC) No 349/88 of 5 February 1988, concerns derogating from the quality standards for cucumbers for the 1988 marketing year. It allows for the marketing of certain sizes of cucumbers for which there is demand but that do not meet the existing quality sta",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -358,7 +358,7 @@
     "best_score": 5.5438,
     "answer": "Document 31988R0349 states that it was adopted on 5 February 1988. This information is consistent across the three pages provided for this document.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -400,7 +400,7 @@
     "best_score": 5.6815,
     "answer": "The document [32006R1220 - Commission Regulation (EC) No 1220 2006 of 11 August 2006 establishing the standard import values for determining the entry price of certain fruit and vegetables] states that this regulation was adopted on 11 August 2006.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -498,7 +498,7 @@
     "best_score": 4.7895,
     "answer": "32003R0730 is about fixing the maximum export refund on wholly milled long grain B rice to certain third countries. This regulation is connected to an invitation to tender issued in Regulation (EC) No 1898/2002. The maximum export refund is determined based on the criteria provided in Regulation (EC",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -526,7 +526,7 @@
     "best_score": 5.1994,
     "answer": "Document [32003R0730 - Commission Regulation (EC) No 730 2003 of 25 April 2003 fixing the maximum export refund on wholly milled long grain B rice to certain third countries in connection with the invitation to tender issued in Regulation (EC) No 1898/2002] states that this regulation was adopted on",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -568,7 +568,7 @@
     "best_score": 5.257,
     "answer": "32009R1218 was adopted on 14 December 2009. This information is clearly stated in the document titled \"Commission Regulation (EU) No 1218 2009 of 14 December 2009 establishing the standard import values for determining the entry price of certain fruit and vegetables.\"",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -610,7 +610,7 @@
     "best_score": 4.2907,
     "answer": "The document 32014R0954 - Commission Implementing Regulation (EU) No 954 2014 of 4 September 2014 approving non-minor amendments to the specification for a name entered in the register of protected designations of origin and protected geographical indications (Livarot (PDO)) states that it was adopt",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -666,7 +666,7 @@
     "best_score": 5.7386,
     "answer": "Document 32007R0635 - Commission Regulation (EC) No 635 2007 of 7 June 2007 states that this regulation was adopted on 7 June 2007.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -680,7 +680,7 @@
     "best_score": 5.7325,
     "answer": "31990D0293 is about the establishment of the Community support framework for Community structural assistance in the areas eligible under objective 2 in the province of Hainaut (Belgium). The document outlines the process and criteria for setting up this framework, including the involvement of the Be",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -792,7 +792,7 @@
     "best_score": 5.0541,
     "answer": "Decision 32001D0831 concerns the prolongation of the period of validity of Decision 1999/178/EC, which established the ecological criteria for the award of the Community eco-label to textile products. The decision extends the validity period for an additional eighteen months, allowing companies that",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -806,7 +806,7 @@
     "best_score": 6.1341,
     "answer": "32001D0831, adopted on 27 November 2001, according to the document provided.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -904,7 +904,7 @@
     "best_score": 6.1665,
     "answer": "31989R0215, Commission Regulation (EEC) No 215/89, was adopted on 27 January 1989 according to the provided context.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1016,7 +1016,7 @@
     "best_score": 6.1856,
     "answer": "Document 31987D0336 concerns the approval of an addendum to the programme relating to the flax sector notified by the Belgian Government. The addendum aims to modernize and rationalize harvesting, transport, packaging, processing, and marketing facilities for flax to increase the competitiveness of ",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1030,7 +1030,7 @@
     "best_score": 6.421,
     "answer": "Document 31987D0336 - 87 336 EEC states that the Commission Decision was adopted on 15 June 1987.\n\nNo other document in the provided context mentions a date of adoption for 31987D0369, so I could not find this information in the provided documents for that specific document.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1072,7 +1072,7 @@
     "best_score": 6.7264,
     "answer": "31999R0248 was adopted on 22 December 1998, as stated in the document: \"Council Regulation (EC) No 248/1999 of 22 December 1998 concerning the export of certain ECSC and EC steel products from the Czech Republic to the Community for the period 1 January to 31 December 1999 (extension of the double-c",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1114,7 +1114,7 @@
     "best_score": 5.3483,
     "answer": "Document 32003R0316 - Commission Regulation (EC) No 316 2003 of 19 February 2003 concerning the permanent authorisation of an additive in feedingstuffs and the provisional authorisation of a new use of an additive already authorised in feedingstuffs (Text with EEA relevance) states that this regulat",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true
@@ -1310,7 +1310,7 @@
     "best_score": 5.2679,
     "answer": "31992D0279 is about approving a plan concerning infectious haemopoietic necrosis and viral haemorrhagic septicaemia presented by Germany. The document mentions that Germany has submitted a plan for assessing the rate of infection of these diseases in their territory. The Commission has examined this",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": null
@@ -1338,7 +1338,7 @@
     "best_score": 7.0926,
     "answer": "The document 31992D0279 - 92 279 EEC Commission Decision of 5 May 1992 approving the plan concerning infectious haemopoietic necrosis and viral haemorrhagic septicaemia presented by Germany indicates that this decision was adopted on 5 May 1992.",
     "n_sources": 6,
-    "recall_hit": true,
+    "recall_hit": false,
     "rank": 6,
     "reciprocal_rank": 0.16666666666666666,
     "substring_correct": true

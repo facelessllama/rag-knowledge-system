@@ -347,6 +347,16 @@ future scale test):
   equally-valid answers for `expected_substring` — see "Recall@5 counting
   bug" in `VALIDATION.md`. `consistency_test.py` shares the same
   multi-answer substring check (`run_eval.substring_ok`).
+- `eval/generate_summary_tables.py` — regenerates every table in this
+  section directly from `eval/scale_results/*.json`, so a future data
+  change can't silently drift from a hand-typed table again (this is how
+  the issuer/bracket split below was caught and corrected once already —
+  see its comment on why `citation_fmt_bare_no`/`_two_digit_year` are
+  excluded from that specific split).
+- `eval/scale_results/run_config.json` — shared config (models, GPU,
+  `top_k`, `RELEVANCE_THRESHOLD`, corpus checkpoints) and the commit/date
+  each result file under `eval/scale_results/` was produced or corrected
+  at, so a number here can always be traced back to what produced it.
 
 **Two bugs found on this corpus and fixed** (mirroring the case-number/
 party-name work above, same architecture, corpus-specific extraction
@@ -687,14 +697,26 @@ inclusion mechanism verified above holds up perfectly on entirely new
 documents. What varies by phrasing is *rank*, and inspecting why turned up
 a clean, specific cause: whenever the query names an issuing body
 (Council/Commission) or bracket type (EEC/EC/EU) that doesn't match the
-actual document, rank craters. Splitting all 40 cases that make such a
-claim (`citation_fmt_bare_no` makes none, so it's excluded from this
-split) by whether the claim is accurate:
+actual document, rank craters. Splitting the 3 formats that actually make
+such a claim (`citation_fmt_bracket_eec`, `_council_no_dot`,
+`_commission_summarize` — 30 cases; `citation_fmt_bare_no` makes no
+claim at all, and `citation_fmt_two_digit_year` makes none either but has
+its own separate confound, the literal 2-digit-vs-4-digit year text
+mismatch discussed below — both excluded from *this specific* split, not
+folded into "matches," since neither is actually testing the claim this
+table is about) by whether the claim is accurate (1 of the 30 excluded —
+its filename's issuing-body prefix didn't match the parser used to
+regenerate this table, `eval/generate_summary_tables.py`):
 
 | | n | strict Recall@5 |
 |---|---|---|
-| issuer/bracket in the query matches the document | 16 | **16/16 (100%)** |
+| issuer/bracket in the query matches the document | 6 | **6/6 (100%)** |
 | issuer/bracket in the query does *not* match the document | 23 | **12/23 (52%)** |
+
+(This table, and every other one in this section, is generated directly
+from `eval/scale_results/*.json` by `eval/generate_summary_tables.py` —
+re-run it after any change to the underlying data instead of hand-editing
+these numbers; see that script's docstring for why.)
 
 11 of the 23 mismatched cases land at exactly rank 6, not just "somewhere
 outside top 5" — and the code explains why precisely.
