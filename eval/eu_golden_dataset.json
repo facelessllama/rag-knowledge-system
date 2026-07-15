@@ -220,7 +220,9 @@
     "question": "What earlier regulation, directive, or decision does 32002R2293 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32002R2293 - Commission Regulation (EC) No 2293 2002 of 20 December 2002 establishing the quantity of certain pigmeat products available for the second quarter of 2003 under th.pdf",
-    "expected_substring": "2305/95",
+    "expected_substring": [
+      "2305/95"
+    ],
     "type": "cross_reference_fact"
   },
   {
@@ -828,7 +830,9 @@
     "question": "What earlier regulation, directive, or decision does 31997D0251 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "31997D0251 - 97 251 EC Commission Decision of 14 April 1997 terminating the anti-dumping proceeding concerning imports of certain types of electronic microcircuits known as EPR.pdf",
-    "expected_substring": "384/96",
+    "expected_substring": [
+      "384/96"
+    ],
     "type": "cross_reference_fact"
   },
   {

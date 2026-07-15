@@ -92,7 +92,16 @@ def extract_facts(pdf_path: Path) -> dict:
 
     # (auxiliary, verb-phrase) so the question reads as "What ... <aux>
     # <celex_id> <verb>?" — "is X amending" / "does X cite" both need
-    # different auxiliaries to stay grammatical.
+    # different auxiliaries to stay grammatical. The question can only ask
+    # about one relationship, so it's phrased around the first verb/citation
+    # match — but EU legal-basis preambles routinely cite *several* earlier
+    # regulations ("Having regard to ... No 2777/75 ..., Having regard to
+    # ... No 2967/85 ..."), and a model answering with any one of the
+    # document's genuine cross-references is correct even if it's not the
+    # first one found. xref_numbers below collects every distinct number
+    # the body actually supports (same two patterns, matched across the
+    # whole body, not just the first hit) so the ground truth doesn't
+    # penalize a correct-but-different answer.
     xref_aux, xref_verb, xref_number = None, None, None
     verb_match = _XREF_VERB_RE.search(body)
     if verb_match and verb_match.group(2) not in own_numbers:
@@ -104,12 +113,20 @@ def extract_facts(pdf_path: Path) -> dict:
             xref_aux, xref_verb = "does", "cite (excluding its own number)"
             xref_number = citation_match.group(1)
 
+    xref_numbers = []
+    if xref_number:
+        for n in (*_XREF_VERB_RE.findall(body), *_XREF_CITATION_RE.findall(body)):
+            n = n[-1] if isinstance(n, tuple) else n  # verb regex group is (verb, number)
+            if n not in own_numbers and n not in xref_numbers:
+                xref_numbers.append(n)
+
     return {
         "type": type_match.group(1).title() if type_match else None,
         "date": date_match.group(1) if date_match else None,
         "xref_aux": xref_aux,
         "xref_verb": xref_verb,
         "xref_number": xref_number,
+        "xref_numbers": xref_numbers,
     }
 
 
@@ -150,7 +167,10 @@ def _cases_for_doc(filename: str, celex_id: str, facts: dict, id_prefix: str) ->
                         f"{celex_id} {facts['xref_verb']}?",
             "expect_answer": True,
             "expected_doc_filename": filename,
-            "expected_substring": facts["xref_number"],
+            # list of every genuine cross-reference the body supports, not
+            # just the one the question was phrased around — see
+            # extract_facts()'s xref_numbers comment above.
+            "expected_substring": facts["xref_numbers"],
             "type": "cross_reference_fact",
         })
     return out

@@ -9,9 +9,16 @@ evidence rather than a demo.
 The short version: the system was checked the way a skeptical client
 would check it, not the way a developer checks their own work. That
 included deliberately trying to break it, finding real bugs and fixing
-their actual cause, and — the part most write-ups skip — going back to
-question whether the *test itself* was honest, finding out it wasn't
-quite, and fixing that too.
+their actual cause, and — twice now — going back to question whether the
+*test itself* was honest, finding out it wasn't quite, and fixing that
+too. The second of those two times is why this document has almost
+nothing in common with its own first draft: a review of the eval tooling
+found that the headline `Recall@5 = 100%` claim below was based on a
+miscounted metric, and every number in this document was recomputed and
+independently re-verified live against the same 57,000-document corpus
+before being republished. What that review found is described in full,
+including two real, previously-undiscovered gaps it surfaced along the
+way — not smoothed over.
 
 ## What was actually checked
 
@@ -19,10 +26,12 @@ quite, and fixing that too.
 On the system's real working set (~400 legal documents), it was tested
 against two separate question sets: one used while tuning it, and a
 second, untouched one built specifically to catch "it only works because
-we accidentally tuned it to this exact test." Both came back with the
-correct document found essentially every time, and correct answers
-essentially every time, reproduced across repeated runs — not a single
-lucky pass.
+we accidentally tuned it to this exact test." Both came back with
+Recall@5 = 100% and answer correctness at 98.8%/100%, reproduced across
+repeated runs. This is the one part of this document where "100%" is not
+an overstatement — this corpus is small enough (~400 documents) that the
+window-counting bug described below never had room to matter, confirmed
+directly by recomputing every saved case's actual rank.
 
 **2. Does it fall apart as the amount of data grows?**
 The working set is small. To find out what happens at real scale, the
@@ -30,14 +39,19 @@ system was loaded with 57,000 unrelated real documents (EU legislation)
 — picked specifically because that dataset is full of near-identical
 documents (the same type of filing reissued monthly for decades), which
 is about the hardest condition for a search system to stay accurate
-under. Volume was ramped up in stages, testing at each step. Result: the
-system never once lost the correct document out of the running, but it
-gradually became less confident about which document was the best match
-as the pile of near-duplicates grew — and the first small, real mistakes
-(not many — one at a time) only showed up at the very top of the range
-tested, not before. That's a meaningfully different, and more honest,
-finding than "it works" or "it breaks" — it shows *where* the strain
-starts to show, under a deliberately unfavorable condition.
+under. Volume was ramped up in stages, testing at each step, for
+questions that name their target document's exact ID.
+
+**The honest result, not the first-draft one**: the correct document's
+*rank* degrades steadily as the corpus grows — from 96%/95% of questions
+landing in the top 5 at 1,000 documents down to 73%/69% at 57,000 — a
+real, gradual decline, not a cliff. A structured lookup index (described
+below) does still force the correct document into a slightly wider
+6-document window on every single question at every checkpoint, so the
+document is never fully "lost" — but presenting that as "Recall@5 = 100%"
+was wrong, and calling it "Recall@6 = 100%" instead is the honest version
+of the same fact. See "The metric bug" below for how this was found and
+fixed.
 
 **3. Was the test itself telling the truth?**
 Partway through, it became clear that every test question happened to
@@ -46,42 +60,143 @@ which meant the system could be quietly "cheating" via a shortcut built
 for exactly that case, rather than genuinely searching. Instead of
 leaving that unexamined, a second test was built from scratch that
 specifically avoided giving the system that shortcut, using only the
-kind of vague, natural phrasing a real person would actually type. That
-test found a real, narrower weak spot: short-form references (like "the
-regulation numbered 480 of '86") were sometimes confused with unrelated
-documents that merely mention that number, and once even confused two
-different documents from different years sharing the same short number.
-That gap was fixed and re-tested — the failure rate on that specific
-question type went from 1-in-4 wrong to 0.
+kind of vague, natural phrasing a real person would actually type. On the
+57,000-document corpus, that test found:
+- Natural lookup by subject/paraphrase, date-based facts, and
+  disambiguating one specific document out of a 509-member cluster of
+  near-duplicates using only its adoption date: **100% Recall@5, every
+  time.** The near-duplicate-disambiguation worry the whole scale test
+  started from turned out not to be the weak point.
+- The one genuine weak spot: short-form citation references (like "the
+  regulation numbered 480 of '86") were sometimes confused with unrelated
+  documents that merely mention that number in passing — including one
+  case that confused two different documents from different years
+  sharing the same short number. That was root-caused and fixed with a
+  dedicated lookup index; re-testing the same 20 questions that found the
+  bug went from 75% to 100% Recall@5.
 
-**4. Does it change its mind if you ask the same thing twice?**
+Re-testing the questions that *found* a bug and confirming the fix is not
+the same as confirming the fix generalizes — so a **third**, disjoint set
+of 50 questions was built afterward, covering documents and citation
+phrasings the fix had never seen. That test is what surfaced the next
+finding.
+
+**4. Does the fix generalize, or did it just pass its own exam?**
+The new 50-question set varied both the documents (none used in any
+earlier test) and the phrasing (five different natural ways to cite a
+regulation by number). Result: the target document was force-included by
+the lookup index in all 50 cases without exception — the index itself
+never misses. But **whether it also landed in the top 5** depended
+heavily on phrasing: when the question got the issuing body right
+("Commission Regulation" vs. "Council Regulation") or made no claim about
+it, the document ranked in the top 5 in 16 out of 16 cases (100%). When
+the question named the *wrong* issuing body — a plausible real mistake,
+since regulations get referred to loosely in speech — rank fell to 12 out
+of 23 (52%), with the miss usually landing at exactly rank 6, just
+outside the window a user would naturally read. This is a real,
+previously-undocumented gap: the structured index guarantees the document
+is *found*, but a wrong institution word in the query still measurably
+hurts where it *ranks*. Not fixed yet — see `eval/README.md` for the
+detail and the options for closing it.
+
+**5. Does it change its mind if you ask the same thing twice?**
 The same questions were repeated dozens of times each, checking not just
 whether the final answer stayed correct, but whether the system was even
-pulling up the same source document each time. It was — consistently,
-including at large scale — which rules out the specific worry that a
-system like this quietly becomes unreliable on repeat use even when a
-single test looks fine.
+pulling up the same source document each time. At 57,000 documents: 300/300
+final answers correct across repeats, but retrieval picked a different top
+document on one question out of fifteen — the first instability of this
+kind seen at any checkpoint. Read as a leading indicator, not a failure:
+generation papered over the retrieval flip that time, but it's a signal
+worth watching, not one to hide.
+
+**6. Does load and scale combine safely?**
+Never tested together before this review. Now measured directly:
+concurrent-request speedup drops from 2.68x on the small 400-document
+corpus to 1.18x at 57,000 documents — the system's own concurrency test
+script flags anything under 1.5x as "little to no gain," and 57,000
+documents crosses that line. The likely mechanism: reranking has to sort
+through several times more candidates per query at this scale, and that
+step runs on a single dedicated GPU worker by design (only one physical
+GPU) — so the GPU-bound stage increasingly dominates wall time and eats
+into the benefit that overlapping requests would otherwise get from
+async I/O. Not a bug — a real, now-documented capacity limit for anyone
+planning to run this system with both a large corpus and multiple
+simultaneous users.
+
+## The metric bug, and how it was found
+
+A later review of the eval tooling (`eval/run_eval.py`) noticed that
+`Recall@5` was computed by checking whether the expected document
+appeared *anywhere* in the API's returned `sources` array — but that
+array can hold six documents even when the request asked for five,
+because a separate mechanism (an exact-ID structured-lookup override)
+force-adds the correct document above the requested cutoff when the
+query names it directly. A document landing at rank 6 was therefore
+being counted as a "Recall@5" hit throughout the scale-ladder results.
+
+This was not a cosmetic difference: recomputing the same saved results
+with the strict `rank ≤ 5` definition dropped the headline from a flat
+100% at every corpus size to a real decline from 96% down to 73% as the
+corpus grew to 57,000 documents. The fix was made in three parts, all
+independently verified rather than assumed:
+1. `run_eval.py` now only counts a hit when `rank ≤ top_k`, and reports
+   the old, looser "somewhere in the returned window" number alongside it
+   under an explicit label so the two can never be confused again.
+2. Every existing scale-ladder result was recomputed from the raw
+   per-case data already saved on disk (nothing needed re-running to
+   catch the mistake — the rank of every case had been recorded all
+   along, just aggregated with the wrong cutoff).
+3. Every affected live dataset (golden, held-out, cross-question,
+   ID-free, plus the new 50-question generalization set) was then
+   **re-run live against the real 57,000-document corpus** with the
+   corrected script, not just recomputed from old numbers — closing the
+   gap between "the math was fixed" and "the fix was actually verified
+   against the live system." All of it matched the offline recomputation
+   within normal run-to-run LLM variance (typically ±1 case out of 150).
+
+Two smaller, related issues were found and fixed in the same pass:
+- One of the "hard, disambiguate-by-date-only" test cases turned out to
+  have an ambiguous ground truth itself — three documents in its
+  near-duplicate cluster shared the exact same adoption date, so the
+  question had more than one defensible correct answer. The dataset
+  builder now requires a chosen date to be unique across the *entire*
+  cluster, not just among the specific documents it had already picked.
+- Questions asking what an earlier regulation a document cites/amends
+  only accepted the *first* citation the extraction script happened to
+  find, even though EU legal preambles routinely cite several earlier
+  regulations legitimately. The ground truth now accepts any citation the
+  document body actually supports — this was a real ground-truth defect,
+  not a retrieval or generation defect, and conflating the two would have
+  kept blaming the system for a scoring mistake.
 
 ## Why this is a meaningful proof point, and not just a bigger demo
 
 - **The numbers are real pass rates on datasets built to be hard to
   game**, not a curated set of questions chosen because they're known to
-  work.
+  work — and, as of this pass, verified against a metric that was itself
+  checked for the same kind of self-flattery it was designed to catch.
 - **Every bug listed above was found by trying to break the system on
   purpose**, and fixed at its actual root cause — not patched around it.
-- **When a test result looked too good, that was treated as a reason to
-  double-check, not celebrate.** The CELEX-ID shortcut issue is the clearest
-  example: a 100% score was investigated instead of accepted, which is
-  exactly the instinct a paying client would want in whoever built this,
-  and exactly the instinct most portfolio projects don't demonstrate.
-- **What wasn't tested is stated as plainly as what was** — for example,
-  many people using the system at once *while* it holds a very large
-  document set has never been tested together, and that's written down
-  as an open question rather than glossed over.
+- **When a result looked too good, that was treated as a reason to
+  double-check, not celebrate — twice.** The CELEX-ID shortcut issue was
+  the first example: a 100% score was investigated instead of accepted.
+  The Recall@5 miscount was the second, and it was caught in the
+  *reporting*, not the system — a flat 100% across a 140x growth in
+  corpus size should have been the tell, and eventually was.
+- **What wasn't tested is stated as plainly as what was.** Concurrency at
+  scale was an explicit open question until this pass closed it (with a
+  real, non-trivial finding — 1.18x, not the 2.68x seen at small scale).
+  The citation-phrasing rank sensitivity found in check 4 above is *still
+  open* — it is reported here specifically because it was found by trying
+  to disprove an already-published "fixed" claim, not because it makes
+  the system look good.
 
 This is what "the system works" means here: not a good-looking chat
-transcript, but a chain of tests specifically designed to catch the
-system lying to its own test, followed by fixing what that turned up.
+transcript, and not a self-consistent-but-wrong metric, but a chain of
+tests specifically designed to catch the system — and the test suite
+itself — lying, followed by fixing what that turned up and re-verifying
+it live rather than assuming the fix.
 
-For the full numbers, methodology, and every case-by-case detail, see
-`eval/README.md`.
+For the full numbers, methodology, and every case-by-case detail,
+including the per-format citation-phrasing breakdown and the concurrency
+measurements, see `eval/README.md`.

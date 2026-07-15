@@ -28,7 +28,9 @@
     "question": "What earlier regulation, directive, or decision does 32005R1983 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32005R1983 - Commission Regulation (EC) No 1983 2005 of 5 December 2005 amending the rates of refunds applicable to certain products from the sugar sector exported in the form.pdf",
-    "expected_substring": "1260/2001",
+    "expected_substring": [
+      "1260/2001"
+    ],
     "type": "cross_reference_fact"
   },
   {
@@ -180,7 +182,9 @@
     "question": "What earlier regulation, directive, or decision does 31994R1831 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "31994R1831 - Commission Regulation (EC) No 1831 94 of 26 July 1994 concerning irregularities and the recovery of sums wrongly paid in connection with the financing of the Cohes.pdf",
-    "expected_substring": "1164/94",
+    "expected_substring": [
+      "1164/94"
+    ],
     "type": "cross_reference_fact"
   },
   {
@@ -356,7 +360,9 @@
     "question": "What earlier regulation, directive, or decision does 32014R0954 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32014R0954 - Commission Implementing Regulation (EU) No 954 2014 of 4 September 2014 approving non-minor amendments to the specification for a name entered in the register of p.pdf",
-    "expected_substring": "1151/2012",
+    "expected_substring": [
+      "1151/2012"
+    ],
     "type": "cross_reference_fact"
   },
   {
@@ -412,7 +418,9 @@
     "question": "What earlier regulation, directive, or decision does 31990D0293 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "31990D0293 - 90 293 EEC Commission Decision of 20 December 1989 on the establishment of the Community support framework for Community structural assistance in the areas eligibl.pdf",
-    "expected_substring": "2052/88",
+    "expected_substring": [
+      "2052/88"
+    ],
     "type": "cross_reference_fact"
   },
   {
@@ -468,7 +476,9 @@
     "question": "What earlier regulation, directive, or decision does 32001D0831 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32001D0831 - 2001 831 EC Commission Decision of 27 November 2001 prolonging the period of validity of Decision 1999 178 EC establishing the ecological criteria for the award of.pdf",
-    "expected_substring": "1980/2000",
+    "expected_substring": [
+      "1980/2000"
+    ],
     "type": "cross_reference_fact"
   },
   {
@@ -740,7 +750,9 @@
     "question": "What earlier regulation, directive, or decision does 32011R0432 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32011R0432 - Commission Regulation (EU) No 432 2011 of 4 May 2011 refusing to authorise certain health claims made on foods, other than those referring to the reduction of dise.pdf",
-    "expected_substring": "1924/2006",
+    "expected_substring": [
+      "1924/2006"
+    ],
     "type": "cross_reference_fact"
   },
   {

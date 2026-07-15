@@ -45,6 +45,16 @@ def normalize(s: str) -> str:
     return re.sub(r"[,\s]", "", s.lower())
 
 
+def substring_ok(expected, answer_norm: str) -> bool:
+    """expected is either a single fact string or a list of equally-valid
+    fact strings (e.g. cross_reference_fact/semantic_cross_reference,
+    where a document can legitimately cite more than one earlier
+    regulation — see eval/build_eu_golden_dataset.py::extract_facts).
+    Matching any one of them counts as correct."""
+    candidates = expected if isinstance(expected, list) else [expected]
+    return any(normalize(c) in answer_norm for c in candidates)
+
+
 async def run_case(client, base_url, headers, case, top_k, doc_id_by_filename):
     r = await client.post(f"{base_url}/query", headers=headers,
                            json={"question": case["question"], "top_k": top_k}, timeout=60.0)
@@ -71,6 +81,13 @@ async def run_case(client, base_url, headers, case, top_k, doc_id_by_filename):
 
     if case["expect_answer"]:
         expected_fname = case.get("expected_doc_filename")
+        # sources is the API's complete returned-source array, which can be
+        # longer than top_k (identity/opening-chunk promotion can force-add
+        # a document past the requested cutoff — see rag/retriever.py::
+        # promote_identity_matches / promote_document_opening_chunks). Rank
+        # is still computed against the full array (MRR should reflect the
+        # true position), but recall_hit below is gated on rank <= top_k so
+        # "Recall@5" only ever counts a hit actually within the first 5.
         doc_ids_returned = [s["document"] for s in sources]  # already ranked by relevance_score desc
         result["n_sources"] = len(doc_ids_returned)
 
@@ -78,7 +95,7 @@ async def run_case(client, base_url, headers, case, top_k, doc_id_by_filename):
             expected_doc_id = doc_id_by_filename.get(expected_fname)
             if expected_doc_id and expected_doc_id in doc_ids_returned:
                 rank = doc_ids_returned.index(expected_doc_id) + 1  # 1-indexed
-                result["recall_hit"] = True
+                result["recall_hit"] = rank <= top_k
                 result["rank"] = rank
                 result["reciprocal_rank"] = 1.0 / rank
             else:
@@ -88,7 +105,7 @@ async def run_case(client, base_url, headers, case, top_k, doc_id_by_filename):
 
         expected_substr = case.get("expected_substring")
         if expected_substr and answered:
-            result["substring_correct"] = normalize(expected_substr) in normalize(answer)
+            result["substring_correct"] = substring_ok(expected_substr, normalize(answer))
         elif expected_substr:
             result["substring_correct"] = False
         else:
@@ -142,6 +159,11 @@ async def main():
 
     recall_cases = [r for r in should_answer if "recall_hit" in r]
     recall_hits = sum(1 for r in recall_cases if r["recall_hit"])
+    # "In sources at all" — the API's returned-source array can exceed
+    # top_k (see comment in run_case above), so this is a strictly looser
+    # number than Recall@top_k and must never be reported as Recall@top_k.
+    in_sources_hits = sum(1 for r in recall_cases if r.get("rank") is not None)
+    max_sources = max((r["n_sources"] for r in recall_cases), default=args.top_k)
     mrr = sum(r["reciprocal_rank"] for r in recall_cases) / len(recall_cases) if recall_cases else 0
 
     def pct(numerator, denominator):
@@ -151,6 +173,10 @@ async def main():
     print(f"GOLDEN DATASET EVAL — {n} cases")
     print(f"{'='*60}")
     print(f"Recall@{args.top_k}: {recall_hits}/{len(recall_cases)} ({pct(recall_hits, len(recall_cases))})")
+    if max_sources > args.top_k:
+        print(f"  (In returned sources at all, up to {max_sources}-wide: "
+              f"{in_sources_hits}/{len(recall_cases)} ({pct(in_sources_hits, len(recall_cases))}) "
+              f"— NOT Recall@{args.top_k}, do not report as such)")
     print(f"MRR: {mrr:.3f}")
     print(f"Overall abstention accuracy: {abstention_correct}/{n} ({pct(abstention_correct, n)})")
     print(f"  - Answered when should ({len(should_answer)} cases):  {answered_when_should}/{len(should_answer)} ({pct(answered_when_should, len(should_answer))})")

@@ -332,7 +332,9 @@
     "question": "What earlier regulation, directive, or decision does the regulation amending regulations (eec) no 2191 81, (eec) no 429 90 and (ec) no 2571 97 to take account of the requireme cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32004R0921 - Commission Regulation (EC) No 921 2004 of 29 April 2004 amending Regulations (EEC) No 2191 81, (EEC) No 429 90 and (EC) No 2571 97 to take account of the requireme.pdf",
-    "expected_substring": "1255/1999",
+    "expected_substring": [
+      "1255/1999"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -348,7 +350,9 @@
     "question": "What earlier regulation, directive, or decision does the regulation concerning the authorisation of a new use of saccharomyces cerevisiae cncm i-1077 (levucell sc20 and le cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32008R1293 - Commission Regulation (EC) No 1293 2008 of 18 December 2008 concerning the authorisation of a new use of Saccharomyces cerevisiae CNCM I-1077 (Levucell SC20 and Le.pdf",
-    "expected_substring": "1831/2003",
+    "expected_substring": [
+      "1831/2003"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -364,7 +368,12 @@
     "question": "What earlier regulation, directive, or decision does the regulation amending for the third time regulation (eec) no 2707 86 laying down detailed rules for the description and pr cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "31988R0575 - Commission Regulation (EEC) No 575 88 of 1 March 1988 amending for the third time Regulation (EEC) No 2707 86 laying down detailed rules for the description and pr.pdf",
-    "expected_substring": "822/87",
+    "expected_substring": [
+      "822/87",
+      "3992/87",
+      "538/87",
+      "2249/87"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -380,7 +389,9 @@
     "question": "What earlier regulation, directive, or decision does the regulation amending regulation (ec) no 990 2006 as regards the quantities covered by standing invitations to tend cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32006R1349 - Commission Regulation (EC) No 1349 2006 of 13 September 2006 amending Regulation (EC) No 990 2006 as regards the quantities covered by standing invitations to tend.pdf",
-    "expected_substring": "1784/2003",
+    "expected_substring": [
+      "1784/2003"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -396,7 +407,9 @@
     "question": "What earlier regulation, directive, or decision does the regulation concerning irregularities and the recovery of sums wrongly paid in connection with the financing of the cohes cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "31994R1831 - Commission Regulation (EC) No 1831 94 of 26 July 1994 concerning irregularities and the recovery of sums wrongly paid in connection with the financing of the Cohes.pdf",
-    "expected_substring": "1164/94",
+    "expected_substring": [
+      "1164/94"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -412,7 +425,10 @@
     "question": "What earlier regulation, directive, or decision does the regulation fixing an acceptance percentage for the issuing of export licences, rejecting export-licence applications and cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32009R0575 - Commission Regulation (EC) No 575 2009 of 1 July 2009 fixing an acceptance percentage for the issuing of export licences, rejecting export-licence applications and.pdf",
-    "expected_substring": "1234/2007",
+    "expected_substring": [
+      "1234/2007",
+      "951/2006"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -428,7 +444,10 @@
     "question": "What earlier regulation, directive, or decision does the regulation laying down detailed implementing rules for the import arrangements applicable to products falling withi cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "31989R3858 - Commission Regulation (EEC) No 3858 89 of 20 December 1989 laying down detailed implementing rules for the import arrangements applicable to products falling withi.pdf",
-    "expected_substring": "430/87",
+    "expected_substring": [
+      "430/87",
+      "3846/89"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -444,7 +463,9 @@
     "question": "What earlier regulation, directive, or decision does the regulation concerning the authorisation of l-valine produced by corynebacterium glutamicum (dsm 25202 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32014R1236 - Commission Implementing Regulation (EU) No 1236 2014 of 18 November 2014 concerning the authorisation of L-valine produced by Corynebacterium glutamicum (DSM 25202.pdf",
-    "expected_substring": "1831/2003",
+    "expected_substring": [
+      "1831/2003"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -460,7 +481,9 @@
     "question": "What earlier regulation, directive, or decision does the regulation amending regulation (eec) no 1365 82 laying down standard rates for the financing, by the european agricultu cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "31987R0753 - Commission Regulation (EEC) No 753 87 of 17 March 1987 amending Regulation (EEC) No 1365 82 laying down standard rates for the financing, by the European Agricultu.pdf",
-    "expected_substring": "3247/81",
+    "expected_substring": [
+      "3247/81"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -476,7 +499,10 @@
     "question": "What earlier regulation, directive, or decision does the regulation laying down detailed rules for applying regulation (eec) no 2641 80 with regard to imports of sheepmeat and cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "31982R0019 - Commission Regulation (EEC) No 19 82 of 6 January 1982 laying down detailed rules for applying Regulation (EEC) No 2641 80 with regard to imports of sheepmeat and.pdf",
-    "expected_substring": "1837/80",
+    "expected_substring": [
+      "1837/80",
+      "899/81"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -492,7 +518,9 @@
     "question": "What earlier regulation, directive, or decision does the regulation amending regulation (ec) no 584 96 with regard to the imposition of anti-dumping measures applicable to certai cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32000R1592 - Council Regulation (EC) No 1592 2000 of 17 July 2000 amending Regulation (EC) No 584 96 with regard to the imposition of anti-dumping measures applicable to certai.pdf",
-    "expected_substring": "384/96",
+    "expected_substring": [
+      "384/96"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -508,7 +536,10 @@
     "question": "What earlier regulation, directive, or decision does the regulation amending regulation (ec) no 2533 97 laying down detailed rules for the application of the specific measu cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "31998R2064 - Commission Regulation (EC) No 2064 98 of 28 September 1998 amending Regulation (EC) No 2533 97 laying down detailed rules for the application of the specific measu.pdf",
-    "expected_substring": "2019/93",
+    "expected_substring": [
+      "2019/93",
+      "1802/95"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -524,7 +555,10 @@
     "question": "What earlier regulation, directive, or decision does the regulation amending regulation (ec) no 2848 98 in the raw tobacco sector as regards the amount to be paid to producers cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32001R1441 - Commission Regulation (EC) No 1441 2001 of 16 July 2001 amending Regulation (EC) No 2848 98 in the raw tobacco sector as regards the amount to be paid to producers.pdf",
-    "expected_substring": "2075/92",
+    "expected_substring": [
+      "2075/92",
+      "1336/2000"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -540,7 +574,9 @@
     "question": "What earlier regulation, directive, or decision does the regulation amending regulation (ec) no 3175 94 laying down detailed rules of application for the specific arrangem cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32005R2119 - Commission Regulation (EC) No 2119 2005 of 22 December 2005 amending Regulation (EC) No 3175 94 laying down detailed rules of application for the specific arrangem.pdf",
-    "expected_substring": "2019/93",
+    "expected_substring": [
+      "2019/93"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -556,7 +592,9 @@
     "question": "What earlier regulation, directive, or decision does the regulation establishing a transitional measure for the 2005 06 marketing year on funding the storage of cereals offere cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32006R0515 - Commission Regulation (EC) No 515 2006 of 30 March 2006 establishing a transitional measure for the 2005 06 marketing year on funding the storage of cereals offere.pdf",
-    "expected_substring": "1784/2003",
+    "expected_substring": [
+      "1784/2003"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -572,7 +610,9 @@
     "question": "What earlier regulation, directive, or decision does the regulation laying down detailed rules for the application of council regulation (ec) no 774 94 concerning the impo cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32007R1382 - Commission Regulation (EC) No 1382 2007 of 26 November 2007 laying down detailed rules for the application of Council Regulation (EC) No 774 94 concerning the impo.pdf",
-    "expected_substring": "2759/75",
+    "expected_substring": [
+      "2759/75"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -588,7 +628,9 @@
     "question": "What earlier regulation, directive, or decision does the regulation laying down detailed rules for the application of the minimum import price system for certain soft fruit cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "31996R2479 - Commission Regulation (EC) No 2479 96 of 18 December 1996 laying down detailed rules for the application of the minimum import price system for certain soft fruit.pdf",
-    "expected_substring": "1926/96",
+    "expected_substring": [
+      "1926/96"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -604,7 +646,9 @@
     "question": "What earlier regulation, directive, or decision does the regulation amending regulation (ec) no 1591 2001 laying down detailed rules for applying the cotton aid scheme cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32002R1486 - Commission Regulation (EC) No 1486 2002 of 19 August 2002 amending Regulation (EC) No 1591 2001 laying down detailed rules for applying the cotton aid scheme.pdf",
-    "expected_substring": "1051/2001",
+    "expected_substring": [
+      "1051/2001"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -620,7 +664,9 @@
     "question": "What earlier regulation, directive, or decision does the regulation concerning the authorisation of the preparation of clostridium butyricum ferm-bp 2789 as a fee cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32011R0373 - Commission Implementing Regulation (EU) No 373 2011 of 15 April 2011 concerning the authorisation of the preparation of Clostridium butyricum FERM-BP 2789 as a fee.pdf",
-    "expected_substring": "1831/2003",
+    "expected_substring": [
+      "1831/2003"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -636,7 +682,10 @@
     "question": "What earlier regulation, directive, or decision does the regulation amending regulation ( eec ) no 1481 86 on the determination of prices of fresh or chilled sheep carcases cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "31992R0115 - Commission Regulation ( EEC ) No 115 92 of 17 January 1992 amending Regulation ( EEC ) No 1481 86 on the determination of prices of fresh or chilled sheep carcases.pdf",
-    "expected_substring": "3013/89",
+    "expected_substring": [
+      "3013/89",
+      "3574/91"
+    ],
     "type": "semantic_cross_reference"
   },
   {
@@ -667,10 +716,10 @@
     "cluster_size": 509
   },
   {
-    "id": "idf_hardneg_32011R0112",
-    "question": "What was the regulation concerning the classification of certain goods in the combined nomenclature, adopted on 7 February 2011?",
+    "id": "idf_hardneg_31989R2403",
+    "question": "What was the regulation concerning the classification of certain goods in the combined nomenclature, adopted on 31 July 1989?",
     "expect_answer": true,
-    "expected_doc_filename": "32011R0112 - Commission Regulation (EU) No 112 2011 of 7 February 2011 concerning the classification of certain goods in the Combined Nomenclature.pdf",
+    "expected_doc_filename": "31989R2403 - Commission Regulation (EEC) No 2403 89 of 31 July 1989 concerning the classification of certain goods in the combined nomenclature.pdf",
     "expected_substring": null,
     "type": "hard_negative_date",
     "cluster_size": 509

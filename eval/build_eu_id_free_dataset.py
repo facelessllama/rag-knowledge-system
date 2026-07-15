@@ -44,7 +44,7 @@ Usage:
 """
 import json
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 from build_eu_golden_dataset import (
@@ -190,7 +190,7 @@ def build_semantic_fact(unique_docs: list[str], doc_info: dict, id_prefix: str) 
                 "question": question,
                 "expect_answer": True,
                 "expected_doc_filename": filename,
-                "expected_substring": facts["xref_number"],
+                "expected_substring": facts["xref_numbers"],
                 "type": "semantic_cross_reference",
             })
         else:
@@ -210,17 +210,22 @@ def build_hard_negatives(clusters: dict, doc_info: dict, id_prefix: str) -> list
     for cluster_docs in big_clusters:
         if len(cases) >= N_HARD_NEGATIVE:
             break
-        # dedupe by date within the cluster — need each picked member's
-        # date to be unmistakably its own among cluster-mates
-        seen_dates = set()
+        # A date only disambiguates a cluster member if it belongs to
+        # exactly one document in the WHOLE cluster — checking only against
+        # dates already picked in this loop (the old approach) still lets
+        # through a date shared by two unpicked cluster-mates, so the
+        # picked question ("adopted on <date>") stays genuinely ambiguous
+        # even though no duplicate was picked. Found via 32011R0112: its
+        # cluster had three same-dated documents and the old check picked
+        # one without noticing the other two.
+        date_counts = Counter(doc_info[f]["date_str"] for f in cluster_docs)
         picked = 0
         for filename in cluster_docs:
             if picked >= per_cluster or len(cases) >= N_HARD_NEGATIVE:
                 break
             info = doc_info[filename]
-            if info["date_str"] in seen_dates:
+            if date_counts[info["date_str"]] != 1:
                 continue
-            seen_dates.add(info["date_str"])
             subject = info["subject"].lower()
             doc_type_guess = "regulation"  # cluster subjects are near-uniformly Commission Regulations in this corpus
             question = f"What was the {doc_type_guess} {subject}, adopted on {info['date_str']}?"

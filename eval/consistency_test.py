@@ -35,7 +35,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from run_eval import normalize  # noqa: E402 — sibling module, see eval/build_heldout_dataset.py for the same pattern
+from run_eval import normalize, substring_ok  # noqa: E402 — sibling module, see eval/build_heldout_dataset.py for the same pattern
 from rag.generator import is_refusal
 
 EVAL_DIR = Path(__file__).resolve().parent
@@ -85,7 +85,10 @@ async def grade_one(client, api_url, headers, case, top_k):
     }
     expected_substr = case.get("expected_substring")
     if case["expect_answer"] and expected_substr:
-        result["substring_correct"] = answered and normalize(expected_substr) in normalize(answer)
+        # expected_substr can be a list of equally-valid facts (e.g.
+        # cross_reference_fact — see build_eu_golden_dataset.py::
+        # extract_facts) — substring_ok() accepts a match against any one.
+        result["substring_correct"] = answered and substring_ok(expected_substr, normalize(answer))
         result["abstention_correct"] = result["abstention_correct"] and result["substring_correct"]
     return result
 

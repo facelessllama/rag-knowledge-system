@@ -6,8 +6,8 @@ result guarantee, and neighbor expansion. Embedding and Qdrant are faked
 import pytest
 
 from rag.retriever import (
-    HybridRetriever, extract_case_numbers, extract_celex_ids, extract_party_match,
-    promote_identity_matches, promote_document_opening_chunks,
+    HybridRetriever, extract_case_numbers, extract_celex_ids, extract_citation_numbers,
+    extract_party_match, promote_identity_matches, promote_document_opening_chunks,
 )
 
 
@@ -18,12 +18,13 @@ class FakeEmbedder:
 
 class FakeVectorStore:
     def __init__(self, results_by_query=None, neighbors_by_doc=None, full_docs_by_id=None,
-                 case_number_index=None, celex_id_index=None):
+                 case_number_index=None, celex_id_index=None, citation_number_index=None):
         self.results_by_query = results_by_query or {}
         self.neighbors_by_doc = neighbors_by_doc or {}
         self.full_docs_by_id = full_docs_by_id or {}  # doc_id -> list[chunk] | None (None = "too long")
         self.case_number_index = case_number_index or {}  # (num, year) -> list[chunk]
         self.celex_id_index = celex_id_index or {}  # celex_id -> list[chunk]
+        self.citation_number_index = citation_number_index or {}  # (num, year) -> list[chunk]
 
     def hybrid_search(self, query_vector, query_text, top_k=5, doc_filter=None, folder_filter=None):
         return [dict(r) for r in self.results_by_query.get(query_text, [])]
@@ -45,6 +46,9 @@ class FakeVectorStore:
 
     def chunks_by_celex_id(self, celex_id):
         return [dict(c) for c in self.celex_id_index.get(celex_id, [])]
+
+    def chunks_by_citation_number(self, citation_number, citation_year):
+        return [dict(c) for c in self.citation_number_index.get((citation_number, citation_year), [])]
 
 
 def _chunk(chunk_id, doc_id, idx, score, text="text"):
@@ -207,6 +211,40 @@ def test_extract_celex_ids_returns_empty_for_no_match():
     assert extract_celex_ids("What is the capital of France?") == set()
 
 
+# ── extract_citation_numbers ─────────────────────────────────────────────────
+
+def test_extract_citation_numbers_parses_four_digit_year():
+    assert extract_citation_numbers("What does Regulation (EC) No 1021/2008 concern?") == {("1021", "2008")}
+
+
+def test_extract_citation_numbers_expands_two_digit_year():
+    """"No 480/86" reads as 1986 to a human, not 2086 — must match
+    ingestion/chunker.py::extract_citation_number's stored 4-digit year on
+    the other side of the lookup, or chunks_by_citation_number() finds
+    nothing even though the document is indexed correctly."""
+    assert extract_citation_numbers("Council Regulation (EEC) No 480/86") == {("480", "1986")}
+
+
+def test_extract_citation_numbers_two_digit_year_pivot_at_30():
+    assert extract_citation_numbers("No 1/29") == {("1", "2029")}
+    assert extract_citation_numbers("No 1/30") == {("1", "1930")}
+
+
+def test_extract_citation_numbers_requires_slash_not_case_number_shape():
+    """Without the slash this is _CASE_NUMBER_RE's "<N> of <YYYY>" shape,
+    not a citation number — the two must not collide."""
+    assert extract_citation_numbers("Case 100 of 2019") == set()
+
+
+def test_extract_citation_numbers_finds_multiple():
+    text = "Compare Regulation No 1021/2008 and Regulation No. 780/2007."
+    assert extract_citation_numbers(text) == {("1021", "2008"), ("780", "2007")}
+
+
+def test_extract_citation_numbers_returns_empty_for_no_match():
+    assert extract_citation_numbers("What is the capital of France?") == set()
+
+
 # ── extract_party_match ───────────────────────────────────────────────────────
 
 def test_extract_party_match_requires_all_parties_present():
@@ -321,6 +359,74 @@ async def test_retrieve_expanded_guarantees_celex_id_match_even_with_low_score()
     retriever = HybridRetriever(FakeEmbedder(), vs, top_k=1)
 
     results = await retriever.retrieve_expanded(["What is 31997R0955 about?"], top_k=1)
+
+    chunk_ids = {r["chunk_id"] for r in results}
+    assert "match" in chunk_ids
+    matched = next(r for r in results if r["chunk_id"] == "match")
+    assert matched["identity_match"] is True
+
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_fetches_citation_number_chunk_via_index_even_if_absent_from_hybrid_search():
+    """The natural short-citation form ("No 1021/2008") recurs across
+    different years and gets cited in passing by other documents' body
+    text — hybrid search alone isn't reliable for it, same rationale as
+    the CELEX ID index above but for the path a real user (who doesn't
+    know the CELEX ID) actually relies on."""
+    indexed_chunk = _chunk("indexed", "d_target", 0, 0.0, text="the actual regulation text")
+    indexed_chunk["citation_number"] = "1021"
+    indexed_chunk["citation_year"] = "2008"
+    vs = FakeVectorStore(
+        results_by_query={"What does Regulation No 1021/2008 concern?": []},  # nothing from hybrid search
+        citation_number_index={("1021", "2008"): [indexed_chunk]},
+    )
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    results = await retriever.retrieve_expanded(["What does Regulation No 1021/2008 concern?"], top_k=5)
+
+    chunk_ids = {r["chunk_id"] for r in results}
+    assert "indexed" in chunk_ids
+    matched = next(r for r in results if r["chunk_id"] == "indexed")
+    assert matched["identity_match"] is True
+    assert matched["source"] == "citation_number_index"
+
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_citation_number_index_expands_two_digit_year():
+    """Query says "No 480/86"; the chunk's stored citation_year (from
+    ingestion/chunker.py::extract_citation_number) is always the full
+    4-digit form — the lookup only succeeds if the query-side 2-digit year
+    was expanded to match before hitting the index."""
+    indexed_chunk = _chunk("indexed", "d_target", 0, 0.0, text="the actual regulation text")
+    indexed_chunk["citation_number"] = "480"
+    indexed_chunk["citation_year"] = "1986"
+    vs = FakeVectorStore(
+        results_by_query={"What does Regulation No 480/86 concern?": []},
+        citation_number_index={("480", "1986"): [indexed_chunk]},
+    )
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    results = await retriever.retrieve_expanded(["What does Regulation No 480/86 concern?"], top_k=5)
+
+    matched = next((r for r in results if r["chunk_id"] == "indexed"), None)
+    assert matched is not None
+    assert matched["identity_match"] is True
+
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_guarantees_citation_number_match_even_with_low_score():
+    matching_low_score = _chunk("match", "d_target", 0, 0.01, text="fragment of the regulation")
+    matching_low_score["citation_number"] = "1021"
+    matching_low_score["citation_year"] = "2008"
+    distractor_high_score = _chunk("distractor", "d_other", 0, 0.9, text="unrelated regulation")
+    distractor_high_score["citation_number"] = "780"
+    distractor_high_score["citation_year"] = "2007"
+    vs = FakeVectorStore(results_by_query={
+        "What does Regulation No 1021/2008 concern?": [distractor_high_score, matching_low_score],
+    })
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=1)
+
+    results = await retriever.retrieve_expanded(["What does Regulation No 1021/2008 concern?"], top_k=1)
 
     chunk_ids = {r["chunk_id"] for r in results}
     assert "match" in chunk_ids

@@ -252,7 +252,10 @@
     "question": "What earlier regulation, directive, or decision is 32006R0383 implementing?",
     "expect_answer": true,
     "expected_doc_filename": "32006R0383 - Commission Regulation (EC) No 383 2006 of 3 March 2006 fixing the maximum aid for cream, butter and concentrated butter for the 4th individual invitation to tender.pdf",
-    "expected_substring": "1255/99",
+    "expected_substring": [
+      "1255/99",
+      "1255/1999"
+    ],
     "type": "cross_reference_fact"
   },
   {
@@ -284,7 +287,9 @@
     "question": "What earlier regulation, directive, or decision is 32005R0644 repealing?",
     "expect_answer": true,
     "expected_doc_filename": "32005R0644 - Commission Regulation (EC) No 644 2005 of 27 April 2005 authorising a special identification system for bovine animals kept for cultural and historical purposes on.pdf",
-    "expected_substring": "820/97",
+    "expected_substring": [
+      "820/97"
+    ],
     "type": "cross_reference_fact"
   },
   {
@@ -508,7 +513,11 @@
     "question": "What earlier regulation, directive, or decision does 31987R3715 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "31987R3715 - Commission Regulation (EEC) No 3715 87 of 11 December 1987 suspending Regulation (EEC) No 2793 77 on detailed rules of application for granting special aid for ski.pdf",
-    "expected_substring": "804/68",
+    "expected_substring": [
+      "804/68",
+      "2998/87",
+      "2711/87"
+    ],
     "type": "cross_reference_fact"
   },
   {
@@ -540,7 +549,9 @@
     "question": "What earlier regulation, directive, or decision does 32007R1090 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32007R1090 - Commission Regulation (EC) No 1090 2007 of 20 September 2007 on the issuing of import licences for applications lodged during the first seven days of September 200.pdf",
-    "expected_substring": "2759/75",
+    "expected_substring": [
+      "2759/75"
+    ],
     "type": "cross_reference_fact"
   },
   {
@@ -732,7 +743,9 @@
     "question": "What earlier regulation, directive, or decision does 32007R1210 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32007R1210 - Commission Regulation (EC) No 1210 2007 of 17 October 2007 opening an invitation to tender for the allocation of A3 export licences for fruit and vegetables (tomat.pdf",
-    "expected_substring": "2200/96",
+    "expected_substring": [
+      "2200/96"
+    ],
     "type": "cross_reference_fact"
   },
   {
@@ -828,7 +841,10 @@
     "question": "What earlier regulation, directive, or decision does 32007R0312 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32007R0312 - Commission Regulation (EC) No 312 2007 of 22 March 2007 amending Regulation (EC) No 195 2007 opening the buying-in of butter in certain Member States for the perio.pdf",
-    "expected_substring": "1255/1999",
+    "expected_substring": [
+      "1255/1999",
+      "2771/1999"
+    ],
     "type": "cross_reference_fact"
   },
   {
@@ -988,7 +1004,9 @@
     "question": "What earlier regulation, directive, or decision does 32013R0661 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32013R0661 - Commission Regulation (EU) No 661 2013 of 8 July 2013 establishing a prohibition of fishing for greater forkbeard in EU and international waters of V, VI and VII b.pdf",
-    "expected_substring": "1224/2009",
+    "expected_substring": [
+      "1224/2009"
+    ],
     "type": "cross_reference_fact"
   },
   {
@@ -1020,7 +1038,12 @@
     "question": "What earlier regulation, directive, or decision does 31988R0575 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "31988R0575 - Commission Regulation (EEC) No 575 88 of 1 March 1988 amending for the third time Regulation (EEC) No 2707 86 laying down detailed rules for the description and pr.pdf",
-    "expected_substring": "822/87",
+    "expected_substring": [
+      "822/87",
+      "3992/87",
+      "538/87",
+      "2249/87"
+    ],
     "type": "cross_reference_fact"
   },
   {
@@ -1084,7 +1107,11 @@
     "question": "What earlier regulation, directive, or decision does 32002R2258 cite (excluding its own number)?",
     "expect_answer": true,
     "expected_doc_filename": "32002R2258 - Commission Regulation (EC) No 2258 2002 of 18 December 2002 amending Regulations (EC) No 1868 2002 and (EC) No 1870 2002 as regards import licence applications for.pdf",
-    "expected_substring": "2200/96",
+    "expected_substring": [
+      "2200/96",
+      "545/2002",
+      "565/2002"
+    ],
     "type": "cross_reference_fact"
   },
   {

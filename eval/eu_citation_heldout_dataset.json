@@ -1,0 +1,402 @@
+[
+  {
+    "id": "cho_32005R0174_citation_fmt_bracket_eec",
+    "question": "What does Regulation (EEC) No 174/2005 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32005R0174 - Council Regulation (EC) No 174 2005 of 31 January 2005 imposing restrictions on the supply of assistance related to military activities to Côte d’Ivoire.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bracket_eec"
+  },
+  {
+    "id": "cho_32001R2014_citation_fmt_council_no_dot",
+    "question": "What is Council Regulation No. 2014/2001 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32001R2014 - Commission Regulation (EC) No 2014 2001 of 12 October 2001 fixing the maximum purchase price for beef under the 12th partial invitation to tender pursuant to Regul.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_council_no_dot"
+  },
+  {
+    "id": "cho_31989R3771_citation_fmt_commission_summarize",
+    "question": "Summarize Commission Regulation (EC) No 3771/1989.",
+    "expect_answer": true,
+    "expected_doc_filename": "31989R3771 - Commission Regulation (EEC) No 3771 89 of 14 December 1989 laying down detailed rules for the production aid for high-quality flint maize.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_commission_summarize"
+  },
+  {
+    "id": "cho_31996R2471_citation_fmt_bare_no",
+    "question": "What does No 2471/1996 deal with?",
+    "expect_answer": true,
+    "expected_doc_filename": "31996R2471 - Council Regulation (EC) No 2471 96 of 20 December 1996 amending Regulation (EC) No 789 96 opening and providing for the administration of autonomous Community tari.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bare_no"
+  },
+  {
+    "id": "cho_32005R0754_citation_fmt_two_digit_year",
+    "question": "What is the subject of Regulation No 754/05 of the European Communities?",
+    "expect_answer": true,
+    "expected_doc_filename": "32005R0754 - Commission Regulation (EC) No 754 2005 of 18 May 2005 fixing the export refunds on eggs applicable from 19 May 2005.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_two_digit_year"
+  },
+  {
+    "id": "cho_31998R0056_citation_fmt_bracket_eec",
+    "question": "What does Regulation (EEC) No 56/1997 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31998R0056 - Council Regulation (EC) No 56 98 of 19 December 1997 laying down, for 1998, certain measures for the conservation and management of fishery resources applicable to.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bracket_eec"
+  },
+  {
+    "id": "cho_32007R0408_citation_fmt_council_no_dot",
+    "question": "What is Council Regulation No. 408/2007 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32007R0408 - Commission Regulation (EC) No 408 2007 of 16 April 2007 establishing the standard import values for determining the entry price of certain fruit and vegetables.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_council_no_dot"
+  },
+  {
+    "id": "cho_31984R0665_citation_fmt_commission_summarize",
+    "question": "Summarize Commission Regulation (EC) No 665/1984.",
+    "expect_answer": true,
+    "expected_doc_filename": "31984R0665 - Council Regulation (EEC) No 665 84 of 13 March 1984 on the apportionment of the quantities of cereals provided for under the Food Aid Convention for the period 1 J.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_commission_summarize"
+  },
+  {
+    "id": "cho_31991R1932_citation_fmt_bare_no",
+    "question": "What does No 1932/1991 deal with?",
+    "expect_answer": true,
+    "expected_doc_filename": "31991R1932 - Commission Regulation (EEC) No 1932 91 of 2 July 1991 fixing the minimum selling prices for beef put up for sale under the invitation to tender referred to in Regu.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bare_no"
+  },
+  {
+    "id": "cho_32011R0861_citation_fmt_two_digit_year",
+    "question": "What is the subject of Regulation No 861/11 of the European Communities?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011R0861 - Commission Implementing Regulation (EU) No 861 2011 of 25 August 2011 amending the representative prices and additional import duties for certain products in the s.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_two_digit_year"
+  },
+  {
+    "id": "cho_31979R2878_citation_fmt_bracket_eec",
+    "question": "What does Regulation (EEC) No 2878/1979 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31979R2878 - Council Regulation (EEC) No 2878 79 of 17 December 1979 amending Regulation (EEC) No 2358 71 on the common organization of the market in seeds and Regulation (EEC).pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bracket_eec"
+  },
+  {
+    "id": "cho_32008R0990_citation_fmt_council_no_dot",
+    "question": "What is Council Regulation No. 990/2008 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32008R0990 - Commission Regulation (EC) No 990 2008 of 9 October 2008 establishing the standard import values for determining the entry price of certain fruit and vegetables.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_council_no_dot"
+  },
+  {
+    "id": "cho_31992R0468_citation_fmt_commission_summarize",
+    "question": "Summarize Commission Regulation (EC) No 468/1992.",
+    "expect_answer": true,
+    "expected_doc_filename": "31992R0468 - Commission Regulation (EEC) No 468 92 of 27 February 1992 amending Regulation No 162 67 EEC on the method of fixing the export refund on flour, groats and meal of.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_commission_summarize"
+  },
+  {
+    "id": "cho_31986R1333_citation_fmt_bare_no",
+    "question": "What does No 1333/1986 deal with?",
+    "expect_answer": true,
+    "expected_doc_filename": "31986R1333 - Council Regulation (EEC) No 1333 86 of 6 May 1986 amending Regulation (EEC) No 1678 85 fixing the conversion rates to be applied in agriculture.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bare_no"
+  },
+  {
+    "id": "cho_32005R0178_citation_fmt_two_digit_year",
+    "question": "What is the subject of Regulation No 178/05 of the European Communities?",
+    "expect_answer": true,
+    "expected_doc_filename": "32005R0178 - Commission Regulation (EC) No 178 2005 of 2 February 2005 establishing the standard import values for determining the entry price of certain fruit and vegetables.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_two_digit_year"
+  },
+  {
+    "id": "cho_32008R0304_citation_fmt_bracket_eec",
+    "question": "What does Regulation (EEC) No 304/2008 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32008R0304 - Commission Regulation (EC) No 304 2008 of 2 April 2008 establishing, pursuant to Regulation (EC) No 842 2006 of the European Parliament and of the Council, minimum.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bracket_eec"
+  },
+  {
+    "id": "cho_31990R2891_citation_fmt_council_no_dot",
+    "question": "What is Council Regulation No. 2891/1990 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31990R2891 - Commission Regulation (EEC) No 2891 90 of 5 October 1990 on the issue of import licences for provisionally preserved cultivated mushrooms.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_council_no_dot"
+  },
+  {
+    "id": "cho_32002R0863_citation_fmt_commission_summarize",
+    "question": "Summarize Commission Regulation (EC) No 863/2002.",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R0863 - Commission Regulation (EC) No 863 2002 of 23 May 2002 concerning tenders notified in response to the invitation to tender for the export of rye issued in Regulatio.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_commission_summarize"
+  },
+  {
+    "id": "cho_31995R2861_citation_fmt_bare_no",
+    "question": "What does No 2861/1995 deal with?",
+    "expect_answer": true,
+    "expected_doc_filename": "31995R2861 - Commission Regulation (EC) No 2861 95 of 11 December 1995 concerning the stopping of fishing for cod by vessels flying the flag of Belgium.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bare_no"
+  },
+  {
+    "id": "cho_32002R0831_citation_fmt_two_digit_year",
+    "question": "What is the subject of Regulation No 831/02 of the European Communities?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R0831 - Commission Regulation (EC) No 831 2002 of 17 May 2002 implementing Council Regulation (EC) No 322 97 on Community Statistics, concerning access to confidential dat.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_two_digit_year"
+  },
+  {
+    "id": "cho_32008R0091_citation_fmt_bracket_eec",
+    "question": "What does Regulation (EEC) No 91/2008 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32008R0091 - Commission Regulation (EC) No 91 2008 of 31 January 2008 fixing the maximum export refund for white sugar in the framework of the standing invitation to tender pro.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bracket_eec"
+  },
+  {
+    "id": "cho_32004R1271_citation_fmt_council_no_dot",
+    "question": "What is Council Regulation No. 1271/2004 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004R1271 - Commission Regulation (EC) No 1271 2004 of 9 July 2004 determining the world market price for unginned cotton.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_council_no_dot"
+  },
+  {
+    "id": "cho_32012R0571_citation_fmt_commission_summarize",
+    "question": "Summarize Commission Regulation (EC) No 571/2012.",
+    "expect_answer": true,
+    "expected_doc_filename": "32012R0571 - Commission Implementing Regulation (EU) No 571 2012 of 28 June 2012 amending Implementing Regulation (EU) No 540 2011 as regards the conditions of approval of the.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_commission_summarize"
+  },
+  {
+    "id": "cho_32002R0729_citation_fmt_bare_no",
+    "question": "What does No 729/2002 deal with?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R0729 - Commission Regulation (EC) No 729 2002 of 26 April 2002 fixing the maximum export refund on wholly milled round grain rice in connection with the invitation to ten.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bare_no"
+  },
+  {
+    "id": "cho_31995R2914_citation_fmt_two_digit_year",
+    "question": "What is the subject of Regulation No 2914/95 of the European Communities?",
+    "expect_answer": true,
+    "expected_doc_filename": "31995R2914 - Commission Regulation (EC) No 2914 95 of 18 December 1995 introducing prior Community surveillance of imports of certain iron and steel products covered by the ECS.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_two_digit_year"
+  },
+  {
+    "id": "cho_31991R3008_citation_fmt_bracket_eec",
+    "question": "What does Regulation (EEC) No 3008/1991 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31991R3008 - Commission Regulation (EEC) No 3008 91 of 14 October 1991 re-establishing the levying of customs duties on products of category 97 (order No 40.0970), originating.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bracket_eec"
+  },
+  {
+    "id": "cho_31999R2319_citation_fmt_council_no_dot",
+    "question": "What is Council Regulation No. 2319/1999 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "31999R2319 - Commission Regulation (EC) No 2319 1999 of 29 October 1999 establishing the allocation of export licences for cheeses to be exported in 2000 to the United States o.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_council_no_dot"
+  },
+  {
+    "id": "cho_31998R1645_citation_fmt_commission_summarize",
+    "question": "Summarize Commission Regulation (EC) No 1645/1998.",
+    "expect_answer": true,
+    "expected_doc_filename": "31998R1645 - Commission Regulation (EC) No 1645 98 of 27 July 1998 increasing the volume of the tariff quota for imports of bananas provided for in Article 18 of Council Regula.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_commission_summarize"
+  },
+  {
+    "id": "cho_32010R0773_citation_fmt_bare_no",
+    "question": "What does No 773/2010 deal with?",
+    "expect_answer": true,
+    "expected_doc_filename": "32010R0773 - Commission Regulation (EU) No 773 2010 of 1 September 2010 establishing the standard import values for determining the entry price of certain fruit and vegetables.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bare_no"
+  },
+  {
+    "id": "cho_32006R1291_citation_fmt_two_digit_year",
+    "question": "What is the subject of Regulation No 1291/06 of the European Communities?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R1291 - Commission Regulation (EC) No 1291 2006 of 30 August 2006 amending Regulation (EC) No 795 2004 laying down detailed rules for the implementation of the single paym.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_two_digit_year"
+  },
+  {
+    "id": "cho_32011R0743_citation_fmt_bracket_eec",
+    "question": "What does Regulation (EEC) No 743/2011 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32011R0743 - Commission Regulation (EU) No 743 2011 of 26 July 2011 establishing a prohibition of fishing for anglerfish in VIIIc, IX and X; EU waters of CECAF 34.1.1 by vessel.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bracket_eec"
+  },
+  {
+    "id": "cho_32005R1243_citation_fmt_council_no_dot",
+    "question": "What is Council Regulation No. 1243/2005 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32005R1243 - Commission Regulation (EC) No 1243 2005 of 29 July 2005 fixing the maximum aid for cream, butter and concentrated butter for the 168th individual invitation to ten.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_council_no_dot"
+  },
+  {
+    "id": "cho_31989R2855_citation_fmt_commission_summarize",
+    "question": "Summarize Commission Regulation (EC) No 2855/1989.",
+    "expect_answer": true,
+    "expected_doc_filename": "31989R2855 - Commission Regulation (EEC) No 2855 89 of 22 September 1989 on the supply of various lots of butteroil as food aid.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_commission_summarize"
+  },
+  {
+    "id": "cho_32006R0298_citation_fmt_bare_no",
+    "question": "What does No 298/2006 deal with?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R0298 - Commission Regulation (EC) No 298 2006 of 17 February 2006 fixing the minimum selling price for skimmed-milk powder for the 34th individual invitation to tender is.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bare_no"
+  },
+  {
+    "id": "cho_32002R1577_citation_fmt_two_digit_year",
+    "question": "What is the subject of Regulation No 1577/02 of the European Communities?",
+    "expect_answer": true,
+    "expected_doc_filename": "32002R1577 - Commission Regulation (EC) No 1577 2002 of 3 September 2002 establishing the standard import values for determining the entry price of certain fruit and vegetables.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_two_digit_year"
+  },
+  {
+    "id": "cho_32005R1694_citation_fmt_bracket_eec",
+    "question": "What does Regulation (EEC) No 1694/2005 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32005R1694 - Commission Regulation (EC) No 1694 2005 of 17 October 2005 establishing the standard import values for determining the entry price of certain fruit and vegetables.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bracket_eec"
+  },
+  {
+    "id": "cho_32010R0496_citation_fmt_council_no_dot",
+    "question": "What is Council Regulation No. 496/2010 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32010R0496 - Commission Regulation (EU) No 496 2010 of 7 June 2010 amending the representative prices and additional import duties for certain products in the sugar sector fixe.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_council_no_dot"
+  },
+  {
+    "id": "cho_31998R0051_citation_fmt_commission_summarize",
+    "question": "Summarize Commission Regulation (EC) No 51/1997.",
+    "expect_answer": true,
+    "expected_doc_filename": "31998R0051 - Council Regulation (EC) No 51 98 of 19 December 1997 allocating, for 1998, catch quotas between Member States for vessels fishing in Icelandic waters.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_commission_summarize"
+  },
+  {
+    "id": "cho_31996R1525_citation_fmt_bare_no",
+    "question": "What does No 1525/1996 deal with?",
+    "expect_answer": true,
+    "expected_doc_filename": "31996R1525 - Commission Regulation (EC) No 1525 96 of 30 July 1996 amending Regulation (EC) No 3016 95 opening Community tariff quotas for 1996 for sheep, goats, sheepmeat and.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bare_no"
+  },
+  {
+    "id": "cho_32006R0646_citation_fmt_two_digit_year",
+    "question": "What is the subject of Regulation No 646/06 of the European Communities?",
+    "expect_answer": true,
+    "expected_doc_filename": "32006R0646 - Commission Regulation (EC) No 646 2006 of 27 April 2006 fixing the maximum export refund for skimmed milk powder in the framework of the standing invitation to ten.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_two_digit_year"
+  },
+  {
+    "id": "cho_31991R0964_citation_fmt_bracket_eec",
+    "question": "What does Regulation (EEC) No 964/1991 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "31991R0964 - Commission Regulation (EEC) No 964 91 of 18 April 1991 concerning the classification of certain goods in the Combined Nomenclature.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bracket_eec"
+  },
+  {
+    "id": "cho_32004R1183_citation_fmt_council_no_dot",
+    "question": "What is Council Regulation No. 1183/2004 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32004R1183 - Commission Regulation (EC) No 1183 2004 of 25 June 2004 fixing the maximum aid for concentrated butter for the 316th special invitation to tender opened under the.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_council_no_dot"
+  },
+  {
+    "id": "cho_31996R2444_citation_fmt_commission_summarize",
+    "question": "Summarize Commission Regulation (EC) No 2444/1996.",
+    "expect_answer": true,
+    "expected_doc_filename": "31996R2444 - Council Regulation (EC) No 2444 96 of 17 December 1996 amending Regulation (EEC) No 2075 92 on the common organization of the market in raw tobacco.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_commission_summarize"
+  },
+  {
+    "id": "cho_31998R1525_citation_fmt_bare_no",
+    "question": "What does No 1525/1998 deal with?",
+    "expect_answer": true,
+    "expected_doc_filename": "31998R1525 - Commission Regulation (EC) No 1525 98 of 16 July 1998 amending Regulation (EC) No 194 97 of 31 January 1997 setting maximum levels for certain contaminants in food.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bare_no"
+  },
+  {
+    "id": "cho_32003R1561_citation_fmt_two_digit_year",
+    "question": "What is the subject of Regulation No 1561/03 of the European Communities?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R1561 - Commission Regulation (EC) No 1561 2003 of 4 September 2003 derogating from Regulation (EC) No 708 98 on the taking over of paddy rice by the intervention agencies.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_two_digit_year"
+  },
+  {
+    "id": "cho_32003R0758_citation_fmt_bracket_eec",
+    "question": "What does Regulation (EEC) No 758/2003 concern?",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R0758 - Commission Regulation (EC) No 758 2003 of 30 April 2003 establishing the standard import values for determining the entry price of certain fruit and vegetables.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bracket_eec"
+  },
+  {
+    "id": "cho_32007R0543_citation_fmt_council_no_dot",
+    "question": "What is Council Regulation No. 543/2007 about?",
+    "expect_answer": true,
+    "expected_doc_filename": "32007R0543 - Commission Regulation (EC) No 543 2007 of 16 May 2007 on the issue of licences for importing rice under the tariff quotas opened for the May 2007 subperiod by Regu.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_council_no_dot"
+  },
+  {
+    "id": "cho_32003R0835_citation_fmt_commission_summarize",
+    "question": "Summarize Commission Regulation (EC) No 835/2003.",
+    "expect_answer": true,
+    "expected_doc_filename": "32003R0835 - Commission Regulation (EC) No 835 2003 of 15 May 2003 establishing the standard import values for determining the entry price of certain fruit and vegetables.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_commission_summarize"
+  },
+  {
+    "id": "cho_31984R3398_citation_fmt_bare_no",
+    "question": "What does No 3398/1984 deal with?",
+    "expect_answer": true,
+    "expected_doc_filename": "31984R3398 - Commission Regulation (EEC) No 3398 84 of 3 December 1984 derogating from Regulation (EEC) No 2213 83 as regards the quality standards for onions.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_bare_no"
+  },
+  {
+    "id": "cho_32005R0409_citation_fmt_two_digit_year",
+    "question": "What is the subject of Regulation No 409/05 of the European Communities?",
+    "expect_answer": true,
+    "expected_doc_filename": "32005R0409 - Commission Regulation (EC) No 409 2005 of 10 March 2005 fixing the maximum reduction in the duty on maize imported in connection with the invitation to tender issu.pdf",
+    "expected_substring": null,
+    "type": "citation_fmt_two_digit_year"
+  }
+]

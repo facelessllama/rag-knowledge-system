@@ -329,6 +329,12 @@ future scale test):
 - `eval/build_eu_golden_dataset.py` — golden/heldout/cross-question dataset
   builder for this corpus (facts extracted from PDF text via regex, not
   hand-transcribed, same discipline as `build_golden_dataset.py`).
+- `eval/build_eu_id_free_dataset.py` — ID-free natural-lookup/semantic-fact/
+  hard-negative dataset (see "ID-free spot-check" below).
+- `eval/build_eu_citation_heldout_dataset.py` — genuinely-disjoint citation-
+  number generalization set, 5 natural phrasing formats, every `celex_id`
+  used by any other EU dataset excluded (see "Citation-number
+  generalization test" below).
 - `eval/consistency_test.py` — repeats a representative question sample
   N times against a live instance, recording both answer correctness and
   *which document was actually retrieved* each time (separates retrieval
@@ -336,6 +342,11 @@ future scale test):
 - `eval/run_eval.py` fixed: crashed with `ZeroDivisionError` on any
   dataset with zero adversarial (`expect_answer: False`) cases — the
   cross-question dataset has none by design. Now reports `n/a` instead.
+  Later also fixed to count Recall@K strictly (`rank ≤ top_k`, not
+  "anywhere in the returned sources array") and to accept a list of
+  equally-valid answers for `expected_substring` — see "Recall@5 counting
+  bug" in `VALIDATION.md`. `consistency_test.py` shares the same
+  multi-answer substring check (`run_eval.substring_ok`).
 
 **Two bugs found on this corpus and fixed** (mirroring the case-number/
 party-name work above, same architecture, corpus-specific extraction
@@ -357,26 +368,60 @@ logic):
 
 Impact of both fixes together, pilot (400 docs): golden Recall@5 88.7% →
 **100%**, abstention accuracy 89.4% → **100%**, answer correctness 67.2% →
-**100%**; heldout 86.7%/88.1%/58.2% → **100%/99.4%/90.3%**. Residual
-heldout `cross_reference_fact` misses (5/9) are a *dataset* ambiguity, not
-a retrieval/generation defect — many EU documents cite multiple earlier
-regulations ("Having regard to X... and Y..."), and the regex-extracted
-"expected" one isn't always the one the model surfaces, even though both
-are legitimately present in the text. Backfilled the already-ingested 400
-docs' `celex_id` via `scripts/backfill_case_metadata.py` (extended to
-handle both identity conventions; scrolls existing points, no re-parse/
-re-embed needed).
+**100%**; heldout 86.7%/88.1%/58.2% → **100%/99.4%/90.3%**. Backfilled the
+already-ingested 400 docs' `celex_id` via `scripts/backfill_case_metadata.py`
+(extended to handle both identity conventions; scrolls existing points, no
+re-parse/re-embed needed).
+
+Initial heldout `cross_reference_fact` misses (5/9) were written off at the
+time as a *dataset* ambiguity rather than a retrieval/generation defect —
+many EU documents cite multiple earlier regulations ("Having regard to
+X... and Y..."), and the regex-extracted "expected" one wasn't always the
+one the model surfaced, even though both were legitimately present in the
+text. That explanation was correct but the response to it wasn't — the
+ground truth stayed single-answer instead of being fixed. A later review
+(see "Recall@5 counting bug" below) corrected `extract_facts()` to collect
+*every* citation number a document's body actually supports, not just the
+first regex match, and `run_eval.py`/`consistency_test.py` to accept a
+match against any of them. `cross_reference_fact` ground truth across
+golden/heldout/cross_question (17 cases total) now carries a list instead
+of a single string; 5 of those 17 genuinely have more than one valid
+citation in the document body.
 
 **Scale ladder results — full run** (golden / heldout, `eval/scale_results/`):
 
-| corpus size | Recall@5 | Abstention acc. | Answer correctness | MRR (golden / heldout) |
+**Correction (post-hoc, see "Recall@5 counting bug" in `VALIDATION.md`):**
+the table below originally reported a flat 100% Recall@5 at every corpus
+size. That number was computed by checking whether the expected document
+appeared *anywhere* in the API's returned `sources` array, which
+`promote_identity_matches()` can widen to six entries even when `top_k=5`
+— so a document at rank 6 was being counted as a Recall@5 hit throughout.
+The table below is the strict `rank ≤ 5` version, recomputed from the same
+saved per-case data and then **re-verified with a fresh live run against
+the 57,000-document corpus** (matched the recomputation within normal
+run-to-run variance — 109/150 and 104/150 live vs. 110/150 and 104/150
+recomputed). The "in returned sources, up to 6-wide" column is what the
+original 100% figure actually measured — real, but a different and looser
+claim than Recall@5, and `run_eval.py` now reports both under distinct
+labels so they can't be conflated again.
+
+| corpus size | strict Recall@5 (golden/heldout) | in-sources≤6 (golden/heldout) | Abstention acc. | MRR (golden / heldout) |
 |---|---|---|---|---|
-| 400 (post-fix pilot) | 100% / 100% | 100% / 99.4% | 100% / 90.3% | 0.815 / 0.833 |
-| 1,000 | 100% / 100% | 100% / 99.4% | 100% / 91.9% | 0.706 / 0.722 |
-| 5,000 | 100% / 100% | 100% / 99.4% | 100% / 91.9% | 0.599 / 0.608 |
-| 15,000 | 100% / 100% | 100% / 100% | 100% / 96.8% | 0.539 / 0.535 |
-| 30,000 | 100% / 100% | 100% / 100% | 100% / 93.5% | 0.496 / 0.504 |
-| **57,000** | **100% / 100%** | **99.4% / 99.4%** | **98.2% / 93.5%** | **0.447 / 0.462** |
+| 1,000 | 96.0% / 95.3% (144,143/150) | 100% / 100% | 100% / 99.4% | 0.706 / 0.722 |
+| 5,000 | 86.7% / 84.0% (130,126/150) | 100% / 100% | 100% / 99.4% | 0.599 / 0.608 |
+| 15,000 | 80.7% / 78.0% (121,117/150) | 100% / 100% | 100% / 100% | 0.539 / 0.535 |
+| 30,000 | 75.3% / 74.0% (113,111/150) | 100% / 100% | 100% / 100% | 0.496 / 0.504 |
+| **57,000** | **72.7% / 69.3% (109,104/150)** | **100% / 100%** | **99.4% / 99.4%** | **0.448 / 0.453** |
+
+Answer correctness (substring match on the checkable subset, unaffected by
+the Recall@5 bug — it measures fact extraction, not document rank) stayed
+strong throughout and is reported separately per checkpoint in
+`eval/scale_results/*.json`; on the fresh 57,000 live rerun it was
+98.2% (54/55) golden and 95.2% (59/62) heldout — the heldout figure moved
+a couple points from the original 93.5% (58/62) because the
+`cross_reference_fact` ground-truth fix above (accepting any citation the
+document body genuinely supports, not just the first regex match) now
+credits answers it previously marked wrong.
 
 **Consistency test @ 57,000** (15 questions × 20 repeats = 300 calls,
 `eval/consistency_results_at_57000.json`, same sample methodology as the
@@ -481,7 +526,12 @@ corpus (already ingested; no re-ingestion needed). Four types:
   supplied. Directly tests disambiguation under the exact pressure that
   drove the ladder's declining MRR, with no ID shortcut available.
 
-**Results** (`eval/scale_results/id_free_at_57000.json`):
+**Results** (`eval/scale_results/id_free_at_57000.json`, strict `rank ≤ 5`
+— see "Recall@5 counting bug" in `VALIDATION.md`; this table was
+originally published with the same window-counting bug as the main
+ladder, but every type here happened to score identically under both
+definitions at this stage, so the numbers below are unchanged from first
+publication):
 
 | type | n | Recall@5 | MRR |
 |---|---|---|---|
@@ -490,7 +540,7 @@ corpus (already ingested; no re-ingestion needed). Four types:
 | semantic_date_fact | 20 | 20/20 (100%) | 1.000 |
 | semantic_cross_reference | 20 | 18/20 (90%) | 0.825 |
 | natural_lookup_by_number | 20 | **15/20 (75%)** | **0.535** |
-| **overall** | 120 | **103/110 (93.6%)** | **0.884** |
+| **overall** | 110 | **103/110 (93.6%)** | **0.884** |
 | abstention accuracy | | 117/120 (97.5%) | |
 | answer correctness | | 32/40 (80.0%) | |
 
@@ -568,10 +618,17 @@ Closed the gap above directly, mirroring `chunks_by_celex_id`/
 **Re-ran `eu_id_free_dataset.json` @ 57,000 after the fix**
 (`eval/scale_results/id_free_at_57000_post_citation_index.json`):
 
-| type | Recall@5 before | Recall@5 after | MRR before | MRR after |
+**Correction**: this run *was* affected by the window-counting bug — the
+originally-published 108/110 (98.2%) "Recall@5" included 2 cases that only
+landed at rank 6. The strict `rank ≤ 5` numbers below were recomputed and
+then reconfirmed with a fresh live run (see "Recall@5 counting bug" in
+`VALIDATION.md`).
+
+| type | Recall@5 before fix | strict Recall@5 after fix | MRR before | MRR after |
 |---|---|---|---|---|
-| natural_lookup_by_number | 15/20 (75%) | **20/20 (100%)** | 0.535 | 0.631 |
-| **overall** | 103/110 (93.6%) | **108/110 (98.2%)** | 0.884 | 0.901 |
+| natural_lookup_by_number | 15/20 (75%) | **18/20 (90%)** | 0.535 | 0.631 |
+| **overall** | 103/110 (93.6%) | **106/110 (96.4%)** | 0.884 | 0.901 |
+| in-sources≤6 (not Recall@5) | | 108/110 (98.2%) | | |
 | abstention accuracy | 117/120 (97.5%) | **120/120 (100%)** | | |
 
 All 5 previously-missed `natural_lookup_by_number` cases spot-checked
@@ -579,38 +636,133 @@ individually post-fix, including the exact year-collision case
 (`idf_natlookup_31986R0480`, "No 480/86") — now correctly resolves to the
 480/86 document specifically (its answer cites "25 February 1986",
 matching the expected document exactly, not the previously-confused
-480/87). Recall@5 is now perfect for that type; MRR (0.631, not 1.000)
-is not — same as `celex_id`, the index guarantees inclusion above
-threshold, not top rank, so the reranker still independently decides
+480/87). Recall@5 moved from 75% to a strict 90% for that type (2 of the
+20 now land at rank 6, just outside the window); MRR (0.631, not 1.000)
+still isn't perfect — same as `celex_id`, the index guarantees inclusion
+above threshold, not top rank, so the reranker still independently decides
 final position among candidates. That's expected and correctly not
 "gamed" by this fix.
 
-The 2 remaining overall misses are both `semantic_cross_reference` — the
-same pre-existing, unrelated ambiguity class described earlier (a
-document citing multiple earlier regulations; not something a citation-
-number index addresses). **Every ID-free retrieval path tested is now at
-or above 98% Recall@5** — the one measurable gap this whole caveat/
-spot-check/fix cycle surfaced has been closed and re-verified, not just
-proposed.
+The remaining overall misses are `semantic_cross_reference` cases — now
+partially addressed by the ground-truth fix described above (documents
+that genuinely cite multiple earlier regulations now credit any of them,
+not just the first regex match): substring-correctness on this type moved
+12/20 → 13/20. The other misses are retrieval, not ground truth: the
+citation the model surfaced wasn't among the ones `extract_facts()` found
+in the document's first ~1,200 characters, which is a real, narrower
+extraction-window limit, not a scoring artifact. **Every ID-free retrieval
+path *drawn from questions the fix was tuned on* is now at or above 90%
+strict Recall@5** — but see the dedicated generalization test below, which
+was built specifically because re-testing the same questions that found a
+bug doesn't prove the fix generalizes, and found a real gap that this
+re-test alone would have missed entirely.
+
+### Citation-number generalization test — a real, still-open gap
+
+`eval/build_eu_citation_heldout_dataset.py` → `eval/eu_citation_heldout_dataset.json`
+(50 cases). Built specifically to close the gap the section above admits:
+the "100% Recall@5" citation-index result was re-tested on the *same 20
+questions* whose failures motivated the fix in the first place. This set
+draws 50 entirely different documents (every `celex_id` used anywhere in
+`eu_golden_dataset.json` / `eu_heldout_dataset.json` /
+`eu_cross_question_dataset.json` / `eu_id_free_dataset.json` is excluded,
+and each candidate's short citation number is required to be unique across
+the full 57,000-document corpus so the question has exactly one correct
+answer) and cites each one five different natural ways:
+
+| format | example | strict Recall@5 | MRR |
+|---|---|---|---|
+| `citation_fmt_bare_no` | "What does No 1021/2008 deal with?" | 10/10 | 0.950 |
+| `citation_fmt_bracket_eec` | "What does Regulation (EEC) No 1021/2008 concern?" | 9/10 | 0.667 |
+| `citation_fmt_commission_summarize` | "Summarize Commission Regulation (EC) No 1021/2008." | 6/10 | 0.420 |
+| `citation_fmt_two_digit_year` | "...Regulation No 1021/08 of the European Communities?" | 5/10 | 0.373 |
+| `citation_fmt_council_no_dot` | "What is Council Regulation No. 1021/2008 about?" | 3/10 | 0.337 |
+| **overall** | | **33/50 (66.0%)** | **0.549** |
+| in-sources≤6 (not Recall@5) | | 50/50 (100%) | |
+| abstention accuracy | | 49/50 (98.0%) | |
+
+**The index itself has no gap: all 50 documents were force-included by
+`chunks_by_citation_number()` without exception** — the same guaranteed-
+inclusion mechanism verified above holds up perfectly on entirely new
+documents. What varies by phrasing is *rank*, and inspecting why turned up
+a clean, specific cause: whenever the query names an issuing body
+(Council/Commission) or bracket type (EEC/EC/EU) that doesn't match the
+actual document, rank craters. Splitting all 40 cases that make such a
+claim (`citation_fmt_bare_no` makes none, so it's excluded from this
+split) by whether the claim is accurate:
+
+| | n | strict Recall@5 |
+|---|---|---|
+| issuer/bracket in the query matches the document | 16 | **16/16 (100%)** |
+| issuer/bracket in the query does *not* match the document | 23 | **12/23 (52%)** |
+
+11 of the 23 mismatched cases land at exactly rank 6, not just "somewhere
+outside top 5" — and the code explains why precisely.
+`promote_identity_matches()` (`rag/retriever.py:94-131`) only *appends* an
+identity-matched chunk missing from the reranked top-5; it deliberately
+does not re-sort the list by score afterward (see the comment at line
+110-115 — re-sorting risked cutting a just-boosted match back out). So
+whenever the cross-encoder reranker scores the mismatched-phrasing chunk
+below the top 5 — plausible on its own, since the query text ("Council
+Regulation") no longer literally matches the chunk's title-prefixed
+context ("Commission Regulation...") — the identity index still guarantees
+it gets appended, but always lands in the newly-created 6th slot rather
+than wherever its floor score would actually rank it. `citation_fmt_council_no_dot`
+is the starkest example: it always says "Council Regulation," and every
+one of its 10 target documents is actually a *Commission* regulation (an
+accident of the corpus, not deliberate) — 3/10 strict Recall@5 as a direct
+result.
+`citation_fmt_two_digit_year` underperforms independent of this effect
+(it makes no institution/bracket claim) — likely because the reranker's
+cross-encoder compares raw query text against the chunk's title-prefixed
+context, and a 2-digit year ("No 1021/08") has less literal overlap with
+a document header that always spells the year in full ("...of 17 October
+2008..."), even though `extract_citation_numbers()`'s year-expansion
+correctly resolves the *lookup* itself (confirmed separately by
+`tests/test_retriever.py::test_extract_citation_numbers_expands_two_digit_year`
+and the index still force-including the document in 10/10 cases here).
+
+**Net read**: the citation-index fix's original "100% Recall@5, gap
+closed" claim was true for the question style it was tested on and false
+as a general claim — a real, previously-undocumented weakness survives:
+**the structured index protects recall unconditionally, but rank stays
+exposed to how accurately the query names the issuing institution.** This
+is not fixed as of this writing. Two options, not yet chosen between: (a)
+drop the institution word from the index lookup key entirely — the number
+and year are already sufficient to force-include the right document, so
+the reranker's institution-mismatch penalty could be routed around by not
+handing it a mismatched claim in the promoted chunk's scoring context, or
+(b) treat `identity_match` promotion more aggressively for citation-number
+hits specifically, since case (a) above already shows recall is never the
+problem for this path, only rank.
 
 ### Final verdict
 
-**Recall@5 never broke, across two orders of magnitude (400 → 57,000) —
-for queries that name their target document's exact CELEX ID (see caveat
-above; this dataset has no other kind).**
-The correct document was in the top-5 candidate set on every single golden
-and heldout case, at every checkpoint, with no exception. That's the
-headline result for *this* query pattern: this system's failure mode
-under scale, for ID-bearing lookups, is not "loses the document," it's
-"loses confidence about which of several similar documents is most
-relevant."
+**Recall@5 degrades steadily across two orders of magnitude (400 → 57,000)
+for queries that name their target document's exact CELEX ID** (see
+caveat above; this dataset has no other kind) — strict `rank ≤ 5`: 96.0%/
+95.3% (1,000) → 86.7%/84.0% (5,000) → 80.7%/78.0% (15,000) → 75.3%/74.0%
+(30,000) → 72.7%/69.3% (57,000), golden/heldout. This is a correction of
+an earlier published claim that Recall@5 was a flat 100% throughout — see
+"Recall@5 counting bug" in `VALIDATION.md` for what was wrong and how it
+was fixed and re-verified live. The corrected, honest headline for this
+query pattern: this system's failure mode under scale, for ID-bearing
+lookups, genuinely does include losing top-5 rank as the corpus grows —
+not just "losing confidence" while staying in the window. What *does*
+hold at 100% throughout is a strictly looser guarantee: the structured
+CELEX-ID lookup always force-includes the correct document somewhere in
+the returned set (a window that can be 6 wide, not 5) — real, and worth
+stating precisely as "Recall@6 = 100%," not blurred into "Recall@5."
 
 **MRR degraded monotonically and never plateaued within the tested range**
-— 0.815/0.833 (400) → 0.447/0.462 (57,000), roughly a 45% relative drop,
-golden and heldout moving in lockstep at every single checkpoint (never
-diverged by more than ~0.02). Whether it keeps degrading, flattens, or
-eventually starts costing Recall@5 beyond 57,000 is genuinely unknown —
-that would need a checkpoint beyond the tested range to answer.
+— 0.815/0.833 (400) → 0.448/0.453 (57,000, reconfirmed via fresh live
+rerun), roughly a 45% relative drop, golden and heldout moving in lockstep
+at every single checkpoint (never diverged by more than ~0.02). This part
+of the original report was accurate throughout — MRR was never protected
+by the window-counting bug, since a floor score guarantees inclusion, not
+rank. Whether it keeps degrading, flattens, or eventually starts costing
+Recall@5 further beyond 57,000 is genuinely unknown — that would need a
+checkpoint beyond the tested range to answer.
 
 **The first non-ranking failures appeared exactly in the 30,000–57,000
 band, synchronized across three independently-measured signals** that had
@@ -629,19 +781,39 @@ story throughout: this corpus has an unusually high density of
 near-duplicate boilerplate (the same regulation type — e.g. "fixing export
 refunds on cereals" — reissued weekly/monthly for decades), and as more
 near-identical variants accumulate, the reranker's confidence gets spread
-thinner across them. Most of the time that only costs rank position
-(MRR); at the tested extreme, it occasionally cost the deciding chunk or
-the retrieved document outright.
+thinner across them — which is now confirmed to cost actual top-5 rank at
+this scale, not just MRR, and occasionally cost the deciding chunk or the
+retrieved document outright.
+
+**Concurrency and scale, tested together for the first time**:
+`scripts/concurrency_test.py --requests 10` against the 400-document
+instance (port 8000) shows 2.68x speedup on admitted concurrent requests
+vs. sequential baseline — comfortably over the script's own 1.5x
+"confirmed" threshold. The same test against the 57,000-document instance
+(port 8001) shows only **1.18x** — under the script's own "little to no
+gain" warning line. Sequential single-query latency also grew roughly
+3x (2.3s → 6.9s avg) at this scale. The likely mechanism: reranking pools
+several times more candidates per query at 57,000 documents (170-190
+chunks reranked per query observed in this run, vs. a much smaller pool
+at 400 documents), and that step is intentionally serialized through a
+single-worker GPU executor (`rag/executors.py` — one physical GPU) — so
+the GPU-bound stage increasingly dominates wall time at scale and eats
+into the benefit concurrent requests would otherwise get from overlapping
+I/O-bound work. Not a bug, and not previously measured: a real, now-
+documented capacity ceiling for anyone planning to combine a large corpus
+with multiple simultaneous users.
+
+**A citation-index fix that looked complete wasn't, and a broader test
+caught it**: see "Citation-number generalization test" above. The
+structured lookup never misses on recall (50/50 documents force-included
+on entirely new, never-tested documents), but rank collapses from 100% to
+52% strict Recall@5 specifically when the query names the wrong issuing
+institution (Council vs. Commission) or bracket type (EEC/EC/EU) — a
+previously undocumented, still-open gap that a narrower re-test (the same
+20 questions that found the original bug) would never have surfaced.
 
 **What this does *not* establish** (explicit boundaries, not swept under
 the rug):
-- Concurrency at scale was never tested together with corpus scale —
-  `scripts/concurrency_test.py` defaults to port 8000 (the 400-doc
-  production instance); the known GPU-serialization ceiling (comfortable
-  at 1-2 concurrent queries, queues at 10, see `rag/executors.py`) has
-  never been measured against the 57,000-doc index. If a real deployment
-  needs both high volume *and* multiple simultaneous users, that
-  combination is an open question, not a validated one.
 - All of this is one corpus, one language, one question style
   (fact-extraction over legal/legislative text). It doesn't transfer
   automatically to, say, conversational support tickets or technical
@@ -651,24 +823,30 @@ the rug):
 - 57,000 was the ceiling of this test, not a proven system limit. The
   ladder stops there because that's the size of the available dataset,
   not because degradation stopped being interesting.
+- The citation-phrasing rank-sensitivity gap found above is reported, not
+  fixed — two candidate mitigations are noted in that section, neither
+  implemented yet.
 
-### Engineering tradeoffs worth considering (items 1-5: not implemented — options)
+### Engineering tradeoffs worth considering (items 1-4, 6: not implemented — options)
 
 0. ~~Add a structured index for the natural "Type No N/YY" citation
-   format~~ — **implemented and verified**, see "Citation-number index —
-   implemented and verified" above (`chunks_by_citation_number`,
-   mirroring `chunks_by_celex_id`/`chunks_by_case_number`). Was the one
-   retrieval path with concrete evidence of underperforming (75% Recall@5
-   ID-free); re-verified post-fix at 100% Recall@5 for that question type,
-   98.2% overall. Everything below this point is still an option based on
-   the MRR trend, not a confirmed gap the way this one was.
+   format~~ — **implemented, verified against the questions that found the
+   gap, and then re-tested against a disjoint generalization set that
+   found a further, narrower gap** — see "Citation-number index" and
+   "Citation-number generalization test" above. Recall is fully solved
+   (index never misses, including on 50 brand-new documents); rank still
+   degrades when the query names the wrong issuing institution. Item 6
+   below is the direct follow-up.
 1. **Widen the rerank/retrieval window for high-duplicate-density
    corpora.** `TOP_K_RESULTS=5` is what's been under test throughout;
-   since the failure mechanism is "correct doc gets crowded to rank 2-4,"
-   a corpus expected to have this kind of near-duplicate density could
-   use a larger top-k as cheap insurance against the rank eventually
-   crossing out of the window — costs a bit of latency/prompt budget, not
-   a code change.
+   since the failure mechanism is "correct doc gets crowded to rank 2-6,"
+   and strict Recall@5 is now confirmed to actually decay (72.7%/69.3% at
+   57,000, not the originally-reported flat 100%), a corpus expected to
+   have this kind of near-duplicate density could use a larger top-k as
+   cheap insurance against the rank eventually crossing out of the window
+   — costs a bit of latency/prompt budget, not a code change. This option
+   is more clearly warranted now than it was under the original (wrong)
+   100%-throughout reading.
 2. **Attack the root cause instead of buying margin: near-duplicate
    detection/clustering at ingestion.** Collapse boilerplate reissues into
    a canonical document + variant pointers, so the reranker isn't being
@@ -684,14 +862,30 @@ the rug):
    scales unchanged.
 4. **Don't over-build for a scale the real corpus won't reach.** If the
    production corpus is expected to stay in the hundreds-to-low-thousands
-   range, none of the above is warranted — every metric was flat/perfect
-   through the 5,000-15,000 checkpoints, well past any realistic small
-   deployment. Match the mitigation to the actual expected corpus size,
-   not to the worst case tested here.
-5. **If concurrency + scale matters for the real deployment, test that
-   combination explicitly** — point `scripts/concurrency_test.py` at the
-   57k instance (port 8001) rather than assuming the two known-separately
-   ceilings (GPU serialization, MRR-under-scale) simply add up.
+   range, most of the above is less urgent — Recall@5 was still 86.7%/
+   84.0% at 5,000 documents and only starts dropping meaningfully past
+   15,000. Match the mitigation to the actual expected corpus size, not to
+   the worst case tested here — but note this is a real, measured curve
+   now, not a flat "everything's fine below 57,000" line.
+5. ~~If concurrency + scale matters for the real deployment, test that
+   combination explicitly~~ — **done**, see "Concurrency and scale, tested
+   together for the first time" in "Final verdict" above: 2.68x speedup at
+   400 documents drops to 1.18x at 57,000 — a real, now-measured capacity
+   ceiling, not an assumption.
+6. **Close the citation-phrasing rank-sensitivity gap.** Root-caused, not
+   just observed: `promote_identity_matches()` (`rag/retriever.py:94-131`)
+   appends a match missing from the reranked top-5 without re-sorting by
+   score afterward (the comment there explains this was deliberate, to
+   avoid a just-boosted match getting sorted back out by a still-higher
+   scorer) — so a mismatched-institution chunk that clears the relevance
+   floor still always lands in the newly-created 6th slot instead of
+   wherever its floor score would actually place it among the existing
+   top 5. The untried fix: insert the promoted chunk at its score-sorted
+   position within the existing top_k list (dropping the lowest-scored
+   existing entry if the list would grow past top_k), instead of a flat
+   append — directly addresses the "always exactly rank 6" pattern seen in
+   11 of the 23 mismatched generalization-test cases above, without
+   touching the append-vs-resort tradeoff for cases already working today.
 
 ### Data used, and why its shape matters
 
@@ -750,44 +944,78 @@ A 120-question follow-up test with no ID in any question was built and
 run to check this directly. Good news first: even asking about documents
 buried in clusters of 500+ near-identical near-duplicates, using only a
 natural date reference (no ID), the system found the right one **every
-single time**. The one real gap it uncovered was narrower and more
-specific: questions that referred to a document only by its short natural
-citation number (e.g. "Regulation No 480/86", as a person familiar with
-EU law might actually say it, rather than its formal ID) succeeded only
-75% of the time — including one case where it confused a 1986 regulation
-with an unrelated 1987 one sharing the same short number. That gap has
-since been closed: a dedicated lookup for this short-citation form was
+single time**. One real gap it uncovered: questions that referred to a
+document only by its short natural citation number (e.g. "Regulation No
+480/86", as a person familiar with EU law might actually say it, rather
+than its formal ID) succeeded only 75% of the time — including one case
+where it confused a 1986 regulation with an unrelated 1987 one sharing the
+same short number. A dedicated lookup for this short-citation form was
 added (mirroring the one that already existed for the formal ID), and
-re-testing confirms it now succeeds 100% of the time on that same
-question type, with no regression elsewhere.
+re-testing the same questions that found the bug confirmed it now
+succeeds on that exact question type. That looked like the end of the
+story — it wasn't, see below.
 
-**What was found.**
+**A second, harder catch, found by a documentation review — and then
+checked directly, the same way the first one was.** A later review of the
+test scripts themselves found that "the right document was in the top 5"
+was being measured wrong: the system can return up to six sources for a
+five-result request (the exact-ID shortcut above sometimes adds an extra
+one), and a document landing in that 6th slot was being counted as a
+top-5 hit. Recomputed with the strict, correct definition, "the right
+document was always in the top 5" turns out to be false at any real
+scale — it starts at 96% (1,000 documents) and drops to 73% by 57,000.
+The looser, real thing that stayed true throughout is closer to "the
+right document was always somewhere in the first six results" — still a
+solid result, just a different and smaller claim than originally
+published, and every number below was re-run live against the actual
+57,000-document system to make sure the correction itself was right, not
+just re-typed.
+
+Re-testing the citation-number fix on the same questions that found the
+original bug also turned out to be too easy an exam. A new, disjoint set
+of 50 questions — different documents, five different natural ways to
+phrase a citation — found that the lookup itself never fails (the right
+document is always somewhere in the results), but *where* it ranks
+depends heavily on phrasing: asking about "Commission Regulation No X/Y"
+when it's actually a Commission regulation (or not naming the issuing
+body at all) put it in the top 5 100% of the time; asking about "Council
+Regulation No X/Y" when it's actually a Commission regulation — an easy,
+realistic mistake — dropped that to 52%, usually landing the document
+exactly one place outside the visible results. This is now a documented,
+open gap, not a fixed one.
+
+**What was found, corrected version.**
 - The system never — not at 400 documents, not at 57,000 — completely
-  "lost" the right document (for questions naming the exact document ID —
-  see the catch above): the correct file always landed in the top 5
-  search results.
-- But the more documents there were, the more often the correct document
-  ended up not in first place within that top 5, but in 2nd-4th place.
-  The user still got the right answer (the system reads the whole top 5,
-  not just first place), but it's a clear signal that telling near-
-  identical documents apart gets harder as the base grows.
+  "lost" the right document (for questions naming the exact document ID):
+  the correct file was always among the first six results. It was not,
+  however, always in the top five — that number declines steadily as the
+  document base grows (see above), which the original write-up got wrong.
+- The more documents there were, the more often the correct document
+  slipped from 1st place to somewhere lower, and — more often than
+  originally reported — slipped out of the visible top-5 results
+  entirely, landing 6th instead.
 - At the largest volumes (in the 30,000-57,000 range) a handful of
   isolated misses (one case per check) showed up for the first time: one
   unwarranted refusal to answer, one wrong answer, one case where asking
   the same question twice returned two different source documents (though
   the final answer was correct both times). Below that range, none of
   these misses occurred at all.
+- Concurrent-request handling, tested for the first time against the full
+  57,000-document base: the system's usual ~2.7x speedup from handling
+  requests concurrently drops to roughly 1.2x at this scale — a real,
+  now-measured limit for anyone planning to combine a large document base
+  with several simultaneous users, not the "probably fine" it was before.
 - In plain terms: the system doesn't break sharply or suddenly start
-  failing en masse. It gradually becomes slightly less confident
-  specifically where documents are nearly indistinguishable from each
-  other, and that only became visible at volumes far beyond what real-
-  world use is likely to reach.
+  failing en masse, but it becomes measurably less reliable — not just
+  less confident — as both the document count and the realism of the test
+  itself increased. Each round of "let's actually check that" (the ID
+  shortcut, the metric itself, the citation-fix generalization) found a
+  real gap the previous round had missed or overstated.
 
-**Honestly, what was NOT tested.**
-- What happens with a large document volume *and* several users at once
-  was not tested. There's a separate, already-known limit: on a single
-  GPU (RTX 3080), 1-2 simultaneous queries are comfortable, and 10 queue
-  up. These two limits (volume and load) were never tested together.
+**Honestly, what was NOT tested, and what's still an open gap.**
+- The citation-phrasing rank sensitivity found above (wrong issuing body
+  named in the question) is reported, not fixed. Two candidate fixes are
+  identified in the technical detail above; neither is implemented yet.
 - Whether degradation keeps getting worse past 57,000 documents, or stops
   there, is unknown — testing wasn't taken further (that was the limit of
   the available dataset).
@@ -797,14 +1025,17 @@ question type, with no regression elsewhere.
 
 **Tradeoffs worth discussing, if this becomes relevant.**
 - If the real document base stays in the hundreds-to-low-thousands range,
-  none of the warning signs found here are relevant — nothing needs to
-  change (every metric was flawless across that entire range throughout
-  the ladder).
+  most of the warning signs found here are less urgent — Recall@5 was
+  still 86.7%/84.0% at 5,000 documents, well past a realistic small
+  deployment — but note this is a real, gradually declining curve now,
+  not the flat "everything's perfect below 57,000" line originally
+  reported.
 - If the base grows to tens of thousands of *similar* documents, there
   are two options: (a) cheaply widen the search window (7-10 candidates
   instead of 5) as insurance, or (b) detect and group near-duplicates at
   upload time — more development work, but it removes the actual cause
   instead of just buying a safety margin.
 - If many users working simultaneously on a large database matters, that
-  is a separate test that hasn't been run yet and should be planned for
-  on its own.
+  combination has now actually been tested (see above) and does show a
+  real, measurable slowdown — worth planning around directly, not
+  assuming away.

@@ -5,6 +5,7 @@ from types import SimpleNamespace
 
 from ingestion.chunker import (
     SmartChunker, normalize_whitespace, chunk_context_text, extract_case_metadata, extract_celex_id,
+    extract_citation_number,
 )
 
 
@@ -187,3 +188,31 @@ def test_extract_celex_id_returns_none_for_non_celex_filenames():
     assert extract_celex_id("ABLAPL_3648_2020_LIPU_PRADHAN_vs_STATE_OF_ODISHA.pdf") is None
     assert extract_celex_id("The_Localism_Act_2011.txt") is None
     assert extract_celex_id("") is None
+
+
+# ── extract_citation_number ────────────────────────────────────────────────────
+
+def test_extract_citation_number_parses_four_digit_year():
+    result = extract_citation_number(
+        "32008R1021 - Commission Regulation (EC) No 1021 2008 of 17 October 2008 amending Annexes.pdf"
+    )
+    assert result == {"citation_number": "1021", "citation_year": "2008"}
+
+
+def test_extract_citation_number_uses_full_date_year_not_short_form_year():
+    """The preamble's own leading year token can be 2-digit ("No 3833 88"),
+    but the trailing full date ("of 3 December 1984") always carries the
+    unambiguous 4-digit year — that's the one that must end up in the
+    result, not whatever digit count the short form happened to use."""
+    result = extract_citation_number(
+        "31988R3833 - Commission Regulation (EEC) No 3833 88 of 3 December 1988 amending Regulation.pdf"
+    )
+    assert result == {"citation_number": "3833", "citation_year": "1988"}
+
+
+def test_extract_citation_number_returns_empty_for_non_matching_filenames():
+    assert extract_citation_number("ABLAPL_3648_2020_LIPU_PRADHAN_vs_STATE_OF_ODISHA.pdf") == {}
+    assert extract_citation_number("The_Localism_Act_2011.txt") == {}
+    assert extract_citation_number("") == {}
+    # older "<N> <YY> EEC" filenames with no "No ... of <date>" preamble
+    assert extract_citation_number("31958D1127(01) - EEC Council Rules of the Transport Committee.pdf") == {}
