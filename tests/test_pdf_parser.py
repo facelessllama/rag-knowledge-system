@@ -8,7 +8,7 @@ it stays fast and deterministic (not dependent on OCR accuracy).
 import fitz
 import pytest
 
-from ingestion.pdf_parser import PDFParser, split_for_highlight_search
+from ingestion.pdf_parser import PDFParser
 
 
 def _make_pdf(path, text="", title=None, author=None):
@@ -70,55 +70,3 @@ def test_parse_missing_file_raises():
     parser = PDFParser()
     with pytest.raises(FileNotFoundError):
         parser.parse("/nonexistent/path/does-not-exist.pdf")
-
-
-# ── split_for_highlight_search ──────────────────────────────────────────────
-
-def test_split_for_highlight_search_empty_text_returns_no_segments():
-    assert split_for_highlight_search("") == []
-    assert split_for_highlight_search("   ") == []
-
-
-def test_split_for_highlight_search_short_text_returns_single_segment():
-    segments = split_for_highlight_search("A short chunk of text.")
-    assert segments == ["A short chunk of text."]
-
-
-def test_split_for_highlight_search_covers_the_whole_text():
-    text = " ".join(f"word{i}" for i in range(60))  # well over max_len
-    segments = split_for_highlight_search(text, max_len=30)
-    assert len(segments) > 1
-    # every word from the original text must show up somewhere in some segment
-    joined = " ".join(segments)
-    for i in range(60):
-        assert f"word{i}" in joined
-
-
-def test_split_for_highlight_search_breaks_on_word_boundaries():
-    text = "alpha bravo charlie delta echo foxtrot golf hotel"
-    segments = split_for_highlight_search(text, max_len=15)
-    for seg in segments:
-        assert not seg.startswith(" ") and not seg.endswith(" ")
-        # no segment should end mid-word (i.e. each segment is whole words)
-        assert seg in text
-
-
-def test_split_for_highlight_search_finds_matches_deep_into_a_long_chunk(tmp_path):
-    """End-to-end: a fact placed well past the old 120-char anchor cutoff
-    must still be found by search_for() on one of the produced segments."""
-    long_prefix = "This clause restates prior definitions and boilerplate. " * 4
-    fact = "The maximum discount sum prescribed is exactly seventy five thousand pounds."
-    full_text = long_prefix + fact
-    assert len(long_prefix) > 120  # confirm the fact is past the old anchor's reach
-
-    doc = fitz.open()
-    page = doc.new_page(width=600, height=800)
-    page.insert_textbox(fitz.Rect(50, 50, 550, 750), full_text, fontsize=10)
-
-    found_fact = False
-    for segment in split_for_highlight_search(full_text, max_len=110):
-        if page.search_for(segment):
-            if "seventy five thousand" in segment:
-                found_fact = True
-    doc.close()
-    assert found_fact, "the fact segment (past the old 120-char anchor) should have matched on the page"

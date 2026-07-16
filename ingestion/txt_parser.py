@@ -18,8 +18,7 @@ _ENCODINGS = ("utf-8-sig", "utf-8", "cp1251", "cp1252", "latin-1")
 
 def decode_text_file(raw: bytes) -> str:
     """Best-effort decode trying common encodings, falling back to latin-1
-    (which never raises). Shared by TxtParser and the /documents/{id}/content
-    endpoint so both read a given file's bytes identically."""
+    (which never raises)."""
     for encoding in _ENCODINGS:
         try:
             return raw.decode(encoding)

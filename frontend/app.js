@@ -66,6 +66,7 @@ function injectStaticIcons() {
   document.getElementById('brandMark').innerHTML = svgIcon('layers', 16);
   document.getElementById('evalLink').innerHTML = svgIcon('bar-chart', 15) + '<span>Evaluation</span>';
   document.getElementById('settingsBtn').innerHTML = svgIcon('settings', 17);
+  document.getElementById('newChatBtn').innerHTML = svgIcon('plus', 17);
   document.getElementById('apiKeyRow').innerHTML = svgIcon('key', 15) + '<span>API key</span>';
   document.getElementById('addDocsBtn').innerHTML = svgIcon('upload', 14) + '<span>Add documents</span>';
   document.getElementById('addDocsFilesItem').innerHTML = svgIcon('file', 14) + '<span>Upload documents</span>'
@@ -84,10 +85,12 @@ function injectStaticIcons() {
   document.getElementById('pdfPanelCloseBtn').innerHTML = svgIcon('x', 14);
   document.getElementById('pdfPrevBtn').innerHTML = svgIcon('chevron-left', 14);
   document.getElementById('pdfNextBtn').innerHTML = svgIcon('chevron-right', 14);
-  document.getElementById('pdfCitationIcon').innerHTML = svgIcon('file-text', 15);
   document.getElementById('pdfLoadingIcon').innerHTML = svgIcon('file-text', 26);
   document.getElementById('txtPanelIcon').innerHTML = svgIcon('file-text', 14);
   document.getElementById('txtPanelCloseBtn').innerHTML = svgIcon('x', 14);
+  document.getElementById('txtPrevBtn').innerHTML = svgIcon('chevron-left', 14);
+  document.getElementById('txtNextBtn').innerHTML = svgIcon('chevron-right', 14);
+  document.getElementById('txtViewOriginalBtn').innerHTML = svgIcon('external-link', 13) + '<span>View original PDF</span>';
 
   const grid = document.getElementById('suggestionGrid');
   grid.innerHTML = SUGGESTIONS.map(function(s) {
@@ -192,12 +195,7 @@ document.addEventListener('click', function(e) {
   if (srcEl) {
     var s = _sourcesStore[parseInt(srcEl.dataset.src, 10)];
     if (s) {
-      var srcDoc = docsData[s.document] || {};
-      if (srcDoc.format === 'txt') {
-        openTextViewer(s.document, s.char_start, s.char_end);
-      } else {
-        openPdfViewer(s.document, s.page || 1, s.chunk_text || s.excerpt || '');
-      }
+      openTextViewer(s.document, s.page || 1, s.char_start, s.char_end);
     }
   }
 
@@ -365,11 +363,7 @@ function renderDocTree() {
         toggleCompareDoc(item.dataset.docId);
         return;
       }
-      if (doc.format === 'txt') {
-        openTextViewer(item.dataset.docId, null, null);
-      } else {
-        openPdfViewer(item.dataset.docId, 1, '');
-      }
+      openTextViewer(item.dataset.docId, 1, null, null);
     });
   });
 
@@ -893,11 +887,18 @@ function enterConversationMode() {
 function backToWelcome() {
   conversationStarted = false;
   chatHistory = [];
-  activeDocumentIds = null;
   document.getElementById('messages').classList.remove('show');
   document.getElementById('messages').innerHTML = '';
   document.getElementById('inputBar').classList.remove('show');
   document.getElementById('welcomeScreen').style.display = 'flex';
+  // Full reset, same as what a hard refresh used to be relied on for —
+  // clears any sticky compare scope/folder filter and closes any open
+  // PDF/text viewer so the welcome screen doesn't come back looking like
+  // mid-conversation state leaked through.
+  clearActiveFolder();
+  if (compareSelection) cancelCompareSelection();
+  closePdfPanel();
+  closeTxtPanel();
 }
 
 // ── Recent conversations (session-local — no backend persistence exists) ────
@@ -1160,8 +1161,7 @@ function updateDebugPanel(data) {
 if (typeof pdfjsLib !== 'undefined') {
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdfjs/pdf.worker.min.js';
 }
-let pdfDoc = null, currentPage = 1, currentDocId = null, currentHighlightText = null, isRendering = false;
-let currentPdfPage = null, currentVp = null;
+let pdfDoc = null, currentPage = 1, currentDocId = null, isRendering = false;
 // pendingPage previously stored only a bare page number — opening a
 // *different* document at the same page number it was already showing (a
 // coincidence, not an edge case: "page 1" is the common case) made
@@ -1181,13 +1181,11 @@ function setPdfNavDisabled(disabled) {
   if (next) next.disabled = disabled;
 }
 
-async function openPdfViewer(docId, page, highlightText) {
+async function openPdfViewer(docId, page) {
   const doc = docsData[docId] || {};
   document.getElementById('pdfPanelTitle').textContent = doc.filename || docId;
   document.getElementById('pdfPanel').classList.add('open');
   document.getElementById('pdfOverlay').classList.add('show');
-  currentHighlightText = highlightText;
-  document.getElementById('pdfCitation').style.display = 'none';
   const myGen = ++renderGen; // every open/page-change request gets its own token
   if (currentDocId !== docId) {
     currentDocId = docId; pdfDoc = null; pendingRender = null;
@@ -1240,9 +1238,6 @@ async function renderPage(pageNum, docId, gen) {
     if (gen !== renderGen) return; // superseded while the canvas was painting
 
     document.getElementById('pdfPageInfo').textContent = 'Page ' + pageNum + ' of ' + pdfDoc.numPages;
-    currentPdfPage = page;
-    currentVp = vp;
-    if (currentHighlightText) doHighlight(currentHighlightText, gen);
     wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
   } catch (e) {
     console.warn('PDF render failed:', e);
@@ -1267,100 +1262,6 @@ async function renderPage(pageNum, docId, gen) {
   }
 }
 
-// The backend deliberately highlights the WHOLE retrieved chunk (the actual
-// evidence handed to the LLM), not a short quote — see
-// split_for_highlight_search() in ingestion/pdf_parser.py. It searches that
-// chunk in ~110-char word-bounded segments so formatting quirks in one
-// segment don't break the rest, which means a single chunk can come back as
-// many small rects: adjacent words on the same line as separate boxes, with
-// visible gaps between them. That's a rendering artifact, not a sign the
-// wrong text matched — merge same-line rects into continuous bands so a
-// highlighted line reads as one contiguous passage instead of confetti.
-function mergeHighlightRects(rects) {
-  // Group by vertical overlap, not exact y0/y1 match — adjacent segment
-  // matches on the same visual line routinely differ by a few px in height
-  // (different glyphs, bold vs. regular runs), so an exact-coordinate check
-  // under-merges. >=50% overlap of the shorter rect's height is "same line".
-  function yOverlapFrac(a, b) {
-    const inter = Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0);
-    const minH = Math.min(a.y1 - a.y0, b.y1 - b.y0);
-    return minH > 0 ? Math.max(0, inter) / minH : 0;
-  }
-  const sorted = rects.slice().sort(function(a, b) { return a.y0 - b.y0 || a.x0 - b.x0; });
-  const lines = [];
-  sorted.forEach(function(r) {
-    const line = lines.find(function(l) { return yOverlapFrac(l.bbox, r) >= 0.5; });
-    if (line) {
-      line.items.push(r);
-      line.bbox.y0 = Math.min(line.bbox.y0, r.y0);
-      line.bbox.y1 = Math.max(line.bbox.y1, r.y1);
-    } else {
-      lines.push({ bbox: { y0: r.y0, y1: r.y1 }, items: [r] });
-    }
-  });
-  const merged = [];
-  lines.forEach(function(line) {
-    const items = line.items.sort(function(a, b) { return a.x0 - b.x0; });
-    let cur = null;
-    items.forEach(function(r) {
-      // ~20px gap ≈ a word space at typical body-text scale — bridge it so
-      // "STATE OF ASSAM" merges into one band instead of three.
-      if (cur && r.x0 - cur.x1 < 20) {
-        cur.x1 = Math.max(cur.x1, r.x1);
-        cur.y0 = Math.min(cur.y0, r.y0);
-        cur.y1 = Math.max(cur.y1, r.y1);
-      } else {
-        cur = { x0: r.x0, y0: r.y0, x1: r.x1, y1: r.y1 };
-        merged.push(cur);
-      }
-    });
-  });
-  return merged;
-}
-
-async function doHighlight(searchText, gen) {
-  document.querySelectorAll('.rag-highlight-box').forEach(el => el.remove());
-  const citation = document.getElementById('pdfCitation');
-  const citationText = document.getElementById('pdfCitationText');
-  if (!searchText) { citation.style.display = 'none'; return; }
-
-  const short = searchText.replace(/\s+/g, ' ').trim().slice(0, 160);
-  citationText.textContent = short + (searchText.length > 160 ? '…' : '');
-  citation.style.display = 'flex';
-
-  if (!currentDocId || !currentPage) return;
-  const docId = currentDocId, page = currentPage; // snapshot — these globals can move on before the fetch below resolves
-  try {
-    const data = await apiGetHighlights(docId, searchText, page);
-    // A slow highlight fetch for a page/document the user has since
-    // navigated away from used to draw its boxes on top of whatever's on
-    // screen now regardless — gen (passed in from the renderPage() call
-    // this highlight belongs to) makes a stale response a no-op instead.
-    if (gen !== undefined && gen !== renderGen) return;
-    if (!data || !data.rects || !data.rects.length || !data.page_width) return;
-
-    const canvas = document.getElementById('pdfCanvas');
-    const wrapper = document.getElementById('pdfPageWrapper');
-    const scaleX = canvas.width / data.page_width;
-    const scaleY = canvas.height / data.page_height;
-
-    mergeHighlightRects(data.rects).forEach(function(r) {
-      const box = document.createElement('div');
-      box.className = 'rag-highlight-box';
-      box.style.left   = (r.x0 * scaleX) + 'px';
-      box.style.top    = (r.y0 * scaleY) + 'px';
-      box.style.width  = ((r.x1 - r.x0) * scaleX) + 'px';
-      box.style.height = ((r.y1 - r.y0) * scaleY) + 'px';
-      wrapper.appendChild(box);
-    });
-
-    const first = wrapper.querySelector('.rag-highlight-box');
-    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  } catch(e) {
-    console.warn('Highlight failed:', e);
-  }
-}
-
 async function changePage(delta) {
   if (!pdfDoc) return;
   const np = currentPage + delta;
@@ -1376,20 +1277,39 @@ function closePdfPanel() {
 }
 
 // ── TXT viewer ────────────────────────────────────────────────────────────────
-// Offset-based highlighting: char_start/char_end come straight from the query
-// response (already computed at chunking time against the same normalized
-// text this endpoint returns), so no fuzzy text search is needed here at all
-// — unlike the PDF viewer's doHighlight(), which searches the PDF page.
+// Canonical source view for BOTH txt and pdf documents — offset-based
+// highlighting: char_start/char_end come straight from the query response,
+// which are indices into the exact same normalize_whitespace() text the
+// backend hands back (persisted at ingestion for PDF, read live off disk
+// for TXT — see get_document_page() in api/main.py), so no fuzzy search
+// against a rendered page is ever needed. PDF's own layout (images, stamps,
+// QR codes, original pagination) is a click away via "View original PDF",
+// which opens the real PDF.js view with no highlight promised there.
 
-async function openTextViewer(docId, charStart, charEnd) {
+let currentTxtDocId = null, currentTxtPage = 1, currentTxtTotalPages = 1;
+// Bumped on every openTextViewer() call — an in-flight fetch for a
+// previously-opened document/page checks its own token against the current
+// value before touching the DOM, so a slow response for document A opened
+// just before document B can't paint A's text under B's title (the PDF
+// viewer's renderGen plays the identical role for openPdfViewer()).
+let txtViewGen = 0;
+
+async function openTextViewer(docId, page, charStart, charEnd) {
   const doc = docsData[docId] || {};
+  const myGen = ++txtViewGen;
   document.getElementById('txtPanelTitle').textContent = doc.filename || docId;
   document.getElementById('txtPanel').classList.add('open');
   document.getElementById('pdfOverlay').classList.add('show');
   const body = document.getElementById('txtPanelBody');
   body.textContent = 'Loading…';
+  document.getElementById('txtPageControls').style.display = 'none';
+  currentTxtDocId = docId;
+  currentTxtPage = page || 1;
   try {
-    const data = await apiGetDocumentContent(docId);
+    const data = await apiGetDocumentPage(docId, currentTxtPage);
+    if (myGen !== txtViewGen) return; // superseded by a newer open/page-change while this was in flight
+    currentTxtPage = data.page;
+    currentTxtTotalPages = data.total_pages;
     const text = data.text || '';
     let html;
     if (charStart != null && charEnd != null && charStart >= 0 && charEnd <= text.length && charStart < charEnd) {
@@ -1402,9 +1322,35 @@ async function openTextViewer(docId, charStart, charEnd) {
     body.innerHTML = html;
     const mark = document.getElementById('txtHighlight');
     if (mark) mark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    if (data.format === 'pdf') {
+      document.getElementById('txtPageControls').style.display = 'flex';
+      document.getElementById('txtPageInfo').textContent = 'Page ' + currentTxtPage + ' of ' + currentTxtTotalPages;
+      document.getElementById('txtPrevBtn').disabled = currentTxtPage <= 1;
+      document.getElementById('txtNextBtn').disabled = currentTxtPage >= currentTxtTotalPages;
+    }
   } catch (e) {
+    if (myGen !== txtViewGen) return;
     body.textContent = 'Failed to load document.';
   }
+}
+
+async function changeTxtPage(delta) {
+  if (!currentTxtDocId) return;
+  const np = currentTxtPage + delta;
+  if (np < 1 || np > currentTxtTotalPages) return;
+  await openTextViewer(currentTxtDocId, np, null, null);
+}
+
+function viewOriginalPdf() {
+  if (!currentTxtDocId) return;
+  // Both panels are `position: fixed; right: 0` at the same z-index when
+  // open — txt-panel sits later in the DOM, so leaving it open while
+  // openPdfViewer() renders underneath it made the button look like it did
+  // nothing (the PDF loaded, just invisible behind the still-open txt
+  // panel).
+  closeTxtPanel();
+  openPdfViewer(currentTxtDocId, currentTxtPage);
 }
 
 function closeTxtPanel() {

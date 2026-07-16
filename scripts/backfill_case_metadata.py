@@ -43,6 +43,11 @@ SCROLL_BATCH = 500
 
 
 def main():
+    from lock import run_locked
+    run_locked(_run, logger)
+
+
+def _run():
     from qdrant_client import QdrantClient
 
     from ingestion.chunker import extract_case_metadata, extract_celex_id, extract_citation_number
@@ -50,12 +55,13 @@ def main():
 
     qdrant_url = os.getenv("QDRANT_URL", "http://localhost:6333")
     collection = os.getenv("QDRANT_COLLECTION", "knowledge_base")
+    qdrant_api_key = os.getenv("QDRANT_API_KEY")
 
-    client = QdrantClient(url=qdrant_url)
+    client = QdrantClient(url=qdrant_url, api_key=qdrant_api_key)
 
     # Make sure all payload indexes exist before we start writing to those
     # fields (harmless no-op if already present).
-    VectorStore(url=qdrant_url, collection=collection)._ensure_payload_indexes()
+    VectorStore(url=qdrant_url, collection=collection, api_key=qdrant_api_key)._ensure_payload_indexes()
 
     updated = 0
     skipped_no_match = 0

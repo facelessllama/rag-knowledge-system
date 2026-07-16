@@ -44,17 +44,28 @@ SCROLL_BATCH = 1000
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--qdrant-url", default=os.getenv("QDRANT_URL", "http://localhost:6333"))
+    parser.add_argument("--qdrant-api-key", default=os.getenv("QDRANT_API_KEY"))
     parser.add_argument("--collection", default=os.getenv("QDRANT_COLLECTION", "knowledge_base"))
     parser.add_argument("--postgres-url", default=os.getenv(
         "POSTGRES_URL", "postgresql://raguser:ragpass@localhost:5432/ragdb"))
     parser.add_argument("--yes", action="store_true", help="Skip confirmation prompt")
     args = parser.parse_args()
 
+    from lock import run_locked
+    run_locked(lambda: _run(args), logger)
+
+
+def _run(args):
+    # This deletes and recreates the whole collection (see below) — a
+    # backup_qdrant.sh snapshot taken mid-run could catch an empty or
+    # partially-repopulated collection, so this holds the same shared_lock
+    # backup's exclusive hold waits out.
+
     from qdrant_client import QdrantClient
     from vector_db.qdrant_client import DENSE_VECTOR_NAME, VectorStore
     from vector_db.sparse_encoder import build_sparse_vector
 
-    client = QdrantClient(url=args.qdrant_url)
+    client = QdrantClient(url=args.qdrant_url, api_key=args.qdrant_api_key)
 
     existing = [c.name for c in client.get_collections().collections]
     if args.collection not in existing:
@@ -95,7 +106,7 @@ def main():
 
     logger.info(f"Recreating '{args.collection}' with hybrid schema (vector_size={vector_size})...")
     client.delete_collection(args.collection)
-    store = VectorStore(url=args.qdrant_url, collection=args.collection)
+    store = VectorStore(url=args.qdrant_url, collection=args.collection, api_key=args.qdrant_api_key)
     store.create_collection(vector_size=vector_size)
 
     logger.info("Re-upserting points with sparse vectors + backfilling documents table...")
@@ -124,6 +135,7 @@ def main():
                     "size_kb": payload.get("size_kb", 0),
                     "metadata": {},
                     "folder": payload.get("folder", ""),
+                    "format": payload.get("format", "pdf"),
                 }
             doc_meta[doc_id]["chunks"] += 1
 
@@ -142,29 +154,38 @@ def main():
     conn = psycopg2.connect(args.postgres_url)
     try:
         cur = conn.cursor()
+        # doc_id is UUID here to match api/main.py's init_db() — this
+        # CREATE TABLE only ever fires on a table that doesn't exist yet
+        # (a from-scratch restore), but if it ran first with the old
+        # VARCHAR(8), init_db()'s own CREATE TABLE IF NOT EXISTS would then
+        # silently no-op against the already-created table, permanently
+        # reintroducing the 32-bit-doc_id collision risk (see api/main.py's
+        # documents table comment) on any fresh restore that happens to run
+        # this script before the app's first startup.
         cur.execute("""
             CREATE TABLE IF NOT EXISTS documents (
-                doc_id VARCHAR(8) PRIMARY KEY,
+                doc_id UUID PRIMARY KEY,
                 filename VARCHAR(255) NOT NULL,
                 pages INTEGER DEFAULT 0,
                 chunks INTEGER DEFAULT 0,
                 size_kb REAL DEFAULT 0,
                 metadata JSONB DEFAULT '{}',
                 folder VARCHAR(255) DEFAULT '',
+                format VARCHAR(10) DEFAULT 'pdf',
                 created_at TIMESTAMP DEFAULT NOW()
             )
         """)
         for doc in doc_meta.values():
             cur.execute(
                 """
-                INSERT INTO documents (doc_id, filename, pages, chunks, size_kb, metadata, folder)
-                VALUES (%s, %s, %s, %s, %s, %s, %s)
+                INSERT INTO documents (doc_id, filename, pages, chunks, size_kb, metadata, folder, format)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                 ON CONFLICT (doc_id) DO UPDATE SET
                     filename = EXCLUDED.filename, pages = EXCLUDED.pages, chunks = EXCLUDED.chunks,
-                    size_kb = EXCLUDED.size_kb, folder = EXCLUDED.folder
+                    size_kb = EXCLUDED.size_kb, folder = EXCLUDED.folder, format = EXCLUDED.format
                 """,
                 (doc["doc_id"], doc["filename"], doc["pages"], doc["chunks"], doc["size_kb"],
-                 json.dumps(doc["metadata"]), doc["folder"]),
+                 json.dumps(doc["metadata"]), doc["folder"], doc["format"]),
             )
         conn.commit()
     finally:

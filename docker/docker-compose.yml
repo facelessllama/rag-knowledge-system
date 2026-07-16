@@ -1,13 +1,18 @@
-version: '3.8'
-
 services:
 
   qdrant:
-    image: qdrant/qdrant:latest
+    image: qdrant/qdrant:v1.18.2
     container_name: rag_qdrant
+    environment:
+      QDRANT__SERVICE__API_KEY: ${QDRANT_API_KEY}
     ports:
-      - "6333:6333"
-      - "6334:6334"
+      # Bound to loopback only — the app connects from the same host via
+      # localhost, so this doesn't need (and shouldn't have) LAN/VPN
+      # reachability. Publishing this on 0.0.0.0 used to let anyone who
+      # could reach the host read or delete every chunk with no auth at
+      # all (Qdrant had no API key configured either).
+      - "127.0.0.1:6333:6333"
+      - "127.0.0.1:6334:6334"
     volumes:
       - qdrant_data:/qdrant/storage
     deploy:
@@ -17,14 +22,17 @@ services:
     restart: unless-stopped
 
   postgres:
-    image: postgres:15-alpine
+    image: postgres:15.18-alpine
     container_name: rag_postgres
     environment:
-      POSTGRES_USER: raguser
-      POSTGRES_PASSWORD: ragpass
-      POSTGRES_DB: ragdb
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "5432:5432"
+      # Loopback only — see qdrant's port comment above. Credentials also
+      # moved here from a hardcoded literal, since this file is tracked in
+      # git (unlike .env).
+      - "127.0.0.1:5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     deploy:
@@ -33,34 +41,19 @@ services:
           memory: 512M
     restart: unless-stopped
 
-  ollama:
-    image: ollama/ollama:latest
-    container_name: rag_ollama
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_data:/root/.ollama
-    deploy:
-      resources:
-        limits:
-          memory: 6G
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
-    restart: unless-stopped
-
   langfuse:
-    image: langfuse/langfuse:2
+    image: langfuse/langfuse:2.95.11
     container_name: rag_langfuse
     ports:
-      - "3000:3000"
+      # Loopback only — see qdrant's port comment above.
+      - "127.0.0.1:3000:3000"
     environment:
-      DATABASE_URL: postgresql://raguser:ragpass@postgres:5432/ragdb
-      NEXTAUTH_SECRET: supersecretkey
+      # postgres is reached via the internal Docker network (service name
+      # as hostname), not the published/loopback port above.
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      NEXTAUTH_SECRET: ${LANGFUSE_NEXTAUTH_SECRET}
       NEXTAUTH_URL: http://localhost:3000
-      SALT: randomsalt123
+      SALT: ${LANGFUSE_SALT}
     depends_on:
       - postgres
     deploy:
@@ -72,4 +65,3 @@ services:
 volumes:
   qdrant_data:
   postgres_data:
-  ollama_data:

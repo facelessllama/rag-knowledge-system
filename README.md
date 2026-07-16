@@ -30,10 +30,10 @@ Upload PDF documents, organize them into folders, and ask questions in natural l
 - **Multi-document guarantee** — retrieval ensures all relevant documents are represented in results
 - **Relevance threshold** — queries below cosine similarity 0.30 return "not found" instead of hallucinating
 
-### PDF Viewer
-- Inline PDF viewer with server-side text highlight (PyMuPDF `search_for`)
+### Document Viewer
+- Inline source viewer highlights the exact cited passage via stored char offsets — no text search against a rendered page, so it works identically for TXT and PDF (including OCR'd pages)
 - Click any source citation to open the document at the exact page
-- Highlight jumps to the cited passage
+- "View original PDF" opens the real PDF.js view (original layout, images, stamps) with no highlight promised there
 
 ### Chat Interface
 - Streaming token-by-token responses via SSE
@@ -136,7 +136,7 @@ OLLAMA_HOST=0.0.0.0:11435 ollama pull qwen2.5:7b
 ### 3. Start infrastructure
 
 ```bash
-docker compose -f docker/docker-compose.yml up -d
+docker compose -f docker/docker-compose.yml --env-file .env up -d
 ```
 
 ### 4. Create Python environment
@@ -201,7 +201,7 @@ Key endpoints:
 | `GET` | `/documents` | List all documents |
 | `DELETE` | `/documents/{id}` | Delete a document |
 | `GET` | `/pdf/{id}` | Serve original PDF |
-| `GET` | `/pdf/{id}/highlights` | Get highlight coordinates for a text passage |
+| `GET` | `/documents/{id}/pages/{page_num}` | Normalized page text for the source viewer (TXT + PDF) |
 | `GET` | `/models` | List available Ollama models |
 | `POST` | `/switch-model` | Switch active LLM |
 | `GET` | `/health` | Health check |
@@ -333,7 +333,7 @@ If the problem grows significantly more complex (multi-agent, complex tool-calli
 - **BAAI/bge-m3** — multilingual embeddings (1024-dim)
 - **CrossEncoder ms-marco-MiniLM-L-6-v2** — reranking
 - **Qdrant sparse vectors (BM25-style, `Modifier.IDF`)** — keyword retrieval, fused server-side with dense search
-- **PyMuPDF** — PDF parsing and highlight coordinates
+- **PyMuPDF** — PDF text extraction
 - **Tesseract** — OCR for scanned pages
 - **Langfuse** — observability (self-hosted, optional)
 - **PDF.js** — client-side PDF rendering

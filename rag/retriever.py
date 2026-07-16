@@ -165,6 +165,41 @@ def promote_document_opening_chunks(chunks: list[dict], top_chunks: list[dict]) 
     return promoted
 
 
+def promote_missing_compare_documents(
+    chunks: list[dict], top_chunks: list[dict], document_ids: list[str] | None
+) -> list[dict]:
+    """retrieve_expanded() guarantees every requested document_id reaches the
+    candidate pool (see its own "at least 1 chunk per document" step), but
+    the cross-encoder reranker scores each candidate independently against
+    the (often long, multi-document) compare question — if one document's
+    content scores lower across the board than another's, top_k reranking
+    can cut it completely, even though it was present pre-rerank. Observed
+    directly: comparing 2 documents, the reranker's top-20 was 100% one
+    document, and the LLM correctly (but unhelpfully) reported the other
+    "not found" despite it being retrievable and in scope. Silently
+    comparing N-1 of N requested documents is worse than including one
+    extra chunk per missing one — pull each missing document's single
+    best-scoring candidate back in, using the rerank_score
+    CrossEncoderReranker.rerank() already set on every chunk in `chunks` as
+    a side effect (it scores the full input list before slicing to top_k)."""
+    if not document_ids or len(document_ids) < 2:
+        return top_chunks
+
+    present = {c.get("document_id") for c in top_chunks}
+    missing = [d for d in document_ids if d not in present]
+    if not missing:
+        return top_chunks
+
+    promoted = list(top_chunks)
+    for doc_id in missing:
+        candidates = [c for c in chunks if c.get("document_id") == doc_id]
+        if not candidates:
+            continue
+        best = max(candidates, key=lambda c: c.get("rerank_score", c.get("score", 0)))
+        promoted.append(best)
+    return promoted
+
+
 class HybridRetriever:
     # Documents at or under this many total chunks get pulled in whole once
     # any one chunk of theirs scores well enough to be a top candidate — see

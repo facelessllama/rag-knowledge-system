@@ -24,10 +24,10 @@ async function apiGetDocuments() {
   return r.json(); // { documents: [...] }
 }
 
-async function apiGetDocumentContent(docId) {
-  const r = await fetch(API + '/documents/' + docId + '/content', { headers: authHeaders() });
-  if (!r.ok) throw new Error('content fetch failed');
-  return r.json(); // { text: "..." }
+async function apiGetDocumentPage(docId, pageNum) {
+  const r = await fetch(API + '/documents/' + docId + '/pages/' + (pageNum || 1), { headers: authHeaders() });
+  if (!r.ok) throw new Error('page fetch failed');
+  return r.json(); // { document_id, format, page, total_pages, text, has_ocr }
 }
 
 async function apiUploadFile(file, folder) {
@@ -108,12 +108,6 @@ async function apiUpdateFolder(docId, folder) {
     body: JSON.stringify({ folder: folder })
   });
   return r.ok;
-}
-
-async function apiGetHighlights(docId, text, page) {
-  const r = await fetch(API + '/pdf/' + docId + '/highlights?page=' + page + '&text=' + encodeURIComponent(text), { headers: authHeaders() });
-  if (!r.ok) return null;
-  return r.json(); // { rects, page_width, page_height }
 }
 
 function getPdfUrl(docId) {

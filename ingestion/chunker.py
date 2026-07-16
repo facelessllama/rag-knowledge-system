@@ -144,8 +144,9 @@ class TextChunk:
     pages: int = 0
     folder: str = ""
     # Offsets into normalize_whitespace(page_text) — page-relative, not
-    # document-relative. Populated for every chunk; only actually consumed
-    # by the TXT viewer today (PDF highlighting still uses PyMuPDF search_for).
+    # document-relative. Populated for every chunk; consumed by the source
+    # viewer (see api/main.py::get_document_page) to slice out and highlight
+    # the exact cited passage, no text search against a rendered page needed.
     char_start: Optional[int] = None
     char_end: Optional[int] = None
 

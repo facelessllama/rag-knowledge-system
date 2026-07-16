@@ -26,13 +26,14 @@ from psycopg2.extras import RealDictCursor
 
 from langfuse import Langfuse
 
-from ingestion.pdf_parser import PDFParser, split_for_highlight_search
+from ingestion.pdf_parser import PDFParser
 from ingestion.txt_parser import TxtParser, decode_text_file
 from ingestion.chunker import SmartChunker, normalize_whitespace, chunk_context_text
+from lock import shared_lock
 from embeddings.embedding_service import EmbeddingService
 from vector_db.qdrant_client import VectorStore
 from qdrant_client.models import Filter, FieldCondition, MatchValue
-from rag.retriever import HybridRetriever, promote_identity_matches, promote_document_opening_chunks
+from rag.retriever import HybridRetriever, promote_identity_matches, promote_document_opening_chunks, promote_missing_compare_documents
 from rag.executors import run_on_gpu
 from rag.reranker import CrossEncoderReranker, SimpleReranker
 from rag.prompt_builder import PromptBuilder
@@ -69,6 +70,36 @@ app.mount("/app", StaticFiles(directory="frontend", html=True), name="frontend")
 
 UPLOAD_DIR = Path("uploads")
 UPLOAD_DIR.mkdir(exist_ok=True)
+
+async def require_not_backing_up():
+    """FastAPI dependency — holds lock.py's SHARED flock for the entire
+    request, not just a check at the start of it. A plain existence-check
+    of a flag file (an earlier approach) is a gate, not mutual exclusion:
+    checked once, an upload that passed a moment before backup created its
+    lock file kept mutating Qdrant/Postgres/disk for the rest of its own
+    duration, invisible to backup_qdrant.sh's EXCLUSIVE flock hold. Holding
+    a real kernel lock for the whole request means backup's exclusive
+    acquire (a bounded `flock -w` wait — see backup_qdrant.sh) genuinely
+    waits for every in-flight mutation to finish first instead of just
+    giving up, and any NEW mutation that starts after backup already holds
+    the exclusive lock fails fast with 503 instead of being let through.
+
+    BlockingIOError is caught ONLY around acquiring the lock (the
+    __enter__ call, before yield) — not wrapped around `yield` itself. A
+    `with shared_lock(): yield` here would also catch a BlockingIOError
+    the endpoint's own body happened to raise for an unrelated reason (a
+    non-blocking read on some other fd, say) and misreport it as "backup
+    in progress" instead of letting it surface as whatever error it
+    actually is."""
+    cm = shared_lock()
+    try:
+        cm.__enter__()
+    except BlockingIOError:
+        raise HTTPException(503, "Backup in progress — try again in a few minutes")
+    try:
+        yield
+    finally:
+        cm.__exit__(None, None, None)
 
 # Minimum cross-encoder rerank score (raw logit, NOT 0-1 cosine similarity —
 # ms-marco-MiniLM-L-6-v2 outputs unbounded relevance logits) to attempt an
@@ -111,6 +142,7 @@ embedder = EmbeddingService(model_name=os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3
 vector_store = VectorStore(
     url=os.getenv("QDRANT_URL", "http://localhost:6333"),
     collection=os.getenv("QDRANT_COLLECTION", "knowledge_base"),
+    api_key=os.getenv("QDRANT_API_KEY"),
 )
 retriever = HybridRetriever(embedder, vector_store)
 try:
@@ -171,7 +203,7 @@ def init_db():
             cur.execute("""
                 CREATE TABLE IF NOT EXISTS file_hashes (
                     hash VARCHAR(32) PRIMARY KEY,
-                    doc_id VARCHAR(8) NOT NULL,
+                    doc_id UUID NOT NULL,
                     filename VARCHAR(255) NOT NULL,
                     created_at TIMESTAMP DEFAULT NOW()
                 )
@@ -184,9 +216,16 @@ def init_db():
             """)
             # Source of truth for document metadata — startup restore reads this
             # table instead of scrolling the entire Qdrant collection.
+            # doc_id is a full uuid4() (see upload_document/upload_batch) — a
+            # truncated 8-hex-char id (32 bits of entropy) was replaced after
+            # the birthday-paradox collision probability at this project's own
+            # tested 57k-document scale (see eval/README.md) came out to
+            # ~31.5%, which ON CONFLICT DO UPDATE below would resolve by
+            # silently overwriting one document's metadata and mixing its
+            # Qdrant points with another's.
             cur.execute("""
                 CREATE TABLE IF NOT EXISTS documents (
-                    doc_id VARCHAR(8) PRIMARY KEY,
+                    doc_id UUID PRIMARY KEY,
                     filename VARCHAR(255) NOT NULL,
                     pages INTEGER DEFAULT 0,
                     chunks INTEGER DEFAULT 0,
@@ -199,6 +238,23 @@ def init_db():
             """)
             # documents table may already exist from before `format` was added
             cur.execute("ALTER TABLE documents ADD COLUMN IF NOT EXISTS format VARCHAR(10) DEFAULT 'pdf'")
+            # Canonical source for the document viewer / highlighting: the exact
+            # normalized text char_start/char_end (Qdrant chunk payload) are
+            # offsets into, persisted once at ingestion — never re-derived by
+            # re-running PDFParser/OCR later, since a library or Tesseract
+            # config change would silently desync those offsets from what's
+            # shown. ON DELETE CASCADE keeps this in lockstep with `documents`
+            # without a separate delete step in delete_document().
+            cur.execute("""
+                CREATE TABLE IF NOT EXISTS document_pages (
+                    document_id UUID NOT NULL REFERENCES documents(doc_id) ON DELETE CASCADE ON UPDATE CASCADE,
+                    page_num INTEGER NOT NULL,
+                    normalized_text TEXT NOT NULL,
+                    has_ocr BOOLEAN DEFAULT FALSE,
+                    char_count INTEGER DEFAULT 0,
+                    PRIMARY KEY (document_id, page_num)
+                )
+            """)
             cur.execute("SELECT hash, doc_id FROM file_hashes")
             for row in cur.fetchall():
                 file_hashes[row[0]] = row[1]
@@ -225,23 +281,91 @@ def init_db():
         logger.warning(f"DB init failed: {e}")
 
 
-def db_save_document(doc: dict):
-    try:
-        with db_conn() as conn:
-            conn.cursor().execute(
-                """
-                INSERT INTO documents (doc_id, filename, pages, chunks, size_kb, metadata, folder, format)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-                ON CONFLICT (doc_id) DO UPDATE SET
-                    filename = EXCLUDED.filename, pages = EXCLUDED.pages, chunks = EXCLUDED.chunks,
-                    size_kb = EXCLUDED.size_kb, metadata = EXCLUDED.metadata, folder = EXCLUDED.folder,
-                    format = EXCLUDED.format
-                """,
-                (doc["doc_id"], doc["filename"], doc["pages"], doc["chunks"], doc["size_kb"],
-                 json.dumps(doc.get("metadata", {})), doc.get("folder", ""), doc.get("format", "pdf")),
+class DuplicateFileHashError(Exception):
+    """Raised by db_save_ingestion() when another request already committed
+    this exact file_hash first — see its docstring's concurrency note."""
+
+
+def db_save_ingestion(doc: dict, pages: list[dict] | None, file_hash: str):
+    """Persists everything a successful upload commits to Postgres —
+    file_hashes, folders, documents, and (PDF only — see
+    get_document_page()'s TXT branch, which reads straight off disk
+    instead) document_pages — in ONE transaction. Does NOT swallow
+    failures: a caller that gets an exception here must treat the whole
+    upload as failed and roll back Qdrant + the uploaded file, not report
+    it as indexed (see upload_document/upload_batch).
+
+    Previously file_hashes was written by a separate, earlier, best-effort
+    call before document_pages even existed as a concept — if the later
+    document/pages save then failed, the hash row (and the in-memory
+    file_hashes entry a caller only updates *after* this function returns
+    successfully) never got cleaned up. Every retry of the same file then
+    hit the file_hash-seen check and got a false 409 "Already uploaded",
+    even though the document, its Qdrant points, and its file on disk were
+    all gone — and, if the hash row had already committed to Postgres, this
+    survived an API restart too. Folding it into this same transaction
+    means a failure here rolls back the hash right along with everything
+    else, so the caller's Qdrant/file rollback is the only cleanup left to
+    do by hand.
+
+    Concurrency: two truly simultaneous uploads of the same file content can
+    both pass the caller's in-memory `file_hash in file_hashes` check before
+    either has committed — the in-memory dict only reflects committed state,
+    so two in-flight requests never see each other there. Without a check
+    here, ON CONFLICT DO NOTHING would let the second one's file_hashes
+    insert silently no-op while its documents/document_pages inserts (keyed
+    on its own distinct doc_id, not the hash) go on to commit fine — two
+    separate documents indexed for identical content, with file_hashes only
+    ever pointing at one of them. cursor.rowcount == 0 after the insert
+    means someone else's row is already there; raising forces this whole
+    transaction to roll back (nothing about this doc_id gets persisted) so
+    the caller can treat it as a 409 and clean up the Qdrant points/file
+    this now-redundant attempt already wrote, instead of ending up with a
+    second live copy of a document that's already in the knowledge base.
+
+    Page persistence being required for PDF: the source viewer 404s
+    without it. The same normalize_whitespace() output chunker.py computed
+    char_start/char_end against for every chunk — re-deriving this later by
+    re-running PDFParser/OCR would risk desyncing from those already-stored
+    offsets (see document_pages table comment in init_db())."""
+    with db_conn() as conn:
+        cur = conn.cursor()
+        cur.execute(
+            "INSERT INTO file_hashes (hash, doc_id, filename) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING",
+            (file_hash, doc["doc_id"], doc["filename"]),
+        )
+        if cur.rowcount == 0:
+            raise DuplicateFileHashError(
+                f"file_hash {file_hash} was already claimed by a concurrent upload"
             )
-    except Exception as e:
-        logger.warning(f"DB save document failed: {e}")
+        if doc.get("folder"):
+            cur.execute("INSERT INTO folders (name) VALUES (%s) ON CONFLICT DO NOTHING", (doc["folder"],))
+        cur.execute(
+            """
+            INSERT INTO documents (doc_id, filename, pages, chunks, size_kb, metadata, folder, format)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (doc_id) DO UPDATE SET
+                filename = EXCLUDED.filename, pages = EXCLUDED.pages, chunks = EXCLUDED.chunks,
+                size_kb = EXCLUDED.size_kb, metadata = EXCLUDED.metadata, folder = EXCLUDED.folder,
+                format = EXCLUDED.format
+            """,
+            (doc["doc_id"], doc["filename"], doc["pages"], doc["chunks"], doc["size_kb"],
+             json.dumps(doc.get("metadata", {})), doc.get("folder", ""), doc.get("format", "pdf")),
+        )
+        if doc.get("format") == "pdf" and pages:
+            for p in pages:
+                norm = normalize_whitespace(p["text"])
+                cur.execute(
+                    """
+                    INSERT INTO document_pages (document_id, page_num, normalized_text, has_ocr, char_count)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON CONFLICT (document_id, page_num) DO UPDATE SET
+                        normalized_text = EXCLUDED.normalized_text,
+                        has_ocr = EXCLUDED.has_ocr,
+                        char_count = EXCLUDED.char_count
+                    """,
+                    (doc["doc_id"], p["page_num"], norm, p.get("has_ocr", False), len(norm)),
+                )
 
 
 def db_update_document_folder(doc_id: str, folder: str):
@@ -250,17 +374,6 @@ def db_update_document_folder(doc_id: str, folder: str):
             conn.cursor().execute("UPDATE documents SET folder = %s WHERE doc_id = %s", (folder, doc_id))
     except Exception as e:
         logger.warning(f"DB update document folder failed: {e}")
-
-def db_save_file_hash(file_hash: str, doc_id: str, filename: str):
-    try:
-        with db_conn() as conn:
-            conn.cursor().execute(
-                "INSERT INTO file_hashes (hash, doc_id, filename) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING",
-                (file_hash, doc_id, filename)
-            )
-    except Exception as e:
-        logger.warning(f"DB save hash failed: {e}")
-
 
 def db_save_folder(name: str):
     try:
@@ -335,7 +448,24 @@ class QueryResponse(BaseModel):
     debug: Optional[dict] = None
 
 
-@protected.post("/upload")
+async def _rollback_upload(doc_id: str, file_path: Path):
+    """Best-effort cleanup for a document whose Qdrant points/file were
+    already written before db_save_ingestion() failed (for any reason,
+    including the DuplicateFileHashError concurrency race) — nothing about
+    this doc_id made it into Postgres, so it must not survive in Qdrant or
+    on disk either."""
+    try:
+        await asyncio.to_thread(
+            vector_store.client.delete,
+            collection_name=vector_store.collection,
+            points_selector=Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=doc_id))]),
+        )
+    except Exception as cleanup_err:
+        logger.error(f"Qdrant rollback also failed for {doc_id}: {cleanup_err}")
+    file_path.unlink(missing_ok=True)
+
+
+@protected.post("/upload", dependencies=[Depends(require_not_backing_up)])
 async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
     safe_filename = Path(file.filename).name  # strip any path components
     doc_parser, doc_format = pick_parser(safe_filename)
@@ -350,7 +480,7 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
         existing = documents_registry.get(existing_id, {})
         raise HTTPException(409, f"File already uploaded as '{existing.get('filename', existing_id)}' (id: {existing_id})")
 
-    doc_id = str(uuid.uuid4())[:8]
+    doc_id = str(uuid.uuid4())
     file_path = UPLOAD_DIR / f"{doc_id}_{safe_filename}"
 
     async with aiofiles.open(file_path, "wb") as f:
@@ -362,6 +492,7 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
     chunks = chunker.chunk_document(parsed.pages, doc_id)
 
     if not chunks:
+        file_path.unlink(missing_ok=True)
         raise HTTPException(422, "Could not extract text from document")
 
     for c in chunks:
@@ -391,13 +522,6 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
         except Exception:
             pass
 
-    file_hashes[file_hash] = doc_id
-    await asyncio.to_thread(db_save_file_hash, file_hash, doc_id, safe_filename)
-
-    if folder:
-        folders_registry.add(folder)
-        await asyncio.to_thread(db_save_folder, folder)
-
     doc_meta = {
         "doc_id": doc_id,
         "filename": safe_filename,
@@ -408,8 +532,28 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
         "folder": folder or "",
         "format": doc_format,
     }
+    # file_hashes/folders_registry/documents_registry are only updated in
+    # memory AFTER db_save_ingestion() commits — updating them earlier (the
+    # old code set file_hashes[file_hash] before this could even fail) left
+    # a hash entry with nothing behind it if the save failed: every retry
+    # of the same file then hit the file_hash-seen check below and got a
+    # false 409, even though the document/file/Qdrant points were all gone.
+    try:
+        await asyncio.to_thread(db_save_ingestion, doc_meta, parsed.pages, file_hash)
+    except DuplicateFileHashError:
+        logger.warning(f"Concurrent upload race for {doc_id} (file_hash already claimed) — discarding this attempt")
+        await _rollback_upload(doc_id, file_path)
+        existing_id = file_hashes.get(file_hash)
+        existing = documents_registry.get(existing_id, {}) if existing_id else {}
+        raise HTTPException(409, f"File already uploaded as '{existing.get('filename', existing_id or file_hash)}'")
+    except Exception as e:
+        logger.error(f"DB save failed for {doc_id}, rolling back Qdrant points + uploaded file: {e}")
+        await _rollback_upload(doc_id, file_path)
+        raise HTTPException(500, f"Failed to save document — upload did not complete: {e}")
+    file_hashes[file_hash] = doc_id
+    if folder:
+        folders_registry.add(folder)
     documents_registry[doc_id] = doc_meta
-    await asyncio.to_thread(db_save_document, doc_meta)
 
     return {
         "doc_id": doc_id,
@@ -420,10 +564,12 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
     }
 
 
-@protected.post("/upload-batch")
+@protected.post("/upload-batch", dependencies=[Depends(require_not_backing_up)])
 async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("")):
     results = []
     for file in files:
+        doc_id = None   # reset each iteration — a stale doc_id/file_path from
+        file_path = None  # a previous file must never be used for this file's cleanup
         try:
             safe_name = Path(file.filename).name
             doc_parser, doc_format = pick_parser(safe_name)
@@ -440,7 +586,7 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
                 results.append({"filename": safe_name, "status": "skipped", "error": f"Already uploaded as '{existing.get('filename', existing_id)}'"})
                 continue
 
-            doc_id = str(uuid.uuid4())[:8]
+            doc_id = str(uuid.uuid4())
             file_path = UPLOAD_DIR / f"{doc_id}_{safe_name}"
 
             async with aiofiles.open(file_path, "wb") as f_out:
@@ -450,6 +596,7 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
             chunks = chunker.chunk_document(parsed.pages, doc_id)
 
             if not chunks:
+                file_path.unlink(missing_ok=True)
                 results.append({"filename": safe_name, "status": "error", "error": "Could not extract text"})
                 continue
 
@@ -462,9 +609,6 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
             vectors = await run_on_gpu(embedder.embed_batch, texts)
             await asyncio.to_thread(vector_store.upsert_chunks, chunks, vectors)
 
-            file_hashes[file_hash] = doc_id
-            await asyncio.to_thread(db_save_file_hash, file_hash, doc_id, safe_name)
-
             doc_meta = {
                 "doc_id": doc_id,
                 "filename": safe_name,
@@ -475,19 +619,56 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
                 "folder": folder or "",
                 "format": doc_format,
             }
+            # file_hashes/folders_registry/documents_registry only updated in
+            # memory after a successful commit — see db_save_ingestion().
+            await asyncio.to_thread(db_save_ingestion, doc_meta, parsed.pages, file_hash)
+            file_hashes[file_hash] = doc_id
+            if folder:
+                folders_registry.add(folder)
             documents_registry[doc_id] = doc_meta
-            await asyncio.to_thread(db_save_document, doc_meta)
             results.append({"doc_id": doc_id, "filename": safe_name, "status": "indexed",
                             "pages": parsed.total_pages, "chunks_created": len(chunks)})
 
+        except DuplicateFileHashError:
+            logger.warning(f"Concurrent upload race for {doc_id} (file_hash already claimed) — discarding this attempt")
+            if doc_id and file_path:
+                await _rollback_upload(doc_id, file_path)
+            existing_id = file_hashes.get(file_hash)
+            existing = documents_registry.get(existing_id, {}) if existing_id else {}
+            results.append({"filename": safe_name, "status": "skipped",
+                            "error": f"Already uploaded as '{existing.get('filename', existing_id or file_hash)}'"})
+
         except Exception as e:
             logger.error(f"Batch error {file.filename}: {e}")
+            if doc_id and file_path:
+                await _rollback_upload(doc_id, file_path)
             results.append({"filename": file.filename, "status": "error", "error": str(e)})
 
     indexed = sum(1 for r in results if r["status"] == "indexed")
     skipped = sum(1 for r in results if r["status"] == "skipped")
     errors = sum(1 for r in results if r["status"] == "error")
     return {"total": len(results), "indexed": indexed, "skipped": skipped, "errors": errors, "results": results}
+
+
+def _augment_compare_queries(expanded_queries: list[str], document_ids: Optional[list[str]]) -> list[str]:
+    # query_expander.expand() decomposes within an 80-token LLM budget — for
+    # a "compare A, B, C" question that spells out every filename plus
+    # per-aspect instructions, it commonly runs out of budget after the
+    # first document's name (observed: all sub-queries referenced only the
+    # first of two compared documents). doc_filter in hybrid_search only
+    # restricts which documents are *eligible*, it doesn't pull one in on
+    # its own — a document never named in any query text simply never
+    # enters the candidate pool, so retrieve_expanded's "at least 1 chunk
+    # per document" guarantee has nothing to promote for it. One
+    # deterministic query per named document closes that gap regardless of
+    # what the free-form expander produced.
+    if not document_ids or len(document_ids) < 2:
+        return expanded_queries
+    for doc_id in document_ids:
+        filename = documents_registry.get(doc_id, {}).get("filename")
+        if filename:
+            expanded_queries.append(f"main subject, parties, and conclusions of {filename}")
+    return expanded_queries
 
 
 @protected.post("/query", response_model=QueryResponse)
@@ -514,6 +695,7 @@ async def _do_query(request: QueryRequest):
 
     t0 = time.time()
     expanded_queries = await query_expander.expand(request.question)
+    expanded_queries = _augment_compare_queries(expanded_queries, request.document_ids)
     chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None, document_ids=request.document_ids or None)
     retrieval_ms = int((time.time() - t0) * 1000)
 
@@ -531,9 +713,22 @@ async def _do_query(request: QueryRequest):
     top_chunks = await run_on_gpu(reranker.rerank, request.question, chunks, top_k=request.top_k)
     top_chunks = promote_identity_matches(chunks, top_chunks, RELEVANCE_THRESHOLD)
     top_chunks = promote_document_opening_chunks(chunks, top_chunks)
+    top_chunks = promote_missing_compare_documents(chunks, top_chunks, request.document_ids)
 
     best_score = max((c.get("rerank_score", 0) for c in top_chunks), default=0)
-    if best_score < RELEVANCE_THRESHOLD:
+    # RELEVANCE_THRESHOLD exists to catch "this isn't in the knowledge base at
+    # all" for open-ended questions — moot when document_ids is set, since
+    # the compare flow's scope already came from the user explicitly picking
+    # real documents out of the library, not from the cross-encoder's opinion
+    # of them. Observed directly: a legitimate 3-document compare (all three
+    # in scope, all three retrieved — 60 candidates) refused outright because
+    # the generic "for each document provide: 1)... 2)... 3)..." compare
+    # template scores low against some documents' content even when that
+    # content is exactly what was asked to compare. Gating a guaranteed-
+    # in-scope answer on a threshold tuned for natural single-topic questions
+    # (see eval/golden_dataset.json calibration) rejects real compares for no
+    # benefit — there's no "not in the KB" case left to catch here.
+    if best_score < RELEVANCE_THRESHOLD and not request.document_ids:
         logger.info(f"Best rerank score {best_score:.3f} below threshold {RELEVANCE_THRESHOLD} — not answering")
         return QueryResponse(answer="I couldn't find relevant information in the knowledge base to answer this question.",
                            sources=[], model=generator.model, tokens_used=0,
@@ -634,6 +829,7 @@ async def query_stream(request: QueryRequest):
 
             t0 = time.time()
             expanded_queries = await query_expander.expand(request.question)
+            expanded_queries = _augment_compare_queries(expanded_queries, request.document_ids)
             expansion_ms = int((time.time() - t0) * 1000)
 
             t1 = time.time()
@@ -669,6 +865,7 @@ async def query_stream(request: QueryRequest):
             top_chunks = await run_on_gpu(reranker.rerank, request.question, chunks, top_k=request.top_k)
             top_chunks = promote_identity_matches(chunks, top_chunks, RELEVANCE_THRESHOLD)
             top_chunks = promote_document_opening_chunks(chunks, top_chunks)
+            top_chunks = promote_missing_compare_documents(chunks, top_chunks, request.document_ids)
             rerank_ms = int((time.time() - t2) * 1000)
             reranker_type = type(reranker).__name__
 
@@ -681,7 +878,7 @@ async def query_stream(request: QueryRequest):
                 "queries_expanded": len(expanded_queries),
             }
 
-            if best_score < RELEVANCE_THRESHOLD:
+            if best_score < RELEVANCE_THRESHOLD and not request.document_ids:
                 logger.info(f"Best rerank score {best_score:.3f} below threshold {RELEVANCE_THRESHOLD} — not answering")
                 msg = "I couldn't find relevant information in the knowledge base to answer this question."
                 yield f"data: {json.dumps({'type': 'token', 'content': msg})}\n\n"
@@ -792,7 +989,7 @@ async def list_documents():
             "folders": sorted(folders_registry)}
 
 
-@protected.patch("/documents/{doc_id}/folder")
+@protected.patch("/documents/{doc_id}/folder", dependencies=[Depends(require_not_backing_up)])
 async def update_document_folder(doc_id: str, body: dict):
     if doc_id not in documents_registry:
         raise HTTPException(404, f"Document {doc_id} not found")
@@ -819,7 +1016,7 @@ async def list_folders():
     return {"folders": all_folders}
 
 
-@protected.post("/folders")
+@protected.post("/folders", dependencies=[Depends(require_not_backing_up)])
 async def create_folder(body: dict):
     name = (body.get("name") or "").strip()
     if not name:
@@ -829,14 +1026,14 @@ async def create_folder(body: dict):
     return {"name": name}
 
 
-@protected.delete("/folders/{name}")
+@protected.delete("/folders/{name}", dependencies=[Depends(require_not_backing_up)])
 async def delete_folder(name: str):
     folders_registry.discard(name)
     db_delete_folder(name)
     return {"deleted": name}
 
 
-@protected.patch("/folders/{name}")
+@protected.patch("/folders/{name}", dependencies=[Depends(require_not_backing_up)])
 async def rename_folder(name: str, body: dict):
     new_name = (body.get("name") or "").strip()
     if not new_name:
@@ -857,7 +1054,7 @@ async def rename_folder(name: str, body: dict):
     return {"old": name, "new": new_name}
 
 
-@protected.delete("/documents/{doc_id}")
+@protected.delete("/documents/{doc_id}", dependencies=[Depends(require_not_backing_up)])
 async def delete_document(doc_id: str):
     if doc_id not in documents_registry:
         raise HTTPException(404, f"Document {doc_id} not found")
@@ -904,67 +1101,74 @@ async def delete_document(doc_id: str):
     return {"status": "deleted", "doc_id": doc_id, "filename": filename}
 
 
-@protected.get("/documents/{doc_id}/content")
-async def get_document_content(doc_id: str):
-    """Full normalized text for TXT documents — used by the text viewer.
-    Offsets in /query sources (char_start/char_end) are indices into this
-    same normalize_whitespace() output, so the two always line up exactly."""
+@protected.get("/documents/{doc_id}/pages/{page_num}")
+async def get_document_page(doc_id: str, page_num: int):
+    """Canonical source-viewing endpoint for both TXT and PDF documents —
+    same response shape for both {document_id, format, page, total_pages,
+    text, has_ocr} so the frontend needs no format branching — but the two
+    formats source that text differently:
+
+    - TXT: decoded + normalize_whitespace()'d straight off the uploaded
+      file on every request, exactly like the old (now-removed)
+      /documents/{doc_id}/content. TxtParser's output is a pure function of
+      the file's bytes with no external library version to drift, so there
+      is nothing here that a persisted copy would protect against — storing
+      it in document_pages too would only add a failure mode (a TXT
+      document that was never backfilled 404s) for no correctness benefit.
+    - PDF: read from document_pages, persisted once at ingestion time (see
+      db_save_ingestion()) — PyMuPDF/Tesseract extraction is NOT
+      a pure function of just the file (library/config versions matter),
+      so this is re-derived at ingestion and never again, keeping it in
+      lockstep with the char_start/char_end offsets /query sources hand out.
+
+    Superseded /documents/{doc_id}/content (TXT-only) and /pdf/{doc_id}/
+    highlights (PyMuPDF page.search_for() against the PDF's own text layer)
+    — the latter had no fallback for OCR'd pages (no embedded text layer to
+    search) and, even on clean digital PDFs, could land boxes on visually
+    blank space wherever the page's internal reading order didn't match its
+    visual layout (e.g. text positioned near an inserted image). Offset-
+    based lookup has none of that: it never touches the PDF's rendering."""
     doc = documents_registry.get(doc_id)
     if not doc:
         raise HTTPException(404, "Document not found")
-    if doc.get("format") != "txt":
-        raise HTTPException(400, "This endpoint only serves TXT documents — use /pdf/{doc_id} for PDFs")
-    txt_file = next(UPLOAD_DIR.glob(f"{doc_id}_*"), None)
-    if not txt_file:
-        raise HTTPException(404, "File not found on disk")
+    doc_format = doc.get("format", "pdf")
+    total_pages = 1 if doc_format == "txt" else doc.get("pages", 1)
+    if page_num < 1 or page_num > total_pages:
+        raise HTTPException(404, f"Page {page_num} out of range (1-{total_pages})")
 
-    def _read_normalized():
-        return normalize_whitespace(decode_text_file(txt_file.read_bytes()))
+    if doc_format == "txt":
+        txt_file = next(UPLOAD_DIR.glob(f"{doc_id}_*"), None)
+        if not txt_file:
+            raise HTTPException(404, "File not found on disk")
 
-    text = await asyncio.to_thread(_read_normalized)
-    return {"text": text}
+        def _read_normalized():
+            return normalize_whitespace(decode_text_file(txt_file.read_bytes()))
 
+        text = await asyncio.to_thread(_read_normalized)
+        has_ocr = False
+    else:
+        def _fetch():
+            with db_conn() as conn:
+                cur = conn.cursor()
+                cur.execute(
+                    "SELECT normalized_text, has_ocr FROM document_pages WHERE document_id = %s AND page_num = %s",
+                    (doc_id, page_num),
+                )
+                return cur.fetchone()
 
-@protected.get("/pdf/{doc_id}/highlights")
-async def get_pdf_highlights(doc_id: str, text: str = "", page: int = 1):
-    """Return PyMuPDF bounding boxes for text on a given page."""
-    if doc_id not in documents_registry:
-        raise HTTPException(404, "Document not found")
-    pdf_file = next(UPLOAD_DIR.glob(f"{doc_id}_*"), None)
-    if not pdf_file:
-        raise HTTPException(404, "PDF file not found on disk")
-
-    import fitz
-    doc = fitz.open(str(pdf_file))
-    if page < 1 or page > len(doc):
-        doc.close()
-        return {"rects": [], "page_width": 0, "page_height": 0}
-
-    pg = doc[page - 1]
-    page_width = pg.rect.width
-    page_height = pg.rect.height
-
-    if not text.strip():
-        doc.close()
-        return {"rects": [], "page_width": page_width, "page_height": page_height}
-
-    # Search the whole chunk in word-bounded segments (not just its opening
-    # ~120 chars) — pg.search_for handles whitespace/case per segment, and one
-    # segment failing to match doesn't take down the rest.
-    seen = set()
-    rects = []
-    for segment in split_for_highlight_search(text):
-        for r in pg.search_for(segment):
-            key = (round(r.x0, 1), round(r.y0, 1), round(r.x1, 1), round(r.y1, 1))
-            if key not in seen:
-                seen.add(key)
-                rects.append(r)
-    doc.close()
+        row = await asyncio.to_thread(_fetch)
+        if not row:
+            raise HTTPException(404, "Page text not indexed for this document — re-upload to backfill")
+        text, has_ocr = row
+        has_ocr = bool(has_ocr)
 
     return {
-        "rects": [{"x0": r.x0, "y0": r.y0, "x1": r.x1, "y1": r.y1} for r in rects],
-        "page_width": page_width,
-        "page_height": page_height
+        "document_id": doc_id,
+        "format": doc_format,
+        "page": page_num,
+        "total_pages": total_pages,
+        "text": text,
+        "has_ocr": has_ocr,
     }
 
 

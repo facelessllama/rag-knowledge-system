@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Legal documents · Knowledge Base</title>
 <link rel="stylesheet" href="vendor/fonts/fonts.css">
-<link rel="stylesheet" href="styles.css?v=1784133511">
+<link rel="stylesheet" href="styles.css?v=1784203655">
 <link rel="stylesheet" href="vendor/pdfjs/pdf_viewer.min.css">
 </head>
 <body>
 
 <div class="topbar">
   <button class="topbar-iconbtn mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()" title="Documents"></button>
-  <div class="brand">
+  <div class="brand" role="button" tabindex="0" title="Back to home" onclick="backToWelcome()">
     <div class="brand-mark" id="brandMark"></div>
     <span class="brand-name">Knowledge Base</span>
   </div>
@@ -23,6 +23,7 @@
   </div>
 
   <div class="topbar-right">
+    <button class="topbar-iconbtn" id="newChatBtn" onclick="backToWelcome()" title="New chat"></button>
     <a class="topbar-link" href="evaluation.html" id="evalLink"></a>
     <div class="settings-wrap" id="settingsWrap">
       <button class="topbar-iconbtn" id="settingsBtn" onclick="toggleSettings()" title="Settings"></button>
@@ -183,10 +184,6 @@
     <span class="pdf-page-info" id="pdfPageInfo">Page 1 of 1</span>
     <button class="pdf-page-btn" onclick="changePage(1)" id="pdfNextBtn"></button>
   </div>
-  <div class="pdf-citation" id="pdfCitation" style="display:none">
-    <span id="pdfCitationIcon"></span>
-    <span class="pdf-citation-text" id="pdfCitationText"></span>
-  </div>
   <div class="pdf-canvas-container" id="pdfCanvasContainer">
     <div class="pdf-loading" id="pdfLoading">
       <span id="pdfLoadingIcon"></span>
@@ -194,7 +191,6 @@
     </div>
     <div id="pdfPageWrapper" style="display:none; position:relative;">
       <canvas id="pdfCanvas"></canvas>
-      <div id="pdfTextLayer" class="textLayer"></div>
     </div>
   </div>
 </div>
@@ -205,12 +201,18 @@
     <span class="txt-panel-title" id="txtPanelTitle">Document</span>
     <button class="txt-panel-close" onclick="closeTxtPanel()" id="txtPanelCloseBtn"></button>
   </div>
+  <div class="pdf-page-controls" id="txtPageControls" style="display:none">
+    <button class="pdf-page-btn" onclick="changeTxtPage(-1)" id="txtPrevBtn"></button>
+    <span class="pdf-page-info" id="txtPageInfo">Page 1 of 1</span>
+    <button class="pdf-page-btn" onclick="changeTxtPage(1)" id="txtNextBtn"></button>
+    <button class="topbar-link" id="txtViewOriginalBtn" onclick="viewOriginalPdf()"></button>
+  </div>
   <div class="txt-panel-body" id="txtPanelBody">Loading…</div>
 </div>
 
 <script src="vendor/pdfjs/pdf.min.js"></script>
 <script src="icons.js?v=1784130335"></script>
 <script src="api.js?v=1784131348"></script>
-<script src="app.js?v=1784133511"></script>
+<script src="app.js?v=1784203655"></script>
 </body>
 </html>

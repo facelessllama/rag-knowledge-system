@@ -102,7 +102,8 @@ async def main():
     print(f"Sample: {len(sample)} cases across {len(set(c['type'] for c in sample))} types\n")
 
     embedder = EmbeddingService(model_name=os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3"))
-    vector_store = VectorStore(url=os.getenv("QDRANT_URL", "http://localhost:6333"))
+    vector_store = VectorStore(url=os.getenv("QDRANT_URL", "http://localhost:6333"),
+                                api_key=os.getenv("QDRANT_API_KEY"))
     retriever = HybridRetriever(embedder, vector_store)
     reranker = CrossEncoderReranker()
     prompt_builder = PromptBuilder()

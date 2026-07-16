@@ -51,8 +51,9 @@ _PAYLOAD_INDEXES = (
 
 
 class VectorStore:
-    def __init__(self, url: str = "http://localhost:6333", collection: str = "knowledge_base"):
-        self.client = QdrantClient(url=url)
+    def __init__(self, url: str = "http://localhost:6333", collection: str = "knowledge_base",
+                 api_key: str | None = None):
+        self.client = QdrantClient(url=url, api_key=api_key or None)
         self.collection = collection
         logger.info(f"Connected to Qdrant | collection: {collection}")
 
