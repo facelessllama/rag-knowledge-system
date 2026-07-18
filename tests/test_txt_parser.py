@@ -8,12 +8,12 @@ from ingestion.txt_parser import TxtParser, decode_text_file
 
 def test_parse_utf8_file(tmp_path):
     p = tmp_path / "doc.txt"
-    p.write_text("Договор аренды № 47/2024. This is an English sentence too.", encoding="utf-8")
+    p.write_text("Lease Agreement No. 47/2024. This is an English sentence too.", encoding="utf-8")
     parsed = TxtParser().parse(str(p))
     assert parsed.total_pages == 1
     assert parsed.pages[0]["page_num"] == 1
     assert parsed.pages[0]["has_ocr"] is False
-    assert "Договор аренды" in parsed.pages[0]["text"]
+    assert "Lease Agreement" in parsed.pages[0]["text"]
     assert parsed.filename == "doc.txt"
 
 
@@ -24,10 +24,10 @@ def test_parse_utf8_bom_file(tmp_path):
     assert parsed.pages[0]["text"] == "Hello world"  # BOM stripped, not left as a stray char
 
 
-def test_parse_cp1251_russian_file(tmp_path):
-    p = tmp_path / "cp1251.txt"
-    text = "Договор аренды нежилого помещения"
-    p.write_bytes(text.encode("cp1251"))
+def test_parse_cp1252_file(tmp_path):
+    p = tmp_path / "cp1252.txt"
+    text = "The tenant’s obligations — rent, upkeep — are set out below."
+    p.write_bytes(text.encode("cp1252"))
     parsed = TxtParser().parse(str(p))
     assert parsed.pages[0]["text"] == text
 

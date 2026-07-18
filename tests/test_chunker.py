@@ -51,12 +51,12 @@ def test_chunk_document_indexes_are_sequential_across_pages():
     assert page_nums == {1, 2}
 
 
-def test_chunk_document_russian_sentence_splitting():
+def test_chunk_document_splits_on_all_sentence_terminators():
     chunker = SmartChunker(chunk_size=200, chunk_overlap=20, min_chunk_size=5)
-    text = "Первое предложение. Второе предложение! Третье предложение?"
+    text = "First sentence. Second sentence! Third sentence?"
     chunks = chunker.chunk_document(_pages(text), doc_id="doc1")
     assert len(chunks) >= 1
-    assert "Первое" in chunks[0].text
+    assert "First" in chunks[0].text
 
 
 def test_chunk_ids_are_unique_and_deterministic():
@@ -76,7 +76,7 @@ def test_char_offsets_slice_back_to_exact_chunk_text():
     text = (
         "First sentence here is short. Second sentence follows right after. "
         "Third one is a bit longer than the others. Fourth sentence closes it off nicely. "
-        "Статья 15.1 гласит о пункте три. Договор аренды заключён между сторонами добросовестно."
+        "Article 15.1 governs clause three. The lease agreement was made between the parties in good faith."
     )
     chunks = chunker.chunk_document(_pages(text), doc_id="doc1")
     normalized = normalize_whitespace(text)
@@ -87,12 +87,12 @@ def test_char_offsets_slice_back_to_exact_chunk_text():
 
 
 def test_chunk_document_hard_wraps_run_on_text_with_no_sentence_punctuation():
-    """Russian statutes routinely list clauses separated by semicolons/commas
-    with no '.', '!', '?' for thousands of chars. Without a fallback, that
-    whole stretch becomes one oversized atomic chunk, which is both slow to
-    embed and semantically diluted."""
+    """Dense legal/technical prose routinely lists clauses separated by
+    semicolons/commas with no '.', '!', '?' for thousands of chars. Without
+    a fallback, that whole stretch becomes one oversized atomic chunk, which
+    is both slow to embed and semantically diluted."""
     chunker = SmartChunker(chunk_size=100, chunk_overlap=10, min_chunk_size=10)
-    run_on = " ".join(f"пункт{i} слово{i}" for i in range(200))  # no . ! ? at all
+    run_on = " ".join(f"clause{i} term{i}" for i in range(200))  # no . ! ? at all
     chunks = chunker.chunk_document(_pages(run_on), doc_id="doc1")
     assert len(chunks) >= 2
     for c in chunks:

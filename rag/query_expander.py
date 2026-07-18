@@ -29,16 +29,15 @@ Rules:
 - Output ONLY queries, one per line
 - Maximum 4 lines total
 - No numbering, no explanations
-- Keep original language (Russian or English)
 - Each query must be short and focused on ONE topic
 
 Examples:
-Input: "какой размер пени и сколько стоит аренда?"
+Input: "what's the late payment penalty and how much is the rent?"
 Output:
-размер пени при просрочке оплаты
-штраф за задержку платежа
-стоимость аренды помещения
-цена аренды
+late payment penalty amount
+fee for delayed payment
+rental cost of the premises
+rent price
 
 Input: "how does the kettle work?"
 Output:
@@ -70,13 +69,13 @@ Output:"""
                     if line.strip() and len(line.strip()) > 3
                 ][:4]
 
-                # Всегда включаем оригинал первым
+                # Always include the original first
                 all_queries = [query]
                 for line in lines:
                     if line.lower() != query.lower() and len(line) > 3:
                         all_queries.append(line)
 
-                # Дедупликация
+                # Deduplicate
                 seen = set()
                 unique = []
                 for q in all_queries:

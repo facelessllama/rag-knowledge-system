@@ -258,7 +258,7 @@ class SmartChunker:
 
     def _split_sentences_with_offsets(self, normalized: str) -> list[tuple[int, int, str]]:
         """Split already-normalized text into (start, end, sentence) triples,
-        respecting Russian and English sentence endings."""
+        respecting sentence endings."""
         if not normalized:
             return []
         spans = []
@@ -276,7 +276,7 @@ class SmartChunker:
         self, normalized: str, spans: list[tuple[int, int, str]]
     ) -> list[tuple[int, int, str]]:
         """Fallback for run-on prose with no '.'/'!'/'?' for thousands of chars
-        (semicolon-separated clause lists are routine in Russian statutes) —
+        (semicolon-separated clause lists are routine in dense legal/technical prose) —
         without this, such a stretch is one atomic "sentence" span many times
         chunk_size, emitted as a single oversized chunk downstream. That's both
         far slower to embed (attention cost grows faster than linearly with

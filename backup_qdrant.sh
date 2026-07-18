@@ -22,8 +22,8 @@
 # by a `kill -9` or power loss either: the kernel drops it the instant this
 # process's file descriptors close, for any reason.
 #
-# Использование: ./backup_qdrant.sh
-# Cron (ежедневно в 3:00): 0 3 * * * cd /path/to/rag-knowledge-system && bash backup_qdrant.sh
+# Usage: ./backup_qdrant.sh
+# Cron (daily at 3:00): 0 3 * * * cd /path/to/rag-knowledge-system && bash backup_qdrant.sh
 # The lock wait (below) can still time out and exit non-zero if something
 # legitimately holds the shared lock the whole window — point cron's
 # MAILTO, or whatever wraps this invocation, at that exit code; a silently

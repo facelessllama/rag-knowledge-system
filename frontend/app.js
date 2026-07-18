@@ -1107,10 +1107,10 @@ function runQuery(text, topK, documentIds) {
       if (err) {
         hideTyping();
         if (answerTextEl) {
-          var hint = err.partial ? 'Ответ оборвался' : 'Ошибка соединения';
+          var hint = err.partial ? 'Response cut off' : 'Connection error';
           answerTextEl.textContent += '\n\n⚠ ' + hint;
         } else {
-          addErrorMessage(err.partial ? 'Ответ оборвался. Попробуйте ещё раз.' : 'Нет соединения с сервером.');
+          addErrorMessage(err.partial ? 'Response cut off. Please try again.' : 'No connection to the server.');
         }
         isTyping = false;
         return;

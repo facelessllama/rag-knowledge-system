@@ -31,12 +31,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-TOPICS_RU = ["аренды", "поставки", "оказания услуг", "подряда", "займа", "трудовой договор"]
+TOPICS = ["lease", "supply", "services", "contracting", "loan", "employment contract"]
 
 FILLER = (
-    "Стороны обязуются исполнять условия настоящего договора добросовестно. "
-    "Любые изменения вносятся по письменному соглашению сторон. "
-    "Споры разрешаются в порядке, установленном законодательством. "
     "The parties shall perform their obligations under this agreement in good faith. "
     "Any amendments require written consent of both parties. "
     "Disputes shall be resolved in accordance with applicable law. "
@@ -57,13 +54,13 @@ def _wrap(text: str, width: int):
 
 def _make_doc_pdf(path: Path, doc_index: int, article_num: int, needle: str):
     doc = fitz.open()
-    topic = TOPICS_RU[doc_index % len(TOPICS_RU)]
+    topic = TOPICS[doc_index % len(TOPICS)]
     for page_num in range(3):
         page = doc.new_page()
         y = 72
-        page.insert_text((72, y), f"Договор {topic} № {doc_index} — Article {article_num}", fontsize=13)
+        page.insert_text((72, y), f"Contract {topic} No. {doc_index} — Article {article_num}", fontsize=13)
         y += 26
-        text = f"Статья {article_num}. Section {article_num}.\n" + FILLER * 6
+        text = f"Section {article_num}.\n" + FILLER * 12
         if page_num == 1 and needle:
             text += f"\n{needle}\n"
         for line in _wrap(text, 95):

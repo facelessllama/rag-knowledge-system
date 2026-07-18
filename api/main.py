@@ -49,14 +49,14 @@ api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
 
 async def require_api_key(key: str = Security(api_key_header)):
     if not API_KEY:
-        return  # ключ не задан — auth отключена
+        return  # key not set — auth disabled
     if key != API_KEY:
         raise HTTPException(status_code=401, detail="Invalid or missing API key")
 
 app = FastAPI(title="RAG Knowledge Base API", version="1.0.0")
-app.include_router(telegram_router)  # без auth — Telegram сам вызывает
+app.include_router(telegram_router)  # no auth — Telegram calls this directly
 
-# Роутер для всех защищённых эндпоинтов
+# Router for all protected endpoints
 protected = APIRouter(dependencies=[Depends(require_api_key)])
 
 app.add_middleware(
@@ -969,13 +969,13 @@ async def query_stream(request: QueryRequest):
             if trace:
                 try: trace.update(metadata={"error": "partial_stream", "chunks_sent": e.chunks_yielded})
                 except Exception: pass
-            yield f"data: {json.dumps({'type': 'error', 'error_type': 'partial_stream', 'message': 'Ответ оборвался на середине. Попробуйте повторить запрос.', 'partial': True, 'chunks_sent': e.chunks_yielded})}\n\n"
+            yield f"data: {json.dumps({'type': 'error', 'error_type': 'partial_stream', 'message': 'The response was cut off midway. Please try again.', 'partial': True, 'chunks_sent': e.chunks_yielded})}\n\n"
         except Exception as e:
             logger.error(f"Stream error: {e}", exc_info=True)
             if trace:
                 try: trace.update(metadata={"error": str(e)})
                 except Exception: pass
-            yield f"data: {json.dumps({'type': 'error', 'message': 'Не удалось получить ответ от модели. Попробуйте повторить запрос.'})}\n\n"
+            yield f"data: {json.dumps({'type': 'error', 'message': 'Could not get a response from the model. Please try again.'})}\n\n"
         finally:
             _query_semaphore.release()
 
@@ -1193,7 +1193,7 @@ async def get_pdf(doc_id: str, key: Optional[str] = None, x_api_key: Optional[st
 
 @protected.get("/models")
 async def list_models():
-    """Список доступных моделей из Ollama"""
+    """List available models from Ollama"""
     import httpx
     ollama_url = os.getenv("OLLAMA_URL", "http://localhost:11435")
     try:

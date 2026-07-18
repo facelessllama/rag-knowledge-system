@@ -1,15 +1,15 @@
 """
 Telegram Bot Integration
 ========================
-Демонстрирует, как любая внешняя система может интегрироваться с RAG через webhook.
+Demonstrates how any external system can integrate with the RAG service via webhook.
 
-Настройка:
-1. Создать бота через @BotFather, получить TELEGRAM_BOT_TOKEN
-2. Добавить токен в .env
-3. Зарегистрировать webhook:
+Setup:
+1. Create a bot via @BotFather, get TELEGRAM_BOT_TOKEN
+2. Add the token to .env
+3. Register the webhook:
    curl -X POST "https://api.telegram.org/bot<TOKEN>/setWebhook" \
         -d "url=https://your-domain.com/telegram/webhook"
-   (для локальной разработки используйте ngrok или cloudflared)
+   (for local development, use ngrok or cloudflared)
 """
 import os
 import logging
@@ -28,7 +28,7 @@ INTERNAL_API_URL = os.getenv("INTERNAL_API_URL", "http://localhost:8000")
 
 @router.post("/telegram/webhook")
 async def telegram_webhook(request: Request):
-    """Принимает сообщения от Telegram и отвечает через RAG."""
+    """Receives messages from Telegram and replies via the RAG service."""
     # Verify webhook secret token if configured
     if TELEGRAM_WEBHOOK_SECRET:
         token = request.headers.get("X-Telegram-Bot-Api-Secret-Token", "")
@@ -63,23 +63,23 @@ async def _get_rag_answer(question: str) -> str:
                 headers=headers
             )
             result = response.json()
-            answer = result.get("answer", "Не удалось получить ответ.")
+            answer = result.get("answer", "Could not get an answer.")
 
             sources = result.get("sources", [])
             if sources:
                 names = list({s.get("filename", "") for s in sources if s.get("filename")})
                 if names:
-                    answer += f"\n\n📎 Источники: {', '.join(names)}"
+                    answer += f"\n\n📎 Sources: {', '.join(names)}"
 
             return answer
     except Exception as e:
         logger.error(f"RAG error: {e}")
-        return "Произошла ошибка при обработке запроса."
+        return "An error occurred while processing the request."
 
 
 async def _send_message(chat_id: int, text: str):
     if not TELEGRAM_TOKEN:
-        logger.warning("TELEGRAM_BOT_TOKEN не задан, отправка пропущена")
+        logger.warning("TELEGRAM_BOT_TOKEN not set, skipping send")
         return
     async with httpx.AsyncClient(timeout=15.0) as client:
         resp = await client.post(

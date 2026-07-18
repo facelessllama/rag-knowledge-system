@@ -1,6 +1,6 @@
 """
 Embedding Service
-Converts text to vectors using BGE-M3 model (multilingual, runs locally)
+Converts text to vectors using BGE-M3 model (runs locally)
 """
 import logging
 from sentence_transformers import SentenceTransformer
@@ -14,7 +14,7 @@ class EmbeddingService:
     Wraps sentence-transformers for text vectorization.
     
     Why BGE-M3?
-    - Best multilingual model (Russian + English)
+    - Strong retrieval quality on English legal/technical text (MTEB ~63)
     - Runs fully offline on GPU
     - 1024-dimensional vectors = high quality search
     """

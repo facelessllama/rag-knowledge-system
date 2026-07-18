@@ -1,6 +1,6 @@
 """
 TXT Parser Module
-Reads plain text files (RU/EN), producing the same ParsedDocument shape
+Reads plain text files, producing the same ParsedDocument shape
 as pdf_parser.py so the rest of the ingestion pipeline (chunker, embedder,
 Qdrant upsert) needs no format-specific handling.
 """
@@ -11,9 +11,9 @@ from ingestion.document import ParsedDocument
 
 logger = logging.getLogger(__name__)
 
-# Windows-originated Russian text files are often cp1251, not UTF-8.
+# Windows-originated text files are sometimes cp1252, not UTF-8.
 # latin-1 never raises — guaranteed fallback so decoding can't hard-fail.
-_ENCODINGS = ("utf-8-sig", "utf-8", "cp1251", "cp1252", "latin-1")
+_ENCODINGS = ("utf-8-sig", "utf-8", "cp1252", "latin-1")
 
 
 def decode_text_file(raw: bytes) -> str:

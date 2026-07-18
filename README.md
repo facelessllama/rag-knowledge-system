@@ -10,7 +10,7 @@
 
 Upload PDF documents, organize them into folders, and ask questions in natural language. The system finds the most relevant passages and generates a cited answer using a local LLM — no data ever leaves your machine.
 
-**Supports Russian and English** out of the box.
+Built for English-language documents.
 
 ---
 
@@ -38,7 +38,6 @@ Upload PDF documents, organize them into folders, and ask questions in natural l
 ### Chat Interface
 - Streaming token-by-token responses via SSE
 - Chat history context (last turns trimmed to ~2000 chars)
-- Language selector (RU / EN)
 - Model switcher — change LLM without restarting
 - **Compare documents** — one-click structured comparison of all documents in a folder
 - Suggestion chips on empty state
@@ -82,14 +81,14 @@ Query → Expand (Ollama LLM) → Retrieve (Qdrant hybrid: dense + sparse, serve
 | `api/main.py` | FastAPI endpoints, streaming SSE, upload, auth |
 | `rag/retriever.py` | Multi-query expansion over Qdrant hybrid search, neighbor expansion |
 | `vector_db/qdrant_client.py` | Qdrant hybrid search (dense+sparse RRF fusion), payload indexes |
-| `vector_db/sparse_encoder.py` | BM25-style sparse vector construction (RU/EN tokenizer) |
+| `vector_db/sparse_encoder.py` | BM25-style sparse vector construction (English tokenizer) |
 | `rag/reranker.py` | CrossEncoder reranking with SimpleReranker fallback |
 | `rag/query_expander.py` | LLM-powered query decomposition |
 | `rag/prompt_builder.py` | Context assembly, token budgets, multi-doc mode |
 | `rag/generator.py` | Ollama streaming client with retry logic |
 | `ingestion/pdf_parser.py` | PyMuPDF text extraction + Tesseract OCR fallback |
 | `ingestion/chunker.py` | Sentence/paragraph-aware chunking |
-| `embeddings/embedding_service.py` | BAAI/bge-m3 multilingual embeddings (CUDA) |
+| `embeddings/embedding_service.py` | BAAI/bge-m3 embeddings (CUDA) |
 | `rag/executors.py` | Single-worker thread pool for GPU-bound calls — keeps embed/rerank off the event loop |
 | `api/telegram.py` | Telegram webhook bot |
 | `frontend/app.js` | UI: SSE streaming, PDF.js viewer, model switching |
@@ -260,7 +259,7 @@ curl -X POST "https://api.telegram.org/bot<TOKEN>/setWebhook" \
 
 ## Architecture Decisions & Learnings
 
-This project is not a demo of "how to quickly build RAG with LangChain" — it's a deliberate set of engineering choices for a specific goal: maximum retrieval accuracy, fully local, multilingual, on legal and technical documents with zero dependency on external APIs.
+This project is not a demo of "how to quickly build RAG with LangChain" — it's a deliberate set of engineering choices for a specific goal: maximum retrieval accuracy, fully local, on English legal and technical documents with zero dependency on external APIs.
 
 ### Why hybrid retrieval (dense vector + BM25) instead of pure vector search?
 
@@ -279,18 +278,13 @@ On my test datasets (legal contracts + technical docs), hybrid + rerank delivers
 
 ### Why BAAI/bge-m3 instead of nomic-embed-text, voyage-3, e5-mistral, etc.?
 
-Three reasons (as of early 2026):
+Two reasons (as of early 2026):
 
-1. **Multilingual without compromise**
-   bge-m3 supports 100+ languages in a unified semantic space — cross-lingual retrieval works out of the box.
-   nomic-embed-text (even v2) remains predominantly English: on non-English queries/documents, recall drops 3–6× (per independent 2025–2026 benchmarks).
-   For Russian-English legal documentation this is a hard requirement, not a nice-to-have.
-
-2. **Dimensionality and domain quality**
+1. **Dimensionality and domain quality**
    1024 dims → better cluster separation in technical/legal text vs. nomic's 768.
    MTEB average ~63.0 (2026 leaderboard) — nearly matching OpenAI text-embedding-3-large (64.6), fully free and local.
 
-3. **100% offline + hybrid mode built in**
+2. **100% offline + hybrid mode built in**
    Runs on GPU/CPU via sentence-transformers. No API, no censorship, no per-token cost.
    Supports dense + sparse + multi-vector — useful for future experiments.
 
@@ -330,7 +324,7 @@ If the problem grows significantly more complex (multi-agent, complex tool-calli
 - **Qdrant** — vector database (Docker)
 - **PostgreSQL** — document metadata (Docker)
 - **Ollama** — local LLM inference
-- **BAAI/bge-m3** — multilingual embeddings (1024-dim)
+- **BAAI/bge-m3** — embeddings (1024-dim)
 - **CrossEncoder ms-marco-MiniLM-L-6-v2** — reranking
 - **Qdrant sparse vectors (BM25-style, `Modifier.IDF`)** — keyword retrieval, fused server-side with dense search
 - **PyMuPDF** — PDF text extraction
