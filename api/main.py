@@ -5,6 +5,7 @@ import logging
 import uuid
 import time
 import asyncio
+from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Optional
 import os
@@ -42,6 +43,104 @@ from rag.query_expander import QueryExpander
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+
+class MaxBodySizeMiddleware:
+    """Raw ASGI middleware (not Starlette's BaseHTTPMiddleware, which
+    doesn't give clean control over a streaming request body) — rejects a
+    request whose body exceeds its route's limit, checked two ways: an
+    honest Content-Length header is rejected before a single byte is read
+    off the wire; failing that (header absent, chunked transfer encoding,
+    or a client that simply lies about it), actual bytes are counted as
+    they arrive from the ASGI server and the request is aborted the
+    moment the running total crosses the limit.
+
+    This exists because MAX_UPLOAD_MB enforced inside
+    _stream_upload_to_disk() (below) runs too late to be the only
+    protection: FastAPI's `UploadFile = File(...)` dependency is resolved
+    BEFORE the endpoint body ever runs, which means Starlette's own
+    multipart parser has already read the ENTIRE request body — spooling
+    it to a temp file once past its internal in-memory threshold — just
+    to construct that UploadFile. A huge body already occupies this
+    process's own temp storage by the time _stream_upload_to_disk() gets
+    its first chunk. This middleware is the earliest point in the process
+    a request can be rejected, before routing or form-parsing touch it —
+    the equivalent of a reverse-proxy `client_max_body_size`, run here
+    because this deployment doesn't put one in front of uvicorn (see
+    README's Reliability section if one is added later: it should set
+    its own limit too, as defense in depth, not instead of this).
+
+    Route-aware because a legitimate single upload and a legitimate
+    20-file batch differ by more than an order of magnitude; anything not
+    explicitly listed gets `default_limit`, which should stay small — no
+    other route in this app has a reason to receive a large body.
+
+    Raises plain `HTTPException`, not a custom exception type: FastAPI's
+    own request-body-parsing wrapper (fastapi/routing.py's
+    `request_body_to_args` caller) has `except HTTPException: raise` /
+    `except Exception: raise HTTPException(400, "There was an error
+    parsing the body")` around exactly the code path that calls into
+    Starlette's multipart parser, which is what ends up invoking
+    `receive()` (below) — a custom exception type gets silently flattened
+    into that generic 400 by the second clause; only HTTPException itself
+    is passed through by the first, giving a real, correctly-coded 413."""
+
+    def __init__(self, app, limits: dict, default_limit: int):
+        self.app = app
+        self.limits = limits
+        self.default_limit = default_limit
+
+    def _limit_for(self, scope) -> int:
+        return self.limits.get(scope.get("path"), self.default_limit)
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] != "http":
+            await self.app(scope, receive, send)
+            return
+
+        limit = self._limit_for(scope)
+        headers = dict(scope.get("headers") or [])
+        content_length = headers.get(b"content-length")
+        if content_length is not None:
+            try:
+                declared = int(content_length)
+            except ValueError:
+                declared = None
+            if declared is not None and declared > limit:
+                # Rejected before self.app is ever invoked — there is no
+                # FastAPI exception-handling machinery out here to catch a
+                # raise, so the response is sent directly, ASGI-style.
+                await self._send_413(send, limit)
+                return
+
+        total = 0
+
+        async def guarded_receive():
+            nonlocal total
+            message = await receive()
+            if message["type"] == "http.request":
+                total += len(message.get("body", b""))
+                if total > limit:
+                    # Raised from inside a `receive()` call made by
+                    # Starlette's own multipart parser, deep inside
+                    # self.app — propagates up through FastAPI's request-
+                    # body handling (see docstring above for why this must
+                    # be HTTPException specifically) to become a real 413.
+                    raise HTTPException(413, f"Request body exceeds the {limit // (1024 * 1024)}MB limit for this endpoint")
+            return message
+
+        await self.app(scope, guarded_receive, send)
+
+    @staticmethod
+    async def _send_413(send, limit_bytes: int):
+        body = json.dumps({"detail": f"Request body exceeds the {limit_bytes // (1024 * 1024)}MB limit for this endpoint"}).encode()
+        await send({
+            "type": "http.response.start",
+            "status": 413,
+            "headers": [(b"content-type", b"application/json"), (b"content-length", str(len(body)).encode())],
+        })
+        await send({"type": "http.response.body", "body": body})
+
 
 # Auth
 API_KEY = os.getenv("API_KEY", "")
@@ -123,9 +222,143 @@ RELEVANCE_THRESHOLD = float(os.getenv("RELEVANCE_THRESHOLD", "3.0"))
 MAX_CONCURRENT_QUERIES = int(os.getenv("MAX_CONCURRENT_QUERIES", "3"))
 _query_semaphore = asyncio.Semaphore(MAX_CONCURRENT_QUERIES)
 
-parser = PDFParser(ocr_language=os.getenv("PDF_OCR_LANGUAGE", "eng"))
+# Upload/ingestion limits. Unbounded values here previously meant: the
+# whole file read into RAM regardless of size, no cap on how many files one
+# batch request could contain, no cap on PDF page count (so OCR time scaled
+# with an attacker/mistake-controlled input), and no bound on how many
+# uploads could be parsing/OCR-ing/embedding at once. MAX_CONCURRENT_
+# INGESTIONS only needs to be small — embedding is already serialized onto
+# one GPU worker by run_on_gpu (rag/executors.py), but PDF parsing/OCR is
+# CPU-bound and runs via plain asyncio.to_thread, so nothing else limited
+# how many of those could run in parallel before this.
+MAX_UPLOAD_MB = int(os.getenv("MAX_UPLOAD_MB", "50"))
+MAX_UPLOAD_BYTES = MAX_UPLOAD_MB * 1024 * 1024
+MAX_BATCH_FILES = int(os.getenv("MAX_BATCH_FILES", "20"))
+MAX_CONCURRENT_INGESTIONS = int(os.getenv("MAX_CONCURRENT_INGESTIONS", "2"))
+_ingestion_semaphore = asyncio.Semaphore(MAX_CONCURRENT_INGESTIONS)
+_active_ingestions = 0  # only ever mutated between an `await` boundary and the next, see _ingestion_slot() — safe without a separate lock under asyncio's single-threaded cooperative scheduling
+
+
+@asynccontextmanager
+async def _ingestion_slot(doc_id: str):
+    """Wraps _ingestion_semaphore with observability: logs how many
+    ingestion jobs are actually concurrently in this block right now, not
+    just that a semaphore object exists — the thing worth being able to
+    verify from logs under real concurrent load, not just trust from
+    reading the semaphore size."""
+    global _active_ingestions
+    async with _ingestion_semaphore:
+        _active_ingestions += 1
+        logger.info(f"Ingestion slot acquired for {doc_id} ({_active_ingestions}/{MAX_CONCURRENT_INGESTIONS} in use)")
+        try:
+            yield
+        finally:
+            _active_ingestions -= 1
+            logger.info(f"Ingestion slot released for {doc_id} ({_active_ingestions}/{MAX_CONCURRENT_INGESTIONS} in use)")
+
+# +2MB slack on top of the strict per-file/per-batch byte caps above, for
+# multipart framing overhead (boundaries, headers) and the small non-file
+# form fields (`folder`) — enforced at the ASGI layer, see
+# MaxBodySizeMiddleware's docstring for why MAX_UPLOAD_BYTES alone isn't
+# early enough. Every other route gets DEFAULT_MAX_BODY_BYTES; none of them
+# have a legitimate reason to receive more than a small JSON body.
+_BODY_OVERHEAD_BYTES = 2 * 1024 * 1024
+DEFAULT_MAX_BODY_BYTES = 2 * 1024 * 1024
+app.add_middleware(
+    MaxBodySizeMiddleware,
+    limits={
+        "/upload": MAX_UPLOAD_BYTES + _BODY_OVERHEAD_BYTES,
+        "/upload-batch": MAX_BATCH_FILES * MAX_UPLOAD_BYTES + _BODY_OVERHEAD_BYTES,
+    },
+    default_limit=DEFAULT_MAX_BODY_BYTES,
+)
+
+parser = PDFParser(
+    ocr_language=os.getenv("PDF_OCR_LANGUAGE", "eng"),
+    max_pages=int(os.getenv("MAX_PDF_PAGES", "500")),
+    ocr_timeout_seconds=int(os.getenv("OCR_TIMEOUT_SECONDS", "60")),
+    max_total_ocr_seconds=int(os.getenv("MAX_TOTAL_OCR_SECONDS", "600")),
+)
 txt_parser = TxtParser()
 PARSERS_BY_EXT = {"pdf": (parser, "pdf"), "txt": (txt_parser, "txt")}
+
+# Every supported format needs an entry here for the streaming upload
+# helper (below) to reject an obvious mismatch (a renamed .exe as
+# "report.pdf", say) before it ever reaches PyMuPDF/the parser — checked
+# against just the first chunk read off the wire, not the whole file.
+# TXT has no fixed signature, so any content passes for it; ".txt" is a
+# labeling convention, not a format PyMuPDF or anything else parses
+# structurally, so there is nothing meaningful to check.
+_FORMAT_MAGIC_BYTES = {"pdf": b"%PDF-"}
+
+
+def _validate_signature(doc_format: str, header: bytes) -> bool:
+    magic = _FORMAT_MAGIC_BYTES.get(doc_format)
+    return magic is None or header.startswith(magic)
+
+
+async def _stream_upload_to_disk(file: UploadFile, dest: Path, doc_format: str, max_bytes: int) -> str:
+    """Streams the upload into a per-attempt temp file in fixed-size chunks,
+    hashing incrementally — never holds more than one chunk in memory
+    regardless of the file's actual size, unlike the previous
+    `content = await file.read()` (which bought a full copy into RAM before
+    anything else even looked at it). Only `os.replace()`s the temp file
+    onto `dest` (atomic on the same filesystem — same directory guarantees
+    that) once the whole upload has validated clean; any failure path only
+    ever unlinks the temp file, never `dest` itself. Two things this
+    protects against that writing straight to `dest` wouldn't:
+      - `dest` never exists in a partially-written state for anything else
+        (a directory listing, a concurrent request) to observe.
+      - cleanup on failure can never delete a file that isn't this
+        attempt's own — the temp name is unique per call, so there is no
+        path under which "roll back this failed upload" could touch
+        something that existed before it started.
+
+    Dedup (`file_hash in file_hashes`) has to happen AFTER this — the full
+    hash needs the full file, and there's no way to know it without reading
+    everything, which is exactly the read this function makes safe to do."""
+    tmp_path = dest.parent / f".upload_{uuid.uuid4().hex}.tmp"
+    hasher = hashlib.md5()
+    total = 0
+    chunk_size = 1024 * 1024
+    first_chunk = True
+    error: Optional[HTTPException] = None
+
+    try:
+        async with aiofiles.open(tmp_path, "wb") as f:
+            while True:
+                chunk = await file.read(chunk_size)
+                if not chunk:
+                    break
+                if first_chunk:
+                    first_chunk = False
+                    if not _validate_signature(doc_format, chunk):
+                        error = HTTPException(400, f"File content doesn't look like a {doc_format.upper()} file")
+                        break
+                total += len(chunk)
+                if total > max_bytes:
+                    error = HTTPException(413, f"File exceeds the {max_bytes // (1024 * 1024)}MB upload limit")
+                    break
+                hasher.update(chunk)
+                await f.write(chunk)
+
+        if error is None and total == 0:
+            error = HTTPException(422, "Uploaded file is empty")
+        if error is not None:
+            raise error
+
+        os.replace(tmp_path, dest)  # atomic — dest either doesn't exist yet or is fully this upload's content, never a partial write
+    except BaseException:
+        # BaseException, not Exception — a client disconnect while this
+        # request is awaiting `file.read()` surfaces as asyncio.CancelledError,
+        # which does NOT subclass Exception (since Python 3.8). An `except
+        # Exception:` here would silently leak the temp file on every
+        # cancelled upload; the bare `raise` below still propagates
+        # cancellation (and anything else) to the caller unchanged —
+        # cleanup runs, nothing is swallowed.
+        tmp_path.unlink(missing_ok=True)
+        raise
+    return hasher.hexdigest()
 
 
 def pick_parser(filename: str):
@@ -449,20 +682,45 @@ class QueryResponse(BaseModel):
 
 
 async def _rollback_upload(doc_id: str, file_path: Path):
-    """Best-effort cleanup for a document whose Qdrant points/file were
-    already written before db_save_ingestion() failed (for any reason,
-    including the DuplicateFileHashError concurrency race) — nothing about
-    this doc_id made it into Postgres, so it must not survive in Qdrant or
-    on disk either."""
+    """Best-effort compensating cleanup for an ingestion that failed
+    somewhere along parse -> chunk -> embed -> upsert -> db_save. Called
+    from every one of those failure paths, so it can't assume how far a
+    given attempt actually got — Qdrant points, Postgres rows, and the file
+    might each be present or absent in any combination. All three are
+    therefore attempted unconditionally and independently (a DELETE/
+    unlink for something that was never written is just a no-op), each in
+    its own try/except logged separately.
+
+    None of the three re-raises: this runs from inside the caller's
+    `except` block for the REAL failure, and letting a cleanup error
+    propagate from here would replace that original exception with a
+    confusing one about cleanup instead — the caller's own logging/
+    HTTPException already captured what actually went wrong before calling
+    this."""
     try:
         await asyncio.to_thread(
             vector_store.client.delete,
             collection_name=vector_store.collection,
             points_selector=Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=doc_id))]),
         )
-    except Exception as cleanup_err:
-        logger.error(f"Qdrant rollback also failed for {doc_id}: {cleanup_err}")
-    file_path.unlink(missing_ok=True)
+    except Exception as e:
+        logger.error(f"Rollback: Qdrant cleanup failed for {doc_id}: {e}")
+
+    try:
+        def _delete_doc_rows():
+            with db_conn() as conn:
+                cur = conn.cursor()
+                cur.execute("DELETE FROM file_hashes WHERE doc_id = %s", (doc_id,))
+                # document_pages cascades via its FK's ON DELETE CASCADE (init_db()).
+                cur.execute("DELETE FROM documents WHERE doc_id = %s", (doc_id,))
+        await asyncio.to_thread(_delete_doc_rows)
+    except Exception as e:
+        logger.error(f"Rollback: Postgres cleanup failed for {doc_id}: {e}")
+
+    try:
+        file_path.unlink(missing_ok=True)
+    except Exception as e:
+        logger.error(f"Rollback: file cleanup failed for {doc_id} ({file_path}): {e}")
 
 
 @protected.post("/upload", dependencies=[Depends(require_not_backing_up)])
@@ -472,39 +730,67 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
     if doc_parser is None:
         raise HTTPException(400, "Only PDF and TXT files are supported")
 
-    content = await file.read()
-    file_hash = hashlib.md5(content).hexdigest()
+    doc_id = str(uuid.uuid4())
+    file_path = UPLOAD_DIR / f"{doc_id}_{safe_filename}"
+
+    # Streams straight to disk (see _stream_upload_to_disk) instead of
+    # buffering the whole upload in RAM first — dedup still needs the full
+    # hash, so it's checked here, after the file is already safely on disk.
+    file_hash = await _stream_upload_to_disk(file, file_path, doc_format, MAX_UPLOAD_BYTES)
 
     if file_hash in file_hashes:
+        file_path.unlink(missing_ok=True)
         existing_id = file_hashes[file_hash]
         existing = documents_registry.get(existing_id, {})
         raise HTTPException(409, f"File already uploaded as '{existing.get('filename', existing_id)}' (id: {existing_id})")
 
-    doc_id = str(uuid.uuid4())
-    file_path = UPLOAD_DIR / f"{doc_id}_{safe_filename}"
+    # Everything from here through the Qdrant upsert is one unit: any
+    # failure — parse, chunk, embed, or upsert — must leave neither an
+    # orphaned file nor orphaned Qdrant points behind, so it's all one
+    # try/except around _rollback_upload rather than the empty-chunks case
+    # having its own bespoke cleanup and everything else having none.
+    # The semaphore bounds concurrent CPU-bound parse/OCR + GPU-bound embed
+    # work — embedding is already serialized onto one GPU worker by
+    # run_on_gpu, but nothing previously capped how many uploads could be
+    # parsing/OCR-ing in parallel via plain asyncio.to_thread.
+    try:
+        async with _ingestion_slot(doc_id):
+            t_parse = time.time()
+            parsed = await asyncio.to_thread(doc_parser.parse, str(file_path))
+            parse_ms = int((time.time() - t_parse) * 1000)
+            chunks = chunker.chunk_document(parsed.pages, doc_id)
 
-    async with aiofiles.open(file_path, "wb") as f:
-        await f.write(content)
+            if not chunks:
+                raise ValueError("Could not extract text from document")
 
-    t_parse = time.time()
-    parsed = await asyncio.to_thread(doc_parser.parse, str(file_path))
-    parse_ms = int((time.time() - t_parse) * 1000)
-    chunks = chunker.chunk_document(parsed.pages, doc_id)
+            for c in chunks:
+                c.filename = safe_filename
+                c.pages = parsed.total_pages
+                c.folder = folder or ""
 
-    if not chunks:
-        file_path.unlink(missing_ok=True)
-        raise HTTPException(422, "Could not extract text from document")
-
-    for c in chunks:
-        c.filename = safe_filename
-        c.pages = parsed.total_pages
-        c.folder = folder or ""
-
-    texts = [chunk_context_text(c) for c in chunks]
-    t_embed = time.time()
-    vectors = await run_on_gpu(embedder.embed_batch, texts)
-    embed_ms = int((time.time() - t_embed) * 1000)
-    await asyncio.to_thread(vector_store.upsert_chunks, chunks, vectors)
+            texts = [chunk_context_text(c) for c in chunks]
+            t_embed = time.time()
+            vectors = await run_on_gpu(embedder.embed_batch, texts)
+            embed_ms = int((time.time() - t_embed) * 1000)
+            await asyncio.to_thread(vector_store.upsert_chunks, chunks, vectors)
+    except asyncio.CancelledError:
+        # CancelledError does NOT subclass Exception (since Python 3.8) —
+        # a client disconnect or server shutdown cancelling this task while
+        # it's mid-parse/embed/upsert would otherwise skip both except
+        # clauses below entirely and leave the file/Qdrant points orphaned.
+        # Must re-raise bare (not as an HTTPException) — swallowing
+        # cancellation here would make the task look like it completed
+        # normally instead of actually being cancelled.
+        logger.warning(f"Ingestion cancelled for {doc_id} ({safe_filename}) — rolling back")
+        await _rollback_upload(doc_id, file_path)
+        raise
+    except ValueError as e:
+        await _rollback_upload(doc_id, file_path)
+        raise HTTPException(422, str(e))
+    except Exception as e:
+        logger.error(f"Ingestion failed for {doc_id} ({safe_filename}): {e}")
+        await _rollback_upload(doc_id, file_path)
+        raise HTTPException(500, f"Failed to process document: {e}")
 
     ocr_pages = sum(1 for p in parsed.pages if p.get("has_ocr"))
     logger.info(
@@ -566,6 +852,9 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
 
 @protected.post("/upload-batch", dependencies=[Depends(require_not_backing_up)])
 async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("")):
+    if len(files) > MAX_BATCH_FILES:
+        raise HTTPException(413, f"Batch exceeds the {MAX_BATCH_FILES}-file limit ({len(files)} files sent)")
+
     results = []
     for file in files:
         doc_id = None   # reset each iteration — a stale doc_id/file_path from
@@ -577,37 +866,44 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
                 results.append({"filename": safe_name, "status": "error", "error": "Only PDF and TXT files are supported"})
                 continue
 
-            content = await file.read()
-            file_hash = hashlib.md5(content).hexdigest()
+            doc_id = str(uuid.uuid4())
+            file_path = UPLOAD_DIR / f"{doc_id}_{safe_name}"
+
+            # Streams straight to disk (see _stream_upload_to_disk) instead
+            # of buffering the whole upload in RAM — a size/signature
+            # failure here already cleaned up its own file, so it's reported
+            # per-file (not a whole-batch abort) without any rollback call.
+            try:
+                file_hash = await _stream_upload_to_disk(file, file_path, doc_format, MAX_UPLOAD_BYTES)
+            except HTTPException as e:
+                results.append({"filename": safe_name, "status": "error", "error": e.detail})
+                continue
 
             if file_hash in file_hashes:
+                file_path.unlink(missing_ok=True)
                 existing_id = file_hashes[file_hash]
                 existing = documents_registry.get(existing_id, {})
                 results.append({"filename": safe_name, "status": "skipped", "error": f"Already uploaded as '{existing.get('filename', existing_id)}'"})
                 continue
 
-            doc_id = str(uuid.uuid4())
-            file_path = UPLOAD_DIR / f"{doc_id}_{safe_name}"
+            # Bounds concurrent CPU-bound parse/OCR + GPU-bound embed work
+            # across all in-flight uploads (single + batch share the same
+            # semaphore) — see MAX_CONCURRENT_INGESTIONS above.
+            async with _ingestion_slot(doc_id):
+                parsed = await asyncio.to_thread(doc_parser.parse, str(file_path))
+                chunks = chunker.chunk_document(parsed.pages, doc_id)
 
-            async with aiofiles.open(file_path, "wb") as f_out:
-                await f_out.write(content)
+                if not chunks:
+                    raise ValueError("Could not extract text")
 
-            parsed = await asyncio.to_thread(doc_parser.parse, str(file_path))
-            chunks = chunker.chunk_document(parsed.pages, doc_id)
+                for c in chunks:
+                    c.filename = safe_name
+                    c.pages = parsed.total_pages
+                    c.folder = folder or ""
 
-            if not chunks:
-                file_path.unlink(missing_ok=True)
-                results.append({"filename": safe_name, "status": "error", "error": "Could not extract text"})
-                continue
-
-            for c in chunks:
-                c.filename = safe_name
-                c.pages = parsed.total_pages
-                c.folder = folder or ""
-
-            texts = [chunk_context_text(c) for c in chunks]
-            vectors = await run_on_gpu(embedder.embed_batch, texts)
-            await asyncio.to_thread(vector_store.upsert_chunks, chunks, vectors)
+                texts = [chunk_context_text(c) for c in chunks]
+                vectors = await run_on_gpu(embedder.embed_batch, texts)
+                await asyncio.to_thread(vector_store.upsert_chunks, chunks, vectors)
 
             doc_meta = {
                 "doc_id": doc_id,
@@ -637,6 +933,19 @@ async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("
             existing = documents_registry.get(existing_id, {}) if existing_id else {}
             results.append({"filename": safe_name, "status": "skipped",
                             "error": f"Already uploaded as '{existing.get('filename', existing_id or file_hash)}'"})
+
+        except asyncio.CancelledError:
+            # Does NOT subclass Exception (Python 3.8+) — must stay its own
+            # clause or a disconnect mid-file would fall through to the
+            # generic handler below, get reported as a normal per-file
+            # "error" result, and let the loop carry on to the next file
+            # instead of actually stopping. Rolls back this file only, then
+            # re-raises to abort the whole batch — the caller is gone, there
+            # is no results list left to return it to.
+            logger.warning(f"Batch ingestion cancelled for {file.filename} — rolling back and aborting batch")
+            if doc_id and file_path:
+                await _rollback_upload(doc_id, file_path)
+            raise
 
         except Exception as e:
             logger.error(f"Batch error {file.filename}: {e}")
