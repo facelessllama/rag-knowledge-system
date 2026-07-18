@@ -14,12 +14,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from api.telegram import router as telegram_router
+from api.middleware import MaxBodySizeMiddleware
+from api.schemas import ChatTurn, QueryRequest, QueryResponse
 from fastapi import FastAPI, APIRouter, UploadFile, File, Form, HTTPException, Security, Depends, Header
 from fastapi.security import APIKeyHeader
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import StreamingResponse
-from pydantic import BaseModel, Field
 import json
 import aiofiles
 import hashlib
@@ -50,103 +51,6 @@ from rag.query_expander import QueryExpander
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-
-class MaxBodySizeMiddleware:
-    """Raw ASGI middleware (not Starlette's BaseHTTPMiddleware, which
-    doesn't give clean control over a streaming request body) — rejects a
-    request whose body exceeds its route's limit, checked two ways: an
-    honest Content-Length header is rejected before a single byte is read
-    off the wire; failing that (header absent, chunked transfer encoding,
-    or a client that simply lies about it), actual bytes are counted as
-    they arrive from the ASGI server and the request is aborted the
-    moment the running total crosses the limit.
-
-    This exists because MAX_UPLOAD_MB enforced inside
-    _stream_upload_to_disk() (below) runs too late to be the only
-    protection: FastAPI's `UploadFile = File(...)` dependency is resolved
-    BEFORE the endpoint body ever runs, which means Starlette's own
-    multipart parser has already read the ENTIRE request body — spooling
-    it to a temp file once past its internal in-memory threshold — just
-    to construct that UploadFile. A huge body already occupies this
-    process's own temp storage by the time _stream_upload_to_disk() gets
-    its first chunk. This middleware is the earliest point in the process
-    a request can be rejected, before routing or form-parsing touch it —
-    the equivalent of a reverse-proxy `client_max_body_size`, run here
-    because this deployment doesn't put one in front of uvicorn (see
-    README's Reliability section if one is added later: it should set
-    its own limit too, as defense in depth, not instead of this).
-
-    Route-aware because a legitimate single upload and a legitimate
-    20-file batch differ by more than an order of magnitude; anything not
-    explicitly listed gets `default_limit`, which should stay small — no
-    other route in this app has a reason to receive a large body.
-
-    Raises plain `HTTPException`, not a custom exception type: FastAPI's
-    own request-body-parsing wrapper (fastapi/routing.py's
-    `request_body_to_args` caller) has `except HTTPException: raise` /
-    `except Exception: raise HTTPException(400, "There was an error
-    parsing the body")` around exactly the code path that calls into
-    Starlette's multipart parser, which is what ends up invoking
-    `receive()` (below) — a custom exception type gets silently flattened
-    into that generic 400 by the second clause; only HTTPException itself
-    is passed through by the first, giving a real, correctly-coded 413."""
-
-    def __init__(self, app, limits: dict, default_limit: int):
-        self.app = app
-        self.limits = limits
-        self.default_limit = default_limit
-
-    def _limit_for(self, scope) -> int:
-        return self.limits.get(scope.get("path"), self.default_limit)
-
-    async def __call__(self, scope, receive, send):
-        if scope["type"] != "http":
-            await self.app(scope, receive, send)
-            return
-
-        limit = self._limit_for(scope)
-        headers = dict(scope.get("headers") or [])
-        content_length = headers.get(b"content-length")
-        if content_length is not None:
-            try:
-                declared = int(content_length)
-            except ValueError:
-                declared = None
-            if declared is not None and declared > limit:
-                # Rejected before self.app is ever invoked — there is no
-                # FastAPI exception-handling machinery out here to catch a
-                # raise, so the response is sent directly, ASGI-style.
-                await self._send_413(send, limit)
-                return
-
-        total = 0
-
-        async def guarded_receive():
-            nonlocal total
-            message = await receive()
-            if message["type"] == "http.request":
-                total += len(message.get("body", b""))
-                if total > limit:
-                    # Raised from inside a `receive()` call made by
-                    # Starlette's own multipart parser, deep inside
-                    # self.app — propagates up through FastAPI's request-
-                    # body handling (see docstring above for why this must
-                    # be HTTPException specifically) to become a real 413.
-                    raise HTTPException(413, f"Request body exceeds the {limit // (1024 * 1024)}MB limit for this endpoint")
-            return message
-
-        await self.app(scope, guarded_receive, send)
-
-    @staticmethod
-    async def _send_413(send, limit_bytes: int):
-        body = json.dumps({"detail": f"Request body exceeds the {limit_bytes // (1024 * 1024)}MB limit for this endpoint"}).encode()
-        await send({
-            "type": "http.response.start",
-            "status": 413,
-            "headers": [(b"content-type", b"application/json"), (b"content-length", str(len(body)).encode())],
-        })
-        await send({"type": "http.response.body", "body": body})
 
 
 # Auth
@@ -1117,47 +1021,6 @@ async def shutdown():
             pass
         _single_instance_watchdog_task = None
     release_single_instance_guard()
-
-
-class ChatTurn(BaseModel):
-    role: str
-    content: str
-
-class QueryRequest(BaseModel):
-    question: str
-    # Hard cap regardless of caller — retrieve_expanded() sizes its candidate
-    # pool off this (max(20, top_k*5)), so an unbounded top_k (e.g. a
-    # frontend "compare all documents in a 150-doc folder" bug computing
-    # top_k = doc_count*4) turns into a multi-thousand-candidate rerank pass.
-    # MAX_CONTEXT_CHARS (prompt_builder.py) already truncates the prompt to
-    # ~3000 tokens regardless, so nothing above this cap could even reach
-    # the LLM — it would just be wasted retrieval/rerank work.
-    # Deliberately not Optional[int] — Optional[int] = Field(..., ge=1, le=20)
-    # only enforces ge/le when a value is actually given; an explicit
-    # "top_k": null in the request body still passes validation as None,
-    # and request.top_k * 5 downstream then throws a bare TypeError -> 500.
-    # A plain int with a default rejects null outright (422) instead.
-    top_k: int = Field(default=5, ge=1, le=20)
-    document_id: Optional[str] = None
-    # Restricts retrieval to exactly these documents — used by the frontend's
-    # "compare N specific documents" flow. Previously that flow only ever
-    # *hinted* at scope via filenames spelled out in the question text plus
-    # a folder filter, which left hybrid search (and the reranker) free to
-    # pull in other documents from the same folder — see
-    # rag/retriever.py::retrieve_expanded's document_ids param.
-    document_ids: Optional[list[str]] = None
-    chat_history: Optional[list[ChatTurn]] = []
-    model: Optional[str] = None
-    rerank: Optional[bool] = True
-    folder: Optional[str] = None
-    channel: Optional[str] = None   # "telegram" | None (web)
-
-class QueryResponse(BaseModel):
-    answer: str
-    sources: list[dict]
-    model: str
-    tokens_used: int
-    debug: Optional[dict] = None
 
 
 def _get_active_document(doc_id: str) -> Optional[dict]:
