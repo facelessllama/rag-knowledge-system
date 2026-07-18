@@ -230,17 +230,63 @@ python scripts/concurrency_test.py --requests 10 # simultaneous /query requests 
 
 ---
 
-## Backups
+## Backups & Restore
+
+A backup is only as good as the last time you actually restored from it. This project treats both halves as one workflow, not just the snapshot half.
 
 ```bash
-# Manual Qdrant snapshot
+# Manual full backup: Qdrant snapshot + Postgres dump + uploads/ originals +
+# a checksum-verified manifest (row/point counts captured within the same
+# exclusive backup window — see backup_qdrant.sh), staged atomically so a
+# crash mid-run never leaves a half-written backup that looks complete.
 ./backup_qdrant.sh
 
-# Cron (daily at 3:00)
-0 3 * * * /path/to/rag-knowledge-system/backup_qdrant.sh
+# Restore a specific backup into an EXPLICIT target (never defaults to this
+# repo's own .env — see the script's own --help for the full flag list).
+./restore_backup.sh --backup-dir backups/20260718_030000 \
+    --postgres-url postgresql://raguser:ragpass@localhost:15432/ragdb \
+    --qdrant-url http://localhost:16333 \
+    --uploads-dir /path/to/scratch/uploads \
+    --i-understand-this-overwrites-target
+
+# Automated restore drill: restores the most recent backup into a disposable
+# Postgres+Qdrant (docker/docker-compose.restore-test.yml — different ports/
+# volumes than the real stack) and runs semantic checks (row counts,
+# orphaned document_pages, missing originals, spot-checked Qdrant points)
+# against manifest.json — not against live production, which has moved on
+# since the backup was taken. Tears the scratch environment down either way.
+./verify_restore.sh
 ```
 
-Snapshots saved to `backups/qdrant/`, kept for 7 days.
+Backups are saved to `backups/YYYYMMDD_HHMMSS/`, kept for 7 days. Consistency across Qdrant/Postgres/uploads/ is enforced by an exclusive `flock` (see `lock.py`) held for the whole backup; every code path that mutates any of the three (uploads, deletes, folder ops, maintenance/migration scripts) takes the matching shared lock — proven under real concurrent load, not just by reading the code: with a process holding the shared lock, `backup_qdrant.sh`'s exclusive acquire measurably blocks until that holder releases (not before), and a new mutation attempted while backup holds the exclusive lock is rejected immediately rather than queued. A partial restore (killed or erroring mid-apply, after the destructive DROP/recreate has already started) has also been verified to surface as a clear failure — both via `restore_backup.sh`'s own exit code and via `verify_restore_semantics.py`'s count checks — never as a false "restored successfully".
+
+**Restore-check artifacts** — every `verify_restore.sh` run writes:
+- `backups/.last_restore_check.{json,log}` — always the most recent run (overwritten each time), for a quick "did the last drill pass" check.
+- `backups/restore_checks/<TS>.{json,log}` — one dated, retained copy per run (`RESTORE_CHECK_KEEP_DAYS`, default 30 — longer than `backups/` itself, since these are tiny and the drill *history* matters more than any one backup's retention window).
+
+The JSON records `git_commit` (+ dirty flag) of the scripts that ran, `restore_duration_seconds` / `verify_duration_seconds`, exit codes, and the full semantic-check detail. The paired `.log` is the drill's complete stdout/stderr with secrets redacted (`POSTGRES_PASSWORD`, `QDRANT_API_KEY`, any embedded URL credentials).
+
+Set `RESTORE_CHECK_REMOTE_DEST` (an rsync target) to also ship each dated copy off-host — otherwise the same disk/host failure a backup protects against can just as easily take the *evidence that restores were ever verified* down with it.
+
+**`RESTORE_CHECK_ALERT_CMD`** — the path to a single executable (a script, not a shell command line). Invoked directly as `"$RESTORE_CHECK_ALERT_CMD" drill_failed` (from `verify_restore.sh`) or `"$RESTORE_CHECK_ALERT_CMD" stale` (from `check_restore_freshness.sh`, below) — **never via `eval` or `sh -c`** — with the relevant JSON piped to its stdin, so nothing derived from logs or environment is ever re-interpreted by a shell. If you need several steps (e.g. `curl` + `jq`), put them inside that script rather than building a one-liner in the env var.
+
+**This mechanism being implemented and tested is not the same as the restore being "regularly verified".** What's still required before that claim holds:
+1. **A schedule** — `verify_restore.sh` and `check_restore_freshness.sh` actually wired into cron (or equivalent), not just run by hand:
+   ```bash
+   # Daily backup
+   0 3 * * * /path/to/rag-knowledge-system/backup_qdrant.sh
+   # Weekly restore drill
+   0 4 * * 0 /path/to/rag-knowledge-system/verify_restore.sh
+   # Daily freshness check — catches verify_restore.sh's OWN cron entry
+   # silently failing to fire, which verify_restore.sh can't detect from
+   # inside itself
+   0 6 * * * /path/to/rag-knowledge-system/check_restore_freshness.sh
+   ```
+   `check_restore_freshness.sh` alerts if the most recent *successful* drill (`backups/restore_checks/*.json`, not just `.last_restore_check.json`'s mtime) is older than `RESTORE_FRESHNESS_MAX_DAYS` (default 9, sized for the weekly cadence above). It checks the last **pass** specifically — a fresh failed run does not reset this: `verify_restore.sh` running and failing every week for a month should page just as loudly as it not running at all.
+2. **An owner and an alert channel** — `RESTORE_CHECK_ALERT_CMD` wired to something that actually pages/messages a named person, not "whoever happens to read the log."
+3. **Evidence of a successful scheduled execution** — the first cron-triggered (not manually-triggered) run actually landing in `backups/restore_checks/` with `result: "pass"`.
+
+A full disaster-recovery walkthrough (restore onto a genuinely separate host, not just the scratch containers) is worth doing manually on a quarterly cadence — the automated drill proves the backup *contents* are restorable, not that your recovery runbook for a truly dead host actually works end to end.
 
 ---
 

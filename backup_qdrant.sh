@@ -131,9 +131,16 @@ if [ -z "$SNAPSHOT_NAME" ]; then
 fi
 
 echo "Downloading snapshot: $SNAPSHOT_NAME"
-curl -sS --fail-with-body --retry 3 "${AUTH_HEADER[@]}" -o "$TMP_DEST/qdrant_${SNAPSHOT_NAME}" \
+SNAPSHOT_FILE="qdrant_${SNAPSHOT_NAME}"  # kept past SNAPSHOT_NAME being cleared below, for the manifest step
+curl -sS --fail-with-body --retry 3 "${AUTH_HEADER[@]}" -o "$TMP_DEST/$SNAPSHOT_FILE" \
     "${QDRANT_URL}/collections/${COLLECTION}/snapshots/${SNAPSHOT_NAME}"
-echo "Saved: qdrant_${SNAPSHOT_NAME} ($(du -sh "$TMP_DEST/qdrant_${SNAPSHOT_NAME}" | cut -f1))"
+echo "Saved: $SNAPSHOT_FILE ($(du -sh "$TMP_DEST/$SNAPSHOT_FILE" | cut -f1))"
+
+# Point-in-time point count for the manifest (below) — read while the
+# exclusive lock still guarantees nothing is mutating the collection, so
+# this number describes the exact same instant as the snapshot just taken.
+QDRANT_POINT_COUNT=$(curl -sS --fail-with-body --retry 3 "${AUTH_HEADER[@]}" \
+    "${QDRANT_URL}/collections/${COLLECTION}" | python3 -c "import sys,json; print(json.load(sys.stdin)['result']['points_count'])")
 
 # Every cron run otherwise leaves its server-side snapshot behind inside
 # Qdrant's own storage volume forever — local retention (below) only ever
@@ -162,18 +169,70 @@ else
     echo "uploads/ is empty or missing — skipping."
 fi
 
-# ── 4. Checksums ─────────────────────────────────────────────────────────
+# ── 4. Manifest ──────────────────────────────────────────────────────────
+# Counts captured within this same exclusive backup window — Qdrant
+# snapshot, this query, and the uploads/ count below still happen as
+# separate sequential steps, not one atomic instant, but the exclusive
+# flock held for the whole window guarantees nothing mutates Postgres/
+# Qdrant/uploads/ between them, which is what makes them describe one
+# consistent state rather than three independently-drifting ones.
+# Recorded now rather than checked later against live production —
+# production will have moved on (more uploads, deletes) by the time a
+# restore drill actually runs, so "does the restore match production" is
+# never the right question. "Does the restore match what THIS backup
+# captured" is what verify_restore.sh checks it against.
+echo "--- Recording manifest ---"
+read -r PG_DOCUMENTS PG_FILE_HASHES PG_FOLDERS PG_DOCUMENT_PAGES < <(
+    psql "$POSTGRES_URL" -tAc "SELECT (SELECT count(*) FROM documents), (SELECT count(*) FROM file_hashes), (SELECT count(*) FROM folders), (SELECT count(*) FROM document_pages);" \
+    | tr '|' ' '
+)
+
+UPLOAD_FILE_COUNT=0
+UPLOAD_BYTES=0
+if [ -d "$UPLOAD_DIR" ]; then
+    UPLOAD_FILE_COUNT=$(find "$UPLOAD_DIR" -type f | wc -l)
+    UPLOAD_BYTES=$(du -sb "$UPLOAD_DIR" 2>/dev/null | cut -f1)
+    UPLOAD_BYTES=${UPLOAD_BYTES:-0}
+fi
+
+python3 -c "
+import json
+manifest = {
+    'timestamp': '$TS',
+    'qdrant': {
+        'collection': '$COLLECTION',
+        'snapshot_file': '$SNAPSHOT_FILE',
+        'point_count': $QDRANT_POINT_COUNT,
+    },
+    'postgres': {
+        'documents': $PG_DOCUMENTS,
+        'file_hashes': $PG_FILE_HASHES,
+        'folders': $PG_FOLDERS,
+        'document_pages': $PG_DOCUMENT_PAGES,
+    },
+    'uploads': {
+        'file_count': $UPLOAD_FILE_COUNT,
+        'total_bytes': $UPLOAD_BYTES,
+    },
+}
+with open('$TMP_DEST/manifest.json', 'w') as f:
+    json.dump(manifest, f, indent=2)
+    f.write('\n')
+"
+echo "Saved: manifest.json (qdrant points=$QDRANT_POINT_COUNT, documents=$PG_DOCUMENTS, file_hashes=$PG_FILE_HASHES, folders=$PG_FOLDERS, document_pages=$PG_DOCUMENT_PAGES, upload files=$UPLOAD_FILE_COUNT)"
+
+# ── 5. Checksums ─────────────────────────────────────────────────────────
 echo "--- Computing + verifying checksums ---"
 (cd "$TMP_DEST" && sha256sum -- * > checksums.sha256)
 (cd "$TMP_DEST" && sha256sum -c checksums.sha256 >/dev/null)
 echo "Checksums OK"
 
-# ── 5. Publish: rename only now that everything above succeeded ────────
+# ── 6. Publish: rename only now that everything above succeeded ────────
 rm -rf "$FINAL_DEST"
 mv "$TMP_DEST" "$FINAL_DEST"
 echo "Published: $FINAL_DEST"
 
-# ── 6. Release the exclusive lock NOW — the consistent, atomic local
+# ── 7. Release the exclusive lock NOW — the consistent, atomic local
 # snapshot already exists on disk; nothing past this point needs Qdrant/
 # Postgres/uploads/ to stay frozen, so there's no reason to keep blocking
 # live mutations for however long an off-host copy or retention sweep
@@ -182,7 +241,7 @@ flock -u 200
 exec 200>&-
 echo "Exclusive lock released — uploads/deletes can proceed again."
 
-# ── 7. Optional off-host copy ────────────────────────────────────────────
+# ── 8. Optional off-host copy ────────────────────────────────────────────
 if [ -n "${BACKUP_REMOTE_DEST:-}" ]; then
     echo "--- Copying to off-host destination: $BACKUP_REMOTE_DEST ---"
     rsync -a "$FINAL_DEST" "$BACKUP_REMOTE_DEST"
@@ -191,7 +250,7 @@ else
     echo "BACKUP_REMOTE_DEST not set — backup stays local only (same disk as the data it protects)."
 fi
 
-# ── 8. Retention ─────────────────────────────────────────────────────────
+# ── 9. Retention ─────────────────────────────────────────────────────────
 find "$BACKUP_ROOT" -maxdepth 1 -mindepth 1 -type d -name '[0-9]*' -mtime +$KEEP_DAYS -exec rm -rf {} \;
 echo "Cleaned up local backup runs older than $KEEP_DAYS days."
 echo "=== Done: $FINAL_DEST ==="

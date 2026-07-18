@@ -1,0 +1,44 @@
+services:
+
+  # Disposable Qdrant + Postgres for verify_restore.sh's weekly restore
+  # drill. Different container names, ports, and volumes than
+  # docker-compose.yml's real stack — nothing in here can ever collide
+  # with or overwrite production data, even if a script invoked against
+  # this file has a bug in it.
+
+  qdrant_restoretest:
+    image: qdrant/qdrant:v1.18.2
+    container_name: rag_qdrant_restoretest
+    environment:
+      QDRANT__SERVICE__API_KEY: ${QDRANT_API_KEY}
+    ports:
+      - "127.0.0.1:16333:6333"
+      - "127.0.0.1:16334:6334"
+    volumes:
+      - qdrant_restoretest_data:/qdrant/storage
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    restart: "no"
+
+  postgres_restoretest:
+    image: postgres:15.18-alpine
+    container_name: rag_postgres_restoretest
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "127.0.0.1:15432:5432"
+    volumes:
+      - postgres_restoretest_data:/var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    restart: "no"
+
+volumes:
+  qdrant_restoretest_data:
+  postgres_restoretest_data:
