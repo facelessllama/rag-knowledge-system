@@ -31,9 +31,16 @@ For every PDF document in Postgres (documents table):
      it used to just be skipped over, invisible to comparison and never
      collected for deletion, so it would survive every backfill forever.
   3. Compare, chunk_id for chunk_id: text, page_num, chunk_index,
-     char_start, char_end, has_ocr. Any missing chunk_id, extra chunk_id,
-     duplicate chunk_id, invalid (chunk_id-less) point, or field mismatch
-     fails verification.
+     char_start, char_end. Any missing chunk_id, extra chunk_id, duplicate
+     chunk_id, invalid (chunk_id-less) point, or field mismatch fails
+     verification. `has_ocr` is deliberately NOT compared here — it's
+     informational metadata (no payload index, nothing in retrieval or the
+     frontend branches on it — see ingestion/pdf_parser.py), not a
+     correctness invariant like the offsets above; comparing it would force
+     a full re-embed/re-upsert of a document whose actual indexed text and
+     offsets never changed, purely because pdf_parser.py's OCR-detection
+     heuristic was refined and now computes a different value for some
+     already-ingested page.
   4. Independently re-verify the invariant
      normalized_page_text[char_start:char_end] == chunk.text for every
      chunk — belt-and-braces on top of #3.
@@ -63,6 +70,11 @@ Usage:
     source venv/bin/activate
     python scripts/backfill_document_pages.py --dry-run   # report only, no writes
     python scripts/backfill_document_pages.py              # apply
+
+    # Targeted subset (e.g. after scripts/scan_ocr_affected_documents.py
+    # flags which documents actually need re-checking) instead of every
+    # PDF in Postgres:
+    python scripts/backfill_document_pages.py --dry-run --doc-ids <id1>,<id2>,...
 """
 import argparse
 import json
@@ -80,7 +92,8 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("backfill_document_pages")
 
-FIELDS_TO_COMPARE = ["text", "page_num", "chunk_index", "char_start", "char_end", "has_ocr"]
+# has_ocr excluded deliberately — see module docstring point 3.
+FIELDS_TO_COMPARE = ["text", "page_num", "chunk_index", "char_start", "char_end"]
 
 
 def scroll_all_points(client, collection, doc_id):
@@ -134,8 +147,6 @@ def compare_chunks(old_points, invalid_point_ids, new_chunks):
         for field in FIELDS_TO_COMPARE:
             old_val = old.get(field)
             new_val = getattr(new, field)
-            if field == "has_ocr":
-                old_val, new_val = bool(old_val), bool(new_val)
             if old_val != new_val:
                 mismatched.append((cid, field, old_val, new_val))
 
@@ -217,6 +228,13 @@ def reindex_document(vector_store, embedder, chunk_context_text, doc_id, filenam
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="report only, write nothing")
+    ap.add_argument(
+        "--doc-ids", default=None,
+        help="Comma-separated doc_id list — only these documents are checked/reindexed, instead of "
+             "every PDF in Postgres. For targeting a known-affected subset (see "
+             "scripts/scan_ocr_affected_documents.py) without paying the full re-parse+embed cost "
+             "of a whole-corpus run.",
+    )
     args = ap.parse_args()
 
     from lock import run_locked
@@ -237,8 +255,13 @@ def _run(args):
 
     conn = psycopg2.connect(postgres_url)
     cur = conn.cursor()
-    cur.execute("SELECT doc_id, filename, pages, chunks, size_kb, metadata, folder, format "
-                "FROM documents WHERE format = 'pdf'")
+    if args.doc_ids:
+        doc_id_list = [d.strip() for d in args.doc_ids.split(",") if d.strip()]
+        cur.execute("SELECT doc_id, filename, pages, chunks, size_kb, metadata, folder, format "
+                    "FROM documents WHERE format = 'pdf' AND doc_id = ANY(%s)", (doc_id_list,))
+    else:
+        cur.execute("SELECT doc_id, filename, pages, chunks, size_kb, metadata, folder, format "
+                    "FROM documents WHERE format = 'pdf'")
     docs = cur.fetchall()
     logger.info(f"{len(docs)} PDF documents in Postgres to check (TXT is read live off disk — see api/main.py)")
 

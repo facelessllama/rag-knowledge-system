@@ -117,7 +117,7 @@ Query → Expand (Ollama LLM) → Retrieve (Qdrant hybrid: dense + sparse, serve
 - Python 3.12+
 - Docker + Docker Compose
 - [Ollama](https://ollama.ai) installed
-- Tesseract OCR (for scanned PDFs): `sudo apt install tesseract-ocr tesseract-ocr-rus`
+- Tesseract OCR (for scanned PDFs): `sudo apt install tesseract-ocr`
 - CUDA-capable GPU recommended for embeddings
 
 ### 1. Clone and configure
@@ -183,7 +183,7 @@ All settings in `.env`:
 | `MAX_CONCURRENT_QUERIES` | `3` | Concurrent query limit |
 | `TEMPERATURE` | `0.1` | LLM temperature |
 | `MAX_TOKENS` | `1024` | Max LLM output tokens |
-| `PDF_OCR_LANGUAGE` | `rus+eng` | Tesseract language codes |
+| `PDF_OCR_LANGUAGE` | `eng` | Tesseract language codes |
 | `API_KEY` | — | Auth key (leave empty to disable) |
 
 ---
