@@ -52,10 +52,22 @@ _PAYLOAD_INDEXES = (
 
 class VectorStore:
     def __init__(self, url: str = "http://localhost:6333", collection: str = "knowledge_base",
-                 api_key: str | None = None):
-        self.client = QdrantClient(url=url, api_key=api_key or None)
+                 api_key: str | None = None, timeout: float = 5.0):
+        # Explicit, not left to qdrant_client's own default (also 5s for
+        # REST as of 1.17.0, but undocumented-in-this-codebase and thus one
+        # dependency upgrade away from silently changing): every call this
+        # client makes is bounded by this many seconds, full request round
+        # trip (qdrant_client maps a single timeout value onto httpx's
+        # connect+read+write+pool-acquire budget, not just connection
+        # setup). api/main.py's metadata-mutation reconciliation helpers
+        # size their own asyncio.wait_for() backstop as a strict multiple of
+        # this value — see QDRANT_REQUEST_TIMEOUT_SECONDS there — so a
+        # thread running one of these calls is guaranteed to have already
+        # returned by the time that backstop could ever fire.
+        self.client = QdrantClient(url=url, api_key=api_key or None, timeout=timeout)
         self.collection = collection
-        logger.info(f"Connected to Qdrant | collection: {collection}")
+        self.timeout = timeout
+        logger.info(f"Connected to Qdrant | collection: {collection} | timeout: {timeout}s")
 
     def create_collection(self, vector_size: int = 1024):
         existing = [c.name for c in self.client.get_collections().collections]

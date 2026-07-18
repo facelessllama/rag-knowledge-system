@@ -2,10 +2,12 @@
 Tests for api/main.py's get_document_page() (the unified TXT/PDF source
 viewer endpoint) and db_save_ingestion() (the atomic file_hashes/folders/
 documents/document_pages ingestion save). Postgres/Qdrant/Ollama are all
-faked via monkeypatch — no live services required. Importing api.main does
-load the embedding/reranker models onto the GPU at module import time, same
-one-time cost the app itself pays; if that's ever a problem in a lighter CI
-environment, this file (like eval/) is the one to skip.
+faked via monkeypatch — no live services required. embedder/reranker/
+vector_store/etc. are assigned inside api/main.py's startup() (see
+lock.acquire_single_instance_guard()'s docstring for why), which this file
+never triggers, so importing api.main here does NOT load any model onto the
+GPU or touch a network — the functions under test here don't need any of
+those globals.
 """
 import pytest
 from fastapi import HTTPException

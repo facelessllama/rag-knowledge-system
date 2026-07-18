@@ -2,6 +2,7 @@
 RAG Knowledge Base API
 """
 import logging
+import math
 import uuid
 import time
 import asyncio
@@ -30,7 +31,13 @@ from langfuse import Langfuse
 from ingestion.pdf_parser import PDFParser
 from ingestion.txt_parser import TxtParser, decode_text_file
 from ingestion.chunker import SmartChunker, normalize_whitespace, chunk_context_text
-from lock import shared_lock
+from lock import (
+    shared_lock,
+    acquire_single_instance_guard,
+    check_single_instance_guard,
+    release_single_instance_guard,
+    watch_single_instance_guard,
+)
 from embeddings.embedding_service import EmbeddingService
 from vector_db.qdrant_client import VectorStore
 from qdrant_client.models import Filter, FieldCondition, MatchValue
@@ -222,6 +229,81 @@ RELEVANCE_THRESHOLD = float(os.getenv("RELEVANCE_THRESHOLD", "3.0"))
 MAX_CONCURRENT_QUERIES = int(os.getenv("MAX_CONCURRENT_QUERIES", "3"))
 _query_semaphore = asyncio.Semaphore(MAX_CONCURRENT_QUERIES)
 
+# Passed straight to VectorStore -> QdrantClient(timeout=...) — the REAL
+# bound on how long a single Qdrant REST call can block a thread-pool
+# thread. _metadata_mutation_lock's reconciliation helpers below layer an
+# asyncio.wait_for() on top of that (see QDRANT_RECONCILE_TIMEOUT_SECONDS),
+# but that outer wait is a backstop, not the primary bound — a shorter
+# asyncio-level timeout than this one would just abandon the *coroutine*
+# waiting on the call while the underlying thread (and its outstanding HTTP
+# request) keeps running past it; if the mutation lock is released at that
+# point, that orphaned call can still complete later and write a now-stale
+# value (a folder that's since been renamed again, say) with nothing left
+# holding the lock to stop it. See _reconcile_document_folder_sync()'s and
+# _reconcile_document_deletion_locked()'s comments.
+QDRANT_REQUEST_TIMEOUT_SECONDS = float(os.getenv("QDRANT_REQUEST_TIMEOUT_SECONDS", "5"))
+# Deliberately several times QDRANT_REQUEST_TIMEOUT_SECONDS, not a tighter
+# independent budget: sized so the underlying REST call is guaranteed to
+# have already finished (successfully or with its own client-level
+# TimeoutError) well before this could ever fire. Under normal operation
+# this wait_for should never actually time out; it exists only so a bug in
+# qdrant_client/httpx itself (the client-level timeout failing to fire)
+# can't wedge the metadata-mutation lock open forever instead of just
+# failing this one reconciliation attempt.
+QDRANT_RECONCILE_TIMEOUT_SECONDS = QDRANT_REQUEST_TIMEOUT_SECONDS * 3
+
+
+class _ReentrantAsyncLock:
+    """Task-reentrant lock for cross-store metadata mutations.
+
+    Folder/delete endpoints call reconciliation helpers while holding this
+    lock, and the startup sweep calls those same helpers directly.  A plain
+    asyncio.Lock would deadlock on the nested call; task ownership lets both
+    entry paths use one lock without leaving an accidentally-unlocked helper.
+
+    One instance is meant to live for exactly one event loop's lifetime — in
+    this process, that's the whole run (uvicorn owns a single loop end to
+    end). It deliberately does NOT try to detect or repair being reused
+    across a different event loop (an earlier version did, purely to let a
+    single module-level instance survive pytest-asyncio's fresh loop per
+    test): that logic never does anything in production — this app only
+    ever has one loop — so it was dead weight on every read of this class
+    for a problem only tests have. tests/test_folder_document_atomicity.py's
+    `_fresh_metadata_mutation_lock` autouse fixture solves it properly
+    instead, by giving every test its own instance up front.
+    """
+
+    def __init__(self):
+        self._lock = asyncio.Lock()
+        self._owner = None
+        self._depth = 0
+
+    async def __aenter__(self):
+        task = asyncio.current_task()
+        if task is self._owner:
+            self._depth += 1
+            return self
+        await self._lock.acquire()
+        self._owner = task
+        self._depth = 1
+        return self
+
+    async def __aexit__(self, exc_type, exc, tb):
+        task = asyncio.current_task()
+        if task is not self._owner:
+            raise RuntimeError("metadata mutation lock released by a non-owner task")
+        self._depth -= 1
+        if self._depth == 0:
+            self._owner = None
+            self._lock.release()
+
+
+# A single worker still serves multiple coroutines concurrently.  Keep every
+# folder/delete/reconciliation sequence serialized across its DB, registry,
+# disk and Qdrant awaits so an older request cannot publish stale derived
+# state after a newer request has committed.
+_metadata_mutation_lock = _ReentrantAsyncLock()
+
 # Upload/ingestion limits. Unbounded values here previously meant: the
 # whole file read into RAM regardless of size, no cap on how many files one
 # batch request could contain, no cap on PDF page count (so OCR time scaled
@@ -273,14 +355,11 @@ app.add_middleware(
     default_limit=DEFAULT_MAX_BODY_BYTES,
 )
 
-parser = PDFParser(
-    ocr_language=os.getenv("PDF_OCR_LANGUAGE", "eng"),
-    max_pages=int(os.getenv("MAX_PDF_PAGES", "500")),
-    ocr_timeout_seconds=int(os.getenv("OCR_TIMEOUT_SECONDS", "60")),
-    max_total_ocr_seconds=int(os.getenv("MAX_TOTAL_OCR_SECONDS", "600")),
-)
-txt_parser = TxtParser()
-PARSERS_BY_EXT = {"pdf": (parser, "pdf"), "txt": (txt_parser, "txt")}
+# parser/txt_parser/PARSERS_BY_EXT (like embedder/reranker/... below) are
+# assigned in startup(), not here — see the comment above that block for why.
+parser = None
+txt_parser = None
+PARSERS_BY_EXT = None
 
 # Every supported format needs an entry here for the streaming upload
 # helper (below) to reject an obvious mismatch (a renamed .exe as
@@ -367,53 +446,38 @@ def pick_parser(filename: str):
     return PARSERS_BY_EXT.get(ext, (None, None))
 
 
-chunker = SmartChunker(
-    chunk_size=int(os.getenv("MAX_CHUNK_SIZE", "512")),
-    chunk_overlap=int(os.getenv("CHUNK_OVERLAP", "50"))
-)
-embedder = EmbeddingService(model_name=os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3"))
-vector_store = VectorStore(
-    url=os.getenv("QDRANT_URL", "http://localhost:6333"),
-    collection=os.getenv("QDRANT_COLLECTION", "knowledge_base"),
-    api_key=os.getenv("QDRANT_API_KEY"),
-)
-retriever = HybridRetriever(embedder, vector_store)
-try:
-    reranker = CrossEncoderReranker(model_name=os.getenv("RERANKER_MODEL", "cross-encoder/ms-marco-MiniLM-L-6-v2"))
-except Exception as e:
-    logger.warning(f"CrossEncoderReranker failed to load ({e}), falling back to SimpleReranker")
-    reranker = SimpleReranker()
-prompt_builder = PromptBuilder()
-generator = LLMGenerator(
-    ollama_url=os.getenv("OLLAMA_URL", "http://localhost:11435"),
-    model=os.getenv("LLM_MODEL", "qwen2.5:7b"),
-    temperature=float(os.getenv("TEMPERATURE", "0.1"))
-)
-query_expander = QueryExpander(
-    ollama_url=os.getenv("OLLAMA_URL", "http://localhost:11435"),
-    model=os.getenv("QUERY_EXPANDER_MODEL", "qwen2.5:7b")
-)
-
-try:
-    langfuse = Langfuse(
-        secret_key=os.getenv("LANGFUSE_SECRET_KEY"),
-        public_key=os.getenv("LANGFUSE_PUBLIC_KEY"),
-        host=os.getenv("LANGFUSE_HOST", "http://localhost:3000")
-    )
-    LANGFUSE_ENABLED = True
-    logger.info("Langfuse v2 connected")
-except Exception as e:
-    langfuse = None
-    LANGFUSE_ENABLED = False
-    logger.warning(f"Langfuse disabled: {e}")
+# chunker/embedder/vector_store/retriever/reranker/prompt_builder/generator/
+# query_expander/langfuse/LANGFUSE_ENABLED are all assigned in startup()
+# below, not at module import time as they used to be — embedder and
+# reranker in particular load real models onto the GPU, which is expensive
+# (memory + load time) to pay before knowing this process is even allowed to
+# run. startup() acquires lock.py's acquire_single_instance_guard() as its
+# very first action, before constructing any of these, so a second
+# process/worker/replica fails fast — without ever loading a model — instead
+# of paying the full load cost on every crash-loop respawn only to be
+# rejected afterward. See acquire_single_instance_guard()'s docstring for
+# why running more than one process against the same in-memory registries is
+# unsafe at all.
+chunker = None
+embedder = None
+vector_store = None
+retriever = None
+reranker = None
+prompt_builder = None
+generator = None
+query_expander = None
+langfuse = None
+LANGFUSE_ENABLED = False
 
 documents_registry: dict = {}
 file_hashes: dict = {}
 
 from contextlib import contextmanager
 
+POSTGRES_URL = os.getenv("POSTGRES_URL", "postgresql://raguser:ragpass@localhost:5432/ragdb")
+
 def get_db():
-    return psycopg2.connect(os.getenv("POSTGRES_URL", "postgresql://raguser:ragpass@localhost:5432/ragdb"))
+    return psycopg2.connect(POSTGRES_URL)
 
 @contextmanager
 def db_conn():
@@ -430,88 +494,134 @@ def db_conn():
 folders_registry: set = set()  # persisted folder names
 
 def init_db():
-    try:
-        with db_conn() as conn:
-            cur = conn.cursor()
-            cur.execute("""
-                CREATE TABLE IF NOT EXISTS file_hashes (
-                    hash VARCHAR(32) PRIMARY KEY,
-                    doc_id UUID NOT NULL,
-                    filename VARCHAR(255) NOT NULL,
-                    created_at TIMESTAMP DEFAULT NOW()
-                )
-            """)
-            cur.execute("""
-                CREATE TABLE IF NOT EXISTS folders (
-                    name VARCHAR(255) PRIMARY KEY,
-                    created_at TIMESTAMP DEFAULT NOW()
-                )
-            """)
-            # Source of truth for document metadata — startup restore reads this
-            # table instead of scrolling the entire Qdrant collection.
-            # doc_id is a full uuid4() (see upload_document/upload_batch) — a
-            # truncated 8-hex-char id (32 bits of entropy) was replaced after
-            # the birthday-paradox collision probability at this project's own
-            # tested 57k-document scale (see eval/README.md) came out to
-            # ~31.5%, which ON CONFLICT DO UPDATE below would resolve by
-            # silently overwriting one document's metadata and mixing its
-            # Qdrant points with another's.
-            cur.execute("""
-                CREATE TABLE IF NOT EXISTS documents (
-                    doc_id UUID PRIMARY KEY,
-                    filename VARCHAR(255) NOT NULL,
-                    pages INTEGER DEFAULT 0,
-                    chunks INTEGER DEFAULT 0,
-                    size_kb REAL DEFAULT 0,
-                    metadata JSONB DEFAULT '{}',
-                    folder VARCHAR(255) DEFAULT '',
-                    format VARCHAR(10) DEFAULT 'pdf',
-                    created_at TIMESTAMP DEFAULT NOW()
-                )
-            """)
-            # documents table may already exist from before `format` was added
-            cur.execute("ALTER TABLE documents ADD COLUMN IF NOT EXISTS format VARCHAR(10) DEFAULT 'pdf'")
-            # Canonical source for the document viewer / highlighting: the exact
-            # normalized text char_start/char_end (Qdrant chunk payload) are
-            # offsets into, persisted once at ingestion — never re-derived by
-            # re-running PDFParser/OCR later, since a library or Tesseract
-            # config change would silently desync those offsets from what's
-            # shown. ON DELETE CASCADE keeps this in lockstep with `documents`
-            # without a separate delete step in delete_document().
-            cur.execute("""
-                CREATE TABLE IF NOT EXISTS document_pages (
-                    document_id UUID NOT NULL REFERENCES documents(doc_id) ON DELETE CASCADE ON UPDATE CASCADE,
-                    page_num INTEGER NOT NULL,
-                    normalized_text TEXT NOT NULL,
-                    has_ocr BOOLEAN DEFAULT FALSE,
-                    char_count INTEGER DEFAULT 0,
-                    PRIMARY KEY (document_id, page_num)
-                )
-            """)
-            cur.execute("SELECT hash, doc_id FROM file_hashes")
-            for row in cur.fetchall():
-                file_hashes[row[0]] = row[1]
-            cur.execute("SELECT name FROM folders")
-            for row in cur.fetchall():
-                folders_registry.add(row[0])
-            cur.execute("SELECT doc_id, filename, pages, chunks, size_kb, metadata, folder, format FROM documents")
-            for doc_id, filename, pages, chunks, size_kb, metadata, folder, doc_format in cur.fetchall():
-                documents_registry[doc_id] = {
-                    "doc_id": doc_id,
-                    "filename": filename,
-                    "pages": pages,
-                    "chunks": chunks,
-                    "size_kb": size_kb,
-                    "metadata": metadata or {},
-                    "folder": folder or "",
-                    "format": doc_format or "pdf",
-                }
-        logger.info(
-            f"DB ready | loaded {len(file_hashes)} hashes, {len(folders_registry)} folders, "
-            f"{len(documents_registry)} documents"
+    # No try/except here — deliberately. This used to swallow any failure
+    # (schema creation, or the SELECTs that populate documents_registry/
+    # file_hashes/folders_registry) into a logged warning and let startup()
+    # carry on as if the app were ready, silently serving an EMPTY
+    # knowledge base instead of failing loudly. init_db() runs inside
+    # startup()'s own try/except now (see api/main.py's startup()), which
+    # already treats any exception here as fatal — cancels the watchdog,
+    # releases the single-instance guard, and lets the process exit — the
+    # same "fail the whole startup, don't limp along on broken state"
+    # policy the rest of that function follows.
+    with db_conn() as conn:
+        cur = conn.cursor()
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS file_hashes (
+                hash VARCHAR(32) PRIMARY KEY,
+                doc_id UUID NOT NULL,
+                filename VARCHAR(255) NOT NULL,
+                created_at TIMESTAMP DEFAULT NOW()
+            )
+        """)
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS folders (
+                name VARCHAR(255) PRIMARY KEY,
+                created_at TIMESTAMP DEFAULT NOW()
+            )
+        """)
+        # Source of truth for document metadata — startup restore reads this
+        # table instead of scrolling the entire Qdrant collection.
+        # doc_id is a full uuid4() (see upload_document/upload_batch) — a
+        # truncated 8-hex-char id (32 bits of entropy) was replaced after
+        # the birthday-paradox collision probability at this project's own
+        # tested 57k-document scale (see eval/README.md) came out to
+        # ~31.5%, which ON CONFLICT DO UPDATE below would resolve by
+        # silently overwriting one document's metadata and mixing its
+        # Qdrant points with another's.
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS documents (
+                doc_id UUID PRIMARY KEY,
+                filename VARCHAR(255) NOT NULL,
+                pages INTEGER DEFAULT 0,
+                chunks INTEGER DEFAULT 0,
+                size_kb REAL DEFAULT 0,
+                metadata JSONB DEFAULT '{}',
+                folder VARCHAR(255) DEFAULT '',
+                format VARCHAR(10) DEFAULT 'pdf',
+                created_at TIMESTAMP DEFAULT NOW()
+            )
+        """)
+        # documents table may already exist from before `format` was added
+        cur.execute("ALTER TABLE documents ADD COLUMN IF NOT EXISTS format VARCHAR(10) DEFAULT 'pdf'")
+        # status: 'active' | 'deleting' — a durable tombstone written
+        # BEFORE delete_document() touches Qdrant or the file on disk, so
+        # a crash/restart mid-delete leaves a row this same startup (see
+        # _startup_reconciliation_sweep()) or a repeated DELETE call can
+        # find and finish, instead of the object either vanishing from
+        # Postgres while still orphaned on disk, or silently reappearing
+        # after a partial failure. See delete_document()'s docstring.
+        cur.execute("ALTER TABLE documents ADD COLUMN IF NOT EXISTS status VARCHAR(20) NOT NULL DEFAULT 'active'")
+        cur.execute("""
+            DO $$
+            BEGIN
+                IF NOT EXISTS (
+                    SELECT 1 FROM pg_constraint
+                    WHERE conname = 'documents_status_check'
+                      AND conrelid = 'documents'::regclass
+                ) THEN
+                    ALTER TABLE documents
+                    ADD CONSTRAINT documents_status_check
+                    CHECK (status IN ('active', 'deleting'));
+                END IF;
+            END
+            $$
+        """)
+        # folder_synced: whether Qdrant's payload.folder for this
+        # document is known to match the `folder` column here. Postgres
+        # is the source of truth for folder membership (list/get/delete
+        # all read `folder` from here, never from Qdrant) — Qdrant's copy
+        # only affects folder-scoped search and is written best-effort,
+        # set back to TRUE only once Qdrant actually confirms the write.
+        # A rename/move that partially fails leaves this FALSE for the
+        # documents Qdrant didn't confirm, so reconciliation later
+        # retries exactly those, not all of them. See rename_folder()/
+        # update_document_folder()/_reconcile_document_folder_sync().
+        cur.execute("ALTER TABLE documents ADD COLUMN IF NOT EXISTS folder_synced BOOLEAN NOT NULL DEFAULT TRUE")
+        # Canonical source for the document viewer / highlighting: the exact
+        # normalized text char_start/char_end (Qdrant chunk payload) are
+        # offsets into, persisted once at ingestion — never re-derived by
+        # re-running PDFParser/OCR later, since a library or Tesseract
+        # config change would silently desync those offsets from what's
+        # shown. ON DELETE CASCADE keeps this in lockstep with `documents`
+        # without a separate delete step in delete_document().
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS document_pages (
+                document_id UUID NOT NULL REFERENCES documents(doc_id) ON DELETE CASCADE ON UPDATE CASCADE,
+                page_num INTEGER NOT NULL,
+                normalized_text TEXT NOT NULL,
+                has_ocr BOOLEAN DEFAULT FALSE,
+                char_count INTEGER DEFAULT 0,
+                PRIMARY KEY (document_id, page_num)
+            )
+        """)
+        cur.execute("SELECT hash, doc_id FROM file_hashes")
+        for row in cur.fetchall():
+            file_hashes[row[0]] = row[1]
+        cur.execute("SELECT name FROM folders")
+        for row in cur.fetchall():
+            folders_registry.add(row[0])
+        cur.execute(
+            "SELECT doc_id, filename, pages, chunks, size_kb, metadata, folder, format, status, folder_synced "
+            "FROM documents"
         )
-    except Exception as e:
-        logger.warning(f"DB init failed: {e}")
+        for doc_id, filename, pages, chunks, size_kb, metadata, folder, doc_format, status, folder_synced in cur.fetchall():
+            documents_registry[doc_id] = {
+                "doc_id": doc_id,
+                "filename": filename,
+                "pages": pages,
+                "chunks": chunks,
+                "size_kb": size_kb,
+                "metadata": metadata or {},
+                "folder": folder or "",
+                "format": doc_format or "pdf",
+                "status": status or "active",
+                "folder_synced": True if folder_synced is None else folder_synced,
+            }
+    logger.info(
+        f"DB ready | loaded {len(file_hashes)} hashes, {len(folders_registry)} folders, "
+        f"{len(documents_registry)} documents"
+    )
 
 
 class DuplicateFileHashError(Exception):
@@ -601,43 +711,412 @@ def db_save_ingestion(doc: dict, pages: list[dict] | None, file_hash: str):
                 )
 
 
+# None of the functions below swallow exceptions (an earlier version of
+# each caught Exception and just logged a warning). That made every caller
+# unable to tell a durable write from a silently-failed one — the caller
+# would go on to mutate documents_registry/folders_registry as if the DB
+# write had happened, so a Postgres hiccup left in-memory state that a
+# restart (which reloads straight from Postgres) would quietly revert.
+# Every caller of these now does the DB write FIRST and only touches memory
+# after it returns without raising — see update_document_folder(),
+# create_folder(), delete_folder(), rename_folder() below.
+
 def db_update_document_folder(doc_id: str, folder: str):
-    try:
-        with db_conn() as conn:
-            conn.cursor().execute("UPDATE documents SET folder = %s WHERE doc_id = %s", (folder, doc_id))
-    except Exception as e:
-        logger.warning(f"DB update document folder failed: {e}")
+    with db_conn() as conn:
+        cur = conn.cursor()
+        if folder:
+            # Folder creation and the move are one transaction.  Previously
+            # the endpoint committed db_save_folder() first, so a failed
+            # document UPDATE returned 500 but leaked an empty folder.
+            cur.execute("INSERT INTO folders (name) VALUES (%s) ON CONFLICT DO NOTHING", (folder,))
+        cur.execute(
+            "UPDATE documents SET folder = %s, folder_synced = FALSE "
+            "WHERE doc_id = %s AND status = 'active'", (folder, doc_id)
+        )
+        if cur.rowcount != 1:
+            raise LookupError(f"Active document {doc_id} not found")
 
 def db_save_folder(name: str):
-    try:
-        with db_conn() as conn:
-            conn.cursor().execute("INSERT INTO folders (name) VALUES (%s) ON CONFLICT DO NOTHING", (name,))
-    except Exception as e:
-        logger.warning(f"DB save folder failed: {e}")
+    with db_conn() as conn:
+        conn.cursor().execute("INSERT INTO folders (name) VALUES (%s) ON CONFLICT DO NOTHING", (name,))
 
 def db_delete_folder(name: str):
-    try:
-        with db_conn() as conn:
-            conn.cursor().execute("DELETE FROM folders WHERE name = %s", (name,))
-    except Exception as e:
-        logger.warning(f"DB delete folder failed: {e}")
+    with db_conn() as conn:
+        conn.cursor().execute("DELETE FROM folders WHERE name = %s", (name,))
 
 def db_rename_folder(old_name: str, new_name: str):
+    """Renames a folder and marks every document in it as needing a Qdrant
+    resync, all in ONE Postgres transaction (db_conn() commits at the end or
+    rolls back everything on any failure — see db_conn()'s docstring). This
+    is the durable, atomic part of a folder rename; the per-document Qdrant
+    payload updates that follow it in rename_folder() are a separate,
+    best-effort, individually-retryable step — see folder_synced's comment
+    in init_db() and _reconcile_document_folder_sync()."""
+    with db_conn() as conn:
+        cur = conn.cursor()
+        cur.execute("INSERT INTO folders (name) VALUES (%s) ON CONFLICT DO NOTHING", (new_name,))
+        cur.execute("DELETE FROM folders WHERE name = %s", (old_name,))
+        cur.execute(
+            "UPDATE documents SET folder = %s, folder_synced = FALSE WHERE folder = %s", (new_name, old_name)
+        )
+
+def db_mark_document_deleting(doc_id: str):
+    """The durable tombstone delete_document() writes BEFORE touching
+    Qdrant, the file on disk, or documents_registry — see its docstring."""
+    with db_conn() as conn:
+        conn.cursor().execute("UPDATE documents SET status = 'deleting' WHERE doc_id = %s", (doc_id,))
+
+def db_delete_document_rows(doc_id: str):
+    with db_conn() as conn:
+        cur = conn.cursor()
+        cur.execute("DELETE FROM file_hashes WHERE doc_id = %s", (doc_id,))
+        cur.execute("DELETE FROM documents WHERE doc_id = %s", (doc_id,))
+
+def db_mark_folder_synced(doc_id: str, synced: bool):
+    with db_conn() as conn:
+        conn.cursor().execute("UPDATE documents SET folder_synced = %s WHERE doc_id = %s", (synced, doc_id))
+
+
+async def _reconcile_document_folder_sync(doc_id: str):
+    """Retries writing a document's current (Postgres-durable) folder into
+    Qdrant's payload if the last attempt didn't confirm success —
+    documents_registry[doc_id]["folder_synced"] is False (see folder_synced's
+    comment in init_db()). Safe to call repeatedly or on a document that's
+    already synced (no-op): Qdrant's set_payload is idempotent on the same
+    value, and this only ever records success in Postgres/memory after
+    Qdrant itself confirms the write, never before."""
+    async with _metadata_mutation_lock:
+        doc = documents_registry.get(doc_id)
+        if (doc is None or doc.get("status", "active") != "active"
+                or doc.get("folder_synced", True)):
+            return
+        try:
+            # wait_for is a backstop, not the timeout — see
+            # QDRANT_RECONCILE_TIMEOUT_SECONDS's comment: VectorStore's own
+            # client-level timeout (QDRANT_REQUEST_TIMEOUT_SECONDS) is what
+            # actually bounds the underlying HTTP call/thread; this is sized
+            # strictly larger so it only fires if that mechanism itself
+            # fails, and by then the thread is guaranteed to already be done
+            # — a set_payload() this stale is never still in flight when the
+            # lock below is about to be released.
+            await asyncio.wait_for(
+                asyncio.to_thread(
+                    vector_store.client.set_payload,
+                    collection_name=vector_store.collection,
+                    payload={"folder": doc["folder"]},
+                    points=Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=doc_id))])
+                ),
+                timeout=QDRANT_RECONCILE_TIMEOUT_SECONDS,
+            )
+            await asyncio.to_thread(db_mark_folder_synced, doc_id, True)
+            doc["folder_synced"] = True
+        except Exception as e:
+            logger.warning(f"Qdrant folder resync still pending for {doc_id}: {e}")
+
+
+async def _reconcile_document_deletion(doc_id: str) -> dict:
+    """Finishes deleting a document already durably marked status='deleting'
+    in Postgres (see delete_document(), which writes that tombstone BEFORE
+    calling this). Safe to call repeatedly on the same doc_id — Qdrant's
+    delete-by-filter and unlink(missing_ok=True) are both no-ops on content
+    that's already gone, so a retry after a partial failure only redoes
+    whatever didn't confirm last time, never re-fails on what already
+    succeeded. Called both from delete_document() itself (first attempt, and
+    any manual retry via calling DELETE again) and from
+    _startup_reconciliation_sweep() (automatic retry for anything a crash
+    left half-finished)."""
+    async with _metadata_mutation_lock:
+        return await _reconcile_document_deletion_locked(doc_id)
+
+
+async def _reconcile_document_deletion_locked(doc_id: str) -> dict:
+    """Implementation called with _metadata_mutation_lock held."""
+    doc = documents_registry.get(doc_id)
+    if doc is None:
+        raise HTTPException(404, f"Document {doc_id} not found")
+    filename = doc.get("filename", doc_id)
+    errors = {}
+
     try:
-        with db_conn() as conn:
-            cur = conn.cursor()
-            cur.execute("INSERT INTO folders (name) VALUES (%s) ON CONFLICT DO NOTHING", (new_name,))
-            cur.execute("DELETE FROM folders WHERE name = %s", (old_name,))
-            cur.execute("UPDATE documents SET folder = %s WHERE folder = %s", (new_name, old_name))
+        # Same backstop reasoning as _reconcile_document_folder_sync()'s
+        # set_payload() call above — delete-by-filter is idempotent, so a
+        # late-completing orphaned call here is far less dangerous than a
+        # stale set_payload() would be (it can only re-delete something
+        # already gone, never resurrect stale data), but there's no reason
+        # to skip the same defense-in-depth.
+        await asyncio.wait_for(
+            asyncio.to_thread(
+                vector_store.client.delete,
+                collection_name=vector_store.collection,
+                points_selector=Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=doc_id))])
+            ),
+            timeout=QDRANT_RECONCILE_TIMEOUT_SECONDS,
+        )
     except Exception as e:
-        logger.warning(f"DB rename folder failed: {e}")
+        logger.error(f"Qdrant delete failed for {doc_id}: {e}")
+        errors["qdrant"] = str(e)
+
+    try:
+        def _delete_files():
+            for f in UPLOAD_DIR.glob(f"{doc_id}_*"):
+                f.unlink(missing_ok=True)
+        await asyncio.to_thread(_delete_files)
+    except Exception as e:
+        logger.error(f"File delete failed for {doc_id}: {e}")
+        errors["file"] = str(e)
+
+    if errors:
+        logger.error(f"Document {doc_id} still pending deletion (status='deleting'), failed steps: {list(errors.keys())}")
+        raise HTTPException(
+            500,
+            f"Partial deletion failure for {doc_id}. Failed steps: {list(errors.keys())}. "
+            f"Document is durably marked for deletion in Postgres — safe to retry (call DELETE "
+            f"again, or it will be retried automatically on next restart)."
+        )
+
+    try:
+        await asyncio.to_thread(db_delete_document_rows, doc_id)
+    except Exception as e:
+        logger.error(f"DB row delete failed for {doc_id} after Qdrant/file cleanup succeeded: {e}")
+        raise HTTPException(
+            500,
+            f"Qdrant and file cleanup for {doc_id} succeeded but removing its DB row failed: {e}. Retry."
+        )
+
+    for h in [h for h, d in file_hashes.items() if d == doc_id]:
+        del file_hashes[h]
+    documents_registry.pop(doc_id, None)
+    return {"status": "deleted", "doc_id": doc_id, "filename": filename}
+
+
+_startup_reconciliation_task = None
+
+
+async def _startup_reconciliation_sweep():
+    """One-shot, best-effort pass over state just loaded from Postgres,
+    retrying anything a previous crash/restart could have left
+    half-finished: documents durably marked status='deleting' (see
+    delete_document()) and documents whose folder_synced is False (see
+    rename_folder()/update_document_folder()). Fired from startup() as a
+    background task (not awaited) — does not block readiness, since Qdrant
+    or the filesystem being slow or briefly unavailable here shouldn't hold
+    up serving requests that don't touch the affected documents. This is
+    the ONLY place a delete/folder-sync retry ever happens without a human
+    (or the frontend) triggering it directly — deliberately a single pass at
+    startup, not a recurring interval worker; anything it can't finish stays
+    durably marked and gets picked up by the next restart or the next
+    manual retry (calling DELETE again, or renaming the folder again)."""
+    pending_deletions = [doc_id for doc_id, doc in list(documents_registry.items()) if doc.get("status") == "deleting"]
+    for doc_id in pending_deletions:
+        try:
+            await _reconcile_document_deletion(doc_id)
+            logger.info(f"Startup reconciliation: finished pending deletion for {doc_id}")
+        except HTTPException as e:
+            logger.warning(f"Startup reconciliation: deletion for {doc_id} still incomplete: {e.detail}")
+
+    pending_folder_syncs = [doc_id for doc_id, doc in list(documents_registry.items()) if not doc.get("folder_synced", True)]
+    for doc_id in pending_folder_syncs:
+        await _reconcile_document_folder_sync(doc_id)
+
+    if pending_deletions or pending_folder_syncs:
+        logger.info(
+            f"Startup reconciliation swept {len(pending_deletions)} pending deletion(s) and "
+            f"{len(pending_folder_syncs)} pending folder-sync(s) left over from a previous run."
+        )
+
+
+# Flipped false by the single-instance watchdog's on_failure callback the
+# instant it can no longer prove this process holds the Postgres advisory
+# lock (see lock.watch_single_instance_guard()) — checked by /health below.
+# In practice the watchdog calls os._exit(1) in the very next line after
+# flipping this, with no `await` in between, so there is normally no window
+# in which a request could actually observe it false; it exists as a
+# defense-in-depth belt for that call site, not as the real stop mechanism
+# (the process dying is).
+_single_instance_healthy = False
+_single_instance_watchdog_task = None
+
 
 @app.on_event("startup")
 async def startup():
-    vector_store.create_collection(vector_size=embedder.get_vector_size())
-    init_db()  # documents_registry, file_hashes, folders_registry all load from Postgres here —
-               # no Qdrant scroll needed at startup (see documents table in init_db())
+    global chunker, embedder, vector_store, retriever, reranker, prompt_builder, \
+        generator, query_expander, langfuse, LANGFUSE_ENABLED, parser, txt_parser, PARSERS_BY_EXT, \
+        _single_instance_healthy, _single_instance_watchdog_task, _startup_reconciliation_task
+
+    # Acquired before constructing anything below — in particular before
+    # embedder/reranker, which load real models onto the GPU. A second
+    # process (`uvicorn --workers 2`, a second replica, a crash-loop respawn
+    # of a rejected worker) fails here, immediately, without ever paying that
+    # load cost. See acquire_single_instance_guard()'s docstring in lock.py.
+    try:
+        acquire_single_instance_guard(POSTGRES_URL)
+    except RuntimeError as e:
+        logger.critical(
+            "Refusing to start: %s. documents_registry/file_hashes/"
+            "folders_registry are process-local in-memory state loaded once "
+            "from Postgres at startup — running a second instance (e.g. "
+            "`uvicorn --workers 2`, or two replicas) would silently desync "
+            "list/page/pdf/delete depending on which instance a request "
+            "lands on. Run with a single worker/replica, or migrate those "
+            "registries to read from Postgres at request time before "
+            "removing this guard.", e,
+        )
+        raise
+
+    def _mark_single_instance_unhealthy():
+        global _single_instance_healthy
+        _single_instance_healthy = False
+
+    _single_instance_watchdog_task = None
+    try:
+        watchdog_interval = float(os.getenv("SINGLE_INSTANCE_WATCHDOG_INTERVAL_SECONDS", "5"))
+        watchdog_timeout = float(os.getenv("SINGLE_INSTANCE_WATCHDOG_TIMEOUT_SECONDS", "5"))
+        if not math.isfinite(watchdog_interval) or watchdog_interval <= 0:
+            raise ValueError("SINGLE_INSTANCE_WATCHDOG_INTERVAL_SECONDS must be a finite number greater than zero")
+        if not math.isfinite(watchdog_timeout) or watchdog_timeout <= 0:
+            raise ValueError("SINGLE_INSTANCE_WATCHDOG_TIMEOUT_SECONDS must be a finite number greater than zero")
+
+        parser = PDFParser(
+            ocr_language=os.getenv("PDF_OCR_LANGUAGE", "eng"),
+            max_pages=int(os.getenv("MAX_PDF_PAGES", "500")),
+            ocr_timeout_seconds=int(os.getenv("OCR_TIMEOUT_SECONDS", "60")),
+            max_total_ocr_seconds=int(os.getenv("MAX_TOTAL_OCR_SECONDS", "600")),
+        )
+        txt_parser = TxtParser()
+        PARSERS_BY_EXT = {"pdf": (parser, "pdf"), "txt": (txt_parser, "txt")}
+
+        chunker = SmartChunker(
+            chunk_size=int(os.getenv("MAX_CHUNK_SIZE", "512")),
+            chunk_overlap=int(os.getenv("CHUNK_OVERLAP", "50"))
+        )
+        embedder = EmbeddingService(model_name=os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3"))
+        vector_store = VectorStore(
+            url=os.getenv("QDRANT_URL", "http://localhost:6333"),
+            collection=os.getenv("QDRANT_COLLECTION", "knowledge_base"),
+            api_key=os.getenv("QDRANT_API_KEY"),
+            timeout=QDRANT_REQUEST_TIMEOUT_SECONDS,
+        )
+        retriever = HybridRetriever(embedder, vector_store)
+        try:
+            reranker = CrossEncoderReranker(model_name=os.getenv("RERANKER_MODEL", "cross-encoder/ms-marco-MiniLM-L-6-v2"))
+        except Exception as e:
+            logger.warning(f"CrossEncoderReranker failed to load ({e}), falling back to SimpleReranker")
+            reranker = SimpleReranker()
+        prompt_builder = PromptBuilder()
+        generator = LLMGenerator(
+            ollama_url=os.getenv("OLLAMA_URL", "http://localhost:11435"),
+            model=os.getenv("LLM_MODEL", "qwen2.5:7b"),
+            temperature=float(os.getenv("TEMPERATURE", "0.1"))
+        )
+        query_expander = QueryExpander(
+            ollama_url=os.getenv("OLLAMA_URL", "http://localhost:11435"),
+            model=os.getenv("QUERY_EXPANDER_MODEL", "qwen2.5:7b")
+        )
+
+        try:
+            langfuse = Langfuse(
+                secret_key=os.getenv("LANGFUSE_SECRET_KEY"),
+                public_key=os.getenv("LANGFUSE_PUBLIC_KEY"),
+                host=os.getenv("LANGFUSE_HOST", "http://localhost:3000")
+            )
+            LANGFUSE_ENABLED = True
+            logger.info("Langfuse v2 connected")
+        except Exception as e:
+            langfuse = None
+            LANGFUSE_ENABLED = False
+            logger.warning(f"Langfuse disabled: {e}")
+
+        vector_store.create_collection(vector_size=embedder.get_vector_size())
+        init_db()  # documents_registry, file_hashes, folders_registry all load from Postgres here —
+                   # no Qdrant scroll needed at startup (see documents table in init_db())
+
+        # Everything above is deliberately synchronous and can take long
+        # enough for Postgres to restart or the guard connection to disappear
+        # while models are loading.  Re-prove the SAME session immediately
+        # before readiness; otherwise this process could start serving for a
+        # full watchdog interval on a lock Postgres had already released.
+        try:
+            await check_single_instance_guard(watchdog_timeout)
+        except TimeoutError as e:
+            # wait_for() timed out while libpq was still executing in a
+            # worker thread.  Trying to unwind normally and close that same
+            # connection can itself block behind the stuck query, so use the
+            # same unconditional fail-stop policy as the steady-state
+            # watchdog.  The OS tears down both the thread and socket.
+            _mark_single_instance_unhealthy()
+            logger.critical(
+                "single-instance guard recheck timed out after %.3fs during "
+                "startup — exiting immediately before accepting traffic: %s",
+                watchdog_timeout, e,
+            )
+            os._exit(1)
+
+        _single_instance_healthy = True
+        _single_instance_watchdog_task = asyncio.create_task(watch_single_instance_guard(
+            interval_seconds=watchdog_interval,
+            timeout_seconds=watchdog_timeout,
+            on_failure=_mark_single_instance_unhealthy,
+        ))
+        # Fire-and-forget: retries anything a previous crash left
+        # half-finished (a pending delete, an unsynced folder rename). Not
+        # awaited — see _startup_reconciliation_sweep()'s docstring for why
+        # this must not block readiness.
+        _startup_reconciliation_task = asyncio.create_task(_startup_reconciliation_sweep())
+    except BaseException:
+        # The guard already succeeded by this point, so without this the
+        # process would still exit (uvicorn treats a startup exception as
+        # fatal) and the kernel would eventually tear down the connection
+        # and release the lock anyway — but only on ITS timeline, not
+        # immediately. An explicit release here means the next instance
+        # doesn't have to wait that out. See release_single_instance_guard()'s
+        # docstring in lock.py.
+        _single_instance_healthy = False
+        if _startup_reconciliation_task is not None:
+            _startup_reconciliation_task.cancel()
+            try:
+                await _startup_reconciliation_task
+            except asyncio.CancelledError:
+                pass
+            except Exception as e:
+                logger.warning("Startup reconciliation task ended with an error during startup cleanup: %s", e)
+            _startup_reconciliation_task = None
+        if _single_instance_watchdog_task is not None:
+            _single_instance_watchdog_task.cancel()
+            try:
+                await _single_instance_watchdog_task
+            except asyncio.CancelledError:
+                pass
+            _single_instance_watchdog_task = None
+        release_single_instance_guard()
+        raise
+
     logger.info("RAG Knowledge Base API started")
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    global _single_instance_healthy, _single_instance_watchdog_task, _startup_reconciliation_task
+    _single_instance_healthy = False
+    # No task that can mutate Postgres/Qdrant/disk may survive release of
+    # the process-wide advisory lock.  Otherwise the successor process can
+    # acquire the guard and load state while this old sweep is still writing.
+    if _startup_reconciliation_task is not None:
+        _startup_reconciliation_task.cancel()
+        try:
+            await _startup_reconciliation_task
+        except asyncio.CancelledError:
+            pass
+        except Exception as e:
+            logger.warning("Startup reconciliation task ended with an error during shutdown: %s", e)
+        _startup_reconciliation_task = None
+    if _single_instance_watchdog_task is not None:
+        _single_instance_watchdog_task.cancel()
+        try:
+            await _single_instance_watchdog_task
+        except asyncio.CancelledError:
+            pass
+        _single_instance_watchdog_task = None
+    release_single_instance_guard()
 
 
 class ChatTurn(BaseModel):
@@ -679,6 +1158,31 @@ class QueryResponse(BaseModel):
     model: str
     tokens_used: int
     debug: Optional[dict] = None
+
+
+def _get_active_document(doc_id: str) -> Optional[dict]:
+    """Return a document only while it is logically present."""
+    doc = documents_registry.get(doc_id)
+    if doc is None or doc.get("status", "active") != "active":
+        return None
+    return doc
+
+
+def _validate_query_document_scope(request: QueryRequest):
+    """Reject explicit references to missing/tombstoned documents."""
+    requested = []
+    if request.document_id:
+        requested.append(request.document_id)
+    if request.document_ids:
+        requested.extend(request.document_ids)
+    missing = list(dict.fromkeys(doc_id for doc_id in requested if _get_active_document(doc_id) is None))
+    if missing:
+        raise HTTPException(404, f"Document(s) not found: {', '.join(missing)}")
+
+
+def _active_chunks(chunks: list[dict]) -> list[dict]:
+    """Drop stale Qdrant points belonging to logical tombstones."""
+    return [chunk for chunk in chunks if _get_active_document(str(chunk.get("document_id", ""))) is not None]
 
 
 async def _rollback_upload(doc_id: str, file_path: Path):
@@ -984,6 +1488,7 @@ def _augment_compare_queries(expanded_queries: list[str], document_ids: Optional
 async def query_knowledge_base(request: QueryRequest):
     if not request.question.strip():
         raise HTTPException(400, "Question cannot be empty")
+    _validate_query_document_scope(request)
 
     if _query_semaphore.locked():
         raise HTTPException(429, "Too many concurrent requests, please try again shortly")
@@ -1006,6 +1511,7 @@ async def _do_query(request: QueryRequest):
     expanded_queries = await query_expander.expand(request.question)
     expanded_queries = _augment_compare_queries(expanded_queries, request.document_ids)
     chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None, document_ids=request.document_ids or None)
+    chunks = _active_chunks(chunks)
     retrieval_ms = int((time.time() - t0) * 1000)
 
     if trace:
@@ -1120,6 +1626,7 @@ async def _do_query(request: QueryRequest):
 async def query_stream(request: QueryRequest):
     if not request.question.strip():
         raise HTTPException(400, "Question cannot be empty")
+    _validate_query_document_scope(request)
 
     if _query_semaphore.locked():
         raise HTTPException(429, "Too many concurrent requests, please try again shortly")
@@ -1143,6 +1650,7 @@ async def query_stream(request: QueryRequest):
 
             t1 = time.time()
             chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None, document_ids=request.document_ids or None)
+            chunks = _active_chunks(chunks)
             retrieval_ms = int((time.time() - t1) * 1000)
 
             retrieval_scores = [c.get("score", 0) for c in chunks] if chunks else []
@@ -1294,33 +1802,46 @@ async def query_stream(request: QueryRequest):
 
 @protected.get("/documents")
 async def list_documents():
-    return {"total": len(documents_registry), "documents": list(documents_registry.values()),
+    # status='deleting' documents are durably-tombstoned but not yet fully
+    # torn down (see delete_document()) — hidden here so a client never sees
+    # something it can't act on, even though they still exist in
+    # documents_registry for _reconcile_document_deletion()/the startup
+    # sweep to find and finish.
+    visible = [d for d in documents_registry.values() if d.get("status", "active") == "active"]
+    return {"total": len(visible), "documents": visible,
             "folders": sorted(folders_registry)}
 
 
 @protected.patch("/documents/{doc_id}/folder", dependencies=[Depends(require_not_backing_up)])
 async def update_document_folder(doc_id: str, body: dict):
-    if doc_id not in documents_registry:
-        raise HTTPException(404, f"Document {doc_id} not found")
-    folder = body.get("folder", "")
-    documents_registry[doc_id]["folder"] = folder
-    if folder:
-        folders_registry.add(folder)
-        await asyncio.to_thread(db_save_folder, folder)
-    await asyncio.to_thread(db_update_document_folder, doc_id, folder)
-    await asyncio.to_thread(
-        vector_store.client.set_payload,
-        collection_name=vector_store.collection,
-        payload={"folder": folder},
-        points=Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=doc_id))])
-    )
-    return {"doc_id": doc_id, "folder": folder}
+    async with _metadata_mutation_lock:
+        doc = _get_active_document(doc_id)
+        if doc is None:
+            raise HTTPException(404, f"Document {doc_id} not found")
+        folder = body.get("folder", "")
+
+        # Postgres first, durably, before touching memory. Folder creation is
+        # part of this same transaction, so failure leaves both registries
+        # and the folders table untouched.
+        await asyncio.to_thread(db_update_document_folder, doc_id, folder)
+        if folder:
+            folders_registry.add(folder)
+        doc["folder"] = folder
+        doc["folder_synced"] = False  # db_update_document_folder() just set this in Postgres too
+
+        # Qdrant's copy is a derived index, synced best-effort — a failure
+        # leaves folder_synced=False for later reconciliation.
+        await _reconcile_document_folder_sync(doc_id)
+        return {"doc_id": doc_id, "folder": folder, "qdrant_synced": doc["folder_synced"]}
 
 
 @protected.get("/folders")
 async def list_folders():
     # Merge folders from registry and from documents
-    doc_folders = {d["folder"] for d in documents_registry.values() if d.get("folder")}
+    doc_folders = {
+        d["folder"] for d in documents_registry.values()
+        if d.get("status", "active") == "active" and d.get("folder")
+    }
     all_folders = sorted(folders_registry | doc_folders)
     return {"folders": all_folders}
 
@@ -1330,16 +1851,22 @@ async def create_folder(body: dict):
     name = (body.get("name") or "").strip()
     if not name:
         raise HTTPException(400, "Folder name required")
-    folders_registry.add(name)
-    db_save_folder(name)
-    return {"name": name}
+    # DB first — db_save_folder() now raises instead of swallowing, so a
+    # failure here 500s before folders_registry is touched at all.
+    async with _metadata_mutation_lock:
+        await asyncio.to_thread(db_save_folder, name)
+        folders_registry.add(name)
+        return {"name": name}
 
 
 @protected.delete("/folders/{name}", dependencies=[Depends(require_not_backing_up)])
 async def delete_folder(name: str):
-    folders_registry.discard(name)
-    db_delete_folder(name)
-    return {"deleted": name}
+    # Same ordering as create_folder(): DB first, memory only after it
+    # durably succeeds.
+    async with _metadata_mutation_lock:
+        await asyncio.to_thread(db_delete_folder, name)
+        folders_registry.discard(name)
+        return {"deleted": name}
 
 
 @protected.patch("/folders/{name}", dependencies=[Depends(require_not_backing_up)])
@@ -1347,67 +1874,72 @@ async def rename_folder(name: str, body: dict):
     new_name = (body.get("name") or "").strip()
     if not new_name:
         raise HTTPException(400, "New name required")
-    # Update all documents in this folder
-    for doc_id, doc in documents_registry.items():
-        if doc.get("folder") == name:
-            doc["folder"] = new_name
-            await asyncio.to_thread(
-                vector_store.client.set_payload,
-                collection_name=vector_store.collection,
-                payload={"folder": new_name},
-                points=Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=doc_id))])
+
+    # Durable, atomic (one Postgres transaction — see db_rename_folder())
+    # rename FIRST: this IS the operation's source of truth. It also marks
+    # every affected document folder_synced=FALSE in that same transaction,
+    # so even a crash right after this leaves a durable record of exactly
+    # which documents still need their Qdrant payload updated — nothing
+    # here depends on the per-document loop below completing.
+    async with _metadata_mutation_lock:
+        await asyncio.to_thread(db_rename_folder, name, new_name)
+
+        folders_registry.discard(name)
+        folders_registry.add(new_name)
+        affected_doc_ids = [
+            doc_id for doc_id, doc in documents_registry.items()
+            if doc.get("status", "active") == "active" and doc.get("folder") == name
+        ]
+        for doc_id in affected_doc_ids:
+            documents_registry[doc_id]["folder"] = new_name
+            documents_registry[doc_id]["folder_synced"] = False
+
+        # Best-effort from here — each document is reconciled independently,
+        # and the mutation lock remains held through the derived-index writes.
+        qdrant_sync_pending = []
+        for doc_id in affected_doc_ids:
+            await _reconcile_document_folder_sync(doc_id)
+            if not documents_registry[doc_id].get("folder_synced", True):
+                qdrant_sync_pending.append(doc_id)
+
+        if qdrant_sync_pending:
+            logger.warning(
+                f"Folder rename {name!r} -> {new_name!r}: Postgres committed for all "
+                f"{len(affected_doc_ids)} documents, but Qdrant sync failed for "
+                f"{len(qdrant_sync_pending)} of them — will retry on next access/restart."
             )
-    folders_registry.discard(name)
-    folders_registry.add(new_name)
-    await asyncio.to_thread(db_rename_folder, name, new_name)  # also updates documents.folder in bulk
-    return {"old": name, "new": new_name}
+
+        return {"old": name, "new": new_name, "documents_updated": len(affected_doc_ids),
+                "qdrant_sync_pending": qdrant_sync_pending}
 
 
 @protected.delete("/documents/{doc_id}", dependencies=[Depends(require_not_backing_up)])
 async def delete_document(doc_id: str):
-    if doc_id not in documents_registry:
-        raise HTTPException(404, f"Document {doc_id} not found")
+    """Deletes a document across Qdrant + Postgres + disk. Not a single
+    atomic operation (there is no cross-store transaction that could make it
+    one) — instead, status='deleting' in Postgres (see db_mark_document_
+    deleting()) is written FIRST and durably, before anything else is
+    touched, so a crash between any of the steps below always leaves a
+    trail: either this call never got past the tombstone write (nothing
+    happened, retry from scratch is correct), or it did, in which case
+    _reconcile_document_deletion() picks up from wherever it left off —
+    Qdrant delete-by-filter and unlink(missing_ok=True) are both safe to
+    repeat on content that's already gone. Calling this endpoint again on a
+    doc_id already marked 'deleting' is exactly that retry, and is also what
+    the startup reconciliation sweep does automatically for anything a
+    previous crash left unfinished."""
+    async with _metadata_mutation_lock:
+        doc = documents_registry.get(doc_id)
+        if doc is None:
+            raise HTTPException(404, f"Document {doc_id} not found")
 
-    filename = documents_registry[doc_id].get("filename", doc_id)
-    errors = {}
+        if doc.get("status", "active") == "active":
+            await asyncio.to_thread(db_mark_document_deleting, doc_id)
+            doc["status"] = "deleting"
+        elif doc.get("status") != "deleting":
+            raise HTTPException(404, f"Document {doc_id} not found")
 
-    try:
-        await asyncio.to_thread(
-            vector_store.client.delete,
-            collection_name=vector_store.collection,
-            points_selector=Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=doc_id))])
-        )
-    except Exception as e:
-        logger.error(f"Qdrant delete failed for {doc_id}: {e}")
-        errors["qdrant"] = str(e)
-
-    try:
-        def _delete_doc_rows():
-            with db_conn() as conn:
-                cur = conn.cursor()
-                cur.execute("DELETE FROM file_hashes WHERE doc_id = %s", (doc_id,))
-                cur.execute("DELETE FROM documents WHERE doc_id = %s", (doc_id,))
-        await asyncio.to_thread(_delete_doc_rows)
-        for h in [h for h, d in file_hashes.items() if d == doc_id]:
-            del file_hashes[h]
-    except Exception as e:
-        logger.error(f"DB delete failed for {doc_id}: {e}")
-        errors["db"] = str(e)
-
-    try:
-        for f in UPLOAD_DIR.glob(f"{doc_id}_*"):
-            f.unlink()
-    except Exception as e:
-        logger.error(f"File delete failed for {doc_id}: {e}")
-        errors["file"] = str(e)
-
-    if errors:
-        # Keep in registry so the document remains visible and deletion can be retried
-        logger.error(f"Document {doc_id} partially deleted, failed steps: {list(errors.keys())}")
-        raise HTTPException(500, f"Partial deletion failure for {doc_id}. Failed steps: {list(errors.keys())}. Retry deletion.")
-
-    del documents_registry[doc_id]
-    return {"status": "deleted", "doc_id": doc_id, "filename": filename}
+        return await _reconcile_document_deletion(doc_id)
 
 
 @protected.get("/documents/{doc_id}/pages/{page_num}")
@@ -1437,8 +1969,8 @@ async def get_document_page(doc_id: str, page_num: int):
     blank space wherever the page's internal reading order didn't match its
     visual layout (e.g. text positioned near an inserted image). Offset-
     based lookup has none of that: it never touches the PDF's rendering."""
-    doc = documents_registry.get(doc_id)
-    if not doc:
+    doc = _get_active_document(doc_id)
+    if doc is None:
         raise HTTPException(404, "Document not found")
     doc_format = doc.get("format", "pdf")
     total_pages = 1 if doc_format == "txt" else doc.get("pages", 1)
@@ -1491,11 +2023,12 @@ async def get_pdf(doc_id: str, key: Optional[str] = None, x_api_key: Optional[st
     from fastapi.responses import FileResponse
     if API_KEY and key != API_KEY and x_api_key != API_KEY:
         raise HTTPException(status_code=401, detail="Invalid or missing API key")
-    if doc_id not in documents_registry:
+    doc = _get_active_document(doc_id)
+    if doc is None:
         raise HTTPException(404, "Document not found")
     for f in UPLOAD_DIR.glob(f"{doc_id}_*"):
         return FileResponse(path=str(f), media_type="application/pdf",
-                          filename=documents_registry[doc_id]["filename"])
+                          filename=doc["filename"])
     raise HTTPException(404, "PDF file not found on disk")
 
 
@@ -1532,6 +2065,15 @@ app.include_router(protected)
 
 @app.get("/health")
 async def health_check():
+    # See _single_instance_healthy's declaration above startup(): flipped by
+    # the single-instance watchdog the instant it loses the Postgres
+    # advisory lock's session, immediately before the process exits. Checked
+    # first and unconditionally — none of the checks below mean anything if
+    # this process can no longer prove it's the only one holding
+    # documents_registry/file_hashes/folders_registry.
+    if not _single_instance_healthy:
+        raise HTTPException(503, "single-instance guard lost its Postgres session — this process is exiting")
+
     qdrant_ok = False
     try:
         info = vector_store.get_collection_info()
