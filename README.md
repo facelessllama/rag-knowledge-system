@@ -56,11 +56,13 @@ Built for English-language documents.
 - Max 3 concurrent queries via asyncio semaphore
 - LLM stream retry (up to 3 attempts if no chunks sent)
 - Partial stream detection — mid-stream failures reported without duplicating output
-- Hybrid search runs entirely server-side in Qdrant (dense + sparse, RRF fusion) — no in-memory index to rebuild on upload or scroll-restore on restart. This does NOT extend to the API process itself: `documents_registry`/`file_hashes`/`folders_registry` in `api/main.py` are plain in-memory dicts loaded once from Postgres at startup, so this app must run as a single instance (one `uvicorn` worker, one replica) — `lock.py`'s `acquire_single_instance_guard()` enforces this by refusing to start a second instance rather than silently desyncing list/page/pdf/delete between processes
+- Hybrid search runs entirely server-side in Qdrant — no in-memory index to rebuild on upload or restart
+- **Single-instance enforcement** — a Postgres advisory lock plus a background watchdog make sure only one process ever holds the in-memory document registries, and kill the process the instant that stops being provably true. See *"The multi-process trap I didn't see coming"* below for why this exists and two bugs in my first attempt at it.
+- **Crash-safe delete & folder moves** — a durable tombstone in Postgres means a delete or rename that fails halfway through leaves a precise, retryable trail instead of an orphaned file or a document that silently reappears after a restart. See *"Delete and rename across three stores that don't share a transaction"* below.
 - Path traversal protection on file uploads
 - API key authentication (`X-API-Key` header or `?key=` query param)
-- Uploads are streamed into a per-attempt temp file (never buffered whole in RAM, never partially visible at the final path — an atomic rename only happens after the upload validates clean), size-capped (`MAX_UPLOAD_MB`), magic-byte checked, and bounded on page count (`MAX_PDF_PAGES`), batch size (`MAX_BATCH_FILES`), OCR duration both per page and per document (`OCR_TIMEOUT_SECONDS` kills the underlying Tesseract process; `MAX_TOTAL_OCR_SECONDS` bounds the whole document's OCR wall-clock time, not just one page), and concurrent ingestion jobs (`MAX_CONCURRENT_INGESTIONS`) — see `.env.example`. An ASGI-level middleware also caps request body size *before* Starlette's multipart parser ever spools it — the in-endpoint checks alone run too late to stop that
-- The whole parse → chunk → embed → upsert lifecycle is one compensating-rollback unit spanning all three storage layers (file, Qdrant, Postgres) — any failure at any step, INCLUDING task cancellation (`asyncio.CancelledError`, which does not subclass `Exception` since Python 3.8 and needs its own handler), cleans up whichever of the three actually got written, each independently logged so a cleanup failure never masks the original error. Verified live against a real Postgres constraint failure after a successful Qdrant upsert, and against Qdrant being down during rollback (the original error still reaches the client; the rollback's own failure is logged separately). Note: on this plain-uvicorn deployment, a client disconnecting mid-request does not itself cancel an already-in-flight non-streaming request — Starlette runs it to completion regardless; the `CancelledError` handling exists for whatever genuinely does cancel the task (an explicit timeout wrapper, graceful shutdown), not as a guarantee that any dropped connection stops server-side work immediately
+- Uploads are streamed into disk and validated (size cap, magic-byte check, page count, batch size, OCR duration, concurrent ingestion jobs — see `.env.example`) before the file is ever visible at its final path; an ASGI-level middleware also caps request body size before Starlette's multipart parser gets to spool an oversized one
+- The whole parse → chunk → embed → upsert pipeline rolls back across all three storage layers (file, Qdrant, Postgres) on any failure, including task cancellation — verified live against a real mid-pipeline Postgres failure and against Qdrant being down during rollback, not just reasoned about
 - If a reverse proxy sits in front of this app, it should set its own request body size limit too, as defense in depth — not instead of the above
 - Prompt injection protection — user input wrapped in `<question>` tags
 
@@ -95,6 +97,7 @@ Query → Expand (Ollama LLM) → Retrieve (Qdrant hybrid: dense + sparse, serve
 | `rag/executors.py` | Single-worker thread pool for GPU-bound calls — keeps embed/rerank off the event loop |
 | `api/telegram.py` | Telegram webhook bot |
 | `frontend/app.js` | UI: SSE streaming, PDF.js viewer, model switching |
+| `lock.py` | Backup-coordination `flock`, plus the Postgres advisory lock + watchdog that enforce single-instance execution |
 
 ---
 
@@ -176,15 +179,18 @@ All settings in `.env`:
 | `EMBEDDING_MODEL` | `BAAI/bge-m3` | HuggingFace embedding model |
 | `RERANKER_MODEL` | `cross-encoder/ms-marco-MiniLM-L-6-v2` | Reranker model |
 | `QUERY_EXPANDER_MODEL` | `qwen2.5:7b` | Model for query expansion |
-| `RELEVANCE_THRESHOLD` | `0.30` | Minimum cosine similarity to answer |
-| `TOP_K_RESULTS` | `5` | Chunks passed to LLM after rerank |
+| `RELEVANCE_THRESHOLD` | `3.0` | Minimum cross-encoder rerank score to attempt an answer — a raw logit (calibrated on golden_dataset.json, see the comment above it in `api/main.py`), **not** a 0–1 cosine similarity |
+| `top_k` | `5` (per request, `1`–`20`) | Chunks kept after rerank — a `/query` request field, not an env var; there's no `TOP_K_RESULTS` setting |
 | `MAX_CHUNK_SIZE` | `512` | Characters per chunk |
 | `CHUNK_OVERLAP` | `50` | Overlap between chunks |
 | `MAX_CONCURRENT_QUERIES` | `3` | Concurrent query limit |
 | `TEMPERATURE` | `0.1` | LLM temperature |
-| `MAX_TOKENS` | `1024` | Max LLM output tokens |
 | `PDF_OCR_LANGUAGE` | `eng` | Tesseract language codes |
 | `API_KEY` | — | Auth key (leave empty to disable) |
+| `QDRANT_REQUEST_TIMEOUT_SECONDS` | `5` | Bounds every Qdrant REST call — see *"Delete and rename across three stores..."* above for why this exists |
+| `SINGLE_INSTANCE_WATCHDOG_INTERVAL_SECONDS` / `_TIMEOUT_SECONDS` | `5` / `5` | How often, and how patiently, the single-instance guard re-checks its Postgres lock is still alive — see *"The multi-process trap I didn't see coming"* above |
+
+Upload/ingestion limits (`MAX_UPLOAD_MB`, `MAX_BATCH_FILES`, `MAX_PDF_PAGES`, `OCR_TIMEOUT_SECONDS`, `MAX_TOTAL_OCR_SECONDS`, `MAX_CONCURRENT_INGESTIONS`) are documented inline in `.env.example`, not repeated here.
 
 ---
 
@@ -216,13 +222,15 @@ Pass `X-API-Key: <key>` header or `?key=<key>` query param when `API_KEY` is set
 
 ## Testing
 
-Unit tests (fast, mocked — no Docker/Qdrant/Ollama needed):
+229 tests as of this writing. Most are fast and fully mocked — no Docker/Qdrant/Ollama needed:
 
 ```bash
 source venv/bin/activate
 pip install -r requirements-dev.txt
 pytest
 ```
+
+A handful (`tests/test_single_instance_guard.py`) spin up a real second OS process against a live Postgres to prove the single-instance lock actually excludes it — they skip cleanly if Postgres isn't reachable, so `pytest` alone never hangs or fails on a machine with no infrastructure running. Everything else, including the concurrency claims (the single-instance lock, the folder-rename race), is tested with `asyncio.Event`-based synchronization that deterministically pauses one coroutine mid-flight while a second one runs — not `sleep()`-and-hope, which would either be flaky or too slow to run in CI. A regression that reintroduces one of those races fails the suite instead of only showing up under real concurrent load.
 
 Scripts that exercise a running instance (`docker compose up -d` + API started):
 
@@ -364,6 +372,35 @@ Both were tested in 2024–2025 and dropped:
 The custom retriever is ~220 lines and does exactly what's needed. For a system where retrieval quality *is* the product, the framework tax wasn't justified.
 
 If the problem grows significantly more complex (multi-agent, complex tool-calling workflows) — LangGraph would be worth revisiting. For now, custom wins on every front: speed, transparency, control.
+
+### Why doesn't "View original PDF" highlight the cited passage?
+
+The inline source viewer highlights the exact cited text, character for character. Click through to "View original PDF" — the real PDF.js rendering, original layout, images, letterhead and all — and there's no highlight box there. That's not an oversight; it's a boundary I drew on purpose after the first approach kept breaking in ways that weren't worth chasing further.
+
+The first version used PyMuPDF's `page.search_for()`: take the cited text, search for it on the rendered page, draw a box wherever it turns up. It works, until:
+- **A scanned page has no highlight to draw.** OCR'd pages have no embedded text layer to search against — `search_for()` has nothing to find, so nothing gets highlighted, silently.
+- **The box lands on the wrong pixels even when the text is found.** A PDF's internal text order doesn't always match its visual layout — a caption near an inserted image, a footnote interleaved oddly with body text — so the "found" match is real, but the coordinates it reports can land on visually blank space or the wrong line entirely.
+
+The fix was to stop searching the rendered page at all. The inline viewer highlights against the same normalized text and character offsets the retrieval pipeline already computed once, at ingestion time — exact, and identical for TXT and OCR'd PDF, because it never touches how the page is drawn. What it doesn't do is exist for the "view the actual PDF" path: mapping those same character offsets onto pixel coordinates for an arbitrary PDF layout (rotated text, multi-column, an image that breaks reading order) is a genuinely hard problem, and not one worth solving for a single-user local tool when the inline viewer already answers "is this citation real" reliably. So that's the tradeoff, stated plainly rather than left for someone to discover: exact highlighting where it matters for verifying a citation, an honest "no highlight promised" on the view that exists for reading the document as it actually looks.
+
+### The multi-process trap I didn't see coming (and two bugs in my first fix)
+
+For a long time, `documents_registry` / `file_hashes` / `folders_registry` were exactly what they look like: plain Python dicts, loaded from Postgres once at startup, mutated directly by every upload, delete, and rename. That's completely fine for one process. It quietly stops being fine the moment someone adds `uvicorn --workers 2` — each worker loads its own private copy at its own startup and the two never talk to each other again. Upload a document through worker A and worker B's `/documents` list won't show it; ask worker B to delete it and you get a 404 for something that very much still exists.
+
+I found this by actually starting the app with `--workers 2` and hammering it with concurrent requests, rather than reasoning about whether it would be fine: under real load, most requests landed on the worker that hadn't seen the newest write, and the desync never healed itself.
+
+The fix — a lock acquired before the process finishes starting up, refusing to let a second instance ever come up at all — sounds like it should be the whole story. Building it exposed two more bugs I hadn't planned for:
+
+1. **A local file lock isn't a global lock.** The first attempt used a `flock` on a file next to the code. That stops two `--workers` on one host, but two containers with separate filesystems — or two separate hosts — would each happily lock their own private file and both believe they were the only instance. The fix was moving the lock into Postgres itself: the one thing every instance already has to agree on, regardless of which host or container it happens to run in.
+2. **A lock you stop checking isn't a lock.** Even the Postgres version had a gap: if Postgres itself restarted, or the network dropped, Postgres released the lock on its side — but the process holding it had no way to notice on its own, and kept serving requests as the "sole owner" of state that, as far as Postgres was concerned, nobody owned anymore. A second instance could then start, acquire the now-free lock, and split-brain is back — just relocated from "at startup" to "sometime later, silently." The fix is a background watchdog that keeps re-proving the lock's session is actually still alive (a bounded ping, not an assumption) and hard-exits the process the moment it can't prove that anymore. A restart triggered by a false alarm is cheap; staying up on a lock that can no longer be verified is the real bug.
+
+Neither of those two follow-on bugs was caught by re-reading the first fix — both came from asking "what actually happens if I kill this specific connection right now" and watching the real process, not the code, respond.
+
+### Delete and rename across three stores that don't share a transaction
+
+Deleting a document touches Qdrant, Postgres, and a file on disk — three independent systems with no way to commit all three atomically. The original code just ran the three deletes in sequence and reported success if none of them raised. That's fine until one of them fails partway through — Qdrant is briefly down, say — and now the document's Postgres row is gone (so it vanishes from the list on the next restart, since that's what reloads from Postgres) while its file sits on disk forever, an orphan nothing will ever come back for.
+
+The fix follows the same shape as the process-lock story above: write a durable marker (`status = 'deleting'` in Postgres) *before* touching anything else, so a crash mid-delete leaves a trail instead of a silent inconsistency. A manual retry, or a one-shot pass at the next startup, picks up exactly where it left off, using operations that are safe to repeat (deleting something already deleted is a no-op). The same idea covers folder renames: moving documents into a new folder touches Qdrant's search index one HTTP call per document, so one failure partway through a batch can't be allowed to leave the other documents untouched — Postgres commits the rename as the single durable, source-of-truth step, and Qdrant's copy is treated as a derived index that's allowed to lag briefly and catch back up on its own.
 
 ---
 
