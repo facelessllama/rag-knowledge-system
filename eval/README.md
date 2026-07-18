@@ -860,7 +860,9 @@ the rug):
    degrades when the query names the wrong issuing institution. Item 6
    below is the direct follow-up.
 1. **Widen the rerank/retrieval window for high-duplicate-density
-   corpora.** `TOP_K_RESULTS=5` is what's been under test throughout;
+   corpora.** `top_k=5` (the `/query` request field's default — not an env
+   var; there's no `TOP_K_RESULTS` setting) is what's been under test
+   throughout;
    since the failure mechanism is "correct doc gets crowded to rank 2-6,"
    and strict Recall@5 is now confirmed to actually decay (72.7%/69.3% at
    57,000, not the originally-reported flat 100%), a corpus expected to

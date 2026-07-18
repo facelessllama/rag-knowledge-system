@@ -14,6 +14,20 @@ Built for English-language documents.
 
 ---
 
+## Tested at Scale, Not Just Demoed
+
+Most portfolio RAG projects prove one thing: a good-looking chat screenshot exists. That doesn't prove the system holds up once you stop being gentle with it — so this one was pushed harder on purpose.
+
+The day-to-day working set is a few hundred documents, and on that it's essentially perfect. To find out what actually breaks as a library grows, it was then loaded with **57,000 real documents** — not synthetic filler, but a genuinely difficult real-world dataset (EU legislation full of near-identical filings reissued for decades, about the hardest condition for a search system to stay accurate under) — and re-tested at every step up to that size.
+
+The honest result, reported as measured rather than rounded up: on natural, real-world phrasing, accuracy stayed at **100%** even at 57,000 documents. On a narrower "quote the exact document ID" scenario, it didn't — ranking quality degraded steadily from 96% down to 73% as the corpus grew, and that decline is documented rather than hidden. Along the way, testing also caught a bug in the *test's own scoring*, which had been quietly reporting a false 100% — it was found, fixed, and every affected result was re-run live against the real 57,000-document corpus to confirm the fix, not just recomputed on paper. A real capacity limit was found too: reranking runs on one GPU by design, so the speedup from serving multiple users at once drops substantially once the corpus is this large — measured directly, not estimated.
+
+The same standard was applied to the engineering side, not just retrieval quality: the service is backed by 229 automated tests, including deliberate crash-and-restart drills (killing the database connection mid-operation, stopping the search engine mid-delete) that prove the system recovers cleanly instead of just assuming it would. See *"Architecture Decisions & Learnings"* below for what broke during that work and how it was fixed.
+
+**Full write-up — every number, every bug found, and what's still an open gap — in [`VALIDATION.md`](VALIDATION.md).**
+
+---
+
 ## Features
 
 ### Document Management
@@ -49,7 +63,6 @@ Built for English-language documents.
 - Reranker type indicator
 
 ### Integrations
-- **Telegram bot** — webhook-based chatbot that queries the RAG and returns cited answers
 - **Langfuse** — full observability: traces, spans, LLM generations, scores (self-hosted)
 
 ### Reliability
@@ -95,7 +108,6 @@ Query → Expand (Ollama LLM) → Retrieve (Qdrant hybrid: dense + sparse, serve
 | `ingestion/chunker.py` | Sentence/paragraph-aware chunking |
 | `embeddings/embedding_service.py` | BAAI/bge-m3 embeddings (CUDA) |
 | `rag/executors.py` | Single-worker thread pool for GPU-bound calls — keeps embed/rerank off the event loop |
-| `api/telegram.py` | Telegram webhook bot |
 | `frontend/app.js` | UI: SSE streaming, PDF.js viewer, model switching |
 | `lock.py` | Backup-coordination `flock`, plus the Postgres advisory lock + watchdog that enforce single-instance execution |
 
@@ -298,19 +310,6 @@ Set `RESTORE_CHECK_REMOTE_DEST` (an rsync target) to also ship each dated copy o
 3. **Evidence of a successful scheduled execution** — the first cron-triggered (not manually-triggered) run actually landing in `backups/restore_checks/` with `result: "pass"`.
 
 A full disaster-recovery walkthrough (restore onto a genuinely separate host, not just the scratch containers) is worth doing manually on a quarterly cadence — the automated drill proves the backup *contents* are restorable, not that your recovery runbook for a truly dead host actually works end to end.
-
----
-
-## Telegram Bot
-
-1. Create a bot via [@BotFather](https://t.me/BotFather), get the token
-2. Set `TELEGRAM_BOT_TOKEN` in `.env`
-3. Expose the API publicly (e.g. via `./start_tunnel.sh` with cloudflared)
-4. Register webhook:
-```bash
-curl -X POST "https://api.telegram.org/bot<TOKEN>/setWebhook" \
-  -d "url=https://your-tunnel-url/telegram/webhook"
-```
 
 ---
 
