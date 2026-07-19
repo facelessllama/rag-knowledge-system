@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Legal documents · Knowledge Base</title>
 <link rel="stylesheet" href="vendor/fonts/fonts.css">
-<link rel="stylesheet" href="styles.css?v=1784203655">
+<link rel="stylesheet" href="styles.css?v=1784467592">
 <link rel="stylesheet" href="vendor/pdfjs/pdf_viewer.min.css">
 </head>
 <body>
@@ -23,8 +23,7 @@
   </div>
 
   <div class="topbar-right">
-    <button class="topbar-iconbtn" id="newChatBtn" onclick="backToWelcome()" title="New chat"></button>
-    <a class="topbar-link" href="evaluation.html" id="evalLink"></a>
+    <a class="topbar-link" href="evaluation.html" id="evalLink" style="display:none"></a>
     <div class="settings-wrap" id="settingsWrap">
       <button class="topbar-iconbtn" id="settingsBtn" onclick="toggleSettings()" title="Settings"></button>
       <div class="settings-panel" id="settingsPanel">
@@ -93,7 +92,6 @@
 
     <div class="welcome" id="welcomeScreen">
       <div class="welcome-inner">
-        <div class="collection-badge"><span class="dot"></span><span id="collectionStats">Loading collection…</span></div>
         <div class="welcome-title">Ask your documents</div>
         <div class="welcome-sub">Search across your legal documents — every answer comes with source excerpts that open on the exact page.</div>
 
@@ -213,6 +211,6 @@
 <script src="vendor/pdfjs/pdf.min.js"></script>
 <script src="icons.js?v=1784130335"></script>
 <script src="api.js?v=1784131348"></script>
-<script src="app.js?v=1784203655"></script>
+<script src="app.js?v=1784467592"></script>
 </body>
 </html>

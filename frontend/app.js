@@ -61,12 +61,25 @@ function scrollBottom() { const m = document.getElementById('messages'); m.scrol
 
 // ── Icon injection (static, one-time) ───────────────────────────────────────
 
+function isAdminMode() {
+  // Evaluation is an engineering/admin tool, not something a regular user
+  // of the knowledge base needs — hidden from the topbar by default.
+  // ?admin=1 once (persisted to localStorage) keeps it visible after.
+  if (new URLSearchParams(window.location.search).has('admin')) {
+    localStorage.setItem('kb_admin', '1');
+  }
+  return localStorage.getItem('kb_admin') === '1';
+}
+
 function injectStaticIcons() {
   document.getElementById('mobileSidebarToggle').innerHTML = svgIcon('menu', 18);
   document.getElementById('brandMark').innerHTML = svgIcon('layers', 16);
-  document.getElementById('evalLink').innerHTML = svgIcon('bar-chart', 15) + '<span>Evaluation</span>';
+  if (isAdminMode()) {
+    const evalLink = document.getElementById('evalLink');
+    evalLink.innerHTML = svgIcon('bar-chart', 15) + '<span>Evaluation</span>';
+    evalLink.style.display = '';
+  }
   document.getElementById('settingsBtn').innerHTML = svgIcon('settings', 17);
-  document.getElementById('newChatBtn').innerHTML = svgIcon('plus', 17);
   document.getElementById('apiKeyRow').innerHTML = svgIcon('key', 15) + '<span>API key</span>';
   document.getElementById('addDocsBtn').innerHTML = svgIcon('upload', 14) + '<span>Add documents</span>';
   document.getElementById('addDocsFilesItem').innerHTML = svgIcon('file', 14) + '<span>Upload documents</span>'
@@ -258,7 +271,6 @@ function renderDocTree() {
   if (Object.keys(docsData).length === 0) {
     list.innerHTML = '<div class="empty-docs">No documents yet<br><span style="font-size:11px">Add documents to start</span></div>';
     document.getElementById('workspaceMeta').textContent = 'No documents';
-    document.getElementById('collectionStats').textContent = 'No documents yet — add some to get started';
     return;
   }
 
@@ -370,7 +382,6 @@ function renderDocTree() {
   const totalChunks = realDocs.reduce(function(s, d){ return s + (d.chunks || d.chunks_created || 0); }, 0);
   document.getElementById('workspaceMeta').innerHTML = total + ' document' + (total===1?'':'s') +
     ' <span title="' + totalChunks + ' indexed passages">&middot; ' + totalChunks + ' passages</span>';
-  document.getElementById('collectionStats').textContent = total + ' document' + (total===1?'':'s') + ' · ' + totalChunks + ' passages';
   renderCompareBar();
 }
 
