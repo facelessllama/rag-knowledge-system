@@ -48,6 +48,22 @@ stored. If the Postgres `file_hashes` table itself is intact, dedup
 history is preserved automatically (this script doesn't touch it). If
 Postgres was also wiped, dedup simply starts fresh after migration.
 
+Recovery if step 4 (Postgres backfill) fails or is interrupted AFTER step 3
+(cutover) already committed: re-running this script plainly won't help —
+the collection is already on the hybrid schema by then, so _run()'s own
+"already uses the named hybrid schema — nothing to do" check exits before
+ever reaching the backfill again. Use --backfill-only instead: it skips the
+whole migration (no Qdrant writes, no lock beyond the same shared_lock()
+every other maintenance script holds) and just rescrolls the CURRENT
+collection to rebuild and re-upsert `documents` — idempotent (ON CONFLICT
+DO UPDATE by doc_id), safe to run any time, including with the API live.
+
+This script is a one-off legacy tool: the migration proper (steps 1-3) is
+meant to run exactly once per deployment, against a collection that still
+has the old single-unnamed-vector schema, and is a no-op forever after
+(see the early-exit check in _run()). --backfill-only is the only part of
+it designed to be re-run.
+
 Usage:
     ./backup_qdrant.sh   # snapshot first, still recommended even though
                          # the old collection is never touched until after
@@ -55,6 +71,7 @@ Usage:
     source venv/bin/activate
     python scripts/migrate_to_hybrid_schema.py
     python scripts/migrate_to_hybrid_schema.py --full-verify   # exhaustive payload check instead of a sample
+    python scripts/migrate_to_hybrid_schema.py --backfill-only # redo just step 4, any time, idempotently
 """
 import argparse
 import logging
@@ -92,8 +109,17 @@ def main():
     parser.add_argument("--exclusive-lock-wait-seconds", type=float, default=60.0,
                          help="How long to wait for in-flight API requests to finish before acquiring "
                               "the exclusive maintenance lock (default: 60s)")
+    parser.add_argument("--backfill-only", action="store_true",
+                         help="Skip the migration entirely and just rebuild Postgres `documents` "
+                              "metadata from the CURRENT collection (whatever schema it's already "
+                              "on). Recovery path if a previous run's cutover succeeded but the "
+                              "Postgres backfill step didn't complete. Idempotent (upserts by "
+                              "doc_id) — safe to run any time, including against a live API.")
     args = parser.parse_args()
-    _run(args)
+    if args.backfill_only:
+        _run_backfill_only(args)
+    else:
+        _run(args)
 
 
 def _run(args):
@@ -111,7 +137,9 @@ def _run(args):
 
     vectors_config = info.config.params.vectors
     if isinstance(vectors_config, dict) and DENSE_VECTOR_NAME in vectors_config:
-        logger.info(f"'{args.collection}' already uses the named hybrid schema — nothing to do.")
+        logger.info(f"'{args.collection}' already uses the named hybrid schema — nothing to do. "
+                    f"(If a PREVIOUS run's Postgres backfill step didn't complete, use "
+                    f"--backfill-only to redo just that, without re-running the migration.)")
         return
 
     point_count = info.points_count
@@ -167,6 +195,35 @@ def _run(args):
         _migrate_locked(client, args, old_physical_name, new_physical_name, is_alias, point_count)
     finally:
         cm.__exit__(None, None, None)
+
+
+def _run_backfill_only(args):
+    """Recovery path — see the module docstring's "Recovery if step 4
+    fails" section. Deliberately does NOT check or care what schema
+    args.collection is currently on: rebuilds `documents` from whatever is
+    there right now. Only a shared_lock() (via run_locked, same as
+    backfill_document_pages.py and other maintenance scripts), not
+    exclusive_lock() — this only reads Qdrant and upserts Postgres by
+    doc_id, so it doesn't need to freeze the whole API the way the
+    migration's cutover does."""
+    from qdrant_client import QdrantClient
+    from lock import run_locked
+
+    def _do():
+        client = QdrantClient(url=args.qdrant_url, api_key=args.qdrant_api_key)
+        try:
+            info = client.get_collection(args.collection)
+        except Exception:
+            logger.error(f"'{args.collection}' does not exist — nothing to backfill.")
+            raise SystemExit(1)
+        logger.info(f"Rebuilding Postgres 'documents' from '{args.collection}' "
+                    f"({info.points_count} points)...")
+        doc_meta = _scroll_doc_meta(client, args.collection, point_count=info.points_count)
+        logger.info(f"Backfilling {len(doc_meta)} documents into Postgres...")
+        _backfill_postgres(args.postgres_url, doc_meta)
+        logger.info("Backfill complete.")
+
+    run_locked(_do, logger)
 
 
 def _migrate_locked(client, args, old_physical_name, new_physical_name, is_alias, point_count):
@@ -236,19 +293,7 @@ def _migrate_locked(client, args, old_physical_name, new_physical_name, is_alias
                     vector={DENSE_VECTOR_NAME: dense_vector, SPARSE_VECTOR_NAME: build_sparse_vector(text)},
                     payload=payload,
                 ))
-                doc_id = payload.get("document_id", "")
-                if doc_id:
-                    meta = doc_meta.setdefault(doc_id, {
-                        "doc_id": doc_id,
-                        "filename": payload.get("filename", "unknown"),
-                        "pages": payload.get("pages", 0),
-                        "chunks": 0,
-                        "size_kb": payload.get("size_kb", 0),
-                        "metadata": {},
-                        "folder": payload.get("folder", ""),
-                        "format": payload.get("format", "pdf"),
-                    })
-                    meta["chunks"] += 1
+                _accumulate_doc_meta(doc_meta, payload)
             client.upsert(collection_name=new_physical_name, points=new_points)
             copied += len(new_points)
             logger.info(f"  copied {copied}/{point_count}")
@@ -373,6 +418,52 @@ def _verify_payloads_full(client, old_collection, new_collection, point_count):
             break
         offset = next_offset
     return mismatches
+
+
+def _accumulate_doc_meta(doc_meta, payload):
+    """Folds one point's payload into doc_meta in place — shared by
+    _migrate_locked's copy loop (building doc_meta as a side effect of
+    copying points) and _scroll_doc_meta (rebuilding it standalone for
+    --backfill-only), so the two can't drift on what a `documents` row
+    looks like."""
+    doc_id = payload.get("document_id", "")
+    if not doc_id:
+        return
+    meta = doc_meta.setdefault(doc_id, {
+        "doc_id": doc_id,
+        "filename": payload.get("filename", "unknown"),
+        "pages": payload.get("pages", 0),
+        "chunks": 0,
+        "size_kb": payload.get("size_kb", 0),
+        "metadata": {},
+        "folder": payload.get("folder", ""),
+        "format": payload.get("format", "pdf"),
+    })
+    meta["chunks"] += 1
+
+
+def _scroll_doc_meta(client, collection_name, point_count=None):
+    """Standalone doc_meta rebuild for --backfill-only — scrolls
+    collection_name fresh (no vectors needed, just payload) and folds every
+    point through _accumulate_doc_meta. collection_name can be an alias or
+    a physical name; either resolves the same way to Qdrant."""
+    doc_meta = {}
+    scanned = 0
+    offset = None
+    while True:
+        batch, next_offset = client.scroll(
+            collection_name=collection_name, limit=SCROLL_BATCH, offset=offset,
+            with_payload=True, with_vectors=False,
+        )
+        for point in batch:
+            _accumulate_doc_meta(doc_meta, point.payload or {})
+        scanned += len(batch)
+        if point_count:
+            logger.info(f"  scanned {scanned}/{point_count}")
+        if next_offset is None:
+            break
+        offset = next_offset
+    return doc_meta
 
 
 def _backfill_postgres(postgres_url, doc_meta):

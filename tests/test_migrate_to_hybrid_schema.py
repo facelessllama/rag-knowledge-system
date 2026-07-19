@@ -25,7 +25,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 import pytest
 
 import lock as lock_module
-from migrate_to_hybrid_schema import _run
+from migrate_to_hybrid_schema import _run, _run_backfill_only
 from vector_db.qdrant_client import DENSE_VECTOR_NAME, SPARSE_VECTOR_NAME
 
 
@@ -328,3 +328,73 @@ def test_full_verify_checks_every_point_not_just_a_sample(monkeypatch):
 
     new_physical = client.aliases["knowledge_base"]
     assert client.collections[new_physical].points_count == 12
+
+
+# ── --backfill-only recovery path ────────────────────────────────────────────
+# Covers the gap a migration crashing between cutover and Postgres backfill
+# leaves: _run()'s "already hybrid — nothing to do" check means a plain
+# re-run can never reach the backfill step again. _run_backfill_only()
+# bypasses that check entirely and rebuilds `documents` from whatever the
+# collection currently is (already-hybrid or not — it doesn't care).
+
+def test_backfill_only_rebuilds_postgres_from_an_already_hybrid_collection(monkeypatch):
+    """The exact recovery scenario: the collection is ALREADY on the hybrid
+    schema (as if cutover already succeeded) — _run() itself would exit
+    immediately here without touching Postgres at all. --backfill-only must
+    still work."""
+    client = _FakeQdrantClient()
+    client.collections["knowledge_base"] = _CollectionInfo(
+        4, {DENSE_VECTOR_NAME: _VectorParams(3)}, {SPARSE_VECTOR_NAME: object()})
+    client.points["knowledge_base"] = {p.id: p for p in _old_style_points(4, document_id="doc1")}
+    monkeypatch.setattr("qdrant_client.QdrantClient", lambda **kw: client)
+    backfilled = []
+    monkeypatch.setattr("migrate_to_hybrid_schema._backfill_postgres",
+                         lambda url, doc_meta: backfilled.append(doc_meta))
+
+    _run_backfill_only(_args())
+
+    assert len(backfilled) == 1
+    assert backfilled[0]["doc1"]["chunks"] == 4
+    # purely read-only against Qdrant — no mutation of any kind
+    assert client.deleted_collections == []
+    assert client.create_collection_calls == []
+    assert client.upsert_batches == []
+
+
+def test_backfill_only_works_against_an_alias_name(monkeypatch):
+    """The normal post-migration state: args.collection is an alias, not a
+    physical name. Must resolve through it the same way _run() does."""
+    client = _FakeQdrantClient()
+    _setup_old_collection(client, n_points=3, name="knowledge_base_hybrid_999")
+    client.aliases["knowledge_base"] = "knowledge_base_hybrid_999"
+    monkeypatch.setattr("qdrant_client.QdrantClient", lambda **kw: client)
+    backfilled = []
+    monkeypatch.setattr("migrate_to_hybrid_schema._backfill_postgres",
+                         lambda url, doc_meta: backfilled.append(doc_meta))
+
+    _run_backfill_only(_args())
+
+    assert len(backfilled) == 1
+    assert backfilled[0]["doc1"]["chunks"] == 3
+
+
+def test_backfill_only_scans_in_batches(monkeypatch):
+    client = _FakeQdrantClient()
+    _setup_old_collection(client, n_points=25)
+    monkeypatch.setattr("qdrant_client.QdrantClient", lambda **kw: client)
+    monkeypatch.setattr("migrate_to_hybrid_schema.SCROLL_BATCH", 10)
+    backfilled = []
+    monkeypatch.setattr("migrate_to_hybrid_schema._backfill_postgres",
+                         lambda url, doc_meta: backfilled.append(doc_meta))
+
+    _run_backfill_only(_args())
+
+    assert backfilled[0]["doc1"]["chunks"] == 25
+
+
+def test_backfill_only_errors_clearly_when_collection_missing(monkeypatch):
+    client = _FakeQdrantClient()
+    monkeypatch.setattr("qdrant_client.QdrantClient", lambda **kw: client)
+
+    with pytest.raises(SystemExit):
+        _run_backfill_only(_args())
