@@ -42,7 +42,7 @@ The same standard was applied to the engineering side, not just retrieval qualit
 - **Cross-encoder reranking** — `ms-marco-MiniLM-L-6-v2` re-scores candidates for precision
 - **Neighbor expansion** — adjacent chunks added for context around top hits
 - **Multi-document guarantee** — retrieval ensures all relevant documents are represented in results
-- **Relevance threshold** — queries below cosine similarity 0.30 return "not found" instead of hallucinating
+- **Relevance threshold** — queries whose best post-rerank cross-encoder score (a raw logit, not a 0–1 cosine similarity — see `RELEVANCE_THRESHOLD` below) falls below `3.0` return "not found" instead of hallucinating
 
 ### Document Viewer
 - Inline source viewer highlights the exact cited passage via stored char offsets — no text search against a rendered page, so it works identically for TXT and PDF (including OCR'd pages)
@@ -77,7 +77,7 @@ The same standard was applied to the engineering side, not just retrieval qualit
 - Uploads are streamed into disk and validated (size cap, magic-byte check, page count, batch size, OCR duration, concurrent ingestion jobs — see `.env.example`) before the file is ever visible at its final path; an ASGI-level middleware also caps request body size before Starlette's multipart parser gets to spool an oversized one
 - The whole parse → chunk → embed → upsert pipeline rolls back across all three storage layers (file, Qdrant, Postgres) on any failure, including task cancellation — verified live against a real mid-pipeline Postgres failure and against Qdrant being down during rollback, not just reasoned about
 - If a reverse proxy sits in front of this app, it should set its own request body size limit too, as defense in depth — not instead of the above
-- Prompt injection protection — user input wrapped in `<question>` tags
+- Prompt injection mitigations (not a hard guarantee — an LLM has no true trust boundary): question and document-excerpt text have `<`/`>` escaped so neither can forge the literal `<question>`/`</question>` structural tags; the system prompt explicitly tells the model both the question and the document context are untrusted data, never instructions; `chat_history` turn `role` is restricted to `user`/`assistant` (a client-supplied `role: "system"` can no longer reach the LLM's messages list unlabeled); question/history/document-ID fields are length- and count-capped. See `tests/test_prompt_builder.py`'s injection tests and `tests/test_schemas.py`.
 
 ---
 
@@ -224,7 +224,9 @@ Key endpoints:
 | `GET` | `/documents/{id}/pages/{page_num}` | Normalized page text for the source viewer (TXT + PDF) |
 | `GET` | `/models` | List available Ollama models |
 | `POST` | `/switch-model` | Switch active LLM |
-| `GET` | `/health` | Health check |
+| `GET` | `/health` | Readiness (back-compat alias for `/health/ready`) — 200 only if Postgres, Qdrant and Ollama are all actually reachable, else 503 |
+| `GET` | `/health/live` | Liveness — process alive, no dependency calls |
+| `GET` | `/health/ready` | Readiness — real Postgres/Qdrant/Ollama checks, 503 on any failure |
 
 ### Authentication
 
