@@ -28,6 +28,7 @@
 # doesn't match what manifest.json recorded at backup time.
 
 set -Eeuo pipefail
+umask 077   # restored uploads/dump contain the same sensitive documents backup_qdrant.sh protects
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 cd "$SCRIPT_DIR"
 

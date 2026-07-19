@@ -39,6 +39,12 @@
 
 set -Eeuo pipefail
 
+# Backups contain the same documents/PDFs uploads/ does, plus a full
+# Postgres dump — every file this script creates from here on (the Qdrant
+# snapshot, pg_dump output, the tarball, checksums) defaults to owner-only
+# instead of the process's ambient umask.
+umask 077
+
 # Resolved from this script's own location, not the caller's CWD — must
 # land on the exact same absolute path lock.py computes from ITS own
 # location (both files live at the repo root), or the API and this script

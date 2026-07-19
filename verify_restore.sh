@@ -47,6 +47,7 @@
 # don't build a shell one-liner in the env var.
 
 set -Eeuo pipefail
+umask 077   # restores the same sensitive documents/dump backup_qdrant.sh protects
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 cd "$SCRIPT_DIR"
 

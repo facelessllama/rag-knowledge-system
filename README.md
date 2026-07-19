@@ -147,7 +147,7 @@ cp .env.example .env
 ### 2. Pull LLM model
 
 ```bash
-OLLAMA_HOST=0.0.0.0:11435 ollama pull qwen2.5:7b
+OLLAMA_HOST=127.0.0.1:11435 ollama pull qwen2.5:7b
 ```
 
 ### 3. Start infrastructure
@@ -168,14 +168,16 @@ pip install -r requirements.txt
 
 **Terminal 1 — Ollama:**
 ```bash
-OLLAMA_HOST=0.0.0.0:11435 ollama serve
+OLLAMA_HOST=127.0.0.1:11435 ollama serve
 ```
+Loopback only — Ollama has no built-in auth, so `0.0.0.0` would let any LAN-reachable client call every model with no credentials at all.
 
 **Terminal 2 — API:**
 ```bash
 source venv/bin/activate
-TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1 uvicorn api.main:app --host 0.0.0.0 --port 8000
+TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1 uvicorn api.main:app --host 127.0.0.1 --port 8000
 ```
+Also loopback only — plain HTTP, no TLS. For access beyond localhost, put a TLS-terminating reverse proxy in front of it instead of widening this bind.
 
 Open **http://localhost:8000/app**
 
