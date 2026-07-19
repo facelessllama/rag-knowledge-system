@@ -176,6 +176,32 @@ async def test_startup_releases_guard_and_cancels_watchdog_when_heavy_init_fails
     assert m._single_instance_watchdog_task is None
 
 
+async def test_lifespan_calls_shutdown_even_if_exception_raised_after_yield(monkeypatch):
+    """api/main.py's lifespan() must run shutdown() in a finally, not just
+    after a bare `yield` — otherwise an exception or cancellation delivered
+    into the generator post-yield (e.g. the ASGI server tearing down on a
+    shutdown signal) skips shutdown() entirely, leaking the Postgres
+    advisory lock and watchdog task shutdown() is responsible for releasing.
+    Reproduces exactly that: raising inside the `async with m.lifespan(...)`
+    block simulates a post-yield failure."""
+    calls = []
+
+    async def _fake_startup():
+        calls.append("startup")
+
+    async def _fake_shutdown():
+        calls.append("shutdown")
+
+    monkeypatch.setattr(m, "startup", _fake_startup)
+    monkeypatch.setattr(m, "shutdown", _fake_shutdown)
+
+    with pytest.raises(RuntimeError, match="simulated post-yield failure"):
+        async with m.lifespan(m.app):
+            raise RuntimeError("simulated post-yield failure")
+
+    assert calls == ["startup", "shutdown"]
+
+
 async def test_shutdown_releases_guard_and_cancels_watchdog(monkeypatch):
     order = []
     started = asyncio.Event()

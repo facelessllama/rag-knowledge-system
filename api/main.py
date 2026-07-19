@@ -20,7 +20,7 @@ from fastapi import FastAPI, APIRouter, UploadFile, File, Form, HTTPException, S
 from fastapi.security import APIKeyHeader
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, JSONResponse
 import json
 import aiofiles
 import hashlib
@@ -63,7 +63,32 @@ async def require_api_key(key: str = Security(api_key_header)):
     if key != API_KEY:
         raise HTTPException(status_code=401, detail="Invalid or missing API key")
 
-app = FastAPI(title="RAG Knowledge Base API", version="1.0.0")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Deliberately just calling the module-level startup()/shutdown()
+    # functions defined further down, not inlining their bodies here —
+    # tests/test_startup_guard_ordering.py calls `await m.startup()` and
+    # `await m.shutdown()` directly (no ASGI lifespan involved) to exercise
+    # the single-instance-guard sequencing without a live Postgres/Qdrant/
+    # GPU. Referencing them by name here (resolved at call time, since this
+    # generator only actually runs once uvicorn starts the app) keeps that
+    # working unchanged while replacing the deprecated @app.on_event API.
+    await startup()
+    try:
+        yield
+    finally:
+        # Without try/finally, an exception or cancellation raised into this
+        # generator after yield (e.g. the ASGI server cancelling it on a
+        # shutdown signal) would skip shutdown() entirely — verified live:
+        # simulating a post-yield failure produced ["startup"] with no
+        # "shutdown" call. shutdown() is what releases the Postgres
+        # advisory lock and cancels the watchdog task (see lock.py) — the
+        # next instance waiting on that lock has no other way to find out
+        # this one is gone.
+        await shutdown()
+
+
+app = FastAPI(title="RAG Knowledge Base API", version="1.0.0", lifespan=lifespan)
 app.include_router(telegram_router)  # no auth — Telegram calls this directly
 
 # Router for all protected endpoints
@@ -372,6 +397,37 @@ generator = None
 query_expander = None
 langfuse = None
 LANGFUSE_ENABLED = False
+
+# Dependency-provider functions for the /query and /query/stream endpoints'
+# heavy services — thin wrappers over the module globals above, wired via
+# FastAPI's Depends() instead of the endpoints reading query_expander/
+# retriever/reranker/prompt_builder/generator directly. Production behavior
+# is unchanged (each provider just returns the same global startup() sets),
+# but this makes the services swappable per-request via
+# app.dependency_overrides — see tests/fakes.py and
+# tests/test_query_endpoint.py, which drive /query through a real TestClient
+# (routing, auth, Pydantic validation all actually run) without ever
+# constructing EmbeddingService/CrossEncoderReranker/LLMGenerator, so no GPU
+# load or Ollama/Qdrant network call happens in that test.
+def get_query_expander():
+    return query_expander
+
+
+def get_retriever():
+    return retriever
+
+
+def get_reranker():
+    return reranker
+
+
+def get_prompt_builder():
+    return prompt_builder
+
+
+def get_generator():
+    return generator
+
 
 documents_registry: dict = {}
 file_hashes: dict = {}
@@ -841,7 +897,6 @@ _single_instance_healthy = False
 _single_instance_watchdog_task = None
 
 
-@app.on_event("startup")
 async def startup():
     global chunker, embedder, vector_store, retriever, reranker, prompt_builder, \
         generator, query_expander, langfuse, LANGFUSE_ENABLED, parser, txt_parser, PARSERS_BY_EXT, \
@@ -997,7 +1052,6 @@ async def startup():
     logger.info("RAG Knowledge Base API started")
 
 
-@app.on_event("shutdown")
 async def shutdown():
     global _single_instance_healthy, _single_instance_watchdog_task, _startup_reconciliation_task
     _single_instance_healthy = False
@@ -1348,19 +1402,27 @@ def _augment_compare_queries(expanded_queries: list[str], document_ids: Optional
 
 
 @protected.post("/query", response_model=QueryResponse)
-async def query_knowledge_base(request: QueryRequest):
-    if not request.question.strip():
-        raise HTTPException(400, "Question cannot be empty")
+async def query_knowledge_base(
+    request: QueryRequest,
+    query_expander=Depends(get_query_expander),
+    retriever=Depends(get_retriever),
+    reranker=Depends(get_reranker),
+    prompt_builder=Depends(get_prompt_builder),
+    generator=Depends(get_generator),
+):
+    # Blank/whitespace-only question is rejected by QueryRequest's own
+    # validator (api/schemas.py) before this body ever runs — see
+    # _question_not_blank.
     _validate_query_document_scope(request)
 
     if _query_semaphore.locked():
         raise HTTPException(429, "Too many concurrent requests, please try again shortly")
 
     async with _query_semaphore:
-        return await _do_query(request)
+        return await _do_query(request, query_expander, retriever, reranker, prompt_builder, generator)
 
 
-async def _do_query(request: QueryRequest):
+async def _do_query(request: QueryRequest, query_expander, retriever, reranker, prompt_builder, generator):
     start_time = time.time()
 
     trace = None
@@ -1486,9 +1548,21 @@ async def _do_query(request: QueryRequest):
 
 
 @protected.post("/query/stream")
-async def query_stream(request: QueryRequest):
-    if not request.question.strip():
-        raise HTTPException(400, "Question cannot be empty")
+async def query_stream(
+    request: QueryRequest,
+    query_expander=Depends(get_query_expander),
+    retriever=Depends(get_retriever),
+    reranker=Depends(get_reranker),
+    prompt_builder=Depends(get_prompt_builder),
+    generator=Depends(get_generator),
+):
+    # Blank/whitespace-only question is rejected by QueryRequest's own
+    # validator (api/schemas.py) before this body ever runs — see
+    # _question_not_blank.
+    # query_expander/retriever/reranker/prompt_builder/generator above are
+    # captured by event_stream()'s closure below — no need to thread them
+    # through explicitly the way _do_query() needs them passed in, since
+    # event_stream is defined inside this same function.
     _validate_query_document_scope(request)
 
     if _query_semaphore.locked():
@@ -1926,31 +2000,124 @@ async def list_models():
 app.include_router(protected)
 
 
-@app.get("/health")
-async def health_check():
+async def _check_postgres(timeout: float = 3.0) -> bool:
+    # connect_timeout only bounds the TCP connect phase; it does nothing
+    # once a connection is established, so a hung/overloaded server could
+    # still leave SELECT 1 blocking indefinitely. `options=-c
+    # statement_timeout=...` sets a server-side bound on the query itself,
+    # so the DB (not just our client) enforces it. asyncio.wait_for around
+    # asyncio.to_thread below cannot force-stop the underlying OS thread —
+    # it only stops the *caller* from waiting — so these two real,
+    # server/libpq-enforced timeouts are what actually end _ping(); the
+    # wait_for is just a backstop with headroom over them, not the primary
+    # bound.
+    def _ping():
+        conn = psycopg2.connect(
+            POSTGRES_URL,
+            connect_timeout=int(timeout),
+            options=f"-c statement_timeout={int(timeout * 1000)}",
+        )
+        try:
+            with conn.cursor() as cur:
+                cur.execute("SELECT 1")
+        finally:
+            conn.close()
+    try:
+        await asyncio.wait_for(asyncio.to_thread(_ping), timeout=timeout * 2 + 1)
+        return True
+    except Exception as e:
+        logger.warning(f"Postgres health check failed: {e}")
+        return False
+
+
+async def _check_qdrant(timeout: float = QDRANT_REQUEST_TIMEOUT_SECONDS) -> dict | None:
+    # get_collection_info() catches its own exceptions and returns
+    # {"collection": ..., "error": str(e)} instead of raising — so a failure
+    # here is only visible by checking for the "error" key, not via except.
+    # vector_store's own client was built with timeout=QDRANT_REQUEST_TIMEOUT_SECONDS
+    # (api/main.py's VectorStore(...) call) — that's the real, request-level
+    # bound on the blocking HTTP call inside get_collection_info(). The
+    # wait_for here can't stop that call once it's running in its thread, so
+    # it's given headroom over the client's own timeout rather than racing it.
+    try:
+        info = await asyncio.wait_for(asyncio.to_thread(vector_store.get_collection_info), timeout=timeout + 2)
+        return None if "error" in info else info
+    except Exception as e:
+        logger.warning(f"Qdrant health check failed: {e}")
+        return None
+
+
+async def _check_ollama(timeout: float = 3.0) -> bool:
+    import httpx
+    try:
+        async with httpx.AsyncClient(timeout=timeout) as client:
+            r = await client.get(f"{generator.ollama_url}/api/tags")
+            return r.status_code == 200
+    except Exception as e:
+        logger.warning(f"Ollama health check failed: {e}")
+        return False
+
+
+async def _readiness() -> JSONResponse:
     # See _single_instance_healthy's declaration above startup(): flipped by
     # the single-instance watchdog the instant it loses the Postgres
     # advisory lock's session, immediately before the process exits. Checked
     # first and unconditionally — none of the checks below mean anything if
     # this process can no longer prove it's the only one holding
-    # documents_registry/file_hashes/folders_registry.
+    # documents_registry/file_hashes/folders_registry. This one failure mode
+    # stays a plain HTTPException (not the flat JSONResponse body below) —
+    # it's "this process isn't even a valid replica", a different shape of
+    # failure than "a dependency is down", so {"detail": "..."} is fine here.
     if not _single_instance_healthy:
         raise HTTPException(503, "single-instance guard lost its Postgres session — this process is exiting")
 
-    qdrant_ok = False
-    try:
-        info = vector_store.get_collection_info()
-        qdrant_ok = True
-    except:
-        info = {}
-    return {
-        "status": "healthy" if qdrant_ok else "degraded",
+    qdrant_info, postgres_ok, ollama_ok = await asyncio.gather(
+        _check_qdrant(), _check_postgres(), _check_ollama()
+    )
+    qdrant_ok = qdrant_info is not None
+    all_ok = qdrant_ok and postgres_ok and ollama_ok
+    body = {
+        "status": "healthy" if all_ok else "degraded",
         "components": {
             "qdrant": "ok" if qdrant_ok else "error",
-            "ollama": "ok",
+            "postgres": "ok" if postgres_ok else "error",
+            "ollama": "ok" if ollama_ok else "error",
             "embedding_model": embedder.model_name,
             "llm_model": generator.model,
             "langfuse": "ok" if LANGFUSE_ENABLED else "disabled"
         },
-        "vector_store": info
+        "vector_store": qdrant_info or {}
     }
+    # Returned as a plain JSONResponse, not raised as an HTTPException(detail=body)
+    # — FastAPI wraps HTTPException.detail in {"detail": ...}, which would nest
+    # this body one level deeper than what it actually documents/looks like.
+    return JSONResponse(status_code=200 if all_ok else 503, content=body)
+
+
+@app.get("/health/live")
+async def health_live():
+    """Liveness: is this process itself still able to serve traffic at all —
+    no calls to Postgres/Qdrant/Ollama. A load balancer/orchestrator should
+    restart the process on failure here; a downstream dependency being down
+    is NOT a liveness failure (see /health/ready for that)."""
+    if not _single_instance_healthy:
+        raise HTTPException(503, "single-instance guard lost its Postgres session — this process is exiting")
+    return {"status": "alive"}
+
+
+@app.get("/health/ready")
+async def health_ready():
+    """Readiness: process alive AND Postgres/Qdrant/Ollama actually reachable.
+    Returns HTTP 503 (not 200 with a 'degraded' field buried in the body) the
+    moment any of them fails, so orchestrators/load balancers can act on the
+    status code alone."""
+    return await _readiness()
+
+
+@app.get("/health")
+async def health_check():
+    """Back-compat alias for /health/ready — same real checks, same 503 on
+    failure. Kept because README/start_rag.sh/frontend/scripts already poll
+    this path; new integrations should prefer /health/live or /health/ready
+    directly."""
+    return await _readiness()
