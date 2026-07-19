@@ -17,6 +17,7 @@ from backfill_document_pages import (
     compare_chunks, verify_offset_invariant, reindex_document, scroll_all_points,
 )
 from ingestion.chunker import TextChunk
+from vector_db.qdrant_client import point_id_for_chunk
 
 
 def _chunk(chunk_id, page_num=1, chunk_index=0, char_start=0, char_end=10,
@@ -28,7 +29,15 @@ def _chunk(chunk_id, page_num=1, chunk_index=0, char_start=0, char_end=10,
     )
 
 
-def _old_point(chunk_id, point_id="pid-1", **payload_overrides):
+def _old_point(chunk_id, point_id=None, **payload_overrides):
+    # Defaults to the CURRENT deterministic ID for this chunk_id — i.e. "this
+    # point has already been migrated onto point_id_for_chunk()" — so tests
+    # that aren't specifically about point-ID migration get an old_points
+    # fixture that doesn't itself trigger a legacy_point_ids mismatch. Pass
+    # an explicit mismatched point_id (e.g. "pid-1") to simulate a
+    # pre-migration random-uuid4() point instead.
+    if point_id is None:
+        point_id = point_id_for_chunk(chunk_id)
     payload = {
         "chunk_id": chunk_id, "page_num": 1, "chunk_index": 0,
         "char_start": 0, "char_end": 10, "text": "0123456789", "has_ocr": False,
@@ -83,6 +92,31 @@ def test_compare_chunks_detects_duplicate_point_for_same_chunk_id():
     assert not ok
     assert "c1" in report["duplicates"]
     assert set(report["duplicates"]["c1"]) == {"pid-A", "pid-B"}
+
+
+def test_compare_chunks_flags_legacy_random_uuid_point_id_as_mismatch():
+    """A point written before point_id_for_chunk() existed carries a random
+    uuid4() ID unrelated to its chunk_id. Content/offsets can match the
+    current chunker perfectly — the only thing wrong is the ID itself — so
+    this must be caught independently of the field-by-field comparison,
+    otherwise the document is reported 'ok' and never gets migrated onto
+    the deterministic scheme: a later plain re-upsert of this same
+    unchanged chunk would then create a second point at the new ID rather
+    than overwriting this one."""
+    old_points = {"c1": [_old_point("c1", point_id="legacy-random-uuid")]}
+    new_chunks = [_chunk("c1")]  # text/offsets identical — only the point ID is stale
+    ok, report = compare_chunks(old_points, invalid_point_ids=[], new_chunks=new_chunks)
+    assert not ok
+    assert report["legacy_point_ids"] == {"c1": "legacy-random-uuid"}
+    assert not report["mismatched"]  # confirms this isn't being caught via field comparison
+
+
+def test_compare_chunks_accepts_point_id_already_on_the_deterministic_scheme():
+    old_points = {"c1": [_old_point("c1", point_id=point_id_for_chunk("c1"))]}
+    new_chunks = [_chunk("c1")]
+    ok, report = compare_chunks(old_points, invalid_point_ids=[], new_chunks=new_chunks)
+    assert ok
+    assert report["legacy_point_ids"] == {}
 
 
 def test_compare_chunks_flags_invalid_chunk_id_less_points_as_mismatch():
@@ -230,3 +264,45 @@ def test_reindex_document_leaves_old_points_untouched_if_upsert_fails():
         reindex_document(vs, embedder, _chunk_context_text, "doc1", "f.pdf", "folder", parsed, chunks, old_point_ids)
 
     assert vs.calls == ["upsert"]  # delete never reached
+
+
+def test_reindex_document_never_deletes_a_point_id_a_fresh_chunk_reuses():
+    """Point IDs are deterministic now (vector_db.qdrant_client.
+    point_id_for_chunk, derived from chunk_id) — a chunk_id whose boundaries
+    didn't move reindexes to the SAME point ID it already had in Qdrant.
+    old_point_ids (collected BEFORE upsert_chunks runs above) can therefore
+    legitimately include an ID that the upsert just (re)wrote. Deleting it
+    unconditionally afterward would delete the point this very call just
+    wrote — the exact "briefly lose an unchanged chunk" bug this filtering
+    exists to prevent."""
+    from vector_db.qdrant_client import point_id_for_chunk
+
+    vs = _FakeVectorStore()
+    embedder = _FakeEmbedder()
+    parsed = type("Parsed", (), {"total_pages": 1})()
+    chunks = [_chunk("c1"), _chunk("c2", chunk_index=1)]
+    fresh_id_for_c1 = point_id_for_chunk("c1")  # c1's boundaries are unchanged -> same ID as before
+    stale_id = "pid-stale"  # belonged to a chunk_id the new chunk set no longer produces
+    old_point_ids = [fresh_id_for_c1, stale_id]
+
+    reindex_document(vs, embedder, _chunk_context_text, "doc1", "f.pdf", "folder", parsed, chunks, old_point_ids)
+
+    assert vs.calls == ["upsert", "delete"]
+    assert vs.deleted_selector == [stale_id]  # NOT fresh_id_for_c1 — that one was just rewritten
+
+
+def test_reindex_document_skips_delete_when_every_old_point_id_survives():
+    """If every old point ID matches a freshly-upserted chunk's deterministic
+    ID (nothing actually changed), there is nothing stale to delete —
+    delete() must not be called at all, not called with an empty selector."""
+    from vector_db.qdrant_client import point_id_for_chunk
+
+    vs = _FakeVectorStore()
+    embedder = _FakeEmbedder()
+    parsed = type("Parsed", (), {"total_pages": 1})()
+    chunks = [_chunk("c1")]
+    old_point_ids = [point_id_for_chunk("c1")]
+
+    reindex_document(vs, embedder, _chunk_context_text, "doc1", "f.pdf", "folder", parsed, chunks, old_point_ids)
+
+    assert vs.calls == ["upsert"]  # delete never called

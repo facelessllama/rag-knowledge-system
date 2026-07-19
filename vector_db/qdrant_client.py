@@ -28,6 +28,26 @@ logger = logging.getLogger(__name__)
 DENSE_VECTOR_NAME = "dense"
 SPARSE_VECTOR_NAME = "bm25"
 
+# Fixed, arbitrary namespace UUID for deriving deterministic Qdrant point IDs
+# from a chunk's chunk_id (see point_id_for_chunk). Must never change once
+# chosen — doing so would silently "orphan" every existing point, since a
+# fresh upsert would compute a different ID and stop overwriting the old one
+# instead of updating it in place.
+_POINT_ID_NAMESPACE = uuid.UUID("6f8f2b34-5a8b-4b0e-9f7f-9d6a2b6a0e11")
+
+
+def point_id_for_chunk(chunk_id: str) -> str:
+    """Deterministic Qdrant point ID for a given chunk_id. Point IDs used to
+    be a fresh uuid4() on every upsert_chunks() call — re-upserting the same
+    chunk_id (a retried upload after a partial failure, or
+    scripts/backfill_document_pages.py re-embedding a chunk whose boundaries
+    didn't actually move) created a brand-new point instead of overwriting
+    the old one, leaving duplicates behind. Qdrant point IDs must be an
+    unsigned int or a UUID string — chunk_id itself (e.g. "<doc_id>_p3_c1")
+    isn't a valid UUID, so it's hashed into one via uuid5's deterministic
+    namespace+name construction (not uuid4's randomness) instead."""
+    return str(uuid.uuid5(_POINT_ID_NAMESPACE, chunk_id))
+
 _PAYLOAD_INDEXES = (
     ("document_id", PayloadSchemaType.KEYWORD),
     ("folder", PayloadSchemaType.KEYWORD),
@@ -70,8 +90,20 @@ class VectorStore:
         logger.info(f"Connected to Qdrant | collection: {collection} | timeout: {timeout}s")
 
     def create_collection(self, vector_size: int = 1024):
-        existing = [c.name for c in self.client.get_collections().collections]
-        if self.collection not in existing:
+        # get_collections() only lists PHYSICAL collections, never aliases
+        # (verified live: creating an alias doesn't add it to this list) —
+        # so `self.collection not in existing` used to be True whenever
+        # self.collection was an alias (see scripts/migrate_to_hybrid_
+        # schema.py's alias cutover), and the client.create_collection()
+        # call below then failed outright (Qdrant 400: "Alias with the same
+        # name already exists"), breaking every startup() after a
+        # collection was migrated onto an alias. get_collection() resolves
+        # both physical names and aliases identically, so it's what
+        # actually answers "does this name already point to something" —
+        # NotFound is the only case that means "create it".
+        try:
+            self.client.get_collection(self.collection)
+        except Exception:
             self.client.create_collection(
                 collection_name=self.collection,
                 vectors_config={DENSE_VECTOR_NAME: VectorParams(size=vector_size, distance=Distance.COSINE)},
@@ -92,6 +124,35 @@ class VectorStore:
                 logger.debug(f"Payload index '{field}' already present or failed to create: {e}")
 
     def upsert_chunks(self, chunks: list, vectors: list[list[float]]):
+        # zip(chunks, vectors) silently stops at the shorter of the two —
+        # if the embedding backend ever returns fewer vectors than chunks
+        # (a batch API returning a partial/truncated result, say), the
+        # excess chunks would simply vanish from Qdrant with no error,
+        # while Postgres' documents.chunks count (set from len(chunks)
+        # elsewhere) keeps recording the full number. Fail loudly instead.
+        if len(chunks) != len(vectors):
+            raise ValueError(
+                f"upsert_chunks: {len(chunks)} chunks but {len(vectors)} vectors — refusing to "
+                "upsert (would silently drop the mismatched remainder via zip())"
+            )
+        # point_id_for_chunk() is a pure function of chunk_id, so two chunks
+        # sharing one chunk_id in the same batch would map to the same point
+        # ID and Qdrant would keep only one of them — the same silent
+        # element loss the length check above guards against, just via a
+        # duplicate key instead of a short list. SmartChunker's numbering
+        # (chunk.py's f"{doc_id}_p{page_num}_c{index}") makes this
+        # unreachable on the normal ingestion path, but upsert_chunks() now
+        # depends on that uniqueness holding, so it's enforced here rather
+        # than left as an unstated assumption on every future caller.
+        seen_chunk_ids = set()
+        for chunk in chunks:
+            if chunk.chunk_id in seen_chunk_ids:
+                raise ValueError(
+                    f"upsert_chunks: duplicate chunk_id {chunk.chunk_id!r} in the same batch — "
+                    "would map to the same deterministic point ID and silently overwrite one "
+                    "of the two chunks instead of storing both"
+                )
+            seen_chunk_ids.add(chunk.chunk_id)
         points = []
         for chunk, vector in zip(chunks, vectors):
             filename = getattr(chunk, "filename", "") or ""
@@ -99,7 +160,7 @@ class VectorStore:
             celex_id = extract_celex_id(filename)
             citation_meta = extract_citation_number(filename)
             points.append(PointStruct(
-                id=str(uuid.uuid4()),
+                id=point_id_for_chunk(chunk.chunk_id),
                 vector={
                     DENSE_VECTOR_NAME: vector,
                     SPARSE_VECTOR_NAME: build_sparse_vector(chunk_context_text(chunk)),

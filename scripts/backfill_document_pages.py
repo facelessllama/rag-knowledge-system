@@ -31,28 +31,40 @@ For every PDF document in Postgres (documents table):
      it used to just be skipped over, invisible to comparison and never
      collected for deletion, so it would survive every backfill forever.
   3. Compare, chunk_id for chunk_id: text, page_num, chunk_index,
-     char_start, char_end. Any missing chunk_id, extra chunk_id, duplicate
-     chunk_id, invalid (chunk_id-less) point, or field mismatch fails
-     verification. `has_ocr` is deliberately NOT compared here — it's
-     informational metadata (no payload index, nothing in retrieval or the
-     frontend branches on it — see ingestion/pdf_parser.py), not a
-     correctness invariant like the offsets above; comparing it would force
-     a full re-embed/re-upsert of a document whose actual indexed text and
-     offsets never changed, purely because pdf_parser.py's OCR-detection
-     heuristic was refined and now computes a different value for some
-     already-ingested page.
+     char_start, char_end, AND that the live point's ID equals
+     vector_db/qdrant_client.py::point_id_for_chunk(chunk_id) — a point
+     written before that deterministic scheme existed carries an unrelated
+     random uuid4() ID, which content/offsets matching perfectly wouldn't
+     catch on its own, and which a later plain re-upsert of that same
+     unchanged chunk would then duplicate rather than overwrite (Qdrant only
+     overwrites an exact ID match). This is this script's only migration
+     path for such pre-existing points onto the deterministic scheme — see
+     compare_chunks()'s legacy_point_ids. Any missing chunk_id, extra
+     chunk_id, duplicate chunk_id, invalid (chunk_id-less) point, legacy
+     point ID, or field mismatch fails verification. `has_ocr` is
+     deliberately NOT compared here — it's informational metadata (no
+     payload index, nothing in retrieval or the frontend branches on it —
+     see ingestion/pdf_parser.py), not a correctness invariant like the
+     offsets above; comparing it would force a full re-embed/re-upsert of a
+     document whose actual indexed text and offsets never changed, purely
+     because pdf_parser.py's OCR-detection heuristic was refined and now
+     computes a different value for some already-ingested page.
   4. Independently re-verify the invariant
      normalized_page_text[char_start:char_end] == chunk.text for every
      chunk — belt-and-braces on top of #3.
   5. Only if everything matches: persist page text as-is. Otherwise the
      document is out of sync with what's actually indexed:
-       a. chunk + embed the fresh chunks and upsert them (new random
-          uuid4() point IDs — see vector_db/qdrant_client.py::
-          upsert_chunks — so this never collides with the old points).
-       b. only once the new points are safely in Qdrant, delete the OLD
-          point IDs collected in step 2 (by exact point ID, not a
-          document_id filter — a filter would also delete the new points
-          we just added, since they share the same document_id).
+       a. chunk + embed the fresh chunks and upsert them (deterministic
+          point IDs derived from chunk_id — see vector_db/qdrant_client.py::
+          point_id_for_chunk/upsert_chunks — so an unchanged chunk_id
+          overwrites its existing point in place instead of duplicating it).
+       b. only once the new points are safely in Qdrant, delete whichever
+          OLD point IDs collected in step 2 are NOT among the IDs just
+          (re)written (by exact point ID, not a document_id filter — a
+          filter would also delete the new points we just added, since they
+          share the same document_id; and deleting an old ID that matches a
+          freshly-written one would undo the overwrite from 5a for any
+          chunk whose boundaries didn't move — see reindex_document()).
        c. refresh documents.chunks/pages, THEN persist page text.
      Embedding a fresh set before deleting the old one means a mid-way
      failure (GPU error, Qdrant write error) leaves the document with its
@@ -131,6 +143,8 @@ def scroll_all_points(client, collection, doc_id):
 
 
 def compare_chunks(old_points, invalid_point_ids, new_chunks):
+    from vector_db.qdrant_client import point_id_for_chunk
+
     old_ids = set(old_points.keys())
     new_by_id = {c.chunk_id: c for c in new_chunks}
     new_ids = set(new_by_id.keys())
@@ -139,6 +153,19 @@ def compare_chunks(old_points, invalid_point_ids, new_chunks):
     extra = new_ids - old_ids    # chunker produces it now, wasn't in Qdrant before
     duplicates = {cid: [e["point_id"] for e in entries] for cid, entries in old_points.items() if len(entries) > 1}
     mismatched = []
+    # Points written before point_id_for_chunk() existed carry a random
+    # uuid4() ID with no relationship to chunk_id. Text/offsets on such a
+    # point can match the current chunker perfectly (the "ok" case below
+    # would otherwise happily leave it alone) — but a later plain re-upsert
+    # of this same, unchanged chunk_id computes the NEW deterministic ID,
+    # which Qdrant treats as a different point: it creates a second point
+    # alongside this legacy one rather than overwriting it, instead of the
+    # idempotent in-place update upsert_chunks() is supposed to guarantee.
+    # Flagging the ID mismatch here forces exactly this document through
+    # reindex_document() once, which upserts fresh deterministic-ID points
+    # and then deletes this stale legacy one (see its stale_point_ids
+    # filtering) — the one-time migration path for pre-existing points.
+    legacy_point_ids = {}
 
     for cid in old_ids & new_ids:
         entries = old_points[cid]
@@ -149,10 +176,13 @@ def compare_chunks(old_points, invalid_point_ids, new_chunks):
             new_val = getattr(new, field)
             if old_val != new_val:
                 mismatched.append((cid, field, old_val, new_val))
+        if len(entries) == 1 and entries[0]["point_id"] != point_id_for_chunk(cid):
+            legacy_point_ids[cid] = entries[0]["point_id"]
 
-    ok = not missing and not extra and not mismatched and not duplicates and not invalid_point_ids
+    ok = (not missing and not extra and not mismatched and not duplicates
+          and not invalid_point_ids and not legacy_point_ids)
     return ok, {"missing": missing, "extra": extra, "mismatched": mismatched, "duplicates": duplicates,
-                "invalid_point_ids": invalid_point_ids}
+                "invalid_point_ids": invalid_point_ids, "legacy_point_ids": legacy_point_ids}
 
 
 def verify_offset_invariant(chunks, normalized_pages):
@@ -203,13 +233,26 @@ def save_document(conn, doc_id, filename, pages, chunks, size_kb, metadata, fold
 
 def reindex_document(vector_store, embedder, chunk_context_text, doc_id, filename, folder,
                       parsed, chunks, old_point_ids):
-    """Embed + upsert the fresh chunk set FIRST (new random uuid4() point
-    IDs — never collides with the old ones), and only delete the old point
-    IDs — collected by the caller from scroll_all_points(), never derived
-    by re-filtering on document_id — once the new points are confirmed
-    written. A crash between upsert and delete leaves old+new both present
-    (a temporary duplicate the next verification pass will catch and
-    re-reindex), never zero points for the document."""
+    """Embed + upsert the fresh chunk set FIRST, and only delete stale old
+    point IDs — collected by the caller from scroll_all_points(), never
+    derived by re-filtering on document_id — once the new points are
+    confirmed written. A crash between upsert and delete leaves old+new both
+    present (a temporary duplicate the next verification pass will catch and
+    re-reindex), never zero points for the document.
+
+    Point IDs are deterministic (vector_db.qdrant_client.point_id_for_chunk,
+    derived from chunk_id) as of the fix for silently-duplicating uuid4()
+    IDs on every upsert — so a chunk_id whose boundaries didn't move
+    reindexes to the SAME point ID it already had. old_point_ids (collected
+    BEFORE this function's upsert runs) can therefore legitimately overlap
+    with what upsert_chunks() just wrote: deleting that ID afterward,
+    unconditionally, would delete the point this very call just (re)wrote,
+    turning "reindex an unchanged chunk" into "briefly lose it, then never
+    get it back until the next run notices it's missing". Only IDs that are
+    genuinely absent from the new chunk set — i.e. actually stale — are
+    deleted."""
+    from vector_db.qdrant_client import point_id_for_chunk
+
     for c in chunks:
         c.filename = filename
         c.pages = parsed.total_pages
@@ -218,10 +261,12 @@ def reindex_document(vector_store, embedder, chunk_context_text, doc_id, filenam
     vectors = embedder.embed_batch(texts)
     vector_store.upsert_chunks(chunks, vectors)
 
-    if old_point_ids:
+    new_point_ids = {point_id_for_chunk(c.chunk_id) for c in chunks}
+    stale_point_ids = [pid for pid in old_point_ids if pid not in new_point_ids]
+    if stale_point_ids:
         vector_store.client.delete(
             collection_name=vector_store.collection,
-            points_selector=old_point_ids,
+            points_selector=stale_point_ids,
         )
 
 
@@ -316,7 +361,8 @@ def _run(args):
                             f"missing={len(report['missing'])} extra={len(report['extra'])} "
                             f"field_mismatches={len(report['mismatched'])} "
                             f"duplicate_chunk_ids={len(report['duplicates'])} "
-                            f"invalid_points={len(report['invalid_point_ids'])} -> reindexing")
+                            f"invalid_points={len(report['invalid_point_ids'])} "
+                            f"legacy_point_ids={len(report['legacy_point_ids'])} -> reindexing")
             mismatch_details.append((doc_id, filename, report))
             reindexed += 1
             if not args.dry_run:

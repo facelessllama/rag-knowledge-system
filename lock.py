@@ -38,6 +38,7 @@ import fcntl
 import logging
 import math
 import os
+import time
 from contextlib import contextmanager
 from pathlib import Path
 
@@ -288,6 +289,54 @@ def shared_lock():
     except BlockingIOError:
         os.close(fd)
         raise
+    try:
+        yield
+    finally:
+        fcntl.flock(fd, fcntl.LOCK_UN)
+        os.close(fd)
+
+
+@contextmanager
+def exclusive_lock(wait_seconds: float = 30.0):
+    """Exclusive counterpart to shared_lock() — the same barrier
+    backup_qdrant.sh's own `flock -x` on this file provides via the shell
+    directly (see backup_qdrant.sh's LOCK_FILE/flock usage). Any number of
+    shared_lock() holders can run concurrently with each other, but none can
+    be acquired while this is held, and this cannot be acquired while even
+    one shared_lock() holder is still active — a real mutual-exclusion
+    barrier, not just a hint.
+
+    For a maintenance operation that needs to guarantee nothing else
+    mutates Qdrant/Postgres/uploads/ for a bounded window (e.g. a Qdrant
+    collection cutover that deletes one name and re-points an alias to
+    another — see scripts/migrate_to_hybrid_schema.py) rather than just
+    protecting itself from backup_qdrant.sh's snapshot window the way
+    shared_lock() does.
+
+    Blocking (not shared_lock()'s non-blocking LOCK_NB), waiting up to
+    wait_seconds for in-flight shared_lock() holders to finish naturally —
+    an immediate hard failure here would make any exclusive-barrier
+    operation unusable whenever even one ordinary request happened to be
+    mid-flight, which for a live API is close to "always". Raises
+    TimeoutError, not BlockingIOError, if the wait itself times out — a
+    different failure mode from shared_lock()'s "someone else already holds
+    it and isn't ever going to be waited out", so callers shouldn't confuse
+    the two."""
+    LOCK_FILE_PATH.touch(exist_ok=True)
+    fd = os.open(str(LOCK_FILE_PATH), os.O_RDWR)
+    deadline = time.monotonic() + wait_seconds
+    while True:
+        try:
+            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            break
+        except BlockingIOError:
+            if time.monotonic() >= deadline:
+                os.close(fd)
+                raise TimeoutError(
+                    f"could not acquire the exclusive lock on {LOCK_FILE_PATH} within "
+                    f"{wait_seconds}s — a mutation (or another exclusive holder) held it too long"
+                )
+            time.sleep(0.2)
     try:
         yield
     finally:
