@@ -2,7 +2,7 @@
 
 > Fully local AI-powered document search and Q&A. No cloud, no data leaks — runs entirely on your hardware.
 
-![Python](https://img.shields.io/badge/Python-3.12-blue) ![FastAPI](https://img.shields.io/badge/FastAPI-0.135-green) ![Qdrant](https://img.shields.io/badge/Qdrant-vector--db-red) ![Ollama](https://img.shields.io/badge/Ollama-local_LLM-orange)
+![Python](https://img.shields.io/badge/Python-3.12-blue) ![FastAPI](https://img.shields.io/badge/FastAPI-0.135-green) ![Qdrant](https://img.shields.io/badge/Qdrant-vector--db-red) ![Ollama](https://img.shields.io/badge/Ollama-local_LLM-orange) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 ---
 
@@ -420,3 +420,9 @@ The fix follows the same shape as the process-lock story above: write a durable 
 - **Tesseract** — OCR for scanned pages
 - **Langfuse** — observability (self-hosted, optional)
 - **PDF.js** — client-side PDF rendering
+
+---
+
+## License
+
+[MIT](LICENSE)
