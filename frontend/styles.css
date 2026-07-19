@@ -219,7 +219,7 @@ body {
 .scope-dropdown.open { display: block; }
 #welcomeScopeDropdown { top: calc(100% + 6px); left: 0; }
 .welcome-input-wrap { width: 100%; display: flex; align-items: center; gap: 10px; padding: 8px 8px 8px 20px; border-radius: 18px; background: var(--surface); border: 1px solid var(--border-strong); box-shadow: var(--shadow); transition: border-color .15s, box-shadow .15s; }
-.welcome-input-wrap:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft), var(--shadow); }
+.welcome-input-wrap:focus-within { border-color: var(--accent); }
 .welcome-input { flex: 1; background: transparent; border: none; outline: none; color: var(--text); font-size: 15px; font-family: var(--font); padding: 8px 0; }
 .welcome-input::placeholder { color: var(--text-muted); }
 
@@ -297,7 +297,7 @@ body {
 .ff-option .ff-check { margin-left: auto; opacity: 0; display: flex; }
 .ff-option.selected .ff-check { opacity: 1; }
 .chat-input-wrap { flex: 1; display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 18px; border-radius: 22px; background: var(--surface); border: 1px solid var(--border-strong); transition: border-color .15s, box-shadow .15s; }
-.chat-input-wrap:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.chat-input-wrap:focus-within { border-color: var(--accent); }
 .chat-input { flex: 1; border: none; font-size: 14px; font-family: var(--font); background: transparent; color: var(--text); outline: none; padding: 8px 0; }
 .chat-input::placeholder { color: var(--text-muted); }
 .send-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .2s, transform .1s; color: #06251b; }
