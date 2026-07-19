@@ -18,6 +18,7 @@ patch_*.py
 .env.save
 backups/
 .backup.lock
+logs/
 scripts/migration_map.json
 eval/last_run_scores*.json
 eval/deepseek_accuracy_results.json
