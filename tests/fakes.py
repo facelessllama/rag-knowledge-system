@@ -13,6 +13,9 @@ class FakeQueryExpander:
     async def expand(self, question: str) -> list[str]:
         return [question]
 
+    async def contextualize(self, question: str, chat_history) -> str:
+        return question
+
 
 class FakeRetriever:
     def __init__(self, chunks: list[dict]):

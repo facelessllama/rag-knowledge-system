@@ -1430,8 +1430,19 @@ async def _do_query(request: QueryRequest, query_expander, retriever, reranker, 
         except Exception as e:
             logger.warning(f"Langfuse trace failed: {e}")
 
+    # chat_history is otherwise only used by prompt_builder.build() below,
+    # for the final ANSWER generation — retrieval/reranking never saw it at
+    # all until contextualize(), so a follow-up like "What was the court's
+    # final decision?" used to search/rerank on that literal text alone,
+    # with nothing pointing retrieval at which case "the court" even means.
+    # search_query is what actually goes to expand()/retrieve_expanded()/
+    # rerank() below; request.question (the user's literal wording) still
+    # goes to prompt_builder and the trace, unchanged.
+    chat_history_dicts = [t.model_dump() for t in request.chat_history] if request.chat_history else []
+    search_query = await query_expander.contextualize(request.question, chat_history_dicts)
+
     t0 = time.time()
-    expanded_queries = await query_expander.expand(request.question)
+    expanded_queries = await query_expander.expand(search_query)
     expanded_queries = _augment_compare_queries(expanded_queries, request.document_ids)
     chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None, document_ids=request.document_ids or None)
     chunks = _active_chunks(chunks)
@@ -1448,7 +1459,7 @@ async def _do_query(request: QueryRequest, query_expander, retriever, reranker, 
         return QueryResponse(answer="No relevant information found in the knowledge base.",
                            sources=[], model=generator.model, tokens_used=0)
 
-    top_chunks = await run_on_gpu(reranker.rerank, request.question, chunks, top_k=request.top_k)
+    top_chunks = await run_on_gpu(reranker.rerank, search_query, chunks, top_k=request.top_k)
     top_chunks = promote_identity_matches(chunks, top_chunks, RELEVANCE_THRESHOLD)
     top_chunks = promote_document_opening_chunks(chunks, top_chunks)
     top_chunks = promote_missing_compare_documents(chunks, top_chunks, request.document_ids)
@@ -1471,10 +1482,11 @@ async def _do_query(request: QueryRequest, query_expander, retriever, reranker, 
         return QueryResponse(answer="I couldn't find relevant information in the knowledge base to answer this question.",
                            sources=[], model=generator.model, tokens_used=0,
                            debug={"best_rerank_score": round(best_score, 4), "threshold": RELEVANCE_THRESHOLD,
-                                  "chunks_retrieved": len(chunks), "chunks_after_rerank": len(top_chunks)})
+                                  "chunks_retrieved": len(chunks), "chunks_after_rerank": len(top_chunks),
+                                  "search_query": search_query if search_query != request.question else None})
 
     messages = prompt_builder.build(query=request.question, chunks=top_chunks,
-                                   chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [])
+                                   chat_history=chat_history_dicts)
 
     t1 = time.time()
     result = await generator.generate_with_refusal_retry(messages, model=request.model or None)
@@ -1524,6 +1536,7 @@ async def _do_query(request: QueryRequest, query_expander, retriever, reranker, 
     return QueryResponse(answer=result["answer"], sources=sources,
                         model=result["model"], tokens_used=result["total_tokens"],
                         debug={
+                            "search_query": search_query if search_query != request.question else None,
                             "expanded_queries": expanded_queries,
                             "retrieval_ms": retrieval_ms,
                             "generation_ms": generation_ms,
@@ -1577,8 +1590,17 @@ async def query_stream(
                 except Exception:
                     pass
 
+            # See _do_query()'s identical comment: chat_history was otherwise
+            # only used for the final answer generation below — retrieval/
+            # reranking never saw it, so a context-dependent follow-up
+            # ("What was the court's final decision?") searched/reranked on
+            # that literal text alone, with nothing pointing at which case
+            # "the court" refers to.
+            chat_history_dicts = [t.model_dump() for t in request.chat_history] if request.chat_history else []
+            search_query = await query_expander.contextualize(request.question, chat_history_dicts)
+
             t0 = time.time()
-            expanded_queries = await query_expander.expand(request.question)
+            expanded_queries = await query_expander.expand(search_query)
             expanded_queries = _augment_compare_queries(expanded_queries, request.document_ids)
             expansion_ms = int((time.time() - t0) * 1000)
 
@@ -1600,7 +1622,7 @@ async def query_stream(
                 try:
                     trace.span(name="query_expansion", input=request.question,
                                output={"queries": expanded_queries},
-                               metadata={"duration_ms": expansion_ms})
+                               metadata={"duration_ms": expansion_ms, "search_query": search_query})
                     trace.span(name="retrieval", input=expanded_queries,
                                output=score_meta,
                                metadata={"duration_ms": retrieval_ms})
@@ -1613,7 +1635,7 @@ async def query_stream(
                 return
 
             t2 = time.time()
-            top_chunks = await run_on_gpu(reranker.rerank, request.question, chunks, top_k=request.top_k)
+            top_chunks = await run_on_gpu(reranker.rerank, search_query, chunks, top_k=request.top_k)
             top_chunks = promote_identity_matches(chunks, top_chunks, RELEVANCE_THRESHOLD)
             top_chunks = promote_document_opening_chunks(chunks, top_chunks)
             top_chunks = promote_missing_compare_documents(chunks, top_chunks, request.document_ids)
@@ -1633,12 +1655,12 @@ async def query_stream(
                 logger.info(f"Best rerank score {best_score:.3f} below threshold {RELEVANCE_THRESHOLD} — not answering")
                 msg = "I couldn't find relevant information in the knowledge base to answer this question."
                 yield f"data: {json.dumps({'type': 'token', 'content': msg})}\n\n"
-                yield f"data: {json.dumps({'type': 'sources', 'sources': [], 'debug': {**score_meta, 'threshold': RELEVANCE_THRESHOLD}})}\n\n"
+                yield f"data: {json.dumps({'type': 'sources', 'sources': [], 'debug': {**score_meta, 'threshold': RELEVANCE_THRESHOLD, 'search_query': search_query if search_query != request.question else None}})}\n\n"
                 yield f"data: {json.dumps({'type': 'done'})}\n\n"
                 return
 
             messages = prompt_builder.build(query=request.question, chunks=top_chunks,
-                                            chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [])
+                                            chat_history=chat_history_dicts)
 
             t2 = time.time()
             answer_tokens = []
@@ -1688,6 +1710,7 @@ async def query_stream(
 
             total_ms = int((time.time() - start_time) * 1000)
             debug_payload = {
+                'search_query': search_query if search_query != request.question else None,
                 'expanded_queries': expanded_queries,
                 'total_ms': total_ms,
                 'expansion_ms': expansion_ms,
