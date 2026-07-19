@@ -8,7 +8,7 @@ function authHeaders(extra) {
 }
 
 async function apiHealth() {
-  const r = await fetch(API + '/health');
+  const r = await fetch(API + '/health/ready');
   return r.ok;
 }
 
@@ -60,10 +60,32 @@ async function apiQuery(question, topK, rerank, model) {
   return { ok: r.ok, data: r.ok ? await r.json() : null };
 }
 
+// Returns an AbortController — callers that want to cancel a stream in
+// flight (e.g. starting a new query, navigating away, tearing down the
+// chat panel) call the returned handle's .abort() to actually stop the
+// underlying fetch/reader instead of leaving it running unobserved.
 function apiQueryStream(question, topK, model, chatHistory, folder, documentIds, onToken, onSources, onDone) {
+  var controller = new AbortController();
+  var finished = false;
+
+  // Single completion gate: exactly one of onDone(null) / onDone(err) ever
+  // reaches the caller, regardless of how many of the paths below (the SSE
+  // 'done'/'error' event, the underlying stream's own result.done, a fetch
+  // rejection, or an external abort) end up firing. Previously an SSE
+  // 'done'/'error' event didn't stop the read loop — it kept calling
+  // read(), so the stream's own natural close a moment later re-fired
+  // onDone(null) a second time, potentially overwriting an error already
+  // reported to the caller with a spurious "success".
+  function finishOnce(error) {
+    if (finished) return;
+    finished = true;
+    onDone(error);
+  }
+
   fetch(API + '/query/stream', {
     method: 'POST',
     headers: authHeaders({ 'Content-Type': 'application/json' }),
+    signal: controller.signal,
     body: JSON.stringify({
       question: question, top_k: topK, model: model || undefined, chat_history: chatHistory || [],
       folder: folder || undefined,
@@ -74,31 +96,45 @@ function apiQueryStream(question, topK, model, chatHistory, folder, documentIds,
       document_ids: (documentIds && documentIds.length) ? documentIds : undefined,
     })
   }).then(function(r) {
-    if (!r.ok) { onDone(new Error('stream failed')); return; }
+    if (!r.ok) { finishOnce(new Error('stream failed')); return; }
     var reader = r.body.getReader();
     var decoder = new TextDecoder();
     var buf = '';
     function read() {
+      if (finished) return; // a terminal event already fired while this call was queued
       reader.read().then(function(result) {
-        if (result.done) { onDone(null); return; }
+        if (finished) return; // fired while this read() was in flight (e.g. an external abort)
+        if (result.done) { finishOnce(null); return; }
         buf += decoder.decode(result.value, { stream: true });
         var lines = buf.split('\n');
         buf = lines.pop();
-        lines.forEach(function(line) {
-          if (!line.startsWith('data: ')) return;
+        for (var i = 0; i < lines.length; i++) {
+          var line = lines[i];
+          if (!line.startsWith('data: ')) continue;
           try {
             var ev = JSON.parse(line.slice(6));
-            if (ev.type === 'token') onToken(ev.content);
-            else if (ev.type === 'sources') onSources(ev.sources, ev.debug);
-            else if (ev.type === 'done') onDone(null);
-            else if (ev.type === 'error') onDone(Object.assign(new Error(ev.message || 'Server error'), { partial: !!ev.partial }));
+            if (ev.type === 'token') { onToken(ev.content); continue; }
+            if (ev.type === 'sources') { onSources(ev.sources, ev.debug); continue; }
+            if (ev.type === 'done') { finishOnce(null); return; }
+            if (ev.type === 'error') {
+              finishOnce(Object.assign(new Error(ev.message || 'Server error'), { partial: !!ev.partial }));
+              return;
+            }
           } catch(e) {}
-        });
+        }
         read();
-      }).catch(function(e) { onDone(e); });
+      }).catch(function(e) {
+        if (e && e.name === 'AbortError') { finishOnce(Object.assign(new Error('aborted'), { aborted: true })); return; }
+        finishOnce(e);
+      });
     }
     read();
-  }).catch(function(e) { onDone(e); });
+  }).catch(function(e) {
+    if (e && e.name === 'AbortError') { finishOnce(Object.assign(new Error('aborted'), { aborted: true })); return; }
+    finishOnce(e);
+  });
+
+  return controller;
 }
 
 async function apiUpdateFolder(docId, folder) {
