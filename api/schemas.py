@@ -69,7 +69,6 @@ class QueryRequest(BaseModel):
     model: Optional[str] = None
     rerank: Optional[bool] = True
     folder: Optional[str] = None
-    channel: Optional[str] = None   # "telegram" | None (web)
 
     @field_validator("question")
     @classmethod

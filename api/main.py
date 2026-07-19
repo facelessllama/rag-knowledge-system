@@ -13,7 +13,6 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-from api.telegram import router as telegram_router
 from api.middleware import MaxBodySizeMiddleware
 from api.schemas import ChatTurn, QueryRequest, QueryResponse
 from fastapi import FastAPI, APIRouter, UploadFile, File, Form, HTTPException, Security, Depends, Header
@@ -89,7 +88,6 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="RAG Knowledge Base API", version="1.0.0", lifespan=lifespan)
-app.include_router(telegram_router)  # no auth — Telegram calls this directly
 
 # Router for all protected endpoints
 protected = APIRouter(dependencies=[Depends(require_api_key)])
@@ -1476,8 +1474,7 @@ async def _do_query(request: QueryRequest, query_expander, retriever, reranker, 
                                   "chunks_retrieved": len(chunks), "chunks_after_rerank": len(top_chunks)})
 
     messages = prompt_builder.build(query=request.question, chunks=top_chunks,
-                                   chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [],
-                                   channel=request.channel)
+                                   chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [])
 
     t1 = time.time()
     result = await generator.generate_with_refusal_retry(messages, model=request.model or None)
@@ -1641,8 +1638,7 @@ async def query_stream(
                 return
 
             messages = prompt_builder.build(query=request.question, chunks=top_chunks,
-                                            chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [],
-                                            channel=request.channel)
+                                            chat_history=[t.model_dump() for t in request.chat_history] if request.chat_history else [])
 
             t2 = time.time()
             answer_tokens = []

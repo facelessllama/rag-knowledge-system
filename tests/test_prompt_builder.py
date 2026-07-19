@@ -38,13 +38,6 @@ def test_build_always_forces_english_response():
     assert "Always respond in English" in messages[0]["content"]
 
 
-def test_build_telegram_channel_uses_brief_prompt():
-    pb = PromptBuilder()
-    messages = pb.build(query="q", chunks=[_chunk("x")], channel="telegram")
-    assert "Telegram" in messages[0]["content"]
-    assert "1-3 sentences" in messages[0]["content"]
-
-
 def test_context_budget_truncates_when_chunks_exceed_max_chars():
     pb = PromptBuilder()
     big_chunk_text = "x" * (MAX_CONTEXT_CHARS // 2 + 100)
@@ -140,12 +133,6 @@ def test_system_prompt_declares_context_and_question_as_untrusted_data():
     messages = pb.build(query="q", chunks=[_chunk("x")])
     system_content = messages[0]["content"].lower()
     assert "untrusted" in system_content
-
-
-def test_telegram_system_prompt_also_declares_context_as_untrusted_data():
-    pb = PromptBuilder()
-    messages = pb.build(query="q", chunks=[_chunk("x")], channel="telegram")
-    assert "untrusted" in messages[0]["content"].lower()
 
 
 def test_malicious_filename_cannot_forge_tags_in_multidoc_label():
