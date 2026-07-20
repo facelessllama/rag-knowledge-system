@@ -15,8 +15,16 @@ def normalize_whitespace(text: str) -> str:
     """Collapse all whitespace runs to single spaces. Chunk char_start/char_end
     are offsets into this normalized form — callers that need to slice back
     into a chunk's source text (e.g. a TXT-document viewer) must normalize
-    the same way first, or offsets won't line up."""
-    return re.sub(r'\s+', ' ', text).strip()
+    the same way first, or offsets won't line up.
+
+    Also strips NUL (\\x00) — \\s never matches it, so it survives the
+    collapse above untouched. The actual source-of-truth fix lives at
+    extraction time (ingestion/pdf_parser.py's parse()/_extract_metadata(),
+    where a font CMap glyph mapped to U+0000 was observed producing one on
+    ~40% of a real arXiv sample); this is belt-and-suspenders for any other
+    text that reaches this function without having gone through that path,
+    since Postgres rejects a NUL in any text/jsonb value outright."""
+    return re.sub(r'\s+', ' ', text.replace('\x00', '')).strip()
 
 
 def chunk_context_text(chunk) -> str:

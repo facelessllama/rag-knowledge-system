@@ -86,6 +86,40 @@ def test_char_offsets_slice_back_to_exact_chunk_text():
         assert normalized[c.char_start:c.char_end] == c.text
 
 
+def test_normalize_whitespace_strips_nul_bytes():
+    """Regression test: \\s never matches \\x00, so it used to survive the
+    whitespace collapse untouched and reach Postgres, which rejects any
+    text/jsonb value containing one outright ("string literal cannot
+    contain NUL (0x00) characters") — root-caused to a font CMap glyph
+    mapped to U+0000 on ~40% of a real arXiv sample (see
+    ingestion/pdf_parser.py's parse())."""
+    assert normalize_whitespace("clean\x00text") == "cleantext"
+
+
+def test_normalize_whitespace_strips_multiple_nul_bytes():
+    assert normalize_whitespace("a\x00b\x00\x00c\x00") == "abc"
+
+
+def test_char_offsets_slice_back_to_exact_chunk_text_with_nul_bytes_in_source():
+    """Same invariant as test_char_offsets_slice_back_to_exact_chunk_text,
+    but with NUL bytes interleaved through the source text — proves
+    char_start/char_end are computed consistently against the (NUL-free)
+    normalized string chunker.py itself produces, not against some other
+    version of the text a caller might normalize differently."""
+    chunker = SmartChunker(chunk_size=80, chunk_overlap=20, min_chunk_size=10)
+    text = (
+        "First\x00 sentence here is short. Second sentence follows\x00 right after. "
+        "\x00Third one is a bit longer than the others. Fourth sentence closes it off nicely.\x00"
+    )
+    chunks = chunker.chunk_document(_pages(text), doc_id="doc1")
+    normalized = normalize_whitespace(text)
+    assert "\x00" not in normalized
+    assert len(chunks) >= 1
+    for c in chunks:
+        assert "\x00" not in c.text
+        assert normalized[c.char_start:c.char_end] == c.text
+
+
 def test_chunk_document_hard_wraps_run_on_text_with_no_sentence_punctuation():
     """Dense legal/technical prose routinely lists clauses separated by
     semicolons/commas with no '.', '!', '?' for thousands of chars. Without

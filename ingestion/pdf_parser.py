@@ -154,6 +154,16 @@ class PDFParser:
                 text = native_text
                 has_ocr = False
 
+            # Some PDF producers (observed on arXiv's own tex2pdf pipeline)
+            # emit a NUL byte into the text layer via a font CMap glyph
+            # mapped to U+0000 — invisible in a viewer, but Postgres refuses
+            # any text value containing one ("string literal cannot contain
+            # NUL (0x00) characters"), so an untouched NUL here doesn't
+            # surface until db_save_ingestion's INSERT, as an ingestion
+            # failure that looks unrelated to parsing. ~40% of a real arXiv
+            # sample carried at least one affected page.
+            text = text.replace("\x00", "")
+
             pages.append({
                 "page_num": page_num + 1,
                 "text": text,
@@ -318,11 +328,13 @@ class PDFParser:
     def _extract_metadata(self, doc, path: Path) -> dict:
         """Extract document metadata"""
         meta = doc.metadata or {}
+        # Same NUL-byte hazard as page text (see parse()) — PDF info-
+        # dictionary strings are no less prone to a stray embedded NUL.
         return {
-            "title": meta.get("title", path.stem),
-            "author": meta.get("author", "Unknown"),
-            "subject": meta.get("subject", ""),
-            "creator": meta.get("creator", ""),
+            "title": meta.get("title", path.stem).replace("\x00", ""),
+            "author": meta.get("author", "Unknown").replace("\x00", ""),
+            "subject": meta.get("subject", "").replace("\x00", ""),
+            "creator": meta.get("creator", "").replace("\x00", ""),
             "page_count": len(doc),
             "file_size_kb": round(path.stat().st_size / 1024, 2)
         }

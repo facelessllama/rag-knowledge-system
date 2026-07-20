@@ -351,6 +351,56 @@ def test_ocr_page_scales_down_zoom_for_oversized_page(monkeypatch):
     assert seen_zoom["x"] < 2.0  # default zoom scaled down for the oversized page
 
 
+def test_parse_strips_nul_bytes_from_native_text(tmp_path, monkeypatch):
+    """Regression test for a real ingestion failure: a font CMap glyph
+    mapped to U+0000 (observed on arXiv's own tex2pdf pipeline, ~40% of a
+    real sample affected) survives extraction as a literal NUL byte, which
+    Postgres rejects outright once db_save_ingestion tries to store it —
+    surfacing as an ingestion failure with no obvious link back to parsing.
+    Monkeypatches the extraction step directly rather than trying to coax a
+    real font into emitting U+0000 through insert_text()."""
+    pdf_path = _make_pdf(tmp_path / "text.pdf", text="placeholder text over fifty characters long for the gate")
+    parser = PDFParser()
+    # Must clear MIN_NATIVE_TEXT_CHARS (50) on its own, or the length check
+    # decides this "needs OCR" and a real Tesseract pass over the actual
+    # rendered page (which says "placeholder text...") overwrites it —
+    # silently making this test pass or fail on OCR output instead of the
+    # NUL-stripping behavior it's meant to isolate.
+    injected = "clean text \x00 with an embedded nul byte, long enough to clear the gate on its own"
+    assert len(injected) >= PDFParser.MIN_NATIVE_TEXT_CHARS
+    monkeypatch.setattr(parser, "_extract_visible_native_text", lambda page: (injected, []))
+    result = parser.parse(str(pdf_path))
+    assert "\x00" not in result.pages[0]["text"]
+    assert result.pages[0]["text"] == injected.replace("\x00", "")
+
+
+def test_parse_strips_multiple_nul_bytes_from_native_text(tmp_path, monkeypatch):
+    pdf_path = _make_pdf(tmp_path / "text.pdf", text="placeholder text over fifty characters long for the gate")
+    parser = PDFParser()
+    monkeypatch.setattr(
+        parser, "_extract_visible_native_text",
+        lambda page: ("a\x00b\x00\x00c long enough text to clear the fifty character minimum threshold", []),
+    )
+    result = parser.parse(str(pdf_path))
+    assert "\x00" not in result.pages[0]["text"]
+    assert result.pages[0]["text"].startswith("abc")
+
+
+def test_extract_metadata_strips_nul_bytes(tmp_path):
+    pdf_path = _make_pdf(tmp_path / "meta.pdf", text="Enough text content to skip the OCR fallback threshold.")
+    doc = fitz.open(str(pdf_path))
+    doc.metadata["title"] = "Bad\x00Title"
+    doc.metadata["author"] = "Au\x00thor"
+
+    parser = PDFParser()
+    meta = parser._extract_metadata(doc, pdf_path)
+    doc.close()
+
+    assert meta["title"] == "BadTitle"
+    assert meta["author"] == "Author"
+    assert "\x00" not in meta["title"] and "\x00" not in meta["author"]
+
+
 def test_regression_fresh_ocr_corrects_bad_invisible_text_layer(tmp_path):
     """Regression test for the exact risk masking-all-native-text would
     reintroduce: a full-page scan carrying a long (over MIN_NATIVE_TEXT_

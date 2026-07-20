@@ -373,6 +373,20 @@ def pick_parser(filename: str):
     return PARSERS_BY_EXT.get(ext, (None, None))
 
 
+def validate_folder(folder: str) -> str:
+    """`folder` is a raw client-controlled Form field, unlike PDF/TXT text
+    content (which gets NUL-stripped at extraction time — see
+    ingestion/pdf_parser.py's parse()/_extract_metadata() and chunker.py's
+    normalize_whitespace()). A NUL byte here hits the exact same Postgres
+    "string literal cannot contain NUL" rejection (db_save_ingestion's
+    `documents`/`folders` INSERTs), but as unvalidated input rather than a
+    parsing artifact it should fail fast with a clear 422, not surface as
+    an opaque database error several steps later."""
+    if "\x00" in folder:
+        raise HTTPException(422, "folder name cannot contain a NUL character")
+    return folder
+
+
 # chunker/embedder/vector_store/retriever/reranker/prompt_builder/generator/
 # query_expander/langfuse/LANGFUSE_ENABLED are all assigned in startup()
 # below, not at module import time as they used to be — embedder and
@@ -1144,6 +1158,7 @@ async def _rollback_upload(doc_id: str, file_path: Path):
 
 @protected.post("/upload", dependencies=[Depends(require_not_backing_up)])
 async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
+    folder = validate_folder(folder)
     safe_filename = Path(file.filename).name  # strip any path components
     doc_parser, doc_format = pick_parser(safe_filename)
     if doc_parser is None:
@@ -1271,6 +1286,7 @@ async def upload_document(file: UploadFile = File(...), folder: str = Form("")):
 
 @protected.post("/upload-batch", dependencies=[Depends(require_not_backing_up)])
 async def upload_batch(files: list[UploadFile] = File(...), folder: str = Form("")):
+    folder = validate_folder(folder)
     if len(files) > MAX_BATCH_FILES:
         raise HTTPException(413, f"Batch exceeds the {MAX_BATCH_FILES}-file limit ({len(files)} files sent)")
 
