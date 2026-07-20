@@ -20,6 +20,8 @@ backups/
 .backup.lock
 logs/
 scripts/migration_map.json
-eval/last_run_scores*.json
+eval/**/last_run_scores*.json
 eval/deepseek_accuracy_results.json
 eval/eu_ingest_progress.json
+eval/mixed_corpus/documents/
+eval/mixed_corpus/download_report.json
