@@ -7,7 +7,9 @@ instance and reports:
 - Recall@K (was the expected document among the K sources returned?)
 - MRR (mean reciprocal rank of the expected document among sources)
 - abstention accuracy (did the system correctly answer vs. correctly refuse?)
-- answer correctness (does the answer contain the expected fact substring?)
+- answer correctness (does the answer contain the expected fact substring?
+  pass --semantic-judge to fall back to a local-LLM judge on substring
+  misses only — see judge_semantic_match()'s docstring for why this exists)
 
 Also dumps every case's retrieval score and rerank score to
 eval/last_run_scores_<dataset name>.json — the golden_dataset.json run is
@@ -55,9 +57,61 @@ def substring_ok(expected, answer_norm: str) -> bool:
     return any(normalize(c) in answer_norm for c in candidates)
 
 
-async def run_case(client, base_url, headers, case, top_k, doc_id_by_filename):
-    r = await client.post(f"{base_url}/query", headers=headers,
-                           json={"question": case["question"], "top_k": top_k}, timeout=60.0)
+_JUDGE_PROMPT = """You are grading whether a generated answer correctly conveys a specific expected fact. Paraphrasing, reordering, or different wording is fine — the core fact just has to be present and correct. Do not give credit for a vague, partial, hedged, or wrong answer.
+
+Question: {question}
+Expected fact: {expected}
+Generated answer: {answer}
+
+Does the generated answer correctly convey the expected fact? Reply with exactly one word: YES or NO."""
+
+
+async def judge_semantic_match(client, ollama_url: str, model: str, question: str, expected: str, answer: str) -> bool:
+    """Fallback for when substring_ok() says no — a strict verbatim check is
+    the right default (see eval/mixed_corpus/README.md's discovery-only
+    error-analysis discipline: don't relax scoring just because a number
+    looks bad without first checking WHY), but on this corpus's descriptive
+    fact_rx_indication/fact_figure_caption cases it produced a 0% and 3%
+    score respectively on answers a human reading them would call correct —
+    e.g. expected "COMBOGESIC is indicated in adults for the short-term
+    management of mild to moderate acute pain." vs. the actual answer
+    "COMBOGESIC is indicated for the short-term management of mild to
+    moderate acute pain in adults." (same fact, clause order swapped).
+    Only called for the minority of cases substring_ok already rejected, so
+    this adds one LLM call per failure, not per case."""
+    candidates = expected if isinstance(expected, list) else [expected]
+    prompt = _JUDGE_PROMPT.format(question=question, expected=candidates[0], answer=answer)
+    try:
+        resp = await client.post(
+            f"{ollama_url}/api/chat",
+            json={"model": model, "messages": [{"role": "user", "content": prompt}],
+                  "stream": False, "think": False, "options": {"temperature": 0.0, "num_predict": 5}},
+            timeout=30.0,
+        )
+        resp.raise_for_status()
+        verdict = resp.json()["message"]["content"].strip().lower()
+        return verdict.startswith("yes")
+    except Exception:
+        return False  # judge unavailable/errored — don't silently upgrade an unverified case to "correct"
+
+
+async def run_case(client, base_url, headers, case, top_k, doc_id_by_filename, judge_client=None, judge_url=None, judge_model=None):
+    payload = {"question": case["question"], "top_k": top_k}
+    # "scoped" cases (see eval/mixed_corpus/build_golden_dataset.py's
+    # comparison_scoped type) pass document_ids the same way the frontend's
+    # actual "Compare Documents" button does (api/schemas.py's QueryRequest.
+    # document_ids) — a plain natural-language comparison question that
+    # only NAMES two documents never reaches _augment_compare_queries()'s
+    # per-document deterministic sub-query boost at all, since that's keyed
+    # off document_ids being explicitly passed, not off parsing the question
+    # text. Testing only the unscoped path and calling it "the comparison
+    # feature" would silently never exercise the UI's actual guarantee.
+    if case.get("scoped") and case.get("expected_doc_filenames"):
+        doc_ids = [doc_id_by_filename[f] for f in case["expected_doc_filenames"] if f in doc_id_by_filename]
+        if doc_ids:
+            payload["document_ids"] = doc_ids
+
+    r = await client.post(f"{base_url}/query", headers=headers, json=payload, timeout=60.0)
     r.raise_for_status()
     data = r.json()
     answer = data["answer"]
@@ -91,21 +145,57 @@ async def run_case(client, base_url, headers, case, top_k, doc_id_by_filename):
         doc_ids_returned = [s["document"] for s in sources]  # already ranked by relevance_score desc
         result["n_sources"] = len(doc_ids_returned)
 
-        if expected_fname:
-            expected_doc_id = doc_id_by_filename.get(expected_fname)
-            if expected_doc_id and expected_doc_id in doc_ids_returned:
-                rank = doc_ids_returned.index(expected_doc_id) + 1  # 1-indexed
-                result["recall_hit"] = rank <= top_k
-                result["rank"] = rank
-                result["reciprocal_rank"] = 1.0 / rank
+        # expected_doc_filenames (plural) is for comparison-type questions
+        # that only have a defensible answer if BOTH named documents are
+        # actually retrieved. _augment_compare_queries()'s per-document
+        # deterministic sub-query only fires when document_ids is actually
+        # passed on the request (api/schemas.py's QueryRequest.document_ids
+        # — see the "scoped" branch in run_case above) — an unscoped case
+        # (question names two documents, nothing structured) exercises
+        # retrieval/reranking honestly finding both from the question text
+        # alone, not that boost. Score both, never conflate them: a scoped
+        # miss is the "Compare Documents" UI feature failing; an unscoped
+        # miss is expected/normal unless the question is unusually specific.
+        expected_fnames = case.get("expected_doc_filenames") or ([expected_fname] if expected_fname else [])
+        if expected_fnames:
+            ranks = []
+            for fname in expected_fnames:
+                doc_id = doc_id_by_filename.get(fname)
+                ranks.append(doc_ids_returned.index(doc_id) + 1 if doc_id and doc_id in doc_ids_returned else None)
+            if all(r is not None for r in ranks):
+                worst_rank = max(ranks)
+                result["recall_hit"] = worst_rank <= top_k
+                result["rank"] = worst_rank
+                result["reciprocal_rank"] = 1.0 / worst_rank
             else:
                 result["recall_hit"] = False
                 result["rank"] = None
                 result["reciprocal_rank"] = 0.0
 
+        # Evidence-page recall: document-level recall_hit above only proves
+        # the right DOCUMENT made it into the returned sources — it says
+        # nothing about whether the specific page the fact actually lives on
+        # was among the chunks the LLM was actually given. A long document
+        # can satisfy recall_hit on a page-1 chunk while the page carrying
+        # the queried fact (case["source_page"], set by eval/mixed_corpus/
+        # build_golden_dataset.py for fact_figure_caption) never reaches the
+        # prompt at all — exactly the gap that made the raw 3% substring
+        # score on that type look like a flat "system is bad at this"
+        # number instead of "the document was found, the chunk wasn't."
+        source_page = case.get("source_page")
+        if source_page is not None:
+            expected_doc_id = doc_id_by_filename.get(expected_fname) if expected_fname else None
+            hit_pages = [c.get("page_num") for c in top_chunks if c.get("document_id") == expected_doc_id]
+            result["evidence_page_hit"] = source_page in hit_pages
+            result["evidence_pages_seen"] = hit_pages
+
         expected_substr = case.get("expected_substring")
         if expected_substr and answered:
             result["substring_correct"] = substring_ok(expected_substr, normalize(answer))
+            if not result["substring_correct"] and judge_client is not None:
+                result["semantic_correct"] = await judge_semantic_match(
+                    judge_client, judge_url, judge_model, case["question"], expected_substr, answer
+                )
         elif expected_substr:
             result["substring_correct"] = False
         else:
@@ -121,12 +211,58 @@ async def main():
     ap.add_argument("--top-k", type=int, default=5)
     ap.add_argument("--dataset", default=str(EVAL_DIR / "golden_dataset.json"),
                      help="Path to a dataset JSON built by build_golden_dataset.py or build_heldout_dataset.py")
+    ap.add_argument("--semantic-judge", action="store_true",
+                     help="On a substring_ok() miss, ask the local LLM (--judge-model) whether the "
+                          "answer conveys the fact anyway before counting it wrong — see "
+                          "judge_semantic_match()'s docstring for why this exists")
+    ap.add_argument("--judge-url", default=os.getenv("OLLAMA_URL", "http://localhost:11435"))
+    ap.add_argument("--judge-model", default=os.getenv("LLM_MODEL", "qwen2.5:7b"))
+    ap.add_argument("--output", default=None,
+                     help="Where to write per-case scores. Defaults next to --dataset itself "
+                          "(eval/mixed_corpus/golden_dataset.json -> eval/mixed_corpus/last_run_scores_"
+                          "golden_dataset.json), NOT eval/'s own — multiple corpora each have their own "
+                          "golden_dataset.json, and keying purely off the stem used to silently let one "
+                          "corpus's run clobber another's saved scores (caught when a mixed-corpus run "
+                          "overwrote eval/last_run_scores_golden_dataset.json, the original ~400-doc "
+                          "legal corpus's file, gitignored so nothing but a re-run recovers it).")
+    ap.add_argument("--limit-per-type", type=int, default=None,
+                     help="For fast iteration only: keep just the first N cases of each `type` "
+                          "(stable dataset order, not random, so reruns during one iteration session "
+                          "stay comparable to each other). Each case is a sequential /query call with "
+                          "2-4 serialized Ollama round trips (query expansion, generation, sometimes a "
+                          "refusal retry, sometimes --semantic-judge) — wall time scales roughly with "
+                          "case count, so a small N gives fast go/no-go feedback while iterating on a "
+                          "fix. NEVER treat a limited run's numbers as a real result — confirm on the "
+                          "full dataset before reporting or committing to anything measured this way.")
     args = ap.parse_args()
 
     dataset_path = Path(args.dataset)
-    scores_out_path = EVAL_DIR / f"last_run_scores_{dataset_path.stem}.json"
+    if args.output:
+        scores_out_path = Path(args.output)
+    elif args.limit_per_type:
+        # Deliberately NOT the same default as a full run — see --output's
+        # own docstring on the exact class of bug this avoids repeating: a
+        # quick smoke run must never silently clobber the canonical
+        # last_run_scores file a full run (and the docs referencing it)
+        # depend on.
+        scores_out_path = dataset_path.parent / f"last_run_scores_{dataset_path.stem}_limited.json"
+    else:
+        scores_out_path = dataset_path.parent / f"last_run_scores_{dataset_path.stem}.json"
 
     dataset = json.loads(dataset_path.read_text(encoding="utf-8"))
+    if args.limit_per_type:
+        total = len(dataset)
+        per_type_count: dict[str, int] = {}
+        limited = []
+        for case in dataset:
+            t = case["type"]
+            if per_type_count.get(t, 0) < args.limit_per_type:
+                limited.append(case)
+                per_type_count[t] = per_type_count.get(t, 0) + 1
+        dataset = limited
+        print(f"--limit-per-type {args.limit_per_type}: kept {len(dataset)}/{total} cases "
+              f"({dict(sorted(per_type_count.items()))})")
+
     headers = {"X-API-Key": args.api_key} if args.api_key else {}
 
     async with httpx.AsyncClient() as client:
@@ -135,9 +271,11 @@ async def main():
 
     results = []
     async with httpx.AsyncClient() as client:
+        judge_client = client if args.semantic_judge else None
         for i, case in enumerate(dataset):
             try:
-                res = await run_case(client, args.api_url, headers, case, args.top_k, doc_id_by_filename)
+                res = await run_case(client, args.api_url, headers, case, args.top_k, doc_id_by_filename,
+                                      judge_client=judge_client, judge_url=args.judge_url, judge_model=args.judge_model)
             except Exception as e:
                 res = {"id": case["id"], "type": case["type"], "expect_answer": case["expect_answer"],
                        "error": str(e)[:200], "abstention_correct": False}
@@ -156,6 +294,13 @@ async def main():
 
     checkable = [r for r in should_answer if r.get("substring_correct") is not None]
     correct_answers = sum(1 for r in checkable if r["substring_correct"])
+    # semantic_correct only exists on cases substring_ok already rejected
+    # (see run_case) — "correct_any" folds it back in as an OR, never
+    # replacing the substring number outright, so a reader always sees both:
+    # what a strict verbatim check found, and how much a semantic pass on
+    # top of it recovered.
+    semantic_recovered = sum(1 for r in checkable if r.get("semantic_correct"))
+    correct_any = correct_answers + semantic_recovered
 
     recall_cases = [r for r in should_answer if "recall_hit" in r]
     recall_hits = sum(1 for r in recall_cases if r["recall_hit"])
@@ -166,10 +311,16 @@ async def main():
     max_sources = max((r["n_sources"] for r in recall_cases), default=args.top_k)
     mrr = sum(r["reciprocal_rank"] for r in recall_cases) / len(recall_cases) if recall_cases else 0
 
+    evidence_cases = [r for r in should_answer if "evidence_page_hit" in r]
+    evidence_hits = sum(1 for r in evidence_cases if r["evidence_page_hit"])
+
     def pct(numerator, denominator):
         return f"{100*numerator/denominator:.1f}%" if denominator else "n/a"
 
     print(f"\n{'='*60}")
+    if args.limit_per_type:
+        print(f"LIMITED RUN (--limit-per-type {args.limit_per_type}) — fast-iteration numbers only, "
+              f"NOT a result. Re-run without this flag before reporting or committing anything.")
     print(f"GOLDEN DATASET EVAL — {n} cases")
     print(f"{'='*60}")
     print(f"Recall@{args.top_k}: {recall_hits}/{len(recall_cases)} ({pct(recall_hits, len(recall_cases))})")
@@ -177,11 +328,22 @@ async def main():
         print(f"  (In returned sources at all, up to {max_sources}-wide: "
               f"{in_sources_hits}/{len(recall_cases)} ({pct(in_sources_hits, len(recall_cases))}) "
               f"— NOT Recall@{args.top_k}, do not report as such)")
+    if evidence_cases:
+        # Document-level Recall@k above only proves the right FILE made it
+        # into sources — this checks whether the specific page the fact
+        # lives on was among the chunks actually handed to the LLM (see
+        # run_case's evidence_page_hit comment). Expect this to run well
+        # below document recall on long, content-dense documents; that gap
+        # IS the finding, not a scoring bug.
+        print(f"Evidence-page Recall@{args.top_k}: {evidence_hits}/{len(evidence_cases)} ({pct(evidence_hits, len(evidence_cases))})")
     print(f"MRR: {mrr:.3f}")
     print(f"Overall abstention accuracy: {abstention_correct}/{n} ({pct(abstention_correct, n)})")
     print(f"  - Answered when should ({len(should_answer)} cases):  {answered_when_should}/{len(should_answer)} ({pct(answered_when_should, len(should_answer))})")
     print(f"  - Refused when should ({len(should_refuse)} cases):   {refused_when_should}/{len(should_refuse)} ({pct(refused_when_should, len(should_refuse))})")
     print(f"Answer correctness (substring match, {len(checkable)} checkable cases): {correct_answers}/{len(checkable)} ({pct(correct_answers, len(checkable))})")
+    if args.semantic_judge:
+        print(f"  + semantic judge recovered {semantic_recovered} more paraphrased-but-correct answers "
+              f"-> {correct_any}/{len(checkable)} ({pct(correct_any, len(checkable))})")
 
     errors = [r for r in results if "error" in r]
     if errors:
@@ -195,9 +357,10 @@ async def main():
         for f in failures[:15]:
             print(f"  [{f['type']}] {f['id']}: expected_answer={f['expect_answer']} answered={f.get('answered')} score={f.get('best_score')}")
 
-    wrong_answers = [r for r in checkable if not r["substring_correct"]]
+    wrong_answers = [r for r in checkable if not r["substring_correct"] and not r.get("semantic_correct")]
     if wrong_answers:
-        print(f"\n{len(wrong_answers)} wrong/missing-fact answers:")
+        print(f"\n{len(wrong_answers)} wrong/missing-fact answers"
+              f"{' (substring AND semantic judge both said no)' if args.semantic_judge else ''}:")
         for w in wrong_answers[:15]:
             print(f"  {w['id']}: {w['answer'][:120]}")
 
