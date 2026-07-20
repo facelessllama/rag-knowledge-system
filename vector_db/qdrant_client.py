@@ -35,6 +35,38 @@ SPARSE_VECTOR_NAME = "bm25"
 # instead of updating it in place.
 _POINT_ID_NAMESPACE = uuid.UUID("6f8f2b34-5a8b-4b0e-9f7f-9d6a2b6a0e11")
 
+# Qdrant's default max request size (service.max_request_size_mb) is 32 MB,
+# for both REST and gRPC — this client speaks REST (QdrantClient's default,
+# see VectorStore.__init__). A single document's chunks were observed
+# exceeding that in one upsert() call on the two largest documents of a
+# 762-doc real-world corpus, well within the app's own MAX_UPLOAD_MB=50
+# per-file limit (api/main.py) — a reachable production failure, not a
+# hypothetical. Batched by actual serialized size, not point count, since
+# embeddings + sparse vectors + chunk text all vary per point.
+_MAX_UPSERT_BATCH_BYTES = 24 * 1024 * 1024  # 24 MB — headroom below the 32 MB limit
+
+
+def _point_size_bytes(point: PointStruct) -> int:
+    return len(point.model_dump_json().encode("utf-8"))
+
+
+def _batch_points_by_size(points: list, max_bytes: int) -> list[list]:
+    """Greedily group points into batches that stay under max_bytes each. A
+    single point larger than max_bytes on its own still gets its own batch
+    (nothing more can be done to shrink it) rather than being silently
+    dropped or merged into a batch that would exceed the limit anyway."""
+    batches, current, current_bytes = [], [], 0
+    for point in points:
+        size = _point_size_bytes(point)
+        if current and current_bytes + size > max_bytes:
+            batches.append(current)
+            current, current_bytes = [], 0
+        current.append(point)
+        current_bytes += size
+    if current:
+        batches.append(current)
+    return batches
+
 
 def point_id_for_chunk(chunk_id: str) -> str:
     """Deterministic Qdrant point ID for a given chunk_id. Point IDs used to
@@ -186,8 +218,10 @@ class VectorStore:
                     "citation_year": citation_meta.get("citation_year", ""),
                 }
             ))
-        self.client.upsert(collection_name=self.collection, points=points)
-        logger.info(f"Stored {len(points)} chunks in Qdrant (dense+sparse)")
+        batches = _batch_points_by_size(points, _MAX_UPSERT_BATCH_BYTES)
+        for batch in batches:
+            self.client.upsert(collection_name=self.collection, points=batch)
+        logger.info(f"Stored {len(points)} chunks in Qdrant (dense+sparse, {len(batches)} batch(es))")
 
     def hybrid_search(
         self,
