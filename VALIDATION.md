@@ -169,6 +169,77 @@ Two smaller, related issues were found and fixed in the same pass:
   not a retrieval or generation defect, and conflating the two would have
   kept blaming the system for a scoring mistake.
 
+## The cross-domain corpus test, and what it found
+
+Everything above uses two corpora the system has effectively been tuned
+around: ~400 legal documents and 57,000 EU regulations — both legal text,
+both fed through the same filename conventions the ingestion code already
+special-cases. To find out what happens on content the system has never
+seen and was never shaped by, it was pointed at 762 real, public-source
+PDFs it had no prior exposure to: 597 current arXiv papers, 45 FDA drug
+labels, 16 FAA safety manuals, and 104 deliberately adversarial pages from
+the olmOCR-bench dataset (old scans, dense mathematical notation,
+multi-column layouts, repeated headers/footers, very small text) —
+selected specifically to stress the parts a clean legal-PDF corpus never
+exercises. The corpus was frozen with a seeded discovery/calibration/
+heldout split before any error analysis began, so what follows is what a
+completely generic, untuned pass through the ingestion pipeline actually
+does, not a result already shaped by looking at the failures first.
+
+A pre-flight check (parsing every document locally, the same parser/
+chunker classes the live API uses, without touching the database) had
+already predicted which documents the API's own "could not extract text"
+rejection would catch: 12 of 762, concentrated in the old-scan and
+handwritten-math slices, where plain OCR — no math or handwriting model —
+has no real chance. Running the actual documents through a live,
+isolated instance (separate database, separate vector collection, so this
+never touched the corpora above) confirmed exactly that prediction — 12
+of 12 — and turned up two things the offline check couldn't have found,
+because they only happen once real storage is involved:
+
+**A real, previously-undiscovered bug**: 4.6% of pages (571 of 12,334,
+measured directly off the corpus's PDFs) across the 597-document arXiv
+sample carried a literal NUL byte in their extracted text — invisible in
+any PDF viewer, a font-encoding artifact some PDF producers (arXiv's own
+pipeline among them) emit, which PyMuPDF passes through verbatim. A NUL
+on any single page aborts that whole document's ingestion (one Postgres
+error rolls back the document, not just the affected chunk), so at the
+document level this was 36.0% of the sample (215 of 597, counting both
+affected page text and affected PDF metadata fields) failing outright
+with "string literal cannot contain NUL (0x00) characters" — that had
+nothing to do with the adversarial content the corpus was built to test.
+This is a real bug that would affect any user uploading an affected PDF
+through the ordinary upload path — not an artifact of this test's unusual
+content. Fixed at the point of extraction (both the page text and PDF
+metadata paths in `ingestion/pdf_parser.py`), with a second, independent
+guard added at the chunking layer for any other text that might reach it
+by a different route, six new regression tests, and confirmed by
+re-running the exact previously-failing documents through the live API
+before resuming the full corpus — all 215 now ingest cleanly.
+
+**A second, smaller finding, since fixed**: two of the 762 documents (the
+largest ones in the corpus — a 245-page arXiv paper and the 350-page FAA
+`prh_change1` handbook) failed a different way — a single Qdrant upsert
+request exceeded Qdrant's own 32 MB payload limit
+(`vector_db/qdrant_client.py::upsert_chunks` sent every one of a
+document's chunks in one call, regardless of how many). This is a
+distinct bug from the one above (a batching limit, not a text-encoding
+one): the corpus is well within the application's own 50 MB upload limit,
+so a real, permitted upload could fail at the vector-store step purely
+from having enough chunks. Fixed by batching upserts on actual serialized
+point size (24 MB threshold, headroom under Qdrant's 32 MB limit) instead
+of one call per document; confirmed by re-uploading both exact
+previously-failing documents through the live API — both now ingest
+cleanly (1,494 and 1,806 chunks respectively, 2 upsert batches each).
+
+**The result, after both fixes**: 744 of 762 documents (97.6%) ingested
+successfully; 12 were correctly rejected as unreadable exactly where
+predicted; 6 more were flagged "already uploaded" by the system's own
+duplicate-content guard after an unrelated mid-run restart during
+testing — not corpus duplicates, confirmed by checksum. No fact-based
+accuracy claims are made on this corpus yet; this pass covers ingestion
+only, the step every later accuracy number depends on.
+
 ## Why this is a meaningful proof point, and not just a bigger demo
 
 - **The numbers are real pass rates on datasets built to be hard to
