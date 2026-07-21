@@ -1,0 +1,266 @@
+{
+  "builder_version": "v3",
+  "built_at_utc": "2026-07-21T18:12:31.207743+00:00",
+  "git_commit": "398329aacca0353d38b1afa4f2560722ff441859",
+  "manifest_sha256": "791ed00fda6e7f246f8a5b0032cba946b7c6b24f3957f054bfe6ea4cb1e69513",
+  "output_path": "/home/serg/rag-knowledge-system/eval/mixed_corpus/golden_dataset_v3.json",
+  "v2_path": "/home/serg/rag-knowledge-system/eval/mixed_corpus/golden_dataset.json",
+  "v2_sha256": "868c638c30f30bb9e65acf6547b551c06216bab254c16d4084cf85202bceb14d",
+  "n_cases": 454,
+  "label_status_counts": {
+    "verified": 149,
+    "ambiguous": 22,
+    "extracted": 10
+  },
+  "n_cases_changed_from_v2": 31,
+  "changed_cases": [
+    {
+      "id": "sci_caption_2607.13612_Figure3",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Term-by-term correspondence between the AIF expected free energy (left) and the JEPA world-model planning cost (right), as established in §A.5. Under SIGReg the pragmatic value maps exactly to the latent goal cost (Proposition A.7); the parameter information gain maps to ensemble variance at first order; ambiguity is a constant; and the state epistemic value (coverage) has no counterpart in any current JEPA world model: the primary structural gap (Proposition 6).",
+      "v3_expected_substring": "Term-by-term correspondence between the AIF expected free energy (left) and the JEPA world-model planning cost (right), as established in §A.5."
+    },
+    {
+      "id": "sci_caption_2607.16030_Figure6",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Because the overall FI scale is reduced in the noisy setting, we use the threshold ln(FI) = −10, corresponding to FI ≃4.5 × 10−5 in the original scale. For EWC, the CFI values are strongly suppressed compared with the noiseless case, with the mean high-CFI values remaining only of order 10−5.",
+      "v3_expected_substring": "Because the overall FI scale is reduced in the noisy setting, we use the threshold ln(FI) = −10, corresponding to FI ≃4.5 × 10−5 in the original scale."
+    },
+    {
+      "id": "sci_caption_2607.13162_Figure7",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Single-trait steerability is highly uneven. In Q8B, hostile or exaggerated traits such as angry, hyper- bolic, apathetic, neurotic, and sycophantic have large best gains, while natural defaults such as containment and loquaciousness have little headroom.",
+      "v3_expected_substring": "Single-trait steerability is highly uneven."
+    },
+    {
+      "id": "sci_caption_2607.13716_Table20",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "extracted",
+      "v2_expected_substring": "CAVA claim register. ID Claim Current evidence Limitation C1 CAVA can collapse equivalent shell forms for representative deployment, infrastructure, payment, and Web3 actions.",
+      "v3_expected_substring": "CAVA claim register."
+    },
+    {
+      "id": "sci_caption_2607.15766_Table13",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Main leaderboard under reference-independent pairwise judging by mimo-v2-pro as the independent second judge (companion to Table 3). All BTD and WR conventions match Table 3; Reference participates as an anonymous competitor for calibration.",
+      "v3_expected_substring": "Main leaderboard under reference-independent pairwise judging by mimo-v2-pro as the independent second judge (companion to Table 3)."
+    },
+    {
+      "id": "sci_caption_2607.11459_Table7",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "extracted",
+      "v2_expected_substring": "Validation metrics for the imagery datasets in the mAIEnergy corpus. Source Images Openable % Valid Format % ≥256px % Exact Dup.",
+      "v3_expected_substring": "Validation metrics for the imagery datasets in the mAIEnergy corpus."
+    },
+    {
+      "id": "sci_caption_2607.11020_Figure18",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Intervention controls. A: Each row is an eligible tested 144-step bare-statement plus 48-step bridge condition; indigo marks a passed individual criterion.",
+      "v3_expected_substring": "Intervention controls."
+    },
+    {
+      "id": "sci_caption_2607.11399_Table8",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Harness-native routing data differs from ordinary web or preference data because it is produced by execution and labeled by the environment. Dimension Ordinary interaction data Harness-native arena corpus Reward signal Often implicit, noisy, or preference- based.",
+      "v3_expected_substring": "Harness-native routing data differs from ordinary web or preference data because it is produced by execution and labeled by the environment."
+    },
+    {
+      "id": "sci_caption_2607.10578_Figure6",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Visualization of trajectories for the prompt The capital of France is. (A) Log rank (left column) and probability (right column) of the two tokens _Paris (solid lines) and Paris (dotted lines), elicited by three lenses: Logit Lens, Patchscopes, and Geometric Lens.",
+      "v3_expected_substring": "Visualization of trajectories for the prompt The capital of France is."
+    },
+    {
+      "id": "sci_caption_2607.09324_Table2",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "KE implementations Method category Methods General statistical methods pke library16 (Boudin 2016): TF-IDF. KPMiner YAKE library17 (Campos et al.",
+      "v3_expected_substring": "KE implementations Method category Methods General statistical methods pke library16 (Boudin 2016): TF-IDF."
+    },
+    {
+      "id": "sci_caption_2607.14651_Figure8",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Retrieval top-k sensitivity under NONE. Poisoned BCR increases as larger retrieved contexts expose more poisoned memory, especially for L2 compositional attacks.",
+      "v3_expected_substring": "Retrieval top-k sensitivity under NONE."
+    },
+    {
+      "id": "sci_caption_2607.14203_Table1",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Image and depth quality comparison on the Waymo Open Dataset. Higher PSNR/SSIM/𝛿1 and lower AbsRel are better.",
+      "v3_expected_substring": "Image and depth quality comparison on the Waymo Open Dataset."
+    },
+    {
+      "id": "sci_caption_2607.10251_Table4",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "JSON state fields supplied to each model call. Field Meaning street Current betting street: preflop, flop, turn or river.",
+      "v3_expected_substring": "JSON state fields supplied to each model call."
+    },
+    {
+      "id": "sci_caption_2607.09649_Table6",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "extracted",
+      "v2_expected_substring": "Consistency of the MedSAM and VLM pathways across repeated runs under cosine and Wasserstein locality weighting. Pathway Dataset Concept Cosine Wasserstein Var.",
+      "v3_expected_substring": "Consistency of the MedSAM and VLM pathways across repeated runs under cosine and Wasserstein locality weighting."
+    },
+    {
+      "id": "sci_caption_2607.15641_Table7",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "extracted",
+      "v2_expected_substring": "YCB object subsets per task. YCB ID Object Tasks 002 master chef can pick-place-ycb 003 cracker box sheltered-grasp 004 sugar box pick-place-ycb 005 tomato soup can pick-place-ycb 008 pudding box sheltered-grasp 010 banana pick-place-ycb E Evaluation E.1 Seeds and rollouts Each task ships with S=20 evaluation seeds drawn i.i.d.",
+      "v3_expected_substring": "YCB object subsets per task."
+    },
+    {
+      "id": "sci_caption_2607.10059_Table12",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "extracted",
+      "v2_expected_substring": "Failure-mode shares as % of qualifying abstain runs. Cell Closed Open ∆(pp) p Successful Abstention 63.0% 53.9% +9.1 0.048 * Implicit Abstention 15.8% 21.7% −6.0 0.024 * Post-hoc Abstention 3.0% 1.9% +1.1 0.097 No Abstention 18.2% 22.4% −4.2 0.26 The two groups have nearly identical act accuracy (p = 0.88), but closed-source models abstain significantly more accurately (+9.4 pp, p = 0.037).",
+      "v3_expected_substring": "Failure-mode shares as % of qualifying abstain runs."
+    },
+    {
+      "id": "sci_caption_2607.13216_Figure9",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "L1-regularized feature selection. (A) Upper panel: classification accuracy (train and test) as a function of the regularization parameter C for L1-penalized LinearSVC applied to TMP weights; lower panel: number of non-zero features retained at each C value.",
+      "v3_expected_substring": "L1-regularized feature selection."
+    },
+    {
+      "id": "sci_caption_2607.15216_Table1",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "We then use the best performing summarizer to identify image features associated with the misaligned sentences. For Stage 2, in the reference-free setting, we observe an Acc@1 of just 3.6 and an Acc@5 of 16.9; again, these are a substantial decrease from the results obtained with SYMBAL (Acc@1 = 49.7 and Acc@5 = 69.7) in",
+      "v3_expected_substring": "We then use the best performing summarizer to identify image features associated with the misaligned sentences."
+    },
+    {
+      "id": "sci_caption_2607.15511_Table4",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "extracted",
+      "v2_expected_substring": "Comparative performance analysis of supervised and unsupervised approaches for autoscaling decision prediction. Approach Model MAE MSE Precision Recall F1-Score Accuracy (%) Supervised MLP 0.02 0.02 0.98 0.99 0.98 98.75 LSTM 0.01 0.01 0.98 0.99 0.99 99.06 CNN 0.02 0.04 0.98 0.99 0.98 98.50 Unsupervised K-Means (t-SNE) — — — — — 49.5 SOM — — — — — 21.6 K-Means (PCA) — — — — — 0.6 clustering-based pattern discovery cannot substitute for predictive modeling in time-sensitive scaling control.",
+      "v3_expected_substring": "Comparative performance analysis of supervised and unsupervised approaches for autoscaling decision prediction."
+    },
+    {
+      "id": "sci_caption_2607.09443_Table8",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Vision adapter ablation on closed-set body images. Adapter Variant mAP (%) Linear Head 38.50 Bottleneck 40.60 1D Convolutional 39.50 2D Convolutional 40.00 Transformer 41.20 LoRA (𝑟= 8, 𝛼= 8) 48.30 LoRA (𝑟= 16, 𝛼= 16) 53.00 LoRA (𝑟= 512, 𝛼= 1) 33.20 prompt layout influences performance, although differences between individual layouts remain moderate.",
+      "v3_expected_substring": "Vision adapter ablation on closed-set body images."
+    },
+    {
+      "id": "sci_caption_2607.10179_Table8",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "extracted",
+      "v2_expected_substring": "Top-ranked synthetic records from the illustrative workplace safety corpus. Record ID Juris.",
+      "v3_expected_substring": "Top-ranked synthetic records from the illustrative workplace safety corpus."
+    },
+    {
+      "id": "sci_caption_2607.09094_Table3",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "extracted",
+      "v2_expected_substring": "PRecG model performance with and without Rhetorical role-based semantic segmentation. Model MSE MAE PRecG 0.1171 (71.14% ↑) 0.2871 (49.38% ↑) PRecG (w/o) 0.4051 0.5672 domain-specific pretraining effectively, handles graph structure in a principled way, and captures the fine-grained nuances of legal judgments.",
+      "v3_expected_substring": "PRecG model performance with and without Rhetorical role-based semantic segmentation."
+    },
+    {
+      "id": "sci_caption_2607.13854_Figure4",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "extracted",
+      "v2_expected_substring": "Skill library evolution throughout training. Skill Library Evolution.",
+      "v3_expected_substring": "Skill library evolution throughout training."
+    },
+    {
+      "id": "sci_caption_2607.10511_Figure6",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Bias-diagnostic frequency (% of reviews in which the tag appears), per group. Checklist Inflation dominates in all human venues; the agentic reviewer is also dominated by Checklist In- flation (45%, less than humans) with some Representativeness Heuristic (8%) and essentially no Question Substitution or Authority Substitution.",
+      "v3_expected_substring": "Bias-diagnostic frequency (% of reviews in which the tag appears), per group."
+    },
+    {
+      "id": "sci_caption_2607.14327_Table5",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Statistics of the processed stepwise training data. Average Documents counts the average number of unique gold context documents used by each example.",
+      "v3_expected_substring": "Statistics of the processed stepwise training data."
+    },
+    {
+      "id": "sci_caption_2607.14190_Figure7",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Digital twin-inspired temporal machine learning- based TTE model for domain stage prediction and time-to- event prediction of healthcare utilization. A Cox-based prob- abilistic framework generates a personalized survival curve reflecting the evolving risk of wheelchair-free survival.",
+      "v3_expected_substring": "Digital twin-inspired temporal machine learning- based TTE model for domain stage prediction and time-to- event prediction of healthcare utilization."
+    },
+    {
+      "id": "sci_caption_2607.11978_Table3",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "extracted",
+      "v2_expected_substring": "Ablation results at the overall statistics level under different fusion strategies and control settings. W/concat, W/cross, W/FiLM, and W/adapter denote variants that replace the multimodal fusion in JoPMol with concatenation, cross- attention, FiLM-based modulation, and Adapter-based fusion.",
+      "v3_expected_substring": "Ablation results at the overall statistics level under different fusion strategies and control settings."
+    },
+    {
+      "id": "sci_caption_2607.09100_Table4",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Classification accuracy (%) on the CIFAR-10 dataset for SGC and SVM. CIFAR-10 Dataset - SGC Classifier Ensemble Method / Ratio (r) 20% 10% 5% 2.5% Ave.",
+      "v3_expected_substring": "Classification accuracy (%) on the CIFAR-10 dataset for SGC and SVM."
+    },
+    {
+      "id": "sci_caption_2607.15253_Table6",
+      "type": "fact_figure_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "H1 propagation gap on the 1000 question sample, with the 300 question pilot for comparison. High OER entities reach the agent’s next query several times more often than low OER entities, and the ratio barely moves between samples.",
+      "v3_expected_substring": "H1 propagation gap on the 1000 question sample, with the 300 question pilot for comparison."
+    },
+    {
+      "id": "man_caption_PPC_HB_Addendum_(MOSAIC).pdf",
+      "type": "fact_table_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Definitions with respect to pilot certification, ratings, and privileges. In Chapter 1, Introduction to the Powered Parachute, the second paragraph of the Aeronautical Decision-Making (ADM) section on page 1-4 will be revised as follows: The well-being of the pilot is the starting point for the decision making processes that will occur while in control of the aircraft.",
+      "v3_expected_substring": "Definitions with respect to pilot certification, ratings, and privileges."
+    },
+    {
+      "id": "man_caption_prh_change1_changes.pdf",
+      "type": "fact_table_caption",
+      "reason": "table_cells split out of expected_substring",
+      "label_status": "ambiguous",
+      "v2_expected_substring": "Trim: The angle formed between the horizontal reference line and the trim line. The Greek letter theta (θ) is used to denote the angle of trim.",
+      "v3_expected_substring": "Trim: The angle formed between the horizontal reference line and the trim line."
+    }
+  ]
+}

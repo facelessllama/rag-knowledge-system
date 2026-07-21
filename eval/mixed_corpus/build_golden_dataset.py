@@ -39,11 +39,25 @@ Question types, deliberately varied rather than one style repeated:
 Usage:
     source venv/bin/activate
     python eval/mixed_corpus/build_golden_dataset.py
+    python eval/mixed_corpus/build_golden_dataset.py --output golden_dataset_v3.json
+
+v3 (BUILDER_VERSION below): adds caption_text/table_cells/label_status/
+caption_source to fact_figure_caption/fact_table_caption cases, splitting
+a table's own leaked header/data-row content out of expected_substring
+(see extract_caption's docstring and project memory's "golden-dataset v3"
+plan). NEVER overwrites the committed v2 `golden_dataset.json` — pass
+--output explicitly (default: golden_dataset_v3.json alongside it) and
+see the emitted `<output>.metadata.json` for the builder version, corpus
+manifest hash, and a diff of every case whose expected_substring changed
+from v2 and why.
 """
+import hashlib
 import json
 import random
 import re
+import subprocess
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent
@@ -55,8 +69,10 @@ from ingestion.chunker import normalize_whitespace, SmartChunker
 CORPUS_DIR = Path(__file__).resolve().parent
 MANIFEST_PATH = CORPUS_DIR / "manifest.json"
 REPORT_PATH = CORPUS_DIR / "baseline_ingest_report.json"
-OUT_PATH = CORPUS_DIR / "golden_dataset.json"
+V2_OUT_PATH = CORPUS_DIR / "golden_dataset.json"
+OUT_PATH = CORPUS_DIR / "golden_dataset_v3.json"
 
+BUILDER_VERSION = "v3"
 SEED = 20260720
 LONG_DOC_PAGE_THRESHOLD = 20
 
@@ -260,6 +276,50 @@ def _all_caption_opener_starts(normalized: str) -> list[int]:
     return sorted(starts)
 
 
+def _classify_trailing_segment(segment: str) -> str:
+    """v3: distinguishes a genuine second caption sentence from a table's
+    own linearized header/data-row content absorbed as if it were caption
+    prose (see project memory's documented residual gap — e.g. arxiv_
+    2607.13716's Table 20: "CAVA claim register. ID Claim Current
+    evidence Limitation C1 CAVA can collapse..." — the second "sentence"
+    is column headers glued directly to the first data row's own cell
+    text, which is itself full, real, alpha-ratio-passing English).
+
+    Alpha-ratio alone can't tell these apart — both are mostly real
+    words. What actually differs is capitalization shape: a linearized
+    header row strings several capitalized column-name-like words
+    together with no lowercase word between them ("ID Claim Current
+    evidence"), where ordinary prose capitalizes only its own first word
+    (occasionally followed by one proper noun/acronym, e.g. "Mann-
+    Whitney U test..." — which is why a run of exactly 2 is treated as
+    genuinely AMBIGUOUS rather than forced either way, not a table-cells
+    false positive waiting to happen).
+
+    Known residual false positive, found on the real v3 build (arxiv_
+    2607.11978's Table 3): a genuine caption sentence enumerating several
+    capitalized abbreviated variant names in a row ("W/concat, W/cross,
+    W/FiLM, and W/adapter denote variants...") triggers cap_run>=3 and
+    gets classified "table_cells" even though it's real explanatory
+    prose. Text alone can't fully solve this without real page-layout
+    info (same conclusion as v2's residual gap) — accepted rather than
+    chased further, per the same "diminishing returns, real overfitting
+    risk" reasoning that closed out the retrieval-fix pass."""
+    words = segment.split()
+    if len(words) < 2:
+        return "ambiguous"
+    cap_run = 0
+    for w in words:
+        bare = w.strip(".,;:()[]")
+        if not bare or not bare[0].isupper():
+            break
+        cap_run += 1
+    if cap_run >= 3:
+        return "table_cells"
+    if cap_run <= 1:
+        return "prose"
+    return "ambiguous"
+
+
 def extract_caption(normalized_page_text: str, kind: str, num: str) -> dict | None:
     """Finds the best caption for `kind num` (kind is "Figure" or "Table")
     in a single page's already-normalized text (normalize_whitespace()
@@ -269,7 +329,23 @@ def extract_caption(normalized_page_text: str, kind: str, num: str) -> dict | No
     caption-range). Returns None rather than guessing if no candidate looks
     like an actual caption — see ingestion/chunker.py's OTC_ACTIVE_RE
     handling for the same "drop rather than emit a wrong ground truth"
-    discipline applied elsewhere in this file."""
+    discipline applied elsewhere in this file.
+
+    v3 fields: `caption_text`/`caption_char_start`/`caption_char_end` are
+    the genuine caption only (what a correctness check should be scored
+    against); `table_cells` is whatever trailing content a second
+    "sentence" absorbed that `_classify_trailing_segment` judged NOT to
+    be part of the caption itself (None if nothing was split off);
+    `label_status` is "verified" (no ambiguity — either a clean single-
+    sentence caption or a confidently-classified two-sentence one),
+    "extracted" (a confident table_cells split was applied), or
+    "ambiguous" (the split call, or the caption's own page-boundary
+    truncation, couldn't be resolved with confidence — kept in the
+    dataset for completeness, but excluded from the "verified" headline
+    metric; see eval/mixed_corpus/README.md). `expected_text`/`char_start`/
+    `char_end` are unchanged from v2 (the full, possibly-contaminated
+    span) — kept for backward-compatible callers/debugging, never used
+    for v3 scoring."""
     sentences = _SENTENCE_SPLITTER._split_sentences_with_offsets(normalized_page_text)
     # Another caption's OPENING (not just any mention of its number) is a
     # hard ceiling on our own caption's extension — without this, a caption
@@ -286,7 +362,8 @@ def extract_caption(normalized_page_text: str, kind: str, num: str) -> dict | No
         if not relevant:
             continue
         piece_end = end_offset
-        for s, e, text in relevant[:_MAX_CAPTION_SENTENCES]:
+        first_sentence_end = end_offset
+        for i, (s, e, text) in enumerate(relevant[:_MAX_CAPTION_SENTENCES]):
             e = min(e, next_label_start)
             segment = normalized_page_text[max(s, end_offset):e]
             if not _looks_like_prose(segment):
@@ -294,6 +371,8 @@ def extract_caption(normalized_page_text: str, kind: str, num: str) -> dict | No
             if e - end_offset > _MAX_CAPTION_CHARS:
                 break
             piece_end = e
+            if i == 0:
+                first_sentence_end = e
         # The sentence splitter has no abbreviation awareness — if it
         # stopped right after one ("...AI Alone vs."), the caption almost
         # certainly continues past it. Extend word-by-word with a short
@@ -302,6 +381,15 @@ def extract_caption(normalized_page_text: str, kind: str, num: str) -> dict | No
         # whole-remainder ratio looking prose-y even after it's absorbed an
         # entire table's worth of numbers behind it (confirmed: did exactly
         # that the first time this checked the cumulative span instead).
+        # Applied independently to the first-sentence boundary too (for the
+        # v3 caption_text/table_cells split below) — a caption's own first
+        # sentence can end on an abbreviation just as easily as a combined
+        # span can.
+        if first_sentence_end > end_offset and _ends_with_abbreviation(normalized_page_text, first_sentence_end):
+            first_sentence_end = _extend_across_abbreviation(
+                normalized_page_text, first_sentence_end,
+                min(next_label_start, end_offset + _MAX_CAPTION_CHARS),
+            )
         if piece_end > end_offset and _ends_with_abbreviation(normalized_page_text, piece_end):
             piece_end = _extend_across_abbreviation(
                 normalized_page_text, piece_end,
@@ -324,7 +412,46 @@ def extract_caption(normalized_page_text: str, kind: str, num: str) -> dict | No
         lead = len(raw) - len(raw.lstrip())
         char_start = end_offset + lead
         char_end = char_start + len(expected_text)
-        return {"expected_text": expected_text, "char_start": char_start, "char_end": char_end}
+
+        # v3: split the genuine caption from any trailing content a second
+        # "sentence" absorbed. split_at is where the caption's own FIRST
+        # real sentence ends — clamped into [char_start, char_end] since
+        # the abbreviation-extension above can, in principle, push it past
+        # piece_end's own final value.
+        split_at = min(max(first_sentence_end, char_start), char_end)
+        caption_only = normalized_page_text[char_start:split_at].strip()
+        remainder = normalized_page_text[split_at:char_end].strip()
+
+        if not remainder or not caption_only:
+            caption_text, table_cells, label_status = expected_text, None, "verified"
+        else:
+            shape = _classify_trailing_segment(remainder)
+            if shape == "table_cells":
+                caption_text, table_cells, label_status = caption_only, remainder, "extracted"
+            elif shape == "prose":
+                caption_text, table_cells, label_status = expected_text, None, "verified"
+            else:  # "ambiguous"
+                caption_text, table_cells, label_status = caption_only, remainder, "ambiguous"
+
+        # A caption extracted all the way to the end of this PAGE's text
+        # without a real sentence terminator may simply continue onto the
+        # next page — per-page extraction has no way to see that content,
+        # so asserting the truncated span as the WHOLE caption with
+        # confidence would be a guess, not a verified fact. Downgrades
+        # label_status regardless of the table_cells classification above.
+        reaches_page_end = char_end >= len(normalized_page_text.rstrip())
+        if reaches_page_end and expected_text[-1:] not in ".!?" and label_status != "ambiguous":
+            label_status = "ambiguous"
+
+        caption_char_start = char_start
+        caption_char_end = char_start + len(caption_text)
+
+        return {
+            "expected_text": expected_text, "char_start": char_start, "char_end": char_end,
+            "caption_text": caption_text, "caption_char_start": caption_char_start,
+            "caption_char_end": caption_char_end, "table_cells": table_cells,
+            "label_status": label_status,
+        }
     return None
 
 
@@ -333,12 +460,19 @@ def _verify_caption_offsets(page_text: str, cap: dict) -> None:
     asserts it equals expected_text — a caption case is worthless as ground
     truth if its own offsets don't actually point at its own text on its
     own claimed page, so this fails loudly (build-time, not silently
-    emitted) rather than ever shipping a case that couldn't be trusted."""
+    emitted) rather than ever shipping a case that couldn't be trusted.
+    Also verifies the v3 caption_char_start/caption_char_end sub-span
+    against caption_text, same discipline."""
     normalized = normalize_whitespace(page_text)
     sliced = normalized[cap["char_start"]:cap["char_end"]]
     assert sliced == cap["expected_text"], (
         f"caption offset verification failed: slice [{cap['char_start']}:{cap['char_end']}] "
         f"gave {sliced!r}, expected {cap['expected_text']!r}"
+    )
+    sliced_caption = normalized[cap["caption_char_start"]:cap["caption_char_end"]]
+    assert sliced_caption == cap["caption_text"], (
+        f"caption_text offset verification failed: slice [{cap['caption_char_start']}:"
+        f"{cap['caption_char_end']}] gave {sliced_caption!r}, expected {cap['caption_text']!r}"
     )
 
 
@@ -467,11 +601,15 @@ def build_scientific_cases(docs: list[dict], parser: PDFParser, rng: random.Rand
                 "question": f'What does {cap["kind"]} {cap["num"]} show in the paper "{title}"?',
                 "expect_answer": True,
                 "expected_doc_filename": fname,
-                "expected_substring": cap["expected_text"],
+                "expected_substring": cap["caption_text"],
+                "caption_text": cap["caption_text"],
+                "table_cells": cap["table_cells"],
+                "label_status": cap["label_status"],
+                "caption_source": "text",
                 "caption_label": f'{cap["kind"]} {cap["num"]}',
-                "display_preview": _word_boundary_truncate(cap["expected_text"], 80),
-                "evidence_char_start": cap["char_start"],
-                "evidence_char_end": cap["char_end"],
+                "display_preview": _word_boundary_truncate(cap["caption_text"], 80),
+                "evidence_char_start": cap["caption_char_start"],
+                "evidence_char_end": cap["caption_char_end"],
                 "type": "fact_figure_caption",
                 "source_page": page_num,
                 "doc_pages": total_pages,
@@ -559,11 +697,15 @@ def build_manuals_cases(docs: list[dict], parser: PDFParser) -> list[dict]:
                     "question": f'What does {cap["kind"]} {cap["num"]} show in "{title}"?',
                     "expect_answer": True,
                     "expected_doc_filename": fname,
-                    "expected_substring": cap["expected_text"],
+                    "expected_substring": cap["caption_text"],
+                    "caption_text": cap["caption_text"],
+                    "table_cells": cap["table_cells"],
+                    "label_status": cap["label_status"],
+                    "caption_source": "text",
                     "caption_label": f'{cap["kind"]} {cap["num"]}',
-                    "display_preview": _word_boundary_truncate(cap["expected_text"], 80),
-                    "evidence_char_start": cap["char_start"],
-                    "evidence_char_end": cap["char_end"],
+                    "display_preview": _word_boundary_truncate(cap["caption_text"], 80),
+                    "evidence_char_start": cap["caption_char_start"],
+                    "evidence_char_end": cap["caption_char_end"],
                     "type": "fact_table_caption",
                     "source_page": p["page_num"],
                 })
@@ -646,7 +788,57 @@ def build_hard_negative_cases(full_manifest: list[dict]) -> list[dict]:
     return cases
 
 
+def _git_commit() -> str:
+    try:
+        return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+    except Exception:
+        return "unknown"
+
+
+def _diff_from_v2(v3_cases: list[dict]) -> list[dict]:
+    """Every case whose expected_substring changed between v2 (the
+    committed golden_dataset.json) and this v3 run, with why — the
+    "list of changed cases and reasons" the v3 plan requires. Only
+    fact_figure_caption/fact_table_caption are ever affected by this
+    rewrite; anything else changing would itself be a red flag."""
+    if not V2_OUT_PATH.exists():
+        return []
+    v2_by_id = {c["id"]: c for c in json.loads(V2_OUT_PATH.read_text(encoding="utf-8"))}
+    diffs = []
+    for c in v3_cases:
+        v2_case = v2_by_id.get(c["id"])
+        if v2_case is None:
+            continue  # new in v3 (shouldn't happen — same seed, same sampling) — not an error, just noted by absence
+        v2_substr = v2_case.get("expected_substring")
+        v3_substr = c.get("expected_substring")
+        if v2_substr == v3_substr:
+            continue
+        if c.get("table_cells"):
+            reason = "table_cells split out of expected_substring"
+        elif v2_substr and v3_substr and v3_substr in v2_substr:
+            reason = "expected_substring shortened (ambiguous trailing content dropped)"
+        else:
+            reason = "expected_substring changed (see v2_expected_substring/v3_expected_substring)"
+        diffs.append({
+            "id": c["id"], "type": c["type"], "reason": reason,
+            "label_status": c.get("label_status"),
+            "v2_expected_substring": v2_substr, "v3_expected_substring": v3_substr,
+        })
+    return diffs
+
+
 def main():
+    import argparse
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--output", default=str(OUT_PATH),
+                     help=f"Never the v2 file ({V2_OUT_PATH.name}) — refused explicitly below.")
+    args = ap.parse_args()
+    out_path = Path(args.output)
+    assert out_path.resolve() != V2_OUT_PATH.resolve(), (
+        f"Refusing to overwrite the committed v2 dataset ({V2_OUT_PATH}) — "
+        f"pass --output explicitly (e.g. {OUT_PATH.name})."
+    )
+
     rng = random.Random(SEED)
     full_manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     eligible = load_eligible_discovery_docs()
@@ -672,8 +864,31 @@ def main():
     for t, n in sorted(Counter(c["type"] for c in cases).items()):
         print(f"  {t:24s} {n}")
 
-    OUT_PATH.write_text(json.dumps(cases, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"\nWrote {OUT_PATH}")
+    label_status_counts = Counter(
+        c.get("label_status") for c in cases if c["type"] in ("fact_figure_caption", "fact_table_caption")
+    )
+    print(f"\nlabel_status breakdown ({sum(label_status_counts.values())} caption cases): {dict(label_status_counts)}")
+
+    out_path.write_text(json.dumps(cases, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"\nWrote {out_path}")
+
+    diffs = _diff_from_v2(cases)
+    metadata = {
+        "builder_version": BUILDER_VERSION,
+        "built_at_utc": datetime.now(timezone.utc).isoformat(),
+        "git_commit": _git_commit(),
+        "manifest_sha256": hashlib.sha256(MANIFEST_PATH.read_bytes()).hexdigest(),
+        "output_path": str(out_path),
+        "v2_path": str(V2_OUT_PATH) if V2_OUT_PATH.exists() else None,
+        "v2_sha256": hashlib.sha256(V2_OUT_PATH.read_bytes()).hexdigest() if V2_OUT_PATH.exists() else None,
+        "n_cases": len(cases),
+        "label_status_counts": dict(label_status_counts),
+        "n_cases_changed_from_v2": len(diffs),
+        "changed_cases": diffs,
+    }
+    metadata_path = out_path.with_suffix(".metadata.json")
+    metadata_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"Wrote {metadata_path} ({len(diffs)} cases changed from v2)")
 
 
 if __name__ == "__main__":
