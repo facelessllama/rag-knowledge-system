@@ -2,6 +2,13 @@ let isTyping = false;
 let docsData = {};
 let currentModel = null;
 let availableModels = [];
+// "local" (default, streamed) or "deepseek" (opt-in cloud mode — only
+// selectable at all once /models reports cloud.available, which itself
+// requires BOTH an administrator opt-in and a configured API key server-
+// side; see rag/generator.py's GeneratorRouter). Never persisted across
+// reloads on purpose — every session starts back on the safe local default.
+let currentProvider = 'local';
+let cloudInfo = { available: false, model: null };
 let activeFolderName = '';
 const openFolders = new Set();
 let chatHistory = [];
@@ -136,7 +143,15 @@ async function loadModels() {
     // backend has no persistent model-switch state, /models always reports
     // its .env default, which would otherwise silently revert the user's pick).
     if (currentModel === null) currentModel = data.current;
+    cloudInfo = data.cloud || { available: false, model: null };
+    // If the cloud provider became unavailable mid-session (admin disabled
+    // it, key removed) after the user had selected it, fall back to local
+    // rather than silently continuing to claim "deepseek" on the next
+    // request — GeneratorRouter would reject it anyway, but this avoids a
+    // confusing error appearing with no visible cause in the UI.
+    if (currentProvider === 'deepseek' && !cloudInfo.available) currentProvider = 'local';
     renderModelList();
+    renderProviderList();
   } catch(e) {
     document.getElementById('modelList').innerHTML = '<div class="model-loading">Unavailable</div>';
   }
@@ -161,6 +176,34 @@ function renderModelList() {
 function selectModel(name) {
   currentModel = name;
   renderModelList();
+}
+
+// ── Provider (local Qwen vs. opt-in DeepSeek cloud mode) ─────────────────────
+// Section is hidden entirely (see renderProviderList) unless the server
+// reports the cloud generator as available — no disabled/greyed-out toggle
+// cluttering the default, local-only experience.
+
+function renderProviderList() {
+  const section = document.getElementById('providerSection');
+  if (!cloudInfo.available) { section.style.display = 'none'; return; }
+  section.style.display = '';
+  const options = [
+    { id: 'local', label: 'Local (Qwen)', hint: 'Never leaves this server' },
+    { id: 'deepseek', label: 'DeepSeek (cloud)', hint: cloudInfo.model || 'Sends document text to an external API' },
+  ];
+  let html = '';
+  options.forEach(function(o) {
+    html += '<div class="model-option ' + (o.id === currentProvider ? 'active' : '') + '" onclick="selectProvider(' + JSON.stringify(o.id).replace(/"/g, "'") + ')">';
+    html += '<div class="model-option-name">' + esc(o.label) + '</div>';
+    html += '<div class="model-option-size">' + esc(o.hint) + '</div>';
+    html += '<span class="model-option-check">' + svgIcon('check', 13) + '</span></div>';
+  });
+  document.getElementById('providerList').innerHTML = html;
+}
+
+function selectProvider(id) {
+  currentProvider = id;
+  renderProviderList();
 }
 
 function toggleSettings() {
@@ -1064,6 +1107,16 @@ function runQuery(text, topK, documentIds) {
   addUserMessage(text); showTyping();
   pushRecent(text);
 
+  // DeepSeek cloud mode has no streaming support in the backend on purpose
+  // (rag/generator.py's GeneratorRouter — a request explicitly asking for
+  // it on the streaming endpoint gets a clear error rather than a silent
+  // switch to local) — so this branch calls the plain /query endpoint and
+  // renders the whole answer at once instead of animating token-by-token.
+  if (currentProvider === 'deepseek') {
+    runQueryNonStreaming(text, topK, documentIds);
+    return;
+  }
+
   var accum = '';
   var blockWrap = null;
   var answerCard = null;
@@ -1132,6 +1185,34 @@ function runQuery(text, topK, documentIds) {
   );
 }
 
+function runQueryNonStreaming(text, topK, documentIds) {
+  var folderFilter = _folderFilterValue || null;
+  apiQuery(text, topK, true, currentModel, currentProvider, chatHistory, folderFilter, documentIds)
+    .then(function(res) {
+      hideTyping();
+      if (!res.ok || !res.data) {
+        addErrorMessage('No connection to the server.');
+        isTyping = false;
+        return;
+      }
+      var data = res.data;
+      var built = buildAnswerBlock(data.sources);
+      document.getElementById('messages').appendChild(built.wrap);
+      built.answerText.textContent = data.answer;
+      finishAnswerBlock(built.wrap, built.answerCard, data.sources, data.answer);
+      scrollBottom();
+      updateDebugPanel({ sources: data.sources, debug: Object.assign({}, data.debug, { provider: data.provider, model: data.model }) });
+      chatHistory.push({ role: 'user', content: text });
+      chatHistory.push({ role: 'assistant', content: data.answer });
+      isTyping = false;
+    })
+    .catch(function() {
+      hideTyping();
+      addErrorMessage('No connection to the server.');
+      isTyping = false;
+    });
+}
+
 // ── Retrieval details (formerly "debug") ─────────────────────────────────────
 
 function toggleRetrievalPanel() {
@@ -1151,7 +1232,8 @@ function updateDebugPanel(data) {
   document.getElementById('dbgTotal').textContent = d.total_ms || '—';
   document.getElementById('dbgChunks').textContent = (d.chunks_after_rerank || '?') + '/' + (d.chunks_retrieved || '?');
   document.getElementById('dbgScore').textContent = d.best_score != null ? d.best_score.toFixed(3) + ' / avg ' + (d.avg_score || 0).toFixed(3) : '—';
-  document.getElementById('dbgModel').textContent = d.model || currentModel || '';
+  var providerLabel = d.provider === 'deepseek' ? ' (cloud)' : d.provider === 'local' ? ' (local)' : '';
+  document.getElementById('dbgModel').textContent = (d.model || currentModel || '') + providerLabel;
   document.getElementById('dbgQueries').innerHTML = (d.expanded_queries || []).map(function(q, i) {
     return '<div class="dbg-query-item' + (i === 0 ? ' primary' : '') + '">' + esc(q) + '</div>';
   }).join('');

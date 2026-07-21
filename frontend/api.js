@@ -51,11 +51,19 @@ async function apiDeleteDocument(docId) {
   return r.ok;
 }
 
-async function apiQuery(question, topK, rerank, model) {
+async function apiQuery(question, topK, rerank, model, provider, chatHistory, folder, documentIds) {
   const r = await fetch(API + '/query', {
     method: 'POST',
     headers: authHeaders({ 'Content-Type': 'application/json' }),
-    body: JSON.stringify({ question: question, top_k: topK, rerank: rerank, model: model || undefined })
+    body: JSON.stringify({
+      question: question, top_k: topK, rerank: rerank, model: model || undefined,
+      // "local" is what the backend assumes when omitted — sent explicitly
+      // anyway so it's never ambiguous which provider a request asked for.
+      provider: provider || 'local',
+      chat_history: chatHistory || [],
+      folder: folder || undefined,
+      document_ids: (documentIds && documentIds.length) ? documentIds : undefined,
+    })
   });
   return { ok: r.ok, data: r.ok ? await r.json() : null };
 }
