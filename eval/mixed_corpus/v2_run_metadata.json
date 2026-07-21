@@ -1,0 +1,40 @@
+{
+  "purpose": "Frozen-corpus baseline for mixed_corpus_v2 — a clean re-ingest of all 762 documents after this session's NUL-byte and Qdrant-batching fixes, kept separate from mixed_corpus_test (which drifted mid-session: 2 documents were manually re-uploaded into it to verify the Qdrant fix, shifting Qdrant's incremental sparse-vector IDF stats for the whole collection). Do not compare a future eval run against mixed_corpus_test's saved scores as if it were this baseline.",
+  "created_at_utc": "2026-07-21T01:22:00Z",
+  "git_commit": "b3ef69ede3b8a151e7d1ee069578d80a62671622",
+  "git_note": "Ingestion-relevant code (ingestion/pdf_parser.py, ingestion/chunker.py, vector_db/qdrant_client.py) was fully committed and clean at this commit for this ingest run. Uncommitted at ingest time (don't affect ingestion behavior): api/main.py's debug.top_chunks char_start/char_end fields, eval/run_eval.py's evidence_chunk_overlaps()/--limit-per-type, eval/mixed_corpus/build_golden_dataset.py's caption-extraction rewrite (golden_dataset.json below IS the rewritten output).",
+  "golden_dataset_sha256": "868c638c30f30bb9e65acf6547b551c06216bab254c16d4084cf85202bceb14d",
+  "manifest_sha256": "791ed00fda6e7f246f8a5b0032cba946b7c6b24f3957f054bfe6ea4cb1e69513",
+  "isolation": {
+    "api_port": 8003,
+    "qdrant_collection": "mixed_corpus_v2",
+    "postgres_db": "ragdb_mixed_corpus_v2",
+    "note": "Fresh collection/DB, created empty this session — never touched by mixed_corpus_test (port 8002) or knowledge_base (port 8000, main instance) or eu_scale_test (port 8001)."
+  },
+  "ingest_result": {
+    "total_manifest_docs": 762,
+    "indexed_ok": 731,
+    "skipped_as_duplicate": 19,
+    "skipped_note": "All 19 (16 manuals + 2 medical + 1 hard_old_scans) had genuinely succeeded server-side on a first attempt that hit a client-side transport timeout before the response returned — confirmed present via /documents total=750, not data loss. Re-running the resumable ingest script correctly detected them as already-indexed via the duplicate-content-hash guard rather than re-inserting.",
+    "failed": 12,
+    "failed_breakdown": {"hard_old_scans": 10, "hard_old_scans_math": 1, "hard_headers_footers": 1},
+    "failed_note": "Identical failure set to mixed_corpus_test's original baseline (VALIDATION.md's pre-flight-predicted 12/12 unreadable old-scan/handwritten-math documents) — confirms this is a genuine, stable extraction limit, not corpus-instance-specific noise.",
+    "total_indexed_and_queryable": 750,
+    "total_vectors": 120529,
+    "zero_nul_byte_failures": true,
+    "zero_qdrant_payload_limit_failures": true,
+    "qdrant_payload_limit_note": "Both previously-failing documents (arxiv_2607.14178_ReasFlow, 245pg/1494 chunks; faa_prh_change1.pdf, 350pg/1806 chunks) indexed cleanly with no manual intervention needed, confirming the batching fix (vector_db/qdrant_client.py::upsert_chunks) works in a genuine fresh full-corpus run, not just the earlier manual spot-check."
+  },
+  "config_at_ingest_time": {
+    "embedding_model": "BAAI/bge-m3",
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "llm_model": "qwen2.5:7b",
+    "chunk_size": 512,
+    "chunk_overlap": 50,
+    "note": "Read from .env.example defaults — confirm against the actual running instance's /health response (embedding_model/llm_model are echoed there) before trusting for a specific run; chunk_size/overlap are not echoed by /health and were not independently re-verified against .env at ingest time."
+  },
+  "not_yet_done": [
+    "Recompute the golden-dataset eval baseline against this v2 collection (plan step 5) — this file only covers ingestion, not retrieval/generation accuracy",
+    "Lock in the corrected error attribution from a v2-based eval run, not the mixed_corpus_test numbers this session's manual audit was based on"
+  ]
+}
