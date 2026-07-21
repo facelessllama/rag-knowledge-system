@@ -57,6 +57,32 @@ def substring_ok(expected, answer_norm: str) -> bool:
     return any(normalize(c) in answer_norm for c in candidates)
 
 
+def evidence_chunk_overlaps(chunk_start, chunk_end, cap_start, cap_end, min_coverage: float = 0.5) -> bool:
+    """True if a chunk's char range gives meaningful coverage of a
+    caption's char range — both are offsets into the SAME normalize_
+    whitespace() coordinate space (see ingestion/chunker.py's char_start/
+    char_end and eval/mixed_corpus/build_golden_dataset.py's evidence_
+    char_start/char_end), so they can be intersected directly with no
+    text comparison needed.
+
+    Deliberately NOT "any intersection at all" — a chunk overlapping the
+    caption by one character technically intersects but tells us nothing
+    (chunk_size=512 means an adjacent chunk routinely brushes a caption's
+    edge by a few chars of shared context). Counts as a hit if either (a)
+    the chunk contains the caption's OPENING character — the strongest
+    single signal, since the model at least saw where the caption starts —
+    or (b) the overlap covers at least `min_coverage` of the caption's own
+    span, for a caption long enough to legitimately span more than one
+    chunk."""
+    overlap = max(0, min(chunk_end, cap_end) - max(chunk_start, cap_start))
+    if overlap == 0:
+        return False
+    contains_caption_start = chunk_start <= cap_start < chunk_end
+    cap_len = cap_end - cap_start
+    covers_enough = cap_len > 0 and overlap / cap_len >= min_coverage
+    return contains_caption_start or covers_enough
+
+
 _JUDGE_PROMPT = """You are grading whether a generated answer correctly conveys a specific expected fact. Paraphrasing, reordering, or different wording is fine — the core fact just has to be present and correct. Do not give credit for a vague, partial, hedged, or wrong answer.
 
 Question: {question}
@@ -189,6 +215,33 @@ async def run_case(client, base_url, headers, case, top_k, doc_id_by_filename, j
             result["evidence_page_hit"] = source_page in hit_pages
             result["evidence_pages_seen"] = hit_pages
 
+            # Evidence-CHUNK recall: evidence_page_hit above only proves
+            # SOME chunk from the right page reached the model — a page
+            # with 5-8 chunks routinely has the caption in just one of
+            # them, so "page hit" alone conflates a real localization
+            # success with a same-page-wrong-chunk miss (confirmed by
+            # hand: manually re-checked 26 "page hit, answer wrong" cases
+            # against real chunk text pulled from Qdrant — 14 of 26 never
+            # actually had the caption text in any shown chunk, despite
+            # evidence_page_hit=True for all 26). evidence_char_start/end
+            # (see eval/mixed_corpus/build_golden_dataset.py) and each
+            # chunk's own char_start/char_end (api/main.py's /query debug
+            # output) are both offsets into the same normalize_whitespace()
+            # page text, so this is a pure range comparison — no chunk text
+            # needs to be sent back in debug at all.
+            evidence_char_start = case.get("evidence_char_start")
+            evidence_char_end = case.get("evidence_char_end")
+            if evidence_char_start is not None and evidence_char_end is not None:
+                same_page_chunks = [
+                    c for c in top_chunks
+                    if c.get("document_id") == expected_doc_id and c.get("page_num") == source_page
+                    and c.get("char_start") is not None and c.get("char_end") is not None
+                ]
+                result["evidence_chunk_hit"] = any(
+                    evidence_chunk_overlaps(c["char_start"], c["char_end"], evidence_char_start, evidence_char_end)
+                    for c in same_page_chunks
+                )
+
         expected_substr = case.get("expected_substring")
         if expected_substr and answered:
             result["substring_correct"] = substring_ok(expected_substr, normalize(answer))
@@ -314,6 +367,9 @@ async def main():
     evidence_cases = [r for r in should_answer if "evidence_page_hit" in r]
     evidence_hits = sum(1 for r in evidence_cases if r["evidence_page_hit"])
 
+    evidence_chunk_cases = [r for r in should_answer if "evidence_chunk_hit" in r]
+    evidence_chunk_hits = sum(1 for r in evidence_chunk_cases if r["evidence_chunk_hit"])
+
     def pct(numerator, denominator):
         return f"{100*numerator/denominator:.1f}%" if denominator else "n/a"
 
@@ -336,6 +392,16 @@ async def main():
         # below document recall on long, content-dense documents; that gap
         # IS the finding, not a scoring bug.
         print(f"Evidence-page Recall@{args.top_k}: {evidence_hits}/{len(evidence_cases)} ({pct(evidence_hits, len(evidence_cases))})")
+    if evidence_chunk_cases:
+        # Evidence-page Recall above only proves SOME chunk from the right
+        # page reached the model — this checks whether the specific chunk
+        # covering the fact's own char range did (see evidence_chunk_
+        # overlaps' docstring). Always <= Evidence-page Recall for the same
+        # run; the gap between them is exactly the "right page, wrong
+        # chunk" failure mode a page-only metric can't distinguish from a
+        # real generation error.
+        print(f"Evidence-chunk Recall@{args.top_k}: {evidence_chunk_hits}/{len(evidence_chunk_cases)} "
+              f"({pct(evidence_chunk_hits, len(evidence_chunk_cases))})")
     print(f"MRR: {mrr:.3f}")
     print(f"Overall abstention accuracy: {abstention_correct}/{n} ({pct(abstention_correct, n)})")
     print(f"  - Answered when should ({len(should_answer)} cases):  {answered_when_should}/{len(should_answer)} ({pct(answered_when_should, len(should_answer))})")
