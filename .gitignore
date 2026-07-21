@@ -25,3 +25,11 @@ eval/deepseek_accuracy_results.json
 eval/eu_ingest_progress.json
 eval/mixed_corpus/documents/
 eval/mixed_corpus/download_report.json
+# eval/compare_generators.py's raw output — full prompts/chunk text
+# (contexts), per-case answers (results), and the resumable progress file
+# all regenerable via capture_generation_contexts.py + compare_generators.py.
+# generator_ab_report.md (the small aggregates-only Markdown summary) is
+# NOT listed here — that one is committed.
+eval/**/generator_ab_contexts.json
+eval/**/generator_ab_results.json
+eval/**/generator_ab_progress.json
