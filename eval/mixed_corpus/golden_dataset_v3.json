@@ -561,7 +561,7 @@
     "expected_substring": "Feature coverage for each action in the Simple Adversary domain. 105 106 steps 0.4 0.6 0.8 1.0 distance action move_left move_right move_up move_down 105 106 steps 0.2 0.4 0.6 0.8 1.0 distance action move_left move_right move_up move_down 105 106 steps 0.7 0.8 0.9 1.0 distance action move_left move_right move_up move_down 105 106 steps 0.5 0.6 0.7 0.8 0.9 1.0 distance action move_left move_right move_up move_down",
     "caption_text": "Feature coverage for each action in the Simple Adversary domain. 105 106 steps 0.4 0.6 0.8 1.0 distance action move_left move_right move_up move_down 105 106 steps 0.2 0.4 0.6 0.8 1.0 distance action move_left move_right move_up move_down 105 106 steps 0.7 0.8 0.9 1.0 distance action move_left move_right move_up move_down 105 106 steps 0.5 0.6 0.7 0.8 0.9 1.0 distance action move_left move_right move_up move_down",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "ambiguous",
     "caption_source": "text",
     "caption_label": "Figure 14",
     "display_preview": "Feature coverage for each action in the Simple Adversary domain. 105 106 steps…",
@@ -569,7 +569,8 @@
     "evidence_char_end": 978,
     "type": "fact_figure_caption",
     "source_page": 30,
-    "doc_pages": 31
+    "doc_pages": 31,
+    "manual_review_note": "Chart axis tick marks + legend items repeated 4x ('105 106 steps 0.4 0.6 0.8 1.0 distance action move_left move_right...') with no period anywhere — the v3 no-period blind spot, confirmed by hand."
   },
   {
     "id": "sci_author_2607.10539",
@@ -613,7 +614,7 @@
     "expected_substring": "Breakdown of 7,949 misinformation posts across six taxonomy dimensions, with the top subreddits contributing to each label shown in the outer ring. only 6% of the dataset, it still corresponded to 7,949 posts, reflecting how harmful misinforma- tion can remain substantial even when relatively infrequent in online discourse (Suarez-Lledo and Alvarez-Galvez, 2021; Vosoughi et al., 2018).",
     "caption_text": "Breakdown of 7,949 misinformation posts across six taxonomy dimensions, with the top subreddits contributing to each label shown in the outer ring. only 6% of the dataset, it still corresponded to 7,949 posts, reflecting how harmful misinforma- tion can remain substantial even when relatively infrequent in online discourse (Suarez-Lledo and Alvarez-Galvez, 2021; Vosoughi et al., 2018).",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "verified_reviewed",
     "caption_source": "text",
     "caption_label": "Figure 3",
     "display_preview": "Breakdown of 7,949 misinformation posts across six taxonomy dimensions, with…",
@@ -621,7 +622,8 @@
     "evidence_char_end": 2012,
     "type": "fact_figure_caption",
     "source_page": 8,
-    "doc_pages": 23
+    "doc_pages": 23,
+    "manual_review_note": "Genuine two-sentence caption: description + a real explanatory continuation about the 6%/7,949-post finding. No leaked table data."
   },
   {
     "id": "sci_author_2607.13716",
@@ -899,7 +901,7 @@
     "expected_substring": "Path dissolution through observation (the hospital case, Emma). Though the danger path was encoded in a single intense event, it dissolves through the same mechanism as the cook’s: repeated interception at the feeling tone gap accumulates long- term depression, narrowing the path and contracting its pull radius, until a siren no longer fires the full panic cascade.",
     "caption_text": "Path dissolution through observation (the hospital case, Emma). Though the danger path was encoded in a single intense event, it dissolves through the same mechanism as the cook’s: repeated interception at the feeling tone gap accumulates long- term depression, narrowing the path and contracting its pull radius, until a siren no longer fires the full panic cascade.",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "verified_reviewed",
     "caption_source": "text",
     "caption_label": "Figure 19",
     "display_preview": "Path dissolution through observation (the hospital case, Emma). Though the…",
@@ -907,7 +909,8 @@
     "evidence_char_end": 378,
     "type": "fact_figure_caption",
     "source_page": 30,
-    "doc_pages": 57
+    "doc_pages": 57,
+    "manual_review_note": "Genuine flowing prose describing the figure's narrative example (the 'hospital case, Emma'). No leaked table/chart content."
   },
   {
     "id": "sci_author_2607.15532",
@@ -1489,7 +1492,7 @@
     "expected_substring": "This appendix provides the annotation procedure, failure-type definitions, subgoal weighting rule, detailed progress statistics, and mechanism-level interpretation used for that audit. The audit is not a new benchmark score; it is intended to distinguish final-answer failures that make partial evidence-chain progress from failures that never acquire the necessary evidence.",
     "caption_text": "This appendix provides the annotation procedure, failure-type definitions, subgoal weighting rule, detailed progress statistics, and mechanism-level interpretation used for that audit. The audit is not a new benchmark score; it is intended to distinguish final-answer failures that make partial evidence-chain progress from failures that never acquire the necessary evidence.",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "ambiguous",
     "caption_source": "text",
     "caption_label": "Figure 3",
     "display_preview": "This appendix provides the annotation procedure, failure-type definitions,…",
@@ -1497,7 +1500,8 @@
     "evidence_char_end": 1399,
     "type": "fact_figure_caption",
     "source_page": 13,
-    "doc_pages": 25
+    "doc_pages": 25,
+    "manual_review_note": "Text describes an APPENDIX's general contents ('This appendix provides the annotation procedure...'), not what Figure 3 itself shows — looks like a misattributed span, not table-cell leakage."
   },
   {
     "id": "sci_author_2607.13594",
@@ -1559,7 +1563,7 @@
     "expected_substring": "Framework and Initiative Coverage for AI Literacy and Children’s Rights 2ND EDITION REPORT ℓ 50 Source: Global Index on Responsible AI (GIRAI) Global Survey, 2026. Bars show the number of countries with active frameworks and government-led initiatives addressing AI Literacy and Children’s Rights, out of 135 countries assessed in 2026.",
     "caption_text": "Framework and Initiative Coverage for AI Literacy and Children’s Rights 2ND EDITION REPORT ℓ 50 Source: Global Index on Responsible AI (GIRAI) Global Survey, 2026. Bars show the number of countries with active frameworks and government-led initiatives addressing AI Literacy and Children’s Rights, out of 135 countries assessed in 2026.",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "ambiguous",
     "caption_source": "text",
     "caption_label": "Figure 12",
     "display_preview": "Framework and Initiative Coverage for AI Literacy and Children’s Rights 2ND…",
@@ -1567,7 +1571,8 @@
     "evidence_char_end": 405,
     "type": "fact_figure_caption",
     "source_page": 50,
-    "doc_pages": 100
+    "doc_pages": 100,
+    "manual_review_note": "Report boilerplate/running-header furniture leaked in mid-span ('2ND EDITION REPORT ℓ 50 Source: Global Index on Responsible AI (GIRAI) Global Survey, 2026.') between two genuine caption sentences."
   },
   {
     "id": "sci_author_2607.13801",
@@ -1811,7 +1816,7 @@
     "expected_substring": "A case in which backward leave-one-turn attribution identifies a delayed cross-turn contribution. The target search turn retrieves key evidence supporting the gold answer Sam-I-am, but the likelihood of generating the gold answer temporarily decreases when the evidence is introduced, leading forward attribution to assign a negative value.",
     "caption_text": "A case in which backward leave-one-turn attribution identifies a delayed cross-turn contribution. The target search turn retrieves key evidence supporting the gold answer Sam-I-am, but the likelihood of generating the gold answer temporarily decreases when the evidence is introduced, leading forward attribution to assign a negative value.",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "verified_reviewed",
     "caption_source": "text",
     "caption_label": "Figure 6",
     "display_preview": "A case in which backward leave-one-turn attribution identifies a delayed…",
@@ -1819,7 +1824,8 @@
     "evidence_char_end": 1185,
     "type": "fact_figure_caption",
     "source_page": 19,
-    "doc_pages": 20
+    "doc_pages": 20,
+    "manual_review_note": "Genuine flowing technical prose describing a specific example case shown in the figure. No leaked table/chart content."
   },
   {
     "id": "sci_author_2607.13124",
@@ -1985,7 +1991,7 @@
     "expected_substring": "GPT-OSS 120B Experiment: Complete Results Run ID Type Time (s) Concepts Pass Rate Status fantasy_01 FANTASY 875.1 42 84.0% success fantasy_02 FANTASY 741.6 58 95.0% success fantasy_03 FANTASY 844.8 45 92.0% success fantasy_04 FANTASY 1,166.5 64 84.0% success scifi_01 SCIFI 1,068.0 51 84.0% success scifi_02 SCIFI 1,152.5 69 88.0% success scifi_03 SCIFI 1,035.0 59 87.0% success scifi_04 SCIFI 1,146.8 54 80.0% success post_apoc_01 POST_APOC.",
     "caption_text": "GPT-OSS 120B Experiment: Complete Results Run ID Type Time (s) Concepts Pass Rate Status fantasy_01 FANTASY 875.1 42 84.0% success fantasy_02 FANTASY 741.6 58 95.0% success fantasy_03 FANTASY 844.8 45 92.0% success fantasy_04 FANTASY 1,166.5 64 84.0% success scifi_01 SCIFI 1,068.0 51 84.0% success scifi_02 SCIFI 1,152.5 69 88.0% success scifi_03 SCIFI 1,035.0 59 87.0% success scifi_04 SCIFI 1,146.8 54 80.0% success post_apoc_01 POST_APOC.",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "ambiguous",
     "caption_source": "text",
     "caption_label": "Table 19",
     "display_preview": "GPT-OSS 120B Experiment: Complete Results Run ID Type Time (s) Concepts Pass…",
@@ -1993,7 +1999,8 @@
     "evidence_char_end": 476,
     "type": "fact_figure_caption",
     "source_page": 35,
-    "doc_pages": 36
+    "doc_pages": 36,
+    "manual_review_note": "Raw table header + full data rows glued directly onto a title-like heading with no period at all — the v3 no-period blind spot."
   },
   {
     "id": "sci_author_2607.09501",
@@ -2063,7 +2070,7 @@
     "expected_substring": "Software Engineering Web Navigation Gaming & Strategy Scientific Discovery Embodied AI & Robotics General Computer Control Code Sandbox & CI Bug Fixing Code Optimization Simulated Browser Automated Browsing Web Automation Game Environment Self-Play Training Strategic Planning Research Simulator Experimentation Hypothesis Testing Robotic Simulator Skill Learning Sim-to-Real Transfer Virtual Desktop File Management OS Automation FM Improvement Scaffolding Improvement Scaffolding Improvement",
     "caption_text": "Software Engineering Web Navigation Gaming & Strategy Scientific Discovery Embodied AI & Robotics General Computer Control Code Sandbox & CI Bug Fixing Code Optimization Simulated Browser Automated Browsing Web Automation Game Environment Self-Play Training Strategic Planning Research Simulator Experimentation Hypothesis Testing Robotic Simulator Skill Learning Sim-to-Real Transfer Virtual Desktop File Management OS Automation FM Improvement Scaffolding Improvement Scaffolding Improvement",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "ambiguous",
     "caption_source": "text",
     "caption_label": "Table 5",
     "display_preview": "Software Engineering Web Navigation Gaming & Strategy Scientific Discovery…",
@@ -2071,7 +2078,8 @@
     "evidence_char_end": 906,
     "type": "fact_figure_caption",
     "source_page": 42,
-    "doc_pages": 97
+    "doc_pages": 97,
+    "manual_review_note": "A bare list of taxonomy category/subcategory names with no connecting prose at all — leaked table content, no period."
   },
   {
     "id": "sci_author_2607.13596",
@@ -2375,7 +2383,7 @@
     "expected_substring": "The grassroots app: one app over three grassroots platforms, each a vGLP program rendered by a single Dart interpreter from its manifest, and each shown here by its panel (the screen) and one elicitation construct. Social graph: (1) the Friends panel — the friends list, with Charlie’s request pending; (2) the friend- offer card — the respond clause’s Accept and Decline siblings, which elicit Befriend.",
     "caption_text": "The grassroots app: one app over three grassroots platforms, each a vGLP program rendered by a single Dart interpreter from its manifest, and each shown here by its panel (the screen) and one elicitation construct. Social graph: (1) the Friends panel — the friends list, with Charlie’s request pending; (2) the friend- offer card — the respond clause’s Accept and Decline siblings, which elicit Befriend.",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "verified_reviewed",
     "caption_source": "text",
     "caption_label": "Figure 1",
     "display_preview": "The grassroots app: one app over three grassroots platforms, each a vGLP…",
@@ -2383,7 +2391,8 @@
     "evidence_char_end": 460,
     "type": "fact_figure_caption",
     "source_page": 23,
-    "doc_pages": 37
+    "doc_pages": 37,
+    "manual_review_note": "Genuine (dense, multi-panel) prose describing the figure's panels and UI elements. No leaked table/chart content."
   },
   {
     "id": "sci_author_2607.10880",
@@ -2401,7 +2410,7 @@
     "expected_substring": "Substitution machinery for the deep embedding (theory MinFMLinHOL_deep_subst_lemma.thy, part 1): the free-/bound-variable predicates is_free and is_bound with their shorthands (lines 4–18), the fresh-variable function fresh (lines 20–25) and its consequence lemmata L5–L9 (lines 26–30), the irrelevance lemma L12 (lines 32–33), variable-for-variable substitution [𝑥←𝑧](𝜙) (lines 35–40) with lemmata L13, L14 and L16 (lines 41–43), and the size-based induction principle SInduct (lines 45–52).",
     "caption_text": "Substitution machinery for the deep embedding (theory MinFMLinHOL_deep_subst_lemma.thy, part 1): the free-/bound-variable predicates is_free and is_bound with their shorthands (lines 4–18), the fresh-variable function fresh (lines 20–25) and its consequence lemmata L5–L9 (lines 26–30), the irrelevance lemma L12 (lines 32–33), variable-for-variable substitution [𝑥←𝑧](𝜙) (lines 35–40) with lemmata L13, L14 and L16 (lines 41–43), and the size-based induction principle SInduct (lines 45–52).",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "verified_reviewed",
     "caption_source": "text",
     "caption_label": "Figure 10",
     "display_preview": "Substitution machinery for the deep embedding (theory…",
@@ -2409,7 +2418,8 @@
     "evidence_char_end": 503,
     "type": "fact_figure_caption",
     "source_page": 18,
-    "doc_pages": 24
+    "doc_pages": 24,
+    "manual_review_note": "Genuine technical prose describing a formal-methods figure's notation and line references. Structured but coherent, real sentence connectives throughout."
   },
   {
     "id": "sci_author_2607.11614",
@@ -2801,7 +2811,7 @@
     "expected_substring": "Per-domain certificate, fully unpacked (BEIR-MIX, 1000 resampled calibrations, 𝛾=0.1, locked budgets). The router floor ¯𝜌𝐵 is the irreducible misrouted-mass term: when it exceeds the target budget 𝛼★the rescaled run-budget is non-positive, the domain is infeasible, and C3R abstains (issues the vacuous certificate 1.0 and returns nothing) rather than violate.",
     "caption_text": "Per-domain certificate, fully unpacked (BEIR-MIX, 1000 resampled calibrations, 𝛾=0.1, locked budgets). The router floor ¯𝜌𝐵 is the irreducible misrouted-mass term: when it exceeds the target budget 𝛼★the rescaled run-budget is non-positive, the domain is infeasible, and C3R abstains (issues the vacuous certificate 1.0 and returns nothing) rather than violate.",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "verified_reviewed",
     "caption_source": "text",
     "caption_label": "Table 6",
     "display_preview": "Per-domain certificate, fully unpacked (BEIR-MIX, 1000 resampled calibrations,…",
@@ -2809,7 +2819,8 @@
     "evidence_char_end": 1229,
     "type": "fact_figure_caption",
     "source_page": 18,
-    "doc_pages": 25
+    "doc_pages": 25,
+    "manual_review_note": "Genuine technical prose explaining the table's statistical semantics. No leaked raw table data."
   },
   {
     "id": "sci_author_2607.15275",
@@ -3071,7 +3082,7 @@
     "expected_substring": "Decision-Study Projections and Empirical Configuration Sweeps Panel A. Selected pooled deployment projections Design Conditions Eρ² Φ 1 task x 1 encoder x 1 head 1 .315 .311 2 tasks x 1 encoder x 1 head 1 .438 .432 6 tasks x 1 encoder x 1 head 1 .592 .585 2 tasks x 2 encoders x 2 heads 4 .639 .631 2 tasks x 3 encoders x 2 heads 6 .674 .665 4 tasks x 2 encoders x 2 heads 4 .729 .722 2 tasks x 6 encoders x 4 heads 24 .773 .763 Panel B.",
     "caption_text": "Decision-Study Projections and Empirical Configuration Sweeps Panel A. Selected pooled deployment projections Design Conditions Eρ² Φ 1 task x 1 encoder x 1 head 1 .315 .311 2 tasks x 1 encoder x 1 head 1 .438 .432 6 tasks x 1 encoder x 1 head 1 .592 .585 2 tasks x 2 encoders x 2 heads 4 .639 .631 2 tasks x 3 encoders x 2 heads 6 .674 .665 4 tasks x 2 encoders x 2 heads 4 .729 .722 2 tasks x 6 encoders x 4 heads 24 .773 .763 Panel B.",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "ambiguous",
     "caption_source": "text",
     "caption_label": "Table 3",
     "display_preview": "Decision-Study Projections and Empirical Configuration Sweeps Panel A. Selected…",
@@ -3079,7 +3090,8 @@
     "evidence_char_end": 1174,
     "type": "fact_figure_caption",
     "source_page": 30,
-    "doc_pages": 56
+    "doc_pages": 56,
+    "manual_review_note": "Raw table headers + numeric sweep rows ('1 task x 1 encoder x 1 head 1 .315 .311...') with no period — the v3 no-period blind spot."
   },
   {
     "id": "sci_author_2607.12523",
@@ -3435,7 +3447,7 @@
     "expected_substring": "Comparison of Scam Fall Prediction Studies for Vulnerability Risk Prediction Study Approach Accuracy Sample Size Key Strengths Key Weaknesses Tin et al. [71] ML (KNN) 94.8% 207 High accuracy with UBA data including malware prevention and SE response patterns Limited demographic scope, ages 15-30 from a single malaysian university Huseynov et al.",
     "caption_text": "Comparison of Scam Fall Prediction Studies for Vulnerability Risk Prediction Study Approach Accuracy Sample Size Key Strengths Key Weaknesses Tin et al. [71] ML (KNN) 94.8% 207 High accuracy with UBA data including malware prevention and SE response patterns Limited demographic scope, ages 15-30 from a single malaysian university Huseynov et al.",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "ambiguous",
     "caption_source": "text",
     "caption_label": "Table 1",
     "display_preview": "Comparison of Scam Fall Prediction Studies for Vulnerability Risk Prediction…",
@@ -3443,7 +3455,8 @@
     "evidence_char_end": 355,
     "type": "fact_figure_caption",
     "source_page": 16,
-    "doc_pages": 22
+    "doc_pages": 22,
+    "manual_review_note": "Raw table headers + citation-style data rows with no period — the v3 no-period blind spot."
   },
   {
     "id": "sci_author_2607.11707",
@@ -3557,7 +3570,7 @@
     "expected_substring": "Performance Evaluation on the E-Commerce Fraud Dataset Model TN FP FN TP Precision Recall F1-Score XGBoost (Raw Tabular) 28833 1 1389 0 0.000 0.000 0.000 XGBoost (Semantic Embeddings) 28767 67 1377 12 0.152 0.009 0.016 Standard DQN 28587 247 1302 87 0.260 0.063 0.101 Pareto-DQN 23808 5026 1018 371 0.069 0.267 0.109 Table 1 provides a quantitative demonstration of the limitations inherent to single-objective optimization.",
     "caption_text": "Performance Evaluation on the E-Commerce Fraud Dataset Model TN FP FN TP Precision Recall F1-Score XGBoost (Raw Tabular) 28833 1 1389 0 0.000 0.000 0.000 XGBoost (Semantic Embeddings) 28767 67 1377 12 0.152 0.009 0.016 Standard DQN 28587 247 1302 87 0.260 0.063 0.101 Pareto-DQN 23808 5026 1018 371 0.069 0.267 0.109 Table 1 provides a quantitative demonstration of the limitations inherent to single-objective optimization.",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "ambiguous",
     "caption_source": "text",
     "caption_label": "Table 1",
     "display_preview": "Performance Evaluation on the E-Commerce Fraud Dataset Model TN FP FN TP…",
@@ -3565,7 +3578,8 @@
     "evidence_char_end": 795,
     "type": "fact_figure_caption",
     "source_page": 10,
-    "doc_pages": 15
+    "doc_pages": 15,
+    "manual_review_note": "The originally-discovered real bug that motivated flagging this whole class: raw table cell values with no period ('...XGBoost (Raw Tabular) 28833 1 1389 0 0.000 0.000 0.000...')."
   },
   {
     "id": "sci_author_2607.14683",
@@ -3975,7 +3989,7 @@
     "expected_substring": "Grid search results for diacritic adjustment parameters Parameters Accuracy Harmonic Mean α β L < 50 L > 150 0.01 2.0 81.0% 88.5% 84.5% 0.10 2.0 75.0% 100.0% 85.7% 0.05 0.5 65.0% 100.0% 78.7% 0.05 5.0 82.0% 92.0% 86.7% 0.05 2.0 81.0% 100.0% 89.5% 4.3 Distance-Based Classification Let x(c) T and x(b) T denote the character and bigram compositional representations of the input text after smoothing and normalization.",
     "caption_text": "Grid search results for diacritic adjustment parameters Parameters Accuracy Harmonic Mean α β L < 50 L > 150 0.01 2.0 81.0% 88.5% 84.5% 0.10 2.0 75.0% 100.0% 85.7% 0.05 0.5 65.0% 100.0% 78.7% 0.05 5.0 82.0% 92.0% 86.7% 0.05 2.0 81.0% 100.0% 89.5% 4.3 Distance-Based Classification Let x(c) T and x(b) T denote the character and bigram compositional representations of the input text after smoothing and normalization.",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "ambiguous",
     "caption_source": "text",
     "caption_label": "Table 3",
     "display_preview": "Grid search results for diacritic adjustment parameters Parameters Accuracy…",
@@ -3983,7 +3997,8 @@
     "evidence_char_end": 498,
     "type": "fact_figure_caption",
     "source_page": 6,
-    "doc_pages": 13
+    "doc_pages": 13,
+    "manual_review_note": "Raw grid-search table data AND bleeds into an entirely unrelated following section ('4.3 Distance-Based Classification...') — double contamination, no period to stop either."
   },
   {
     "id": "sci_author_2607.11436",
@@ -4453,7 +4468,7 @@
     "expected_substring": "Now the low pWork of the ‘retired’ group makes them extremely vulnerable to the global media. If, on top of this, they have a high share in the population, they have a marked influence on the ‘youth’ agents that they interact with, so that the opinions of working and outgoing agents are still farther from reality compared to the values projected by the media.",
     "caption_text": "Now the low pWork of the ‘retired’ group makes them extremely vulnerable to the global media. If, on top of this, they have a high share in the population, they have a marked influence on the ‘youth’ agents that they interact with, so that the opinions of working and outgoing agents are still farther from reality compared to the values projected by the media.",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "ambiguous",
     "caption_source": "text",
     "caption_label": "Table 7",
     "display_preview": "Now the low pWork of the ‘retired’ group makes them extremely vulnerable to the…",
@@ -4461,7 +4476,8 @@
     "evidence_char_end": 990,
     "type": "fact_figure_caption",
     "source_page": 11,
-    "doc_pages": 16
+    "doc_pages": 16,
+    "manual_review_note": "Confirmed against the real source PDF: this is a plain in-text reference ('The results obtained differ from these of Table 7. Now the low pWork of the...') wrongly resolved as a caption opener because 'Now' is not in the discourse-connective rejection list — a genuine misattribution, not just trailing contamination. Worth adding 'now' to _STRUCTURAL_DISCOURSE_CONNECTIVES /_DISCOURSE_CONNECTIVES in a future pass; not done here."
   },
   {
     "id": "sci_author_2607.12659",
@@ -4479,7 +4495,7 @@
     "expected_substring": "Architecture of future correction module. T denotes the number of tokens in the VLM hidden sequence; T ′ is the compressed token length after Q-Former compression (with T ′ << T, T ′ = 4 in practice); dVLM is the embedding dimension of the VLM; dAE is the embedding dimension of the action expert (DiT); t and t + ∆denotes time steps.",
     "caption_text": "Architecture of future correction module. T denotes the number of tokens in the VLM hidden sequence; T ′ is the compressed token length after Q-Former compression (with T ′ << T, T ′ = 4 in practice); dVLM is the embedding dimension of the VLM; dAE is the embedding dimension of the action expert (DiT); t and t + ∆denotes time steps.",
     "table_cells": null,
-    "label_status": "verified",
+    "label_status": "verified_reviewed",
     "caption_source": "text",
     "caption_label": "Figure 10",
     "display_preview": "Architecture of future correction module. T denotes the number of tokens in the…",
@@ -4487,7 +4503,8 @@
     "evidence_char_end": 724,
     "type": "fact_figure_caption",
     "source_page": 15,
-    "doc_pages": 16
+    "doc_pages": 16,
+    "manual_review_note": "Genuine technical prose explaining notation (T, T', dVLM, dAE). No leaked table/chart content."
   },
   {
     "id": "sci_topic_2607.09936",

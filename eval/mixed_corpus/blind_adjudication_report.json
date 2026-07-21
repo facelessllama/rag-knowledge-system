@@ -1,0 +1,639 @@
+{
+  "summary": {
+    "qwen2.5:7b": {
+      "n": 63,
+      "manual_correct_strict_pct": 76.2,
+      "manual_correct_or_partial_pct": 92.1,
+      "n_correct_strict": 48,
+      "n_partially_correct": 10,
+      "n_wrong": 4,
+      "n_refusal": 1,
+      "auto_judge_correct_pct": 39.7
+    },
+    "deepseek-v4-flash": {
+      "n": 63,
+      "manual_correct_strict_pct": 92.1,
+      "manual_correct_or_partial_pct": 100.0,
+      "n_correct_strict": 58,
+      "n_partially_correct": 5,
+      "n_wrong": 0,
+      "n_refusal": 0,
+      "auto_judge_correct_pct": 60.3
+    },
+    "deepseek-v4-pro": {
+      "n": 63,
+      "manual_correct_strict_pct": 87.3,
+      "manual_correct_or_partial_pct": 96.8,
+      "n_correct_strict": 55,
+      "n_partially_correct": 6,
+      "n_wrong": 1,
+      "n_refusal": 1,
+      "auto_judge_correct_pct": 52.4
+    }
+  },
+  "n_disagreements_with_automated_judge": 86,
+  "disagreements_with_judge": [
+    {
+      "id": "sci_caption_2607.08970_Figure10",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.08970_Figure10",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.09094_Table3",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.09100_Table4",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "partially_correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.09100_Table4",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "partially_correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.09165_Figure3",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.09165_Figure3",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.09443_Table8",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.09502_Table14",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.09520_Table2",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "partially_correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.09520_Table2",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.09632_Figure3",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.09632_Figure3",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.10212_Table6",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.10405_Figure15",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.10405_Figure15",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.10511_Figure6",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.10578_Figure6",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.10578_Figure6",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.10738_Table4",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "partially_correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.10738_Table4",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "partially_correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.10880_Figure10",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.10984_Table21",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11004_Table6",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11020_Figure18",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11020_Figure18",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11052_Table8",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11074_Figure6",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11119_Table1",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11119_Table1",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "partially_correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11183_Figure9",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11388_Figure8",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11388_Figure8",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "partially_correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11399_Table8",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "partially_correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11399_Table8",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11436_Figure5",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11436_Figure5",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11597_Table16",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11614_Table15",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.11980_Figure2",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "partially_correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.12570_Figure3",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.12885_Figure10",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.12909_Figure2",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13074_Figure3",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13074_Figure3",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13125_Table9",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13162_Figure7",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13175_Figure8",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13175_Figure8",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13216_Figure9",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13260_Figure4",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13260_Figure4",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13394_Table17",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13394_Table17",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13431_Table8",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13491_Table2",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13491_Table2",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13594_Figure7",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13594_Figure7",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13655_Figure14",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13716_Table20",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13716_Table20",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.13998_Figure4",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.14138_Figure1",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "partially_correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.14138_Figure1",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "partially_correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.14172_Figure7",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "partially_correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.14172_Figure7",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "partially_correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.14345_Figure38",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.14530_Table3",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.14582_Table11",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "partially_correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.14582_Table11",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.14607_Figure26",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.14613_Figure4",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.14651_Figure8",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.14782_Figure12",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.15047_Table1",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "partially_correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.15105_Table6",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.15105_Table6",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.15196_Figure2",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.15196_Figure2",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.15275_Table3",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.15511_Table4",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.15544_Figure5",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.15544_Figure5",
+      "model": "qwen2.5:7b",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.15647_Figure4",
+      "model": "deepseek-v4-pro",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    },
+    {
+      "id": "sci_caption_2607.15766_Table13",
+      "model": "deepseek-v4-flash",
+      "manual_verdict": "correct",
+      "manual_correct": true,
+      "auto_judge_correct": false
+    }
+  ]
+}

@@ -45,6 +45,15 @@ eval/**/generator_ab_postfix_v3_titlefreescoped_results.json
 eval/**/generator_ab_postfix_v3_titlefreescoped_progress.json
 eval/**/analyze_postfix_ab_report.json
 eval/**/analyze_postfix_ab_titlefreescoped_report.json
+# cross_run_factor_analysis.py's raw per-case output and prepare_blind_
+# adjudication.py's large anonymized presentation file — both
+# regenerable from already-committed results/golden files.
+# blind_adjudication_verdicts.json (the actual human judgments),
+# blind_adjudication_titlefreescoped_KEY.json (needed to reproduce the
+# join), and blind_adjudication_report.json (small final aggregate) ARE
+# committed — they're the non-regenerable record.
+eval/**/cross_run_factor_analysis_report.json
+eval/**/blind_adjudication_titlefreescoped.json
 # build_caption_label_index.py / analyze_caption_misses.py's raw output —
 # both regenerable from a live instance; the findings/table are written up
 # in eval/mixed_corpus/README.md's "Full taxonomy" section.

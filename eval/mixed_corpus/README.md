@@ -667,46 +667,136 @@ sample. Pro shows a specific, real context-confusion failure mode absent
 from Flash. The `verified`-tier absolute numbers are a floor, not a
 ceiling, given the newly-found no-period leakage blind spot above.
 
-## Separate check: title-free, document-scoped generation
+## Separate check: title-free, document-scoped generation — the paradox, and its resolution
 
 Deliberately a SEPARATE artifact/report from the A/B above, never
 merged: dropping the paper title changes the prompt itself, so mixing
 the two populations would conflate a retrieval-scope difference with a
 wording difference in one number. `eval/mixed_corpus/capture_title_free_
-scoped_contexts.py` (reuses `title_free_retrieval_check.py`'s question
-wording, `document_ids=[expected_doc_id]` scope) captured 168/177
-contexts; `generator_ab_postfix_v3_titlefreescoped_*` is the generation
-pass, `analyze_postfix_ab_titlefreescoped_report.json` the analysis
-(same `analyze_postfix_ab.py`, pointed at the new results file).
+scoped_contexts.py` captured 168/177 contexts; `generator_ab_postfix_v3_
+titlefreescoped_*` is the generation pass.
 
-| | Conditional correctness (verified) | End-to-end supported | Refused despite evidence |
+**On the automated judge's raw numbers**, the DeepSeek edge looked like
+it nearly vanished:
+
+| | Conditional correctness (verified, automated judge) |
+|---|---:|
+| qwen2.5:7b | 47.5% (67/141) |
+| deepseek-v4-flash | 52.5% (74/141) |
+| deepseek-v4-pro | 48.9% (69/141) |
+
+— a ~21-26pp gap (title-bearing A/B above) narrowing to +5.0pp/+1.4pp.
+This was flagged as an open, unresolved paradox and investigated in three
+stages, per the user's own escalation plan, **without any new generator
+API calls until the very end** (all three stages below reused already-
+saved answers or local-only retrieval):
+
+**Stage 1 — manually re-audit the 17 suspiciously-long "verified" labels
+(no retrieval/generation changed, just cleaning the measuring
+instrument)**. `apply_manual_label_review.py` read all 17 against the
+real source PDFs by hand: 7 were genuine (if dense) captions, relabeled
+`verified_reviewed`; 10 were real defects (leaked chart axis/legend data
+with no period — the already-known blind spot — plus one outright
+misattribution: `sci_caption_2607.15968_Table7`'s "caption" turned out to
+be a plain in-text reference — "...these of Table 7. Now the low pWork
+of..." — wrongly accepted as a caption opener because "Now" isn't in the
+discourse-connective rejection list), relabeled `ambiguous`. Re-running
+the analysis against the cleaned labels barely moved the numbers (title-
+bearing verified-tier: qwen 44.9%/71.7%/67.7%, title-free-scoped: qwen
+48.5%/52.3%/48.5% — Pro and Qwen now *tied*) — **this rules out defective
+labels as the explanation**; the paradox survived clean measurement.
+
+**Stage 2 — controlled retrieval-composition comparison, no generation
+calls, on the case intersection present as evidence-hit in BOTH
+scenarios** (`cross_run_factor_analysis.py`, 162 cases, local retrieval
+only — the same "still_hit" safeguard as every other script in this
+family):
+
+| | Title-bearing (unscoped) | Title-free (scoped) |
+|---|---:|---:|
+| Same evidence chunk as the other scenario | 97.1% (133/137) | — |
+| Avg. sources in context | 2.28 | 1.00 |
+| Avg. context length (chars) | 2948 | 2235 |
+| Avg. evidence-chunk rank | 2.73 | 1.05 |
+
+The retrieved evidence is almost always the *same exact chunk* in both
+scenarios (rules out comparing different evidence-hit populations) — but
+the surrounding context is very different: scoped retrieval is
+single-document and puts the evidence chunk at rank ~1; unscoped
+retrieval mixes in ~1.3 extra documents and buries the evidence around
+rank ~2.7. **Correct→wrong transition counts moving from title-bearing
+to title-free (already-saved answers, pure join, no new calls)**:
+
+| | correct→correct | correct→wrong | wrong→correct | wrong→wrong |
+|---|---:|---:|---:|---:|
+| qwen2.5:7b | 53 | 24 | 28 | 57 |
+| deepseek-v4-flash | 87 | 33 | 7 | 35 |
+| deepseek-v4-pro | 75 | 37 | 14 | 36 |
+
+DeepSeek gets net WORSE moving to the cleaner, single-document, rank-1
+context (Flash net −26, Pro net −23) while Qwen is roughly flat (net
++4) — the opposite of "a cleaner context just helps the weaker model
+catch up." This pointed at the title itself (or the richer multi-
+document context it comes with) as the real lever for DeepSeek, but
+manually spot-checking a sample of the correct→wrong cases (unlike the
+title-bearing A/B's equivalent check, which found a real Pro failure
+mode) mostly turned up DeepSeek answers that read as substantively
+correct on manual inspection — pointing at scorer behavior, not
+generation quality, as at least part of the explanation.
+
+**Stage 3 — blind manual adjudication of every disagreement case (the
+one that actually resolved this)**. Per the user's explicit instruction
+that manual-adjudicated results, not the automatic judge, should decide
+the generator question: `prepare_blind_adjudication.py` anonymized all
+63 title-free-scoped cases where the three models' automated verdicts
+disagreed — model identity and the prior automated verdict both hidden,
+letters A/B/C shuffled per case with a random seed — into
+`blind_adjudication_titlefreescoped.json`. Every one of the 189
+individual answers (63 cases × 3 models) was read blind and judged
+`correct`/`partially_correct`/`wrong`/`refusal`/`unsupported` against
+`expected_fact` and the question alone, then joined back to real model
+identity via the (separately-kept) key.
+
+**Result — the automated judge was systematically, and unevenly,
+under-scoring every model on this exact subset**:
+
+| | Manual (strict: `correct` only) | Manual (`correct`+`partially_correct`) | Automated judge (same 63 cases) |
 |---|---:|---:|---:|
-| qwen2.5:7b | 47.5% (67/141) | 45.3% (67/148) | 0.7% |
-| deepseek-v4-flash | 52.5% (74/141) | 50.0% (74/148) | 0.0% |
-| deepseek-v4-pro | 48.9% (69/141) | 46.6% (69/148) | 0.0% |
+| qwen2.5:7b | 76.2% (48/63) | 92.1% (58/63) | 39.7% (25/63) |
+| deepseek-v4-flash | 92.1% (58/63) | 100.0% (63/63) | 60.3% (38/63) |
+| deepseek-v4-pro | 87.3% (55/63) | 96.8% (61/63) | 52.4% (33/63) |
 
-**The DeepSeek edge shrinks dramatically without the title**: the ~21-26pp
-gap on the title-bearing unscoped A/B above narrows to +5.0pp (Flash) and
-+1.4pp (Pro) here — on the *scored numbers*, Qwen and DeepSeek are close
-to indistinguishable once the question doesn't name the paper.
+86 of 189 (45.5%) individual judgments disagreed between blind manual
+reading and the automated judge — the judge undercounts everyone, but
+**Qwen disproportionately** (its automated score is ~52% of its manual-
+strict score; Flash's is ~65%, Pro's ~60%). This — not a genuine
+convergence in model quality — is what made the gap look like it nearly
+vanished on the raw automated numbers: both models lost points to judge
+strictness in the title-free-scoped scenario, but Qwen lost more.
 
-**This is reported as an open, unresolved finding, not a confirmed
-conclusion** — a manual spot-check of `qwen-correct/DeepSeek-wrong`
-cases here (unlike the equivalent check on the title-bearing A/B, which
-found a real Pro-specific failure mode) mostly turned up DeepSeek
-answers that read as substantively correct paraphrases on manual
-inspection (e.g. `sci_caption_2607.11436_Figure5`,
-`sci_caption_2607.10212_Table6`) — plausibly consistent with this
-project's already-documented semantic-judge nondeterminism rather than a
-real quality drop. The already-known golden-v3 blind spot (leaked
-table/chart content with no period, e.g. `sci_caption_2607.09641_Table1`
-again) also reappears in the all-three-wrong sample here, depressing all
-three models' scores roughly equally. **Two competing explanations are
-both plausible and not yet distinguished**: (a) the paper title genuinely
-lets a larger cloud model draw on background knowledge/context a smaller
-local model can't, so the edge is real and title-dependent; or (b) the
-narrower context/shorter, more literal answers this scenario tends to
-produce interact with scorer strictness differently for verbose
-cloud-model phrasing than for Qwen's phrasing. Deciding between these
-needs either a larger hand-audited sample specific to this scenario or a
-recalibrated judge — not done here.
+**The resolved, manual-adjudicated picture**: DeepSeek Flash retains a
+real edge over Qwen even in the realistic title-free, document-scoped
+workflow — **+15.9pp strict / +7.9pp lenient** — smaller than the
+title-bearing A/B's ~21-26pp, but genuinely non-zero, not the
+near-parity the automated numbers suggested. Pro's edge (+11.1pp strict
+/ +4.7pp lenient) crosses the same territory but Pro is excluded from
+consideration regardless, per the documented context-attribution-
+confusion/truncation failure mode found in the title-bearing A/B's
+manual review above — a real behavioral cost independent of this
+particular gap size.
+
+**Applying the user's own pre-declared decision rule** (Flash edge ≥10pp
+→ add optional cloud mode; ≤5pp → Qwen-only; in between → decide on
+privacy/latency/cost; Pro not selected regardless of the gap, given its
+documented failures): **the strict-adjudicated 15.9pp gap crosses the
+"add an optional cloud mode" threshold for Flash specifically.** No
+factorial 2×2 experiment was needed — blind adjudication resolved the
+question on its own.
+
+**A separate, general-purpose finding this investigation surfaced**:
+the local semantic judge (`qwen2.5:7b`, via `run_eval.py::judge_
+semantic_match`) appears to become measurably more conservative when the
+question text in its OWN verification prompt is vague/title-free (it
+receives the same title-free question the generator did) — worth
+keeping in mind for any FUTURE eval that scores short, context-light
+questions with this judge, not just this specific comparison.

@@ -1,0 +1,317 @@
+{
+  "sci_caption_2607.08970_Figure10": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-flash",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.09094_Table3": {
+    "A": "deepseek-v4-pro",
+    "B": "deepseek-v4-flash",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.09100_Table4": {
+    "A": "deepseek-v4-flash",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.09165_Figure3": {
+    "A": "deepseek-v4-flash",
+    "B": "deepseek-v4-pro",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.09443_Table8": {
+    "A": "deepseek-v4-pro",
+    "B": "deepseek-v4-flash",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.09502_Table14": {
+    "A": "deepseek-v4-flash",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.09520_Table2": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-pro",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.09632_Figure3": {
+    "A": "deepseek-v4-pro",
+    "B": "deepseek-v4-flash",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.10212_Table6": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-flash",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.10405_Figure15": {
+    "A": "deepseek-v4-pro",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.10511_Figure6": {
+    "A": "deepseek-v4-pro",
+    "B": "deepseek-v4-flash",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.10578_Figure6": {
+    "A": "deepseek-v4-pro",
+    "B": "deepseek-v4-flash",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.10738_Table4": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-pro",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.10880_Figure10": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-flash",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.10984_Table21": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-flash",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.11004_Table6": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-pro",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.11020_Figure18": {
+    "A": "deepseek-v4-flash",
+    "B": "deepseek-v4-pro",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.11052_Table8": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-flash",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.11074_Figure6": {
+    "A": "deepseek-v4-pro",
+    "B": "deepseek-v4-flash",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.11119_Table1": {
+    "A": "deepseek-v4-flash",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.11183_Figure9": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-flash",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.11388_Figure8": {
+    "A": "deepseek-v4-pro",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.11399_Table8": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-flash",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.11436_Figure5": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-pro",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.11597_Table16": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-pro",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.11614_Table15": {
+    "A": "deepseek-v4-pro",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.11980_Figure2": {
+    "A": "deepseek-v4-pro",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.12570_Figure3": {
+    "A": "deepseek-v4-pro",
+    "B": "deepseek-v4-flash",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.12885_Figure10": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-flash",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.12909_Figure2": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-pro",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.13074_Figure3": {
+    "A": "deepseek-v4-flash",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.13125_Table9": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-pro",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.13162_Figure7": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-pro",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.13175_Figure8": {
+    "A": "deepseek-v4-pro",
+    "B": "deepseek-v4-flash",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.13216_Figure9": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-flash",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.13260_Figure4": {
+    "A": "deepseek-v4-pro",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.13394_Table17": {
+    "A": "deepseek-v4-flash",
+    "B": "deepseek-v4-pro",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.13431_Table8": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-pro",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.13491_Table2": {
+    "A": "deepseek-v4-pro",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.13594_Figure7": {
+    "A": "deepseek-v4-pro",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.13655_Figure14": {
+    "A": "deepseek-v4-pro",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.13716_Table20": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-flash",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.13998_Figure4": {
+    "A": "deepseek-v4-flash",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.14138_Figure1": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-pro",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.14172_Figure7": {
+    "A": "deepseek-v4-flash",
+    "B": "deepseek-v4-pro",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.14345_Figure38": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-pro",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.14399_Table4": {
+    "A": "deepseek-v4-flash",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.14530_Table3": {
+    "A": "deepseek-v4-flash",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.14582_Table11": {
+    "A": "deepseek-v4-pro",
+    "B": "deepseek-v4-flash",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.14607_Figure26": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-flash",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.14613_Figure4": {
+    "A": "deepseek-v4-flash",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.14651_Figure8": {
+    "A": "deepseek-v4-flash",
+    "B": "deepseek-v4-pro",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.14683_Table4": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-pro",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.14782_Figure12": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-flash",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.15047_Table1": {
+    "A": "deepseek-v4-flash",
+    "B": "deepseek-v4-pro",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.15105_Table6": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-pro",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.15196_Figure2": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-flash",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.15275_Table3": {
+    "A": "deepseek-v4-flash",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.15511_Table4": {
+    "A": "deepseek-v4-flash",
+    "B": "qwen2.5:7b",
+    "C": "deepseek-v4-pro"
+  },
+  "sci_caption_2607.15532_Figure4": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-pro",
+    "C": "deepseek-v4-flash"
+  },
+  "sci_caption_2607.15544_Figure5": {
+    "A": "deepseek-v4-flash",
+    "B": "deepseek-v4-pro",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.15647_Figure4": {
+    "A": "deepseek-v4-pro",
+    "B": "deepseek-v4-flash",
+    "C": "qwen2.5:7b"
+  },
+  "sci_caption_2607.15766_Table13": {
+    "A": "qwen2.5:7b",
+    "B": "deepseek-v4-pro",
+    "C": "deepseek-v4-flash"
+  }
+}

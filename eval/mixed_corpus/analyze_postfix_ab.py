@@ -29,9 +29,15 @@ import json
 from pathlib import Path
 
 CORPUS_DIR = Path(__file__).resolve().parent
+# "verified_reviewed" = a plain "verified" case that was additionally
+# hand-checked against the real source PDF (see apply_manual_label_
+# review.py) and confirmed genuinely clean — counts as verified, not a
+# separate tier; it exists so the audit trail records WHICH verified
+# cases were actually read by a human, not just auto-classified.
+_VERIFIED_STATUSES = ("verified", "verified_reviewed")
 LABEL_TIERS = {
-    "verified_only": lambda ls: ls == "verified",
-    "verified_plus_extracted": lambda ls: ls in ("verified", "extracted"),
+    "verified_only": lambda ls: ls in _VERIFIED_STATUSES,
+    "verified_plus_extracted": lambda ls: ls in _VERIFIED_STATUSES + ("extracted",),
 }
 
 
