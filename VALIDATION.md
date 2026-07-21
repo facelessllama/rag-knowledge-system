@@ -246,6 +246,48 @@ backend, on cases where retrieval is already confirmed correct) were
 measured in later passes on this same corpus — see
 `eval/mixed_corpus/README.md`, not duplicated here.
 
+## A real localization bug, found and fixed — then a real product decision
+
+Document-level recall (above) answers "was the right document found?" —
+not "was the specific fact on page 40 of it actually retrieved?" A later
+pass measured that second, harder question directly and started at
+19.9%: a genuine chunk-level localization failure document recall alone
+can't see, hiding in plain sight behind a 100%-looking retrieval story.
+
+Chasing it down found one precise, specific bug, not a vague "retrieval
+needs tuning": a code path meant to guarantee an exact match (a cited
+`Figure 7` or `Table 3`) survived reranking only worked when ordinary
+search *hadn't* already found that same chunk on its own, however weakly
+— backwards, since a weak initial match is exactly when the guarantee is
+needed. Fixing that single guard raised the number to 91.5%, then 95.5%
+once a second, related gap (the same guarantee silently skipped when a
+question was scoped to one already-open document — the realistic
+"user has a document open" workflow) was found and fixed the same way.
+
+The generation side raised a different question: is a paid cloud model
+(DeepSeek) worth adding at all? An honest answer needs a control most
+one-off comparisons skip — identical evidence, scored identically, for
+both models — otherwise "the cloud model won" can just mean "the cloud
+model got easier questions." With that control in place, the cloud model
+showed a real ~15-25 point accuracy edge on confirmed-evidence cases.
+A second check, closer to how the product is actually used, made that
+edge look like it had nearly vanished — and reading the disputed answers
+by hand, rather than trusting the automated scorer, found the scorer
+itself was behaving inconsistently on short questions, not the model. A
+real edge remained once that was corrected, just a smaller one than the
+first number suggested.
+
+The product now ships that decision, not just the finding: local Qwen
+stays the default and the only mode with zero external data flow; the
+cloud model is available strictly opt-in, gated by both an administrator
+setting and a per-request flag, with tests proving the second one can't
+be skipped by accident and a request that asks for it gets a clear error
+— never a silent answer from a different model — if either gate isn't
+satisfied. Full detail, including the exact bug, the taxonomy that found
+it, and the blind-adjudication method that resolved the generator
+question: `eval/mixed_corpus/README.md` and `eval/mixed_corpus/
+EXPERIMENT_HISTORY.md`.
+
 ## Why this is a meaningful proof point, and not just a bigger demo
 
 - **The numbers are real pass rates on datasets built to be hard to
