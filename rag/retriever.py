@@ -459,22 +459,32 @@ class HybridRetriever:
                         best_chunk = candidate
                         break  # a query names one Figure/Table almost always — first match is enough
                 if best_chunk is not None:
+                    # Promote the canonical instance of this chunk regardless
+                    # of whether hybrid search already found it — NOT "inject
+                    # if absent". A structural match is a stronger signal
+                    # than any embedding/BM25 score; that has to hold whether
+                    # hybrid search missed the chunk entirely OR already
+                    # surfaced it with a weak score. The old "if key not in
+                    # all_chunks" guard only injected when absent, so a
+                    # chunk hybrid search had already found (however weakly)
+                    # never got upgraded — earlier, weaker detection silently
+                    # defeated the stronger structural signal instead of
+                    # deferring to it (confirmed on 112/127 real caption
+                    # misses — see project memory's taxonomy pass). Matches
+                    # the case/CELEX/citation-number identity-index
+                    # convention above: identity_match=True (below)
+                    # guarantees this chunk survives retrieve_expanded's own
+                    # top_k slice even if the reranker would've scored it
+                    # low — extended here to a signal that only exists as
+                    # chunk text, not a stored payload field.
                     key = best_chunk.get("chunk_id", best_chunk["text"][:50])
-                    if key not in all_chunks:
-                        best_chunk = best_chunk.copy()
-                        # Matches the case/CELEX/citation-number identity-
-                        # index convention above: an exact structural match
-                        # is a stronger signal than any embedding/BM25
-                        # score, AND identity_match=True (below) guarantees
-                        # it survives retrieve_expanded's own top_k slice
-                        # even if the reranker would've scored it low —
-                        # the same guarantee those indexes get, extended to
-                        # a signal that only exists as chunk text, not a
-                        # stored payload field.
-                        best_chunk["score"] = 1.0
-                        best_chunk["source"] = "structural_reference"
-                        best_chunk["identity_match"] = True
-                        all_chunks[key] = best_chunk
+                    matched = all_chunks.get(key)
+                    if matched is None:
+                        matched = best_chunk.copy()
+                        all_chunks[key] = matched
+                    matched["score"] = 1.0
+                    matched["source"] = "structural_reference"
+                    matched["identity_match"] = True
 
         # The case/CELEX/citation-number index lookups above don't take a
         # doc filter themselves (they're exact-key lookups, not searches) —

@@ -734,6 +734,70 @@ async def test_retrieve_expanded_structural_lookup_survives_a_low_rerank_score_v
     assert "caption" in {r["chunk_id"] for r in results}
 
 
+@pytest.mark.asyncio
+async def test_retrieve_expanded_promotes_a_structural_match_already_found_by_hybrid_search():
+    """Regression test for a real bug found by the caption-miss taxonomy
+    (project memory: 112/127 real misses traced to this): the structural
+    injection used to fire only 'if key not in all_chunks', so a chunk
+    hybrid search had ALREADY found — however weakly — never got the
+    identity-match promotion. Earlier, weaker detection silently defeated
+    the later, stronger structural signal instead of deferring to it.
+    All competing chunks below belong to the SAME document so the
+    per-document diversity guarantee can't accidentally rescue this case
+    and mask a regression."""
+    caption_text = "Figure 7: Comparison of diagonal-QFI and full-QFI QEWC."
+    caption_low_score = _chunk("caption", "d1", 40, 0.05, text=caption_text)
+    stronger_same_doc_hits = [_chunk(f"c{i}", "d1", i, 0.9 - i * 0.01) for i in range(4)]
+    vs = FakeVectorStore(
+        results_by_query={"What does Figure 7 show?": [caption_low_score] + stronger_same_doc_hits},
+        document_chunks={"d1": [dict(caption_low_score)]},
+    )
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=1)  # tiny top_k — only identity_match survives this
+
+    results = await retriever.retrieve_expanded(["What does Figure 7 show?"], top_k=1)
+
+    result_ids = [r["chunk_id"] for r in results]
+    by_id = {r["chunk_id"]: r for r in results}
+    assert by_id["caption"]["identity_match"] is True
+    assert by_id["caption"]["source"] == "structural_reference"
+    assert by_id["caption"]["score"] == 1.0
+    assert result_ids.count("caption") == 1
+
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_structural_promotion_equivalent_whether_or_not_hybrid_found_it_first():
+    """The invariant: the promoted chunk must look identical whether
+    hybrid search missed the caption chunk entirely, or found the exact
+    same chunk first with a weak score."""
+    caption_text = "Figure 7: Comparison of diagonal-QFI and full-QFI QEWC."
+    stronger_same_doc_hits = [_chunk(f"c{i}", "d1", i, 0.9 - i * 0.01) for i in range(4)]
+
+    # Scenario A: hybrid search never surfaces the caption chunk at all.
+    vs_absent = FakeVectorStore(
+        results_by_query={"What does Figure 7 show?": stronger_same_doc_hits},
+        document_chunks={"d1": [{"chunk_id": "caption", "document_id": "d1", "chunk_index": 40,
+                                  "text": caption_text, "page_num": 12, "filename": "f.pdf", "folder": ""}]},
+    )
+    retriever_absent = HybridRetriever(FakeEmbedder(), vs_absent, top_k=1)
+    results_absent = await retriever_absent.retrieve_expanded(["What does Figure 7 show?"], top_k=1)
+
+    # Scenario B: hybrid search already found the SAME chunk, weakly.
+    caption_low_score = _chunk("caption", "d1", 40, 0.05, text=caption_text)
+    vs_weak = FakeVectorStore(
+        results_by_query={"What does Figure 7 show?": [caption_low_score] + stronger_same_doc_hits},
+        document_chunks={"d1": [dict(caption_low_score)]},
+    )
+    retriever_weak = HybridRetriever(FakeEmbedder(), vs_weak, top_k=1)
+    results_weak = await retriever_weak.retrieve_expanded(["What does Figure 7 show?"], top_k=1)
+
+    for results in (results_absent, results_weak):
+        by_id = {r["chunk_id"]: r for r in results}
+        assert "caption" in by_id
+        assert by_id["caption"]["identity_match"] is True
+        assert by_id["caption"]["source"] == "structural_reference"
+        assert by_id["caption"]["score"] == 1.0
+
+
 # ── promote_identity_matches ─────────────────────────────────────────────────
 
 def _rr_chunk(chunk_id, rerank_score=None, identity_match=False):
