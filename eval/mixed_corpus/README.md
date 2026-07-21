@@ -383,6 +383,69 @@ parser/chunker issue and a caption-disambiguation issue respectively,
 neither touched by this fix, both small enough not to justify their own
 pass right now.
 
+## Title-free robustness check, and a second fix it found
+
+The 91.5% above was measured on questions that always include the
+paper's own title (`f'What does {kind} {num} show in the paper "{title}"?'`)
+— a real product user asking about a figure would rarely quote a paper's
+exact title. `eval/mixed_corpus/title_free_retrieval_check.py`
+(retrieval-only, no generation) reruns the same 177 `fact_figure_caption`
+cases under three question variants against the same frozen
+`mixed_corpus_v2` collection:
+
+| Variant | Question | Scope | Doc Recall | Evidence-page | Evidence-chunk | `structural_reference` present |
+|---|---|---|---:|---:|---:|---:|
+| `current_golden` | full title + Figure N | none | 100% | 93.2% | 91.5% | 98.3% |
+| `title_free_global` | Figure N only | none | 4.0% | 2.8% | 2.3% | 1.1% |
+| `title_free_scoped` (before fix) | Figure N only | correct `document_id` | 100% | 78.5% | 69.5% | **0.0%** |
+| `title_free_scoped` (after fix) | Figure N only | correct `document_id` | 100% | 96.0% | **95.5%** | 98.3% |
+
+**`title_free_global` collapsing to near-zero is expected, not a bug** —
+"What does Figure 7 show?" over a 762-document corpus with no other
+context is honestly ambiguous. It's a useful adversarial stress test (and
+arguably the system's correct behavior there is to ask which paper, not
+guess), not a fair product-accuracy number, and isn't tracked as a
+regression target.
+
+**`title_free_scoped` was the real product gap**: the realistic workflow
+— a user has a document open (so the API already has its `document_id`)
+and asks about one of its figures without repeating the title —
+`structural_present` at exactly 0.0% before the fix confirmed
+`retrieve_expanded` was skipping the structural lookup entirely whenever
+`document_ids` was set (`if query_structural_refs and not doc_scope`),
+an assumption that a scoped query "already knows its documents" so the
+per-document caption scan was redundant. It wasn't: knowing which
+document matters says nothing about whether hybrid search found the
+right chunk within it.
+
+**Fixed** (`rag/retriever.py::retrieve_expanded`, commit `5f0f73e`): when
+`doc_scope` is set, scan every explicitly selected document instead of
+skipping — these are already user-confirmed relevant, not a stage-1
+guess, so `STRUCTURAL_TOP_DOCS`'s ambiguity-bounding cap doesn't apply
+(bounded instead by `MAX_DOCUMENT_IDS`, 50). Interestingly,
+`title_free_scoped` after the fix (95.5%) is now slightly *higher* than
+`current_golden` (91.5%) — an explicit `document_id` scope removes any
+chance of cross-document interference entirely, a cleaner signal than an
+unscoped search even with the title included.
+
+**No regressions**: `comparison_scoped`/`comparison_unscoped`/
+`hard_negative` all unchanged in the official `run_eval.py` pass (the
+golden dataset's own `fact_figure_caption` cases are unscoped, so don't
+exercise this exact path — the retrieval-only check above is what
+actually verifies it). 3 new tests in `tests/test_retriever.py`: applies
+within `doc_scope`, scans ALL scoped documents (not capped at 3), and
+never touches an out-of-scope document even when it would otherwise be
+the strongest stage-1 candidate — protecting the compare flow. Full
+suite: 358 passed.
+
+**Deliberately not pursued further** (per the user's own call): chasing
+the remaining ~5-8% residual gap (the same 3+12 taxonomy cases, plus
+whatever `title_free_scoped` still misses) risks overfitting to this one
+corpus for diminishing real-world benefit. Golden-dataset v3 (separating
+caption text from adjacent table-cell content) and a post-fix DeepSeek
+A/B replication are the higher-value next steps — see the project
+memory checkpoint.
+
 ## Conditional generator benchmark: DeepSeek vs. local Qwen on confirmed-evidence captions
 
 This is **not** a general "which LLM is better" test — DeepSeek is an
