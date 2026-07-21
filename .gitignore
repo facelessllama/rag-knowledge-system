@@ -33,3 +33,8 @@ eval/mixed_corpus/download_report.json
 eval/**/generator_ab_contexts.json
 eval/**/generator_ab_results.json
 eval/**/generator_ab_progress.json
+# build_caption_label_index.py / analyze_caption_misses.py's raw output —
+# both regenerable from a live instance; the findings/table are written up
+# in eval/mixed_corpus/README.md's "Full taxonomy" section.
+eval/**/caption_label_index.json
+eval/**/caption_miss_taxonomy.json

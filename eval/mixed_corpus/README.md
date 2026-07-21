@@ -249,11 +249,98 @@ figure number). Raised Evidence-chunk Recall 19.9%→28.2% overall
 Widening the scan window from top-3 to top-5 was also tried and reverted —
 flat to slightly worse (27.1%), because a wider window gives more chances
 for a same-numbered Figure/Table in an unrelated document to collide with
-the real one. Root cause of the remaining ceiling is more likely
-cross-document caption-number collisions than "correct document didn't
-make the candidate list" — full taxonomy of the remaining misses is the
-next step (see `eval/mixed_corpus/README.md`'s issue tracker / project
-memory for the exact plan).
+the real one. That result, plus one hand-investigated case showing a
+same-numbered-caption collision, made cross-document collisions look like
+the likely dominant cause of the remaining ceiling — **the full taxonomy
+below shows that guess was wrong**; see it for what actually dominates.
+
+## Full taxonomy of the remaining `fact_figure_caption` misses
+
+Per the user's explicit instruction, this is a diagnostic pass to find out
+which failure mode actually dominates the remaining 128 Evidence-chunk
+Recall misses (454-case v2+structural run) before picking a next retrieval
+mechanism — not another blind mechanism attempt like the two tried and
+reverted above, each of which generalized from a single deeply-investigated
+case (see project memory's own caution about repeating that mistake).
+
+Method (`eval/mixed_corpus/build_caption_label_index.py` +
+`eval/mixed_corpus/analyze_caption_misses.py`, both reusable tooling):
+1. A corpus-wide caption-label index — for every one of the 750 ingested
+   documents, which (kind, num) Figure/Table labels have an actual
+   caption-tier match somewhere in its indexed chunks, reusing the exact
+   same detection function (`rag.retriever.structural_match_tier`)
+   `retrieve_expanded` itself calls. A deterministic Qdrant payload scroll,
+   not an embedding search — none of the cross-process nondeterminism
+   documented below applies to building this.
+2. For each of the 128 misses, the real production retrieval sequence
+   (`query_expander.expand` → `retriever.retrieve_expanded` → `reranker.
+   rerank` → the three `promote_*` calls) was re-run once, in-process,
+   with `VectorStore.chunks_for_document`, `rag.retriever.best_structural_
+   chunk`, and `VectorStore.hybrid_search` wrapped (not modified) to record
+   which documents the structural lookup actually scanned, what it found,
+   and whether the winning chunk was already present in the raw hybrid
+   pool. Same nondeterminism safeguard as `capture_generation_contexts.py`:
+   a case that no longer reproduces as a miss on this fresh run is
+   excluded, not silently counted (1/128 excluded on this basis).
+
+**Result (127 analyzed, 1 excluded)**:
+
+| Category | n | Next mechanism |
+|---|---:|---|
+| Correct doc below candidate window | 0 | document disambiguation |
+| Multiple documents share the same Figure N | 0 | collision-aware scoring |
+| Caption absent from indexed chunks | 3 | parser/chunker |
+| A prose mention / wrong occurrence picked instead of the caption | 12 | caption-aware scoring |
+| Structural chunk found but got displaced before generation | **112** | *(see below — a specific, already-diagnosed bug, not a vague category)* |
+
+**The dominant finding, confirmed on all 112/112 cases in the last
+bucket**: `retrieve_expanded`'s identity-lookup blocks (case-number/
+CELEX-ID/citation-number/structural-reference) all share one guard —
+"`if key not in all_chunks:` inject with `score=1.0`,
+`identity_match=True`". If the SAME chunk was already found (however
+weakly) by plain hybrid search, this silently no-ops: the chunk keeps
+its original weak score and never gets `identity_match=True`, so it
+loses to the same document's own better-scoring chunks in the final
+selection — exactly as if the structural lookup had never run at all.
+Case/CELEX/citation-number matches are unaffected by this in practice
+because they have a **second, independent** path further down in
+`retrieve_expanded` that marks `identity_match=True` from the chunk's own
+stored payload metadata (`case_number`/`celex_id`/`citation_number`
+fields, set at ingestion) regardless of this guard. A caption has no such
+stored metadata — it isn't extracted at ingestion time at all — so the
+structural-reference mechanism has no fallback, and this guard-skip is
+its only failure path in this dataset. Confirmed directly for every one
+of the 112 cases (not inferred): each case's winning `best_structural_
+chunk` result was independently found to already be present, at a weak
+score, in the raw multi-query hybrid-search pool recorded via the
+`hybrid_search` wrapper.
+
+**Important caveat on the two zero categories**: `in_structural_window`
+was `True` for all 127 analyzed cases (`doc_rank_in_chunks` was 1, 2, or 3
+every time) — the structural top-3 window was never the bottleneck *in
+this dataset*. That is very likely an artifact of how `build_golden_
+dataset.py` phrases `fact_figure_caption` questions — `f'What does
+{kind} {num} show in the paper "{title}"?'` always includes the exact
+paper title, which all but guarantees the correct document ranks at or
+near #1 on stage-1 hybrid/BM25 score alone. A real user asking about a
+figure without quoting the paper's exact title would very plausibly hit
+the below-candidate-window and collision failure modes this pass measured
+at zero — this taxonomy answers "what's wrong once the right document is
+already found," not "how often is the right document found at all" for
+realistic phrasing. Worth a follow-up pass with title-free question
+phrasing before concluding those two categories don't matter in practice.
+
+The 3 `caption_absent_from_indexed_chunks` and 12 `prose_or_wrong_
+occurrence_picked` cases are real but minor next to the 112 — full
+per-case detail (`scanned_doc_ids`, `collision_count`, every boolean
+above) is in the gitignored `eval/mixed_corpus/caption_miss_taxonomy.json`.
+
+**Not done yet, by design**: fixing the guard-skip bug above is the
+obvious next candidate given 88% (112/127) of this dataset's misses trace
+to it — but per the user's explicit sequencing, step 4 ("choose the next
+retrieval mechanism by which category the data says is dominant") is a
+separate, deliberate decision to make with this table in hand, not an
+automatic follow-on to building the table.
 
 ## Conditional generator benchmark: DeepSeek vs. local Qwen on confirmed-evidence captions
 
