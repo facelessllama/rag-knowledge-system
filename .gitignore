@@ -38,3 +38,7 @@ eval/**/generator_ab_progress.json
 # in eval/mixed_corpus/README.md's "Full taxonomy" section.
 eval/**/caption_label_index.json
 eval/**/caption_miss_taxonomy.json
+# title_free_retrieval_check.py's raw output — regenerable from a live
+# instance; the summary numbers are written up in eval/mixed_corpus/
+# README.md's title-free robustness section.
+eval/**/title_free_retrieval_check*.json

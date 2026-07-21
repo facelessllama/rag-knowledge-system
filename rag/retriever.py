@@ -428,29 +428,50 @@ class HybridRetriever:
                     all_chunks[key] = r
 
         # Structural Figure-N/Table-N lookup — only when the query itself
-        # names one explicitly ("What does Figure 7 show...") and only
-        # scoped to the top few documents stage 1 already identified as
-        # relevant (not a corpus-wide search: skipped entirely when
-        # doc_scope is set, since the compare flow already knows exactly
-        # which documents matter). Unlike the case/CELEX/citation-number
-        # indexes above, a caption isn't structured ingestion-time
-        # metadata — chunks_for_document() pulls a candidate document's
-        # full chunk list and best_structural_chunk() text-scans it for
-        # the strongest-looking caption match, adding AT MOST ONE chunk
-        # per document (never a wider pool — a caption is either in one
-        # specific chunk of a document or it isn't, unlike the reverted
-        # two-stage retrieval attempt this deliberately doesn't repeat;
-        # see project memory on why blindly widening the candidate pool
-        # made evidence-page recall worse, not better).
-        if query_structural_refs and not doc_scope:
-            doc_scores: dict[str, float] = {}
-            for c in all_chunks.values():
-                doc_id = c.get("document_id")
-                if doc_id:
-                    doc_scores[doc_id] = max(doc_scores.get(doc_id, 0.0), c["score"])
-            top_doc_ids = sorted(doc_scores, key=doc_scores.get, reverse=True)[:self.STRUCTURAL_TOP_DOCS]
+        # names one explicitly ("What does Figure 7 show...").
+        # Unlike the case/CELEX/citation-number indexes above, a caption
+        # isn't structured ingestion-time metadata — chunks_for_document()
+        # pulls a candidate document's full chunk list and best_structural_
+        # chunk() text-scans it for the strongest-looking caption match,
+        # adding AT MOST ONE chunk per document (never a wider pool — a
+        # caption is either in one specific chunk of a document or it
+        # isn't, unlike the reverted two-stage retrieval attempt this
+        # deliberately doesn't repeat; see project memory on why blindly
+        # widening the candidate pool made evidence-page recall worse, not
+        # better).
+        #
+        # Which documents get scanned differs by whether the caller scoped
+        # the query:
+        # - doc_scope set (the "user already has a document open"/compare
+        #   flow) — scan EVERY explicitly selected document, not just a
+        #   stage-1-inferred top few. These documents are already user-
+        #   confirmed relevant, not a guess from embedding/BM25 score, so
+        #   the ambiguity the top-N heuristic below exists to bound
+        #   doesn't apply. Measured gap this closes: a title-free,
+        #   document-scoped caption question (the realistic "open a
+        #   document, ask about one of its figures" product workflow) used
+        #   to skip this lookup entirely — Evidence-chunk Recall on that
+        #   exact scenario was 69.5% vs. 91.5% unscoped-with-title, purely
+        #   because of the skip (see project memory / eval/mixed_corpus/
+        #   README.md's title-free robustness check). Bounded by
+        #   MAX_DOCUMENT_IDS (see api/schemas.py, 50) rather than
+        #   STRUCTURAL_TOP_DOCS — the caller already committed to this
+        #   many documents by asking for them.
+        # - doc_scope unset (a normal open-ended question) — scan only the
+        #   top STRUCTURAL_TOP_DOCS candidate documents by stage-1 score,
+        #   same as before this change.
+        if query_structural_refs:
+            if doc_scope:
+                candidate_doc_ids = list(doc_scope)
+            else:
+                doc_scores: dict[str, float] = {}
+                for c in all_chunks.values():
+                    doc_id = c.get("document_id")
+                    if doc_id:
+                        doc_scores[doc_id] = max(doc_scores.get(doc_id, 0.0), c["score"])
+                candidate_doc_ids = sorted(doc_scores, key=doc_scores.get, reverse=True)[:self.STRUCTURAL_TOP_DOCS]
 
-            for doc_id in top_doc_ids:
+            for doc_id in candidate_doc_ids:
                 doc_chunks = await asyncio.to_thread(self.vector_store.chunks_for_document, doc_id)
                 best_chunk = None
                 for kind, num in query_structural_refs:

@@ -656,10 +656,15 @@ async def test_retrieve_expanded_structural_lookup_is_a_noop_without_a_query_ref
 
 
 @pytest.mark.asyncio
-async def test_retrieve_expanded_structural_lookup_skipped_when_document_ids_scoped():
-    """The compare flow already knows exactly which documents matter —
-    an extra per-document text scan there would be redundant, same
-    reasoning as the reverted two-stage attempt's doc_scope gate."""
+async def test_retrieve_expanded_structural_lookup_applies_within_doc_scope():
+    """Regression test: this used to be skipped entirely whenever
+    document_ids was set (the compare/"user already has a document open"
+    flow), on the assumption that documents already being known made the
+    scan redundant. Measured wrong: a title-free, document-scoped caption
+    question dropped Evidence-chunk Recall from 91.5% to 69.5% purely
+    because of this skip (project memory / eval/mixed_corpus/README.md's
+    title-free robustness check) — a document being explicitly selected
+    doesn't mean its caption was already found by hybrid search."""
     stage1_hit = _chunk("c1", "d1", 0, 0.9)
     vs = FakeVectorStore(
         results_by_query={"What does Figure 7 show?": [stage1_hit]},
@@ -673,8 +678,54 @@ async def test_retrieve_expanded_structural_lookup_skipped_when_document_ids_sco
         ["What does Figure 7 show?"], top_k=5, document_ids=["d1"]
     )
 
-    assert "caption" not in {r["chunk_id"] for r in results}
-    assert vs.chunks_for_document_calls == []
+    by_id = {r["chunk_id"]: r for r in results}
+    assert "caption" in by_id
+    assert by_id["caption"]["source"] == "structural_reference"
+    assert by_id["caption"]["identity_match"] is True
+    assert vs.chunks_for_document_calls == ["d1"]
+
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_structural_lookup_scans_every_scoped_document():
+    """Scoped documents are already user-confirmed relevant, not a stage-1
+    guess — unlike the unscoped case, scanning isn't capped at
+    STRUCTURAL_TOP_DOCS. Uses more scoped documents than that cap to prove
+    it."""
+    n = HybridRetriever.STRUCTURAL_TOP_DOCS + 2
+    doc_ids = [f"d{i}" for i in range(n)]
+    stage1_hits = [_chunk(f"c{i}", doc_ids[i], 0, 1.0 - i * 0.1) for i in range(n)]
+    vs = FakeVectorStore(results_by_query={"What does Figure 7 show?": stage1_hits})
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    await retriever.retrieve_expanded(["What does Figure 7 show?"], top_k=5, document_ids=doc_ids)
+
+    assert set(vs.chunks_for_document_calls) == set(doc_ids)
+
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_structural_lookup_scoped_never_touches_an_out_of_scope_document():
+    """Comparison-flow safety: a document outside doc_scope must never be
+    scanned or have a chunk injected, even if it would otherwise be the
+    strongest stage-1 candidate."""
+    in_scope_hit = _chunk("c1", "d1", 0, 0.5)
+    out_of_scope_hit = _chunk("c2", "d2", 0, 0.99)  # scores higher, but not selected
+    vs = FakeVectorStore(
+        results_by_query={"What does Figure 7 show?": [in_scope_hit, out_of_scope_hit]},
+        document_chunks={
+            "d1": [{"chunk_id": "cap1", "document_id": "d1", "chunk_index": 40,
+                     "text": "Figure 7: In-scope caption.", "page_num": 12, "filename": "f.pdf", "folder": ""}],
+            "d2": [{"chunk_id": "cap2", "document_id": "d2", "chunk_index": 40,
+                     "text": "Figure 7: Out-of-scope caption.", "page_num": 12, "filename": "g.pdf", "folder": ""}],
+        },
+    )
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    results = await retriever.retrieve_expanded(
+        ["What does Figure 7 show?"], top_k=5, document_ids=["d1"]
+    )
+
+    assert vs.chunks_for_document_calls == ["d1"]
+    assert "cap2" not in {r["chunk_id"] for r in results}
 
 
 @pytest.mark.asyncio
