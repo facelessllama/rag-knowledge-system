@@ -513,3 +513,57 @@ Caveats, all load-bearing:
   scores roughly equally, so it doesn't change the direction of the gap,
   but the exact magnitude isn't trustworthy until a golden-dataset v3
   separates caption text from adjacent table content.
+
+## Golden-dataset v3, and what re-scoring the saved answers found
+
+v3 (`eval/mixed_corpus/build_golden_dataset.py`, see `extract_caption`'s
+docstring) splits `caption_text` from `table_cells` for every
+`fact_figure_caption`/`fact_table_caption` case — the label-noise issue
+named above. v2 (`golden_dataset.json`) is untouched; v3 is a separate
+file (`golden_dataset_v3.json`) with a companion `.metadata.json` (builder
+version, corpus manifest hash, git commit, and every case whose
+`expected_substring` changed from v2 and why — 31 of 181 caption cases).
+Each case also gets `label_status`: `verified` (149 — no ambiguity),
+`extracted` (10 — a confident table_cells split), `ambiguous` (22 — kept
+in the dataset, flagged for review rather than either merged or split
+with false confidence). All 10 `extracted` cases were checked by hand
+against the real source PDFs: 9/10 correct splits, 1 known false positive
+(arxiv_2607.11978's Table 3 — a genuine sentence enumerating several
+capitalized abbreviations triggers the same signal a real table header
+would) documented in `_classify_trailing_segment`'s own docstring rather
+than chased further — a text-only heuristic can't fully solve this
+without real page-layout info, same conclusion v2 already reached.
+
+**Re-scoring the ALREADY-SAVED DeepSeek A/B answers against v3**
+(`eval/mixed_corpus/rescore_against_v3.py` — no generator called again;
+the only model call is the same local semantic-judge re-verification
+`run_eval.py` already does on a substring miss) answers the question the
+label-noise caveat above left open: is the generation gap partly a
+scoring artifact, or is it real?
+
+| Model | v2 correctness | v3 correctness | wrong→correct | correct→wrong | still all-wrong |
+|---|---:|---:|---:|---:|---:|
+| qwen2.5:7b | 41.7% | 50.0% | 4 (3 label-fix) | 0 | 24 (19 on verified labels) |
+| deepseek-v4-flash | 77.1% | 81.2% | 4 (4 label-fix) | 2 (0 label-fix) | 7 (6 on verified labels) |
+| deepseek-v4-pro | 72.9% | 75.0% | 1 (1 label-fix) | 0 | 12 (9 on verified labels) |
+
+**The generation gap is real, not primarily a scorer artifact.**
+Absolute correctness moved only modestly (+8.3pp / +4.1pp / +2.1pp) —
+per the user's own pre-declared criterion, a *large* share of "all wrong"
+disappearing would have pointed at a scorer defect; instead the large
+majority of still-wrong cases are on **unchanged (`verified`)** labels
+(19/24, 6/7, 9/12), where v3's expected_substring is byte-identical to
+v2's. The label fix that motivated v3 was real (`wrong_to_correct` is
+mostly attributable to it), but it was never the dominant explanation for
+the qwen/Flash/Pro gap. The 2 `deepseek-v4-flash` `correct→wrong` flips
+were checked by hand: both on `verified` (unchanged) labels, i.e. pure
+semantic-judge nondeterminism between the original and re-scoring pass,
+not a real regression or a v3 defect.
+
+**Next**: capture fresh contexts from the current (post both retrieval
+fixes) retriever and repeat this A/B properly — this rescoring reused the
+OLD pre-fix contexts/answers (valid for isolating the label-noise
+question, since nothing about the retrieved context changed), but the
+confirmed-evidence *population* itself is now completely different
+(91.5%/95.5% vs. the 28.2% these 48 cases were drawn from), so a full
+re-draw is needed before trusting new absolute end-to-end numbers.

@@ -42,3 +42,8 @@ eval/**/caption_miss_taxonomy.json
 # instance; the summary numbers are written up in eval/mixed_corpus/
 # README.md's title-free robustness section.
 eval/**/title_free_retrieval_check*.json
+# rescore_against_v3.py's raw per-row output — regenerable from the
+# already-committed generator_ab_results.json + golden_dataset_v3.json;
+# the summary table is in eval/mixed_corpus/README.md's "Golden-dataset
+# v3" section.
+eval/**/rescore_v3_report.json

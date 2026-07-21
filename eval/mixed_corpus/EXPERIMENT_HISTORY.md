@@ -19,6 +19,7 @@ cases, including 177 `fact_figure_caption` cases.
 | Postgres database | `ragdb_mixed_corpus_v2` |
 | Corpus manifest SHA-256 | `791ed00fda6e7f246f8a5b0032cba946b7c6b24f3957f054bfe6ea4cb1e69513` |
 | Golden v2 SHA-256 | `868c638c30f30bb9e65acf6547b551c06216bab254c16d4084cf85202bceb14d` |
+| Golden v3 SHA-256 | `da4165a9accf5447b27c60b028a33fbad3f3ee9c8999020f9676f7a9e86949d9` |
 | Embedding model | `BAAI/bge-m3` |
 | Reranker | `cross-encoder/ms-marco-MiniLM-L-6-v2` |
 | Local generator/judge | `qwen2.5:7b` |
@@ -45,6 +46,8 @@ the exact frozen-instance notes.
 | Promote an already-present canonical structural chunk | `aa07106`, documented `1c2fc73` | Evidence-page 36%→92.7%; Evidence-chunk 28.2%→91.5%; semantic correctness 14%→39%; no regressions | Accepted |
 | Title-free robustness diagnostic | script and initial run in `5f0f73e` | Global ambiguous query: 2.3% Evidence-chunk. Scoped realistic query before fix: 69.5%, with structural marker 0.0% | Global result is a non-goal; scoped guard was a real product bug |
 | Structural lookup within explicit document scope | `5f0f73e`, documented `a3f2c45` | Scoped title-free Evidence-chunk 69.5%→95.5%, structural marker 0.0%→98.3%; 358 tests green | Accepted current retrieval checkpoint |
+| Golden-dataset v3 (caption_text/table_cells split) | `5665b1d` | 181 caption cases: 149 verified, 22 ambiguous, 10 extracted; 31 changed from v2; v2 untouched; 370 tests green | Accepted — v2 kept as a named baseline, v3 is additive |
+| Re-score saved DeepSeek A/B answers against v3 | `eval/mixed_corpus/rescore_against_v3.py` (raw per-row report gitignored) | qwen 41.7%→50.0%, Flash 77.1%→81.2%, Pro 72.9%→75.0%; most still-wrong cases are on unchanged (`verified`) labels | Generation gap confirmed real, not primarily a v2 label-scoring artifact |
 
 ## Rejected-experiment record
 
@@ -89,6 +92,7 @@ archived separately.
 | `title_free_retrieval_check_fixed.json` | `706b116c4ee44ac79b77277fc08a17378f60cb1a8f3f452c3d0c9d4d350a53b0` |
 | `generator_ab_contexts.json` | `e410b0cac61292a475b9dbecd637dd4b1dede602c8b400bdfbd5556c300b0e23` |
 | `generator_ab_results.json` | `6b51408f12a5eeddf394a8b6075d7e3e34f8b40c9aad450c889b9378619b2e38` |
+| `rescore_v3_report.json` | `a9e0bd68b83f689a1991edf1a1c33231128f7d48e3ca9792763795eaf461906e` |
 
 The tracked [`generator_ab_report.md`](generator_ab_report.md) preserves the
 aggregate generator results and paired contingency tables even if the raw API
@@ -110,14 +114,28 @@ generator A/B still proves that model choice matters once evidence is present,
 but its end-to-end projection was tied to the pre-fix 28.2% retriever. Current
 end-to-end model quality must be measured again after label cleanup.
 
+Golden v3 (149 verified / 22 ambiguous / 10 extracted, 31 cases changed from
+v2) closes the label-noise question specifically: re-scoring the already-saved
+DeepSeek A/B answers against it moved absolute correctness only modestly
+(qwen +8.3pp, Flash +4.1pp, Pro +2.1pp), and the large majority of remaining
+wrong answers sit on labels v3 never touched (`verified`). The conditional
+generation gap this pass measured is therefore real, not primarily an
+artifact of the v2 table-cell-leak defect — though its exact end-to-end
+relevance still depends on a post-fix context recapture (below), since the
+confirmed-evidence population itself changed completely (28.2%→91.5%/95.5%).
+
 ## Open work, in order
 
-1. Build golden dataset v3, separating `caption_text` from adjacent table-cell
-   content while preserving v2 unchanged.
-2. Rescore the already-saved Qwen/DeepSeek answers against v3 labels without
-   making new API calls.
+1. ~~Build golden dataset v3, separating `caption_text` from adjacent
+   table-cell content while preserving v2 unchanged~~ — done (`5665b1d`).
+2. ~~Rescore the already-saved Qwen/DeepSeek answers against v3 labels
+   without making new API calls~~ — done (`eval/mixed_corpus/rescore_
+   against_v3.py`); generation gap confirmed real, see above.
 3. Capture contexts from the current post-fix retriever and repeat the
-   conditional generator comparison.
+   conditional generator comparison — NOT done yet, next up. Needs a fresh
+   `capture_generation_contexts.py` pass (the confirmed-evidence population
+   is now 91.5%/95.5%, not 28.2%, so the old 48-case sample no longer
+   represents it) scored against golden v3, not v2.
 4. Use calibration for final thresholds/configuration.
 5. Run heldout once after the approach is frozen; do not tune on it.
 6. Close the historical `comparison_unscoped` empty-exception case as either
