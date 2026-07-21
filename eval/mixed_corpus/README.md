@@ -3,6 +3,11 @@
 This corpus is the cross-domain and document-quality evaluation set. It is
 separate from the legal golden/heldout sets and the EURLEX57K scale test.
 
+For the chronological record of baselines, rejected experiments, accepted
+fixes, exact commits, and local raw-artifact hashes, see
+[`EXPERIMENT_HISTORY.md`](EXPERIMENT_HISTORY.md). This README explains the
+method and findings; the history file is the compact audit trail.
+
 The default build freezes roughly 250 public-source candidates across:
 
 - scientific papers (arXiv);
@@ -486,12 +491,16 @@ Caveats, all load-bearing:
 - **A future cloud mode would send document chunks to an external
   provider.** That must be stated explicitly to any user who enables it,
   not left implicit.
-- **DeepSeek does not fix missing evidence.** It only helps once retrieval
-  has already found the right chunk — 28% of `fact_figure_caption`
-  questions, per the structural-lookup result above. 28% × 77% ≈ 22%
-  achievable end-to-end with the cloud generator vs. 28% × 40% ≈ 11% with
-  local Qwen — retrieval, not generation, remains the primary limiter of
-  overall coverage.
+- **DeepSeek does not fix missing evidence.** This A/B used contexts captured
+  at commit `8c089c7`, when the first structural lookup reached only 28.2%
+  Evidence-chunk Recall. At that historical checkpoint, 28% × 77% ≈ 22%
+  was the rough cloud-generator ceiling and retrieval was still the primary
+  limiter. That conclusion no longer describes the current retriever: the
+  later canonical-promotion and scoped-lookup fixes raised Evidence-chunk
+  Recall to 91.5% unscoped-with-title and 95.5% title-free-with-document-
+  scope. The A/B still establishes a conditional generation gap on identical
+  evidence, but a post-fix replication is required before estimating current
+  end-to-end cloud accuracy or declaring the current dominant bottleneck.
 - **The Flash vs. Pro gap did not replicate.** An initial scratch-script
   pass showed Flash beating Pro 39/48 vs 34/48 with a lopsided 6:1
   discordant-pair ratio; the official reproduction through

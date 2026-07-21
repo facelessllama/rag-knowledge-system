@@ -33,8 +33,27 @@
     "chunk_overlap": 50,
     "note": "Read from .env.example defaults — confirm against the actual running instance's /health response (embedding_model/llm_model are echoed there) before trusting for a specific run; chunk_size/overlap are not echoed by /health and were not independently re-verified against .env at ingest time."
   },
-  "not_yet_done": [
-    "Recompute the golden-dataset eval baseline against this v2 collection (plan step 5) — this file only covers ingestion, not retrieval/generation accuracy",
-    "Lock in the corrected error attribution from a v2-based eval run, not the mixed_corpus_test numbers this session's manual audit was based on"
+  "completed_followups": [
+    {
+      "item": "Recompute the golden-dataset eval baseline against this v2 collection",
+      "commit": "dfd027e",
+      "result": "454-case frozen-v2 baseline recorded in eval/mixed_corpus/README.md; fact_figure_caption Evidence-page Recall 29.3% and Evidence-chunk Recall 19.9%."
+    },
+    {
+      "item": "Replace preliminary mixed_corpus_test attribution with a v2-based failure analysis",
+      "commit": "072920b",
+      "result": "127 reproducible misses classified; 112 were the same canonical-chunk promotion bug, fixed in aa07106."
+    },
+    {
+      "item": "Validate realistic title-free questions inside an explicitly selected document",
+      "commit": "a3f2c45",
+      "result": "After scoped structural lookup fix 5f0f73e, title-free scoped Evidence-chunk Recall is 95.5%."
+    }
+  ],
+  "remaining_followups": [
+    "Golden dataset v3: separate caption text from adjacent table-cell content.",
+    "Rescore saved generator answers with the v3 labels.",
+    "Capture post-fix contexts and repeat the conditional generator comparison.",
+    "Freeze configuration on calibration, then run heldout once."
   ]
 }
