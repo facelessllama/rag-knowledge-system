@@ -335,12 +335,53 @@ occurrence_picked` cases are real but minor next to the 112 — full
 per-case detail (`scanned_doc_ids`, `collision_count`, every boolean
 above) is in the gitignored `eval/mixed_corpus/caption_miss_taxonomy.json`.
 
-**Not done yet, by design**: fixing the guard-skip bug above is the
-obvious next candidate given 88% (112/127) of this dataset's misses trace
-to it — but per the user's explicit sequencing, step 4 ("choose the next
-retrieval mechanism by which category the data says is dominant") is a
-separate, deliberate decision to make with this table in hand, not an
-automatic follow-on to building the table.
+## Step 4: guard-skip bug fixed (`rag/retriever.py::retrieve_expanded`)
+
+Given the taxonomy above, this wasn't a "choose a new retrieval
+mechanism" decision — it was a one-line bugfix to an invariant the old
+code silently violated: *whether the structural lookup promotes a match
+must not depend on whether that same chunk was already found (weakly) by
+hybrid search first.* The old code only injected a structural match
+`if key not in all_chunks` — i.e. only when hybrid search hadn't already
+found it. Now it always looks up the canonical chunk by key and sets
+`score=1.0`/`source="structural_reference"`/`identity_match=True` on it,
+whether newly injected or already present. Two new regression tests in
+`tests/test_retriever.py` cover the exact broken path (all competing
+chunks deliberately in the same document, so the per-document diversity
+guarantee can't mask a regression) and its equivalence with the
+already-working "chunk absent from hybrid" case.
+
+**Measured on the SAME frozen `mixed_corpus_v2` collection, full 454
+cases, `--semantic-judge`** (`eval/mixed_corpus/last_run_scores_
+golden_dataset_v2_structural_fix.json`):
+
+| `fact_figure_caption` (177 cases) | before fix | after fix |
+|---|---:|---:|
+| Doc Recall | 100% (177/177) | 100% (177/177) |
+| Evidence-page Recall | 36% (63/177) | **92.7% (164/177)** |
+| Evidence-chunk Recall | 28.2% (49/177) | **91.5% (162/177)** |
+| Answered-when-should | 56% (100/177) | 95.5% (169/177) |
+| Correctness (substring→semantic) | 0%→14% | 1.7%→39% |
+| Avg. sources per case | 2.0 | 2.3 |
+
+A retrieval-only pre-check (no generation — direct `retrieve_expanded` +
+rerank + promote calls) across all 177 cases predicted 91.5% Evidence-
+chunk Recall before the official run was even started; the official run
+landed at the same number, confirming the fix's effect is exactly the
+structural-injection mechanism, not a generation-side artifact.
+
+**No regressions elsewhere**: `comparison_scoped` 100%→100%,
+`hard_negative` 3/3→3/3, `fact_author` 163/163→163/163 recall
+(151/163→151/163 correctness), `fact_rx_approval` 8/10→8/10,
+`topic_search` 46/49→46/49. Overall `Recall@5` 94.9%→95.3%
+(v2 baseline → after fix), MRR 0.924→0.926. Full test suite: 356 passed
+(354 + 2 new).
+
+The remaining ~8% gap is the 3 `caption_absent_from_indexed_chunks` +
+12 `prose_or_wrong_occurrence_picked` cases from the taxonomy above — a
+parser/chunker issue and a caption-disambiguation issue respectively,
+neither touched by this fix, both small enough not to justify their own
+pass right now.
 
 ## Conditional generator benchmark: DeepSeek vs. local Qwen on confirmed-evidence captions
 
