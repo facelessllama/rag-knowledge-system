@@ -33,6 +33,17 @@ eval/mixed_corpus/download_report.json
 eval/**/generator_ab_contexts.json
 eval/**/generator_ab_results.json
 eval/**/generator_ab_progress.json
+# Same for the post-fix (golden v3) re-run and the title-free-scoped
+# variant — generator_ab_postfix_v3_report.md / analyze_postfix_ab_
+# report.json are committed (small aggregates), raw contexts/results/
+# progress/per-row analysis are not.
+eval/**/generator_ab_postfix_v3_contexts.json
+eval/**/generator_ab_postfix_v3_results.json
+eval/**/generator_ab_postfix_v3_progress.json
+eval/**/generator_ab_postfix_v3_titlefreescoped_contexts.json
+eval/**/generator_ab_postfix_v3_titlefreescoped_results.json
+eval/**/generator_ab_postfix_v3_titlefreescoped_progress.json
+eval/**/analyze_postfix_ab_report.json
 # build_caption_label_index.py / analyze_caption_misses.py's raw output —
 # both regenerable from a live instance; the findings/table are written up
 # in eval/mixed_corpus/README.md's "Full taxonomy" section.

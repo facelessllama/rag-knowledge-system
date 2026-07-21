@@ -567,3 +567,113 @@ question, since nothing about the retrieved context changed), but the
 confirmed-evidence *population* itself is now completely different
 (91.5%/95.5% vs. the 28.2% these 48 cases were drawn from), so a full
 re-draw is needed before trusting new absolute end-to-end numbers.
+
+## Post-fix DeepSeek A/B: the full new evidence-hit population, scored against v3
+
+New capture (not a rescore) on the CURRENT retriever (both retrieval
+fixes applied) — `eval/mixed_corpus/capture_generation_contexts.py`
+against `golden_dataset_v3.json`, every `fact_figure_caption` case
+attempted, keeping every one with a confirmed `evidence_chunk_hit`:
+**162/177 (91.5%)** — 113 of these are cases the retrieval fixes newly
+rescued (`meta.saved_by_change`, vs. the pre-fix baseline), not just the
+same 48 from before. Sent unchanged to `qwen2.5:7b`, `deepseek-v4-flash`,
+`deepseek-v4-pro` via `eval/compare_generators.py`. Artifacts (new names,
+so the historical 48-case A/B stays intact and comparable):
+`generator_ab_postfix_v3_contexts.json`, `_results.json`,
+`_report.md`. Analysis: `eval/mixed_corpus/analyze_postfix_ab.py` →
+`analyze_postfix_ab_report.json`.
+
+Three metrics, computed directly per-case (never by multiplying rounded
+percentages), each reported on **`verified`-only** (the headline — no
+label ambiguity), **`verified`+`extracted`** (second cut), and
+**`ambiguous`** (reported separately, never folded into either headline):
+
+| | n eligible | n evidence-hit | Conditional correctness | End-to-end supported correctness | Refused despite evidence |
+|---|---:|---:|---:|---:|---:|
+| **qwen2.5:7b** — verified | 148 | 135 | 45.2% (61/135) | 41.2% (61/148) | 1.5% (2/135) |
+| qwen2.5:7b — verified+extracted | 158 | 145 | 46.9% (68/145) | 43.0% (68/158) | 2.1% (3/145) |
+| qwen2.5:7b — ambiguous | — | 17 | 52.9% (9/17) | — | 5.9% (1/17) |
+| **deepseek-v4-flash** — verified | 148 | 135 | 71.1% (96/135) | 64.9% (96/148) | 0.7% (1/135) |
+| deepseek-v4-flash — verified+extracted | 158 | 145 | 73.1% (106/145) | 67.1% (106/158) | 0.7% (1/145) |
+| deepseek-v4-flash — ambiguous | — | 17 | 82.4% (14/17) | — | 0.0% (0/17) |
+| **deepseek-v4-pro** — verified | 148 | 135 | 66.7% (90/135) | 60.8% (90/148) | 0.0% (0/135) |
+| deepseek-v4-pro — verified+extracted | 158 | 145 | 69.0% (100/145) | 63.3% (100/158) | 0.0% (0/145) |
+| deepseek-v4-pro — ambiguous | — | 17 | 70.6% (12/17) | — | 0.0% (0/17) |
+
+Conditional correctness on the full new population (45.2/71.1/66.7%) is
+close to the historical 48-case number (40.4/76.6/72.3%) — the gap did
+not collapse or blow up when the population grew ~3.4x and the labels
+got cleaner, a reasonable stability check on both the A/B methodology and
+the original 48-case sample not having been a fluke.
+
+**Model agreement, 162 evidence-hit cases**: all three correct 63, all
+three wrong 28, disagreement 71.
+
+| | wrong→correct | correct→wrong |
+|---|---:|---:|
+| qwen2.5:7b → deepseek-v4-flash | 50 | 7 |
+| qwen2.5:7b → deepseek-v4-pro | 46 | 11 |
+
+**Manual review** (per plan: all disagreements skimmed, the qwen-
+correct/DeepSeek-wrong direction read in full — 18 cases across both
+pairs — plus a 10-case all-wrong sample):
+
+1. **A real, specific Pro failure mode, not scorer noise**: in several
+   qwen-correct/Pro-wrong cases, Pro's answer visibly loses track of
+   which document it's describing — e.g. `sci_caption_2607.14777_Table8`:
+   Pro's answer opens "The provided excerpts include snippets from three
+   different papers: 'SEED...', 'LOGOS...', and 'All Explanations are
+   Wrong...'" before addressing the actual question; `sci_caption_2607.
+   11436_Figure5`: "Based on the provided excerpts, only one document
+   matches the paper in question..."; `sci_caption_2607.09403_Table19`:
+   answer is truncated mid-sentence ("...Table 19 is titled ... It").
+   These read as a genuine generation-quality issue specific to Pro
+   (context-attribution confusion / truncation), not a scoring artifact.
+2. **Some flash/pro "wrong" verdicts look like plausible scorer noise**
+   on manual read (e.g. `sci_caption_2607.10963_Figure2` — Flash's answer
+   substantively matches the expected 2D interval-tree description) —
+   consistent with this project's already-documented semantic-judge
+   nondeterminism, not a new finding.
+3. **A newly-found, more severe golden-v3 blind spot**, discovered by
+   reading the all-three-wrong sample: `_classify_trailing_segment`'s
+   split only ever runs when the sentence-splitter finds a SECOND
+   sentence piece after the caption's first one. When leaked table/chart
+   content (axis tick labels, category-name lists, numeric data rows)
+   has **no period anywhere in it at all** — routine for this kind of
+   content — the naive splitter never produces a second piece, the whole
+   contaminated blob is swallowed as the FIRST "sentence," and the split
+   mechanism never runs at all. Confirmed directly:
+   `sci_caption_2607.09641_Table1`'s `expected_substring` (424 chars,
+   `label_status="verified"`) is "Performance Evaluation on the
+   E-Commerce Fraud Dataset Model TN FP FN TP Precision Recall F1-Score
+   XGBoost (Raw Tabular) 28833 1 1389 0 0.000 0.000 0.000 [...]" — raw
+   table cell values with no model ever going to reproduce them verbatim,
+   guaranteeing an all-three-wrong verdict regardless of true answer
+   quality. A quick corpus scan: **17/148 (11%) of `verified`
+   `fact_figure_caption` cases have an expected_substring over 300
+   characters** — not proof each one is corrupted this way, but a
+   plausible-enough concentration that the `verified` tier's absolute
+   correctness numbers above should be read as a **floor**, not a
+   precise measurement, until a golden v4 pass scans for table/chart-like
+   density anywhere in the extracted span, not just in a second sentence-
+   splitter piece. Not fixed in this pass — same "diminishing returns"
+   reasoning as the rest of this residual-gap family, but flagged
+   explicitly rather than left for someone to discover by surprise.
+
+**Bottom line**: DeepSeek Flash/Pro's ~20-25pp conditional-correctness
+edge over local Qwen replicates on the full, ~3.4x larger, cleaner-label
+post-fix population — this is not a fluke of the original 48-case
+sample. Pro shows a specific, real context-confusion failure mode absent
+from Flash. The `verified`-tier absolute numbers are a floor, not a
+ceiling, given the newly-found no-period leakage blind spot above.
+
+## Separate check: title-free, document-scoped generation
+
+Deliberately a SEPARATE artifact/report from the A/B above, never
+merged: dropping the paper title changes the prompt itself, so mixing
+the two populations would conflate a retrieval-scope difference with a
+wording difference in one number. See `eval/mixed_corpus/capture_title_
+free_scoped_contexts.py` (reuses `title_free_retrieval_check.py`'s
+question wording, `document_ids=[expected_doc_id]` scope) — results
+pending a compare_generators.py pass, to be documented separately once
+run.
