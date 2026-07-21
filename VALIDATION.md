@@ -241,10 +241,11 @@ accuracy claims are made on this corpus yet; this pass covers ingestion
 only, the step every later accuracy number depends on.
 
 Fact-based accuracy, evidence-chunk-level recall, and a conditional
-generator benchmark (local Qwen vs. an evaluated-only DeepSeek cloud
-backend, on cases where retrieval is already confirmed correct) were
-measured in later passes on this same corpus — see
-`eval/mixed_corpus/README.md`, not duplicated here.
+generator benchmark (local Qwen vs. DeepSeek's cloud API, on cases where
+retrieval is already confirmed correct) were measured in later passes on
+this same corpus — see `eval/mixed_corpus/README.md`, not duplicated
+here. That benchmark is what the opt-in DeepSeek cloud mode described
+below is based on.
 
 ## A real localization bug, found and fixed — then a real product decision
 
