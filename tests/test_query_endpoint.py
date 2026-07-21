@@ -18,12 +18,13 @@ import pytest
 from fastapi.testclient import TestClient
 
 import api.main as m
+from rag.generator import GeneratorRouter
 from tests.fakes import FakeGenerator, FakeQueryExpander, FakeReranker, FakeRetriever
 
 TEST_API_KEY = "test-secret-key"
 
 
-def _wire_fake_services(monkeypatch):
+def _wire_fake_services(monkeypatch, generator=None):
     monkeypatch.setattr(m, "RELEVANCE_THRESHOLD", 0)  # decouple from the configured production threshold
     monkeypatch.setitem(m.documents_registry, "d1", {"status": "active", "filename": "a.pdf"})
 
@@ -40,7 +41,16 @@ def _wire_fake_services(monkeypatch):
     m.app.dependency_overrides[m.get_retriever] = lambda: FakeRetriever(chunks)
     m.app.dependency_overrides[m.get_reranker] = lambda: FakeReranker()
     m.app.dependency_overrides[m.get_prompt_builder] = lambda: m.PromptBuilder()
-    m.app.dependency_overrides[m.get_generator] = lambda: FakeGenerator("The fee is £100.")
+    # Wrapped in a REAL GeneratorRouter (matching production — api/main.py's
+    # startup() always constructs one) rather than exposing a bare
+    # FakeGenerator directly as `generator`, so these endpoint tests exercise
+    # the actual provider-gating code path, not a stand-in for it. Default:
+    # cloud disabled, no deepseek backend at all — the production default —
+    # unless a test passes its own pre-built router (see the cloud-mode
+    # tests below).
+    m.app.dependency_overrides[m.get_generator] = lambda: generator or GeneratorRouter(
+        local=FakeGenerator("The fee is £100."), deepseek=None, cloud_enabled=False
+    )
 
 
 @pytest.fixture
@@ -176,3 +186,131 @@ def test_query_endpoint_accepts_correct_api_key(authed_client):
     )
     assert response.status_code == 200
     assert response.json()["answer"] == "The fee is £100."
+
+
+# ── cloud-mode opt-in gating ─────────────────────────────────────────────────
+# Proves the two independent gates GeneratorRouter enforces (see rag/
+# generator.py's own docstring) end-to-end, through the real HTTP endpoint —
+# not just at the unit level (tests/test_generator_router.py covers that).
+
+@pytest.fixture
+def cloud_client(monkeypatch):
+    """Cloud generator fully configured and administrator-enabled — the
+    permissive end of the gate. Individual tests below still must pass
+    provider="deepseek" explicitly for any request to reach it."""
+    monkeypatch.setattr(m, "startup", _unreachable_startup)
+    monkeypatch.setattr(m, "API_KEY", "")
+    local_gen = FakeGenerator("Local answer.")
+    deepseek_gen = FakeGenerator("Cloud answer.")
+    router = GeneratorRouter(local=local_gen, deepseek=deepseek_gen, cloud_enabled=True)
+    _wire_fake_services(monkeypatch, generator=router)
+
+    test_client = TestClient(m.app)
+    try:
+        yield test_client, local_gen, deepseek_gen
+    finally:
+        test_client.close()
+        m.app.dependency_overrides.clear()
+
+
+def test_default_request_never_calls_deepseek_even_when_cloud_is_enabled(cloud_client):
+    """The single most important guarantee: an ordinary request (no
+    `provider` field at all) must never reach the cloud backend, even when
+    an administrator has fully enabled and configured it — opt-in has to
+    happen on THIS request, not just at the server level."""
+    client, local_gen, deepseek_gen = cloud_client
+    response = client.post("/query", json={"question": "What is the fee?"})
+    assert response.status_code == 200
+    assert response.json()["answer"] == "Local answer."
+    assert response.json()["provider"] == "local"
+    assert local_gen.call_count == 1
+    assert deepseek_gen.call_count == 0
+
+
+def test_explicit_provider_local_never_calls_deepseek(cloud_client):
+    client, local_gen, deepseek_gen = cloud_client
+    response = client.post("/query", json={"question": "What is the fee?", "provider": "local"})
+    assert response.status_code == 200
+    assert deepseek_gen.call_count == 0
+
+
+def test_explicit_provider_deepseek_reaches_the_cloud_backend(cloud_client):
+    """The opt-in path actually works when both gates are satisfied."""
+    client, local_gen, deepseek_gen = cloud_client
+    response = client.post("/query", json={"question": "What is the fee?", "provider": "deepseek"})
+    assert response.status_code == 200
+    body = response.json()
+    assert body["answer"] == "Cloud answer."
+    assert body["provider"] == "deepseek"
+    assert deepseek_gen.call_count == 1
+    assert local_gen.call_count == 0
+
+
+def test_provider_deepseek_rejected_when_admin_has_not_enabled_cloud(monkeypatch):
+    """Cloud generator configured (a deepseek backend exists) but the
+    administrator gate (cloud_enabled) is off — must be refused with a
+    clear error, never silently answered by local instead."""
+    monkeypatch.setattr(m, "startup", _unreachable_startup)
+    monkeypatch.setattr(m, "API_KEY", "")
+    local_gen = FakeGenerator("Local answer.")
+    deepseek_gen = FakeGenerator("Cloud answer.")
+    router = GeneratorRouter(local=local_gen, deepseek=deepseek_gen, cloud_enabled=False)
+    _wire_fake_services(monkeypatch, generator=router)
+
+    test_client = TestClient(m.app)
+    try:
+        response = test_client.post("/query", json={"question": "What is the fee?", "provider": "deepseek"})
+    finally:
+        test_client.close()
+        m.app.dependency_overrides.clear()
+
+    assert response.status_code == 400
+    assert deepseek_gen.call_count == 0
+    assert local_gen.call_count == 0  # no silent fallback either
+
+
+def test_provider_deepseek_rejected_when_no_api_key_configured(monkeypatch):
+    """Administrator enabled cloud mode but no DEEPSEEK_API_KEY was ever
+    configured (api/main.py's startup() leaves generator.deepseek as None
+    in this case) — same clear-error, no-fallback guarantee."""
+    monkeypatch.setattr(m, "startup", _unreachable_startup)
+    monkeypatch.setattr(m, "API_KEY", "")
+    local_gen = FakeGenerator("Local answer.")
+    router = GeneratorRouter(local=local_gen, deepseek=None, cloud_enabled=True)
+    _wire_fake_services(monkeypatch, generator=router)
+
+    test_client = TestClient(m.app)
+    try:
+        response = test_client.post("/query", json={"question": "What is the fee?", "provider": "deepseek"})
+    finally:
+        test_client.close()
+        m.app.dependency_overrides.clear()
+
+    assert response.status_code == 400
+    assert local_gen.call_count == 0
+
+
+def test_invalid_provider_value_is_rejected_at_validation(cloud_client):
+    """Literal["local","deepseek"] (api/schemas.py) rejects an unknown
+    provider name at the HTTP layer (422) before the route body — and
+    therefore both fakes — ever runs."""
+    client, local_gen, deepseek_gen = cloud_client
+    response = client.post("/query", json={"question": "hi", "provider": "openai"})
+    assert response.status_code == 422
+    assert local_gen.call_count == 0
+    assert deepseek_gen.call_count == 0
+
+
+def test_stream_endpoint_rejects_deepseek_provider(cloud_client):
+    """Streaming is local-only (rag/generator.py's GeneratorRouter) —
+    even with cloud fully enabled and configured, a stream request
+    explicitly asking for provider="deepseek" gets a clear error event,
+    never silent local fallback nor a cloud call over SSE."""
+    client, local_gen, deepseek_gen = cloud_client
+    with client.stream(
+        "POST", "/query/stream", json={"question": "What is the fee?", "provider": "deepseek"}
+    ) as response:
+        assert response.status_code == 200  # SSE stream itself opens fine
+        body = "".join(response.iter_text())
+    assert "provider_not_available" in body
+    assert deepseek_gen.call_count == 0

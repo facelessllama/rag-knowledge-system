@@ -69,6 +69,14 @@ class QueryRequest(BaseModel):
     model: Optional[str] = None
     rerank: Optional[bool] = True
     folder: Optional[str] = None
+    # Which generator backend answers this specific request — "local"
+    # (default, Qwen via Ollama, nothing leaves this server) or "deepseek"
+    # (opt-in cloud mode, requires ENABLE_CLOUD_GENERATOR=true on the
+    # server AND this field set explicitly — see rag/generator.py's
+    # GeneratorRouter, the single place that enforces both gates). A
+    # Literal, not a bare str, so an unknown provider name is a 422 at
+    # validation time, not a confusing runtime error deep in the router.
+    provider: Optional[Literal["local", "deepseek"]] = None
 
     @field_validator("question")
     @classmethod
@@ -87,5 +95,10 @@ class QueryResponse(BaseModel):
     answer: str
     sources: list[dict]
     model: str
+    # "local" or "deepseek" — which generator actually answered, so a caller
+    # never has to infer this from the model name string. Defaults to
+    # "local" for the two early-return paths (no chunks / below relevance
+    # threshold) that never invoke a generator at all — see GeneratorRouter.
+    provider: str = "local"
     tokens_used: int
     debug: Optional[dict] = None

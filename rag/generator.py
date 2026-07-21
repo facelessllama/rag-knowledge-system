@@ -40,15 +40,64 @@ class PartialStreamError(Exception):
         self.chunks_yielded = chunks_yielded
 
 
-class DeepSeekGenerator:
+class ProviderNotAvailable(Exception):
+    """Raised by GeneratorRouter (below) when a request asks for a generator
+    provider that isn't usable right now — cloud disabled by the
+    administrator, no API key configured, or an unknown provider name.
+    Deliberately a distinct, catchable exception rather than falling back to
+    another provider: api/main.py turns this into a clear 4xx so a caller
+    who explicitly asked for "deepseek" always finds out their data did NOT
+    silently go to a different service, rather than getting an answer from
+    local Qwen with no indication the cloud request was ignored."""
+
+
+class BaseGenerator:
+    """Shares the refusal-retry policy across every generator backend —
+    see generate_with_refusal_retry's own docstring for why this exists.
+    Subclasses only need to implement generate(); DeepSeekGenerator used to
+    lack this entirely (no refusal-retry at all when it was eval-only
+    tooling), which would have been an inconsistent product experience once
+    it became a real, user-selectable provider."""
+
+    async def generate(self, messages: list[dict], retries: int = 3, model: str = None) -> dict:
+        raise NotImplementedError
+
+    async def generate_with_refusal_retry(
+        self, messages: list[dict], refusal_retries: int = 2, model: str = None
+    ) -> dict:
+        """Callers only reach this after their own relevance-threshold gate
+        already passed (see api/main.py) — i.e. retrieval was confident
+        enough to attempt an answer. A refusal at that point is usually
+        wrong, not conservative: measured directly (eval/README.md, "Known
+        issue: multi-doc near-duplicate-title flakiness") — the identical
+        prompt, resampled, answers correctly a clear majority of the time
+        for cases that clear the gate. Root cause wasn't pinned down to a
+        deterministic prompt/ordering issue (it didn't reproduce reliably
+        in isolated scripted tests, unlike the A.B.A. 493 case fixed
+        earlier), so this is a pragmatic mitigation for what looks like
+        inference-level nondeterminism rather than a prompt rewrite chasing
+        a moving target. Cheap: only fires on the rare refusal, and only
+        resamples the same already-built prompt."""
+        result = await self.generate(messages, model=model)
+        attempt = 0
+        while is_refusal(result["answer"]) and attempt < refusal_retries:
+            attempt += 1
+            logger.info(f"Refusal despite confident retrieval — resampling ({attempt}/{refusal_retries})")
+            result = await self.generate(messages, model=model)
+        return result
+
+
+class DeepSeekGenerator(BaseGenerator):
     """Same generate() interface as LLMGenerator (drop-in for accuracy A/B
-    testing against the local Ollama model — see eval/test_deepseek_accuracy.py)
-    but talks to DeepSeek's real OpenAI-compatible endpoint (Bearer auth,
+    testing against the local Ollama model — see eval/compare_generators.py,
+    and now GeneratorRouter below for the real, opt-in product path) but
+    talks to DeepSeek's real OpenAI-compatible endpoint (Bearer auth,
     top-level temperature/max_tokens, response in choices[0].message.content)
     rather than Ollama's native /api/chat shape (think/options wrapper),
     which LLMGenerator actually uses despite its module docstring's claim of
-    OpenAI-compatibility. Not wired into api/main.py's default generator —
-    intentionally a separate, explicitly-opted-into path for now."""
+    OpenAI-compatibility. Streaming is NOT implemented here — GeneratorRouter
+    refuses provider="deepseek" on the streaming endpoint with a clear error
+    rather than silently falling back to a non-streaming call or to local."""
 
     def __init__(
         self,
@@ -109,7 +158,7 @@ class DeepSeekGenerator:
         raise last_error
 
 
-class LLMGenerator:
+class LLMGenerator(BaseGenerator):
     def __init__(
         self,
         ollama_url: str = "http://localhost:11434",
@@ -186,30 +235,6 @@ class LLMGenerator:
         raise httpx.TimeoutException(
             f"LLM did not respond after {retries} attempts. Is Ollama running?"
         )
-
-    async def generate_with_refusal_retry(
-        self, messages: list[dict], refusal_retries: int = 2, model: str = None
-    ) -> dict:
-        """Callers only reach this after their own relevance-threshold gate
-        already passed (see api/main.py) — i.e. retrieval was confident
-        enough to attempt an answer. A refusal at that point is usually
-        wrong, not conservative: measured directly (eval/README.md, "Known
-        issue: multi-doc near-duplicate-title flakiness") — the identical
-        prompt, resampled, answers correctly a clear majority of the time
-        for cases that clear the gate. Root cause wasn't pinned down to a
-        deterministic prompt/ordering issue (it didn't reproduce reliably
-        in isolated scripted tests, unlike the A.B.A. 493 case fixed
-        earlier), so this is a pragmatic mitigation for what looks like
-        inference-level nondeterminism rather than a prompt rewrite chasing
-        a moving target. Cheap: only fires on the rare refusal, and only
-        resamples the same already-built prompt."""
-        result = await self.generate(messages, model=model)
-        attempt = 0
-        while is_refusal(result["answer"]) and attempt < refusal_retries:
-            attempt += 1
-            logger.info(f"Refusal despite confident retrieval — resampling ({attempt}/{refusal_retries})")
-            result = await self.generate(messages, model=model)
-        return result
 
     async def generate_stream(self, messages: list[dict], model: str = None, retries: int = 3):
         """
@@ -317,3 +342,91 @@ class LLMGenerator:
             # Out of retries — stream the refusal through as-is.
             for buffered_token in buffered:
                 yield buffered_token
+
+
+class GeneratorRouter:
+    """The ONLY thing that decides which generator backend actually runs a
+    request — every caller (api/main.py's /query and /query/stream) goes
+    through here instead of holding a direct reference to either generator,
+    so "does a request's data reach DeepSeek" has exactly one code path to
+    audit (see tests/test_generator_router.py).
+
+    Two independent gates must BOTH be satisfied for provider="deepseek" to
+    ever run:
+    1. `cloud_enabled` — an administrator opt-in (ENABLE_CLOUD_GENERATOR
+       env var, read once at startup in api/main.py), not a per-request
+       flag a client can set.
+    2. The caller explicitly passes provider="deepseek" on THIS request
+       (api/schemas.py's QueryRequest.provider). Every other value,
+       including the default (None -> "local"), never touches
+       self.deepseek at all.
+
+    Deliberately never falls back from deepseek to local on failure/
+    misconfiguration — that would mean a client asking for the cloud
+    provider can never be sure whether their data actually left the
+    building, which is the one thing this class exists to make legible.
+    Raises ProviderNotAvailable instead; api/main.py turns that into a
+    clear 4xx."""
+
+    def __init__(self, local: BaseGenerator, deepseek: BaseGenerator | None, cloud_enabled: bool):
+        self.local = local
+        self.deepseek = deepseek
+        self.cloud_enabled = cloud_enabled
+
+    @property
+    def model(self) -> str:
+        # Referenced by api/main.py for the two early-return responses (no
+        # chunks retrieved / below relevance threshold) that report a model
+        # name without ever actually invoking a generator — always the
+        # local default in that case, since no provider was chosen yet.
+        return self.local.model
+
+    @property
+    def ollama_url(self) -> str:
+        # api/main.py's _check_ollama() health check reads this directly —
+        # inherently a check of the LOCAL backend specifically (DeepSeek
+        # has no Ollama URL at all), regardless of cloud_enabled/provider.
+        return self.local.ollama_url
+
+    def _resolve(self, provider: str | None) -> tuple[str, BaseGenerator]:
+        name = provider or "local"
+        if name == "local":
+            return "local", self.local
+        if name == "deepseek":
+            if not self.cloud_enabled:
+                raise ProviderNotAvailable(
+                    "The cloud generator (DeepSeek) is not enabled on this server. "
+                    "An administrator must set ENABLE_CLOUD_GENERATOR=true."
+                )
+            if self.deepseek is None:
+                raise ProviderNotAvailable(
+                    "The cloud generator (DeepSeek) is enabled but not configured "
+                    "(missing DEEPSEEK_API_KEY)."
+                )
+            return "deepseek", self.deepseek
+        raise ProviderNotAvailable(f"Unknown provider {name!r} — expected 'local' or 'deepseek'.")
+
+    async def generate_with_refusal_retry(
+        self, messages: list[dict], refusal_retries: int = 2, model: str = None, provider: str = None
+    ) -> dict:
+        name, backend = self._resolve(provider)
+        result = await backend.generate_with_refusal_retry(messages, refusal_retries=refusal_retries, model=model)
+        result["provider"] = name
+        return result
+
+    async def generate_stream_with_refusal_retry(
+        self, messages: list[dict], refusal_retries: int = 2, model: str = None, provider: str = None
+    ):
+        # Streaming is local-only for now — DeepSeekGenerator has no
+        # generate_stream at all. _resolve() still runs first so a request
+        # that explicitly asks for the cloud provider on the streaming
+        # endpoint gets the same clear ProviderNotAvailable it would get
+        # from the non-streaming endpoint, not a confusing attribute error
+        # or (worse) a silent switch to local.
+        name, backend = self._resolve(provider)
+        if name != "local":
+            raise ProviderNotAvailable(
+                f"Streaming is only supported for the local provider right now (got {name!r})."
+            )
+        async for token in backend.generate_stream_with_refusal_retry(messages, refusal_retries=refusal_retries, model=model):
+            yield token

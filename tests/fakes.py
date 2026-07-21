@@ -37,12 +37,21 @@ class FakeReranker:
 
 
 class FakeGenerator:
+    """A fake single-backend generator (stands in for either LLMGenerator
+    or DeepSeekGenerator) — wrap one or two of these in a REAL
+    rag.generator.GeneratorRouter in tests rather than re-implementing the
+    provider-gating logic here, so endpoint tests exercise the actual
+    gating code (see tests/test_generator_router.py for direct unit tests
+    of the router itself). call_count lets a test assert a specific
+    backend was (or, more importantly, was NOT) invoked."""
     model = "fake-model"
 
     def __init__(self, answer: str = "This is a fake answer."):
         self._answer = answer
+        self.call_count = 0
 
-    async def generate_with_refusal_retry(self, messages, refusal_retries=2, model=None):
+    async def generate(self, messages, retries=3, model=None):
+        self.call_count += 1
         return {
             "answer": self._answer,
             "model": model or self.model,
@@ -51,6 +60,10 @@ class FakeGenerator:
             "total_tokens": 15,
         }
 
+    async def generate_with_refusal_retry(self, messages, refusal_retries=2, model=None):
+        return await self.generate(messages, model=model)
+
     async def generate_stream_with_refusal_retry(self, messages, refusal_retries=2, model=None):
+        self.call_count += 1
         for word in self._answer.split():
             yield word + " "

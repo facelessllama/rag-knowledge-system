@@ -54,6 +54,9 @@ eval/**/analyze_postfix_ab_titlefreescoped_report.json
 # committed — they're the non-regenerable record.
 eval/**/cross_run_factor_analysis_report.json
 eval/**/blind_adjudication_titlefreescoped.json
+# cloud_mode_integration_smoke.py's raw per-case output — regenerable by
+# rerunning against a live instance with ENABLE_CLOUD_GENERATOR=true.
+eval/**/cloud_mode_integration_smoke_report.json
 # build_caption_label_index.py / analyze_caption_misses.py's raw output —
 # both regenerable from a live instance; the findings/table are written up
 # in eval/mixed_corpus/README.md's "Full taxonomy" section.

@@ -45,7 +45,7 @@ from rag.retriever import HybridRetriever, promote_identity_matches, promote_doc
 from rag.executors import run_on_gpu
 from rag.reranker import CrossEncoderReranker, SimpleReranker
 from rag.prompt_builder import PromptBuilder
-from rag.generator import LLMGenerator, PartialStreamError
+from rag.generator import LLMGenerator, DeepSeekGenerator, GeneratorRouter, ProviderNotAvailable, PartialStreamError, is_refusal
 from rag.query_expander import QueryExpander
 
 logging.basicConfig(level=logging.INFO)
@@ -409,6 +409,12 @@ generator = None
 query_expander = None
 langfuse = None
 LANGFUSE_ENABLED = False
+# Whether the administrator has opted the whole server into the DeepSeek
+# cloud generator being selectable at all (ENABLE_CLOUD_GENERATOR env var,
+# read once at startup) — the FIRST of GeneratorRouter's two required
+# gates; the second is the per-request provider="deepseek" field. Exposed
+# by /models so the frontend knows whether to offer the toggle.
+CLOUD_GENERATOR_ENABLED = False
 
 # Dependency-provider functions for the /query and /query/stream endpoints'
 # heavy services — thin wrappers over the module globals above, wired via
@@ -912,6 +918,7 @@ _single_instance_watchdog_task = None
 async def startup():
     global chunker, embedder, vector_store, retriever, reranker, prompt_builder, \
         generator, query_expander, langfuse, LANGFUSE_ENABLED, parser, txt_parser, PARSERS_BY_EXT, \
+        CLOUD_GENERATOR_ENABLED, \
         _single_instance_healthy, _single_instance_watchdog_task, _startup_reconciliation_task
 
     # Acquired before constructing anything below — in particular before
@@ -974,10 +981,39 @@ async def startup():
             logger.warning(f"CrossEncoderReranker failed to load ({e}), falling back to SimpleReranker")
             reranker = SimpleReranker()
         prompt_builder = PromptBuilder()
-        generator = LLMGenerator(
+        local_generator = LLMGenerator(
             ollama_url=os.getenv("OLLAMA_URL", "http://localhost:11435"),
             model=os.getenv("LLM_MODEL", "qwen2.5:7b"),
             temperature=float(os.getenv("TEMPERATURE", "0.1"))
+        )
+        # CLOUD_GENERATOR_ENABLED is the administrator's opt-in
+        # (ENABLE_CLOUD_GENERATOR=true) — the product default is local-only
+        # regardless of whether a DEEPSEEK_API_KEY happens to be present in
+        # the environment, so simply having a key configured (e.g. left over
+        # from eval work) can never make the cloud provider selectable on
+        # its own. A key is ALSO required once the administrator does opt
+        # in; missing either one means GeneratorRouter refuses
+        # provider="deepseek" with a clear error rather than silently
+        # running local instead — see rag/generator.py's GeneratorRouter.
+        CLOUD_GENERATOR_ENABLED = os.getenv("ENABLE_CLOUD_GENERATOR", "false").lower() == "true"
+        deepseek_generator = None
+        if CLOUD_GENERATOR_ENABLED:
+            deepseek_api_key = os.getenv("DEEPSEEK_API_KEY")
+            if deepseek_api_key:
+                deepseek_generator = DeepSeekGenerator(
+                    api_key=deepseek_api_key,
+                    model=os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash"),
+                    temperature=float(os.getenv("TEMPERATURE", "0.1")),
+                )
+                logger.info(f"Cloud generator ENABLED | model={deepseek_generator.model}")
+            else:
+                logger.warning(
+                    "ENABLE_CLOUD_GENERATOR=true but DEEPSEEK_API_KEY is not set — "
+                    "provider='deepseek' requests will be rejected with a clear error, "
+                    "not silently served by the local model."
+                )
+        generator = GeneratorRouter(
+            local=local_generator, deepseek=deepseek_generator, cloud_enabled=CLOUD_GENERATOR_ENABLED
         )
         query_expander = QueryExpander(
             ollama_url=os.getenv("OLLAMA_URL", "http://localhost:11435"),
@@ -1505,8 +1541,27 @@ async def _do_query(request: QueryRequest, query_expander, retriever, reranker, 
                                    chat_history=chat_history_dicts)
 
     t1 = time.time()
-    result = await generator.generate_with_refusal_retry(messages, model=request.model or None)
+    try:
+        result = await generator.generate_with_refusal_retry(
+            messages, model=request.model or None, provider=request.provider
+        )
+    except ProviderNotAvailable as e:
+        # A clear 4xx, not a silent fall-back to local — see GeneratorRouter's
+        # own docstring on why a request that explicitly asked for the cloud
+        # provider must never be answered by a different one without saying so.
+        raise HTTPException(400, str(e))
     generation_ms = int((time.time() - t1) * 1000)
+
+    # Provider-usage log line — deliberately separate from Langfuse tracing
+    # (which already captures full prompt/answer content when enabled) and
+    # deliberately NEVER includes question/document/answer text, per the
+    # product requirement that cloud-mode usage be auditable without any
+    # document content appearing in ordinary logs.
+    logger.info(
+        f"generator_call provider={result['provider']} model={result['model']} "
+        f"latency_ms={generation_ms} tokens={result['total_tokens']} "
+        f"result={'refused' if is_refusal(result['answer']) else 'answered'}"
+    )
 
     if trace:
         try:
@@ -1515,7 +1570,7 @@ async def _do_query(request: QueryRequest, query_expander, retriever, reranker, 
                            usage={"input": result.get("prompt_tokens", 0),
                                   "output": result.get("completion_tokens", 0),
                                   "total": result["total_tokens"]},
-                           metadata={"duration_ms": generation_ms})
+                           metadata={"duration_ms": generation_ms, "provider": result["provider"]})
         except Exception as e:
             logger.warning(f"Langfuse generation failed: {e}")
 
@@ -1550,7 +1605,7 @@ async def _do_query(request: QueryRequest, query_expander, retriever, reranker, 
             logger.warning(f"Langfuse update failed: {e}")
 
     return QueryResponse(answer=result["answer"], sources=sources,
-                        model=result["model"], tokens_used=result["total_tokens"],
+                        model=result["model"], provider=result["provider"], tokens_used=result["total_tokens"],
                         debug={
                             "search_query": search_query if search_query != request.question else None,
                             "expanded_queries": expanded_queries,
@@ -1694,16 +1749,27 @@ async def query_stream(
 
             t2 = time.time()
             answer_tokens = []
-            async for token in generator.generate_stream_with_refusal_retry(messages, model=request.model or None):
+            async for token in generator.generate_stream_with_refusal_retry(
+                messages, model=request.model or None, provider=request.provider
+            ):
                 answer_tokens.append(token)
                 yield f"data: {json.dumps({'type': 'token', 'content': token})}\n\n"
             generation_ms = int((time.time() - t2) * 1000)
+
+            # Streaming is local-only (see GeneratorRouter) — the provider
+            # is always "local" by the time we get here, since anything
+            # else would already have raised ProviderNotAvailable above.
+            logger.info(
+                f"generator_call provider=local model={request.model or generator.model} "
+                f"latency_ms={generation_ms} "
+                f"result={'refused' if is_refusal(''.join(answer_tokens)) else 'answered'}"
+            )
 
             if trace:
                 try:
                     trace.generation(name="llm_stream", model=request.model or generator.model,
                                      input=messages, output="".join(answer_tokens),
-                                     metadata={"duration_ms": generation_ms})
+                                     metadata={"duration_ms": generation_ms, "provider": "local"})
                     trace.update(metadata={
                         "total_ms": int((time.time() - start_time) * 1000),
                         "expansion_ms": expansion_ms,
@@ -1753,6 +1819,7 @@ async def query_stream(
                 'avg_score': float(score_meta['avg']),
                 'reranker': reranker_type,
                 'model': request.model or generator.model,
+                'provider': 'local',
                 'top_chunks': [
                     {
                         'chunk_id': str(c.get('chunk_id', '')),
@@ -1775,6 +1842,15 @@ async def query_stream(
                 try: trace.update(metadata={"error": "partial_stream", "chunks_sent": e.chunks_yielded})
                 except Exception: pass
             yield f"data: {json.dumps({'type': 'error', 'error_type': 'partial_stream', 'message': 'The response was cut off midway. Please try again.', 'partial': True, 'chunks_sent': e.chunks_yielded})}\n\n"
+        except ProviderNotAvailable as e:
+            # Same discipline as the non-streaming endpoint: a clear error
+            # event, never a silent switch to a different provider — see
+            # GeneratorRouter's own docstring. Streaming is local-only for
+            # now (DeepSeekGenerator has no generate_stream), so this also
+            # fires for any provider="deepseek" request here regardless of
+            # cloud_enabled.
+            logger.warning(f"Stream provider request rejected: {e}")
+            yield f"data: {json.dumps({'type': 'error', 'error_type': 'provider_not_available', 'message': str(e)})}\n\n"
         except Exception as e:
             logger.error(f"Stream error: {e}", exc_info=True)
             if trace:
@@ -2023,9 +2099,20 @@ async def get_pdf(doc_id: str, key: Optional[str] = None, x_api_key: Optional[st
 
 @protected.get("/models")
 async def list_models():
-    """List available models from Ollama"""
+    """List available local models from Ollama, plus whether the cloud
+    (DeepSeek) generator is selectable at all right now — the frontend
+    uses `cloud` to decide whether to show the provider toggle. `cloud.
+    available` requires BOTH ENABLE_CLOUD_GENERATOR=true and a configured
+    DEEPSEEK_API_KEY (see GeneratorRouter) — it does not mean any request
+    is currently using it, only that provider="deepseek" would be
+    accepted."""
     import httpx
     ollama_url = os.getenv("OLLAMA_URL", "http://localhost:11435")
+    cloud_info = {
+        "enabled_by_admin": CLOUD_GENERATOR_ENABLED,
+        "available": CLOUD_GENERATOR_ENABLED and generator.deepseek is not None,
+        "model": generator.deepseek.model if generator.deepseek is not None else None,
+    }
     try:
         async with httpx.AsyncClient(timeout=5.0) as client:
             r = await client.get(f"{ollama_url}/api/tags")
@@ -2041,11 +2128,11 @@ async def list_models():
                         "size_gb": size_gb,
                         "active": name == generator.model,
                     })
-                return {"models": models, "current": generator.model}
+                return {"models": models, "current": generator.model, "cloud": cloud_info}
     except Exception as e:
         logger.warning(f"Ollama models fetch failed: {e}")
     return {"models": [{"name": generator.model, "size_gb": 0, "active": True}],
-            "current": generator.model}
+            "current": generator.model, "cloud": cloud_info}
 
 
 app.include_router(protected)
@@ -2135,7 +2222,9 @@ async def _readiness() -> JSONResponse:
             "ollama": "ok" if ollama_ok else "error",
             "embedding_model": embedder.model_name,
             "llm_model": generator.model,
-            "langfuse": "ok" if LANGFUSE_ENABLED else "disabled"
+            "langfuse": "ok" if LANGFUSE_ENABLED else "disabled",
+            "cloud_generator": "available" if (CLOUD_GENERATOR_ENABLED and generator.deepseek is not None)
+                               else ("enabled_no_key" if CLOUD_GENERATOR_ENABLED else "disabled"),
         },
         "vector_store": qdrant_info or {}
     }
