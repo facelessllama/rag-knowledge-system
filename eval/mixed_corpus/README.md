@@ -489,12 +489,14 @@ Full breakdown, pairwise contingency tables, and the `saved_by_change`
 subset: `eval/mixed_corpus/generator_ab_report.md`.
 
 Caveats, all load-bearing:
-- **DeepSeek is not wired into `api/main.py`'s default pipeline.** Local
-  `qwen2.5:7b` remains the product default; nothing here is user-selectable
-  today.
-- **A future cloud mode would send document chunks to an external
-  provider.** That must be stated explicitly to any user who enables it,
-  not left implicit.
+- **At the time of this A/B, DeepSeek was not wired into `api/main.py`'s
+  default pipeline** — local `qwen2.5:7b` was the product default and
+  nothing here was user-selectable. DeepSeek has since shipped as a real,
+  administrator opt-in cloud provider (`ENABLE_CLOUD_GENERATOR`, see the
+  top-level README); local Qwen still stays the default.
+- **The cloud mode sends document chunks to an external provider when
+  enabled.** This is now stated explicitly to any user who selects it in
+  the UI (a visible warning), not left implicit.
 - **DeepSeek does not fix missing evidence.** This A/B used contexts captured
   at commit `8c089c7`, when the first structural lookup reached only 28.2%
   Evidence-chunk Recall. At that historical checkpoint, 28% × 77% ≈ 22%

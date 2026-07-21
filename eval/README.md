@@ -19,8 +19,12 @@ ingested) — run manually, see commands below.
   instance, reports Recall@K, MRR, abstention accuracy, answer correctness.
   Writes `last_run_scores_<name>.json` (gitignored).
 - `test_deepseek_accuracy.py` — standalone A/B test, local (Ollama) vs
-  DeepSeek (cloud) generation on identical retrieved context. Not wired
-  into `api/main.py`'s default pipeline. See "DeepSeek A/B" below.
+  DeepSeek (cloud) generation on identical retrieved context. At the time
+  this ran, DeepSeek wasn't wired into `api/main.py`'s pipeline at all;
+  it has since shipped as a real, administrator opt-in cloud provider
+  (`rag/generator.py`'s `GeneratorRouter`, `ENABLE_CLOUD_GENERATOR` — see
+  the top-level README) — the A/B below predates that and is kept as a
+  historical record. See "DeepSeek A/B" below.
 
 Both datasets have three question types generated per PDF filename
 (`<TYPE>_<NUM>_<YEAR>_<parties>.pdf`):
