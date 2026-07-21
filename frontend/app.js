@@ -189,7 +189,7 @@ function renderProviderList() {
   section.style.display = '';
   const options = [
     { id: 'local', label: 'Local (Qwen)', hint: 'Never leaves this server' },
-    { id: 'deepseek', label: 'DeepSeek (cloud)', hint: cloudInfo.model || 'Sends document text to an external API' },
+    { id: 'deepseek', label: 'DeepSeek (cloud)', hint: cloudInfo.model || 'deepseek' },
   ];
   let html = '';
   options.forEach(function(o) {
@@ -199,6 +199,19 @@ function renderProviderList() {
     html += '<span class="model-option-check">' + svgIcon('check', 13) + '</span></div>';
   });
   document.getElementById('providerList').innerHTML = html;
+
+  // Persistent, impossible-to-miss warning while DeepSeek is the active
+  // choice — not just a passive hint next to the option, since the user
+  // asked specifically for something visible "when you select it", in the
+  // same style already used elsewhere for flagged findings (.finding-open,
+  // the warning color/badge shape from the evaluation page).
+  const warning = document.getElementById('providerCloudWarning');
+  if (currentProvider === 'deepseek') {
+    warning.style.display = '';
+    warning.innerHTML = svgIcon('alert-triangle', 13) + ' Document content for this chat is sent to DeepSeek’s API (external service)';
+  } else {
+    warning.style.display = 'none';
+  }
 }
 
 function selectProvider(id) {
