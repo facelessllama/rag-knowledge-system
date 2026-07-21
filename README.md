@@ -1,6 +1,6 @@
 # RAG Knowledge Base
 
-> Fully local AI-powered document search and Q&A. No cloud, no data leaks — runs entirely on your hardware.
+> Local-first AI-powered document search and Q&A — runs entirely on your hardware by default, with an optional, explicitly opt-in DeepSeek cloud mode an administrator can turn on.
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue) ![FastAPI](https://img.shields.io/badge/FastAPI-0.135-green) ![Qdrant](https://img.shields.io/badge/Qdrant-vector--db-red) ![Ollama](https://img.shields.io/badge/Ollama-local_LLM-orange) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
@@ -8,7 +8,7 @@
 
 ## What It Does
 
-Upload PDF documents, organize them into folders, and ask questions in natural language. The system finds the most relevant passages and generates a cited answer using a local LLM — no data ever leaves your machine.
+Upload PDF documents, organize them into folders, and ask questions in natural language. The system finds the most relevant passages and generates a cited answer using a local LLM by default — no data leaves your machine unless an administrator has explicitly enabled the DeepSeek cloud provider (`ENABLE_CLOUD_GENERATOR=true`).
 
 Built for English-language documents.
 
@@ -103,7 +103,7 @@ Query → Expand (Ollama LLM) → Retrieve (Qdrant hybrid: dense + sparse, serve
 | `rag/reranker.py` | CrossEncoder reranking with SimpleReranker fallback |
 | `rag/query_expander.py` | LLM-powered query decomposition |
 | `rag/prompt_builder.py` | Context assembly, token budgets, multi-doc mode |
-| `rag/generator.py` | Ollama streaming client with retry logic |
+| `rag/generator.py` | Ollama streaming client with retry logic; `GeneratorRouter` also routes non-streaming requests to an optional, opt-in DeepSeek cloud generator |
 | `ingestion/pdf_parser.py` | PyMuPDF text extraction + Tesseract OCR fallback |
 | `ingestion/chunker.py` | Sentence/paragraph-aware chunking |
 | `embeddings/embedding_service.py` | BAAI/bge-m3 embeddings (CUDA) |
@@ -201,6 +201,9 @@ All settings in `.env`:
 | `TEMPERATURE` | `0.1` | LLM temperature |
 | `PDF_OCR_LANGUAGE` | `eng` | Tesseract language codes |
 | `API_KEY` | — | Auth key (leave empty to disable) |
+| `ENABLE_CLOUD_GENERATOR` | `false` | Administrator opt-in for the DeepSeek cloud provider — `provider="deepseek"` is rejected with a 4xx unless this is `true` |
+| `DEEPSEEK_API_KEY` | — | DeepSeek API key — required (in addition to the flag above) for the cloud provider to be usable |
+| `DEEPSEEK_MODEL` | `deepseek-v4-flash` | DeepSeek model name — always the server-configured value; a client-supplied `model` is ignored for the cloud provider |
 | `QDRANT_REQUEST_TIMEOUT_SECONDS` | `5` | Bounds every Qdrant REST call — see *"Delete and rename across three stores..."* above for why this exists |
 | `SINGLE_INSTANCE_WATCHDOG_INTERVAL_SECONDS` / `_TIMEOUT_SECONDS` | `5` / `5` | How often, and how patiently, the single-instance guard re-checks its Postgres lock is still alive — see *"The multi-process trap I didn't see coming"* above |
 
@@ -224,8 +227,7 @@ Key endpoints:
 | `DELETE` | `/documents/{id}` | Delete a document |
 | `GET` | `/pdf/{id}` | Serve original PDF |
 | `GET` | `/documents/{id}/pages/{page_num}` | Normalized page text for the source viewer (TXT + PDF) |
-| `GET` | `/models` | List available Ollama models |
-| `POST` | `/switch-model` | Switch active LLM |
+| `GET` | `/models` | List available Ollama models, plus `cloud` status (whether DeepSeek is enabled/configured and its configured model name) — there is no separate switch-model endpoint; `/query` and `/query/stream` take `model`/`provider` per request |
 | `GET` | `/health` | Readiness (back-compat alias for `/health/ready`) — 200 only if Postgres, Qdrant and Ollama are all actually reachable, else 503 |
 | `GET` | `/health/live` | Liveness — process alive, no dependency calls |
 | `GET` | `/health/ready` | Readiness — real Postgres/Qdrant/Ollama checks, 503 on any failure |

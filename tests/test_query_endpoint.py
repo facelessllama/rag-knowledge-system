@@ -246,6 +246,24 @@ def test_explicit_provider_deepseek_reaches_the_cloud_backend(cloud_client):
     assert local_gen.call_count == 0
 
 
+def test_deepseek_request_ignores_client_supplied_local_model_name(cloud_client):
+    """Regression test: a request sending provider="deepseek" together
+    with `model` set to an Ollama model name (what the UI's local model
+    picker holds — see frontend/app.js's runQueryNonStreaming, which no
+    longer sends this combination, but the server must not rely on that)
+    must still use the cloud backend's own configured model, not the
+    client-supplied one."""
+    client, local_gen, deepseek_gen = cloud_client
+    response = client.post(
+        "/query", json={"question": "What is the fee?", "provider": "deepseek", "model": "qwen2.5:7b"}
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["provider"] == "deepseek"
+    assert body["model"] == deepseek_gen.model  # "fake-model", never "qwen2.5:7b"
+    assert local_gen.call_count == 0
+
+
 def test_provider_deepseek_rejected_when_admin_has_not_enabled_cloud(monkeypatch):
     """Cloud generator configured (a deepseek backend exists) but the
     administrator gate (cloud_enabled) is off — must be refused with a

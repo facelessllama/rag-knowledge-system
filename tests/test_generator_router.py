@@ -9,11 +9,11 @@ tests/test_query_endpoint.py's "cloud-mode opt-in gating" section proves
 the same guarantees end-to-end through the real HTTP endpoint; these are
 the corresponding unit-level tests of the router itself.
 """
-from unittest.mock import AsyncMock
+from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from rag.generator import BaseGenerator, GeneratorRouter, ProviderNotAvailable
+from rag.generator import BaseGenerator, DeepSeekGenerator, GeneratorRouter, ProviderNotAvailable
 
 
 class _FakeBackend(BaseGenerator):
@@ -65,6 +65,24 @@ async def test_explicit_provider_deepseek_reaches_cloud_when_fully_enabled():
     result = await router.generate_with_refusal_retry([{"role": "user", "content": "q"}], provider="deepseek")
     assert result["answer"] == "cloud"
     assert result["provider"] == "deepseek"
+    local.generate.assert_not_called()
+
+
+@pytest.mark.asyncio
+async def test_deepseek_ignores_client_supplied_model():
+    """Regression test: a request can send provider="deepseek" alongside
+    `model` set to whatever Ollama model the UI's local model picker had
+    selected (e.g. "qwen2.5:7b") — the UI itself no longer sends this
+    combination (see frontend/app.js's runQueryNonStreaming), but the
+    server must not depend on that. The router must drop the client model
+    for any non-local backend so the administrator-configured DeepSeek
+    model is always the one actually used."""
+    local, cloud = _FakeBackend("local"), _FakeBackend("cloud")
+    router = GeneratorRouter(local=local, deepseek=cloud, cloud_enabled=True)
+    await router.generate_with_refusal_retry(
+        [{"role": "user", "content": "q"}], model="qwen2.5:7b", provider="deepseek"
+    )
+    cloud.generate.assert_awaited_once_with([{"role": "user", "content": "q"}], model=None)
     local.generate.assert_not_called()
 
 
@@ -169,3 +187,30 @@ async def test_deepseek_generator_gets_refusal_retry_for_free():
     result = await gen.generate_with_refusal_retry([{"role": "user", "content": "q"}], refusal_retries=2)
     assert result["answer"] == "The answer is 42."
     assert gen.generate.await_count == 2
+
+
+@pytest.mark.asyncio
+async def test_deepseek_sends_thinking_enabled_in_payload():
+    """Regression test: the actual HTTP payload sent to DeepSeek must ask
+    for thinking="enabled", matching the reasoning mode the DeepSeek A/B
+    benchmark (eval/mixed_corpus/README.md) was actually measured under —
+    that benchmark never set this field, so it ran against the provider
+    default, which DeepSeek's own API docs state is "enabled". Sending
+    "disabled" here would run production under an unbenchmarked mode."""
+    response = MagicMock()
+    response.raise_for_status = MagicMock()
+    response.json = MagicMock(return_value={
+        "choices": [{"message": {"content": "42"}}],
+        "usage": {"prompt_tokens": 1, "completion_tokens": 1, "total_tokens": 2},
+    })
+    client = AsyncMock()
+    client.post = AsyncMock(return_value=response)
+    client.__aenter__ = AsyncMock(return_value=client)
+    client.__aexit__ = AsyncMock(return_value=False)
+
+    gen = DeepSeekGenerator(api_key="fake-key")
+    with patch("httpx.AsyncClient", return_value=client):
+        await gen.generate([{"role": "user", "content": "q"}])
+
+    sent_json = client.post.call_args.kwargs["json"]
+    assert sent_json["thinking"] == {"type": "enabled"}

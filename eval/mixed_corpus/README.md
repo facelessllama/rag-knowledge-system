@@ -453,13 +453,17 @@ memory checkpoint.
 
 ## Conditional generator benchmark: DeepSeek vs. local Qwen on confirmed-evidence captions
 
-This is **not** a general "which LLM is better" test — DeepSeek is an
-**evaluated cloud backend**, not an available mode of this product. The
-live API's default and only wired-in generator is local Qwen 2.5 7B via
-Ollama (`api/main.py`); nothing here changes that. It exists to answer one
-narrower question: once retrieval has already found the right evidence,
-does the generator itself still lose points, and does a larger/cloud model
-close that gap?
+This is **not** a general "which LLM is better" test — at the time it was
+run, DeepSeek was only an **evaluated cloud backend**, not an available
+mode of this product; the live API's default and only wired-in generator
+was local Qwen 2.5 7B via Ollama (`api/main.py`), and nothing here changed
+that. (DeepSeek has since been wired in as a real, administrator opt-in
+cloud provider — see `rag/generator.py`'s `GeneratorRouter` and the
+`ENABLE_CLOUD_GENERATOR` config in the top-level README — but this A/B
+predates that integration and is left as-is below as a historical record.)
+It exists to answer one narrower question: once retrieval has already
+found the right evidence, does the generator itself still lose points, and
+does a larger/cloud model close that gap?
 
 Method (`eval/mixed_corpus/capture_generation_contexts.py` +
 `eval/compare_generators.py`, both reusable tooling, not one-off scripts):

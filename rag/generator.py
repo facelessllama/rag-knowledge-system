@@ -102,7 +102,7 @@ class DeepSeekGenerator(BaseGenerator):
     def __init__(
         self,
         api_key: str,
-        model: str = "deepseek-chat",
+        model: str = "deepseek-v4-flash",
         base_url: str = "https://api.deepseek.com",
         temperature: float = 0.1,
     ):
@@ -129,6 +129,17 @@ class DeepSeekGenerator(BaseGenerator):
                             "stream": False,
                             "temperature": self.temperature,
                             "max_tokens": 1024,
+                            # Explicit rather than relying on the provider default
+                            # (itself "enabled" per DeepSeek's API docs) purely for
+                            # reproducibility. Deliberately "enabled", NOT mirroring
+                            # the local backend's "think": False above: the
+                            # DeepSeek A/B benchmark that measured this product's
+                            # cloud-mode quality numbers (eval/mixed_corpus/
+                            # README.md) never set this field at all, so it ran
+                            # with the provider default — "enabled". Switching to
+                            # "disabled" here would run production against a
+                            # reasoning mode nobody has actually benchmarked.
+                            "thinking": {"type": "enabled"},
                         },
                     )
                     response.raise_for_status()
@@ -410,6 +421,13 @@ class GeneratorRouter:
         self, messages: list[dict], refusal_retries: int = 2, model: str = None, provider: str = None
     ) -> dict:
         name, backend = self._resolve(provider)
+        if name != "local":
+            # Cloud backends must never take a client-supplied model string —
+            # the UI's model picker is Ollama-only, so a client-provided
+            # value here would actually be a local model name (e.g.
+            # "qwen2.5:7b") and would silently override the administrator's
+            # configured DEEPSEEK_MODEL. Always use the backend's own default.
+            model = None
         result = await backend.generate_with_refusal_retry(messages, refusal_retries=refusal_retries, model=model)
         result["provider"] = name
         return result

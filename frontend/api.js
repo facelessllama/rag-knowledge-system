@@ -65,7 +65,13 @@ async function apiQuery(question, topK, rerank, model, provider, chatHistory, fo
       document_ids: (documentIds && documentIds.length) ? documentIds : undefined,
     })
   });
-  return { ok: r.ok, data: r.ok ? await r.json() : null };
+  if (r.ok) return { ok: true, data: await r.json() };
+  // Non-2xx still has a JSON body (e.g. ProviderNotAvailable's 400 detail) —
+  // surface it instead of collapsing every failure into a generic
+  // "no connection" message the user can't act on.
+  let error = null;
+  try { error = (await r.json()).detail || null; } catch (e) {}
+  return { ok: false, data: null, error: error };
 }
 
 // Returns an AbortController — callers that want to cancel a stream in

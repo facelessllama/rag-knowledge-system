@@ -1200,11 +1200,15 @@ function runQuery(text, topK, documentIds) {
 
 function runQueryNonStreaming(text, topK, documentIds) {
   var folderFilter = _folderFilterValue || null;
-  apiQuery(text, topK, true, currentModel, currentProvider, chatHistory, folderFilter, documentIds)
+  // currentModel is always an Ollama model name (from the local model
+  // picker) — never send it when the cloud provider is selected, or it
+  // would override the administrator-configured DeepSeek model server-side.
+  var modelForQuery = currentProvider === 'deepseek' ? null : currentModel;
+  apiQuery(text, topK, true, modelForQuery, currentProvider, chatHistory, folderFilter, documentIds)
     .then(function(res) {
       hideTyping();
       if (!res.ok || !res.data) {
-        addErrorMessage('No connection to the server.');
+        addErrorMessage(res.error || 'No connection to the server.');
         isTyping = false;
         return;
       }
