@@ -1567,6 +1567,20 @@ async def _do_query(request: QueryRequest, query_expander, retriever, reranker, 
                                     "score": round(c.get("rerank_score", c.get("score", 0)), 4),
                                     "source": c.get("source", ""),
                                     "text_preview": c.get("text", "")[:100],
+                                    # char_start/char_end (already on every
+                                    # chunk dict — see vector_db/qdrant_
+                                    # client.py's _to_result_dicts) let a
+                                    # caller check whether the SPECIFIC span
+                                    # a fact lives on reached the model, not
+                                    # just whether some chunk from the right
+                                    # page did — see eval/mixed_corpus/
+                                    # build_golden_dataset.py's evidence_
+                                    # char_start/char_end, computed in the
+                                    # same normalize_whitespace() coordinate
+                                    # space so the two can be intersected
+                                    # directly without re-fetching chunk text.
+                                    "char_start": c.get("char_start"),
+                                    "char_end": c.get("char_end"),
                                 }
                                 for c in top_chunks
                             ]
@@ -1747,6 +1761,8 @@ async def query_stream(
                         'score': float(c.get('rerank_score', c.get('score', 0))),
                         'source': str(c.get('source', '')),
                         'text_preview': str(c.get('text', ''))[:100],
+                        'char_start': c.get('char_start'),
+                        'char_end': c.get('char_end'),
                     }
                     for c in top_chunks
                 ],
