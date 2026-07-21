@@ -672,8 +672,41 @@ ceiling, given the newly-found no-period leakage blind spot above.
 Deliberately a SEPARATE artifact/report from the A/B above, never
 merged: dropping the paper title changes the prompt itself, so mixing
 the two populations would conflate a retrieval-scope difference with a
-wording difference in one number. See `eval/mixed_corpus/capture_title_
-free_scoped_contexts.py` (reuses `title_free_retrieval_check.py`'s
-question wording, `document_ids=[expected_doc_id]` scope) — results
-pending a compare_generators.py pass, to be documented separately once
-run.
+wording difference in one number. `eval/mixed_corpus/capture_title_free_
+scoped_contexts.py` (reuses `title_free_retrieval_check.py`'s question
+wording, `document_ids=[expected_doc_id]` scope) captured 168/177
+contexts; `generator_ab_postfix_v3_titlefreescoped_*` is the generation
+pass, `analyze_postfix_ab_titlefreescoped_report.json` the analysis
+(same `analyze_postfix_ab.py`, pointed at the new results file).
+
+| | Conditional correctness (verified) | End-to-end supported | Refused despite evidence |
+|---|---:|---:|---:|
+| qwen2.5:7b | 47.5% (67/141) | 45.3% (67/148) | 0.7% |
+| deepseek-v4-flash | 52.5% (74/141) | 50.0% (74/148) | 0.0% |
+| deepseek-v4-pro | 48.9% (69/141) | 46.6% (69/148) | 0.0% |
+
+**The DeepSeek edge shrinks dramatically without the title**: the ~21-26pp
+gap on the title-bearing unscoped A/B above narrows to +5.0pp (Flash) and
++1.4pp (Pro) here — on the *scored numbers*, Qwen and DeepSeek are close
+to indistinguishable once the question doesn't name the paper.
+
+**This is reported as an open, unresolved finding, not a confirmed
+conclusion** — a manual spot-check of `qwen-correct/DeepSeek-wrong`
+cases here (unlike the equivalent check on the title-bearing A/B, which
+found a real Pro-specific failure mode) mostly turned up DeepSeek
+answers that read as substantively correct paraphrases on manual
+inspection (e.g. `sci_caption_2607.11436_Figure5`,
+`sci_caption_2607.10212_Table6`) — plausibly consistent with this
+project's already-documented semantic-judge nondeterminism rather than a
+real quality drop. The already-known golden-v3 blind spot (leaked
+table/chart content with no period, e.g. `sci_caption_2607.09641_Table1`
+again) also reappears in the all-three-wrong sample here, depressing all
+three models' scores roughly equally. **Two competing explanations are
+both plausible and not yet distinguished**: (a) the paper title genuinely
+lets a larger cloud model draw on background knowledge/context a smaller
+local model can't, so the edge is real and title-dependent; or (b) the
+narrower context/shorter, more literal answers this scenario tends to
+produce interact with scorer strictness differently for verbose
+cloud-model phrasing than for Qwen's phrasing. Deciding between these
+needs either a larger hand-audited sample specific to this scenario or a
+recalibrated judge — not done here.

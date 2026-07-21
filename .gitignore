@@ -44,6 +44,7 @@ eval/**/generator_ab_postfix_v3_titlefreescoped_contexts.json
 eval/**/generator_ab_postfix_v3_titlefreescoped_results.json
 eval/**/generator_ab_postfix_v3_titlefreescoped_progress.json
 eval/**/analyze_postfix_ab_report.json
+eval/**/analyze_postfix_ab_titlefreescoped_report.json
 # build_caption_label_index.py / analyze_caption_misses.py's raw output —
 # both regenerable from a live instance; the findings/table are written up
 # in eval/mixed_corpus/README.md's "Full taxonomy" section.

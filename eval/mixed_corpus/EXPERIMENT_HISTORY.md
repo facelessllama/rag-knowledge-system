@@ -49,6 +49,7 @@ the exact frozen-instance notes.
 | Golden-dataset v3 (caption_text/table_cells split) | `5665b1d` | 181 caption cases: 149 verified, 22 ambiguous, 10 extracted; 31 changed from v2; v2 untouched; 370 tests green | Accepted — v2 kept as a named baseline, v3 is additive |
 | Re-score saved DeepSeek A/B answers against v3 | `eval/mixed_corpus/rescore_against_v3.py` (raw per-row report gitignored) | qwen 41.7%→50.0%, Flash 77.1%→81.2%, Pro 72.9%→75.0%; most still-wrong cases are on unchanged (`verified`) labels | Generation gap confirmed real, not primarily a v2 label-scoring artifact |
 | Post-fix DeepSeek A/B, full new evidence-hit population | `142462d` (`generator_ab_postfix_v3_*`) | 162/177 evidence-hit (113 newly rescued); verified-tier conditional correctness qwen 45.2%, Flash 71.1%, Pro 66.7% — close to the historical n=47/48 numbers | DeepSeek edge confirmed on a ~3.4x larger, cleaner-label population; Pro shows a real context-confusion failure mode; found a MORE severe golden-v3 blind spot (no-period leaked table/chart content bypasses the split entirely, ~17/148 verified cases suspiciously long) — not fixed, flagged |
+| Title-free, document-scoped generation (separate report) | `generator_ab_postfix_v3_titlefreescoped_*` | 168/177 evidence-hit; verified-tier conditional correctness qwen 47.5%, Flash 52.5%, Pro 48.9% — DeepSeek edge shrinks from ~21-26pp to +5.0pp/+1.4pp | Reported as an OPEN, unresolved finding — manual spot-check suggests some of this narrowing may be scorer strictness on plausible paraphrases, not fully distinguished from a real title-dependent effect |
 
 ## Rejected-experiment record
 
@@ -96,6 +97,9 @@ archived separately.
 | `rescore_v3_report.json` | `a9e0bd68b83f689a1991edf1a1c33231128f7d48e3ca9792763795eaf461906e` |
 | `generator_ab_postfix_v3_contexts.json` | `40ed7a6ba5dea351651aadb696fb1c04ca1c2fb0ed881a4e1a033d16df888e72` |
 | `generator_ab_postfix_v3_results.json` | `85d97aafb96eccdb73c3a645556b9b76257389f33f73d1001debceb0d1290345` |
+| `generator_ab_postfix_v3_titlefreescoped_contexts.json` | `634302415e1a3cf9aff3450b4b9f540c5214cc3e97718bc90d9b96e02da99151` |
+| `generator_ab_postfix_v3_titlefreescoped_results.json` | `53ea622ec234645af8ff11ff975b00918033a74b4e4b140bfe8e9654c8cfab3d` |
+| `analyze_postfix_ab_titlefreescoped_report.json` | `b4a32fdf5276ad1d64064987540ea3ac00646410820e83ff8464e62a20a6d4ef` |
 | `analyze_postfix_ab_report.json` | `210a523bec5d66516fa7ca711f2b24397c4043b11048efec85210f5c37ff58e6` |
 
 The tracked [`generator_ab_report.md`](generator_ab_report.md) preserves the
@@ -150,17 +154,23 @@ until a golden v4 pass addresses this specifically.
 3. ~~Capture contexts from the current post-fix retriever and repeat the
    conditional generator comparison~~ — done (`142462d`,
    `generator_ab_postfix_v3_*`); DeepSeek edge confirmed at scale, Pro
-   failure mode found, new golden-v3 blind spot found (see above). A
-   separate title-free-scoped generation check
-   (`generator_ab_postfix_v3_titlefreescoped_*`) is a follow-on, not
-   merged into this A/B's numbers.
+   failure mode found, new golden-v3 blind spot found (see above).
+   ~~Separate title-free-scoped generation check~~ — also done
+   (`generator_ab_postfix_v3_titlefreescoped_*`); DeepSeek's edge
+   shrinks to +5.0pp (Flash) / +1.4pp (Pro) without the title, but this
+   is reported as an OPEN, unresolved finding (not distinguished from
+   scorer strictness on a manual spot-check) — see above, don't cite it
+   as settled.
 4. Golden v4: detect table/chart-like content leaking into a caption's
    FIRST sentence-splitter piece (no second piece required to trigger),
    not just the second-piece case v3 already handles. Motivated by the
    ~17/148 suspiciously-long `verified` cases found above — NOT started.
-5. Use calibration for final thresholds/configuration.
-6. Run heldout once after the approach is frozen; do not tune on it.
-7. Close the historical `comparison_unscoped` empty-exception case as either
+5. Distinguish the title-free-scoped narrowing (item 3) from scorer
+   noise — either a larger hand-audited sample of that scenario's
+   disagreements or a recalibrated judge. NOT started.
+6. Use calibration for final thresholds/configuration.
+7. Run heldout once after the approach is frozen; do not tune on it.
+8. Close the historical `comparison_unscoped` empty-exception case as either
    root-caused or explicitly non-reproducible.
 
 The remaining 3 caption-absent and 12 wrong-occurrence retrieval misses are
