@@ -240,6 +240,12 @@ testing — not corpus duplicates, confirmed by checksum. No fact-based
 accuracy claims are made on this corpus yet; this pass covers ingestion
 only, the step every later accuracy number depends on.
 
+Fact-based accuracy, evidence-chunk-level recall, and a conditional
+generator benchmark (local Qwen vs. an evaluated-only DeepSeek cloud
+backend, on cases where retrieval is already confirmed correct) were
+measured in later passes on this same corpus — see
+`eval/mixed_corpus/README.md`, not duplicated here.
+
 ## Why this is a meaningful proof point, and not just a bigger demo
 
 - **The numbers are real pass rates on datasets built to be hard to
