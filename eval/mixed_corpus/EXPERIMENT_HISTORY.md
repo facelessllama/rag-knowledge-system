@@ -48,6 +48,7 @@ the exact frozen-instance notes.
 | Structural lookup within explicit document scope | `5f0f73e`, documented `a3f2c45` | Scoped title-free Evidence-chunk 69.5%→95.5%, structural marker 0.0%→98.3%; 358 tests green | Accepted current retrieval checkpoint |
 | Golden-dataset v3 (caption_text/table_cells split) | `5665b1d` | 181 caption cases: 149 verified, 22 ambiguous, 10 extracted; 31 changed from v2; v2 untouched; 370 tests green | Accepted — v2 kept as a named baseline, v3 is additive |
 | Re-score saved DeepSeek A/B answers against v3 | `eval/mixed_corpus/rescore_against_v3.py` (raw per-row report gitignored) | qwen 41.7%→50.0%, Flash 77.1%→81.2%, Pro 72.9%→75.0%; most still-wrong cases are on unchanged (`verified`) labels | Generation gap confirmed real, not primarily a v2 label-scoring artifact |
+| Post-fix DeepSeek A/B, full new evidence-hit population | `142462d` (`generator_ab_postfix_v3_*`) | 162/177 evidence-hit (113 newly rescued); verified-tier conditional correctness qwen 45.2%, Flash 71.1%, Pro 66.7% — close to the historical n=47/48 numbers | DeepSeek edge confirmed on a ~3.4x larger, cleaner-label population; Pro shows a real context-confusion failure mode; found a MORE severe golden-v3 blind spot (no-period leaked table/chart content bypasses the split entirely, ~17/148 verified cases suspiciously long) — not fixed, flagged |
 
 ## Rejected-experiment record
 
@@ -93,6 +94,9 @@ archived separately.
 | `generator_ab_contexts.json` | `e410b0cac61292a475b9dbecd637dd4b1dede602c8b400bdfbd5556c300b0e23` |
 | `generator_ab_results.json` | `6b51408f12a5eeddf394a8b6075d7e3e34f8b40c9aad450c889b9378619b2e38` |
 | `rescore_v3_report.json` | `a9e0bd68b83f689a1991edf1a1c33231128f7d48e3ca9792763795eaf461906e` |
+| `generator_ab_postfix_v3_contexts.json` | `40ed7a6ba5dea351651aadb696fb1c04ca1c2fb0ed881a4e1a033d16df888e72` |
+| `generator_ab_postfix_v3_results.json` | `85d97aafb96eccdb73c3a645556b9b76257389f33f73d1001debceb0d1290345` |
+| `analyze_postfix_ab_report.json` | `210a523bec5d66516fa7ca711f2b24397c4043b11048efec85210f5c37ff58e6` |
 
 The tracked [`generator_ab_report.md`](generator_ab_report.md) preserves the
 aggregate generator results and paired contingency tables even if the raw API
@@ -120,9 +124,21 @@ DeepSeek A/B answers against it moved absolute correctness only modestly
 (qwen +8.3pp, Flash +4.1pp, Pro +2.1pp), and the large majority of remaining
 wrong answers sit on labels v3 never touched (`verified`). The conditional
 generation gap this pass measured is therefore real, not primarily an
-artifact of the v2 table-cell-leak defect — though its exact end-to-end
-relevance still depends on a post-fix context recapture (below), since the
-confirmed-evidence population itself changed completely (28.2%→91.5%/95.5%).
+artifact of the v2 table-cell-leak defect.
+
+The post-fix full-population A/B (162/177 evidence-hit, 113 newly rescued)
+confirms this at scale: verified-tier conditional correctness (qwen 45.2%,
+Flash 71.1%, Pro 66.7%) sits close to the historical n=47/48 numbers
+(40.4/76.6/72.3%) despite a ~3.4x larger and cleaner-labeled population —
+the DeepSeek edge is not a fluke of the original small sample. Manual review
+of every disagreement surfaced two real findings: Pro has a specific
+context-attribution-confusion/truncation failure mode Flash does not share,
+and golden v3 has a MORE severe blind spot than the one it was built to fix
+— leaked table/chart content with no period anywhere in it never reaches
+`_classify_trailing_segment` at all, since the split only fires on a second
+sentence-splitter piece. ~17/148 "verified" cases have a suspiciously long
+`expected_substring`; the verified-tier numbers should be read as a floor
+until a golden v4 pass addresses this specifically.
 
 ## Open work, in order
 
@@ -131,14 +147,20 @@ confirmed-evidence population itself changed completely (28.2%→91.5%/95.5%).
 2. ~~Rescore the already-saved Qwen/DeepSeek answers against v3 labels
    without making new API calls~~ — done (`eval/mixed_corpus/rescore_
    against_v3.py`); generation gap confirmed real, see above.
-3. Capture contexts from the current post-fix retriever and repeat the
-   conditional generator comparison — NOT done yet, next up. Needs a fresh
-   `capture_generation_contexts.py` pass (the confirmed-evidence population
-   is now 91.5%/95.5%, not 28.2%, so the old 48-case sample no longer
-   represents it) scored against golden v3, not v2.
-4. Use calibration for final thresholds/configuration.
-5. Run heldout once after the approach is frozen; do not tune on it.
-6. Close the historical `comparison_unscoped` empty-exception case as either
+3. ~~Capture contexts from the current post-fix retriever and repeat the
+   conditional generator comparison~~ — done (`142462d`,
+   `generator_ab_postfix_v3_*`); DeepSeek edge confirmed at scale, Pro
+   failure mode found, new golden-v3 blind spot found (see above). A
+   separate title-free-scoped generation check
+   (`generator_ab_postfix_v3_titlefreescoped_*`) is a follow-on, not
+   merged into this A/B's numbers.
+4. Golden v4: detect table/chart-like content leaking into a caption's
+   FIRST sentence-splitter piece (no second piece required to trigger),
+   not just the second-piece case v3 already handles. Motivated by the
+   ~17/148 suspiciously-long `verified` cases found above — NOT started.
+5. Use calibration for final thresholds/configuration.
+6. Run heldout once after the approach is frozen; do not tune on it.
+7. Close the historical `comparison_unscoped` empty-exception case as either
    root-caused or explicitly non-reproducible.
 
 The remaining 3 caption-absent and 12 wrong-occurrence retrieval misses are
