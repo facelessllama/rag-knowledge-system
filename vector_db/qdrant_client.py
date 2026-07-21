@@ -295,6 +295,25 @@ class VectorStore:
             return None
         return self._points_to_chunk_dicts(results)
 
+    def chunks_for_document(self, document_id: str, limit: int = 2000) -> list[dict]:
+        """Unbounded (up to `limit`) version of all_chunks_for_document — no
+        None-if-too-long cutoff, since callers here need to literal-text-
+        scan a long document's FULL content (e.g. rag/retriever.py's
+        structural Figure-N/Table-N reference lookup, which has to find a
+        caption that can be anywhere in a 300+ page document, not just
+        among its highest-scoring chunks). Scoped to a single document_id
+        (already payload-indexed), so this is cheap even though `limit`
+        is generous — it's never a corpus-wide scan."""
+        search_filter = Filter(must=[FieldCondition(key="document_id", match=MatchValue(value=document_id))])
+        results, _ = self.client.scroll(
+            collection_name=self.collection,
+            scroll_filter=search_filter,
+            limit=limit,
+            with_payload=True,
+            with_vectors=False,
+        )
+        return self._points_to_chunk_dicts(results)
+
     def chunks_by_case_number(self, case_number: str, case_year: str, limit: int = 10) -> list[dict]:
         """Direct payload-indexed lookup for an exact (case_number, case_year)
         identity — see _PAYLOAD_INDEXES and ingestion/chunker.py::

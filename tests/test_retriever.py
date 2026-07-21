@@ -8,6 +8,7 @@ import pytest
 from rag.retriever import (
     HybridRetriever, extract_case_numbers, extract_celex_ids, extract_citation_numbers,
     extract_party_match, promote_identity_matches, promote_document_opening_chunks,
+    extract_structural_references, structural_match_tier, best_structural_chunk,
 )
 
 
@@ -18,13 +19,16 @@ class FakeEmbedder:
 
 class FakeVectorStore:
     def __init__(self, results_by_query=None, neighbors_by_doc=None, full_docs_by_id=None,
-                 case_number_index=None, celex_id_index=None, citation_number_index=None):
+                 case_number_index=None, celex_id_index=None, citation_number_index=None,
+                 document_chunks=None):
         self.results_by_query = results_by_query or {}
         self.neighbors_by_doc = neighbors_by_doc or {}
         self.full_docs_by_id = full_docs_by_id or {}  # doc_id -> list[chunk] | None (None = "too long")
         self.case_number_index = case_number_index or {}  # (num, year) -> list[chunk]
         self.celex_id_index = celex_id_index or {}  # celex_id -> list[chunk]
         self.citation_number_index = citation_number_index or {}  # (num, year) -> list[chunk]
+        self.document_chunks = document_chunks or {}  # doc_id -> list[chunk], for chunks_for_document()
+        self.chunks_for_document_calls = []  # tests assert against this — which docs got text-scanned
 
     def hybrid_search(self, query_vector, query_text, top_k=5, doc_filter=None, folder_filter=None):
         self.last_doc_filter = doc_filter  # tests assert against this to confirm document_ids was forwarded
@@ -41,6 +45,10 @@ class FakeVectorStore:
         if chunks is None or len(chunks) > limit:
             return None
         return [dict(c) for c in chunks]
+
+    def chunks_for_document(self, document_id, limit=2000):
+        self.chunks_for_document_calls.append(document_id)
+        return [dict(c) for c in self.document_chunks.get(document_id, [])]
 
     def chunks_by_case_number(self, case_number, case_year):
         return [dict(c) for c in self.case_number_index.get((case_number, case_year), [])]
@@ -535,6 +543,195 @@ async def test_retrieve_expanded_document_ids_keeps_in_scope_identity_index_hit(
     )
 
     assert "indexed" in {r["chunk_id"] for r in results}
+
+
+# ── structural Figure-N/Table-N reference lookup ─────────────────────────────
+# Narrow, targeted mechanism (unlike the reverted two-stage pool-widening
+# attempt — see project memory): only fires when the query itself names a
+# figure/table explicitly, text-scans at most STRUCTURAL_TOP_DOCS documents,
+# and adds at most one chunk per document.
+
+def test_extract_structural_references_parses_multiple_styles():
+    assert extract_structural_references("What does Figure 7 show?") == {("Figure", "7")}
+    assert extract_structural_references("See Fig. 3 for details.") == {("Figure", "3")}
+    assert extract_structural_references("Fig 12 illustrates this.") == {("Figure", "12")}
+    assert extract_structural_references("What does Table 4 report?") == {("Table", "4")}
+    assert extract_structural_references("Compare Figure 3a and Figure 3b.") == {("Figure", "3a"), ("Figure", "3b")}
+
+
+def test_extract_structural_references_empty_when_none_present():
+    assert extract_structural_references("What is the main contribution of this paper?") == set()
+
+
+def test_structural_match_tier_colon_is_strongest():
+    text = "Figure 7: Comparison of methods across benchmarks."
+    assert structural_match_tier(text, "Figure", "7") == 0
+
+
+def test_structural_match_tier_pipe_is_also_strongest():
+    text = "Table 3 | Ablation results for the full model."
+    assert structural_match_tier(text, "Table", "3") == 0
+
+
+def test_structural_match_tier_period_is_medium():
+    text = "Fig. 3. Comparison of methods across benchmarks."
+    assert structural_match_tier(text, "Figure", "3") == 1
+
+
+def test_structural_match_tier_bare_is_weakest():
+    text = "Fig. 1 Mechanistic World Models shift AI from forecasting to discovery."
+    assert structural_match_tier(text, "Figure", "1") == 2
+
+
+def test_structural_match_tier_rejects_a_plain_in_text_reference():
+    text = "As shown in Figure 7, the results are consistent with our hypothesis."
+    assert structural_match_tier(text, "Figure", "7") is None
+
+
+def test_structural_match_tier_rejects_discourse_connective_after_punctuation():
+    """The exact false-positive shape the golden-builder rewrite also
+    guards against: punctuation that looks like a caption opener but is
+    actually just a paragraph continuing after an in-text citation."""
+    text = "As illustrated in Figure 1. Finally, we discuss the capabilities of this approach."
+    assert structural_match_tier(text, "Figure", "1") is None
+
+
+def test_structural_match_tier_wrong_number_does_not_match():
+    text = "Figure 7: Comparison of methods."
+    assert structural_match_tier(text, "Figure", "3") is None
+
+
+def test_structural_match_tier_wrong_kind_does_not_match():
+    text = "Table 7: Comparison of methods."
+    assert structural_match_tier(text, "Figure", "7") is None
+
+
+def test_best_structural_chunk_picks_the_strongest_tier_among_candidates():
+    weak = {"chunk_id": "c1", "text": "As shown in Figure 7, results improve."}
+    strong = {"chunk_id": "c2", "text": "Figure 7: Comparison of methods across benchmarks."}
+    assert best_structural_chunk([weak, strong], "Figure", "7") is strong
+
+
+def test_best_structural_chunk_returns_none_when_nothing_matches():
+    chunks = [{"chunk_id": "c1", "text": "Unrelated body text with no figure references at all."}]
+    assert best_structural_chunk(chunks, "Figure", "7") is None
+
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_adds_the_structural_chunk_when_found():
+    stage1_hit = _chunk("c1", "d1", 0, 0.9, text="unrelated top-scoring chunk")
+    caption_chunk = {"chunk_id": "caption", "document_id": "d1", "chunk_index": 40,
+                      "text": "Figure 7: Comparison of diagonal-QFI and full-QFI QEWC.",
+                      "page_num": 12, "filename": "f.pdf", "folder": ""}
+    vs = FakeVectorStore(
+        results_by_query={"What does Figure 7 show?": [stage1_hit]},
+        document_chunks={"d1": [caption_chunk]},
+    )
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    results = await retriever.retrieve_expanded(["What does Figure 7 show?"], top_k=5)
+
+    by_id = {r["chunk_id"]: r for r in results}
+    assert "caption" in by_id
+    assert by_id["caption"]["source"] == "structural_reference"
+    assert by_id["caption"]["identity_match"] is True
+    assert by_id["caption"]["score"] == 1.0
+
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_structural_lookup_is_a_noop_without_a_query_reference():
+    stage1_hit = _chunk("c1", "d1", 0, 0.9)
+    vs = FakeVectorStore(
+        results_by_query={"What is the main contribution?": [stage1_hit]},
+        document_chunks={"d1": [{"chunk_id": "caption", "document_id": "d1", "chunk_index": 40,
+                                  "text": "Figure 7: Comparison of diagonal-QFI and full-QFI QEWC.",
+                                  "page_num": 12, "filename": "f.pdf", "folder": ""}]},
+    )
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    results = await retriever.retrieve_expanded(["What is the main contribution?"], top_k=5)
+
+    assert "caption" not in {r["chunk_id"] for r in results}
+    assert vs.chunks_for_document_calls == []
+
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_structural_lookup_skipped_when_document_ids_scoped():
+    """The compare flow already knows exactly which documents matter —
+    an extra per-document text scan there would be redundant, same
+    reasoning as the reverted two-stage attempt's doc_scope gate."""
+    stage1_hit = _chunk("c1", "d1", 0, 0.9)
+    vs = FakeVectorStore(
+        results_by_query={"What does Figure 7 show?": [stage1_hit]},
+        document_chunks={"d1": [{"chunk_id": "caption", "document_id": "d1", "chunk_index": 40,
+                                  "text": "Figure 7: Comparison of diagonal-QFI and full-QFI QEWC.",
+                                  "page_num": 12, "filename": "f.pdf", "folder": ""}]},
+    )
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    results = await retriever.retrieve_expanded(
+        ["What does Figure 7 show?"], top_k=5, document_ids=["d1"]
+    )
+
+    assert "caption" not in {r["chunk_id"] for r in results}
+    assert vs.chunks_for_document_calls == []
+
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_structural_lookup_adds_at_most_one_chunk_per_document():
+    stage1_hit = _chunk("c1", "d1", 0, 0.9)
+    doc_chunks = [
+        {"chunk_id": "cap_a", "document_id": "d1", "chunk_index": 10,
+         "text": "Figure 7: First mention that looks like a caption.",
+         "page_num": 5, "filename": "f.pdf", "folder": ""},
+        {"chunk_id": "cap_b", "document_id": "d1", "chunk_index": 40,
+         "text": "Figure 7: Second, unrelated recurrence of the same label.",
+         "page_num": 20, "filename": "f.pdf", "folder": ""},
+    ]
+    vs = FakeVectorStore(
+        results_by_query={"What does Figure 7 show?": [stage1_hit]},
+        document_chunks={"d1": doc_chunks},
+    )
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    results = await retriever.retrieve_expanded(["What does Figure 7 show?"], top_k=5)
+
+    structural_hits = [r for r in results if r.get("source") == "structural_reference"]
+    assert len(structural_hits) == 1
+
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_structural_lookup_bounded_to_top_candidate_documents():
+    n = HybridRetriever.STRUCTURAL_TOP_DOCS + 2
+    chunks = [_chunk(f"c{i}", f"d{i}", 0, 1.0 - i * 0.1) for i in range(n)]
+    vs = FakeVectorStore(results_by_query={"What does Figure 7 show?": chunks})
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=5)
+
+    await retriever.retrieve_expanded(["What does Figure 7 show?"], top_k=5)
+
+    assert len(vs.chunks_for_document_calls) == HybridRetriever.STRUCTURAL_TOP_DOCS
+    assert set(vs.chunks_for_document_calls) == {f"d{i}" for i in range(HybridRetriever.STRUCTURAL_TOP_DOCS)}
+
+
+@pytest.mark.asyncio
+async def test_retrieve_expanded_structural_lookup_survives_a_low_rerank_score_via_top_k():
+    """identity_match=True guarantees survival into the returned top_k_
+    chunks even when the structural chunk's score wouldn't otherwise have
+    made a small top_k cut — same guarantee case/CELEX/citation-number
+    matches already get."""
+    stage1_hits = [_chunk(f"c{i}", "d1", i, 0.9 - i * 0.01) for i in range(5)]
+    caption_chunk = {"chunk_id": "caption", "document_id": "d1", "chunk_index": 40,
+                      "text": "Figure 7: Comparison of diagonal-QFI and full-QFI QEWC.",
+                      "page_num": 12, "filename": "f.pdf", "folder": ""}
+    vs = FakeVectorStore(
+        results_by_query={"What does Figure 7 show?": stage1_hits},
+        document_chunks={"d1": [caption_chunk]},
+    )
+    retriever = HybridRetriever(FakeEmbedder(), vs, top_k=1)  # tiny top_k
+
+    results = await retriever.retrieve_expanded(["What does Figure 7 show?"], top_k=1)
+
+    assert "caption" in {r["chunk_id"] for r in results}
 
 
 # ── promote_identity_matches ─────────────────────────────────────────────────

@@ -91,6 +91,89 @@ def extract_party_match(query: str, parties: list[str] | None) -> bool:
     return all(p.lower() in query_lower for p in parties)
 
 
+# Structural Figure-N/Table-N references — see retrieve_expanded's use of
+# extract_structural_references/best_structural_chunk. Mirrors the case-
+# number/CELEX-ID/citation-number identity-lookup pattern above (parse an
+# exact identifier out of the query, then find it verbatim rather than
+# hoping embedding/BM25 similarity surfaces it), but for a signal that
+# only exists as literal chunk TEXT, never structured ingestion-time
+# payload metadata — captions aren't extracted at ingestion, so this has
+# to text-scan a document's chunks at query time instead of doing an
+# indexed payload lookup.
+_STRUCTURAL_REF_QUERY_RE = re.compile(r'\b(Fig(?:ure)?|Table)\.?\s+(\d+[a-zA-Z]?)\b')
+
+
+def extract_structural_references(text: str) -> set[tuple[str, str]]:
+    """Parses (kind, num) pairs like ("Figure", "7") or ("Table", "12a")
+    out of free query text. kind is normalized to "Figure"/"Table" — the
+    query's own wording ("Fig.", "Fig", "Figure") doesn't need to match a
+    chunk's, only what number/kind it refers to."""
+    out = set()
+    for kind_raw, num in _STRUCTURAL_REF_QUERY_RE.findall(text):
+        kind = "Table" if kind_raw.lower().startswith("table") else "Figure"
+        out.add((kind, num))
+    return out
+
+
+# Same three-tier idea as eval/mixed_corpus/build_golden_dataset.py's
+# caption-extraction rewrite (colon/pipe strongest, period next, bare-no-
+# punctuation weakest — some venues print "Fig. 1 Caption text..." with no
+# punctuation at all before the description), independently reimplemented
+# here rather than imported: that module is eval-only tooling, and this
+# only needs to DETECT a caption-strength match in an already-indexed
+# chunk, not extract/bound the caption's own text the way the golden
+# builder does.
+_STRUCTURAL_CAPTION_STRONG_RE = re.compile(r'\b(Fig(?:ure)?|Table)\.?\s+(\d+[a-zA-Z]?)\s*[:|]\s*')
+_STRUCTURAL_CAPTION_MEDIUM_RE = re.compile(r'\b(Fig(?:ure)?|Table)\.?\s+(\d+[a-zA-Z]?)\s*\.\s+(?=[A-Z])')
+_STRUCTURAL_CAPTION_WEAK_RE = re.compile(r'\b(Fig(?:ure)?|Table)\.?\s+(\d+[a-zA-Z]?)\s+(?=[A-Z])')
+
+# A true caption describes what the figure/table shows — it never opens
+# with a discourse connective continuing an unrelated paragraph (the
+# "...as discussed in Figure 1. Finally, we turn to..." shape: the
+# punctuation looks exactly like a caption opener, but "Finally," is
+# mid-paragraph prose). Same list as the golden-builder rewrite, kept in
+# sync deliberately — both exist to reject the same false-positive shape.
+_STRUCTURAL_DISCOURSE_CONNECTIVES = (
+    "finally", "however", "moreover", "therefore", "thus", "overall",
+    "furthermore", "nevertheless", "meanwhile", "additionally",
+    "nonetheless", "consequently", "hence", "similarly", "in addition",
+    "in contrast", "on the other hand", "as a result",
+)
+
+
+def structural_match_tier(text: str, kind: str, num: str) -> int | None:
+    """Best (lowest = strongest) tier at which `kind num` appears as a
+    caption-like opener in this chunk's text, or None if it only appears
+    as a plain in-text reference ("as shown in Figure 7...") or not at
+    all."""
+    for tier, pat in enumerate(
+        (_STRUCTURAL_CAPTION_STRONG_RE, _STRUCTURAL_CAPTION_MEDIUM_RE, _STRUCTURAL_CAPTION_WEAK_RE)
+    ):
+        for m in pat.finditer(text):
+            is_table = m.group(1).lower().startswith("table")
+            if is_table != (kind == "Table") or m.group(2) != num:
+                continue
+            tail = text[m.end():m.end() + 30].lstrip().lower()
+            if any(tail.startswith(w) for w in _STRUCTURAL_DISCOURSE_CONNECTIVES):
+                continue
+            return tier
+    return None
+
+
+def best_structural_chunk(chunks: list[dict], kind: str, num: str) -> dict | None:
+    """The single best (lowest-tier) chunk among `chunks` (one document's
+    full chunk list) that contains a caption-strength match for
+    `kind num`, or None. Deliberately returns at most one — see
+    retrieve_expanded's docstring on why only one structural chunk per
+    document is ever added, guaranteed, rather than every match."""
+    best_chunk, best_tier = None, None
+    for chunk in chunks:
+        tier = structural_match_tier(chunk.get("text", ""), kind, num)
+        if tier is not None and (best_tier is None or tier < best_tier):
+            best_tier, best_chunk = tier, chunk
+    return best_chunk
+
+
 def promote_identity_matches(
     chunks: list[dict], top_chunks: list[dict], relevance_threshold: float
 ) -> list[dict]:
@@ -206,6 +289,13 @@ class HybridRetriever:
     # _expand_with_neighbors.
     SHORT_DOC_CHUNK_LIMIT = 10
 
+    # How many of stage 1's top-scoring candidate documents the structural
+    # Figure-N/Table-N lookup text-scans (see retrieve_expanded) — bounded
+    # deliberately small: a query naming one figure/table almost always
+    # means one specific document, and this is a per-document full-chunk
+    # scroll + regex scan, not free.
+    STRUCTURAL_TOP_DOCS = 3
+
     def __init__(
         self,
         embedding_service: EmbeddingService,
@@ -258,6 +348,7 @@ class HybridRetriever:
         query_case_numbers = extract_case_numbers(queries[0]) if queries else set()
         query_celex_ids = extract_celex_ids(queries[0]) if queries else set()
         query_citation_numbers = extract_citation_numbers(queries[0]) if queries else set()
+        query_structural_refs = extract_structural_references(queries[0]) if queries else set()
 
         for i, query in enumerate(queries):
             query_vector = await run_on_gpu(self.embedder.embed_text, query)
@@ -335,6 +426,55 @@ class HybridRetriever:
                     r["score"] = 1.0
                     r["source"] = "citation_number_index"
                     all_chunks[key] = r
+
+        # Structural Figure-N/Table-N lookup — only when the query itself
+        # names one explicitly ("What does Figure 7 show...") and only
+        # scoped to the top few documents stage 1 already identified as
+        # relevant (not a corpus-wide search: skipped entirely when
+        # doc_scope is set, since the compare flow already knows exactly
+        # which documents matter). Unlike the case/CELEX/citation-number
+        # indexes above, a caption isn't structured ingestion-time
+        # metadata — chunks_for_document() pulls a candidate document's
+        # full chunk list and best_structural_chunk() text-scans it for
+        # the strongest-looking caption match, adding AT MOST ONE chunk
+        # per document (never a wider pool — a caption is either in one
+        # specific chunk of a document or it isn't, unlike the reverted
+        # two-stage retrieval attempt this deliberately doesn't repeat;
+        # see project memory on why blindly widening the candidate pool
+        # made evidence-page recall worse, not better).
+        if query_structural_refs and not doc_scope:
+            doc_scores: dict[str, float] = {}
+            for c in all_chunks.values():
+                doc_id = c.get("document_id")
+                if doc_id:
+                    doc_scores[doc_id] = max(doc_scores.get(doc_id, 0.0), c["score"])
+            top_doc_ids = sorted(doc_scores, key=doc_scores.get, reverse=True)[:self.STRUCTURAL_TOP_DOCS]
+
+            for doc_id in top_doc_ids:
+                doc_chunks = await asyncio.to_thread(self.vector_store.chunks_for_document, doc_id)
+                best_chunk = None
+                for kind, num in query_structural_refs:
+                    candidate = best_structural_chunk(doc_chunks, kind, num)
+                    if candidate is not None:
+                        best_chunk = candidate
+                        break  # a query names one Figure/Table almost always — first match is enough
+                if best_chunk is not None:
+                    key = best_chunk.get("chunk_id", best_chunk["text"][:50])
+                    if key not in all_chunks:
+                        best_chunk = best_chunk.copy()
+                        # Matches the case/CELEX/citation-number identity-
+                        # index convention above: an exact structural match
+                        # is a stronger signal than any embedding/BM25
+                        # score, AND identity_match=True (below) guarantees
+                        # it survives retrieve_expanded's own top_k slice
+                        # even if the reranker would've scored it low —
+                        # the same guarantee those indexes get, extended to
+                        # a signal that only exists as chunk text, not a
+                        # stored payload field.
+                        best_chunk["score"] = 1.0
+                        best_chunk["source"] = "structural_reference"
+                        best_chunk["identity_match"] = True
+                        all_chunks[key] = best_chunk
 
         # The case/CELEX/citation-number index lookups above don't take a
         # doc filter themselves (they're exact-key lookups, not searches) —
