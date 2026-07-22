@@ -105,6 +105,7 @@ function injectStaticIcons() {
   document.getElementById('pdfPanelCloseBtn').innerHTML = svgIcon('x', 14);
   document.getElementById('pdfPrevBtn').innerHTML = svgIcon('chevron-left', 14);
   document.getElementById('pdfNextBtn').innerHTML = svgIcon('chevron-right', 14);
+  document.getElementById('pdfViewTextBtn').innerHTML = svgIcon('file-text', 13) + '<span>View source text</span>';
   document.getElementById('pdfLoadingIcon').innerHTML = svgIcon('file-text', 26);
   document.getElementById('txtPanelIcon').innerHTML = svgIcon('file-text', 14);
   document.getElementById('txtPanelCloseBtn').innerHTML = svgIcon('x', 14);
@@ -1461,6 +1462,19 @@ function viewOriginalPdf() {
   // panel).
   closeTxtPanel();
   openPdfViewer(currentTxtDocId, currentTxtPage);
+}
+
+// Reverse of viewOriginalPdf() above — openPdfViewer() only ever runs for a
+// PDF-format document (its only caller is viewOriginalPdf(), itself only
+// reachable once openTextViewer() has already confirmed format === 'pdf'),
+// so get_document_page() always has a page to show here; no format check
+// needed on this side. currentDocId/currentPage are the PDF panel's own
+// state (see openPdfViewer()/changePage()), same relationship as
+// currentTxtDocId/currentTxtPage above.
+function viewOriginalText() {
+  if (!currentDocId) return;
+  closePdfPanel();
+  openTextViewer(currentDocId, currentPage, null, null);
 }
 
 function closeTxtPanel() {
