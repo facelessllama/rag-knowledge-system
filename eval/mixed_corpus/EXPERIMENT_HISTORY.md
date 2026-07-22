@@ -196,11 +196,13 @@ A/B's ~21-26pp, but genuinely non-zero, crossing the user's own ≥10pp
    done via blind adjudication (`5dc92da`), see above. Judge behavior
    with title-free question text specifically may be worth revisiting
    generally (not just for this comparison) — NOT started, low priority.
-6. **Decide on the generator**: per the resolved numbers and the user's
+6. ~~**Decide on the generator**: per the resolved numbers and the user's
    own decision rule, adding DeepSeek Flash as an optional cloud mode is
    now justified (edge ≥10pp, no documented behavioral issues unlike
-   Pro). Not yet implemented in the product — a product decision, not an
-   eval-pass task.
+   Pro).~~ — done (`bebd132`, `6dda7f5`, `b86478f`): shipped as an
+   administrator opt-in (`ENABLE_CLOUD_GENERATOR`) gated by a per-request
+   `provider="deepseek"`, local Qwen stays the default, UI shows a
+   visible warning when it's selected. See the top-level README.
 7. Use calibration for final thresholds/configuration.
 8. Run heldout once after the approach is frozen; do not tune on it.
 9. Close the historical `comparison_unscoped` empty-exception case as either
