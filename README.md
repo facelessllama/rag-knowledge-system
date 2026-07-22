@@ -24,7 +24,7 @@ The honest result, reported as measured rather than rounded up: on natural, real
 
 A separate pass went after a different question: not "does it hold up at volume," but "does it hold up on content it was never shaped around at all." 762 real, public-source documents it had no prior exposure to — arXiv papers, FDA drug labels, FAA safety manuals, and deliberately adversarial old-scan/handwritten-math pages — were run through the untouched ingestion pipeline. That surfaced two real, previously-undiscovered bugs no legal-corpus test had ever hit (a font-encoding artifact that silently broke ingestion for over a third of the arXiv sample, and a vector-store batching limit), both fixed and confirmed live. It also caught a genuine retrieval defect: a guarantee meant to keep an exact-cited figure/table chunk from being reranked away only worked when ordinary search *hadn't* already found it weakly — backwards, exactly when the guarantee was needed. Fixing it raised Evidence-chunk Recall (does the retrieved chunk actually contain the cited fact, not just the right document) from 19.9% to 95.5% on the realistic scoped-document workflow. The same corpus was then used to run a controlled generator comparison — identical retrieved evidence sent to local Qwen and to DeepSeek's cloud API — which is what the opt-in DeepSeek cloud mode below is based on, not a vendor's own benchmark.
 
-The same standard was applied to the engineering side, not just retrieval quality: the service is backed by 391 automated tests, including deliberate crash-and-restart drills (killing the database connection mid-operation, stopping the search engine mid-delete) that prove the system recovers cleanly instead of just assuming it would. See *"Architecture Decisions & Learnings"* below for what broke during that work and how it was fixed.
+The same standard was applied to the engineering side, not just retrieval quality: the service is backed by 398 automated tests, including deliberate crash-and-restart drills (killing the database connection mid-operation, stopping the search engine mid-delete) that prove the system recovers cleanly instead of just assuming it would. See *"Architecture Decisions & Learnings"* below for what broke during that work and how it was fixed.
 
 **Full write-up — every number, every bug found, and what's still an open gap — in [`VALIDATION.md`](VALIDATION.md) and [`eval/mixed_corpus/README.md`](eval/mixed_corpus/README.md).**
 
@@ -98,7 +98,11 @@ Query → Expand (Ollama LLM) → Retrieve (Qdrant hybrid: dense + sparse, serve
 
 | Module | Purpose |
 |--------|---------|
-| `api/main.py` | FastAPI endpoints, streaming SSE, upload, auth |
+| `api/main.py` | App/router wiring, DI, the DB layer, reconciliation, startup/shutdown, auth — endpoints themselves live in `api/health.py`/`documents.py`/`query.py`/`upload.py` below, split out of a 2263-line monolith |
+| `api/health.py` | `/health`, `/health/live`, `/health/ready`, `/models` |
+| `api/documents.py` | `/documents`, `/folders`, `/pdf/{id}` (own auth), document/folder CRUD |
+| `api/query.py` | `/query`, `/query/stream` — the streaming SSE endpoint |
+| `api/upload.py` | `/upload`, `/upload-batch` — parse → chunk → embed → upsert pipeline |
 | `rag/retriever.py` | Multi-query expansion over Qdrant hybrid search, neighbor expansion |
 | `vector_db/qdrant_client.py` | Qdrant hybrid search (dense+sparse RRF fusion), payload indexes |
 | `vector_db/sparse_encoder.py` | BM25-style sparse vector construction (English tokenizer) |
@@ -242,7 +246,7 @@ Pass `X-API-Key: <key>` header or `?key=<key>` query param when `API_KEY` is set
 
 ## Testing
 
-391 tests as of this writing. Most are fast and fully mocked — no Docker/Qdrant/Ollama needed:
+398 tests as of this writing. Most are fast and fully mocked — no Docker/Qdrant/Ollama needed:
 
 ```bash
 source venv/bin/activate
