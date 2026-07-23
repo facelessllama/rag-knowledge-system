@@ -32,7 +32,7 @@ import time
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
 
-from api.documents import _active_chunks, _validate_query_document_scope
+from api.documents import _active_chunks, _resolve_scope_document_ids, _validate_query_document_scope
 from api.main import get_generator, get_prompt_builder, get_query_expander, get_reranker, get_retriever
 from api.schemas import QueryRequest, QueryResponse
 from rag.executors import run_on_gpu
@@ -81,16 +81,27 @@ async def query_knowledge_base(
     # Blank/whitespace-only question is rejected by QueryRequest's own
     # validator (api/schemas.py) before this body ever runs — see
     # _question_not_blank.
+    #
+    # Conflict (422) before existence (404), deliberately: a document_id
+    # that disagrees with document_ids is a malformed request regardless of
+    # whether that document_id happens to exist — it doesn't need a
+    # documents_registry lookup to be wrong. Checking existence first would
+    # make {"document_id": "missing", "document_ids": ["d1"]} 404 instead of
+    # the 422 the conflict itself warrants, purely because "missing" also
+    # doesn't exist — the wrong reason, and not reproducible in a case where
+    # the conflicting document_id DOES exist. See test_conflicting_
+    # document_id_and_document_ids_with_nonexistent_singular_id_returns_422.
+    scope_document_ids = _resolve_scope_document_ids(request)
     _validate_query_document_scope(request)
 
     if m._query_semaphore.locked():
         raise HTTPException(429, "Too many concurrent requests, please try again shortly")
 
     async with m._query_semaphore:
-        return await _do_query(request, query_expander, retriever, reranker, prompt_builder, generator)
+        return await _do_query(request, scope_document_ids, query_expander, retriever, reranker, prompt_builder, generator)
 
 
-async def _do_query(request: QueryRequest, query_expander, retriever, reranker, prompt_builder, generator):
+async def _do_query(request: QueryRequest, scope_document_ids, query_expander, retriever, reranker, prompt_builder, generator):
     import api.main as m
 
     start_time = time.time()
@@ -115,8 +126,8 @@ async def _do_query(request: QueryRequest, query_expander, retriever, reranker, 
 
     t0 = time.time()
     expanded_queries = await query_expander.expand(search_query)
-    expanded_queries = _augment_compare_queries(expanded_queries, request.document_ids)
-    chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None, document_ids=request.document_ids or None)
+    expanded_queries = _augment_compare_queries(expanded_queries, scope_document_ids)
+    chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None, document_ids=scope_document_ids)
     chunks = _active_chunks(chunks)
     retrieval_ms = int((time.time() - t0) * 1000)
 
@@ -134,13 +145,15 @@ async def _do_query(request: QueryRequest, query_expander, retriever, reranker, 
     top_chunks = await run_on_gpu(reranker.rerank, search_query, chunks, top_k=request.top_k)
     top_chunks = promote_identity_matches(chunks, top_chunks, m.RELEVANCE_THRESHOLD)
     top_chunks = promote_document_opening_chunks(chunks, top_chunks)
-    top_chunks = promote_missing_compare_documents(chunks, top_chunks, request.document_ids)
+    top_chunks = promote_missing_compare_documents(chunks, top_chunks, scope_document_ids)
 
     best_score = max((c.get("rerank_score", 0) for c in top_chunks), default=0)
     # RELEVANCE_THRESHOLD exists to catch "this isn't in the knowledge base at
-    # all" for open-ended questions — moot when document_ids is set, since
-    # the compare flow's scope already came from the user explicitly picking
-    # real documents out of the library, not from the cross-encoder's opinion
+    # all" for open-ended questions — moot when a scope was explicitly given
+    # (document_ids, or document_id normalized into it — see
+    # _resolve_scope_document_ids), since that scope already came from the
+    # user explicitly picking real documents out of the library, not from
+    # the cross-encoder's opinion
     # of them. Observed directly: a legitimate 3-document compare (all three
     # in scope, all three retrieved — 60 candidates) refused outright because
     # the generic "for each document provide: 1)... 2)... 3)..." compare
@@ -149,7 +162,7 @@ async def _do_query(request: QueryRequest, query_expander, retriever, reranker, 
     # in-scope answer on a threshold tuned for natural single-topic questions
     # (see eval/golden_dataset.json calibration) rejects real compares for no
     # benefit — there's no "not in the KB" case left to catch here.
-    if best_score < m.RELEVANCE_THRESHOLD and not request.document_ids:
+    if best_score < m.RELEVANCE_THRESHOLD and not scope_document_ids:
         logger.info(f"Best rerank score {best_score:.3f} below threshold {m.RELEVANCE_THRESHOLD} — not answering")
         return QueryResponse(answer="I couldn't find relevant information in the knowledge base to answer this question.",
                            sources=[], model=generator.model, tokens_used=0,
@@ -280,6 +293,10 @@ async def query_stream(
     # captured by event_stream()'s closure below — no need to thread them
     # through explicitly the way _do_query() needs them passed in, since
     # event_stream is defined inside this same function.
+    #
+    # Conflict (422) before existence (404) — see query_knowledge_base's
+    # identical comment above for why.
+    scope_document_ids = _resolve_scope_document_ids(request)
     _validate_query_document_scope(request)
 
     if m._query_semaphore.locked():
@@ -308,11 +325,11 @@ async def query_stream(
 
             t0 = time.time()
             expanded_queries = await query_expander.expand(search_query)
-            expanded_queries = _augment_compare_queries(expanded_queries, request.document_ids)
+            expanded_queries = _augment_compare_queries(expanded_queries, scope_document_ids)
             expansion_ms = int((time.time() - t0) * 1000)
 
             t1 = time.time()
-            chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None, document_ids=request.document_ids or None)
+            chunks = await retriever.retrieve_expanded(expanded_queries, top_k=max(20, request.top_k * 5), folder=request.folder or None, document_ids=scope_document_ids)
             chunks = _active_chunks(chunks)
             retrieval_ms = int((time.time() - t1) * 1000)
 
@@ -345,7 +362,7 @@ async def query_stream(
             top_chunks = await run_on_gpu(reranker.rerank, search_query, chunks, top_k=request.top_k)
             top_chunks = promote_identity_matches(chunks, top_chunks, m.RELEVANCE_THRESHOLD)
             top_chunks = promote_document_opening_chunks(chunks, top_chunks)
-            top_chunks = promote_missing_compare_documents(chunks, top_chunks, request.document_ids)
+            top_chunks = promote_missing_compare_documents(chunks, top_chunks, scope_document_ids)
             rerank_ms = int((time.time() - t2) * 1000)
             reranker_type = type(reranker).__name__
 
@@ -358,7 +375,7 @@ async def query_stream(
                 "queries_expanded": len(expanded_queries),
             }
 
-            if best_score < m.RELEVANCE_THRESHOLD and not request.document_ids:
+            if best_score < m.RELEVANCE_THRESHOLD and not scope_document_ids:
                 logger.info(f"Best rerank score {best_score:.3f} below threshold {m.RELEVANCE_THRESHOLD} — not answering")
                 msg = "I couldn't find relevant information in the knowledge base to answer this question."
                 yield f"data: {json.dumps({'type': 'token', 'content': msg})}\n\n"
@@ -378,20 +395,43 @@ async def query_stream(
                 yield f"data: {json.dumps({'type': 'token', 'content': token})}\n\n"
             generation_ms = int((time.time() - t2) * 1000)
 
-            # Streaming is local-only (see GeneratorRouter) — the provider
-            # is always "local" by the time we get here, since anything
-            # else would already have raised ProviderNotAvailable above.
+            # Both providers can stream now (GeneratorRouter.
+            # generate_stream_with_refusal_retry dispatches to whichever
+            # backend _resolve() picked — a request asking for a disabled/
+            # misconfigured cloud provider would already have raised
+            # ProviderNotAvailable above, so getting here means
+            # request.provider (or "local" if unset) is exactly what ran.
+            # model_for() exists because a token stream has no return value
+            # to carry the resolved model name back the way
+            # generate_with_refusal_retry()'s result dict does.
+            #
+            # request.model is ONLY meaningful for the local provider — the
+            # router itself drops it for any other backend before ever
+            # generating (rag/generator.py's GeneratorRouter, "cloud
+            # backends must never take a client-supplied model string"), so
+            # trusting it here for a non-local resolved_provider would make
+            # observability (this log line, the Langfuse generation below,
+            # and the debug payload's 'model') report whatever Ollama model
+            # name the client happened to send alongside provider="deepseek"
+            # — wrong, even though the actual generation already correctly
+            # used DeepSeek's own configured model throughout.
+            resolved_provider = request.provider or "local"
+            resolved_model = (
+                generator.model_for(resolved_provider)
+                if resolved_provider == "deepseek"
+                else request.model or generator.model_for("local")
+            )
             logger.info(
-                f"generator_call provider=local model={request.model or generator.model} "
+                f"generator_call provider={resolved_provider} model={resolved_model} "
                 f"latency_ms={generation_ms} "
                 f"result={'refused' if is_refusal(''.join(answer_tokens)) else 'answered'}"
             )
 
             if trace:
                 try:
-                    trace.generation(name="llm_stream", model=request.model or generator.model,
+                    trace.generation(name="llm_stream", model=resolved_model,
                                      input=messages, output="".join(answer_tokens),
-                                     metadata={"duration_ms": generation_ms, "provider": "local"})
+                                     metadata={"duration_ms": generation_ms, "provider": resolved_provider})
                     trace.update(metadata={
                         "total_ms": int((time.time() - start_time) * 1000),
                         "expansion_ms": expansion_ms,
@@ -440,8 +480,8 @@ async def query_stream(
                 'best_score': float(score_meta['best']),
                 'avg_score': float(score_meta['avg']),
                 'reranker': reranker_type,
-                'model': request.model or generator.model,
-                'provider': 'local',
+                'model': resolved_model,
+                'provider': resolved_provider,
                 'top_chunks': [
                     {
                         'chunk_id': str(c.get('chunk_id', '')),
@@ -467,10 +507,12 @@ async def query_stream(
         except ProviderNotAvailable as e:
             # Same discipline as the non-streaming endpoint: a clear error
             # event, never a silent switch to a different provider — see
-            # GeneratorRouter's own docstring. Streaming is local-only for
-            # now (DeepSeekGenerator has no generate_stream), so this also
-            # fires for any provider="deepseek" request here regardless of
-            # cloud_enabled.
+            # GeneratorRouter's own docstring. Both providers can stream
+            # now, so this only fires for the same reasons the non-
+            # streaming endpoint's 400 does: cloud disabled by the
+            # administrator, no DEEPSEEK_API_KEY configured, or an unknown
+            # provider name — never "provider=deepseek on /query/stream"
+            # by itself anymore.
             logger.warning(f"Stream provider request rejected: {e}")
             yield f"data: {json.dumps({'type': 'error', 'error_type': 'provider_not_available', 'message': str(e)})}\n\n"
         except Exception as e:

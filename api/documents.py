@@ -15,10 +15,11 @@ tests do `monkeypatch.setattr(api.main, "X", fake)` / `setattr(api.main,
 a binding captured once at import time elsewhere would freeze at whatever
 value existed then and silently stop seeing the patch.
 
-`_get_active_document`/`_validate_query_document_scope`/`_active_chunks`
-are imported directly by name from api/query.py (safe — nothing
-monkeypatches these three by their own name/identity) but their bodies
-still follow the same lazy-lookup rule for `documents_registry`.
+`_get_active_document`/`_validate_query_document_scope`/`_active_chunks`/
+`_resolve_scope_document_ids` are imported directly by name from
+api/query.py (safe — nothing monkeypatches these four by their own
+name/identity) but their bodies still follow the same lazy-lookup rule for
+`documents_registry`.
 
 Two routers: `protected_router` for everything gated by the API key
 (`/documents`, `/folders/*`, `DELETE /documents/{id}`, the page-text
@@ -68,6 +69,42 @@ def _validate_query_document_scope(request: QueryRequest):
     missing = list(dict.fromkeys(doc_id for doc_id in requested if _get_active_document(doc_id) is None))
     if missing:
         raise HTTPException(404, f"Document(s) not found: {', '.join(missing)}")
+
+
+def _resolve_scope_document_ids(request: QueryRequest) -> Optional[list[str]]:
+    """Canonical retrieval-scope list for a request — the ONE value
+    api/query.py's endpoints thread into _augment_compare_queries(),
+    retrieve_expanded(), promote_missing_compare_documents(), and the
+    relevance-threshold bypass, instead of each of those (across both
+    /query and /query/stream) reading request.document_ids directly.
+
+    `document_id` used to be accepted and 404-validated (see
+    _validate_query_document_scope above) but never actually reached
+    retrieval — only request.document_ids did — so a caller scoping via
+    the singular field alone got a silent, unscoped, whole-knowledge-base
+    answer instead of an error. Merging the two here, once, means every
+    current and future reader of "the scope" only has one field to read
+    and cannot independently forget to normalize.
+
+    A document_id that duplicates an entry already in document_ids is
+    accepted as redundant. A document_id naming a document NOT in
+    document_ids is rejected outright (422) rather than silently unioned
+    in — the two fields disagreeing about scope is a malformed request,
+    not something to guess through by expanding it.
+    """
+    if request.document_id and request.document_ids:
+        if request.document_id not in request.document_ids:
+            raise HTTPException(
+                422,
+                f"document_id {request.document_id!r} conflicts with document_ids "
+                f"{request.document_ids!r} — pass a consistent scope, not both.",
+            )
+        return request.document_ids
+    if request.document_ids:
+        return request.document_ids
+    if request.document_id:
+        return [request.document_id]
+    return None
 
 
 def _active_chunks(chunks: list[dict]) -> list[dict]:

@@ -1,16 +1,16 @@
 """
 Tests for rag/generator.py — leaked <question> tag stripping, refusal
 detection, and refusal-retry (resample-on-refusal for both the
-non-streaming and streaming generate paths — see LLMGenerator's
+non-streaming and streaming generate paths — see BaseGenerator's
 generate_with_refusal_retry/generate_stream_with_refusal_retry docstrings
 and eval/README.md's "Known issue: multi-doc near-duplicate-title
 flakiness" for why this exists).
 """
-from unittest.mock import AsyncMock
+from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from rag.generator import LLMGenerator, is_refusal, strip_leaked_question_tag
+from rag.generator import DeepSeekGenerator, LLMGenerator, is_refusal, strip_leaked_question_tag
 
 
 def test_strips_leaked_question_tag_prefix():
@@ -159,3 +159,97 @@ async def test_stream_refusal_retry_does_not_drop_a_short_non_refusal_stream():
     result = await _collect(gen.generate_stream_with_refusal_retry([{"role": "user", "content": "q"}]))
 
     assert result == "I could not"
+
+
+# ── DeepSeekGenerator.generate_stream: SSE parsing ───────────────────────────
+# DeepSeek's stream wire format is real SSE ("data: {...}\n\n" lines, ended
+# by "data: [DONE]") — distinct from Ollama's raw NDJSON that LLMGenerator.
+# generate_stream() parses (test_stream_refusal_retry_* above cover the
+# shared refusal-retry logic on top of generate_stream() generically, via
+# LLMGenerator; this proves DeepSeekGenerator's own generate_stream()
+# parses its backend's actual wire shape correctly).
+
+def _sse_client(lines):
+    """A mock httpx.AsyncClient whose .stream(...) yields `lines` (each
+    already prefixed "data: ", matching what aiter_lines() would hand
+    back) through response.aiter_lines() — a real SSE server-response
+    shape, not the raw NDJSON Ollama uses."""
+    async def _aiter_lines():
+        for line in lines:
+            yield line
+
+    response = MagicMock()
+    response.raise_for_status = MagicMock()
+    response.aiter_lines = _aiter_lines
+
+    stream_cm = AsyncMock()
+    stream_cm.__aenter__ = AsyncMock(return_value=response)
+    stream_cm.__aexit__ = AsyncMock(return_value=False)
+
+    client = AsyncMock()
+    client.stream = MagicMock(return_value=stream_cm)
+    client.__aenter__ = AsyncMock(return_value=client)
+    client.__aexit__ = AsyncMock(return_value=False)
+    return client
+
+
+@pytest.mark.asyncio
+async def test_deepseek_generate_stream_yields_content_deltas_only():
+    """reasoning_content deltas (present because "thinking": {"type":
+    "enabled"} is sent — see the payload assertion below, matching
+    generate()'s own payload) must never be yielded, only delta.content —
+    same as generate()'s non-streaming path only ever returning
+    message.content. The user sees the final answer in both modes, never
+    the reasoning trace."""
+    client = _sse_client([
+        'data: {"choices":[{"delta":{"reasoning_content":"thinking..."}}]}',
+        'data: {"choices":[{"delta":{"content":"The "}}]}',
+        'data: {"choices":[{"delta":{"content":"answer is 42."}}]}',
+        'data: {"choices":[{"delta":{},"finish_reason":"stop"}]}',
+        'data: [DONE]',
+    ])
+
+    gen = DeepSeekGenerator(api_key="fake-key")
+    with patch("httpx.AsyncClient", return_value=client):
+        tokens = [t async for t in gen.generate_stream([{"role": "user", "content": "q"}])]
+
+    assert tokens == ["The ", "answer is 42."]
+    sent_json = client.stream.call_args.kwargs["json"]
+    assert sent_json["stream"] is True
+    assert sent_json["thinking"] == {"type": "enabled"}
+
+
+@pytest.mark.asyncio
+async def test_deepseek_generate_stream_ignores_non_data_lines():
+    """Blank keep-alive lines and anything not prefixed "data: " (real SSE
+    servers send both) must be skipped, not crash the JSON parse."""
+    client = _sse_client([
+        '',
+        ': keep-alive',
+        'data: {"choices":[{"delta":{"content":"ok"}}]}',
+        'data: [DONE]',
+    ])
+
+    gen = DeepSeekGenerator(api_key="fake-key")
+    with patch("httpx.AsyncClient", return_value=client):
+        tokens = [t async for t in gen.generate_stream([{"role": "user", "content": "q"}])]
+
+    assert tokens == ["ok"]
+
+
+@pytest.mark.asyncio
+async def test_deepseek_stream_refusal_retry_works_via_shared_base_logic():
+    """DeepSeekGenerator used to have no generate_stream_with_refusal_retry
+    at all (streaming was local-only) — now inherits the same buffering
+    policy LLMGenerator has, via BaseGenerator, built on its own
+    generate_stream()."""
+    gen = DeepSeekGenerator(api_key="fake-key")
+    gen.generate_stream = _token_streams(
+        ["I could not find ", "this information in the provided documents."],
+        ["The date is 1st ", "April 2013."],
+    )
+
+    result = await _collect(gen.generate_stream_with_refusal_retry(
+        [{"role": "user", "content": "q"}], refusal_retries=2))
+
+    assert result == "The date is 1st April 2013."

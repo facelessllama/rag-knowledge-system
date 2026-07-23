@@ -51,34 +51,11 @@ async function apiDeleteDocument(docId) {
   return r.ok;
 }
 
-async function apiQuery(question, topK, rerank, model, provider, chatHistory, folder, documentIds) {
-  const r = await fetch(API + '/query', {
-    method: 'POST',
-    headers: authHeaders({ 'Content-Type': 'application/json' }),
-    body: JSON.stringify({
-      question: question, top_k: topK, rerank: rerank, model: model || undefined,
-      // "local" is what the backend assumes when omitted — sent explicitly
-      // anyway so it's never ambiguous which provider a request asked for.
-      provider: provider || 'local',
-      chat_history: chatHistory || [],
-      folder: folder || undefined,
-      document_ids: (documentIds && documentIds.length) ? documentIds : undefined,
-    })
-  });
-  if (r.ok) return { ok: true, data: await r.json() };
-  // Non-2xx still has a JSON body (e.g. ProviderNotAvailable's 400 detail) —
-  // surface it instead of collapsing every failure into a generic
-  // "no connection" message the user can't act on.
-  let error = null;
-  try { error = (await r.json()).detail || null; } catch (e) {}
-  return { ok: false, data: null, error: error };
-}
-
 // Returns an AbortController — callers that want to cancel a stream in
 // flight (e.g. starting a new query, navigating away, tearing down the
 // chat panel) call the returned handle's .abort() to actually stop the
 // underlying fetch/reader instead of leaving it running unobserved.
-function apiQueryStream(question, topK, model, chatHistory, folder, documentIds, onToken, onSources, onDone) {
+function apiQueryStream(question, topK, model, provider, chatHistory, folder, documentIds, onToken, onSources, onDone) {
   var controller = new AbortController();
   var finished = false;
 
@@ -101,7 +78,11 @@ function apiQueryStream(question, topK, model, chatHistory, folder, documentIds,
     headers: authHeaders({ 'Content-Type': 'application/json' }),
     signal: controller.signal,
     body: JSON.stringify({
-      question: question, top_k: topK, model: model || undefined, chat_history: chatHistory || [],
+      question: question, top_k: topK, model: model || undefined,
+      // "local" is what the backend assumes when omitted — sent explicitly
+      // anyway so it's never ambiguous which provider a request asked for.
+      provider: provider || 'local',
+      chat_history: chatHistory || [],
       folder: folder || undefined,
       // Strict scope for "compare these specific documents" — see
       // rag/retriever.py::retrieve_expanded's document_ids param. Distinct

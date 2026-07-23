@@ -216,8 +216,63 @@ function renderProviderList() {
 }
 
 function selectProvider(id) {
+  // Switching TO deepseek is the one state change that actually sends data
+  // off this server — gate it behind the blocking countdown warning below
+  // instead of applying it immediately. Re-picking "local", or re-picking
+  // "deepseek" while it's already active, is a no-op for data exposure and
+  // shouldn't re-interrupt the user.
+  if (id === 'deepseek' && currentProvider !== 'deepseek') {
+    showDeepseekWarning();
+    return;
+  }
   currentProvider = id;
   renderProviderList();
+}
+
+// ── DeepSeek (cloud) switch warning ──────────────────────────────────────────
+// Centered, blocking modal with a mandatory 5s countdown — not just the
+// passive .finding-open banner in the settings panel, which closes with the
+// panel right after the click that triggers it and is easy to never see
+// again. Cancel is available immediately (backing out isn't the risky part);
+// Continue stays disabled until the countdown reaches 0.
+let _deepseekCountdownTimer = null;
+
+function showDeepseekWarning() {
+  document.getElementById('settingsPanel').classList.remove('show');
+  const confirmBtn = document.getElementById('deepseekConfirmBtn');
+  const countdownEl = document.getElementById('deepseekCountdown');
+  document.getElementById('deepseekWarningIcon').innerHTML = svgIcon('alert-triangle', 22);
+
+  let remaining = 5;
+  countdownEl.textContent = remaining;
+  confirmBtn.disabled = true;
+  confirmBtn.textContent = 'Wait ' + remaining + 's…';
+  document.getElementById('deepseekWarningOverlay').classList.add('show');
+
+  clearInterval(_deepseekCountdownTimer);
+  _deepseekCountdownTimer = setInterval(function () {
+    remaining -= 1;
+    countdownEl.textContent = Math.max(remaining, 0);
+    if (remaining <= 0) {
+      clearInterval(_deepseekCountdownTimer);
+      confirmBtn.disabled = false;
+      confirmBtn.textContent = 'I understand, continue';
+    } else {
+      confirmBtn.textContent = 'Wait ' + remaining + 's…';
+    }
+  }, 1000);
+}
+
+function confirmDeepseekWarning() {
+  clearInterval(_deepseekCountdownTimer);
+  document.getElementById('deepseekWarningOverlay').classList.remove('show');
+  currentProvider = 'deepseek';
+  renderProviderList();
+}
+
+function cancelDeepseekWarning() {
+  clearInterval(_deepseekCountdownTimer);
+  document.getElementById('deepseekWarningOverlay').classList.remove('show');
 }
 
 function toggleSettings() {
@@ -1121,16 +1176,6 @@ function runQuery(text, topK, documentIds) {
   addUserMessage(text); showTyping();
   pushRecent(text);
 
-  // DeepSeek cloud mode has no streaming support in the backend on purpose
-  // (rag/generator.py's GeneratorRouter — a request explicitly asking for
-  // it on the streaming endpoint gets a clear error rather than a silent
-  // switch to local) — so this branch calls the plain /query endpoint and
-  // renders the whole answer at once instead of animating token-by-token.
-  if (currentProvider === 'deepseek') {
-    runQueryNonStreaming(text, topK, documentIds);
-    return;
-  }
-
   var accum = '';
   var blockWrap = null;
   var answerCard = null;
@@ -1170,7 +1215,13 @@ function runQuery(text, topK, documentIds) {
   }
 
   var folderFilter = _folderFilterValue || null;
-  apiQueryStream(text, topK, currentModel, chatHistory, folderFilter, documentIds,
+  // currentModel is always an Ollama model name (from the local model
+  // picker) — never send it when the cloud provider is selected, or it
+  // would override the administrator-configured DeepSeek model server-side
+  // (GeneratorRouter drops it either way, but there's no reason to send a
+  // local model name alongside provider="deepseek" in the first place).
+  var modelForQuery = currentProvider === 'deepseek' ? null : currentModel;
+  apiQueryStream(text, topK, modelForQuery, currentProvider, chatHistory, folderFilter, documentIds,
     function onToken(token) {
       var clean = token.replace(/[\u3000-\u9fff\uf900-\ufaff\ufe30-\ufe4f\uff00-\uffef]/g, '');
       if (!clean) return;
@@ -1197,38 +1248,6 @@ function runQuery(text, topK, documentIds) {
       if (!draining) isTyping = false;
     }
   );
-}
-
-function runQueryNonStreaming(text, topK, documentIds) {
-  var folderFilter = _folderFilterValue || null;
-  // currentModel is always an Ollama model name (from the local model
-  // picker) — never send it when the cloud provider is selected, or it
-  // would override the administrator-configured DeepSeek model server-side.
-  var modelForQuery = currentProvider === 'deepseek' ? null : currentModel;
-  apiQuery(text, topK, true, modelForQuery, currentProvider, chatHistory, folderFilter, documentIds)
-    .then(function(res) {
-      hideTyping();
-      if (!res.ok || !res.data) {
-        addErrorMessage(res.error || 'No connection to the server.');
-        isTyping = false;
-        return;
-      }
-      var data = res.data;
-      var built = buildAnswerBlock(data.sources);
-      document.getElementById('messages').appendChild(built.wrap);
-      built.answerText.textContent = data.answer;
-      finishAnswerBlock(built.wrap, built.answerCard, data.sources, data.answer);
-      scrollBottom();
-      updateDebugPanel({ sources: data.sources, debug: Object.assign({}, data.debug, { provider: data.provider, model: data.model }) });
-      chatHistory.push({ role: 'user', content: text });
-      chatHistory.push({ role: 'assistant', content: data.answer });
-      isTyping = false;
-    })
-    .catch(function() {
-      hideTyping();
-      addErrorMessage('No connection to the server.');
-      isTyping = false;
-    });
 }
 
 // ── Retrieval details (formerly "debug") ─────────────────────────────────────

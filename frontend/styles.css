@@ -123,6 +123,18 @@ body {
 .modal-input:focus-visible { outline: none; } /* see .welcome-input:focus-visible's comment */
 .btn-primary { width: 100%; padding: 10px; border-radius: var(--radius-sm); border: none; background: var(--accent); color: #06251b; font-size: 13.5px; font-weight: 700; cursor: pointer; transition: background .15s; }
 .btn-primary:hover { background: var(--accent-hover); }
+.btn-primary:disabled { background: var(--surface-3); color: var(--text-muted); cursor: not-allowed; }
+.btn-secondary { width: 100%; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: transparent; color: var(--text-secondary); font-size: 13.5px; font-weight: 600; cursor: pointer; transition: background .15s, color .15s; }
+.btn-secondary:hover { background: var(--surface-3); color: var(--text); }
+
+/* Deliberately not dismissible via backdrop click or Escape — see the
+   comment on #deepseekWarningOverlay in index.html. */
+.deepseek-warning-modal { width: 380px; text-align: center; }
+.deepseek-warning-icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; margin: 0 auto 14px; border-radius: 50%; background: var(--warning-soft); color: var(--warning); }
+.deepseek-warning-modal .modal-hint { margin-bottom: 18px; }
+.deepseek-warning-countdown { font-family: var(--font-display); font-size: 40px; font-weight: 700; color: var(--warning); line-height: 1; margin-bottom: 18px; font-variant-numeric: tabular-nums; }
+.deepseek-warning-actions { display: flex; gap: 10px; }
+.deepseek-warning-actions .btn-primary, .deepseek-warning-actions .btn-secondary { width: auto; flex: 1; }
 
 /* ── LAYOUT ──────────────────────────────────────────────────────────────── */
 .main { flex: 1; display: grid; grid-template-columns: 376px 1fr; overflow: hidden; }

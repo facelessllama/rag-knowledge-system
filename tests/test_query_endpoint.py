@@ -14,12 +14,14 @@ runs at all; the dependency_overrides below are what make the endpoint work
 regardless. test_bare_testclient_never_triggers_lifespan_startup() proves
 that timing directly rather than just relying on it.
 """
+import json
+
 import pytest
 from fastapi.testclient import TestClient
 
 import api.main as m
 from rag.generator import GeneratorRouter
-from tests.fakes import FakeGenerator, FakeQueryExpander, FakeReranker, FakeRetriever
+from tests.fakes import FakeGenerator, FakeQueryExpander, FakeReranker, FakeRetriever, SpyRetriever
 
 TEST_API_KEY = "test-secret-key"
 
@@ -319,16 +321,224 @@ def test_invalid_provider_value_is_rejected_at_validation(cloud_client):
     assert deepseek_gen.call_count == 0
 
 
-def test_stream_endpoint_rejects_deepseek_provider(cloud_client):
-    """Streaming is local-only (rag/generator.py's GeneratorRouter) —
-    even with cloud fully enabled and configured, a stream request
-    explicitly asking for provider="deepseek" gets a clear error event,
-    never silent local fallback nor a cloud call over SSE."""
+def test_stream_endpoint_reaches_deepseek_when_fully_enabled(cloud_client):
+    """Both providers stream now (rag/generator.py's BaseGenerator.
+    generate_stream_with_refusal_retry, built on each backend's own
+    generate_stream()) — a stream request explicitly asking for
+    provider="deepseek" reaches the cloud backend and streams ITS answer,
+    not local's, never a silent fallback."""
     client, local_gen, deepseek_gen = cloud_client
     with client.stream(
         "POST", "/query/stream", json={"question": "What is the fee?", "provider": "deepseek"}
     ) as response:
-        assert response.status_code == 200  # SSE stream itself opens fine
+        assert response.status_code == 200
         body = "".join(response.iter_text())
+    events = [json.loads(line[len("data: "):]) for line in body.splitlines() if line.startswith("data: ")]
+    answer = "".join(e["content"] for e in events if e.get("type") == "token")
+    assert answer == "Cloud answer. "
+    assert local_gen.call_count == 0
+    assert deepseek_gen.call_count == 1
+
+
+def test_stream_endpoint_deepseek_reports_its_own_model_despite_client_supplied_local_model_name(cloud_client):
+    """Regression test: the router already drops a client-supplied (Ollama)
+    model name for any non-local backend before generating (rag/
+    generator.py's GeneratorRouter) — the actual answer was always correct.
+    But api/query.py used to compute the *reported* model as
+    `request.model or generator.model_for(resolved_provider)`, which
+    prefers the client's value whenever it's present regardless of which
+    provider actually ran — so a request combining provider="deepseek"
+    with model="qwen2.5:7b" got the right answer from DeepSeek while every
+    observability surface (this log line, the Langfuse generation, and the
+    debug payload asserted below) reported "qwen2.5:7b" instead of the
+    model that actually generated it."""
+    client, local_gen, deepseek_gen = cloud_client
+    deepseek_gen.model = "cloud-fake-model"  # distinct from FakeGenerator's shared class default
+
+    with client.stream(
+        "POST", "/query/stream",
+        json={"question": "What is the fee?", "provider": "deepseek", "model": "qwen2.5:7b"},
+    ) as response:
+        assert response.status_code == 200
+        body = "".join(response.iter_text())
+
+    events = [json.loads(line[len("data: "):]) for line in body.splitlines() if line.startswith("data: ")]
+    answer = "".join(e["content"] for e in events if e.get("type") == "token")
+    sources_event = next(e for e in events if e.get("type") == "sources")
+
+    assert answer == "Cloud answer. "  # the generation itself was already correct
+    assert sources_event["debug"]["provider"] == "deepseek"
+    assert sources_event["debug"]["model"] == "cloud-fake-model"  # not "qwen2.5:7b"
+    assert local_gen.call_count == 0
+
+
+def test_stream_endpoint_rejects_deepseek_when_admin_has_not_enabled_cloud(monkeypatch):
+    """Same administrator gate as the non-streaming endpoint, proven on
+    /query/stream: a configured deepseek backend alone is not enough."""
+    monkeypatch.setattr(m, "startup", _unreachable_startup)
+    monkeypatch.setattr(m, "API_KEY", "")
+    local_gen = FakeGenerator("Local answer.")
+    deepseek_gen = FakeGenerator("Cloud answer.")
+    router = GeneratorRouter(local=local_gen, deepseek=deepseek_gen, cloud_enabled=False)
+    _wire_fake_services(monkeypatch, generator=router)
+
+    test_client = TestClient(m.app)
+    try:
+        with test_client.stream(
+            "POST", "/query/stream", json={"question": "What is the fee?", "provider": "deepseek"}
+        ) as response:
+            assert response.status_code == 200  # SSE stream itself opens fine
+            body = "".join(response.iter_text())
+    finally:
+        test_client.close()
+        m.app.dependency_overrides.clear()
+
     assert "provider_not_available" in body
     assert deepseek_gen.call_count == 0
+    assert deepseek_gen.call_count == 0
+
+
+# ── document scope normalization (document_id singular shorthand) ──────────
+# api/documents.py's _resolve_scope_document_ids merges the legacy singular
+# document_id into the canonical document_ids list that every retrieval-
+# scope-aware call in api/query.py reads (_augment_compare_queries,
+# retrieve_expanded, promote_missing_compare_documents, and the relevance-
+# threshold bypass, across both /query and /query/stream) — see that
+# function's own docstring for the wiring gap this closes: document_id used
+# to be 404-validated but never actually forwarded to retrieval, so scoping
+# by it alone silently searched the whole knowledge base instead.
+#
+# These use SpyRetriever (tests/fakes.py), not the plain FakeRetriever the
+# fixtures above use — FakeRetriever ignores document_ids entirely and
+# would return 200 with the right-looking answer whether or not the scope
+# was ever forwarded. SpyRetriever both records what it received and
+# actually filters by it, so a test here proves the HTTP-schema-to-
+# retrieval wiring itself rather than trusting a fake that can't fail this
+# particular way.
+
+@pytest.fixture
+def scoped_client(monkeypatch):
+    """Two active documents (d1, d2), one fixture chunk each."""
+    monkeypatch.setattr(m, "startup", _unreachable_startup)
+    monkeypatch.setattr(m, "API_KEY", "")
+    monkeypatch.setattr(m, "RELEVANCE_THRESHOLD", 0)
+    monkeypatch.setitem(m.documents_registry, "d1", {"status": "active", "filename": "a.pdf"})
+    monkeypatch.setitem(m.documents_registry, "d2", {"status": "active", "filename": "b.pdf"})
+
+    chunks = [
+        {"text": "Clause 3 says the fee is £100.", "document_id": "d1",
+         "filename": "a.pdf", "page_num": 1, "chunk_index": 0, "score": 0.9},
+        {"text": "Clause 9 says the deposit is £50.", "document_id": "d2",
+         "filename": "b.pdf", "page_num": 1, "chunk_index": 0, "score": 0.9},
+    ]
+    spy = SpyRetriever(chunks)
+
+    m.app.dependency_overrides[m.get_query_expander] = lambda: FakeQueryExpander()
+    m.app.dependency_overrides[m.get_retriever] = lambda: spy
+    m.app.dependency_overrides[m.get_reranker] = lambda: FakeReranker()
+    m.app.dependency_overrides[m.get_prompt_builder] = lambda: m.PromptBuilder()
+    m.app.dependency_overrides[m.get_generator] = lambda: GeneratorRouter(
+        local=FakeGenerator("The fee is £100."), deepseek=None, cloud_enabled=False
+    )
+
+    test_client = TestClient(m.app)
+    try:
+        yield test_client, spy
+    finally:
+        test_client.close()
+        m.app.dependency_overrides.clear()
+
+
+def test_singular_document_id_is_forwarded_to_retriever_as_a_list(scoped_client):
+    client, spy = scoped_client
+    response = client.post("/query", json={"question": "What is the fee?", "document_id": "d1"})
+    assert response.status_code == 200
+    assert spy.received_document_ids == ["d1"]
+
+
+def test_singular_document_id_scopes_the_response_away_from_other_documents(scoped_client):
+    """The regression this whole change is about: without normalization,
+    document_id alone used to reach retrieval as document_ids=None — an
+    unscoped search across the entire knowledge base — so d2's chunk could
+    leak into a response the caller scoped to d1 only, with no error."""
+    client, spy = scoped_client
+    response = client.post("/query", json={"question": "What is the fee?", "document_id": "d1"})
+    assert response.status_code == 200
+    sources = response.json()["sources"]
+    assert [s["document"] for s in sources] == ["d1"]
+
+
+def test_stream_endpoint_singular_document_id_is_forwarded_to_retriever_as_a_list(scoped_client):
+    client, spy = scoped_client
+    with client.stream(
+        "POST", "/query/stream", json={"question": "What is the fee?", "document_id": "d1"}
+    ) as response:
+        assert response.status_code == 200
+        body = "".join(response.iter_text())
+    assert spy.received_document_ids == ["d1"]
+    events = [json.loads(line[len("data: "):]) for line in body.splitlines() if line.startswith("data: ")]
+    sources_event = next(e for e in events if e.get("type") == "sources")
+    assert [s["document"] for s in sources_event["sources"]] == ["d1"]
+
+
+def test_nonexistent_singular_document_id_returns_404(scoped_client):
+    client, spy = scoped_client
+    response = client.post("/query", json={"question": "What is the fee?", "document_id": "does-not-exist"})
+    assert response.status_code == 404
+    assert spy.received_document_ids is None  # never even reached retrieval
+
+
+def test_conflicting_document_id_and_document_ids_returns_422(scoped_client):
+    """document_id names a real, active document — but one that isn't in
+    document_ids — so this is a client-side scope inconsistency (422), not
+    a missing-document 404, and not silently unioned into a wider scope."""
+    client, spy = scoped_client
+    response = client.post(
+        "/query",
+        json={"question": "What is the fee?", "document_id": "d2", "document_ids": ["d1"]},
+    )
+    assert response.status_code == 422
+    assert spy.received_document_ids is None
+
+
+def test_conflicting_document_id_and_document_ids_with_nonexistent_singular_id_returns_422(scoped_client):
+    """The conflict itself must win over the existence check, not just
+    happen to produce 422 incidentally because the singular id also doesn't
+    exist. Regression for an ordering bug: _resolve_scope_document_ids()
+    (422 on conflict) must run before _validate_query_document_scope() (404
+    on missing/tombstoned) in both endpoints — reversed, this exact request
+    would 404 on "missing" before the conflict was ever checked, even
+    though the real problem is that the two fields disagree, not that
+    "missing" happens not to exist (swap in an id that DOES exist and the
+    request is still wrong for the same reason — see
+    test_conflicting_document_id_and_document_ids_returns_422 above)."""
+    client, spy = scoped_client
+    response = client.post(
+        "/query",
+        json={"question": "What is the fee?", "document_id": "missing", "document_ids": ["d1"]},
+    )
+    assert response.status_code == 422
+    assert spy.received_document_ids is None
+
+
+def test_document_id_matching_an_entry_in_document_ids_is_accepted(scoped_client):
+    """document_id that's also (redundantly) present in document_ids is not
+    a conflict — the canonical scope is just document_ids, unchanged."""
+    client, spy = scoped_client
+    response = client.post(
+        "/query",
+        json={"question": "What is the fee?", "document_id": "d1", "document_ids": ["d1", "d2"]},
+    )
+    assert response.status_code == 200
+    assert spy.received_document_ids == ["d1", "d2"]
+
+
+def test_plural_document_ids_alone_still_works_unchanged(scoped_client):
+    """The frontend's actual request shape (api.js always sends
+    document_ids, never the singular field) — unaffected by the
+    normalization added for document_id."""
+    client, spy = scoped_client
+    response = client.post("/query", json={"question": "What is the fee?", "document_ids": ["d2"]})
+    assert response.status_code == 200
+    assert spy.received_document_ids == ["d2"]
+    assert [s["document"] for s in response.json()["sources"]] == ["d2"]

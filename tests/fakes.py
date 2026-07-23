@@ -25,6 +25,34 @@ class FakeRetriever:
         return list(self._chunks)
 
 
+class SpyRetriever(FakeRetriever):
+    """Like FakeRetriever, but records the document_ids it was actually
+    called with (received_document_ids) and — unlike the plain fake, which
+    ignores document_ids entirely — filters its own fixture chunks by it.
+
+    This exists specifically to catch a wiring gap a filtering-blind fake
+    can't: api/query.py used to accept a request.document_id (singular)
+    field, 404-validate it, and then never pass it to retrieve_expanded at
+    all, so a request scoped that way silently searched the whole
+    knowledge base. A test asserting only "the endpoint returns 200" against
+    FakeRetriever would have passed either way, since FakeRetriever hands
+    back every fixture chunk regardless of document_ids. Recording the
+    argument AND filtering by it means a test can assert both what the
+    endpoint forwarded to retrieval and that the wrong document's chunk is
+    actually gone from the response — proving the HTTP-schema-to-retrieval
+    wiring itself, not incidentally re-deriving it inside the test double.
+    """
+    def __init__(self, chunks: list[dict]):
+        super().__init__(chunks)
+        self.received_document_ids = None
+
+    async def retrieve_expanded(self, expanded_queries, top_k=20, folder=None, document_ids=None):
+        self.received_document_ids = document_ids
+        if document_ids is None:
+            return list(self._chunks)
+        return [c for c in self._chunks if c.get("document_id") in document_ids]
+
+
 class FakeReranker:
     """Mimics rag/reranker.py's CrossEncoderReranker.rerank() signature —
     called via run_on_gpu(reranker.rerank, query, chunks, top_k=...), so

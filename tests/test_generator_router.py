@@ -141,7 +141,11 @@ def test_ollama_url_property_delegates_to_local():
     assert router.ollama_url == "http://localhost:11435"
 
 
-# ── generate_stream_with_refusal_retry: local-only ───────────────────────────
+# ── generate_stream_with_refusal_retry: gating ───────────────────────────────
+# Both providers can stream now (rag/generator.py's BaseGenerator.
+# generate_stream_with_refusal_retry, built on each backend's own
+# generate_stream()) — same two-gate discipline as the non-streaming
+# generate_with_refusal_retry() above, proven here for the streaming path.
 
 @pytest.mark.asyncio
 async def test_stream_default_provider_streams_from_local():
@@ -152,18 +156,67 @@ async def test_stream_default_provider_streams_from_local():
 
 
 @pytest.mark.asyncio
-async def test_stream_provider_deepseek_raises_even_when_fully_enabled():
-    """Streaming is local-only regardless of cloud_enabled/backend state —
-    DeepSeekGenerator has no generate_stream at all, and this must be a
-    clear error, not an AttributeError deep inside the router or a silent
-    switch to local."""
-    local, cloud = _stream_backend(), _FakeBackend("cloud")
+async def test_stream_provider_deepseek_streams_when_fully_enabled():
+    """The opt-in path actually works for streaming too, now that
+    DeepSeekGenerator has its own generate_stream() — this used to raise
+    ProviderNotAvailable unconditionally regardless of cloud_enabled."""
+    local, cloud = _stream_backend(("h", "i")), _stream_backend(("c", "d"))
     router = GeneratorRouter(local=local, deepseek=cloud, cloud_enabled=True)
+    tokens = [
+        t async for t in router.generate_stream_with_refusal_retry(
+            [{"role": "user", "content": "q"}], provider="deepseek"
+        )
+    ]
+    assert tokens == ["c", "d"]
+
+
+@pytest.mark.asyncio
+async def test_stream_provider_deepseek_raises_when_admin_has_not_enabled_cloud():
+    """Same administrator gate as the non-streaming path — a configured
+    deepseek backend alone is not enough."""
+    local, cloud = _stream_backend(), _stream_backend(("c", "d"))
+    router = GeneratorRouter(local=local, deepseek=cloud, cloud_enabled=False)
     with pytest.raises(ProviderNotAvailable):
         async for _ in router.generate_stream_with_refusal_retry(
             [{"role": "user", "content": "q"}], provider="deepseek"
         ):
             pass
+
+
+@pytest.mark.asyncio
+async def test_stream_deepseek_ignores_client_supplied_model():
+    """Regression test, streaming counterpart to
+    test_deepseek_ignores_client_supplied_model: a client-supplied (Ollama)
+    model name must never reach the cloud backend's stream either."""
+    received_models = []
+
+    async def _stream(messages, refusal_retries=2, model=None):
+        received_models.append(model)
+        yield "c"
+
+    cloud = _FakeBackend("cloud")
+    cloud.generate_stream_with_refusal_retry = _stream
+    local = _stream_backend()
+    router = GeneratorRouter(local=local, deepseek=cloud, cloud_enabled=True)
+
+    tokens = [
+        t async for t in router.generate_stream_with_refusal_retry(
+            [{"role": "user", "content": "q"}], model="qwen2.5:7b", provider="deepseek"
+        )
+    ]
+    assert tokens == ["c"]
+    assert received_models == [None]
+
+
+# ── model_for ────────────────────────────────────────────────────────────────
+
+def test_model_for_reports_the_resolved_backends_model():
+    local, cloud = _FakeBackend("local"), _FakeBackend("cloud")
+    cloud.model = "cloud-model"
+    router = GeneratorRouter(local=local, deepseek=cloud, cloud_enabled=True)
+    assert router.model_for("local") == "fake-model"
+    assert router.model_for("deepseek") == "cloud-model"
+    assert router.model_for(None) == "fake-model"  # None -> "local", same as _resolve
 
 
 # ── BaseGenerator.generate_with_refusal_retry is shared by both backends ────

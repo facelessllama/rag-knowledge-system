@@ -54,13 +54,20 @@ class ProviderNotAvailable(Exception):
 class BaseGenerator:
     """Shares the refusal-retry policy across every generator backend —
     see generate_with_refusal_retry's own docstring for why this exists.
-    Subclasses only need to implement generate(); DeepSeekGenerator used to
-    lack this entirely (no refusal-retry at all when it was eval-only
-    tooling), which would have been an inconsistent product experience once
-    it became a real, user-selectable provider."""
+    Subclasses only need to implement generate() and generate_stream();
+    DeepSeekGenerator used to lack refusal-retry entirely (no retry at all
+    when it was eval-only tooling), and generate_stream_with_refusal_retry
+    used to live only on LLMGenerator (streaming was local-only), which
+    would have been an inconsistent product experience once DeepSeek
+    became a real, user-selectable provider with its own streaming
+    support."""
 
     async def generate(self, messages: list[dict], retries: int = 3, model: str = None) -> dict:
         raise NotImplementedError
+
+    async def generate_stream(self, messages: list[dict], model: str = None, retries: int = 3):
+        raise NotImplementedError
+        yield  # pragma: no cover - unreachable; keeps this an async generator function
 
     async def generate_with_refusal_retry(
         self, messages: list[dict], refusal_retries: int = 2, model: str = None
@@ -86,18 +93,73 @@ class BaseGenerator:
             result = await self.generate(messages, model=model)
         return result
 
+    async def generate_stream_with_refusal_retry(
+        self, messages: list[dict], refusal_retries: int = 2, model: str = None
+    ):
+        """Streaming counterpart to generate_with_refusal_retry() — see its
+        docstring for why a refusal is worth resampling here. True token
+        streaming can't be "retried" once tokens have reached the client,
+        so this buffers only the opening of the response (up to the
+        longest known refusal prefix) before deciding: if it never matches
+        a refusal opener, the buffered tokens are flushed and the rest of
+        the stream passes through untouched — no perceptible added latency
+        beyond the first ~20 chars. If it does match, the whole stream is
+        discarded and restarted fresh, up to `refusal_retries` times,
+        before giving up and streaming the refusal through as-is. Built
+        entirely on the subclass's generate_stream() — any backend that
+        implements that primitive gets this for free, same as
+        generate_with_refusal_retry() above is built on generate()."""
+        for attempt in range(refusal_retries + 1):
+            buffered: list[str] = []
+            buffered_text = ""
+            is_refusal_opener = None  # None = undecided, True/False once resolved
+            async for token in self.generate_stream(messages, model=model):
+                if is_refusal_opener is False:
+                    yield token
+                    continue
+                buffered.append(token)
+                buffered_text += token
+                stripped = buffered_text.strip().lower()
+                if any(stripped.startswith(p) for p in REFUSAL_PREFIXES):
+                    is_refusal_opener = True
+                elif len(stripped) >= _MAX_REFUSAL_PREFIX_LEN or not any(
+                    p.startswith(stripped) for p in REFUSAL_PREFIXES
+                ):
+                    is_refusal_opener = False
+                    for buffered_token in buffered:
+                        yield buffered_token
+
+            if is_refusal_opener is None:
+                # Stream ended before the buffer resolved either way (a very
+                # short response whose entire text still reads as a partial
+                # refusal prefix) — fall back to the plain, length-agnostic
+                # check against what we actually got.
+                is_refusal_opener = is_refusal(buffered_text)
+                if not is_refusal_opener:
+                    for buffered_token in buffered:
+                        yield buffered_token
+
+            if not is_refusal_opener:
+                return  # answered normally — already streamed in full
+
+            if attempt < refusal_retries:
+                logger.info(f"Stream refusal despite confident retrieval — resampling ({attempt + 1}/{refusal_retries})")
+                continue
+
+            # Out of retries — stream the refusal through as-is.
+            for buffered_token in buffered:
+                yield buffered_token
+
 
 class DeepSeekGenerator(BaseGenerator):
-    """Same generate() interface as LLMGenerator (drop-in for accuracy A/B
-    testing against the local Ollama model — see eval/compare_generators.py,
-    and now GeneratorRouter below for the real, opt-in product path) but
-    talks to DeepSeek's real OpenAI-compatible endpoint (Bearer auth,
-    top-level temperature/max_tokens, response in choices[0].message.content)
-    rather than Ollama's native /api/chat shape (think/options wrapper),
-    which LLMGenerator actually uses despite its module docstring's claim of
-    OpenAI-compatibility. Streaming is NOT implemented here — GeneratorRouter
-    refuses provider="deepseek" on the streaming endpoint with a clear error
-    rather than silently falling back to a non-streaming call or to local."""
+    """Same generate()/generate_stream() interface as LLMGenerator (drop-in
+    for accuracy A/B testing against the local Ollama model — see
+    eval/compare_generators.py, and now GeneratorRouter below for the real,
+    opt-in product path) but talks to DeepSeek's real OpenAI-compatible
+    endpoint (Bearer auth, top-level temperature/max_tokens, response in
+    choices[0].message.content) rather than Ollama's native /api/chat shape
+    (think/options wrapper), which LLMGenerator actually uses despite its
+    module docstring's claim of OpenAI-compatibility."""
 
     def __init__(
         self,
@@ -166,6 +228,72 @@ class DeepSeekGenerator(BaseGenerator):
                 logger.error(f"DeepSeek API error {e.response.status_code}: {e.response.text[:300]}")
                 raise
         logger.error(f"DeepSeek failed after {retries} attempts")
+        raise last_error
+
+    async def generate_stream(self, messages: list[dict], model: str = None, retries: int = 3):
+        """Same content as generate(), streamed — DeepSeek's wire format is
+        real SSE (`data: {...}\\n\\n` lines, terminated by `data: [DONE]`),
+        not Ollama's raw NDJSON, so the parsing differs from
+        LLMGenerator.generate_stream() even though the externally yielded
+        shape (plain content strings) is identical. "thinking": {"type":
+        "enabled"} below matches generate()'s own payload (see its
+        comment) — with it on, DeepSeek's stream deltas can carry a
+        separate reasoning_content field alongside content; only content
+        is ever yielded here, same as generate()'s non-streaming path only
+        ever returning message.content, so the user sees the final answer
+        in both modes, never the reasoning trace."""
+        import json
+        last_error = None
+        for attempt in range(1, retries + 1):
+            chunks_yielded = 0
+            try:
+                active_model = model or self.model
+                async with httpx.AsyncClient(
+                    timeout=httpx.Timeout(connect=10.0, read=120.0, write=10.0, pool=5.0)
+                ) as client:
+                    async with client.stream(
+                        "POST",
+                        f"{self.base_url}/chat/completions",
+                        headers={"Authorization": f"Bearer {self.api_key}"},
+                        json={
+                            "model": active_model,
+                            "messages": messages,
+                            "stream": True,
+                            "temperature": self.temperature,
+                            "max_tokens": 1024,
+                            "thinking": {"type": "enabled"},
+                        },
+                    ) as response:
+                        response.raise_for_status()
+                        async for line in response.aiter_lines():
+                            if not line or not line.startswith("data: "):
+                                continue
+                            payload = line[len("data: "):]
+                            if payload == "[DONE]":
+                                break
+                            try:
+                                data = json.loads(payload)
+                            except json.JSONDecodeError:
+                                logger.warning(f"Invalid JSON from DeepSeek stream: {payload!r}")
+                                continue
+                            choices = data.get("choices") or [{}]
+                            content = choices[0].get("delta", {}).get("content")
+                            if content:
+                                chunks_yielded += 1
+                                yield content
+                return  # success
+            except (httpx.TimeoutException, httpx.ConnectError) as e:
+                last_error = e
+                if chunks_yielded > 0:
+                    logger.error(f"DeepSeek stream interrupted after {chunks_yielded} chunks, not retrying")
+                    raise PartialStreamError(chunks_yielded) from e
+                logger.warning(f"DeepSeek stream {type(e).__name__} attempt {attempt}/{retries} (no chunks sent)")
+                if attempt < retries:
+                    await asyncio.sleep(2 * attempt)
+            except httpx.HTTPStatusError as e:
+                logger.error(f"DeepSeek stream API error {e.response.status_code}: {e.response.text[:300]}")
+                raise
+        logger.error(f"DeepSeek stream failed after {retries} attempts")
         raise last_error
 
 
@@ -300,59 +428,11 @@ class LLMGenerator(BaseGenerator):
         logger.error(f"LLM stream failed after {retries} attempts")
         raise last_error
 
-    async def generate_stream_with_refusal_retry(
-        self, messages: list[dict], refusal_retries: int = 2, model: str = None
-    ):
-        """Streaming counterpart to generate_with_refusal_retry() — see its
-        docstring for why a refusal is worth resampling here. True token
-        streaming can't be "retried" once tokens have reached the client,
-        so this buffers only the opening of the response (up to the
-        longest known refusal prefix) before deciding: if it never matches
-        a refusal opener, the buffered tokens are flushed and the rest of
-        the stream passes through untouched — no perceptible added
-        latency beyond the first ~20 chars. If it does match, the whole
-        stream is discarded and restarted fresh, up to `refusal_retries`
-        times, before giving up and streaming the refusal through as-is."""
-        for attempt in range(refusal_retries + 1):
-            buffered: list[str] = []
-            buffered_text = ""
-            is_refusal_opener = None  # None = undecided, True/False once resolved
-            async for token in self.generate_stream(messages, model=model):
-                if is_refusal_opener is False:
-                    yield token
-                    continue
-                buffered.append(token)
-                buffered_text += token
-                stripped = buffered_text.strip().lower()
-                if any(stripped.startswith(p) for p in REFUSAL_PREFIXES):
-                    is_refusal_opener = True
-                elif len(stripped) >= _MAX_REFUSAL_PREFIX_LEN or not any(
-                    p.startswith(stripped) for p in REFUSAL_PREFIXES
-                ):
-                    is_refusal_opener = False
-                    for buffered_token in buffered:
-                        yield buffered_token
-
-            if is_refusal_opener is None:
-                # Stream ended before the buffer resolved either way (a very
-                # short response whose entire text still reads as a partial
-                # refusal prefix) — fall back to the plain, length-agnostic
-                # check against what we actually got.
-                is_refusal_opener = is_refusal(buffered_text)
-                if not is_refusal_opener:
-                    for buffered_token in buffered:
-                        yield buffered_token
-
-            if not is_refusal_opener:
-                return  # answered normally — already streamed in full
-
-            if attempt < refusal_retries:
-                logger.info(f"Stream refusal despite confident retrieval — resampling ({attempt + 1}/{refusal_retries})")
-                continue
-
-            # Out of retries — stream the refusal through as-is.
-            for buffered_token in buffered:
-                yield buffered_token
+    # generate_stream_with_refusal_retry() is inherited from BaseGenerator —
+    # it's built entirely on top of generate_stream() above and has no
+    # Ollama-specific behavior of its own. Used to live here (streaming was
+    # local-only); moved up once DeepSeekGenerator got its own
+    # generate_stream() and needed the identical refusal-retry policy.
 
 
 class GeneratorRouter:
@@ -435,16 +515,28 @@ class GeneratorRouter:
     async def generate_stream_with_refusal_retry(
         self, messages: list[dict], refusal_retries: int = 2, model: str = None, provider: str = None
     ):
-        # Streaming is local-only for now — DeepSeekGenerator has no
-        # generate_stream at all. _resolve() still runs first so a request
-        # that explicitly asks for the cloud provider on the streaming
-        # endpoint gets the same clear ProviderNotAvailable it would get
-        # from the non-streaming endpoint, not a confusing attribute error
-        # or (worse) a silent switch to local.
+        # Same gating as generate_with_refusal_retry() above — _resolve()
+        # still runs first so a request asking for a disabled/misconfigured
+        # cloud provider gets the same clear ProviderNotAvailable on the
+        # streaming endpoint as it would on the non-streaming one. Both
+        # backends implement generate_stream_with_refusal_retry() now (via
+        # BaseGenerator, built on each one's own generate_stream()), so
+        # there's no local-only restriction left to enforce here.
         name, backend = self._resolve(provider)
         if name != "local":
-            raise ProviderNotAvailable(
-                f"Streaming is only supported for the local provider right now (got {name!r})."
-            )
+            # Same reasoning as generate_with_refusal_retry(): never let a
+            # client-supplied (Ollama) model name reach the cloud backend.
+            model = None
         async for token in backend.generate_stream_with_refusal_retry(messages, refusal_retries=refusal_retries, model=model):
             yield token
+
+    def model_for(self, provider: str | None) -> str:
+        """The model name a given resolved provider actually uses — for
+        reporting after a stream completes, since generate_stream_with_
+        refusal_retry() has no return value to carry it back the way
+        generate_with_refusal_retry()'s result dict does (result["model"]).
+        Only meaningful for a provider that's already been resolved
+        successfully elsewhere in this same request (no ProviderNotAvailable
+        raised) — doesn't re-run the cloud_enabled/api_key gates itself."""
+        name = provider or "local"
+        return self.deepseek.model if name == "deepseek" and self.deepseek else self.local.model

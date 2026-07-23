@@ -64,6 +64,26 @@
   </div>
 </div>
 
+<!-- Blocking, un-skippable warning shown every time the user switches TO
+     the DeepSeek (cloud) provider — see selectProvider()/showDeepseekWarning()
+     in app.js. No backdrop-click / Escape dismissal on purpose: the only
+     ways out are the Cancel button (immediate) or waiting out the 5s
+     countdown to enable Continue. Replaces the old settings-panel-only
+     banner, which was easy to miss because it lived inside a panel that
+     closes right after the click that triggers it. -->
+<div class="modal-overlay" id="deepseekWarningOverlay">
+  <div class="modal deepseek-warning-modal">
+    <div class="deepseek-warning-icon" id="deepseekWarningIcon"></div>
+    <div class="modal-title">Cloud model selected</div>
+    <div class="modal-hint">DeepSeek runs on an external service. Your question, the retrieved document excerpts, and this chat's history will be sent to DeepSeek's API and leave this server.</div>
+    <div class="deepseek-warning-countdown" id="deepseekCountdown">5</div>
+    <div class="deepseek-warning-actions">
+      <button class="btn-secondary" onclick="cancelDeepseekWarning()">Cancel</button>
+      <button class="btn-primary" id="deepseekConfirmBtn" disabled onclick="confirmDeepseekWarning()">Wait 5s…</button>
+    </div>
+  </div>
+</div>
+
 <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay" onclick="toggleMobileSidebar(false)"></div>
 <div class="main">
   <div class="sidebar" id="sidebarEl">
